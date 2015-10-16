@@ -1,0 +1,61 @@
+  <div class="tabs">
+    <table bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC" >
+            <th width="100">Login</th>
+            <th width="100">Acesso de</th>
+            <th width="400">Descricao</th>
+            <th colspan="3">Administração</th>
+        </tr>
+        <%$t1=0%>
+        <% for role_user in @role_users %>
+        <%$t1=$t1+1%>
+          <tr bgcolor="	#F5F5F5">
+            <td width="25%"><%= User.find(role_user.user_id).login %></td>
+             <%if  Role.find(role_user.role_id).name == 'admin' then%>
+                 <td width="25%">Administrador</td>
+                 <td>Acesso total ao sistema</td>
+               <%else%>
+                   <%if  (Role.find(role_user.role_id).name == 'supervisao') or (Role.find(role_user.role_id).name == 'planejamento') then%>
+                      <td>RH/SEDUC.</td>
+                      <td>Acesso exclusivo - Secretaria da Educação</td>
+                  <%else%>
+                     <%if  Role.find(role_user.role_id).name == 'direcao' then%>
+                       <td>Direção U.E</td>
+                       <td>Acesso exclusivo - Diretor de Unidade Escolar</td>
+                     <%else%>
+                           <%if  Role.find(role_user.role_id).name == 'secretaria' then%>
+                             <td>Secretaria U.E.</td>
+                             <td>Acesso exclusivo - Funcinário de Unidade Escolar</td>
+                           <%else%>
+                               <td>Usuário</td>
+                               <td>Sem acesso ao sistema.</td>
+                           <%end%>
+                     <%end%>
+                  <%end%>
+               <%end%>
+            <td align="center"><td align="center" ><%= button_to 'Visualizar',{:action => "show", :id =>role_user}, :method => "get", :title => "Visualizar"%></td></td>
+            <% if current_user.has_role?('admin')or  current_user.has_role?('planejamento') %>
+                <td align="center" ><%= button_to 'Editar',{:action => "edit", :id =>role_user}, :method => "get", :title => "Editar"%></td>
+            <%else%>
+                <td align="center" > -- </td>
+            <%end%>
+           <% if current_user.has_role?('admin') %>
+                <td align="center" colspan="1"><%= button_to 'Excluir', role_user, :confirm => 'Confirma Exclusao?', :method => :delete, :title => "Excluir" %></td>
+            <%else%>
+                <td align="center" > -- </td>
+            <%end%>
+         </tr>
+       <% end %>
+
+
+
+     </table>
+     <table bgcolor="#DCDCDC" width="100%">
+      <tr >
+          <td align="left"><b>TOTAL USUÁRIOS DO SISTEMA: </b>
+            <b><%=$t1 %></b>
+          </td>
+        
+      </tr>
+    </table>
+  </div>

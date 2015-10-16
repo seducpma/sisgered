@@ -1,0 +1,108 @@
+    <% form_for(@titulo_professor) do |f| %>
+      <%= f.error_messages %>
+        <table width="100%">
+         <tr>
+           <td>
+            <fieldset>
+               <legend><font size=4>Cadastrar Titulação</font></legend>
+               <table width="100%" align="center"  bgcolor="#F5F5F5" >
+                 <tr>
+                   <td width="70%">
+                     <table>
+                        <tr>
+                          <td align="left"><b><font size="2" color ="red"><b>*</font><%= f.label :professor_id, 'Professor: ' %></b></td>
+                          <td width="12%" >
+                              <%= f.collection_select :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
+                                <%= observe_field 'titulo_professor_professor_id',
+                                  :with => :titulo_professor_professor_id,
+                                  :url => { :action => 'sel_prof' } %>
+                            </td>
+                             <td>
+                               <b><div id="nomeprof"></div></b>
+                             </td>
+                          </tr>
+                          <tr>
+                             <td><b><%= f.label :titulo_id, 'Titulo: ' %></b>   </td>
+                             <td><b><div id="tipo_titulo"><%= f.check_box(:tipo_curso, :disabled => true, :checked => true)  %> Presencial</div></b></td>
+                             <td><%= f.collection_select :titulo_id, @titulacaos, :id, :descricao, :include_blank => ' -- Selecione -- ', :size => 5 %>
+                               <%= observe_field 'titulo_professor_titulo_id',
+                               :frequency => 0.5,
+                               :with => :titulo_professor_titulo_id,
+                               :url => { :action => 'guarda_valor' } %>
+                               </td>
+                          </tr>
+                          <tr>
+                            <td><b><%= f.label :obs, 'Descrição:' %></b></td>
+                              <td colspan="2"><%= f.text_area :obs, :size => "62x1"   %></td>
+                            </tr>
+                            <tr>
+                              <td><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
+                              <td colspan="2 id="qtde"><%= f.text_field(:quantidade, :size => 5)%>&nbsp&nbsp&nbsp
+                                   <b><font size="2" color ="red"><b>*</font><%= f.label :dt_titulo, 'Data de Emissão:' %></b><%= datepicker_tag(:titulo_professor, :dt_titulo,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'"}) %></td>
+                            </tr>
+                            <tr>
+                              <td colspan="3">
+                                <table width="100%" >
+                                 <tr>
+                                    <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+                        <%end%>
+
+                                     <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+                                 </tr>
+                               </table>
+
+
+                              </td>
+                            </tr>
+
+                     </table>
+                     </td>
+                     <td valign="top">
+                      <fieldset>
+                        <legend><font size=2><b>Observações:</b></font></legend>
+                       <table>
+                        <tr>
+                          <td></td>
+                        </tr>
+                         <tr>
+                            <td><b><div id="a_distancia"></div></b></td>
+                         </tr>
+                         <tr>
+                            <td><b><div id="a_distancia1"></div></b></td>
+                         </tr>
+                         <tr>
+                           <td><b><div id="valor"></div></b></td>
+                          </tr>
+
+                       </table>
+                     </fieldset>
+                     </td>
+                    </tr>
+                            <tr>
+                              <td colspan="4" align="left"><font   size="1" color ="red"><b>Campos com * preenchimento obrigatório</b></font></td>
+                             </tr>
+               </table>
+               </fieldset>
+                  </td>
+                 </tr>
+               </table>
+               <table>
+                <br/>
+
+
+          <td>
+            <fieldset>
+             <legend><font size=4>Titulos Cadastrados</font></legend>
+             <table>
+               <tr>
+                 <td> <div id="titulos"></div> </td>
+               </tr>
+              </table>
+            </fieldset>
+          </td>
+        </table>
+        <br/>
+  

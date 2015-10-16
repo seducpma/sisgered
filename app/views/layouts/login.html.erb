@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= "PONTUA" %></title>
+    <%= stylesheet_link_tag 'application','layout.css' %>
+    <%= javascript_include_tag 'jquery-1.7','jrails','verify'  %>
+
+<%= stylesheet_link_tag 'geral' %>
+
+
+    <%= yield(:head) %>
+  </head>
+
+
+ <body>
+    <div id="contents">
+      <div id="header">
+        <br/>
+        <div id="topo">
+          <br/><br/><br/><br/>
+          <table>
+            <tr>
+              <td width="73%"align="left"></td>
+              <td align="right"><br/> <h4><font   size ="2"> Americana <%= Time.now.strftime("%d de %B de %Y") %></font></h4></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <p style="color: red"><%= flash[:notice] %></p>
+      <div id="principal2">
+            <%= yield  %>
+      </div>
+      <div id="rodape">
+        <b> © SEDUC-PMA - Secretaria de Educação da Prefeitura Municipal de Americana</b>
+      </div>
+    </div>
+</body>
+</html>

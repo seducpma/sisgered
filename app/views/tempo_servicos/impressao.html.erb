@@ -1,0 +1,251 @@
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="3"><i><b><u>SISTEMA DE PONTUAÇÂO</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp
+<font size="3"><b><u> TITULAÇÂO PROFESSORES</u></b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2">Ano letivo: <%=  $ano%></font><br/>
+<div class="tabs">
+  <br/>
+    <table width="100%" frame="box" rules="all" >
+           <%for professor in @professor%>
+              <tr>
+                   <td align="left" width="10%"><b>Matrícula:</b></td>
+                   <td align="left" width="20%"><%= professor.matricula%></td>
+                   <td align="left" width="9%"><b>Nome:</b></td>
+                   <td colspan="5"align="left"><%= professor.nome %></td>
+                </tr>
+                 <tr>
+                   <td align="left"><b>Nascimento:</b></td>
+                   <td align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></td>
+                   <td align="left"width="5%"><b>Nº Filhos:</b></td>
+                   <td colspan="5"align="left">  <%= professor.n_filhos %></td>
+                 <tr/>
+                 <tr>
+                   <td align="left"><b>RG:</b></td>
+                   <td align="left">  <%= professor.RG %></td>
+                   <td align="left"><b>CPF:</b></td>
+                   <td align="left">  <%= professor.CPF %></td>
+                   <td align="left"width="5%"><b>INEP:</b></td>
+                   <td align="left">  <%= professor.INEP %></td>
+                   <td align="left"width="5%"><b>RD:</b></td>
+                   <td align="left">  <%= professor.RD %></td>
+                 <tr/>
+                 <tr>
+                   <td align="left"><b>Ingresso:</b></td>
+                   <td align="left">  <%= professor.dt_ingresso.strftime("%d/%m/%Y")%></td>
+                   <td align="left"><b>Formação:</b></td>
+                   <td align="left"colspan="5">  <%= professor.entrada_concurso%></td>
+                 </tr>
+                 <tr>
+                   <td align="left"><b>Função:</b></td>
+                   <td align="left">  <%= professor.funcao%></td>
+                   <td align="left"><b>Sede:</b></td>
+                   <td align="left" colspan="3">  <%= professor.unidade.nome%></td>
+                   <td align="left"><b>Jornada:</b></td>
+                   <td align="left">  <%= professor.jornada_sem%></td>
+                 </tr>
+
+                  <tr>
+                   <td align="left"><b>Situação:</b></td>
+                   <td align="left" colspan="7">
+                      <% if  professor.desligado == 1%>
+                        <font color="red"> Desligado</font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <b>Data:</b><%= professor.data_desligado.strftime("%d/%m/%Y")%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <b>Motivo:</b><%= professor.motivo%>
+                      <%else%>
+                        <font color="blue"> Ativo</font>
+                      <%end%>
+                   </td>
+                 </tr>
+                 <tr>
+                  <td align="left"><b> Observações:</b></td>
+                  <td align="left" colspan="7"><%=  professor.obs%></td>
+                </tr>
+                <%end%>
+             </table>
+
+
+                 <%  subtotal1= 0%>
+                  <%  subtotal2= 0%>
+                  <%  subtotal3= 0%>
+                  <%  subtotal4= 0%>
+
+ <hr>
+           <table width="100%" frame="box" rules="all" >
+              <tr>
+                <th colspan="15" align="center"> <font size=3><u><b>Contagem Tempo de Serviço</b></u></font><br/></th>
+              </tr>
+              <tr>
+                <th></th>
+              </tr>
+              <tr>
+                 <th align="center" width ="5%"><b>Ano</b></th>
+                 <th align="center" width ="5%" ><b>Dias</b></th>
+                 <th align="center" width ="5%"><b>Unidade</b></th>
+                 <th align="center" width ="5"><b>Outro<br/>Emprego</b></th>
+                 <th align="center" width ="5"><b>Faltas<br/>Abonadas</b></th>
+                 <th align="center" width ="5%"><b>Faltas<br/>Atestados</b></th>
+                 <th align="center" width ="5%"><b>Faltas<br/>Justif.</b></th>
+                 <th align="center" width ="5%"><b>Faltas<br/>Injustif.</b></th>
+                 <th align="center" width ="5%"><b>Licença<br/>Saúde</b></th>
+                 <th align="center" width ="5%"><b>Afasta-<br/>mento</b></th>
+                 <th align="center" width ="5%"><b>Outras<br/>Ausências</b></th>
+                 <th align="center" width ="8%"><b>Dias<br/>Trabalhados</b></th>
+                 <th align="center" width ="8%"><b>Dias<br/>Efetivos</b></th>
+                 <th align="center" width ="8%"><b>Dias<br/>Rede</b></th>
+                 <th align="center" width ="8%"><b>Dias<br/>Unidade</b></th>
+              </tr>
+            <% if !((@temposervico.nil?) or (@temposervico.empty?)) %>
+              <%for temposervico in @temposervico%>
+                 <%  subtotal1= temposervico.dias_trab2 + temposervico.dias_trab1 %>
+                 <%  subtotal2= temposervico.dias_efetivos2 + temposervico.dias_efetivos1%>
+                 <%  subtotal3= temposervico.dias_rede2 + temposervico.dias_rede1%>
+                 <%  subtotal4= temposervico.dias_unidade2 + temposervico.dias_unidade1%>
+              <tr>
+                <th align="center"><%= temposervico.ano1%> </th>
+                <th align="center"><%= temposervico.dias1 %> </th>
+                <th align="center"><%= temposervico.unidade1%> </th>
+                <th align="center"><%= temposervico.outro_trab1%> </th>
+                <th align="center"><%= temposervico.f_abonada1%> </th>
+                <th align="center"><%= temposervico.f_atestado1%> </th>
+                <th align="center"><%= temposervico.f_justif1%> </th>
+                <th align="center"><%= temposervico.f_injustif1%> </th>
+                <th align="center"><%= temposervico.lic_saude1%> </th>
+                <th align="center"><%= temposervico.afastamento1%> </th>
+                <th align="center"><%= temposervico.outras_aus1%> </th>
+                <th align="center"><%= temposervico.dias_trab1%> </th>
+                <th align="center"><%= temposervico.dias_efetivos1%> </th>
+                <th align="center"><%= temposervico.dias_rede1%> </th>
+                <th align="center"><%= temposervico.dias_unidade1%> </th>
+              </tr>
+              <tr>
+                <th align="center"><%= temposervico.ano2%> </th>
+                <th align="center"><%= temposervico.dias2%> </th>
+                <th align="center"><%= temposervico.unidade2%> </th>
+                <th align="center"><%= temposervico.outro_trab2%> </th>
+                <th align="center"><%= temposervico.f_abonada2%> </th>
+                <th align="center"><%= temposervico.f_atestado2%> </th>
+                <th align="center"><%= temposervico.f_justif2%> </th>
+                <th align="center"><%= temposervico.f_injustif2%> </th>
+                <th align="center"><%= temposervico.lic_saude2%> </th>
+                <th align="center"><%= temposervico.afastamento2%> </th>
+                <th align="center"><%= temposervico.outras_aus2%> </th>
+                <th align="center"><%= temposervico.dias_trab2%> </th>
+                <th align="center"><%= temposervico.dias_efetivos2%> </th>
+                <th align="center"><%= temposervico.dias_rede2%> </th>
+                <th align="center"><%= temposervico.dias_unidade2%> </th>
+               </tr>
+              <tr>
+                <th colspan="11" align="right"><b>SUB TOTAL (em dias)</b>&nbsp&nbsp&nbsp</th>
+                <th align="center"><%= subtotal1%> </th>
+                <th align="center"><%= subtotal2%> </th>
+                <th align="center"><%= subtotal3%> </th>
+                <th align="center"><%= subtotal4%> </th>
+             </tr>
+             <tr>
+                <th colspan="15" align="center"><font size=3> <u><b>Pontuação Tempo de Serviço</b></u></font><br/></th>
+              </tr>
+              <tr>
+                <th align="center" colspan="3"><b>Descrição</b></th>
+                <th align="center" colspan="2"><b>Total Anterior</b></th>
+                <th align="center"colspan="2" ><b>Total <%= temposervico.ano1%></b></th>
+                <th align="center" colspan="2"><b>Total <%= temposervico.ano2%></b><br/></th>
+                <th align="center" colspan="2"><b>Totalização</b></th>
+                <th align="center" colspan="2"><b>Peso</b></th>
+                <th align="center" colspan="2"><b>Pontuação </b></th>
+             </tr>
+             <tr>
+                <th align="left"colspan="3"><b>Total de dias trabalhados</b></th>
+                <th align="center" colspan="2"><%= temposervico.total_ant_dias%></th>
+                <th align="center" colspan="2"><%= temposervico.dias_trab1%></th>
+                <th align="center" colspan="2"><%= temposervico.dias_trab2%></th>
+                   <%tott1 = temposervico.total_ant_dias + temposervico.dias_trab1 + temposervico.dias_trab2%>
+                <th align="center" colspan="2"><%=  tott1%></th>
+                <th align="center" colspan="2"> 8 </th>
+                <th align="center"colspan="2"> <%= temposervico.total_dias %></th>
+             </tr>
+             <tr>
+                <th align="left" colspan="3"><b>Total de dias efetivo</b></th>
+                <th align="center" colspan="2"><%= temposervico.total_ant_efetivo%></th>
+                <th align="center" colspan="2"><%= temposervico.dias_efetivos1%></th>
+                <th align="center" colspan="2"><%= temposervico.dias_efetivos2%></th>
+                   <%tott2 = temposervico.total_ant_efetivo + temposervico.dias_efetivos1 + temposervico.dias_efetivos2%>
+                <th align="center" colspan="2"><%=  tott2%></th>
+                <th align="center" colspan="2"> 2 </th>
+                <th align="center" colspan="2"> <%=temposervico.total_efetivo%></th>
+             </tr>
+              <tr>
+                <th align="left" colspan="3"><b>Total de dias rede</b></th>
+                <th align="center" colspan="2"><%= temposervico.total_ant_rede%></th>
+                <th align="center" colspan="2"><%= temposervico.dias_rede1%></th>
+                <th align="center" colspan="2"><%= temposervico.dias_rede2%></th>
+                    <%tott3 = temposervico.total_ant_rede + temposervico.dias_rede1 + temposervico.dias_rede2%>
+                <th align="center" colspan="2"><%=  tott3%></th>
+                <th align="center" colspan="2"> 1 </th>
+                <th align="center" colspan="2"> <%= temposervico.total_rede %></th>
+             </tr>
+             <tr>
+                <th align="left" colspan="3"><b>Total de dias unidade</b></th>
+                <th align="center" colspan="2"><%= temposervico.total_ant_unid%></th>
+                <th align="center" colspan="2"><%= temposervico.dias_unidade1%></th>
+                <th align="center" colspan="2"><%= temposervico.dias_unidade2%></th>
+                    <%tott4 = temposervico.total_ant_unid + temposervico.dias_unidade1 + temposervico.dias_unidade2%>
+                <th align="center" colspan="2"><%=  tott4%></th>
+                <th align="center" colspan="2"> 2 </th>
+                <th align="center"colspan="2"> <%= temposervico.total_unid %></th>
+            </tr>
+           
+            <tr>
+                <th  colspan="13" align="right"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</th>
+                <th colspan="2"align="center"><b><%=  temposervico.total_geral_tempo_servico%></b></th>
+           </tr>
+         <%end%>
+       <%end%>
+      </table>
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<font size ="1" ><b>Americana, <%= Time.now.strftime("%d/%m/%Y") %></b></font>
+
+
+  </div>
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+<br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Diretor da Unidade Escolar
+         
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Professsor<br/><br/><br/>
+
+</font>
+&nbsp&nbsp
+
+
+    
+
+<br/>

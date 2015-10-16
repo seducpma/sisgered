@@ -1,0 +1,26 @@
+<h1>Listing titulacaos</h1>
+
+<table>
+  <tr>
+    <th>Tipo</th>
+    <th>Descricao</th>
+    <th>Referencia</th>
+    <th>Valor</th>
+  </tr>
+
+<% @titulacaos.each do |titulacao| %>
+  <tr>
+    <td><%=h titulacao.tipo %></td>
+    <td><%=h titulacao.descricao %></td>
+    <td><%=h titulacao.referencia %></td>
+    <td><%=h titulacao.valor %></td>
+    <td><%= link_to 'Show', titulacao %></td>
+    <td><%= link_to 'Edit', edit_titulacao_path(titulacao) %></td>
+    <td><%= link_to 'Destroy', titulacao, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New titulacao', new_titulacao_path %>

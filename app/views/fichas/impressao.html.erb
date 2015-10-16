@@ -1,0 +1,70 @@
+
+<div class="tabs">
+  <div id="caixa_titulo">
+   <font size="4"><strong><u><center>RELATÓRIO DE ATIVIDADES</center></strong></u></font><br/>
+   </div>
+  <br/>
+  <table border="2" bgcolor="#696969" class="tabelas" width="100%">
+
+   <tr>
+     <%if session[:unidade] == ''%>
+       <td><b>Empresa: </b>TODAS</td>
+      <%else%>
+        <td><b>Empresa: </b><%= Unidade.find(session[:unidade]).nome %></td>
+      <%end%>
+      <%if session[:mes] == '--Selecionar--'%>
+       <td><b>Mês: </b>TODOS</td>
+      <%else%>
+        <td><b>Mês:</b> <%if session[:mese] == '--Selecionar--'%>
+                          <%= session[:meso] %>
+                       <%else%>
+                          <%= session[:mese] %>
+                       <%end %>
+        </td>
+      <%end%>
+      <%if session[:ano] == '--Selecionar--'%>
+       <td><b>Ano: </b>TODOS</td>
+      <%else%>
+        <td><b>Ano:</b> <%if session[:anoe] == '--Selecionar--'%>
+                          <%= session[:anoo] %>
+                       <%else%>
+                          <%= session[:anoe] %>
+                       <%end %>
+        </td>
+      <%end%>
+
+   </tr>
+  </table>
+
+  <table border="2" width="100%" class = "tabelas">
+        <tr>
+            <th width="5">Data</th>
+            <th width="100">Obreiro</th>
+            <th width="100">Empresa</th>
+            <th width="500">Atividades</th>
+            <th width="100">Observaçao</th>
+        </tr>
+       <%$t=0%>
+
+       <% @relatorios.each do |relatorio| %>
+       <%$t = $t+1%>
+            <tr>
+                <td align="left"><%=h relatorio.data.strftime("%d/%b/%y")%></td>
+                <td align="left"><%=h relatorio.obreiro.nome %></td>
+                <td align="left"><%=h relatorio.unidade.nome %></td>
+                <td align="left"><%=h relatorio.atividade %></td>
+                <td align="left"><%=h relatorio.obs %></td>
+             </tr>
+            <% end %>
+      <tr>
+        <td align="left" colspan="7">TOTAL DE RELATÓRIOS: <b><%=$t %></b></td>
+      </tr>
+     </table>
+  </div>
+    <table  class ="invisible_to_print " >
+      <tr  class ="invisible_to_print ">
+        <td align="right" class ="invisible_to_print "><%= link_to image_tag("/stylesheets/images/imprimir.png", :size => "30x30"), onclick="javascript:window.print()", :title => "Imprimir" %></td>
+      </tr>
+   </table>
+<br/>
+<br/>

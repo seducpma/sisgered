@@ -1,0 +1,232 @@
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="3"><i><b><u>SISTEMA DE PONTUAÇÂO</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp
+<font size="3"><b><u> TITULAÇÂO PROFESSORES</u></b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2">Ano letivo: <%=  $ano%></font></br>
+<div class="tabs">
+  <br/>
+    <table width="100%"frame="box" rules="all" >
+           <%for professor in @professor%>
+              <tr>
+                   <td align="left" width="10%"><b>Matrícula:</b></td>
+                   <td align="left" width="20%"><%= professor.matricula%></td>
+                   <td align="left" width="9%"><b>Nome:</b></td>
+                   <td colspan="5"align="left"><%= professor.nome %></td>
+                </tr>
+                 <tr>
+                   <td align="left"><b>Nascimento:</b></td>
+                   <td align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></td>
+                   <td align="left"width="5%"><b>Nº Filhos:</b></td>
+                   <td colspan="5"align="left">  <%= professor.n_filhos %></td>
+                 </tr>
+                 <tr>
+                   <td align="left"><b>RG:</b></td>
+                   <td align="left">  <%= professor.RG %></td>
+                   <td align="left"><b>CPF:</b></td>
+                   <td align="left">  <%= professor.CPF %></td>
+                   <td align="left"width="5%"><b>INEP:</b></td>
+                   <td align="left">  <%= professor.INEP %></td>
+                   <td align="left"width="5%"><b>RD:</b></td>
+                   <td align="left">  <%= professor.RD %></td>
+                 </tr>
+                 <tr>
+                   <td align="left"><b>Ingresso:</b></td>
+                   <td align="left">  <%= professor.dt_ingresso.strftime("%d/%m/%Y")%></td>
+                   <td align="left"><b>Formação:</b></td>
+                   <td align="left"colspan="5">  <%= professor.entrada_concurso%></td>
+                 </tr>
+                 <tr>
+                   <td align="left"><b>Função:</b></td>
+                   <td align="left">  <%= professor.funcao%></td>
+                   <td align="left"><b>Sede:</b></td>
+                   <td align="left" colspan="3">  <%= professor.unidade.nome%></td>
+                   <td align="left"><b>Jornada:</b></td>
+                   <td align="left">  <%= professor.jornada_sem%></td>
+                 </tr>
+
+                  <tr>
+                   <td align="left"><b>Situação:</b></td>
+                   <td align="left" colspan="7">
+                      <% if  professor.desligado == 1%>
+                        <font color="red"> Desligado</font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <b>Data:</b><%= professor.data_desligado.strftime("%d/%m/%Y")%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <b>Motivo:</b><%= professor.motivo%>
+                      <%else%>
+                        <font color="blue"> Ativo</font>
+                      <%end%>
+                   </td>
+                 </tr>
+                 <tr>
+                  <td align="left"><b> Observações:</b></td>
+                  <td align="left" colspan="7"><%=  professor.obs%></td>
+                </tr>
+                <%end%>
+             </table>
+<% $subtotal_titulos = 0 %>
+
+<table width="100%" frame="box" rules="all">
+
+<tr><th width="100%" colspan="6" align="center"><hr/><font size=3>Títulos Permanentes</font><hr/></th></tr>
+
+     <tr style="font-size:10px">
+       <th>
+        Título
+       </th>
+       <th>
+        Quantidade
+       </th>
+       <th>
+        Valor do Título
+       </th>
+       <th colspan="2">
+        Pontuação Obtida
+       </th>
+     </tr>
+     <% if !((@tp.nil?) or (@tp.empty?)) %>
+     <%for tp in @tp%>
+
+     <tr style="font-size:10px">
+       <th align="left">
+        <font size="1"><%= Titulacao.find_by_id(tp.titulo_id).descricao %></font>
+      </th>
+      <th align="center">
+        <font size="1"><%= tp.quantidade %></font>
+      </th>
+      <th align="center">
+        <font size="1"><%= tp.valor %></font>
+      </th>
+      <th align="center" colspan="2">
+        <font size="1"><%= tp.pontuacao_titulo %></font>
+
+            <% session[:permanente] = tp.total_permanente %>
+
+      </th>
+   </tr>
+
+  <%end%>
+  <%end%>
+<tr>
+  <th width="80%" colspan="4" align="right">SUB-TOTAL </th>
+  <th align="center">
+        <%= session[:permanente] %>
+
+  </th>
+</tr>
+
+
+</table>
+
+
+<table width="100%" frame="box" rules="all">
+
+<tr style="font-size:10px"><th width="100%" colspan="6" align="center"><hr/><font size=3>Títulos de Contagem Anual</font><hr/></th></tr>
+     <tr style="font-size:10px">
+       <th align="center"><font size="1">Título</font></th>
+       <th align="center">Tipo</th>
+       <th align="center"><font size="1">Quantidade</font></th>
+       <th align="center"><font size="1">Valor Título</font></th>
+       <th align="center"><font size="1">Pontuação</font></th>
+
+    </tr>
+
+<%for tp1 in @tp1%>
+
+     <tr style="font-size:10px">
+      <th  align="left">
+        <font size="1"><%= Titulacao.find_by_id(tp1.titulo_id).descricao %></font>
+      </hd>
+            </th>
+      <th align="center">
+        <% if tp1.tipo_curso == true%>
+          <font size="1"><%= "PRESENCIAL" %></font>
+      <%else%>
+          <%  if (tp1.quantidade<30) %>
+            <font size="1"> <%= "À DISTÂNCIA" %></br>
+            <font color ="red" size="2"><%= "NÃO VALIDO"%></font></font>
+        <% else %>
+            <font size="1"><%= "À DISTÂNCIA" %></font>
+        <%end%>
+      <%end%>
+      </th>
+      <th  align="center">
+        <font size="1"><%= tp1.quantidade %></font>
+      </th>
+      <th  align="center">
+        <font size="1"><%= tp1.valor %></font>
+      </th>
+      <th  align="center">
+        <font size="1"><%= tp1.pontuacao_titulo %></font>
+        
+      </th>
+
+
+
+   </tr>
+  <% $ano = tp1.ano_letivo %>
+  <% session[:anual] = tp1.total_anual %>
+
+<% end %>
+<tr style="font-size:10px">
+  <th width="80%" colspan="4" align="right"><font size="1">SUB-TOTAL </font></th>
+  <th  align="center">
+    <font size="1"><%= session[:anual] %></font>
+  </th>
+</tr>
+<% $subtotal_titulos = session[:permanente] + session[:anual]  %>
+
+
+<tr>
+  <th width="80%" colspan="4" align="right"><font size="2">TOTAL TÍTULOS</font></th>
+  <th align="center"><font size="2"><%= $subtotal_titulos %></font></th>
+</tr>
+</table>
+
+
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<font size ="1" ><b>Americana, <%= Time.now.strftime("%d/%m/%Y") %></b></font>
+
+
+  </div>
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+<br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Diretor da Unidade Escolar
+         
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Professsor<br/>   <br/>
+
+</font>
+&nbsp&nbsp
+
+<font size="1"><b><u>OBS:</u></b> Enviar formulário devidamente assindo e anexar copia dos certificados e enviar à seduc
+    
+
+<br/>

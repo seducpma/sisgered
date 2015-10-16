@@ -1,0 +1,12 @@
+<table width="100%" align="center" >
+   <tr>
+     <td colspan="2"align="right"><font size="2"> <b class="label_busca4">Data:</b>
+      <%= datepicker_tag(:relatorio, :data,{ :size => 8},{:dateFormat => "'yy-mm-dd'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'"}) %></font>
+          <%= observe_field 'relatorio_data',
+               :update => "relatorio",
+               :url    => { :action => 'lista_relatorio_data' },
+               :with   => 'relatorio_data' %>
+     </td>
+   </tr>
+  </table>
+

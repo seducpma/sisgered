@@ -1,0 +1,29 @@
+<table width="100%" align="right">
+   <!--<tr>
+     <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Selecionar Tipo Unidade:</b></font>
+      < %= collection_select :unidade, :unidade_id, @unidadestipo, :id, :tipo, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca1"  %>
+          < %= observe_field 'unidade_unidade_id',
+               :update => "unidades",
+               :url    => { :action => 'lista_unidade_tipo' },
+               :with   => 'unidade_unidade_id' %>
+     </td>
+   </tr>
+ <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Digitar Nome para consulta:</b></font>
+         < %= text_field_tag :search, params[:search], :class=> "txt_busca2" %>
+         <div id="unidade_corrente" style="display:none"></div>
+         < %= submit_tag "Filtrar", :class => "btn_filtrar2" %>
+     </td>
+
+-->
+   
+             <tr>
+                <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Tipo Unidade:</b></font>
+                  <%= select_tag :search,options_for_select(Unidade::TIPO),  :class=> "txt_busca2",:include_blank => true%>
+                  <%= submit_tag "Filtrar", :name => nil, :class => "btn_filtrar2" %>
+                </td>
+             </tr>
+   
+
+
+
+  </table>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tipo: MyString
+  descricao: MyString
+  referencia: MyString
+  valor: 1
+
+two:
+  tipo: MyString
+  descricao: MyString
+  referencia: MyString
+  valor: 1

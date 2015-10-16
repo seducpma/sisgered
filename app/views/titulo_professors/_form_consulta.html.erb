@@ -1,0 +1,14 @@
+<table width="100%" align="center" >
+   <tr>
+
+     <td colspan="2"align="right"><font size="2"> <b class="label_busca3">professor:</b></font>
+        <%= collection_select  :consulta, :professor_id, @professors_consulta, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %>
+        <font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
+         <%= select_tag :ano_letivo, options_for_select(@consulta_ano.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
+
+         <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+     </td>
+
+
+   </tr>
+  </table>

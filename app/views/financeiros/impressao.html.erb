@@ -1,0 +1,146 @@
+<script language="javascript">
+//-----------------------------------------------------
+//Funcao: MascaraMoeda
+//Sinopse: Mascara de preenchimento de moeda
+//Parametro:
+//   objTextBox : Objeto (TextBox)
+//   SeparadorMilesimo : Caracter separador de milésimos
+//   SeparadorDecimal : Caracter separador de decimais
+//   e : Evento
+//Retorno: Booleano
+//Autor: Gabriel Fróes - www.codigofonte.com.br
+//-----------------------------------------------------
+function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
+    var sep = 0;
+    var key = '';
+    var i = j = 0;
+    var len = len2 = 0;
+    var strCheck = '0123456789';
+    var aux = aux2 = '';
+    var whichCode = (window.Event) ? e.which : e.keyCode;
+    if (whichCode == 13) return true;
+    key = String.fromCharCode(whichCode); // Valor para o código da Chave
+    if (strCheck.indexOf(key) == -1) return false; // Chave inválida
+    len = objTextBox.value.length;
+    for(i = 0; i < len; i++)
+        if ((objTextBox.value.charAt(i) != '0') && (objTextBox.value.charAt(i) != SeparadorDecimal)) break;
+    aux = '';
+    for(; i < len; i++)
+        if (strCheck.indexOf(objTextBox.value.charAt(i))!=-1) aux += objTextBox.value.charAt(i);
+    aux += key;
+    len = aux.length;
+    if (len == 0) objTextBox.value = '';
+    if (len == 1) objTextBox.value = '0'+ SeparadorDecimal + '0' + aux;
+    if (len == 2) objTextBox.value = '0'+ SeparadorDecimal + aux;
+    if (len > 2) {
+        aux2 = '';
+        for (j = 0, i = len - 3; i >= 0; i--) {
+            if (j == 3) {
+                aux2 += SeparadorMilesimo;
+                j = 0;
+            }
+            aux2 += aux.charAt(i);
+            j++;
+        }
+        objTextBox.value = '';
+        len2 = aux2.length;
+        for (i = len2 - 1; i >= 0; i--)
+        objTextBox.value += aux2.charAt(i);
+        objTextBox.value += SeparadorDecimal + aux.substr(len - 2, len);
+    }
+    return false;
+}
+</script>
+
+
+
+<div class="tabs">
+  <div id="caixa_titulo">
+   <font size="4"><strong><u><center>RELATÓRIO DESPESAS FINANCEIRAS</center></strong></u></font><br/>
+   </div>
+  <br/>
+  <table bgcolor="#696969" class="tabelas" width="100%">
+
+   <tr>
+     <td><b>Empresa: </b><%= Unidade.find(session[:unidade]).nome %></td>
+     <td><b>Mês:</b> <%= session[:mes] %></td>
+     <td><b>Ano: </b><%= session[:ano] %></td>
+   </tr>
+  </table>
+
+
+  <table border="2" bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC" >
+            <th width="5">Nº</th>
+            <th width="100">Obreiro</th>
+            <th width="10">Data</th>
+            <th width="100">Horário</th>
+            <th width="400">Descrição</th>
+            <th width="20">Valor</th>
+            <th width="20">Km</th>
+            <th width="20">Horas</th>
+        </tr>
+        <%$t=0%>
+        <%$valor=0%>
+        <%$km=0%>
+        <%$horas=0%>
+            <% @financeiros.each do |financeiro| %>
+            <%$t = $t+1%>
+            <%$valor= $valor + financeiro.credito%>
+            <%$km = $km + financeiro.km%>
+            <%$horas= $horas + financeiro.horas%>
+            <%$vhora= financeiro.vhora%>
+            <%$vkm= financeiro.vkm%>
+            <tr bgcolor="#F5F5F5">
+                <td align="left"><%=h financeiro.id%></td>
+                <td align="left"><%=h financeiro.unidade.obreiro.nome%></td>
+                <td align="left"><%=h financeiro.data.strftime("%d/%b/%y")%></td>
+                <td align="left"><%=h financeiro.horario%></td>
+                <td align="left"><%=h financeiro.descricao%></td>
+                <td align="center"><%=h financeiro.credito%></td>
+                <td align="center"><%=h financeiro.km%></td>
+                <td align="center"><%=h financeiro.horas%></td>
+
+             </tr>
+            <% end %>
+
+      <tr bgcolor="#F5F5F5">
+        <td align="left" colspan="2">LANCAMENTOS: <b><%=$t %></b></td>
+        <td align="right" colspan="3"><b>Sub Total</b></td>
+        <td align="center" <b><%=$valor %></b></font></td>
+        <td align="center"><b><%=$km %></b></font></td>
+        <td align="center"><font color ="blue "><b><%=$horas %></b></font></td>
+      </tr>
+      <tr>
+             <td align="center" colspan="8"><b>TOTALIZAÇÃO </b></td>
+      </tr>
+
+      <tr  bgcolor="#F5F5F5">
+        <td align="right" colspan="5"><b>Horas trabalhadas x R$  <%=$vhora %></b></td>
+        <td align="right" colspan="3"><b> R$ <%= $vhora* $horas%></b></td>
+      </tr>
+      <tr  bgcolor="#F5F5F5">
+        <td align="right" colspan="5"><b>Km rodado x R$  <%=$vkm %></b></td>
+        <td align="right" colspan="3"><b> R$ <%= $vkm* $km%></b></td>
+      </tr>
+      <tr  bgcolor="#F5F5F5">
+        <td align="right" colspan="5"><b>Outras Despesas</b></td>
+        <td align="right" colspan="3"><b> R$ <%=$valor %></b></td>
+      </tr>
+       <tr  bgcolor="#F5F5F5">
+        <td align="right" colspan="5"><b>TOTAL</b></td>
+        <td align="right" colspan="3"><b> R$ <%=($valor)+($vkm* $km)+($vhora* $horas)  %></b></td>
+      </tr>
+
+      <tr>
+        <td align="left" colspan="9">Valor por Hora: <b><%=$vhora %> </b>- Valor por Km: <b><%=$vkm %> </b></td>
+      </tr>
+
+     </table>
+
+  </div>
+    <table  class ="invisible_to_print " >
+      <tr  class ="invisible_to_print ">
+        <td align="right" class ="invisible_to_print "><%= link_to image_tag("/stylesheets/images/imprimir.png", :size => "30x30"), onclick="javascript:window.print()", :title => "Imprimir" %></td>
+      </tr>
+   </table>

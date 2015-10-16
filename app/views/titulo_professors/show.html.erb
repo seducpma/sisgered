@@ -1,0 +1,61 @@
+<div id="interno2">
+<% title "PROFESSOR" %>
+<div class ="tabs">
+<font size="3"><strong>PONTUAÇÂO POR TITULO</strong></font></br>
+ <hr>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td >
+        <fieldset><legend><font  size=3><b>Prof.<%= @titulo_professor.professor.nome %></b></font></legend>
+         <table width="100%">
+           <tr bgcolor="#F5F5F5"  width="100%">
+             <td align="center" ><b>Quantidade</b></td>
+             <td align="center" ><b>Título</b></td>
+             <td align="center" ><b>Tipo</b></td>
+             <td align="center" ><b>Valor Titulo</b></td>
+             <td align="center" ><b>Pontuação</b></td>
+             <td align="center" ><b>Data</b></td>
+           </tr>
+
+           <tr bgcolor="#F5F5F5"  >
+             <td align="center" ><%=h @titulo_professor.quantidade %></td>
+             <td align="center" ><%= Titulacao.find_by_id(@titulo_professor.titulo_id).descricao %></td>
+                <% if @titulo_professor.tipo_curso == true%>
+                   <td align="center" ><%= "PRESENCIAL" %></td>
+                <%else%>
+                    <td align="center" ><%= "DISTÂNCIA" %></td>
+                 <%end%>
+             <td align="center" ><%= Titulacao.find_by_id(@titulo_professor.titulo_id).valor  %></td>
+                  <% if @titulo_professor.tipo_curso == true%>
+                      <td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
+                  <%else%>
+                      <%  if (@titulo_professor.quantidade<30) %>
+                       <td align="center" ><font color ="red" size="2"><%= "NÃO VALIDO"%></font></td>
+                    <% else %>
+                        <<td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
+                    <%end%>
+                  <%end%>
+                <td align="center" ><%=h @titulo_professor.dt_titulo.strftime("%d/%m/%Y")%></td>
+           </tr>
+           <% permanente = @titulo_professor.totaliza_permamente(@titulo_professor.professor_id) %>
+           <% anual = @titulo_professor.totaliza_anual(@titulo_professor.professor_id) %>
+         </table>
+     </fieldset>
+   </td>
+  </tr>
+ </table>
+
+    <table align="center" >
+         <tr>
+           <td align="center"><%= button_to 'Fechar', new_titulo_professor_path, {:method => "get"}  %></td>
+          </tr>
+    </table>
+
+
+</div>
+<br/>
+</div>
+
+
+
+

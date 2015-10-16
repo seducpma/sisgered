@@ -1,0 +1,44 @@
+<h1>Editing titulo_professor</h1>
+
+<% form_for(@tp1) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :titulo %><br />
+    <%= f.text_field :titulo %>
+  </p>
+  <p>
+    <%= f.label :professor %><br />
+    <%= f.text_field :professor %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.label :quantidade %><br />
+    <%= f.text_field :quantidade %>
+  </p>
+  <p>
+    <%= f.label :pontuacao_titulo %><br />
+    <%= f.text_field :pontuacao_titulo %>
+  </p>
+  <p>
+    <%= f.label :dt_titulo %><br />
+    <%= f.date_select :dt_titulo %>
+  </p>
+  <p>
+    <%= f.label :dt_validade %><br />
+    <%= f.date_select :dt_validade %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.check_box :status %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @tp %> |
+<%= link_to 'Back', titulo_professors_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  unidade: 
+  data: 2013-02-27 10:19:32
+  credito: 9.99
+  debito: 9.99
+  obs: MyString
+
+two:
+  unidade: 
+  data: 2013-02-27 10:19:32
+  credito: 9.99
+  debito: 9.99
+  obs: MyString

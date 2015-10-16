@@ -1,0 +1,177 @@
+
+
+<table width="100%" frame="box" rules="all">
+
+  <tr><th width="100%" colspan="6" align="center"><hr/><font size=4>Pontuação por Tempo de Serviço</font><hr/></th></tr>
+                         <tr>
+                           <td align="center">
+                             <table frame="box" rules="all">
+                               <tr>
+                                 <td align="center" width ="12%"><b>Dias Trabalhados</b></td>
+                                 <td align="center" width ="12%" ><b>Dias Efetivos</b></td>
+                                 <td align="center" width ="12%"><b>Dias Redes</b></td>
+                                 <td align="center" width ="12%"><b>Dias Unidade</b></td>
+                              </tr>
+                               <tr  >
+                                <td  align="center"><%=h @temposervico.dias_trab1%> </td>
+                                <td align="center"><%=h @temposervico.dias_efetivo1%> </td>
+                                <td align="center"><%=h @temposervico.dias_rede1%> </td>
+                                <td align="center"><%=h @temposervico.dias_unidade1%> </td>
+                              </tr>
+                              <tr>
+                                <td align="center"><%=h @temposervico.dias_trab2%> </td>
+                                <td align="center"><%=h @temposervico.dias_efetivo2%> </td>
+                                <td align="center"><%=h @temposervico.dias_rede2%> </td>
+                                <td align="center"><%=h @temposervico.dias_unidade2%> </td>
+                              </tr>
+
+                              <tr>
+
+                                <td align="center"><%= f.text_field :ano2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :dias2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :unidade2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :outro_trab2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_abonada2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_atestado2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_justif2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_injustif2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :lic_saude2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :afastamento2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :outras_aus2,:size =>5%> </td>
+                              </tr>
+                              <tr>
+
+                                <td align="center"><%=h @temposervico.subtot_dias%> </td>
+                                <td align="center"><%=h @temposervico.subtot_efetivo%> </td>
+                                <td align="center"><%=h @temposervico.subtot_rede%> </td>
+                                <td align="center"><%=h @temposervico.subtot_unidade%> </td>
+                              </tr>
+                             </table>
+                           </td>
+                         </tr>
+
+
+
+
+
+     <tr style="font-size:12px">
+       <th>
+        Título
+       </th>
+       <th>
+        Quantidade
+       </th>
+       <th>
+        Valor do Título
+       </th>
+       <th colspan="2">
+        Pontuação Obtida
+       </th>
+     </tr>
+     <% if !((@tp.nil?) or (@tp.empty?)) %>
+     <%for tp in @tp%>
+
+     <tr style="font-size:12px">
+      <td align="center">
+        <font size="2"><%= Titulacao.find_by_id(tp.titulo_id).descricao %></font>
+      </td>
+      <td align="center">
+        <font size="2"><%= tp.quantidade %></font>
+      </td>
+      <td align="center">
+        <font size="2"><%= tp.valor %></font>
+      </td>
+      <td align="center" colspan="2">
+        <font size="2"><%= tp.pontuacao_titulo %></font>
+        <% $subtot_perm = $subtot_perm + (tp.pontuacao_titulo) %>
+        <% permanente = tp.totaliza_permamente(tp.professor_id) %>
+
+      </td>
+   </tr>
+
+  <%end%>
+  <%end%>
+<tr>
+  <th width="80%" colspan="4" align="right">SUB-TOTAL </th>
+  <th align="center">
+    <%= permanente %>
+
+  </th>
+</tr>
+
+
+</table>
+
+
+<table width="100%" frame="box" rules="all">
+
+<tr style="font-size:10px"><th width="100%" colspan="6" align="center"><hr/><font size=4>Títulos de Contagem Anual</font><hr/></th></tr>
+     <tr style="font-size:10px">
+       <th align="center"><font size="2">Título</font></th>
+       <th align="center"><font size="2">Quantidade</font></th>
+       <th align="center"><font size="2">Valor Título</font></th>
+       <th align="center"><font size="2">Pontuação</font></th>
+      <th><font size="2">Tipo</font>  </th>
+    </tr>
+
+<%for tp1 in @tp1%>
+  <%teste = Time.current.strftime("%Y")%>
+<% if (tp1.ano_letivo).to_s == Time.current.strftime("%Y") %>
+     <tr style="font-size:10px">
+      <td  align="center">
+        <font size="2"><%= Titulacao.find_by_id(tp1.titulo_id).descricao %></font>
+      </td>
+      <td  align="center">
+        <font size="2"><%= tp1.quantidade %></font>
+      </td>
+      <td  align="center">
+        <font size="2"><%= tp1.valor %></font>
+      </td>
+      <td  align="center">
+        <font size="2"><%= tp1.pontuacao_titulo %></font>
+        <% $subtot_um = $subtot_um + (tp1.pontuacao_titulo) %>
+      </td>
+      <!--true = a distancia e false = presencial!-->
+      <td align="center">
+        <% if tp1.tipo_curso == true%>
+          <font size="2"><%= "PRESENCIAL" %></font>
+      <%else%>
+          <%  if (tp1.quantidade<30) %>
+            <font size="2"> <%= "À DISTÂNCIA" %></br>
+            <font color ="red" size="2"><%= "NÃO VALIDO"%></font></font>
+        <% else %>
+            <font size="2"><%= "À DISTÂNCIA" %></font>
+        <%end%>
+      <%end%>
+      </td>
+
+   </tr>
+  <%  tituloprof= tp1.professor_id  %>
+  <% $ano = tp1.ano_letivo %>
+  <% anual = tp1.totaliza_anual(tp1.professor_id) %>
+   <% permanente = tp.totaliza_permamente(tp.professor_id) %>
+  <%end%>
+<% end %>
+<tr style="font-size:10px">
+  <th width="80%" colspan="4" align="right"><font size="2">SUB-TOTAL </font></th>
+  <th  align="center">
+    <font size="2"><%= anual %></font>
+  </th>
+</tr>
+<tr>
+
+  <td widht="8%" colspan="5"><%= link_to image_tag("/stylesheets/images/alterar.png"),titulo_professors_path(:professor => session[:teacher], :type => 1)%>
+                   <b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+
+<% $subtotal_titulos = $subtot_um + $subtot_perm %>
+</table>
+ <table width="100%">
+<tr>
+  <th width="80%" colspan="4" align="right">TOTAL TÍTULOS</th>
+  <th align="center">
+    <%= "#{$subtotal_titulos}" %> 
+</tr>
+</table>
+
+
+

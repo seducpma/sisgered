@@ -1,0 +1,49 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nome: MyString
+  apelido: MyString
+  nascimento: 2012-11-13 09:54:30
+  sexo: MyString
+  estado_civil: MyString
+  conjuge: MyString
+  partipante: false
+  igreja: MyString
+  endereco: MyString
+  num: 1
+  complemento: MyString
+  cep: MyString
+  bairro: MyString
+  cidade: MyString
+  fone: MyString
+  cel: MyString
+  email: MyString
+  escolaridade: MyString
+  photo_file_name: MyString
+  photo_content_type: MyString
+  photo_file_size: 1
+  empresa: 
+
+two:
+  nome: MyString
+  apelido: MyString
+  nascimento: 2012-11-13 09:54:30
+  sexo: MyString
+  estado_civil: MyString
+  conjuge: MyString
+  partipante: false
+  igreja: MyString
+  endereco: MyString
+  num: 1
+  complemento: MyString
+  cep: MyString
+  bairro: MyString
+  cidade: MyString
+  fone: MyString
+  cel: MyString
+  email: MyString
+  escolaridade: MyString
+  photo_file_name: MyString
+  photo_content_type: MyString
+  photo_file_size: 1
+  empresa: 

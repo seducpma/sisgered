@@ -1,0 +1,44 @@
+<div id="interno2">
+<% title "PROFESSORES", :id =>"professors" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>PROFESSORES</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <% form_remote_tag :url => consultaprofessor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+         <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Nome
+              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "2") %></a>Atuantes
+              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "4") %></a>Desligados
+              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "5") %></a>Unidade
+              <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "6") %></a>Função
+              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "3") %></a>Todos
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta" style="display:none"> <%= render "consulta" %> </div>
+               <div class="consulta_nome" style="display:none"> <%= render "consulta_nome" %> </div>
+               <div class="consulta_unidade" style="display:none"> <%= render "consulta_unidade" %> </div>
+               <div class="consulta_professor" style="display:none"> <%= render "consulta_professor" %> </div>
+           </td>
+         </tr>
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="professores"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <br/>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Consultar', consulta_professor_nome_path, :title => "Consultar" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+

@@ -1,0 +1,196 @@
+<%  session[:permanente] = 0 %>
+<%  session[:anual] = 0 %>
+          <table width="100%"frame="box" rules="all" >
+           <%for professor in @professor%>
+              <tr>
+                   <td align="left" width="10%"><b>Matrícula:</b></td>
+                   <td align="left" width="20%"><%= professor.matricula%></td>
+                   <td align="left" width="9%"><b>Nome:</b></td>
+                   <td colspan="5"align="left"><%= professor.nome %></td>
+                </tr>
+                 <tr>
+                   <td align="left"><b>Nascimento:</b></td>
+                   <td align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></td>
+                   <td align="left"width="5%"><b>Nº Filhos:</b></td>
+                   <td colspan="5"align="left">  <%= professor.n_filhos %></td>
+                 <tr/>
+                 <tr>
+                   <td align="left"><b>RG:</b></td>
+                   <td align="left">  <%= professor.RG %></td>
+                   <td align="left"><b>CPF:</b></td>
+                   <td align="left">  <%= professor.CPF %></td>
+                   <td align="left"width="5%"><b>INEP:</b></td>
+                   <td align="left">  <%= professor.INEP %></td>
+                   <td align="left"width="5%"><b>RD:</b></td>
+                   <td align="left">  <%= professor.RD %></td>
+                 <tr/>
+                 <tr>
+                   <td align="left"><b>Ingresso:</b></td>
+                   <td align="left">  <%= professor.dt_ingresso.strftime("%d/%m/%Y")%></td>
+                   <td align="left"><b>Formação:</b></td>
+                   <td align="left"colspan="5">  <%= professor.entrada_concurso%></td>
+                 </tr>
+                 <tr>
+                   <td align="left"><b>Função:</b></td>
+                   <td align="left">  <%= professor.funcao%></td>
+                   <td align="left"><b>Sede:</b></td>
+                   <td align="left" colspan="3">  <%= professor.unidade.nome%></td>
+                   <td align="left"><b>Jornada:</b></td>
+                   <td align="left">  <%= professor.jornada_sem%></td>
+                 </tr>
+
+                  <tr>
+                   <td align="left"><b>Situação:</b></td>
+                   <td align="left" colspan="7">
+                      <% if  professor.desligado == 1%>
+                        <font color="red"> Desligado</font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <b>Data:</b><%= professor.data_desligado.strftime("%d/%m/%Y")%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <b>Motivo:</b><%= professor.motivo%>
+                      <%else%>
+                        <font color="blue"> Ativo</font>
+                      <%end%>
+                   </td>
+                 </tr>
+                 <tr>
+                  <td align="left"><b> Observações:</b></td>
+                  <td align="left" colspan="7"><%=  professor.obs%></td>
+                </tr>
+                <%end%>
+             </table>
+<% $subtotal_titulos = 0 %>
+
+<table width="100%" frame="box" rules="all">
+
+<tr><th width="100%" colspan="6" align="center"><hr/><font size=4>Títulos Permanentes</font><hr/></th></tr>
+
+     <tr style="font-size:12px">
+       <th>
+        Títuloz
+       </th>
+        <th>
+        Ano
+       </th>
+       <th>
+        Quantidade
+       </th>
+       <th>
+        Valor do Título
+       </th>
+       <th colspan="2">
+        Pontuação Obtida
+       </th>
+     </tr>
+     <% if !((@tp.nil?) or (@tp.empty?)) %>
+     <%for tp in @tp%>
+
+     <tr style="font-size:12px">
+       <td align="left">
+        <font size="2"><%= Titulacao.find_by_id(tp.titulo_id).descricao %></font>
+      </td>
+      </td>
+        <td align="center">
+        <font size="2"><%= tp.ano_letivo %></font>
+      </td>
+      <td align="center">
+        <font size="2"><%= tp.quantidade %></font>
+      </td>
+      <td align="center">
+        <font size="2"><%= tp.valor %></font>
+      </td>
+      <td align="center" colspan="2">
+        <font size="2"><%= tp.pontuacao_titulo %></font>
+        
+        <% session[:permanente] = tp.total_permanente %>
+
+      </td>
+   </tr>
+
+  <%end%>
+  <%end%>
+<tr>
+  <th width="80%" colspan="4" align="right">SUB-TOTAL </th>
+  <th align="center">
+    <%= session[:permanente] %>
+
+  </th>
+</tr>
+
+
+</table>
+
+
+<table width="100%" frame="box" rules="all">
+
+<tr style="font-size:10px"><th width="100%" colspan="6" align="center"><hr/><font size=4>Títulos de Contagem Anual</font><hr/></th></tr>
+     <tr style="font-size:10px">
+       <th align="center"><font size="2">Título</font></th>
+       <th align="center"><font size="2">Ano</font></th>
+      <th><font size="2">Tipo</font>  </th>
+       <th align="center"><font size="2">Quantidade</font></th>
+       <th align="center"><font size="2">Valor Título</font></th>
+       <th align="center"><font size="2">Pontuação</font></th>
+
+    </tr>
+
+<%for tp1 in @tp1%>
+
+     <tr style="font-size:10px">
+      <td  align="left">
+        <font size="2"><%= Titulacao.find_by_id(tp1.titulo_id).descricao %></font>
+      </td>
+       <td  align="center">
+        <font size="2"><%= tp1.ano_letivo %></font>
+      </td>
+      <td align="center">
+        <% if tp1.tipo_curso == true%>
+          <font size="2"><%= "PRESENCIAL" %></font>
+      <%else%>
+          <%  if (tp1.quantidade<30) %>
+            <font size="2"> <%= "À DISTÂNCIA" %></br>
+            <font color ="red" size="2"><%= "NÃO VALIDO"%></font></font>
+        <% else %>
+            <font size="2"><%= "À DISTÂNCIA" %></font>
+        <%end%>
+      <%end%>
+      </td>
+      <td  align="center">
+        <font size="2"><%= tp1.quantidade %></font>
+      </td>
+      <td  align="center">
+        <font size="2"><%= tp1.valor %></font>
+      </td>
+      <td  align="center">
+        <font size="2"><%= tp1.pontuacao_titulo %></font>
+        
+      </td>
+      <!--true = a distancia e false = presencial!-->
+
+   </tr>
+  <% $ano = tp1.ano_letivo %>
+  <% session[:anual] = tp1.total_anual %>
+   
+
+<% end %>
+<tr style="font-size:10px">
+  <th width="80%" colspan="5" align="right"><font size="2">SUB-TOTAL </font></th>
+  <th  align="center">
+    <font size="2"><%= session[:anual] %></font>
+  </th>
+</tr>
+<% $subtotal_titulos = session[:permanente] +    session[:anual]%>
+<tr>
+  <th width="80%" colspan="5" align="right">TOTAL TÍTULOS</th>
+  <th align="center">
+    <%= "#{$subtotal_titulos}" %>
+</tr>
+<tr>
+
+  <td widht="8%" colspan="5"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+</tr>
+
+
+
+</table>
+
+
+

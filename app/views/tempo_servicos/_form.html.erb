@@ -1,0 +1,122 @@
+<% form_for(@temposervico) do |f| %>
+      <%= f.error_messages %>
+        <table width="100%">
+         <tr>
+           <td>
+            <fieldset>
+               <legend><font size=4>Contagem de Tempo de Serviço</font></legend>
+               <table width="100%" align="center"  bgcolor="#F5F5F5">
+                 <tr>
+                   <td align="center" width ="100%">
+                     <table width="100%" >
+                        <tr>
+                          <td colspan="12" align="center">
+                            <table width="90%"  >
+                              <tr>
+                                  <td align="left" width ="10%" ><b><%= f.label :professor_id,'Professor: ' %></b></td>
+                                  <td width="12%" colspan="11" >
+                                   <%= f.collection_select :professor_id, @professors, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
+                                   <%= observe_field 'tempo_servico_professor_id',
+                                       :with => :titulo_professor_professor_id,
+                                       :url => { :action => 'sel_prof' } %>
+                                   </td>
+                                   <td width ="40%"><b><div id="nomeprof"></div></b></td>
+                                   <td align="right"width ="20%"><b> Ano Letivo: </b></td>
+                                   <td align="center"><%= Time.current.strftime("%Y").to_i%> </td>
+                                </tr>
+                            </table>
+                          </td>
+                        </tr>
+                         <tr>
+                           <td align="center">
+                             <table frame="box" rules="all">
+                               <tr>
+                                 <td align="center" width ="8%"><b>Ano</b></td>
+                                 <td align="center" width ="8%" ><b>Dias</b></td>
+                                 <td align="center" width ="8%"><b>Unidade</b></td>
+                                 <td align="center" width ="8%"><b>Outro<br/>Emprego</b></td>
+                                 <td align="center" width ="8%"><b>Faltas<br/>Abonadas</b></td>
+                                 <td align="center" width ="8%"><b>Faltas<br/>Atestados</b></td>
+                                 <td align="center" width ="8%"><b>Faltas<br/>Justificadas</b></td>
+                                 <td align="center" width ="8%"><b>Faltas<br/>Injustificadas</b></td>
+                                 <td align="center" width ="8%"><b>Licença<br/>Saúde</b></td>
+                                 <td align="center" width ="8%"><b>Afastamento</b></td>
+                                 <td align="center" width ="8%"><b>Outras<br/>Ausências</b></td>
+
+                              </tr>
+                              <tr>
+
+                                <td align="center"><%= (Time.current.strftime("%Y").to_i)-1%> </td>
+                                <td align="center"><%= f.text_field :dias1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :unidade1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :outro_trab1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_abonada1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_atestado1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_justif1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_injustif1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :lic_saude1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :afastamento1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :outras_aus1,:size =>5%> </td>
+                              </tr>
+                              <tr>
+
+                                <td align="center"><%= (Time.current.strftime("%Y").to_i)%> </td>
+                                <td align="center"><%= f.text_field :dias2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :unidade2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :outro_trab2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_abonada2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_atestado2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_justif2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_injustif2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :lic_saude2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :afastamento2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :outras_aus2,:size =>5%> </td>
+                              </tr>
+
+                             </table>
+                           </td>
+                         </tr>
+                         <tr>
+                             <td colspan="11">
+                                <table width="100%" >
+                                 <tr>
+                                    <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+                        <%end%>
+
+                                     <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+                                 </tr>
+                               </table>
+
+
+                              </td>
+                            </tr>
+
+                     </table>
+                     </td>
+                    </tr>
+               </table>
+               </fieldset>
+                  </td>
+                 </tr>
+               </table>
+               <table>
+                <br/>
+
+        </table>
+        <br/>
+
+
+
+
+
+
+
+
+
+
+
+
+

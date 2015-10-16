@@ -1,0 +1,25 @@
+<td align="left" ><%= link_to image_tag("/stylesheets/images/imprimir.png", :size => "30x30"), onclick="javascript:PrintDiv('financeiro');", :title => "Imprimir" %></td>
+
+
+
+<table width="100%" align="center">
+   <tr>
+     <td>
+       <font size="1">(Selecionar todos os itens para consulta)</font>
+     </td>
+     <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Empresa:</b></font>
+        <%= collection_select  :financeiro, :unidade_id, @unidades, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %>
+        <font size="2"> <b class="label_busca2">Mês:</b></font>
+        <%= select_tag :mes_e ,options_for_select(%w(--Selecionar-- JANEIRO FEVEREIRO MARÇO ABRIL MAIO JUNHO JULHO AGOSTO SETEMBRO OUTUBRO NOVEMBRO DEZEMBRO), params[:mes_e]), :include_blank => true%></b></font>
+        <font size="2"><b class="label_busca2">Ano:</b></font>
+
+        <%= select_tag :ano_e, options_for_select(@rel_ano.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
+
+         <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+
+     </td>
+
+
+   </tr>
+  </table>
+

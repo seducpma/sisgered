@@ -1,0 +1,1093 @@
+#incial{
+    height:220px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+.divisoes{
+  background-color:#DCDCDC;
+  border: solid 1px;
+  border-collapse: separate;
+  border-color:black;
+  width:100%;
+}
+.divisoes tr {
+      font-size: 12px;
+      color: black;
+      background-color: #F5F5F5;
+      padding: 4px 8px;
+      padding-bottom: 4px;
+      text-align: center;
+    }
+#classe{
+    height:380px;
+    width:760px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#F5F5F5;
+
+}
+#selecao{
+    height:180px;
+    width:300px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#F5F5F5;
+
+}
+#selecionado{
+    height:180px;
+    width:300px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#F5F5F5;
+
+}
+
+
+#livros{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#areas{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#dicionarios{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#editoras{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#generos{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#titulos{
+    height:auto;
+    width:850px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+
+#temposervico{
+    height:auto;
+    width:850px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#midias{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#musicas{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#periodicos{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#livros{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#tombos{
+    height:380px;
+    width:auto;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#f5f5f5;
+}
+#pessoas{
+    height:250px;
+    width:740px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#F5F5F5;
+}
+#ambiente{
+    height:150px;
+    width:540px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#F5F5F5;
+}
+
+#retorna_livro{
+    height:300px;
+    width:660px;
+    border: solid 1px;
+}
+
+
+#retorna_pessoa{
+    height:20px;
+    width:350px;
+    border: solid 1px;
+}
+.data{
+    height:20px;
+    width:100px;
+    border: solid 1px;
+    background-color: white;
+    text-align: center;
+}
+
+
+#livro{
+    height:20px;
+    width:575px;
+    border: solid 1px;
+}
+
+
+#quadro1 {
+    height:750px;
+    width:680px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#CDC1C5;
+}
+
+#quadro2 {
+    border: solid 1px;
+    position :relative;
+    width: 560px;
+    top: 6px;
+    left: 55px;
+    height:700px;
+    background-color:white;
+    overflow: auto;
+}
+
+#quadro3 {
+    height:480px;
+    position :relative;
+    width:500px;
+    top: 6px;
+    left: 30px;
+    background-color:white;
+}
+
+#livro_per_user {
+    height:220px;
+    width:470px;
+    border: solid 1px;
+    overflow: auto;
+}
+
+#unidade_corrente {
+       position:absolute;
+       width:340px;
+       top:40px;
+       left:13px;
+       text-align:right;
+       height:24px;
+       width:615px;
+
+       font-weight: bold
+}
+.musica{
+    display:none;
+}
+#sql {
+       border: solid 1px;
+       height:40px;
+       width:350px;
+}
+#lista_dicionarios{
+    height:120px;
+    width:750px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#F5F5F5
+}
+#lista_livros {
+    height:120px;
+    width:750px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#F5F5F5
+}
+#lista {
+    height:auto;
+    width:830px;
+    border: solid 1px;
+}
+.tabelas {
+  border: solid 1px;
+  border-collapse: separate;
+  border-color:black;
+  width:100%;
+  height: 10px;
+  }
+  .tabelas th {
+      font-size: 14px;
+      color: black;
+      background-color: #B3B1A9;
+      padding: 4px 8px;
+      padding-bottom: 4px;
+      text-align: center;
+
+
+    }
+    .tabelas tr{
+        background-color: #DCDCDC;
+        font-size: 9.5px;
+}
+    .tabelas th.titulo {
+        background-color: yellow;
+    }
+    .tabelas th.titulo h1{
+        color:#000;
+    }
+    .tabelas td {
+      font-size: 14px;
+      padding: 4px 8px;
+      background-color: #F5F5F5;
+      color:black;
+      text-align: center;
+    }
+#aviso{
+    color: red;
+}
+
+#caixa_titulo{
+	width:auto;
+	height:20px;
+	padding:3px 0 0 0;
+	background-color:#E6E6FA;
+	text-align:left;
+}
+
+#caixa_titulo_novo_usuario{
+	width:auto;
+	height:20px;
+	padding:5px 0 0 0;
+	background-color:#E6E6FA;
+	text-align:left;
+}
+
+#caixa_subtitulo{
+	width:auto;
+	height:20px;
+	padding:3px 0 0 0;
+	background-color:#000;
+	text-align:left;
+}
+
+#tudo{
+	width:auto;
+	height:100px;
+	padding:3px 0 0 0;
+	background-color:#333;
+	border-top:1px solid #666;
+	border-bottom:2px dotted #666;
+	color:#0f0;
+	text-align:center;
+}
+
+
+
+#conteudoEsq {
+	position:absolute;
+	width:340px;
+	top:120px;
+	left:15px;
+	color:#99f;
+	padding-bottom:20px;	
+}
+#informe {
+	background:#444;
+    height:350px;
+}
+#sepEsqcolCentral {
+	margin-left:350px;
+	padding-left:2px;
+	background:#666;
+}
+#colDireita {
+	background:#22232F;
+	color:#991;
+	padding:2px 10px;
+	text-align:justify;
+	border-bottom:1px solid #666;
+    height: 200px;
+    width: 300px;
+    overflow: auto;
+    border: 1px solid #666;
+    background-color: #ccc;
+    padding: 8px;
+}
+
+#topoShow {
+    width:auto;
+	height:100px;
+	padding:3px 0 0 0;
+	background-color:#F5F5F5;
+	border-top:1px solid #666;
+	border-bottom:2px dotted #666;
+	color:#000;
+	text-align:left;
+	position:absolute;
+	top:100px;
+	left:15px;
+}
+
+#telaShow {
+    background:#F5F5F5;
+    height:410px;
+    border-style:double;
+    border-color:#CDC9C9;
+    overflow: auto;
+}
+
+#linhaCentral {
+	    margin-left:310px;
+	    border-color:#CDC9C9;
+    	border-left-style:double;
+    	border-left-width:thin;
+    	padding-left:1px;
+    	background:#BEBEBE;
+    	height:inherit;
+}
+
+#colunaEsquerda {
+    background:#EEE9E9;
+    height:410px;
+}
+
+#colunaDireita {
+	background:#F5F5F5;
+	color:#000;
+	padding:2px 10px;
+	text-align:justify;
+	height:406px;
+}
+
+#conteudoEsquerda {
+	position:absolute;
+	width:300px;
+	top:55px;
+	left:10px;
+	color:#000;
+	padding-bottom:20px;
+}
+.pagination {
+padding: 3px;
+margin: 3px;
+}
+.pagination a {
+padding: 2px 5px 2px 5px;
+margin: 5px;
+border: 1px solid ;
+
+color: white;
+background-color:teal;
+}
+.pagination a:hover, .pagination a:active {
+border: 1px solid white;
+color: black;
+}
+.pagination span.current {
+padding: 2px 5px 2px 5px;
+margin: 2px;
+border: 1px solid black;
+font-weight: bold;
+background-color: gray;
+color: black;}
+
+.pagination span.disabled {
+padding: 2px 5px 2px 5px;
+margin: 2px;
+border: 1px solid #eee;
+color: #ddd;
+background-color:white;
+}
+
+#status{
+    text-align: center;
+}
+#chat_form{
+    position:relative;
+    left: 63px;
+
+}
+#chat_room{
+    position:relative;
+    left: 140px;
+    top: 0px;
+    background-color:white;
+    width:790px;
+    text-decoration:inherit;
+    color:blue;
+    text-align:left;
+    height:400px;
+    border:1px solid black;
+ }
+#users {
+  float: left;
+  width: 120px;
+  height: 434px;
+  border-style: inset;
+  overflow: auto;
+  color: white;
+  background-color: gray;
+  text-align:left;
+  list-style:none;
+}
+
+.cadastro {
+    border:10px solid black;
+  margin-left:170px;
+
+}
+
+
+.informa {
+  border-collapse: separate;
+
+}
+
+.informa th {
+  font-size: 10px;
+  color: #FFF;
+  background-color: gray;
+  padding: 4px 8px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+.informa td {
+  padding: 4px 8px;
+  text-align: left;
+  background-color: white;
+  color: black;
+}
+
+
+logo{
+
+margin:90px 0px;
+background-image:url(Imagens/logo.jpg);
+background-repeat: no-repeat;
+height:120px;
+}
+#menu {
+   position:inherit;
+   left: 280px;
+   top: 20px;;
+}
+body {
+margin:0;
+background-color:white
+
+}
+a:link {text-decoration:none}
+a:visited {text-decoration:none}
+a:active {text-decoration:none}
+a:hover {text-decoration:none}
+a img {
+border-width:0;
+}
+#alinha{
+margin:25px;
+}
+
+#posicao_login {
+   position :relative;
+   left: 170px;
+   
+   
+
+}
+
+#imagem_login{
+   background-image:url(Imagens/livros.jpg);
+   background-repeat: no-repeat;
+   text-align: center;
+   color:white;
+   width:100%;
+   height:295px;
+   margin:0;
+   font:bold;
+   border-color:black;
+   border-left: double;
+   border-bottom: double;
+   border-top: double;
+   border-right: double;
+
+ }
+
+ #img{
+   background-image:url(Imagens/demanda.jpg);
+   background-repeat: no-repeat;
+   background-position:center;
+   text-align: center;
+   color:white;
+   width:95%;
+   height:270px;
+   margin:0;
+   font-weight:bold;
+   border-color:black;
+   border-left: double;
+   border-bottom: double;
+   border-top: double;
+   border-right: double;
+}
+
+   #rodape_login{
+    background-image:url(Imagenzs/fundo_rodape.jpg);
+    position:relative;
+    width:100%;
+    color:white;
+    text-align:center;
+}
+
+#posicao_novo_usuario {
+   position:absolute;
+   left: 350px;
+   top: 200px;;
+}
+
+#posição1 {
+  margin:25px;
+}
+
+#conteudo3 {
+   position:absolute;
+   left: 100px;
+   top: 200px;
+}
+
+#topo1não
+{
+        background-image:url(Imagens/americana.jpg);
+        color:white;
+        height:80px;
+        margin:0;
+        font-weight:bold;
+}
+
+
+#topo {
+background-image:url(Imagens/americana.jpg);
+background-repeat: no-repeat;
+text-align: center;
+color:black;
+width:100%;
+height:88px;
+margin:0;
+font:bold;
+border-color:black;
+border-left: double;
+border-bottom: double;
+border-top: double;
+border-right: double;
+}
+
+
+#rodape{
+
+    background-color:#C6E2FF;
+    width:99.5%;
+    color:black;
+    text-align:center;
+    margin: 0;
+    border-color:black;
+    border-left: double;
+    border-bottom: double;
+    border-top: double;
+    border-right: double;
+}
+
+#janela {
+   background-repeat:repeat;
+   text-align: center;
+   color:black;
+   height:890px;
+   width:944px;
+   margin:0;
+   font:bold;
+   border-color:black;
+   border-left: double;
+   border-bottom: double;
+   border-top: double;
+   border-right: double;
+}
+
+#ljanela {
+  width:65%;
+  margin-top: 50px;
+  margin-left: 80px;
+}
+
+#contents{
+    margin:0 auto;
+    background-color:White;
+    width:950px;
+
+}
+
+#principalimp{
+    float:right;
+    left: 20px;
+    width:940px;
+    height:auto;
+    overflow: auto;
+    background-image:url(Imagens/principal_body.jpg);
+
+}
+
+#principal{
+    float: right;
+    width:950px;
+    height:auto;
+    overflow: auto;
+    margin:0;
+    background-image:url(Imagens/principal_body.jpg);
+    background-repeat:repeat;
+    font-size:2px;
+
+}
+
+
+#principal_usuario{
+    float:right;
+    width:945px;
+    height:auto;
+    overflow: auto;
+    margin:0;
+    background-image:url(Imagens/principal_body1.jpg);
+    background-repeat:repeat;
+    font-size:12px;
+    border-color:black;
+    border-left: double;
+    border-bottom: double;
+    border-top: double;
+    border-right: double;
+
+}
+
+#interno1{
+    width:80%;
+    margin-top: 20px;
+    margin-left: 80px;
+    font-size:12px;
+}
+#interno2{
+    width:95%;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size:12px;
+
+}
+#interno_novo_usuario{
+    width:60%;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size:12px;
+    
+}
+
+
+#principal2{
+    float:right;
+    width:945px;
+    height:auto;
+    overflow: auto;
+    margin:0;
+    background-image:url(Imagens/principal_body.jpg);
+    background-repeat:repeat;
+    font-size:12px;
+    border-color:black;
+    border-left: double;
+    border-bottom: double;
+    border-top: double;
+    border-right: double;
+}
+#principal3{
+    float:right;
+    width:950px;
+    background-image:url(Imagens/principal_body.jpg);
+    font-size:10px;
+    border-color:black;
+    border-left: double;
+    border-bottom: double;
+    border-top: double;
+    border-right: double;
+}
+
+#principal4{
+    float:right;
+    width:898px;
+    background-image:url(Imagens/principal_body.jpg);
+    font-size:10px;
+}
+
+#telaa.tam_padrao3{
+    float:right;
+    width:950px;
+    background-image:url(Imagens/principal_body.jpg);
+    font-size:10px;
+    margin:0;
+    height:510px;
+    border-color:black;
+    border-left: double;
+    border-bottom: double;
+    border-top: double;
+    border-right: double;
+}
+
+#tela.tam_padrao{
+    margin:0;
+    height:890px;
+    border-color:black;
+    border-left: double;
+    border-bottom: double;
+    border-top: double;
+    border-right: double;
+}
+#logoInfo{
+   background-repeat:repeat;
+   text-align: center;
+   color:white;
+   width:945px;
+   margin:0;
+   font:bold;
+   border-color:black;
+   border-left: double;
+   border-bottom: double;
+   border-top: double;
+   border-right: double;
+}
+
+.tabelas2 {
+  border: solid 1px;
+  border-collapse: separate;
+  border-color:black;
+}
+.tabelasT {
+  border: solid 1px;
+  border-collapse: separate;
+  border-color:black;
+}
+
+.hide {
+    display:none;
+}
+
+.tabelas2 th {
+  font-size: 12px;
+  color: black;
+  background-color: #EE9A00;
+  padding: 4px 8px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+.tabelasT th {
+  font-size: 12px;
+  color: black;
+  background-color: #EE9A00;
+  padding: 4px 8px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+
+
+.tabelas2 th.titulo {
+    background-color: yellow;
+}
+
+.tabelasT th.titulo {
+    background-color: yellow;
+}
+
+
+
+.tabelasT th.titulo h1{
+    color:#000;
+}
+
+
+
+.tabelas2 td {
+  font-size: 12px;
+  padding: 4px 8px;
+  background-color: #F5DEB3;
+  color:black;
+}
+
+.tabelasT td {
+  font-size: 1px;
+  padding: 4px 8px;
+  background-color: #F5DEB3;
+  color:black;
+}
+
+
+#accordion {
+
+    float:left;
+    padding-left:50px;
+    padding-top:20px;
+    width:500px;
+    font-size:10px;
+    margin:0;
+}
+#relogio {
+
+    float:right;
+    padding-left:50px;
+    padding-top:20px;
+    width:500px;
+    font-size:10px;
+    margin:0;
+}
+
+.nav-container-outer{
+background: #990000;
+padding: 0px;
+height: 74px;
+background: url(images/nav-bg.jpg);
+display: block;
+
+}
+
+.nav-containerrrr-outerrrrr{
+    float:left;
+    width:150px;
+    height:736px;
+    background-image:url(Imagens/principal_body.jpg);
+    background-repeat:repeat;
+    font-size:11px;
+    border-color:black;
+    border-left: double;
+    border-bottom: double;
+    border-top: double;
+    border-right: double;
+
+
+}
+
+.float-left{
+float: left;
+}
+.float-right{
+float: right;
+}
+.nav-container .divider{
+display:block;
+font-size:1px;
+border-width:0px;
+border-style:solid;
+}
+.nav-container .divider-vert{
+float:left;
+width:0px;
+display: none;
+}
+.nav-container .item-secondary-title{
+display:block;
+cursor:default;
+white-space:nowrap;
+}
+.clear{
+font-size:1px;
+height:0px;
+width:0px;
+clear:left;
+line-height:0px;
+display:block;
+float:none;
+}
+.nav-container{
+position:relative;
+zoom:1;
+margin: 0 auto;
+}
+.nav-container a, .nav-container li{
+float:left;
+display:block;
+white-space:nowrap;
+}
+.nav-container div a, .nav-container ul a, .nav-container ul li{
+float:none;
+}
+.nav-container ul{
+left:-10000px;
+position:absolute;
+}
+.nav-container, .nav-container ul{
+list-style:none;
+padding:0px;
+margin:0px;
+}
+.nav-container li a{
+float:none
+}
+.nav-container li{
+position:relative;
+}
+.nav-container ul{
+z-index:10;
+}
+.nav-container ul ul{
+z-index:20;
+}
+.nav-container ul ul ul{
+z-index:30;
+}
+.nav-container ul ul ul ul{
+z-index:40;
+}
+.nav-container ul ul ul ul ul{
+z-index:50;
+}
+li:hover>ul{
+left:auto;
+}
+#nav-container ul {
+top:100%;
+}
+#nav-container ul li:hover>ul{
+top:0px;
+left:100%;
+}
+
+/*^'^ Primary Items ^'^*/
+#nav-container a{
+padding:7px 17px 7px 18px;
+margin: 10px 0px 0px 0px;
+color: black;
+font-family: Trebuchet MS, Arial, sans-serif, Helvetica;
+font-size:14px;
+text-decoration:none;
+font-weight: bold;
+background: url(images/item-primary-bg.jpg);
+background-repeat: no-repeat;
+background-position: top;
+}
+
+#nav-container a:hover{
+color: #6C3600;
+background: url(images/item-primary-bg.jpg);
+background-repeat: no-repeat;
+background-position: center;
+}
+
+/*^'^ Secondary Items Container ^'^*/
+#nav-container div, #nav-container ul{
+margin:0px 0px 0px 0px;
+
+background-repeat: no-repeat;
+background-color: #C6E2FF;
+border-bottom: 1px solid #CA6500;
+
+
+}
+
+/*^'^ Secondary Items ^'^*/
+#nav-container div a, #nav-container ul a{
+padding:0px 10px 3px 6px;
+background-color: #FFFFFF;
+background: url(images/item-secondary-bg.jpg);
+background-repeat: no-repeat;
+background-position: 0px 22px;
+font-size:11px;
+border-width:0px;
+border-style:none;
+margin: 0px 0px 0px 0px;
+width: 90px;
+}
+
+/*^'^ Secondary Items Hover State ^'^*/
+#nav-container div a:hover, #nav-container ul a:hover{
+background-color: #FFFFFF;
+background: url(images/item-secondary-bg.jpg);
+background-repeat: no-repeat;
+color:#6C3600;
+}
+
+/*^'^ Secondary Item Titles ^'^*/
+#nav-container .item-secondary-title{
+cursor:default;
+padding:4px 0px 3px 7px;
+color: #6C3600;
+font-family: Arial, Trebuchet MS, Arial, sans-serif, Helvetica;
+font-size:11px;
+/* background: url(images/item-secondary-title-bg.jpg); */
+background-repeat: no-repeat;
+font-weight:bold;
+}
+
+/*^'^ Horizontal Dividers ^'^*/
+#nav-container .divider-horiz{
+border-top-width:1px;
+margin:5px 5px;
+border-color: #C16100;
+}
+
+/*^'^ Vertical Dividers ^'^*/
+#nav-container .divider-vert{
+border-left-width:1px;
+height:15px;
+margin:2px 2px 0px 2px;
+border-color:#AAAAAA;
+}
+
+.list_no_mark{
+    list-style:none;
+    width:350px;
+    border: solid 1px;
+    overflow: auto;
+    background-color:#F5F5F5
+
+}
+
+.caixa{
+   position:absolute;
+   border-color:black;
+   border-left: double;
+   border-bottom: double;
+   border-top: double;
+   border-right: double; 
+   width: 800px;
+   left:210px;
+   top: 350px;
+}

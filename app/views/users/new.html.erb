@@ -1,0 +1,65 @@
+<br/><br/>
+<center>
+<div id="interno_novo_usuario">
+<% title "FUNCIONARIOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo_novo_usuario">
+     <font size="3"><strong>Novo Usuário</strong></font><br/>
+ </div>
+      <div class="tabs">
+      <table  width="80%" align="center">
+        <tr>
+          <td>
+            <fieldset><legend><font  size=4>Usuário</font></legend>
+            <font  size="2">
+              <table >
+                 <% @user.password = @user.password_confirmation = nil %>
+                 <%= error_messages_for :user %>
+                 <% form_for :user, :url => users_path do |f| -%>
+                     <tr>
+                        <td align="left">
+                          <b>Usuário:</b></td>
+                        <td colspan="2" align="left"><%= f.text_field :login, :size => "50" %> <br/>
+                           <font  color="red" size="2" ><b>Utilize o padrão unidade.nome - Ex: anaja.jose</b></font>
+                        </td>
+
+                      </tr>
+
+                      <tr>
+                        <td align="left"><b>e-mail:</b></td>
+                        <td align="left" colspan="2" align="left"><%= f.text_field :email, :size => "50" %></td>
+                      </tr>
+
+                      <tr>
+                         <td align="left" ><b>Senha:</b></td>
+                         <td align="left"><%= f.password_field :password, :size => "10" %></td>
+                         <td align="left"><b><i><font  color="red" size="2" >Escolha uma senha com no mínimo 6 <b>NÚMEROS</b></font></i></b></td>
+                       </tr>
+                       <tr>
+                         <td align="left"width="12%"><b>Confirma Senha:</b></td>
+                         <td align="left"><%= f.password_field :password_confirmation, :size => "10" %></td>
+                         <td></td>
+                       </tr>
+                      <tr>
+                        <td align="left"><b>Unidade:</b></td>
+                        <td colspan="2" align="left"><%= f.collection_select :unidade_id,Unidade.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %></td>
+                      </tr>
+
+               </table>
+             </font>
+           </fieldset>
+            <table>
+                <td width="8%"><%= submit_tag 'Cadastrar' %></td>
+                <td width="8%"><%= button_to 'Voltar', home_path, {:method => "get"}  %></td>
+                <td></td>
+              </table>
+           <% end -%>
+
+              </td>
+      </tr>
+    </table>
+   </div>
+</div>
+<br/>
+</div>
+<br/>

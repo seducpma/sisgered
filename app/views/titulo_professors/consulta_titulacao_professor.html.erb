@@ -1,0 +1,96 @@
+
+<%total=0%>
+<div id="interno2">
+<% title "TITULO_PROFESSORS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>TITULAÇÃO PROFESSORES</strong></font><br/>
+ </div>
+    <div class="tabs">
+    <% form_tag consulta_titulacao_professor_path, :method => 'get' do %>
+      <fieldset>
+       <legend><font size=4>Titulação</font></legend>
+       <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td align="left"> <b>Titulacao:</b>
+              <%= collection_select :search, :search, Titulacao.all, :id, :descricao, :include_blank => ' -- Selecione o titulo -- ' %>
+              <%= submit_tag "Filtrar", :name => nil %>
+            </td>
+          </tr>
+       </table>
+       </fieldset>
+      <fieldset>
+       <legend><font size=4>Professores</font></legend>
+       <% if @tp.present? %>
+       <table idth="100%" frame="box" rules="all" >
+          <tr>
+               <th width="10" bgcolor="#cccccc" align="center">Matrícula</th>
+                <th width="35%" bgcolor="#cccccc">Nome</th>
+                <th width="10%" bgcolor="#cccccc">Sede</th>
+                <th width="20%" bgcolor="#cccccc">Função</th>
+                <th width="10%" bgcolor="#cccccc">Jornada</th>
+                <th width="10%" bgcolor="#cccccc">Data Ingresso</th>
+
+              </tr>
+                 <% for tp in @tp %>
+              <tr>
+                  <td><center><%=h tp.professor.matricula %></center></td>
+                  <td><center><%=h tp.professor.nome %></center></td>
+                  <td><center><%=h tp.professor.unidade.nome%></center></td>
+                  <td><center><%=h tp.professor.funcao%></center></td>
+                  <td><center><%=h tp.professor.jornada_sem%></center></td>
+                  <% if tp.professor.dt_ingresso.nil? then %>
+                    <td><center><%=h tp.professor.dt_ingresso %></center></td>
+                  <%else%>
+                    <td><center><%=h tp.professor.dt_ingresso.strftime("%d/%m/%y") %></center></td>
+                  <%end%>
+               </tr>
+               <%total=total+1%>
+                <%  if (tp.titulo_id ==1) %>
+                        <%  titulado = "Graduação Superior" %>
+               <%  else if (tp.titulo_id ==2)%>
+                           <%  titulado = "Pós Graduação Lato Senso" %>
+                        <%else if (tp.titulo_id ==3)%>
+                                 <%  titulado = "Mestrado" %>
+                              <%else if (tp.titulo_id ==4)%>
+                                 <%  titulado = "Doutorado" %>
+                                     <%else%>
+                                 <%  titulado = "outros cursos" %>
+                              <%end%>
+                        <%end%>
+                     <%end%>
+                <%  end %>
+            <%end%>
+
+            </table>
+
+               <table>
+               <tr>
+                 <td colspan="5"><b> Total de professores com  <%=titulado%> = <%= total%></b></td>
+               </tr>
+               </table>  
+
+<%end%>
+
+
+
+      </fieldset>
+    <% end %>
+       <br/>
+
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Consultar', consulta_titulacao_professor_path, :title => "Consultar" %></td>
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
