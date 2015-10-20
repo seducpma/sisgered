@@ -100,9 +100,10 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Inscrição</a>
                  <ul style="width:108px;">
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
                         <li><%= link_to "Inscrição",new_crianca_path %></li>
-                    <%end%>
+                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
+                            <li><%= link_to "Inscritas",consultas_criancas_path %></li>
+                        <%end%>
                         <li><a>Classificação</a>
                            <ul>
                             <li><%= link_to "Geral",consulta_geral_consulta_path %></li>
@@ -113,6 +114,16 @@ display: none;
                          </li>
                      </ul>
               </li>
+              <li><a class="item-primary" href="#;">Classificação</a>
+                 <ul style="width:108px;">
+
+                            <li><%= link_to "Geral",consulta_geral_path %></li>
+                            <li><%= link_to "por Unidade",consulta_unidade_consulta_path %></li>
+                           </ul>
+                         </li>
+
+              </li>
+
   <!--
   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
               <li><span class="divider divider-vert" ></span></li>

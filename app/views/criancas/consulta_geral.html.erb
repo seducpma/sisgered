@@ -1,0 +1,60 @@
+<div id="interno2">
+<% title "PROFESSORES", :id =>"professors" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>CLASSIFICAÇÂO GERAL</strong></font><br/>
+   </div>
+  <div class="tabs">
+
+        <table bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC" >
+            <th width="10">Posição</th>
+            <th width="40">Inscrição</th>
+            <th width="40">Nome</th>
+            <th width="300">Mãe</th>
+            <th width="200">Local</th>
+            <th width="200">1ªOpção</th>
+            <th width="200">2ªOpção</th>
+            <th width="200">3ªOpção</th>
+            <th colspan="3">Administração</th>
+        </tr>
+           <%$t=0%>
+           <% @criancas.each do |crianca| %>
+           <%$t = $t+1%>
+        <tr bgcolor="#F5F5F5">
+                <td align="center"><%= $t%> </td>
+                <td align="center"><%=h crianca.id%></td>
+                <td align="left"><%=h crianca.nome%></td>
+                <td align="left"><%=h crianca.mae%></td>
+                <td align="left"><%=h crianca.unidade.nome%></td>
+                <td align="left"><%=h crianca.opcao1%></td>
+                <td align="left"><%=h crianca.opcao2%></td>
+                <td align="left"><%=h crianca.opcao3%></td>
+                <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
+                <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>crianca}, :method => "get", :title => "Editar"%></td>
+
+              </tr>
+            <% end %>
+
+
+
+     </table>
+     <table bgcolor="#DCDCDC" width="100%">
+      <tr >
+        <td colspan="3" align="right"><b>TOTAL INSCRIÇÕES: </b>
+            <font color ="red "size="2"><b><%=$t %></b></font>
+          </td>
+      </tr>
+    </table>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Consultar', consulta_professor_nome_path, :title => "Consultar" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+

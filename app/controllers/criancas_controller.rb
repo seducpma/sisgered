@@ -62,6 +62,7 @@ before_filter :load_teste
   def edit
 
     @crianca = Crianca.find(params[:id])
+    $status = @crianca.status
     #@unidade_matricula = Unidade.find_by_sql("select u.id, u.nome from unidades u right join criancas c on u.id in (c.option1, c.option2, c.option3, c.option4) where c.id = " + (@crianca.id).to_s)
     $id_crianca = params[:id]
     $nome = params[:nome]
@@ -90,12 +91,12 @@ before_filter :load_teste
   # PUT /criancas/1.xml
   def update
     @crianca = Crianca.find(params[:id])
-    @atualiza_log = Log.new
-    @atualiza_log.user_id = current_user.id
-    @atualiza_log.obs = "Atualizado"
-    @atualiza_log.data = (Time.now().strftime("%d/%m/%y %H:%M")).to_s
-    @atualiza_log.crianca_id = @crianca.id
-    @atualiza_log.save
+    #@atualiza_log = Log.new
+    #@atualiza_log.user_id = current_user.id
+    #@atualiza_log.obs = "Atualizado"
+    #@atualiza_log.data = (Time.now().strftime("%d/%m/%y %H:%M")).to_s
+    #@atualiza_log.crianca_id = @crianca.id
+    #@atualiza_log.save
 
     respond_to do |format|
       if @crianca.update_attributes(params[:crianca])
@@ -214,6 +215,32 @@ before_filter :load_teste
       end
    render :partial => 'listar_criancas_impressao'
   end
+
+
+  def consultacrianca
+
+     if params[:type_of].to_i == 1
+        @criancas = Crianca.find(:all,:conditions => ["nome like ? and  status <> 'MATRICULADA' ", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+        render :update do |page|
+          page.replace_html 'criancas', :partial => "criancas"
+        end
+     else if params[:type_of].to_i == 6
+             @criancas = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA'" ],:order => 'nome ASC')
+             render :update do |page|
+                page.replace_html 'criancas', :partial => "criancas"
+              end
+         end
+     end
+
+  end
+
+
+ def consulta_geral
+      @criancas = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA'" ],:order => "trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ end
+
+
+
 
   def load_variaveis
     $unidade_op1_id =0

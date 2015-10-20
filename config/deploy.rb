@@ -1,4 +1,4 @@
-set :application, "192.168.0.11"
+set :application, "192.168.0.12"
 set :repository, "git://github.com/seducpma/demanda.git"
 set :user, "servidor"
 set :use_sudo, false

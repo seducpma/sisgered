@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
   map.resources :unidades
-  map.resources :criancas, :collection => {:impressao => :get}
+  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get}
   map.resources :grupos
   map.resources :regiaos
   map.resources :regiaos
@@ -21,7 +21,7 @@ ActionController::Routing::Routes.draw do |map|
   map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_geral_demanda'
   map.grafico_por_unidade '/grafico/crianca_por_unidade', :controller => 'grafico', :action => 'crianca_por_unidade'
   map.relatorio_crianca '/crianca/relatorio_crianca', :controller => 'criancas', :action => 'relatorio_crianca'
-
+  map.consulta_geral '/geral', :controller => 'criancas', :action => 'consulta_geral'
 
 
 
@@ -60,7 +60,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_titulacao '/consulta_titulacao', :controller => 'titulo_professors', :action => 'consulta'
   map.consulta_titulacao_professor'/consulta_titulacao_professor', :controller => 'titulo_professors', :action => 'consulta_titulacao_professor'
   map.consulta_titula'/consulta_titula', :controller => 'titulo_professors', :action => 'consulta_titula'
-  map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
+  map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
   map.consultafuncionario '/consultafuncionario', :controller => 'funcionarios', :action => 'consultafuncionario'
   map.consultafamiliar '/consultafamiliar', :controller => 'familiares', :action => 'consultafamiliar'
   map.consulta_unidade_nome '/consulta_unidade_nome', :controller => 'unidades', :action => 'consulta_nome'
