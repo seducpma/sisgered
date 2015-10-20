@@ -224,16 +224,25 @@ before_filter :load_teste
         render :update do |page|
           page.replace_html 'criancas', :partial => "criancas"
         end
-     else if params[:type_of].to_i == 6
-             @criancas = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA'" ],:order => 'nome ASC')
+     else if params[:type_of].to_i == 2
+              if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+                 @criancas = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA'"],:order => 'nome ASC, unidade_id ASC')
+              else
+                 @criancas = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA' and unidade_id = ?", current_user.unidade_id ],:order => 'nome ASC')
+              end
              render :update do |page|
                 page.replace_html 'criancas', :partial => "criancas"
               end
-         end
+         else if params[:type_of].to_i == 6
+                @criancas = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA'" ],:order => 'nome ASC')
+                render :update do |page|
+                   page.replace_html 'criancas', :partial => "criancas"
+               end
+          end
      end
 
   end
-
+  end
 
  def consulta_geral
       @criancas = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA'" ],:order => "trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")

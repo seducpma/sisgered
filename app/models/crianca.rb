@@ -3,6 +3,8 @@ class Crianca < ActiveRecord::Base
   belongs_to :regiao
   belongs_to :unidade
 
+  validates_presence_of :unidade_id
+
  Status = %w(NA_DEMANDA DESISTENTE CANCELADA MATRICULADA)
   def before_save
     self.nome.upcase!
