@@ -8,10 +8,10 @@ class RolesUsersController < ApplicationController
 
   def lista_users
     if params[:type_of].to_i == 6
-      @role_users = RolesUser.paginate :page => params[:page], :per_page => 20, :joins => :user, :order => 'login ASC'
+      @role_users = RolesUser.find(:all, :joins => :user, :order => 'login ASC')
     else
       if params[:type_of].to_i == 1
-        @role_users = RolesUser.paginate :page => params[:page], :per_page => 20, :joins => :user, :conditions => ["users.unidade_id = ?", current_user.unidade_id],:order => 'login ASC'
+        @role_users = RolesUser.find(:all, :joins => :user, :conditions => ["users.unidade_id = ?", current_user.unidade_id],:order => 'login ASC')
       end
     end
 
