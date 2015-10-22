@@ -16,7 +16,7 @@
                :url => { :action => 'mesmo_nome' } %>
           </td>
          <td><b><%= f.label :nascimento, 'Nascimento' %></b></td>
-         <td>    <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 30)) %><BR /></td>
+         <td>    <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 5)) %><BR /></td>
        </tr>
        <tr>
          <td><b><font color="red" size="5">*</font>Mãe</b></div></td>
@@ -81,9 +81,8 @@
          <td> <%= f.text_field :nomerecado, :size =>"38" %>  </td>
        </tr>
        <tr>
-          <td><b><font color="red" size="5">*</font>Classificação </b></td>
-          <td colspan="2"><%= f.collection_select :grupo_id, @grupos, :id, :nome, :include_blank => '---Selecione---' %>
-         &nbsp&nbsp
+         <td colspan="2">
+
            <script>
                $(document).ready(function()
                 {
@@ -94,11 +93,11 @@
                 });
              </script>
                <b>Necessidade(s) Especial(s)?</b>
-               <a href="#" id="dropdownbutton20"><%= f.check_box :n_especial %></a>SIM
+         <a href="#" id="dropdownbutton20"><%= f.check_box :n_especial %></a>SIM
                                            <%=f.check_box :sexo %>NÃO
 
           </td>
-          <td>
+          <td colspan="2">
             <div id="menu20" style="display:none">
               <b>Necessidade </b><%= f.text_field :necessidade  , :size=> "27"%>&nbsp&nbsp
             </div>
@@ -111,9 +110,9 @@
 
  <fieldset>
   <legend><font size=4>Dados da Inscrição</font></legend>
-  <table width="100%" >
+  <table width="100%">
       <tr>
-         <td width ="25%"><b> <%= f.label :unidade, 'Unidade da Inscrição' %></b></td>
+         <td width ="25%"><font color="red" size="5">*</font><b> <%= f.label :unidade, 'Unidade da Inscrição' %></b></td>
          <td colspan="2"><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => '---Selecione---' %></td>
       </tr>
       <tr>
@@ -222,6 +221,7 @@
              <%= observe_field '#crianca_regiao_id',
                  :with => :crianca_regiao_id,
                  :url => { :action => 'rg' } %>
+           &nbsp&nbsp&nbsp<font color="red"><b>(Selecionar a região da cidade que melhor se enquadra a unidade)</b></font>
          </td>
       </tr>
        <tr>

@@ -4,13 +4,39 @@ class Crianca < ActiveRecord::Base
   belongs_to :unidade
 
   validates_presence_of :unidade_id
-  before_save  :maiusculo
+  validates_presence_of :regiao_id
+  validates_presence_of :nome
+  validates_presence_of :mae
+  validates_presence_of :nascimento
+  validates_presence_of :opcao1
+  before_save  :maiusculo, :opcao
 
 
  Status = %w(NA_DEMANDA DESISTENTE CANCELADA MATRICULADA)
 
 
+ def opcao
+    data=self.nascimento
 
+  if  (self.nascimento <= '2015-10-31'.to_date and self.nascimento >= '2015-02-01'.to_date)
+       self.grupo_id = 1
+  else if(self.nascimento <= '2015-01-31'.to_date and self.nascimento >= '2014-07-01'.to_date)
+          self.grupo_id = 2
+       else if(self.nascimento <= '2014-06-30'.to_date and self.nascimento >= '2013-07-01'.to_date)
+              self.grupo_id = 4
+            else if(self.nascimento <= '2013-06-30'.to_date and self.nascimento >= '2012-07-01'.to_date)
+                    self.grupo_id = 5
+                  else if(self.nascimento <= '2012-06-30'.to_date and self.nascimento >= '2011-07-01'.to_date)
+                          self.grupo_id = 6
+                        else if(self.nascimento <= '2011-06-30'.to_date and self.nascimento >= '2010-07-01'.to_date)
+                               self.grupo_id = 7
+                             end
+                       end
+                 end
+            end
+       end
+  end
+ end
 
 
 
