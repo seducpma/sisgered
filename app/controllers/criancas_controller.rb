@@ -244,9 +244,41 @@ before_filter :load_teste
   end
   end
 
+
  def consulta_geral
       @criancas = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA'" ],:order => "trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
  end
+
+
+
+def consulta_unidade
+  
+     
+ end
+
+def classificao_unidade
+  
+  $opcao=Unidade.find_by_id(params[:crianca_unidade_id]).nome
+  
+ #@criancas1 = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA' and (opcao1=? or opcao2=? or opcao3=?)", opcao, opcao, opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas1 = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA' and opcao1=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
+ @criancas2 = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA' and opcao2=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
+ @criancas3 = Crianca.find( :all,:conditions => ["status <> 'MATRICULADA' and opcao3=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
+ @criancas4 = @criancas1 + @criancas2 + @criancas3
+ @criancas4 = @criancas4.sort_by{|e| e.created_at}
+ @criancas4 = @criancas4.sort_by{|e| -e.transferencia}
+ @criancas4 = @criancas4.sort_by{|e| -e.irmao} 
+ @criancas4 = @criancas4.sort_by{|e| -e.servidor_publico}
+  @criancas = @criancas4.sort_by{|e| -e.trabalho}
+
+
+
+                
+
+  render :partial => 'criancas_unidade'
+  
+  
+end
 
 
 

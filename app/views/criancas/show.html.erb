@@ -6,6 +6,49 @@
  <table bgcolor="#DCDCDC" width="100%">
    <tr bgcolor="#DCDCDC"  width="100%">
      <td>
+       <fieldset><legend><font  size=3><b> Dados da Criança</b></font></legend>
+         <table width="100%">
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Nome:</b></td>
+               <td colspan="3" align="left"><%=h @crianca.nome %></td>
+               <td align="left"><b>Nascimento:</b></td>
+               <td align="left">  <%=h @crianca.nascimento.strftime("%d/%m/%Y")%></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Mãe:</b></td>
+               <td colspan="3" align="left"><%=h @crianca.mae %></td>
+               <td align="left" width="4%"><b>Pai:</b></td>
+               <td align="left"><%=h @crianca.pai %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Responsável:</b></td>
+               <td colspan="3" align="left"><%=h @crianca.responsavel_n %></td>
+               <td align="left" width="4%"><b>Parentesco:</b></td>
+               <td align="left"><%=h @crianca.parentesco %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Endereço:</b></td>
+               <td colspan="3" align="left"><%=h @crianca.endereco %> - <%=h @crianca.numero %></td>
+               <td align="left" width="4%"><b>Bairro:</b></td>
+               <td  align="left"><%=h @crianca.bairro %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Complemento:</b></td>
+               <td  align="left"><%=h @crianca.complemento %></td>
+              <td align="left" width="4%"><b>Telefone:</b></td>
+               <td align="left">  <%=h @crianca.tel1%></td>
+               <td> <b>Celular:</b></td>
+               <td><%=h @crianca.celular%>  </td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Fone (recado):</b></td>
+               <td align="left" colspan="3">  <%=h @crianca.tel2%></td>
+               <td><b>Nome:</b> </td>
+               <td><%=h @crianca.nomerecado%>  </td>
+            </tr>
+
+          </table>
+         </fieldset>
        <fieldset><legend><font  size=3><b> Dados da inscrição</b></font></legend>
          <table width="100%">
            <tr bgcolor="#F5F5F5"  width="100%">
@@ -53,7 +96,7 @@
               <td valign="top">- <%=h @crianca.opcao1%> <br/>
                                - <%=h @crianca.opcao2%> <br/>
                                - <%=h @crianca.opcao3%> <br/></td>
-   
+
             </tr>
            <tr bgcolor="#F5F5F5"  width="100%">
              <td align="left" width="18%"><b>Dia/Hora Matricula:</b></td>
@@ -62,57 +105,15 @@
            </tr>
          </table>
        </fieldset>
-       <fieldset><legend><font  size=3><b> Dados da Criança</b></font></legend>
-         <table width="100%">
-            <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Nome:</b></td>
-               <td colspan="3" align="left"><%=h @crianca.nome %></td>
-               <td align="left"><b>Nascimento:</b></td>
-               <td align="left">  <%=h @crianca.nascimento.strftime("%d/%m/%Y")%></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Mãe:</b></td>
-               <td colspan="3" align="left"><%=h @crianca.mae %></td>
-               <td align="left" width="4%"><b>Pai:</b></td>
-               <td align="left"><%=h @crianca.pai %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Responsável:</b></td>
-               <td colspan="3" align="left"><%=h @crianca.responsavel_n %></td>
-               <td align="left" width="4%"><b>Parentesco:</b></td>
-               <td align="left"><%=h @crianca.parentesco %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Endereço:</b></td>
-               <td colspan="3" align="left"><%=h @crianca.endereco %> - <%=h @crianca.numero %></td>
-               <td align="left" width="4%"><b>Bairro:</b></td>
-               <td  align="left"><%=h @crianca.bairro %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Complemento:</b></td>
-               <td  align="left"><%=h @crianca.complemento %></td>
-              <td align="left" width="4%"><b>Telefone:</b></td>
-               <td align="left">  <%=h @crianca.tel1%></td>
-               <td> <b>Celular:</b></td>
-               <td><%=h @crianca.celular%>  </td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-               <td align="left"><b>Fone (recado):</b></td>
-               <td align="left" colspan="3">  <%=h @crianca.tel2%></td>
-               <td><b>Nome:</b> </td>
-               <td><%=h @crianca.nomerecado%>  </td>
-            </tr>
 
-          </table>
-         </fieldset>
-       </td>
+     </td>
   </tr>
  </table>
  <% $child = @crianca.id %>
  
  <table>
          <tr>
-            <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_professor_nome_path, :title => "Consultar" %></td>
+            <td width="4%"align="left"><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
             <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@crianca}, :method => "get", :title => "Editar"%></td>
               <%else%>

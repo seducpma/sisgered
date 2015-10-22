@@ -107,10 +107,8 @@ display: none;
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
                             <li><a>Classificação</a>
                            <ul>
-                            <li><%= link_to "Geral",consulta_geral_consulta_path %></li>
-                            <li><%= link_to "por Função",consulta_funcao_consulta_path %></li>
-                            <li><%= link_to "por Unidade",consulta_unidade_consulta_path %></li>
-                            <li><%= link_to "por Unidade/Funcao",consulta_unidade_funcao_consulta_path %></li>
+                            <li><%= link_to "Geral",consulta_geral_path %></li>
+                            <li><%= link_to "Por Unidade",consulta_unidade_path %></li>
                            </ul>
                          </li>
                       <%end%>
@@ -120,25 +118,14 @@ display: none;
                  <ul style="width:108px;">
 
                             <li><%= link_to "Geral",consulta_geral_path %></li>
-                            <li><%= link_to "por Unidade",consulta_unidade_consulta_path %></li>
+                            <li><%= link_to "por Unidade",consulta_unidade_path %></li>
                            </ul>
-                         </li>
+                 
 
               </li>
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
 
-  <!--
-  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
-              <li><span class="divider divider-vert" ></span></li>
-              <li><a class="item-primary" href="#;">Professor</a>
-                 <ul style="width:108px;">
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('secretaria'))%>
-                        <li><%= link_to "Cadastrar",new_professor_path %></li>
-                     <%end%>
-                        <li><%= link_to "Consultar",consulta_professor_nome_path %></li>
-                 </ul>
-              </li>
 
--->
               <li><span class="divider divider-vert" ></span></li>
 <!--=========================================== NOVO MENU==============-->
 

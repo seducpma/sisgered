@@ -1,5 +1,5 @@
 <div id="interno2">
-<% title "PROFESSORES", :id =>"professors" %>
+<% title "CRIANÇAS", :id =>"criancas" %>
  <div class="tabs">
    <div id="caixa_titulo">
     <font size="3"><strong>CLASSIFICAÇÂO GERAL</strong></font><br/>
@@ -22,7 +22,7 @@
            <% @criancas.each do |crianca| %>
            <%$t = $t+1%>
         <tr bgcolor="#F5F5F5">
-                <td align="center"><%= $t%> </td>
+                <td align="center"><%= $t%>º </td>
                 <td align="center"><%=h crianca.id%></td>
                 <td align="left"><%=h crianca.nome%></td>
                 <td align="left"><%=h crianca.mae%></td>
@@ -31,7 +31,9 @@
                 <td align="left"><%=h crianca.opcao2%></td>
                 <td align="left"><%=h crianca.opcao3%></td>
                 <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
-                <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>crianca}, :method => "get", :title => "Editar"%></td>
+                 <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+                      <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>crianca}, :method => "get", :title => "Editar"%></td>
+                 <%end%>
 
               </tr>
             <% end %>
@@ -50,7 +52,7 @@
   <table>
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <td align="left"><%= button_to 'Consultar', consulta_professor_nome_path, :title => "Consultar" %></td>
+     <td align="left"><%= button_to 'Consultar',  :title => "Consultar" %></td>
     </tr>
   </table>
  </div>

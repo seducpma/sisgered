@@ -92,7 +92,7 @@
        </tr>
        <tr>
           <td><b><font color="red" size="5">*</font>Classificação </b></td>
-          <td colspan="2"><%= f.collection_select :grupo_id, @grupos, :id, :nome, :include_blank => '---Selecione---' %>
+          <td colspan="2"><%=h @crianca.grupo.nome%>
          &nbsp&nbsp
            <script>
                $(document).ready(function()

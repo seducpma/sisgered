@@ -1,0 +1,11 @@
+<table width="100%" align="center" >
+   <tr>
+     <td colspan="2"align="right"left"><font size="2"> <b class="label_busca1">Selecionar Região:</b></font>
+          <%= collection_select :crianca, :regiao_id, @regiaos, :id, :nome, :include_blank => ' -- Selecionar -- ', :class=> "txt_busca1"  %>
+         <%= observe_field 'crianca_regiao_id',
+               :update => "criancas",
+               :url    => { :action => 'classificao_regiao' },
+               :with   => 'crianca_regiao_id' %>
+     </td>
+   </tr>
+  </table>

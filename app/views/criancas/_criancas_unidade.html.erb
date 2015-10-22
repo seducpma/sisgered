@@ -1,0 +1,78 @@
+  <div class="tabs">
+       <table bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC" >
+            <th width="10">Posição</th>
+            <th width="40">Inscrição</th>
+            <th width="40">Nome</th>
+            <th width="20">Mãe Trabalha</th>
+            <th width="20">Mãe Servidora</th>
+            <th width="20">Irmão Matriculado</th>
+            <th width="20">Transfe- rência</th>
+            <th width="200">1ªOpção</th>
+            <th width="200">2ªOpção</th>
+            <th width="200">3ªOpção</th>
+            <th colspan="3">Administração</th>
+        </tr>
+           <%$t=0%>
+           <% @criancas.each do |crianca| %>
+           <%$t = $t+1%>
+        <tr bgcolor="#F5F5F5">
+                <td align="center"><%= $t%>º </td>
+                <td align="center"><%=h crianca.id%></td>
+                <td align="left"><%=h crianca.nome%></td>
+                                   <% if crianca.trabalho == 0 %>
+                                      <td align="center">NÂO</td>
+                                  <%else%>
+                                       <td align="center">SIM</td>
+                                  <%end%>
+                                  <% if crianca.servidor_publico == 0 %>
+                                      <td align="center">NÂO</td>
+                                  <%else%>
+                                       <td align="center">SIM</td>
+                                  <%end%>
+                                  <% if crianca.irmao == 0 %>
+                                      <td align="center">NÂO</td>
+                                  <%else%>
+                                      <td align="center">SIM</td>
+                                  <%end%>
+                                  <% if crianca.transferencia == 0 %>
+                                      <td align="center">NÂO</td>
+                                   <%else%>
+                                       <td align="center">SIM </td>
+                                   <%end%>
+
+                <td align="center"><% if  crianca.opcao1 == $opcao%>
+                                          <b><font color ="blue"><%=h crianca.opcao1%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao1%>
+                                    <%end%>
+                </td>
+                <td align="center"><% if  crianca.opcao2 == $opcao%>
+                                          <b><font color ="blue"><%=h crianca.opcao2%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao2%>
+                                    <%end%>
+                </td>
+                <td align="center"><% if  crianca.opcao3 == $opcao%>
+                                          <b><font color ="blue"><%=h crianca.opcao3%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao3%>
+                                    <%end%>
+                </td>
+
+                <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
+              </tr>
+            <% end %>
+
+
+
+     </table>
+     <table bgcolor="#DCDCDC" width="100%">
+      <tr >
+        <td colspan="3" align="right"><b>TOTAL INSCRIÇÕES: </b>
+            <font color ="red "size="2"><b><%=$t %></b></font>
+          </td>
+      </tr>
+    </table>
+  </div>
+
