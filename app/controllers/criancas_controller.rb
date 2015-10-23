@@ -282,6 +282,27 @@ end
       render :layout => "impressao"
 end
 
+
+ def impressao_class_unidade
+        if params[:type_of].to_i == 1
+        @criancas = Crianca.find(:all,:conditions => ["nome like ? and  status = 'NA DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+              render :layout => "impressao"
+     else if params[:type_of].to_i == 2
+              if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA'"],:order => 'nome ASC, unidade_id ASC')
+              else
+                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and unidade_id = ?", current_user.unidade_id ],:order => 'nome ASC')
+              end
+             render :layout => "impressao"
+         else if params[:type_of].to_i == 6
+                @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA'" ],:order => 'nome ASC')
+                render :layout => "impressao"
+          end
+     end
+
+   end
+ end
+
   def same_birthday
     data_nasc = params[:ano].to_s + '-' + params[:mes].to_s + '-' + params[:dia].to_s
     if !Crianca.by_nome(params[:nome]).by_nascimento(data_nasc).empty? then
