@@ -1,9 +1,6 @@
 class CriancasController < ApplicationController
 
-before_filter :load_unidades
-before_filter :load_teste
-
-
+  before_filter :load_unidades
   before_filter :load_grupos
   before_filter :load_regiaos
   before_filter :load_unidades
@@ -147,76 +144,7 @@ before_filter :load_teste
     end
   end
 
-
-  def versao_impressao_todas
-    #Busca demanda por unidade
-    if $consulta == 1 then
- #      @crianca = Crianca.find(:all, :conditions => ["option1 = "+ $unidade_op1_id + " and matricula != 1"], :order => "created_at")
-    else
-      #Busca crianças matriculadas
-      if $consulta == 2 then
- #       @crianca = Crianca.find(:all, :conditions => {:matricula => 1 })
-      else
-        if $consulta == 3 then
-          #Busca criancas cadastradas
-          @crianca = Crianca.find(:all)
-        else
-          #Busca criancas classificadas por grupo e unidade
-          if $consulta == 4 then
-            @crianca = Crianca.find(:all, :conditions => ["grupo_id = " + $class + " and opcao1 = " + $unidade], :order => "created_at")
-          else
-            if $consulta == 5 then
-              #Busca criancas não matriculadas
-#              @crianca = Crianca.find(:all, :conditions => {:matricula => 0 })
-            else
-              if $consulta == 6 then
-                #Busca crianca por nome
-                @crianca = Crianca.find(:all, :conditions => ['id=' + $crianca])
-              end
-
-            end
-          end
-        end
-      end
-    end
-
-    render :partial => 'listar_todas_criancas_impressao'
-  end
-
-  def versao_impressao
-    #Busca demanda por unidade
-    if $consulta == 1 then
-#       @crianca = Crianca.find(:all, :conditions => ["option1 = "+ $unidade_op1_id + " and matricula != 1"], :order =>"created_at")
-    else
-      #Busca crianças matriculadas
-      if $consulta == 2 then
-#        @crianca = Crianca.find(:all, :conditions => {:matricula => 1 })
-      else
-        if $consulta == 3 then
-          #Busca criancas cadastradas
-          @crianca = Crianca.find(:all)
-        else
-          #Busca criancas classificadas por grupo e unidade
-          if $consulta == 4 then
-            @crianca = Crianca.find(:all, :conditions => ["grupo_id = " + $class + " and opcao1 = " + $unidade], :order => "created_at")
-          else
-            if $consulta == 5 then
-              #Busca criancas não matriculadas
-#              @crianca = Crianca.find(:all, :conditions => {:matricula => 0 })
-            else
-              if $consulta == 6 then
-                #Busca crianca por nome
-                @crianca = Crianca.find(:all, :conditions => ['id=' + $crianca])
-              end
-              end
-            end
-          end
-        end
-      end
-   render :partial => 'listar_criancas_impressao'
-  end
-
-
+ 
   def consultacrianca
 
      if params[:type_of].to_i == 1
@@ -246,7 +174,7 @@ before_filter :load_teste
 
 
  def consulta_geral
-      @criancas = Crianca.find( :all,:conditions => ["status == 'NA DEMANDA'" ],:order => "trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+      @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA'" ],:order => "trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
  end
 
 
@@ -283,182 +211,6 @@ end
 
 
 
-  def load_variaveis
-    $unidade_op1_id =0
-    $unidade_op2_id=0
-    $unidade_op3_id=0
-  end
-
-  def busca
-    $consulta = 3
-    @crianca = Crianca.c
-    render :partial => 'listar_todas_criancas'
-  end
-
-  def busca_unidade
-    $consulta = 2
-    @crianca = Crianca.b_u
-    render :partial => 'listar_todas_criancas'
-  end
-
-  def busca_demanda
-    $consulta = 5
-    @crianca = Crianca.b_dm
-    render :partial => 'listar_todas_criancas'
-  end
-
-
-  def busca_op1
-    @crianca = Crianca.busca_op1
-    render :partial => 'listar_todas_criancas'
-  end
-
-  def busca_op2
-    @crianca = Crianca.busca_op2
-    render :partial => 'listar_todas_criancas'
-  end
-
-  def busca_op3
-    @crianca = Crianca.busca_op3
-    render :partial => 'listar_todas_criancas'
-  end
-
-
-  def class_unid
-    $class = params[:grupo_grupo_class_id]
-     @teste = Unidade.find(:all)
-     render :nothing => true
-  end
-
-  def classif
-    $unidade = params[:unidade_unidade_class_id]
-    $consulta = 4
-    @crianca = Crianca.find(:all, :conditions => ["grupo_id = " + $class + " and opcao1 = " + $unidade + " and matricula != 1"], :order => "servidor_publico desc, transferencia desc, created_at")
-    if @crianca.nil? or @crianca.empty? then
-      render :text => 'Nenhuma crianca encontrada'
-    else
-      render :partial => 'listar_criancas'
-    end
-  end
-
-  def atualiza_grupo
-    @atualiza_grupo = Crianca.find(:all)
-    contador = 0
-    contador2 = 0
-    contador3 = 0
-    contador4 = 0
-    contador5 = 0
-    contador6 = 0
-    contador7 = 0
-    for at_grupo in @atualiza_grupo
-      dias = Date.today - at_grupo.nascimento
-      if (((0 >= dias) and (dias < 366)) and at_grupo.grupo_id != 1) then
-        contador = contador + 1
-      else
-        if (((dias > 365) and (dias < 577)) and at_grupo.grupo_id != 2) then
-          contador2 = contador2 + 1
-        else
-          if (((dias > 576) and (dias < 851)) and at_grupo.grupo_id != 3) then
-            contador3 = contador3 + 1
-          else
-            if (((dias > 850) and (dias < 1096)) and at_grupo.grupo_id != 4) then
-              contador4 = contador4 + 1
-            else
-              if (((dias > 1095) and (dias < 1276)) and at_grupo.grupo_id != 5) then
-                contador5 = contador5 + 1
-              else
-                if (((dias > 1275) and (dias < 1641)) and at_grupo.grupo_id != 6) then
-                  contador6 = contador6 + 1
-                else
-                  if( ((dias > 1640) and (dias < 2006)) and at_grupo.grupo_id != 7) then
-                    contador7 = contador7 + 1
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-    @reclassifica = Log.new
-    @reclassifica.user_id = current_user.id
-    @reclassifica.obs = "Realizada reclassificação dos grupos"
-    @reclassifica.data = (Time.now().strftime("%d/%m/%y %H:%M")).to_s
-    @reclassifica.crianca_id = 0
-    @reclassifica.save
-
-    mystring = <<-HEREDOC
-    <br/>
-    <h3>Contabilidade Grupos após esta ação</h3>
-    <br/>
-
-    Para grupo BI serão realocado(s) <strong><font color="red">#{contador.to_s}</font></strong> criança(s).
-    Para grupo BII serão realocado(s) <strong><font color="red">#{contador2.to_s}</font></strong> criança(s).
-    Para grupo BIII serão realocado(s) <strong><font color="red">#{contador3.to_s}</font></strong> criança(s).
-    Para grupo MI serão realocado(s)  <strong><font color="red">#{contador4.to_s}</font></strong> criança(s).
-    Para grupo MII serão realocado(s)  <strong><font color="red">#{contador5.to_s}</font></strong> criança(s).
-    Para grupo NI serão realocado(s)  <strong><font color="red">#{contador6.to_s}</font></strong> criança(s).
-    Para grupo NII serão realocado(s)  <strong><font color="red">#{contador7.to_s}</font></strong> criança(s).
-
-HEREDOC
-
-
-   render :update do |page|
-      page.replace_html 'reordenar', :text => mystring
-      page.replace_html 'confirma', :partial => 'reordenar_criancas'
-   end
-
- end
-
-  def efetiva_realocacao
-   Crianca.connection.execute("CALL atualiza_grupo")
-   render :update do |page|
-      page.replace_html 'reordenar', :text => ''
-      page.replace_html 'confirma', :text => "<strong>Processo concluído com sucesso</strong>"
-   end
-
-  end
-
-  def config
-    render :partial => 'configuracao'
-  end
-
-  def sobresis
-
-    render :partial => 'sobre'
-  end
-
-  def confirma
-   render :update do |page|
-     page.replace_html 'reordenar', :partial =>  'reordenar_criancas'
-   end
-  end
-
-  def un_op1_din
-    #@criancas = Crianca.un_din
-    $consulta = 1
-    $unidade_op1_id = params[:unidade_unidade_op1_id]
-
-    @crianca = Crianca.find(:all, :conditions => ["opcao1 = "+ $unidade_op1_id + " and matricula != 1"], :order =>("servidor_publico desc, transferencia desc, created_at"))
-    if @crianca.nil? or @crianca.empty? then
-      render :text => 'Nenhum registro encontrado'
-    else
-      render :partial => 'listar_criancas'
-    end
-
-  end
-
-
-  def mat_unidade
-    $consulta = 2
-    $unidade = params[:unidade_unidade_mat_id]
-    @crianca = Crianca.find(:all, :conditions => ["unidade_matricula =" + $unidade + " and matricula =1"], :order => "created_at")
-    if @crianca.nil? or @crianca.empty? then
-      render :text => 'Nenhuma crianca matriculada nesta escola'
-    else
-      render :partial => 'listar_todas_criancas'
-    end
-  end
 
   def nome_crianca
     $consulta = 6
@@ -477,13 +229,6 @@ HEREDOC
 
 
 
-  def relatorio
-    render :partial => 'relatorio_geral'
-  end
-
-  def relatorio_impressao
-    render :partial => 'relatorio_geral_impressao'
-  end
 
   def consulta
     render :partial => 'consultas'
@@ -493,20 +238,6 @@ HEREDOC
     render :partial => 'matricular'
   end
 
-  def rg
-
-    @unidades = Unidade.find :all, :conditions => {:regiao_id => params[:crianca_regiao_id]}
-    @u = Unidade.count :all, :conditions => {:regiao_id => params[:crianca_regiao_id]}
-    if @u == 2 then
-     render :update do |page|
-      page.replace_html '#region', :partial => 'region_units'
-     end
-    else
-     render :update do |page|
-      page.replace_html '#region', :partial => 'regiao_unidade'
-     end
-    end
-  end
 
   def mesmo_nome
     $nome = params[:crianca_nome]
@@ -547,12 +278,9 @@ HEREDOC
 
 
  def impressao
-
-        @crianca = Crianca.find(:all,:conditions => ["id = ?",$child])
-
-   render :layout => "impressao"
+       @crianca = Crianca.find(:all,:conditions => ["id = ?",$child])
+      render :layout => "impressao"
 end
-
 
   def same_birthday
     data_nasc = params[:ano].to_s + '-' + params[:mes].to_s + '-' + params[:dia].to_s
@@ -606,10 +334,6 @@ end
 
     
 
-
-  def load_teste
-    @teste = Unidade.find(:all)
-  end
 
   def load_criancas
     @criancas = Crianca.find(:all, :order => "nome ASC")
