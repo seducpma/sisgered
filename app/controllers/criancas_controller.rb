@@ -188,7 +188,9 @@ def classificao_unidade
   
   session[:opcao]=Unidade.find_by_id(params[:crianca_unidade_id]).nome
   
-  #@criancas1 = Crianca.find( :all,:conditions => ["status == 'NA_DEMANDA' and (opcao1=? or opcao2=? or opcao3=?)", opcao, opcao, opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+# @criancas1 = Crianca.find(:all,:conditions => ["status == 'NA_DEMANDA'"],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at DESC")
+
+
  @criancas1 = Crianca.find( :all,:conditions => ["status ='NA_DEMANDA' and opcao1=?",session[:opcao] ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
  @criancas1 = @criancas1.sort_by{|e| -e.trabalho}
  @criancas1 = @criancas1.sort_by{|e| -e.servidor_publico}
@@ -212,6 +214,10 @@ def classificao_unidade
 
 
  @criancas = @criancas1 + @criancas2 + @criancas3
+ @criancas = @criancas.sort_by{|e| -e.trabalho}
+ @criancas = @criancas.sort_by{|e| -e.servidor_publico}
+ @criancas = @criancas.sort_by{|e| -e.irmao}
+ @criancas = @criancas.sort_by{|e| -e.transferencia}
 
 
 
