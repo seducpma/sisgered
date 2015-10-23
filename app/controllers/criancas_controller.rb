@@ -284,23 +284,19 @@ end
 
 
  def impressao_class_unidade
-        if params[:type_of].to_i == 1
-        @criancas = Crianca.find(:all,:conditions => ["nome like ? and  status = 'NA DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
-              render :layout => "impressao"
-     else if params[:type_of].to_i == 2
-              if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA'"],:order => 'nome ASC, unidade_id ASC')
-              else
-                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and unidade_id = ?", current_user.unidade_id ],:order => 'nome ASC')
-              end
-             render :layout => "impressao"
-         else if params[:type_of].to_i == 6
-                @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA'" ],:order => 'nome ASC')
-                render :layout => "impressao"
-          end
-     end
+  
 
-   end
+ #@criancas1 = Crianca.find( :all,:conditions => ["status == 'NA DEMANDA' and (opcao1=? or opcao2=? or opcao3=?)", opcao, opcao, opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas1 = Crianca.find( :all,:conditions => ["status ='NA DEMANDA' and opcao1=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
+ @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao2=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
+ @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao3=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
+ @criancas4 = @criancas1 + @criancas2 + @criancas3
+ @criancas4 = @criancas4.sort_by{|e| e.created_at}
+ @criancas4 = @criancas4.sort_by{|e| -e.transferencia}
+ @criancas4 = @criancas4.sort_by{|e| -e.irmao}
+ @criancas4 = @criancas4.sort_by{|e| -e.servidor_publico}
+  @criancas = @criancas4.sort_by{|e| -e.trabalho}
+ render :layout => "impressao"
  end
 
   def same_birthday

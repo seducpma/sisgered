@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
   map.resources :unidades
-  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get}
+  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get}
   map.resources :grupos
   map.resources :regiaos
   map.resources :regiaos
