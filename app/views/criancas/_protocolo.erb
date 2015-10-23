@@ -123,7 +123,7 @@
 
 <table width="100%" ->
    <tr>
-     <td widht="8%"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_criancas_path(:crianca => $child)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+     <td widht="8%"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_criancas_path(:crianca => session[:child])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
    </tr>
 </table>
 

@@ -109,7 +109,7 @@
      </td>
   </tr>
  </table>
- <% $child = @crianca.id %>
+ <% session[:child] = @crianca.id %>
  
  <table>
          <tr>
@@ -120,7 +120,7 @@
                 <td align="center"></td>
              <%end%>
              <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-             <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_criancas_path(:crianca => $child)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+             <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_criancas_path(:crianca => session[:child])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
 
           </tr>
     </table>

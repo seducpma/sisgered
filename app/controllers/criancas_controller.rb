@@ -148,21 +148,21 @@ class CriancasController < ApplicationController
   def consultacrianca
 
      if params[:type_of].to_i == 1
-        @criancas = Crianca.find(:all,:conditions => ["nome like ? and  status = 'NA DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+        @criancas = Crianca.find(:all,:conditions => ["nome like ? and  status = 'NA_DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
         render :update do |page|
           page.replace_html 'criancas', :partial => "criancas"
         end
      else if params[:type_of].to_i == 2
               if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA'"],:order => 'nome ASC, unidade_id ASC')
+                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'"],:order => 'nome ASC, unidade_id ASC')
               else
-                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and unidade_id = ?", current_user.unidade_id ],:order => 'nome ASC')
+                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' and unidade_id = ?", current_user.unidade_id ],:order => 'nome ASC')
               end
              render :update do |page|
                 page.replace_html 'criancas', :partial => "criancas"
               end
          else if params[:type_of].to_i == 6
-                @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA'" ],:order => 'nome ASC')
+                @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'" ],:order => 'nome ASC')
                 render :update do |page|
                    page.replace_html 'criancas', :partial => "criancas"
                end
@@ -174,7 +174,7 @@ class CriancasController < ApplicationController
 
 
  def consulta_geral
-      @criancas = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA'" ],:order => "trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+      @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'" ],:order => "trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
  end
 
 
@@ -188,10 +188,10 @@ def classificao_unidade
   
   $opcao=Unidade.find_by_id(params[:crianca_unidade_id]).nome
   
- #@criancas1 = Crianca.find( :all,:conditions => ["status == 'NA DEMANDA' and (opcao1=? or opcao2=? or opcao3=?)", opcao, opcao, opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
- @criancas1 = Crianca.find( :all,:conditions => ["status ='NA DEMANDA' and opcao1=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
- @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao2=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
- @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao3=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
+ #@criancas1 = Crianca.find( :all,:conditions => ["status == 'NA_DEMANDA' and (opcao1=? or opcao2=? or opcao3=?)", opcao, opcao, opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas1 = Crianca.find( :all,:conditions => ["status ='NA_DEMANDA' and opcao1=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
+ @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' and opcao2=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
+ @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' and opcao3=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
  @criancas4 = @criancas1 + @criancas2 + @criancas3
  @criancas4 = @criancas4.sort_by{|e| e.created_at}
  @criancas4 = @criancas4.sort_by{|e| -e.transferencia}
@@ -278,7 +278,7 @@ end
 
 
  def impressao
-       @crianca = Crianca.find(:all,:conditions => ["id = ?",$child])
+       @crianca = Crianca.find(:all,:conditions => ["id = ?",   session[:child]])
       render :layout => "impressao"
 end
 
@@ -286,16 +286,31 @@ end
  def impressao_class_unidade
   
 
- #@criancas1 = Crianca.find( :all,:conditions => ["status == 'NA DEMANDA' and (opcao1=? or opcao2=? or opcao3=?)", opcao, opcao, opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
- @criancas1 = Crianca.find( :all,:conditions => ["status ='NA DEMANDA' and opcao1=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
- @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao2=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
- @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao3=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
- @criancas4 = @criancas1 + @criancas2 + @criancas3
- @criancas4 = @criancas4.sort_by{|e| e.created_at}
- @criancas4 = @criancas4.sort_by{|e| -e.transferencia}
- @criancas4 = @criancas4.sort_by{|e| -e.irmao}
- @criancas4 = @criancas4.sort_by{|e| -e.servidor_publico}
-  @criancas = @criancas4.sort_by{|e| -e.trabalho}
+ #@criancas1 = Crianca.find( :all,:conditions => ["status == 'NA_DEMANDA' and (opcao1=? or opcao2=? or opcao3=?)", opcao, opcao, opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas1 = Crianca.find( :all,:conditions => ["status ='NA_DEMANDA' and opcao1=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
+ @criancas1 = @criancas1.sort_by{|e| -e.created_at}
+ @criancas1 = @criancas1.sort_by{|e| -e.transferencia}
+ @criancas1 = @criancas1.sort_by{|e| -e.irmao}
+ @criancas1 = @criancas1.sort_by{|e| -e.servidor_publico}
+ @criancas1 = @criancas1.sort_by{|e| -e.trabalho}
+
+ @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' and opcao2=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
+ @criancas2 = @criancas2.sort_by{|e| -e.created_at}
+ @criancas2 = @criancas2.sort_by{|e| -e.transferencia}
+ @criancas2 = @criancas2.sort_by{|e| -e.irmao}
+ @criancas2 = @criancas2.sort_by{|e| -e.servidor_publico}
+ @criancas2 = @criancas2.sort_by{|e| -e.trabalho}
+
+
+ @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' and opcao3=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
+ @criancas3 = @criancas3.sort_by{|e| -e.created_at}
+ @criancas3 = @criancas3.sort_by{|e| -e.transferencia}
+ @criancas3 = @criancas3.sort_by{|e| -e.irmao}
+ @criancas3 = @criancas3.sort_by{|e| -e.servidor_publico}
+ @criancas3 = @criancas3.sort_by{|e| -e.trabalho}
+
+ @criancas = @criancas1 + @criancas2 + @criancas3
+
  render :layout => "impressao"
  end
 
