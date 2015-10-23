@@ -193,7 +193,7 @@ def classificao_unidade
  @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao2=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
  @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao3=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
  @criancas4 = @criancas1 + @criancas2 + @criancas3
- @criancas4 = @criancas4.sort_by{|e| e.created_at}
+ 
  @criancas4 = @criancas4.sort_by{|e| -e.transferencia}
  @criancas4 = @criancas4.sort_by{|e| -e.irmao} 
  @criancas4 = @criancas4.sort_by{|e| -e.servidor_publico}
@@ -291,7 +291,6 @@ end
  @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao2=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
  @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA DEMANDA' and opcao3=?", $opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
  @criancas4 = @criancas1 + @criancas2 + @criancas3
- @criancas4 = @criancas4.sort_by{|e| e.created_at}
  @criancas4 = @criancas4.sort_by{|e| -e.transferencia}
  @criancas4 = @criancas4.sort_by{|e| -e.irmao}
  @criancas4 = @criancas4.sort_by{|e| -e.servidor_publico}
