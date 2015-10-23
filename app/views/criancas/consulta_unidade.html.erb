@@ -16,7 +16,7 @@
          </tr>
          <tr>
            <td><div class="consulta_unidade" style="display:none"> <%= render "consulta_unidade" %> </div></td>
-           <td><div class="consultaG" style="display:none"> <%= render "consultaG" %> </div></td>
+           
                
         </tr>
         </table>
@@ -28,8 +28,10 @@
 
   <table>
     <tr>
-     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td width="6%" align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
      <td align="left"><%= button_to 'Consultar', :title => "Consultar" %></td>
+    
+
     </tr>
   </table>
  </div>

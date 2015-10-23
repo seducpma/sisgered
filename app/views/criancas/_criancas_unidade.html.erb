@@ -62,11 +62,13 @@
 
                 <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
               </tr>
+              <% $child_unidade = crianca.id %>
             <% end %>
 
 
 
      </table>
+
      <table bgcolor="#DCDCDC" width="100%">
       <tr >
         <td colspan="3" align="right"><b>TOTAL INSCRIÇÕES: </b>

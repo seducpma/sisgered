@@ -594,9 +594,11 @@ end
   def load_unidades
     $unidade = current_user.unidade_id
     if current_user.unidade_id== 53 or current_user.unidade_id==52
+       @unidades1 =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
     else
-       @unidades =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and id=?", $unidade  ],:order => "nome")
+       @unidades1 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and id=?", $unidade  ],:order => "nome")
+       @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
     end
 
     
