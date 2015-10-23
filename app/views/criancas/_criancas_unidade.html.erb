@@ -2,16 +2,17 @@
        <table bgcolor="#DCDCDC" width="100%">
         <tr bgcolor="#DCDCDC" >
             <th width="10">Posição</th>
-            <th width="40">Inscrição</th>
+            <th width="40">Nº_Ins- <br/>crição</th>
             <th width="40">Nome</th>
             <th width="20">Mãe Trabalha</th>
             <th width="20">Mãe Servidora</th>
             <th width="20">Irmão Matriculado</th>
             <th width="20">Transfe- rência</th>
+            <th width="20">Data <br/>Inscrição</th>
             <th width="200">1ªOpção</th>
             <th width="200">2ªOpção</th>
             <th width="200">3ªOpção</th>
-            <th colspan="3">Administração</th>
+
         </tr>
            <%$t=0%>
            <% @criancas.each do |crianca| %>
@@ -40,6 +41,11 @@
                                    <%else%>
                                        <td align="center">SIM </td>
                                    <%end%>
+              <td align="center"><%=h crianca.created_at.strftime("%d/%m/%Y")%></td>
+
+
+
+
 
                 <td align="center"><% if  crianca.opcao1 == $opcao%>
                                           <b><font color ="blue"><%=h crianca.opcao1%></font></b>
@@ -60,8 +66,18 @@
                                     <%end%>
                 </td>
 
-                <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
+              <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
               </tr>
+               <tr>
+                <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
+                <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>crianca.id}, :method => "get", :title => "Editar"%></td>
+              </tr>
+                <%else%>
+                      <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
+              </tr>
+                <%end%>
+
+
               <% $child_unidade = crianca.id %>
             <% end %>
 
