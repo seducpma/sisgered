@@ -4,7 +4,7 @@
             <th width="10">Posição</th>
             <th width="40">Nº_Ins- <br/>crição</th>
             <th width="40">Nome</th>
-            <th width="40">Opção</th>
+            
             <th width="20">Mãe Trabalha</th>
             <th width="20">Mãe Servidora</th>
             <th width="20">Irmão Matriculado</th>
@@ -22,6 +22,7 @@
                 <td align="center"><%= $t%>º </td>
                 <td align="center"><%=h crianca.id%></td>
                 <td align="left"><%=h crianca.nome%></td>
+                
                                    <% if crianca.trabalho == 0 %>
                                       <td align="center">NÂO</td>
                                   <%else%>
