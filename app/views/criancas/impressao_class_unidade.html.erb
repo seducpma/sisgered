@@ -12,7 +12,7 @@
       <font size="1"><b><i> Secretaria da Educação</i></b>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-<font size="1">Unidade Escolar: <%= $opcao%> </font><br/>
+<font size="1">Unidade Escolar: <%= session[:opcao]%> </font><br/>
 
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -65,19 +65,19 @@
                                        <td align="center"><font size="1">SIM </td>
                                    <%end%>
                 <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y")%></th>
-                <th align="center"><% if  crianca.opcao1 == $opcao%>
+                <th align="center"><% if  crianca.opcao1 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao1%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao1%>
                                     <%end%>
                 </th>
-                <th align="center"><% if  crianca.opcao2 == $opcao%>
+                <th align="center"><% if  crianca.opcao2 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao2%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao2%>
                                     <%end%>
                 </th>
-                <th align="center"><% if  crianca.opcao3 == $opcao%>
+                <th align="center"><% if  crianca.opcao3 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao3%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao3%>

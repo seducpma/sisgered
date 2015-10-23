@@ -4,14 +4,15 @@
             <th width="10">Posição</th>
             <th width="40">Nº_Ins- <br/>crição</th>
             <th width="40">Nome</th>
+            <th width="40">Opção</th>
             <th width="20">Mãe Trabalha</th>
             <th width="20">Mãe Servidora</th>
             <th width="20">Irmão Matriculado</th>
             <th width="20">Transfe- rência</th>
             <th width="20">Data <br/>Inscrição</th>
-            <th width="200">1ªOpção</th>
-            <th width="200">2ªOpção</th>
-            <th width="200">3ªOpção</th>
+            <th width="100">1ªOpção</th>
+            <th width="100">2ªOpção</th>
+            <th width="100">3ªOpção</th>
 
         </tr>
            <%$t=0%>
@@ -42,19 +43,19 @@
                                        <td align="center">SIM </td>
                                    <%end%>
               <td align="center"><%=h crianca.created_at.strftime("%d/%m/%Y")%></td>
-                <td align="center"><% if  crianca.opcao1 == $opcao%>
+                <td align="center"><% if  crianca.opcao1 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao1%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao1%>
                                     <%end%>
                 </td>
-                <td align="center"><% if  crianca.opcao2 == $opcao%>
+                <td align="center"><% if  crianca.opcao2 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao2%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao2%>
                                     <%end%>
                 </td>
-                <td align="center"><% if  crianca.opcao3 == $opcao%>
+                <td align="center"><% if  crianca.opcao3 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao3%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao3%>
