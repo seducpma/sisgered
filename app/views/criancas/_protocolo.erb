@@ -33,7 +33,7 @@
                   <td align="left" ><%= crianca.unidade.nome%></td>
                   <td width="18%" ><b>Responsável p/ criança </b> </td>
                       <% if crianca.responsavel == 0 %>
-                          <td>NÂO</td>
+                          <td>NÃO</td>
                       <%else%>
                           <td>SIM - <%=  crianca.responsavel_n%> - (<%=  crianca.parentesco%>)</td>
                       <%end%>
@@ -41,13 +41,13 @@
                 <tr style="font-size:10px">
                     <td> <b>Filho Servidor Público:</b></td>
                        <% if crianca.servidor_publico == 0 %>
-                          <td align="left">NÂO</td>
+                          <td align="left">NÃO</td>
                         <%else%>
                            <td align="left">SIM - <%=  crianca.servidor_local%></td>
                         <%end%>
                            <td><b>Mãe trabalha: </b></td>
                         <% if crianca.trabalho == 0 %>
-                           <td>NÂO</td>
+                           <td>NÃO</td>
                         <%else%>
                            <td>SIM - <%=  crianca.local_trabalho%> (<%=  crianca.fone_trabalho%>)</td>
                         <%end%>
@@ -56,13 +56,13 @@
 
               <td><b>Irmão(s) matriculado(s): </b></td>
                   <% if crianca.irmao == 0 %>
-                      <td align="left">NÂO</td>
+                      <td align="left">NÃO</td>
                   <%else%>
                       <td align="left">SIM - <%=  crianca.unidade_i%></td>
                   <%end%>
                       <td><b>Transferência: </b> </td>
                    <% if crianca.transferencia == 0 %>
-                      <td align="left">NÂO</td>
+                      <td align="left">NÃO</td>
                    <%else%>
                        <td align="left">SIM - <%=  crianca.unidade_t%></td>
                    <%end%>

@@ -28,22 +28,22 @@
                 <td align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></td>
                 <td align="left"><%=h crianca.nome%></td>
                                    <% if crianca.trabalho == 0 %>
-                                      <td align="center">NÂO</td>
+                                      <td align="center">NÃO</td>
                                   <%else%>
                                        <td align="center">SIM</td>
                                   <%end%>
                                   <% if crianca.servidor_publico == 0 %>
-                                      <td align="center">NÂO</td>
+                                      <td align="center">NÃO</td>
                                   <%else%>
                                        <td align="center">SIM</td>
                                   <%end%>
                                   <% if crianca.irmao == 0 %>
-                                      <td align="center">NÂO</td>
+                                      <td align="center">NÃO</td>
                                   <%else%>
                                       <td align="center">SIM</td>
                                   <%end%>
                                   <% if crianca.transferencia == 0 %>
-                                      <td align="center">NÂO</td>
+                                      <td align="center">NÃO</td>
                                    <%else%>
                                        <td align="center">SIM </td>
                                    <%end%>

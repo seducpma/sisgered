@@ -129,7 +129,7 @@
            <b> Status da Inscrição:</td>
 
          <td>
-            <% if $status == "MATRICULADA" %>
+            <% if session[:status] == "MATRICULADA" %>
                 MATRICULADA
             <%else%>
                <%= f.select :status, options_for_select(Crianca::Status) %>

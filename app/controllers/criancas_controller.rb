@@ -59,11 +59,18 @@ class CriancasController < ApplicationController
   def edit
 
     @crianca = Crianca.find(params[:id])
-    $status = @crianca.status
+    session[:status] = @crianca.status
     #@unidade_matricula = Unidade.find_by_sql("select u.id, u.nome from unidades u right join criancas c on u.id in (c.option1, c.option2, c.option3, c.option4) where c.id = " + (@crianca.id).to_s)
-    $id_crianca = params[:id]
-    $nome = params[:nome]
+    session[:id_crianca] = params[:id]
+    session[:nome] = params[:nome]
   end
+
+  def status
+    @crianca = Crianca.find(params[:id])
+    session[:status] = @crianca.status
+  end
+
+
 
   # POST /criancas
   # POST /criancas.xml
@@ -128,7 +135,7 @@ class CriancasController < ApplicationController
   def autentica_matricula
     $unidade_matricula = params[:crianca_unidade_matricula]
     #@teste = Crianca.find(params[:id])
-    @existe = Crianca.find(:all, :conditions => ["((id= "+ $id_crianca +" and (opcao1 = " + $unidade_matricula + " or opcao2 = " + $unidade_matricula + " or opcao3 = " + $unidade_matricula + " or opcao4 = " + $unidade_matricula +")))"])
+    @existe = Crianca.find(:all, :conditions => ["((id= "+ session[:id_crianca] +" and (opcao1 = " + $unidade_matricula + " or opcao2 = " + $unidade_matricula + " or opcao3 = " + $unidade_matricula + " or opcao4 = " + $unidade_matricula +")))"])
     if @existe.empty? then
      render :update do |page|
       page.replace_html 'unidade', :text => "OPÇÃO NÃO ESCOLHIDA NO CADASTRO DE PREFERÊNCIA DE UNIDADE. ESCOLHA UMA DAS OPÇÕES LISTADA ACIMA."
@@ -146,7 +153,6 @@ class CriancasController < ApplicationController
 
  
   def consultacrianca
-
      if params[:type_of].to_i == 1
         @criancas = Crianca.find(:all,:conditions => ["nome like ? and  status = 'NA_DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
         render :update do |page|
@@ -179,10 +185,37 @@ class CriancasController < ApplicationController
 
 
 
+
+def consulta_unidade_status
+
+end
+def classificao_unidade_status
+
+  session[:opcao]=Unidade.find_by_id(params[:crianca_unidade_id]).nome
+
+ @criancas1 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 1 and opcao1=? ",  session[:opcao] ],:order => "servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 1 and opcao2=? ",  session[:opcao] ],:order => "servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 1 and opcao3=? ",  session[:opcao] ],:order => "servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas4 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 0 and opcao1=? ",  session[:opcao] ],:order => "servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas5 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 0 and opcao2=? ",  session[:opcao] ],:order => "servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas6 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 0 and opcao3=? ",  session[:opcao] ],:order => "servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+
+ #@criancas1 = Crianca.find( :all,:conditions => ["status ='NA_DEMANDA' and opcao1=?",session[:opcao] ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
+ #@criancas1 = @criancas1.sort_by{|e| -e.trabalho}
+ #@criancas1 = @criancas1.sort_by{|e| -e.servidor_publico}
+ #@criancas1 = @criancas1.sort_by{|e| -e.irmao}
+ #@criancas1 = @criancas1.sort_by{|e| -e.transferencia}
+
+  @criancas = @criancas1 + @criancas2 + @criancas3 + @criancas4 + @criancas5 + @criancas6
+
+  render :partial => 'criancas_unidade_status'
+
+end
+
+
 def consulta_unidade
-  
-     
- end
+
+end
 
 def classificao_unidade
   
@@ -201,20 +234,10 @@ def classificao_unidade
  #@criancas1 = @criancas1.sort_by{|e| -e.irmao}
  #@criancas1 = @criancas1.sort_by{|e| -e.transferencia}
 
-
- @criancas = @criancas1 + @criancas2 + @criancas3 + @criancas4 + @criancas5 + @criancas6
-# @criancas = @criancas.sort_by{|e| -e.trabalho}
-# @criancas = @criancas.sort_by{|e| -e.servidor_publico}
-# @criancas = @criancas.sort_by{|e| -e.irmao}
-# @criancas = @criancas.sort_by{|e| -e.transferencia}
-
-
-
-                
+  @criancas = @criancas1 + @criancas2 + @criancas3 + @criancas4 + @criancas5 + @criancas6
 
   render :partial => 'criancas_unidade'
-  
-  
+ 
 end
 
 
@@ -249,8 +272,8 @@ end
 
 
   def mesmo_nome
-    $nome = params[:crianca_nome]
-    @verifica = Crianca.find_by_nome($nome)
+    session[:nome] = params[:crianca_nome]
+    @verifica = Crianca.find_by_nome(session[:nome])
     if @verifica then
       render :update do |page|
         page.replace_html 'nome_aviso', :text => 'Nome já cadastrado no sistema'
@@ -268,7 +291,7 @@ end
 
   def mesma_mae
      if Crianca.find_by_mae(params[:crianca_mae]) then
-       if Crianca.find_by_nome($nome) then
+       if Crianca.find_by_nome(session[:nome]) then
         render :update do |page|
           page.replace_html 'nome_mae', :text => 'Criança já cadastrada no sistema '
           page.replace_html 'Certeza', :text =>  'Criança ja cadastrada'

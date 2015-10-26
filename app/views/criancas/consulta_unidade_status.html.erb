@@ -1,0 +1,39 @@
+<div id="interno2">
+<% title "CRIANÇAS1", :id =>"crianças1" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>ALTERAÇÂO DO STATUS DA INSCRIÇÂO</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <table>
+   <tr>
+     <td colspan="2"align="right"left"><font size="2"> <b class="label_busca2"> Unidade:</b></font>
+         <%= collection_select :crianca, :unidade_id, @unidades1, :id, :nome, :include_blank => ' -- Selecionar -- ', :class=> "txt_busca2"  %>
+         <%= observe_field 'crianca_unidade_id',
+               :update => "criancas",
+               :url    => { :action => 'classificao_unidade_status' },
+               :with   => 'crianca_unidade_id' %>
+     </td>
+   </tr>
+    <br/>
+    <hr/>
+    <tr>
+      <td>
+        <div id="criancas"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+     </td>
+   </tr>
+    <br/>
+</table>
+  <table>
+    <tr>
+     <td width="4%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td width="4%" align="left"><%= button_to 'Consultar', :title => "Consultar" %></td>
+     <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_class_unidade_criancas_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+     
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+

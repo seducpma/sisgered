@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
   map.resources :unidades
-  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get}
+  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :status => :get}
   map.resources :grupos
   map.resources :regiaos
   map.resources :regiaos
@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.relatorio_crianca '/crianca/relatorio_crianca', :controller => 'criancas', :action => 'relatorio_crianca'
   map.consulta_geral '/geral', :controller => 'criancas', :action => 'consulta_geral'
   map.consulta_unidade '/unidade', :controller => 'criancas', :action => 'consulta_unidade'
-
+  map.consulta_unidade_status '/unidade_status', :controller => 'criancas', :action => 'consulta_unidade_status'
 
   map.resources :classes
   map.resources :informativos

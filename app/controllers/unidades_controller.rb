@@ -51,8 +51,8 @@ class UnidadesController < ApplicationController
   end
 
   def mesmo_nome
-    $nome = params[:unidade_nome]
-    @verifica = Unidade.find_by_nome($nome)
+    session[:nome] = params[:unidade_nome]
+    @verifica = Unidade.find_by_nome(session[:nome])
     if @verifica then
       render :update do |page|
         page.replace_html 'nome_aviso', :text => 'EMPRESA JÁ CADASTRADA'

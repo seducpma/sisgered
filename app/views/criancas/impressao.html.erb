@@ -67,7 +67,7 @@
                <th align="left"><%=h crianca.grupo.nome %> </th>
                <th colspan="2"align="left" width="4%"><b>Necessidade Especial: </b>
                 <% if crianca.servidor_publico == 0 %>
-                      NÂO
+                      NÃO
                   <%else%>
                       SIM
                   <%end%>
@@ -88,13 +88,13 @@
            <tr style="font-size:8px">
              <th align="left"> <b>Filho Servidor Público:</b></th>
                  <% if crianca.servidor_publico == 0 %>
-                    <th align="left"> NÂO </th>
+                    <th align="left"> NÃO </th>
                   <%else%>
                      <th align="left"> SIM - Local: <%=h crianca.servidor_local%></th>
                   <%end%>
                      <th align="left"><b>Mãe trabalha: </b></th>
                   <% if crianca.trabalho == 0 %>
-                     <th align="left">NÂO</th>
+                     <th align="left">NÃO</th>
                   <%else%>
                      <th align="left">SIM - Local: <%=h crianca.local_trabalho%> (<%=h crianca.fone_trabalho%>)</th>
                   <%end%>
@@ -102,13 +102,13 @@
             <tr style="font-size:8px">
               <th align="left"><b>Irmão(s) matriculado(s): </b></th>
                   <% if crianca.irmao == 0 %>
-                      <th align="left">NÂO</th>
+                      <th align="left">NÃO</th>
                   <%else%>
                       <th align="left">SIM - Unidade: <%=h crianca.unidade.nome%></th>
                   <%end%>
                       <th align="left"><b>Transferência: </b> </th>
                    <% if crianca.transferencia == 0 %>
-                      <th align="left">NÂO</th>
+                      <th align="left">NÃO</th>
                    <%else%>
                        <th align="left">SIM - Unidade: <%=h crianca.unidade.nome%></th>
                    <%end%>
