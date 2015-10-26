@@ -306,30 +306,21 @@ end
  def impressao_class_unidade
   
 
- #@criancas1 = Crianca.find( :all,:conditions => ["status == 'NA_DEMANDA' and (opcao1=? or opcao2=? or opcao3=?)", opcao, opcao, opcao ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
- @criancas1 = Crianca.find( :all,:conditions => ["status ='NA_DEMANDA' and opcao1=?",session[:opcao] ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
- @criancas1 = @criancas1.sort_by{|e| -e.trabalho}
- @criancas1 = @criancas1.sort_by{|e| -e.servidor_publico}
- @criancas1 = @criancas1.sort_by{|e| -e.irmao}
- @criancas1 = @criancas1.sort_by{|e| -e.transferencia}
+ @criancas1 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 1 and opcao1=? )", opcao ],:order => " servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 1 and opcao2=? )", opcao ],:order => " servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 1 and opcao3=? )", opcao ],:order => " servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas4 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 0 and opcao1=? )", opcao ],:order => " servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas5 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 0 and opcao2=? )", opcao ],:order => " servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ @criancas6 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 0 and opcao3=? )", opcao ],:order => " servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
+ 
+ #@criancas1 = Crianca.find( :all,:conditions => ["status ='NA_DEMANDA' and opcao1=?",session[:opcao] ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao1")
+ #@criancas1 = @criancas1.sort_by{|e| -e.trabalho}
+ #@criancas1 = @criancas1.sort_by{|e| -e.servidor_publico}
+ #@criancas1 = @criancas1.sort_by{|e| -e.irmao}
+ #@criancas1 = @criancas1.sort_by{|e| -e.transferencia}
 
 
- @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' and opcao2=?", session[:opcao] ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao2")
- @criancas2 = @criancas2.sort_by{|e| -e.trabalho}
- @criancas2 = @criancas2.sort_by{|e| -e.servidor_publico}
- @criancas2 = @criancas2.sort_by{|e| -e.irmao}
- @criancas2 = @criancas2.sort_by{|e| -e.transferencia}
-
-
-
- @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' and opcao3=?", session[:opcao] ],:order => " trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC, opcao3")
- @criancas3 = @criancas3.sort_by{|e| -e.trabalho}
- @criancas3 = @criancas3.sort_by{|e| -e.servidor_publico}
- @criancas3 = @criancas3.sort_by{|e| -e.irmao}
- @criancas3 = @criancas3.sort_by{|e| -e.transferencia}
-
-
- @criancas = @criancas1 + @criancas2 + @criancas3
+ @criancas = @criancas1 + @criancas2 + @criancas3 + @criancas4 + @criancas5 + @criancas5
 
  render :layout => "impressao"
  end

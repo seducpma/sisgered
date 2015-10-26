@@ -1,28 +1,26 @@
   <div class="tabs">
        <table bgcolor="#DCDCDC" width="100%">
         <tr bgcolor="#DCDCDC" >
-            <th width="10">Posição</th>
-            <th width="40">Nº_Ins- <br/>crição</th>
-            <th width="40">Nome</th>
-            
-            <th width="20">Mãe Trabalha</th>
-            <th width="20">Mãe Servidora</th>
-            <th width="20">Irmão Matriculado</th>
-            <th width="20">Transfe- rência</th>
-            <th width="20">Data <br/>Inscrição</th>
-            <th width="100">1ªOpção</th>
-            <th width="100">2ªOpção</th>
-            <th width="100">3ªOpção</th>
-
+            <th width="1%">Nº</th>
+            <th width="1%">Nº_Ins- <br/>crição</th>
+            <th width="10%">Data/Hora <br/>Inscrição</th>
+            <th width="30%">Nome</th>
+            <th width="5%">Mãe <br/>Trabalha</th>
+            <th width="5%">Mãe <br/>Servidora</th>
+            <th width="5%">Irmão <br/>Matriculado</th>
+            <th width="5%">Transfe- rência</th>
+            <th width="10%">1ªOpção</th>
+            <th width="10%">2ªOpção</th>
+            <th width="10%">3ªOpção</th>
         </tr>
            <%$t=0%>
            <% @criancas.each do |crianca| %>
            <%$t = $t+1%>
         <tr bgcolor="#F5F5F5">
-                <td align="center"><%= $t%>º </td>
-                <td align="center"><%=h crianca.id%></td>
+                <th align="center"><%= $t%>º </th>
+                <th align="center"><%=h crianca.id%></th>
+                <td align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></td>
                 <td align="left"><%=h crianca.nome%></td>
-                
                                    <% if crianca.trabalho == 0 %>
                                       <td align="center">NÂO</td>
                                   <%else%>
@@ -43,7 +41,6 @@
                                    <%else%>
                                        <td align="center">SIM </td>
                                    <%end%>
-              <td align="center"><%=h crianca.created_at.strftime("%d/%m/%Y")%></td>
                 <td align="center"><% if  crianca.opcao1 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao1%></font></b>
                                     <%else%>

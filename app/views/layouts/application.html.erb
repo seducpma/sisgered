@@ -114,15 +114,15 @@ display: none;
                       <%end%>
                      </ul>
               </li>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
               <li><a class="item-primary" href="#;">Classificação</a>
                  <ul style="width:108px;">
 
                             <li><%= link_to "Geral",consulta_geral_path %></li>
                             <li><%= link_to "por Unidade",consulta_unidade_path %></li>
                            </ul>
-                 
-
               </li>
+              <%end%>
     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
 
 
