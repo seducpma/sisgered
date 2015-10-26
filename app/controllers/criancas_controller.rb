@@ -309,7 +309,7 @@ end
  #@criancas1 = @criancas1.sort_by{|e| -e.transferencia}
 
 
- @criancas = @criancas1 + @criancas2 + @criancas3 + @criancas4 + @criancas5 + @criancas5
+ @criancas = @criancas1 + @criancas2 + @criancas3 + @criancas4 + @criancas5 + @criancas6
 
  render :layout => "impressao"
  end
