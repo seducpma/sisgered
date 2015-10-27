@@ -103,18 +103,11 @@ display: none;
                         <li><%= link_to "Inscrição",new_crianca_path %></li>
                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
                             <li><%= link_to "Consultas",consultas_criancas_path %></li>
+                            <li><%= link_to "Status",consulta_unidade_status_path  %></li>
                         <%end%>
-                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
-                            <li><a>Classificação</a>
-                           <ul>
-                            <li><%= link_to "Geral",consulta_geral_path %></li>
-                            <li><%= link_to "Por Unidade",consulta_unidade_path %></li>
-                           </ul>
-                         </li>
-                      <%end%>
                      </ul>
               </li>
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
+              
               <li><a class="item-primary" href="#;">Classificação</a>
                  <ul style="width:108px;">
 
@@ -122,18 +115,10 @@ display: none;
                             <li><%= link_to "por Unidade",consulta_unidade_path %></li>
                            </ul>
               </li>
-              <%end%>
+              
 
 
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
-              <li><a class="item-primary" href="#;">Status</a>
-                 <ul style="width:108px;">
 
-                            <li><%= link_to "Inscrição",consulta_unidade_status_path  %></li>
-
-                           </ul>
-              </li>
-              <%end%>
 
 
     

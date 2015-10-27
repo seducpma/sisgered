@@ -434,11 +434,23 @@ $(".sem_filtro").click(function ()
      $(".consulta_professor").hide();
      $(".consulta_data").hide();
      $(".label_busca1").hide();
+     $(".consulta_classe").hide();
    });
 
    $(".filtro_professor").click(function ()
    {
      $(".consulta_professor").show();
+     $(".txt_busca3").show()
+     $(".label_busca3").show();
+     $(".consulta").hide();
+     $(".consulta1").hide();
+     $(".consulta_unidade").hide();
+     $(".consulta_data").hide();
+
+   });
+      $(".filtro_classe").click(function ()
+   {
+     $(".consulta_classe").show();
      $(".txt_busca3").show()
      $(".label_busca3").show();
      $(".consulta").hide();

@@ -1,0 +1,13 @@
+<table width="100%" align="center">
+   <tr>
+     <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Unidade:</b></font>
+        <%= collection_select :crianca, :unidade_id, @unidades1, :id, :nome, :include_blank => ' -- Selecionar -- ', :class=> "txt_busca3"  %>
+        <font size="2"> <b class="label_busca3">Classe:</b></font>
+        <%= collection_select :crianca, :grupo_id, @grupos1, :id, :nome, :include_blank => ' -- Selecionar -- ', :class=> "txt_busca3"  %>
+         <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+
+     </td>
+
+
+   </tr>
+  </table>

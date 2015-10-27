@@ -1,4 +1,5 @@
   <div class="tabs">
+    <center><font size="4"><b><u>Consulta Classificação por Unidade</u></b></font></center><br/>
        <table bgcolor="#DCDCDC" width="100%">
         <tr bgcolor="#DCDCDC" >
             <th width="2%">Nº</th>
@@ -98,6 +99,7 @@
 
      <table bgcolor="#DCDCDC" width="100%">
       <tr >
+        <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_class_unidade_criancas_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
         <td colspan="3" align="right"><b>TOTAL INSCRIÇÕES: </b>
             <font color ="red "size="2"><b><%=$t %></b></font>
           </td>
