@@ -268,6 +268,14 @@ render :update do |page|
 end
 end
 
+def relatorio_geral
+  @criancas = Crianca.find(:all, :order => 'nome')
+  @unidades11 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"CC " +"%"], :order => 'nome')
+  @unidades12 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"CR " +"%"], :order => 'nome')
+  @unidades13 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"FIL. " +"%"], :order => 'nome')
+  @unidades14 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"CONV. " +"%"], :order => 'nome')
+  t=0
+end
 
   def nome_crianca
     $consulta = 6

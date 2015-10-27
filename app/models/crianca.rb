@@ -39,8 +39,15 @@ class Crianca < ActiveRecord::Base
  end
 
 
+  def self.demanda_total
+    Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA'"])
+
+  end
 
 
+   def self.matricula_total
+    Crianca.find(:all, :conditions => ["status = 'MATRICULADA'"])
+  end
   def maiusculo
     self.nome.upcase!
     self.bairro.upcase!
