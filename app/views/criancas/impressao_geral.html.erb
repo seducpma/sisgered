@@ -1,30 +1,48 @@
-<div id="interno2">
-<% title "CRIANÇAS", :id =>"criancas" %>
- <div class="tabs">
-   <div id="caixa_titulo">
-    <font size="3"><strong>RELATÓRIO GERAL DE DEMANDA ESCOLAR</strong></font><br/>
-   </div>
-  <div class="tabs">
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2"><i><b><u>DEMANANDA ESCOLAR</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp
+<font size="1"><b><u></u> DEMANDA GERAL      </b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp
+
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
  <fieldset>
    <legend><font size=2><b>DEMANDA POR REGIÃO</b></font></legend>
-     <table bgcolor="#DCDCDC" width="70%"align="center">
-         <tr bgcolor="#DCDCDC" >
+       <table frame="box" rules="all" width = "70%" align="center">
+        <tr style="font-size:9px" >
             <th width="25%">Região</th>
             <th width="2%">Total</th>
-            <th width="1%" bgcolor="#DCDCDC" ></th>
+            <th width="1%" ></th>
             <th width="25%">Região</th>
             <th width="2%">Total</th>
-            <th width="1%" bgcolor="#DCDCDC" ></th>
+            <th width="1%"></th>
             <th width="25%">Região</th>
             <th width="2%">Total</th>
 
         </tr>
         <% totalregiao = 0 %>
-        <tr bgcolor="#F5F5F5" >
+        <tr style="font-size:9px">
              <th align="center"> São Jerônimo</th>
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 1"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 1"]).count %>
-             <th></th>
+             <th> </th>
              <th align="center"> Cidade Jardim</th>
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 2"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 2"]).count %>
@@ -33,7 +51,7 @@
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 3"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 3"]).count %>
         </tr>
-        <tr bgcolor="#F5F5F5">
+        <tr style="font-size:9px">
              <th align="center"> Zanaga</th>
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 4"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 4"]).count %>
@@ -46,7 +64,7 @@
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 6"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 6"]).count %>
         </tr>
-        <tr bgcolor="#F5F5F5">
+        <tr style="font-size:9px">
              <th align="center"> Praia Azul</th>
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 7"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 7"]).count %>
@@ -60,21 +78,21 @@
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 9"]).count %>
        </tr>
      </table>
-     <table bgcolor="#DCDCDC" width="70%" align="center">
-      <tr >
-        <td align="right"><b>TOTAL INSCRIÇÕES: </b>
-            <font color ="red "size="2"><b><%=totalregiao %>&nbsp&nbsp&nbsp</b></font>
-          </td>
+        <table frame="box" rules="all" width = "70%" align="center">
+        <tr style="font-size:9px" >
+           <th align="right"><b>TOTAL INSCRIÇÕES: </b>
+            <font color ="red "><b><%=totalregiao %>&nbsp&nbsp&nbsp</b></font>
+          </th>
       </tr>
     </table>
   </fieldset>
  <fieldset>
    <legend><font size=2><b>DEMANDA GERAL POR UNIDADE</b></font></legend>
-      <table bgcolor="#DCDCDC" width="100%"align="center">
-        <tr>
-          <td>
-            <table>
-                <tr bgcolor="#DCDCDC" >
+       <table frame="box" rules="all" width = "100%" align="center">
+        <tr style="font-size:9px" >
+          <th>
+            <table frame="box" rules="all">
+                <tr style="font-size:9px" >
                     <th width="30%">Unidade</th>
                     <th width="2%">Total</th>
                 </tr>
@@ -82,20 +100,20 @@
                  <% @unidades11.each do |unidade| %>
                  <% num =  Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count%>
                  <% cont1 = cont1+num%>
-                 <tr bgcolor="#F5F5F5">
+                  <tr style="font-size:9px" >
                    <th width="30%" align="left"><%=h unidade.nome%></th>
                     <th width="2%"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %></th>
                  </tr>
                 <%end%>
-                 <tr>
-                   <td colspan="2" align="right"><b>Total Inscrições: </b>
-                            <font color ="red "size="2"><b><%= cont1 %></b></font></td>
+                <tr style="font-size:9px" >
+                   <th colspan="2" align="right"><b>Total Inscrições: </b>
+                            <font color ="red "><b><%= cont1 %></b></font></th>
                  </tr>
             </table>
-           </td>
-           <td valign="top">
-            <table>
-                <tr bgcolor="#DCDCDC" >
+           </th>
+           <th valign="top">
+            <table frame="box" rules="all">
+                 <tr style="font-size:9px" >
                     <th width="30%">Unidade</th>
                     <th width="2%">Total</th>
                 </tr>
@@ -103,21 +121,21 @@
                  <% @unidades12.each do |unidade| %>
                  <% num =  Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %>
                  <%cont2 = cont2+num%>
-                 <tr bgcolor="#F5F5F5">
+                <tr style="font-size:9px" >
                    <th width="30%" align="left"><%=h unidade.nome%></th>
                     <th width="2%"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %></th>
                  </tr>
                 <%end%>
-                 <tr>
-                   <td colspan="2" align="right"><b>Total Inscrições: </b>
-                            <font color ="red "size="2"><b><%= cont2 %></b></font></td>
+                <tr style="font-size:9px" >
+                   <th colspan="2" align="right"><b>Total Inscrições: </b>
+                            <font color ="red "><b><%= cont2 %></b></font></th>
                  </tr>
 
             </table>
-           </td>
-           <td valign="top">
-            <table>
-                <tr bgcolor="#DCDCDC" >
+           </th>
+           <th valign="top">
+            <table frame="box" rules="all">
+               <tr style="font-size:9px" >
                     <th width="30%">Unidade</th>
                     <th width="2%">Total</th>
                 </tr>
@@ -125,20 +143,20 @@
                  <% @unidades13.each do |unidade| %>
                  <% num =  Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %>
                  <%cont3 = cont3+num%>
-                 <tr bgcolor="#F5F5F5">
+                 <tr style="font-size:9px" >
                    <th width="30%" align="left"><%=h unidade.nome%></th>
                     <th width="2%"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %></th>
                  </tr>
                 <%end%>
-                 <tr>
-                   <td colspan="2" align="right"><b>Total Inscrições: </b>
-                            <font color ="red "size="2"><b><%= cont3 %></b></font></td>
+                 <tr style="font-size:9px" >
+                   <th colspan="2" align="right"><b>Total Inscrições: </b>
+                            <font color ="red "><b><%= cont3 %></b></font></th>
                  </tr>
             </table>
-           </td>
-           <td valign="top">
-            <table>
-                <tr bgcolor="#DCDCDC" >
+           </th>
+           <th valign="top">
+            <table frame="box" rules="all">
+                <tr style="font-size:9px" >
                     <th width="30%">Unidade</th>
                     <th width="2%">Total</th>
                 </tr>
@@ -146,35 +164,59 @@
                  <% @unidades14.each do |unidade| %>
                  <% num =  Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %>
                  <%cont4 = cont4+num%>
-                 <tr bgcolor="#F5F5F5">
+                 <tr style="font-size:9px" >
                    <th width="30%" align="left"><%=h unidade.nome%></th>
                     <th width="2%"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %></th>
                  </tr>
                 <%end%>
-                 <tr>
-                   <td colspan="2" align="right"><b>Total Inscrições: </b>
-                            <font color ="red "size="2"><b><%= cont4 %></b></font></td>
+                 <tr style="font-size:9px" >
+                   <th colspan="2" align="right"><b>Total Inscrições: </b>
+                            <font color ="red "><b><%= cont4 %></b></font></th>
                  </tr>
             </table>
-           </td>
-       <tr>
-        <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_geral_criancas_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+           </th>
+      <tr style="font-size:9px" >
+        
           <% tt= 0 %>
           <% tt= cont1+ cont2+ cont3+ cont4 %>
-        <td colspan="3" align="right"><b>TOTAL INSCRIÇÕES: </b>
-            <font color ="red "size="2"><b><%=  tt %></b></font>
-          </td>
+          <th colspan="4" align="right"><b>TOTAL INSCRIÇÕES: </b>
+            <font color ="red "><b><%=  tt %></b></font>
+          </th>
       </tr>
  </fieldset>
-  <table>
-    <tr>
-     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <td align="left"><%= button_to 'Consultar',  :title => "Consultar" %></td>
-    </tr>
-  </table>
- </div>
- </div>
-  <br/>
-</div>
+<table>
+  <tr style="font-size:9px" >
+    <th>
+      <font size="2"><b>Lista  sujeita a alterações a qualquer momento</b><font>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <font size ="1" ><b>Americana, <%= Time.now.strftime("%d/%m/%Y") %></b></font>
+    </th>
+  </tr>
+</table>
+  </div>
 
+<br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+p/  Unidade Escolar
+         
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Assinatura do Responsável<br/>
+
+</font>
+&nbsp&nbsp
 

@@ -274,7 +274,7 @@ def relatorio_geral
   @unidades12 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"CR " +"%"], :order => 'nome')
   @unidades13 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"FIL. " +"%"], :order => 'nome')
   @unidades14 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"CONV. " +"%"], :order => 'nome')
-  t=0
+
 end
 
   def nome_crianca
@@ -291,8 +291,6 @@ end
     page.replace_html 'regiao', :partial => 'regiao_unidade'
     end
   end
-
-
 
 
   def consulta
@@ -341,6 +339,29 @@ end
      end
   end
 
+  def same_birthday
+    data_nasc = params[:ano].to_s + '-' + params[:mes].to_s + '-' + params[:dia].to_s
+    if !Crianca.by_nome(params[:nome]).by_nascimento(data_nasc).empty? then
+      render :text => 'Mesma data e mesmo nome'
+    else
+      render :text => 'Nenhuma data igual...'
+    end
+  end
+
+ def verifica_data
+   if not params[:crianca_nascimento_3i].nil? then
+     ano = params[:crianca_nascimento_3i].to_s
+   end
+   if not params[:crianca_nascimento_1i].nil? then
+     dia = params[:crianca_nascimento_1i].to_s
+   end
+   if not params[:crianca_nascimento_2i].nil? then
+     mes = params[:crianca_nascimento_2i].to_s
+   end
+   data = dia.to_s + " " + mes.to_s + " " + ano.to_s
+   render :text => data.to_s
+
+ end
 
  def impressao
        @crianca = Crianca.find(:all,:conditions => ["id = ?",   session[:child]])
@@ -380,29 +401,17 @@ end
  render :layout => "impressao"
  end
 
-  def same_birthday
-    data_nasc = params[:ano].to_s + '-' + params[:mes].to_s + '-' + params[:dia].to_s
-    if !Crianca.by_nome(params[:nome]).by_nascimento(data_nasc).empty? then
-      render :text => 'Mesma data e mesmo nome'
-    else
-      render :text => 'Nenhuma data igual...'
-    end
-  end
+def impressao_geral
+  @criancas = Crianca.find(:all, :order => 'nome')
+  @unidades11 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"CC " +"%"], :order => 'nome')
+  @unidades12 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"CR " +"%"], :order => 'nome')
+  @unidades13 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"FIL. " +"%"], :order => 'nome')
+  @unidades14 = Unidade.find(:all, :conditions=> ["nome like?", "%"+"CONV. " +"%"], :order => 'nome')
 
- def verifica_data
-   if not params[:crianca_nascimento_3i].nil? then
-     ano = params[:crianca_nascimento_3i].to_s
-   end
-   if not params[:crianca_nascimento_1i].nil? then
-     dia = params[:crianca_nascimento_1i].to_s
-   end
-   if not params[:crianca_nascimento_2i].nil? then
-     mes = params[:crianca_nascimento_2i].to_s
-   end
-   data = dia.to_s + " " + mes.to_s + " " + ano.to_s
-   render :text => data.to_s
+      render :layout => "impressao"
+end
 
- end
+  
 
 
 
@@ -424,9 +433,11 @@ end
     if current_user.unidade_id== 53 or current_user.unidade_id==52
        @unidades1 =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
+       
     else
        @unidades1 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and id=?", $unidade  ],:order => "nome")
        @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
+
     end
 
     
