@@ -1,0 +1,37 @@
+
+<div id="interno2">
+<% title "GRAFICO_TOTAL".singularize %>
+<div class="tabs">
+  <table bgcolor="#DCDCDC" width="70%" align="center">
+  <tr bgcolor="#DCDCDC" >
+      <td colspan="2">
+         <div id="caixa_titulo">
+             <font size="3"><strong>ESTATÍSTICA DE DEMANDA</strong></font><br/>
+         </div>
+
+      </td>
+    </tr>
+    <tr>
+       
+              <% if @static_graph.present?%>
+
+      <td colspan="2" align="center" ><div class="tela"><%= @static_graph%></div></td>
+              <%end%>
+
+            </tr>
+            <tr>
+             <div class="botao">
+                   
+                  <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                  
+
+                  <td><input type="Button" Value="Imprimir" onclick="Imprimir()"> </td>
+
+              </div>
+            </tr>
+          </table>
+
+    </div>
+</div>
+<br/>
+

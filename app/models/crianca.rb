@@ -12,8 +12,25 @@ class Crianca < ActiveRecord::Base
   before_save  :maiusculo, :opcao
 
 
- Status = %w(NA_DEMANDA DESISTENTE CANCELADA MATRICULADA)
+ Status = %w(NA_DEMANDA CANCELADA MATRICULADA)
 
+def self.na_demanda
+    Crianca.find(:all, :conditions => {:status => 'NA_DEMANDA' })
+  end
+
+ def self.matriculada
+    Crianca.find(:all, :conditions => {:status => 'MATRICULADA' })
+  end
+
+
+ def self.cancelada
+    Crianca.find(:all, :conditions => {:status => 'CANCELADA' })
+  end
+
+
+  def self.total_demanda
+    Crianca.find(:all)
+  end
 
  def opcao
     data=self.nascimento

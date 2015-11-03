@@ -49,6 +49,7 @@ doc\:clobber_rails=
 doc\:guides=
 doc\:plugins=
 doc\:plugins\:jrails=
+doc\:plugins\:open_flash_chart=
 doc\:plugins\:restful_authentication=
 doc\:plugins\:role_requirement=
 doc\:plugins\:will_paginate=

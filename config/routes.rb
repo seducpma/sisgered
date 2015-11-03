@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :grupos
   map.resources :regiaos
   map.resources :regiaos
-
+  map.resources :graficos, :collection => {:impressao_unidade => :get,   :impressao_geral => :get}
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   map.root :controller => "home"
@@ -25,6 +25,10 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_unidade '/unidade', :controller => 'criancas', :action => 'consulta_unidade'
   map.consulta_unidade_status '/unidade_status', :controller => 'criancas', :action => 'consulta_unidade_status'
   map.consulta_classe '/consulta_classe', :controller => 'criancas', :action => 'consulta_classe'
+
+  map.grafico '/grafico', :controller => 'grafico'
+  map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_geral_demanda'
+  map.grafico_por_unidade '/grafico/crianca_por_unidade', :controller => 'grafico', :action => 'crianca_por_unidade'
 
 
   map.resources :classes
