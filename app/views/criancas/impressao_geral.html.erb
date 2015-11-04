@@ -26,7 +26,7 @@
  <fieldset>
    <legend><font size=2><b>DEMANDA POR REGIÃO</b></font></legend>
        <table frame="box" rules="all" width = "70%" align="center">
-        <tr style="font-size:9px" >
+        <tr style="font-size:8px" >
             <th width="25%">Região</th>
             <th width="2%">Total</th>
             <th width="1%" ></th>
@@ -38,7 +38,7 @@
 
         </tr>
         <% totalregiao = 0 %>
-        <tr style="font-size:9px">
+        <tr style="font-size:8px">
              <th align="center"> São Jerônimo</th>
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 1"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 1"]).count %>
@@ -51,7 +51,7 @@
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 3"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 3"]).count %>
         </tr>
-        <tr style="font-size:9px">
+        <tr style="font-size:8px">
              <th align="center"> Zanaga</th>
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 4"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 4"]).count %>
@@ -64,7 +64,7 @@
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 6"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 6"]).count %>
         </tr>
-        <tr style="font-size:9px">
+        <tr style="font-size:8px">
              <th align="center"> Praia Azul</th>
              <th align="center"><%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 7"]).count %></th>
              <% totalregiao = totalregiao + Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and regiao_id = 7"]).count %>
@@ -79,7 +79,7 @@
        </tr>
      </table>
         <table frame="box" rules="all" width = "70%" align="center">
-        <tr style="font-size:9px" >
+        <tr style="font-size:8px" >
            <th align="right"><b>TOTAL INSCRIÇÕES: </b>
             <font color ="red "><b><%=totalregiao %>&nbsp&nbsp&nbsp</b></font>
           </th>
@@ -89,10 +89,10 @@
  <fieldset>
    <legend><font size=2><b>DEMANDA GERAL POR UNIDADE</b></font></legend>
        <table frame="box" rules="all" width = "100%" align="center">
-        <tr style="font-size:9px" >
+        <tr style="font-size:8px" >
           <th>
             <table frame="box" rules="all">
-                <tr style="font-size:9px" >
+                <tr style="font-size:8px" >
                     <th width="30%">Unidade</th>
                     <th width="2%">Total</th>
                 </tr>
@@ -133,7 +133,7 @@
                    <th width="2%">  <%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %></th>
                  </tr>
                 <%end%>
-                <tr style="font-size:9px" >
+                <tr style="font-size:8px" >
                    <th colspan="2" align="right"><b>Total Inscrições: </b>
                             <font color ="red "><b><%= cont1 %></b></font></th>
                  </tr>
@@ -141,7 +141,7 @@
            </th>
            <th valign="top">
             <table frame="box" rules="all">
-                 <tr style="font-size:9px" >
+                 <tr style="font-size:8px" >
                     <th width="30%">Unidade</th>
                     <th width="2%">Total</th>
                 </tr>
@@ -182,7 +182,7 @@
                    <th width="2%">  <%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %></th>
                  </tr>
                 <%end%>
-                <tr style="font-size:9px" >
+                <tr style="font-size:8px" >
                    <th colspan="2" align="right"><b>Total Inscrições: </b>
                             <font color ="red "><b><%= cont2 %></b></font></th>
                  </tr>
@@ -191,7 +191,7 @@
            </th>
            <th valign="top">
             <table frame="box" rules="all">
-               <tr style="font-size:9px" >
+               <tr style="font-size:8px" >
                     <th width="30%">Unidade</th>
                     <th width="2%">Total</th>
                 </tr>
@@ -232,7 +232,7 @@
                    <th width="2%">  <%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %></th>
                  </tr>
                 <%end%>
-                 <tr style="font-size:9px" >
+                 <tr style="font-size:8px" >
                    <th colspan="2" align="right"><b>Total Inscrições: </b>
                             <font color ="red "><b><%= cont3 %></b></font></th>
                  </tr>
@@ -240,7 +240,7 @@
            </th>
            <th valign="top">
             <table frame="box" rules="all">
-                <tr style="font-size:9px" >
+                <tr style="font-size:8px" >
                     <th width="30%">Unidade</th>
                     <th width="2%">Total</th>
                 </tr>
@@ -281,13 +281,13 @@
                    <th width="2%">  <%= Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA' and opcao1 = ?", unidade.nome]).count %></th>
                  </tr>
                 <%end%>
-                 <tr style="font-size:9px" >
+                 <tr style="font-size:8px" >
                    <th colspan="2" align="right"><b>Total Inscrições: </b>
                             <font color ="red "><b><%= cont4 %></b></font></th>
                  </tr>
             </table>
            </th>
-      <tr style="font-size:9px" >
+      <tr style="font-size:8px" >
         
           <% tt= 0 %>
           <% tt= cont1+ cont2+ cont3+ cont4 %>
@@ -297,7 +297,7 @@
       </tr>
  </fieldset>
 <table>
-  <tr style="font-size:9px" >
+  <tr style="font-size:8px" >
     <th>
       <font size="2"><b>Lista  sujeita a alterações a qualquer momento</b><font>
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
