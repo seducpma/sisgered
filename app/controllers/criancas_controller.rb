@@ -182,12 +182,11 @@ class CriancasController < ApplicationController
       @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'" ],:order => "trabalho DESC, servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
  end
 
-
-
-
 def consulta_unidade_status
 
 end
+
+
 def classificao_unidade_status
 
   session[:opcao]=Unidade.find_by_id(params[:crianca_unidade_id]).nome
@@ -214,8 +213,32 @@ end
 
 def consulta_unidade
 
+end
 
+def consulta
+    render :partial => 'consultas'
+end
 
+def consulta_status
+     if params[:type_of].to_i == 1
+           @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'"],:order => 'nome ASC, unidade_id ASC')
+        render :update do |page|
+          page.replace_html 'criancas', :partial => "criancas"
+        end
+     else if params[:type_of].to_i == 2
+              @criancas = Crianca.find( :all,:conditions => ["status = 'CANCELADA'"],:order => 'nome ASC, unidade_id ASC')
+             render :update do |page|
+                page.replace_html 'criancas', :partial => "criancas"
+              end
+         else if params[:type_of].to_i == 3
+                @criancas = Crianca.find( :all,:conditions => ["status = 'MATRICULADA'"],:order => 'nome ASC, unidade_id ASC')
+                render :update do |page|
+                   page.replace_html 'criancas', :partial => "criancas"
+                 end
+              end
+          end
+     end
+    
 end
 
 def classificao_unidade
@@ -246,7 +269,6 @@ def consulta_classe
 
   session[:opcao] = Unidade.find_by_id(params[:crianca][:unidade_id]).nome
   session[:classe] =(params[:crianca][:grupo_id])
-
 
  @criancas1 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 1 AND opcao1=? AND grupo_id=?",  session[:opcao], session[:classe] ],:order => "servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
  @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND trabalho = 1 AND opcao2=? AND grupo_id=?",  session[:opcao], session[:classe] ],:order => "servidor_publico DESC, irmao DESC, transferencia DESC, created_at ASC")
@@ -293,9 +315,7 @@ end
   end
 
 
-  def consulta
-    render :partial => 'consultas'
-  end
+
 
  def matric
     render :partial => 'matricular'

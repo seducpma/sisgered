@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_unidade '/unidade', :controller => 'criancas', :action => 'consulta_unidade'
   map.consulta_unidade_status '/unidade_status', :controller => 'criancas', :action => 'consulta_unidade_status'
   map.consulta_classe '/consulta_classe', :controller => 'criancas', :action => 'consulta_classe'
+  map.consulta_status '/consulta_status', :controller => 'criancas', :action => 'consulta_status'
 
   map.grafico '/grafico', :controller => 'grafico'
   map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_demanda_geral'

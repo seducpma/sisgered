@@ -101,9 +101,16 @@ display: none;
               <li><a class="item-primary" href="#;">Inscrição</a>
                  <ul style="width:108px;">
                         <li><%= link_to "Inscrição",new_crianca_path %></li>
+                        <li><a>Consultas</a>
+                           <ul>
+                              <li><%= link_to "Inscrição",consultas_criancas_path %></li>
+                              <li><%= link_to "Status",consulta_status_path %></li>
+                           </ul>
+                        </li>
+
                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
-                            <li><%= link_to "Consultas",consultas_criancas_path %></li>
-                            <li><%= link_to "Status",consulta_unidade_status_path  %></li>
+                            
+                            <li><%= link_to "Alteração Status",consulta_unidade_status_path  %></li>
                         <%end%>
                      </ul>
               </li>
