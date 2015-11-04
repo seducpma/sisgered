@@ -16,35 +16,49 @@ class GraficoController < ApplicationController
   end  
 
   def impressao_geral
-    @graph = open_flash_chart_object(600,300,"/grafico/graph_code_demanda_geral")
 
-        @static_graph = Gchart.pie_3d(
-          :data => [(Crianca.matriculada).length,(Crianca.na_demanda).length, (Crianca.cancelada).length],
-          :title => "Demanda Geral - Crianças Cadastradas: #{Crianca.total_demanda.length}",
-          :size => '600x300',
-          :format => 'image_tag',
-          :labels => ["Matriculadas: #{(Crianca.matriculada).length}", "Demanda: #{(Crianca.na_demanda).length}" , "Canceladas: #{(Crianca.cancelada).length}",])
+    if  session[:geral] == 0
+      @graph = open_flash_chart_object(600,300,"/grafico/graph_code_demanda_geral")
+
+          @static_graph = Gchart.pie_3d(
+            :data => [(Crianca.matriculada).length,(Crianca.na_demanda).length, (Crianca.cancelada).length],
+            :title => "Demanda Geral - Crianças Cadastradas: #{Crianca.total_demanda.length}",
+            :size => '700x350',
+            :format => 'image_tag',
+            :labels => ["Matriculadas: #{(Crianca.matriculada).length}", "Demanda: #{(Crianca.na_demanda).length}" , "Canceladas: #{(Crianca.cancelada).length}",])
+    else
+
+      @static_graph = Gchart.pie_3d(
+            :data => [(Crianca.matriculas_crianca_por_unidade(session[:input])).length,(Crianca.nao_matriculas_crianca_por_unidade(session[:input])).length, (Crianca.cancelada_crianca_por_unidade(session[:input])).length],
+            :title => "Demanda por Unidade: #{Crianca.nome_unidade(session[:input])} - #{(Crianca.todas_crianca_por_unidade(session[:input])).length}" ,
+            :size => '700x350',
+            :format => 'image_tag',
+            :labels => ["Matriculadas: #{(Crianca.matriculas_crianca_por_unidade(session[:input])).length}", "Demanda: #{(Crianca.nao_matriculas_crianca_por_unidade(session[:input])).length}", "Canceladas: #{(Crianca.cancelada_crianca_por_unidade(session[:input])).length}"])
+
+    end
       render :layout => "impressao"
+
 end
 
 
-  def crianca_por_unidade        
+  def grafico_demanda_unidade
+
   end
 
   def search
     $uni=0
     $menu=1
-    input = params[:contact][:grafico_id]
-    @graph = open_flash_chart_object(600,300,"/grafico/graph_por_unidade?unidade=#{input}",false,'/')
+    session[:input] = params[:contact][:grafico_id]
+    @graph = open_flash_chart_object(600,300,"/grafico/graph_por_unidade?unidade=#{session[:input]}",false,'/')
                 
     @static_graph = Gchart.pie_3d(
-        :data => [(Crianca.matriculas_crianca_por_unidade(input)).length,(Crianca.nao_matriculas_crianca_por_unidade(input)).length], 
-        :title => "Demanda por Unidade: #{Crianca.nome_unidade(input)} - #{(Crianca.todas_crianca_por_unidade(input)).length}" ,
+        :data => [(Crianca.matriculas_crianca_por_unidade(session[:input])).length,(Crianca.nao_matriculas_crianca_por_unidade(session[:input])).length, (Crianca.cancelada_crianca_por_unidade(session[:input])).length],
+        :title => "Demanda por Unidade: #{Crianca.nome_unidade(session[:input])} - #{(Crianca.todas_crianca_por_unidade(session[:input])).length}" ,
         :size => '600x300',
         :format => 'image_tag',
-        :labels => ["Matriculadas #{(Crianca.matriculas_crianca_por_unidade(input)).length}", "Não matriculadas #{(Crianca.nao_matriculas_crianca_por_unidade(input)).length}"])
+        :labels => ["Matriculadas: #{(Crianca.matriculas_crianca_por_unidade(session[:input])).length}", "Demanda: #{(Crianca.nao_matriculas_crianca_por_unidade(session[:input])).length}", "Canceladas: #{(Crianca.cancelada_crianca_por_unidade(session[:input])).length}"])
 
-      render :action => "crianca_por_unidade"
+      render :action => "grafico_demanda_unidade"
   end
 
   def graph_code_demanda_geral
@@ -95,7 +109,9 @@ end
 protected
 
   def load_unidades
-    @unidades = Unidade.all
+    @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
+
+   
     $uni=1
     $menu=0
   end

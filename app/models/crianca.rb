@@ -55,6 +55,32 @@ def self.na_demanda
   end
  end
 
+   def self.nome_unidade(unidade)
+    Unidade.find(unidade).nome
+  end
+
+  def self.todas_crianca_por_unidade(unidade)
+     nome_unidade = Unidade.find(unidade).nome
+    Crianca.find(:all, :conditions => ['opcao1 = ?', nome_unidade])
+  end
+
+  def self.matriculas_crianca_por_unidade(unidade)
+    nome_unidade = Unidade.find(unidade).nome
+    Crianca.find(:all, :conditions => ['opcao1 = ? and status = "MATRICULADA"',nome_unidade])
+  end
+
+  def self.nao_matriculas_crianca_por_unidade(unidade)
+     nome_unidade = Unidade.find(unidade).nome
+    Crianca.find(:all, :conditions => ['opcao1 = ? and status = "NA_DEMANDA"',nome_unidade])
+  end
+
+  def self.cancelada_crianca_por_unidade(unidade)
+     nome_unidade = Unidade.find(unidade).nome
+    Crianca.find(:all, :conditions => ['opcao1 = ? and status = "CANCELADA"',nome_unidade])
+  end
+
+
+
 
   def self.demanda_total
     Crianca.find(:all, :conditions => ["status = 'NA_DEMANDA'"])

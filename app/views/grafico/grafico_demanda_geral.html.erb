@@ -6,7 +6,7 @@
   <tr bgcolor="#DCDCDC" >
       <td colspan="2">
          <div id="caixa_titulo">
-             <font size="3"><strong>ESTATÍSTICA DE DEMANDA</strong></font><br/>
+             <font size="3"><strong>DEMANDA GERAL</strong></font><br/>
          </div>
 
       </td>
@@ -20,17 +20,15 @@
 
             </tr>
             <tr>
-             <div class="botao">
+             
                    
                   <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-                  
+                  <td><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
 
-                  <td><input type="Button" Value="Imprimir" onclick="Imprimir()"> </td>
-
-              </div>
+             
             </tr>
           </table>
-
+<% session[:geral] = 0 %>
     </div>
 </div>
 <br/>

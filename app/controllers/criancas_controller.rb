@@ -132,9 +132,9 @@ class CriancasController < ApplicationController
   end
 
   def autentica_matricula
-    $unidade_matricula = params[:crianca_unidade_matricula]
+    session[:unidade_matricula] = params[:crianca_unidade_matricula]
     #@teste = Crianca.find(params[:id])
-    @existe = Crianca.find(:all, :conditions => ["((id= "+ session[:id_crianca] +" and (opcao1 = " + $unidade_matricula + " or opcao2 = " + $unidade_matricula + " or opcao3 = " + $unidade_matricula + " or opcao4 = " + $unidade_matricula +")))"])
+    @existe = Crianca.find(:all, :conditions => ["((id= "+ session[:id_crianca] +" and (opcao1 = " + session[:unidade_matricula] + " or opcao2 = " + session[:unidade_matricula] + " or opcao3 = " + session[:unidade_matricula] + " or opcao4 = " + session[:unidade_matricula] +")))"])
     if @existe.empty? then
      render :update do |page|
       page.replace_html 'unidade', :text => "OPÇÃO NÃO ESCOLHIDA NO CADASTRO DE PREFERÊNCIA DE UNIDADE. ESCOLHA UMA DAS OPÇÕES LISTADA ACIMA."
@@ -429,14 +429,14 @@ end
   end
 
   def load_unidades
-    $unidade = current_user.unidade_id
+    session[:unidade] = current_user.unidade_id
     if current_user.unidade_id== 53 or current_user.unidade_id==52
        @unidades1 =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades2 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and (id not between 59 and 69)  and (id <> 54)" ],:order => "nome")
        
     else
-       @unidades1 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and id=?", $unidade  ],:order => "nome")
+       @unidades1 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and id=?", session[:unidade]  ],:order => "nome")
        @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades2 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and (id not between 59 and 69) and (id <> 54)"  ],:order => "nome")
 
