@@ -100,7 +100,9 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Inscrição</a>
                  <ul style="width:108px;">
-                        <li><%= link_to "Inscrição",new_crianca_path %></li>
+
+                          <li><%= link_to "Inscrição",new_crianca_path %></li>
+
                         <li><a>Consultas</a>
                            <ul>
                               <li><%= link_to "Inscrição",consultas_criancas_path %></li>
@@ -120,9 +122,8 @@ display: none;
                           <li><%= link_to "Classificação",consulta_unidade_path %></li>
                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao'))%>
                            <li><%= link_to "Gráficos", grafico_path %></li>
-                           <li><%= link_to "Relatório",consulta_geral_path %></li>
-                           
                           <%end%>
+                          <li><%= link_to "Relatório",consulta_geral_path %></li>
                             
                            </ul>
               </li>
@@ -138,11 +139,18 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
 <!--=========================================== NOVO MENU==============-->
 
-              <% if current_user.has_role?('admin')%>
+              <% if current_user.has_role?('admin') %>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Gerenciar</a>
                  <ul style="width:108px;">
-                        <li><a>Usuários</a>
+
+                   <li><a>Atualizações</a>
+                        <ul>
+                          <li><%= link_to 'Classe', alteracao_path %></li>
+                        </ul>
+                     </li>
+
+                     <li><a>Usuários</a>
                         <ul>
                           <li><%= link_to 'Gerenciar', roles_users_path %></li>
                         </ul>
@@ -153,6 +161,7 @@ display: none;
      <!--                     <li><%= link_to 'Consultar', unidades_path  %></li> -->
                         </ul>
                      </li>
+
 
                  </ul>
               </li>

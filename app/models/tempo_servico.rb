@@ -63,16 +63,16 @@ def pontuacao_anterior
      self.total_ant_unid= 0
   else
     @total_anterior.each do |tp|
-      $dias = tp.total_dias
-      $efetivo = tp.total_efetivo
-      $rede = tp.total_rede
-      $unid = tp.total_unid
+      session[:dias] = tp.total_dias
+      session[:efetivo] = tp.total_efetivo
+      session[:rede] = tp.total_rede
+      session[:unid] = tp.total_unid
     end
 
-     self.total_ant_dias= $dias
-     self.total_ant_efetivo= $efetivo
-     self.total_ant_rede= $rede
-     self.total_ant_unid= $unid
+     self.total_ant_dias= session[:dias]
+     self.total_ant_efetivo= session[:efetivo]
+     self.total_ant_rede= session[:rede]
+     self.total_ant_unid= session[:unid]
 
   end
 

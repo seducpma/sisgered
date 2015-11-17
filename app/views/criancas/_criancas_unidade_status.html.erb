@@ -16,30 +16,14 @@
         <tr bgcolor="#F5F5F5" style="font-size:10px">
 
                 <th align="center"><%=h crianca.id%></th>
-                                   <% session[:childs] = crianca.id %>
-                <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></th>
+                                   
+                <%  if crianca.created_at.nil?%>
+                    <th align="center"></th>
+                <%else%>
+                     <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></th>
+                <%end%>
                 <th align="left"><%=h crianca.nome%></th>
-                                 <% if  crianca.grupo_id == 1%>
-                                     <th align="center"> BERÇÁRIO I</th>
-                                <%else if  crianca.grupo_id == 2%>
-                                     <th align="left"> BERÇÁRIO II</th>
-                                        <%else if  crianca.grupo_id == 3%>
-                                           <th align="center"> MATERNAL I</th>
-                                              <%else if  crianca.grupo_id == 4%>
-                                                 <th align="center"> MATERNAL I</th>
-                                                   <%else if  crianca.grupo_id == 5%>
-                                                      <th align="center"> MATERNAL II</th>
-                                                       <%else if  crianca.grupo_id == 6%>
-                                                         <th align="center"> NÍVEL I</th>
-                                                             <%else if  crianca.grupo_id == 7%>
-                                                                <th align="center"> NÍVEL II</th>
-                                                             <%end%>
-                                                       <%end%>
-                                                   <%end%>
-                                               <%end%>
-                                          <%end%>
-                                     <%end%>
-                                <%end%>
+               <th align="left"><%=h crianca.grupo.nome%></th>
                 <th align="center"><% if  crianca.opcao1 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao1%></font></b>
                                     <%else%>
@@ -58,11 +42,9 @@
                                           <%=h crianca.opcao3%>
                                     <%end%>
                 </th>
+                <% $alteracao_status = 0 %>
+                <td align="center"><font size="2"><%= button_to 'Alterar Status', {:action => "edit", :id =>crianca.id}, :method => "get", :title => "Status"%></font></td>
 
- 
-
-                
-                <td align="center"><font size="2"><%= button_to 'Alterar Status', {:action => "status", :id =>crianca.id}, :method => "get", :title => "Status"%></font></td>
               </tr>
 
             <% end %>

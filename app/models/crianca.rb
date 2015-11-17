@@ -10,6 +10,9 @@ class Crianca < ActiveRecord::Base
   validates_presence_of :nascimento
   validates_presence_of :opcao1
   before_save  :maiusculo, :opcao
+  
+ 
+  
 
 
  Status = %w(NA_DEMANDA CANCELADA MATRICULADA)
@@ -35,7 +38,7 @@ def self.na_demanda
  def opcao
     data=self.nascimento
 
-  if  (self.nascimento <= '2015-10-31'.to_date and self.nascimento >= '2015-02-01'.to_date)
+  if  (self.nascimento <= '2015-12-31'.to_date and self.nascimento >= '2015-02-01'.to_date)
        self.grupo_id = 1
   else if(self.nascimento <= '2015-01-31'.to_date and self.nascimento >= '2014-07-01'.to_date)
           self.grupo_id = 2
@@ -53,7 +56,35 @@ def self.na_demanda
             end
        end
   end
+ 
  end
+
+ def self.alteracao_classe
+  @criancas_alteracao = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'"])
+ for crianca in @criancas_alteracao
+  if  (crianca.nascimento <= '2015-10-31'.to_date and crianca.nascimento >= '2015-02-01'.to_date)
+      crianca.grupo_id  = 11
+     else if(crianca.nascimento <= '2015-01-31'.to_date and crianca.nascimento >= '2014-07-01'.to_date)
+           crianca.grupo_id = 22
+         else if(crianca.nascimento <= '2014-06-30'.to_date and crianca.nascimento >= '2013-07-01'.to_date)
+               crianca.grupo_id = 44
+             else if(crianca.nascimento <= '2013-06-30'.to_date and crianca.nascimento >= '2012-07-01'.to_date)
+                    crianca.grupo_id = 54
+                  else if(crianca.nascimento <= '2012-06-30'.to_date and crianca.nascimento >= '2011-07-01'.to_date)
+                          crianca.grupo_id = 66
+                        else if(crianca.nascimento <= '2011-06-30'.to_date and crianca.nascimento >= '2010-07-01'.to_date)
+                               crianca.grupo_id = 77
+                             end
+                       end
+                 end
+             end
+         end
+      end
+     crianca.save
+
+   end
+   end
+
 
    def self.nome_unidade(unidade)
     Unidade.find(unidade).nome

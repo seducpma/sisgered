@@ -1,0 +1,4 @@
+class Alteracao < TablelessForm
+
+  
+end

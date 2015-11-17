@@ -11,8 +11,10 @@ PARTICIPANTE = %w(SIM NÃO ESPORÁDICO)
   has_many :familiares
   #has_and_belongs_to_many :familiares
   after_create :salva_familiar
+  
 validates_presence_of :unidade_id, :message => ' Selecionar EMPRESA'
  def salva_familiar
+
    t=Familiare.all(:conditions =>["funcionario_id is null"])
    t.each do |f|
      f.funcionario_id = self.id

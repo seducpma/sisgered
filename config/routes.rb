@@ -26,6 +26,9 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_unidade_status '/unidade_status', :controller => 'criancas', :action => 'consulta_unidade_status'
   map.consulta_classe '/consulta_classe', :controller => 'criancas', :action => 'consulta_classe'
   map.consulta_status '/consulta_status', :controller => 'criancas', :action => 'consulta_status'
+  map.consulta_altera_status '/consulta_altera_status', :controller => 'criancas', :action => 'consulta_altera_status'
+  map.altera_classe '/altera_classe', :controller => 'criancas', :action => 'altera_classe'
+  map.altera_nascimento '/altera_nascimento', :controller => 'criancas', :action => 'altera_nascimento'
 
   map.grafico '/grafico', :controller => 'grafico'
   map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_demanda_geral'
@@ -33,7 +36,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
 
-
+  map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
   map.resources :classes
   map.resources :informativos
   map.resources :logs
