@@ -1,0 +1,18 @@
+	<div style='display:none'>
+		<div id='inline_cantor' style='padding:10px; background:#EEE9E9;'>
+          <h2>INTERPRETES</h2>
+          <% form_remote_for(:cantor,:url => { :action => 'create_cantor' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
+            <%= error_messages_for 'contact' %>
+            <table>
+              <tr>
+                <th width="10%">Cantor:</th>
+                <td width="20%" align="center">
+                  <%= f.text_field :nome,:size => "60" %>
+                </td>
+                <td><%= submit_tag 'Criar'  %></td>
+              </tr>
+            </table>
+          <%end%>
+          <hr>
+        </div>
+	</div>

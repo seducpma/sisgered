@@ -1,0 +1,32 @@
+<div id="interno2">
+<% title "EMPRESA PARCEIRA" %>
+<div class ="tabs">
+    <font size="5"><strong><%=h "#{@unidade.nome}" %></strong></font></br>
+      <hr>
+       <table bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC"  width="100%">
+         <td>
+         <fieldset><legend><font  size=3> UNIDADE SEDUC</font></legend>
+           <table  width="100%">
+            <tr bgcolor="#F5F5F5"  width="100%">
+             <td  width="10%"><strong>Tipo: </strong></td>
+             <td><%=h "#{@unidade.tipo}" %></td>
+            <tr bgcolor="#F5F5F5">
+             <td><strong>Nome:</strong></td>
+             <td><%=h @unidade.nome%></td>
+            </tr>
+           </table>
+          </fieldset>
+        </td>
+      </tr>
+       <table>
+          <tr>
+            <td width="6%"align="left" > <%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td align="left"><%= button_to 'Consultar', {:action => "index"},:method => "get", :title => "Consultar" %></td>
+          </tr>
+        </table>
+</div>
+<br/>
+</div>
+
+

@@ -1,0 +1,264 @@
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2"><i><b><u>DEMANANDA ESCOLAR</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp
+<font size="1"><b><u></u>       </b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<%for crianca in @crianca%>
+<font size="1">Unidade Escolar: <%= crianca.unidade.nome%> </font><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp
+<font size="1">Data Inscrição: <%=  crianca.created_at.strftime("%e/%m/%Y - %H:%M horas")%> </font><br/>
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+  <fieldset><legend><font  size=2><b> Dados da Criança</b></font></legend>
+       <table width="100%" frame="box" rules="all" >
+            <tr style="font-size:8px">
+               <th align="left" width="7%"><b>Nome:</b></th>
+               <th  align="left"width="40%"><%=h crianca.nome %></th>
+               <th align="left"width="4%"><b>Nascimento:</b></th>
+               <th align="left" colspan="6">  <%=h crianca.nascimento.strftime("%d/%m/%Y")%></th>
+            </tr>
+            <tr style="font-size:8px">
+               <th align="left"><b>Mãe:</b></th>
+               <th align="left"><%=h crianca.mae %></th>
+               <th align="left" width="4%"><b>Pai:</b></th>
+               <th colspan="6" align="left"><%=h crianca.pai %></th>
+            </tr>
+            <tr style="font-size:8px">
+               <th align="left"><b>Responsável:</b></th>
+               <th align="left"><%=h crianca.responsavel_n %></th>
+               <th align="left" width="4%"><b>Parentesco</b></th>
+               <th colspan="6" align="left"><%=h crianca.parentesco %></th>
+            </tr>
+            <tr style="font-size:8px">
+               <th align="left"><b>Endereço:</b></th>
+               <th align="left"><%=h crianca.endereco %> - <%=h crianca.numero %></th>
+               <th align="left" width="4%"><b>Bairro:</b></th>
+               <th colspan="6" align="left"><%=h crianca.bairro%></th>
+            </tr>
+            <tr style="font-size:8px">
+               <th align="left"><b>Complemento:</b></th>
+               <th align="left"><%=h crianca.complemento%></th>
+               <th align="left"><b>Telefone:</b></th>
+               <th align="left">  <%=h crianca.tel1%></th>
+               <th align="left"  width="4%"><b>Celular:</b></th>
+               <th><%=h crianca.celular%>  </th>
+            </tr>
+            <tr style="font-size:8px">
+               <th align="left"><b>Fone(recado):</b></th>
+               <th align="left">  <%=h crianca.tel2%></th>
+               <th><b>Nome(recado):</b></th>
+               <th colspan="6"><%=h crianca.nomerecado%>  </th>
+            </tr>
+            <tr style="font-size:8px">
+               <th align="left"><b>Classificação</b></th>
+               <th align="left"><%=h crianca.grupo.nome %> </th>
+               <th colspan="2"align="left" width="4%"><b>Necessidade Especial: </b>
+                <% if crianca.servidor_publico == 0 %>
+                      NÃO
+                  <%else%>
+                      SIM
+                  <%end%>
+               </th>
+               <th><b>Necessidade:</b></th>
+               <th><%=h crianca.necessidade%></th>
+            </tr>
+          </table>
+         </fieldset>
+         <fieldset><legend><font  size=2><b> Dados da Inscrição</b></font></legend>
+         <table width="100%" width="100%" frame="box" rules="all" >
+           <tr style="font-size:8px">
+              <th align="left" width="12%"><b>Local Inscrição:</b></th>
+              <th align="left" width="35%"><%= crianca.unidade.nome%></th>
+              <th width="8%" align="left"><b>Data  e Hora:</b> </th>
+              <th align="left"><%=  crianca.created_at.strftime("%e/%m/%Y - %H:%M horas")%></th>
+           </tr>
+           <tr style="font-size:8px">
+             <th align="left"> <b>Filho Servidor Público:</b></th>
+                 <% if crianca.servidor_publico == 0 %>
+                    <th align="left"> NÃO </th>
+                  <%else%>
+                     <th align="left"> SIM - Local: <%=h crianca.servidor_local%></th>
+                  <%end%>
+                     <th align="left"><b>Mãe trabalha: </b></th>
+                  <% if crianca.trabalho == 0 %>
+                     <th align="left">NÃO</th>
+                  <%else%>
+                     <th align="left">SIM - Local: <%=h crianca.local_trabalho%> (<%=h crianca.fone_trabalho%>)</th>
+                  <%end%>
+            </tr>
+            <tr style="font-size:8px">
+              <th align="left"><b>Irmão(s) matriculado(s): </b></th>
+                  <% if crianca.irmao == 0 %>
+                      <th align="left">NÃO</th>
+                  <%else%>
+                      <th align="left">SIM - Unidade: <%=h crianca.unidade.nome%></th>
+                  <%end%>
+                      <th align="left"><b>Transferência: </b> </th>
+                   <% if crianca.transferencia == 0 %>
+                      <th align="left">NÃO</th>
+                   <%else%>
+                       <th align="left">SIM - Unidade: <%=h crianca.unidade.nome%></th>
+                   <%end%>
+            </tr>
+            <tr style="font-size:8px">
+              <th valign="top" align="left" width="10%"><b>Região:</b></th>
+              <th valign="top" align="left" ><%=h crianca.regiao.nome%></th>
+              <th valign="top" align="left"><b>Opções: </b></th>
+              <th valign="top"align="left">- <%=h crianca.opcao1%> <br/>
+                               - <%=h crianca.opcao2%> <br/>
+                               - <%=h crianca.opcao3%> <br/></th>
+
+            </tr>
+
+         </table>
+       </fieldset>
+   <%end%>
+<br/>
+&nbsp&nbsp&nbsp
+<font size ="1" >
+   Eu, __________________________________________________________________, responsável pelo menor em questão, estou ciente que deverei informar a esta unidade
+   qualquer mudança dos dados acima, inclusice <b></b>alteração do endereço, e principalmente do(s) telefone(s)</b>, pois será por meio de ligações telefônicas que
+a unidade escolar fará contato no caso de surgimento de vaga.  Deverei infomar ainda qualquer alteração relativa ao <b>trabalho da mãe</b>, pois esta informação
+é critério de classificicação na lista de espera.
+Declaro estar ciente que se for chamado(a) para qualquer uma das opções acima indicacadas, <b><u>aceitarei</u></b> a vaga e a criança permanecerá na unidade durane o ano letivo,
+ou seja, não permancerá na lista de espera para as demais opções. Caso seja oferecida a vaga na 2ª ou 3ª opção e não aceite, declaro que é de meu conhecimento que esta
+inscrição será <b>cancelada</b>, inclusive na lista de espera pela 1ª opção.
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<font size ="1" ><b>Americana, <%= Time.now.strftime("%d/%m/%Y") %></b></font>
+
+
+  </div>
+
+<br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+p/  Unidade Escolar
+         
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Assinatura do Responsável<br/>
+
+</font>
+&nbsp&nbsp
+
+<hr/>
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2"><i><b><u>DEMANANDA ESCOLAR</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp
+<font size="3"><b><u></u>       </b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<%for crianca in @crianca%>
+  <fieldset><legend><font  size=2><b> COMPROVANTE DE INSCRIÇÂO</b></font></legend>
+       <table width="100%" frame="box" rules="all" >
+            <tr style="font-size:8px">
+               <th align="left" width="7%"><b>Nome:</b></th>
+               <th  align="left"width="40%"><%=h crianca.nome %></th>
+               <th align="left"width="4%"><b>Nascimento:</b></th>
+               <th align="left" colspan="6">  <%=h crianca.nascimento.strftime("%d/%m/%Y")%></th>
+            </tr>
+
+            <tr style="font-size:8px">
+               <th align="left"><b>Responsável:</b></th>
+               <th align="left"><%=h crianca.responsavel_n %></th>
+               <th align="left" width="4%"><b>Parentesco</b></th>
+               <th colspan="6" align="left"><%=h crianca.parentesco %></th>
+            </tr>
+           <tr style="font-size:8px">
+              <th align="left" width="12%"><b>Local Inscrição:</b></th>
+              <th align="left" width="35%"><%= crianca.unidade.nome%></th>
+              <th width="8%"><b>Data  e Hora:</b> </th>
+              <th align="left"><%=  crianca.created_at.strftime("%e/%m/%Y - %H:%M horas")%></th>
+           </tr>
+         </table>
+    <br/>
+ <%end%>
+ 
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ 
+
+<font size ="1" ><b>Americana, <%= Time.now.strftime("%d/%m/%Y") %></b></font>
+<br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+p/  Unidade Escolar
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Assinatura do Responsável<br/>
+
+</font>
+&nbsp&nbsp
+
+<br/>
+
+<font size ="1"><b>Caso seja chamado(a) para qualquer uma das opções  indicacadas, <b><u>aceitarei</u></b> a vaga e a criança permanecerá na unidade durane o ano letivo,
+ou seja, não permancerá na lista de espera para as demais opções. Caso seja oferecida a vaga na 2ª ou 3ª opção e não aceita, declaro que é de meu conhecimento que esta
+inscrição será <b>cancelada</b>, inclusive na lista de espera da 1ª opção.</b></font>
+

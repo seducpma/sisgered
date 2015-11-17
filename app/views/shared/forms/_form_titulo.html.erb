@@ -1,0 +1,26 @@
+<<div style='display:none'>
+  <div id='inline_titulo' style='padding:10px; background:#EEE9E9;'>
+    <h3>FAMILIARES OU PESSOAS QUE MORAM NA MESMA RESIDÊNCIA</h3>
+      <% form_remote_for(:titulo,:url => { :action => 'create_titulo' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
+        <%= error_messages_for 'contact' %>
+    <h5>
+        <table  width="100%" bgcolor="#F5F5F5">
+          <tr>
+            <td><b>Nome: </b> <%= f.text_field :nome, :size => "70" %></td>
+         </tr>
+         <tr>
+           <td><b>Parentesco: </b><%= f.text_field :parentesco,:size => "50"%>
+               <b>Idade: </b><%= f.text_field :idade,:size => "3" %>
+          </td>
+         </tr>
+         <tr>
+            <td><b>Observações:</b><%= f.text_field(:obs,:size => "65") %></td>
+         </tr>
+         <tr>
+            <td colspan="2"><%= f.submit "Salvar" %></td>
+          </tr>
+        </table>
+      </h5>
+      <%end%>
+  </div>
+</div>

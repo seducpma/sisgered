@@ -1,0 +1,61 @@
+<script Language="JavaScript">
+function Imprimir(){
+window.print();
+}
+</script>
+<style media="print">
+.botao {
+display: none;
+}
+</style>
+
+<div id="interno2">
+<% title "TITULO_PROFESSORS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CLASSIFICAÇÂO GERAL PONTUAÇÂO DE PROFESSORES </strong></font><br/>
+ </div>
+  <div class="tabs">
+  <table border ="1" cellpadding="1" cellspacing="1" width="100%" >
+    <tr>
+      <th colspan="6">
+        <font size="3"><b> Ano Letivo <%= Time.current.strftime("%Y").to_i%></b></font>
+      </th>
+    </tr>
+    <tr>
+      <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
+      <th bgcolor="#cccccc" width = "40%">Nome</th>
+      <th bgcolor="#cccccc" width = "25%">Sede</th>
+      <th bgcolor="#cccccc" width = "5%">Pontuação</th>
+      <th bgcolor="#cccccc"  width = "20%">Função</th>
+     </tr>
+      <% for professor in @professor_rel_geral %>
+      <tr>
+        <td width = "7%"><center><%=h professor.matricula %></center></td>
+        <td width = "40%"><center><%=h professor.nome %></center></td>
+        <td width = "25%"><center><%=h professor.unidade.nome %></center></td>
+            <% if professor.pontuacao_final.nil? then %>
+                    <td width="5%"><%=h%></td>
+            <%else%>
+                <td width = "5%"><center><%=h professor.pontuacao_final%></center></td>
+            <%end%>
+        <td width = "20%"><center><%=h professor.funcao%></center></td>
+     <tr/>
+    <% end %>
+             <tr>
+                 <% $tipoclassificacao = 'CLASSIFICACÃO GERAL' %>
+                   <td widht="8%" colspan="5"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+              </tr>
+</table>
+      <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    </tr>
+  </table>
+<br />
+</div>
+</div>
+<br/>
+</div>
+
+

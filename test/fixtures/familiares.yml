@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  string: 
+  string: 
+  integer: 
+  nascimento: 2012-11-14 10:34:12
+  estado_civil: MyString
+
+two:
+  string: 
+  string: 
+  integer: 
+  nascimento: 2012-11-14 10:34:12
+  estado_civil: MyString

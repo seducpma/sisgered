@@ -1,0 +1,42 @@
+	<div style='display:none'>
+		<div id='inline_ambiente' style='padding:10px; background:#EEE9E9;'>
+                <table width="100%">
+                  <% form_remote_for :ambiente, :method => :post, :success => "$.fn.colorbox.close()",
+                    :url => {:controller => :configuracoes,
+                    :action => :inline_create_ambiente } do |f| %>
+                    <%= f.error_messages %>
+                      <p>
+                        <%= f.label :user_id, "Usuário" %><br />
+                        <%= current_user.login %>
+                        <%= f.hidden_field(:user_id, :value => current_user.id) %>
+                      </p>
+                      <p>
+                        <%= f.label :turma_id,"Classe" %><br />
+                        <%= f.collection_select(:turma_id, @classes, :id_classe, :classe_descricao, :include_blank => ' -- Selecionar -- '  ) %>
+                      </p>
+                      <p>
+                        <%= f.label :data %><br />
+                        <%= f.text_field :data, :size => 5 %>
+                      </p>
+                      <p>
+                        <%= f.label :ano_letivo %><br />
+                        <%= f.text_field :ano_letivo, :size => 5 %>
+                      </p>
+
+                      <p><%= f.submit %></p>
+
+                  <% end %>
+                      <tr>
+                        <td>
+                                            <%= link_to_remote("Visualizar atual", :url => {:controller => :configuracoes,:action => "exibe_ambiente"})  %>
+                        </td>
+                      </tr>
+                </table>
+                <br/>
+                  <div id="ambiente">
+                    <% if @a.present? %>
+                      <%= render "configuracoes/show"%>
+                    <%end%>
+                  </div>
+                </div>
+	</div>

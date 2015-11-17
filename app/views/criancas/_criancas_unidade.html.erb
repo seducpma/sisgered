@@ -1,0 +1,97 @@
+  <div class="tabs">
+    <center><font size="4"><b><u>Consulta Classificação por Unidade</u></b></font></center><br/>
+       <table bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC" >
+            <th width="2%">Nº</th>
+            <th width="1%">Nº_Ins- <br/>crição</th>
+            <th width="10%">Data/Hora <br/>Inscrição</th>
+            <th width="20%">Nome</th>
+            <th width="10%">Classe</th>
+            <th width="5%">Mãe <br/>Trabalha</th>
+            <th width="5%">Mãe <br/>Servidora</th>
+            <th width="5%">Irmão <br/>Matriculado</th>
+            <th width="5%">Transfe- rência</th>
+            <th width="10%">1ªOpção</th>
+            <th width="10%">2ªOpção</th>
+            <th width="10%">3ªOpção</th>
+        </tr>
+           <%$t=0%>
+           <% @criancas.each do |crianca| %>
+           <%$t = $t+1%>
+        <tr bgcolor="#F5F5F5" style="font-size:10px">
+                <th align="center" width="2%"><%= $t%>º</th>
+                <th align="center"><%=h crianca.id%></th>
+                <%  if crianca.created_at.nil? %>
+                     <th align="center"></th>
+                <%else%>      
+                     <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></th>
+                <%end%>
+                <th align="left"><%=h crianca.nome%></th>
+                <th align="left"><%=h crianca.grupo.nome%></th>
+                                   <% if crianca.trabalho == 0 %>
+                                      <th align="center">NÃO</th>
+                                  <%else%>
+                                       <th align="center">SIM</th>
+                                  <%end%>
+                                  <% if crianca.servidor_publico == 0 %>
+                                      <th align="center">NÃO</th>
+                                  <%else%>
+                                       <th align="center">SIM</th>
+                                  <%end%>
+                                  <% if crianca.irmao == 0 %>
+                                      <th align="center">NÃO</th>
+                                  <%else%>
+                                      <th align="center">SIM</th>
+                                  <%end%>
+                                  <% if crianca.transferencia == 0 %>
+                                      <th align="center">NÃO</th>
+                                   <%else%>
+                                       <th align="center">SIM </th>
+                                   <%end%>
+                <th align="center"><% if  crianca.opcao1 == session[:opcao]%>
+                                          <b><font color ="blue"><%=h crianca.opcao1%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao1%>
+                                    <%end%>
+                </th>
+                <th align="center"><% if  crianca.opcao2 == session[:opcao]%>
+                                          <b><font color ="blue"><%=h crianca.opcao2%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao2%>
+                                    <%end%>
+                </th>
+                <th align="center"><% if  crianca.opcao3 == session[:opcao]%>
+                                          <b><font color ="blue"><%=h crianca.opcao3%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao3%>
+                                    <%end%>
+                </th>
+
+              <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+              </tr>
+               <tr>
+                <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
+                <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>crianca.id}, :method => "get", :title => "Editar"%></td>
+              </tr>
+                <%else%>
+                      <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
+              </tr>
+                <%end%>
+              <% session[:child] = crianca.id %>
+            <% end %>
+     </table>
+
+     <table bgcolor="#DCDCDC" width="100%">
+      <tr >
+        <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_class_unidade_criancas_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+        <td colspan="3" align="right"><b>TOTAL INSCRIÇÕES: </b>
+            <font color ="red "size="2"><b><%=$t %></b></font>
+          </td>
+      </tr>
+    </table>
+
+    <tr>
+
+    </tr>
+  </div>
+

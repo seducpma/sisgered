@@ -1,0 +1,52 @@
+<div id="interno2">
+<% title "USUÁRIOS" %>
+<div class="tabs">
+   <div id="caixa_titulo">
+     <font size="3"><strong>USUÁRIO</strong></font><br/>
+ </div>
+
+     <table width="100%" bgcolor="#DCDCDC" align="center">
+        <tr bgcolor="#DCDCDC" >
+          <th align="left"width ="200">Login:</th>
+          <th align="left" width="300">Nível de acesso:</th>
+          <th align="left" width="150">Data de Cadastramento:</th>
+       </tr>
+       <% form_for(@users) do |f| %>
+       <%= f.error_messages %>
+         <tr bgcolor="	#F5F5F5">
+            <td><%=h @users.login %></td>
+             <%if Role.find(@users.roles_user.role_id).name == 'admin' then%>
+               <td>Administrador do sistema. Acesso total ao sistema.</td>
+             <%else%>
+                 <%if Role.find(@users.roles_user.role_id).name == 'empresa' then%>
+                    <td>EMPRESA. Acesso restrito aos dados da empresa</td>
+                <%else%>
+                   <%if Role.find(@users.roles_user.role_id).name == 'obreiro' then%>
+                    <td>OBREIRO. Acesso restrito aos dados do obreiro.</td>
+                   <%else%>
+                       <td>Usuário sem acesso ao sistema.</td>
+                   <%end%>
+                <%end%>
+             <%end%>
+             <td align="left"> <%=h @users.created_at.strftime("%d/%m/%y") %></td>
+          </tr>
+
+
+       <%end%>
+
+    </table>
+    <table>
+      <tr>
+         <td align="left" width="6%"><%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"),  root_path, {:method => "get"}, :title => "Voltar"%></td>
+         <% if current_user.has_role?('admin') or current_user.has_role?('escola') %>
+             <td><%= link_to image_tag("/stylesheets/images/edit.png", :size => "25x25"),{:action => "edit", :id => @roles_user}, :method => "get", :title => "Alterar Dados"%></td>
+        <%end%>
+
+     </tr>
+   </table>
+</div>
+  <br/>
+</div>
+
+
+

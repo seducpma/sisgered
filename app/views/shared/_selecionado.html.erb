@@ -1,0 +1,10 @@
+<% if @cart.present? %>
+  <li id="<%= @cart.cart_items.last.dpu_id %>">
+    <%= "#{@cart.cart_items.last.dpu_id}"  %>  
+    <%= link_to_remote " - Remover",:url => {
+    :id => @cart.cart_items.last.dpu_id,
+    :action => "remove_livro"},
+    :before => "remove_livro('#{@cart.cart_items.last.dpu_id}')"%>
+
+  </li>
+<%end%>

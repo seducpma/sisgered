@@ -1,0 +1,40 @@
+
+<div id="interno2">
+<% title "PROFESSORES", :id =>"professors" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>PROFESSORES</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <% form_remote_tag :url => consultaprofessor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+         <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Nome <i>(Digitar)</i>
+              <a href="#" class="filtro_nome"><%= radio_button_tag(:type_of, "2") %></a>Nome <i>(Selecionar)</i>
+              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "3") %></a>Todos
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta" style="display:none"> <%= render "consulta" %> </div>
+               <div class="consulta1" style="display:none"> <%= render "consulta1" %> </div>
+           </td>
+         </tr>
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="professores"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <br/>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "35x35"), root_path, :title => "Voltar" %></td>
+     <td align="left">           <%= link_to image_tag("/stylesheets/images/consulta.png", :size => "40x40"), consulta_professor_nome_path, :title => "Consulta" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+

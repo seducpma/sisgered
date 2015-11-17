@@ -1,0 +1,74 @@
+<br/><br/>
+<center>
+<div id="interno_novo_usuario">
+<% title "USUARIOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo_novo_usuario">
+     <font size="3"><strong>Alteração de Senha e Email</strong></font><br/>
+ </div>
+      <div class="tabs">
+      <table  width="80%" align="center">
+        <tr>
+          <td>
+      <fieldset><legend><font  size=4>Usuário</font></legend>
+          <%= error_messages_for :user %>
+          <% form_for(@user) do |f| %>
+           <font  size="2">
+             <table>
+                <tr>
+                  <td align="left"> <b>Usuários:</b></td>
+                  <td align="left"> <b><%= @user.login %></b></td>
+                </tr>
+                <tr>
+                  <%if @user.obreiro_id.nil?%>
+                     <td align="left"><b>Unidade:</b></td>
+                     <td align="left"><%=h @user.unidade.nome%> </td>
+                 <%else%>
+                     <td align="left"><b>Obreiro:</b></td>
+                     <td align="left"><%=h @user.obreiro.nome%> </td>
+                 <%end%>
+                </tr>
+                <tr>
+                   <td align="left"><b> Cadastrado desde:</b></td>
+                   <td align="left"> <%= @user.created_at.strftime("%d/%m/%y") %></td>
+                </tr>
+                <tr>
+                  <td align="left"> <b>Nova Senha:</b></td>
+                  <td> <%= f.password_field :password %></td>
+                </tr>
+                <tr>
+                  <td align="left"> <b>Confirmação Nova Senha:</b></td>
+                  <td> <%= f.password_field :password_confirmation %></td>
+                </tr>
+
+                <tr>
+                  <td align="left"> <b>Email:</b></td>
+                  <td> <%= f.text_field :email %></td>
+                </tr>
+         </table>
+       </font>
+     </fieldset>
+      <table>
+        <tr>
+         <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "35x35"), root_path, :title => "Voltar" %></td>
+          <td width="4%"><input type="image" src="/stylesheets/images/salvar.PNG" title="Gravar"></td>
+         
+         <td></td>
+         <% end %>
+
+        </tr>
+     </table>
+
+
+              </td>
+      </tr>
+    </table>
+   </div>
+</div>
+<br/>
+</div>
+
+
+<br/>
+
+

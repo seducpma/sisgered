@@ -1,0 +1,56 @@
+<div id="interno2">
+<% title "USUÁRIOS" %>
+<div class="tabs">
+   <div id="caixa_titulo">
+     <font size="3"><strong>NÍVEL DE ACESSO</strong></font><br/>
+ </div>
+
+     <table width="100%" bgcolor="#DCDCDC" align="center">
+        <tr bgcolor="#DCDCDC" >
+          <th width ="100">Login:</th>
+          <th  width="300">Nome Usuário:</th>
+          <th  width="300">Nível de acesso:</th>
+       </tr>
+       <tr bgcolor="	#F5F5F5">
+         <td><%= User.find(@roles_user.user_id).login %></td>
+         <td><%= Role.find(@roles_user.role_id).name %></td>
+             <%if  Role.find(@roles_user.role_id).name == 'admin' then%>
+                 <td width="25%">Administrador</td>
+                 <td>Acesso total ao sistema</td>
+               <%else%>
+                   <%if  (Role.find(@roles_user.role_id).name == 'supervisao') or (Role.find(@roles_user.role_id).name == 'planejamento') then%>
+                      <td width="25%">RH/SEDUC.</td>
+                      <td>Acesso exclusivo - Secretaria da Educação</td>
+                  <%else%>
+                     <%if  Role.find(@roles_user.role_id).name == 'direcao' then%>
+                       <td width="25%">Direção U.E</td>
+                       <td>Acesso exclusivo - Diretor de Unidade Escolar</td>
+                     <%else%>
+                           <%if  Role.find(@roles_user.role_id).name == 'secretaria' then%>
+                             <td width="25%">Secretaria U.E.</td>
+                             <td>Acesso exclusivo - Funcinário de Unidade Escolar</td>
+                           <%else%>
+                               <td width="25%">Usuário</td>
+                               <td>Sem acesso ao sistema.</td>
+                           <%end%>
+                     <%end%>
+                  <%end%>
+               <%end%>
+      </tr>
+    </table>
+    <table >
+      <tr>
+         <td align="left" width="6%"><%= button_to 'Voltar', home_path, {:method => "get"}  %></td>
+         <% if (current_user.has_role?('admin')) or (current_user.has_role?('planejamento')) %>
+             <td><%= button_to 'Editar',{:action => "edit", :id =>@roles_user}, :method => "get", :title => "Editar"%></td>
+        <%end%>
+        
+     </tr>
+   </table>
+</div>
+  <br/>
+</div>
+
+
+
+

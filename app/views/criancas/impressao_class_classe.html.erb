@@ -1,0 +1,151 @@
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2"><i><b><u>DEMANANDA ESCOLAR</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp
+<font size="1"><b><u></u> LISTA DE CLASSIFICAÇÂO      </b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<font size="1">Unidade Escolar: <%= session[:opcao]%> </font><br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp
+
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+<table frame="box" rules="all">
+        <tr style="font-size:8px" >
+            <th width="1%">Nº</th>
+            <th width="1%">Nº_Ins- <br/>crição</th>
+            <th width="10%">Data/Hora <br/>Inscrição</th>
+            <th width="30%">Nome</th>
+            <th width="10%">Classe</th>
+            <th width="5%">Mãe <br/>Trabalha</th>
+            <th width="5%">Mãe <br/>Servidora</th>
+            <th width="5%">Irmão <br/>Matriculado</th>
+            <th width="5%">Transfe- rência</th>
+            <th width="10%">1ªOpção</th>
+            <th width="10%">2ªOpção</th>
+            <th width="10%">3ªOpção</th>
+        </tr>
+           <%$t=0%>
+           <% @criancas.each do |crianca| %>
+           <%$t = $t+1%>
+        <tr style="font-size:8px">
+               <th align="center"><%= $t%>º </th>
+                <th align="center"><%=h crianca.id%></th>
+                <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></th>
+                <th align="left"><%=h crianca.nome%></th>
+                                 <% if  crianca.grupo_id == 1%>
+                                     <th align="left"> BERÇÁRIO I</th>
+                                <%else if  crianca.grupo_id == 2%>
+                                     <th align="left"> BERÇÁRIO II</th>
+                                        <%else if  crianca.grupo_id == 3%>
+                                           <th align="left"> MATERNAL I</th>
+                                              <%else if  crianca.grupo_id == 4%>
+                                                 <th align="left"> MATERNAL I</th>
+                                                   <%else if  crianca.grupo_id == 5%>
+                                                      <th align="left"> MATERNAL II</th>
+                                                       <%else if  crianca.grupo_id == 6%>
+                                                         <th align="left"> NÍVEL I</th>
+                                                             <%else if  crianca.grupo_id == 7%>
+                                                                <th align="left"> NÍVEL II</th>
+                                                             <%end%>
+                                                       <%end%>
+                                                   <%end%>
+                                               <%end%>
+                                          <%end%>
+                                     <%end%>
+                                <%end%>
+                                   <% if crianca.trabalho == 0 %>
+                                      <th align="center">NÃO</th>
+                                  <%else%>
+                                       <th align="center">SIM</th>
+                                  <%end%>
+                                  <% if crianca.servidor_publico == 0 %>
+                                      <th align="center">NÃO</th>
+                                  <%else%>
+                                       <th align="center">SIM</th>
+                                  <%end%>
+                                  <% if crianca.irmao == 0 %>
+                                      <th align="center">NÃO</th>
+                                  <%else%>
+                                      <th align="center">SIM</th>
+                                  <%end%>
+                                  <% if crianca.transferencia == 0 %>
+                                      <th align="center">NÃO</th>
+                                   <%else%>
+                                       <th align="center">SIM </th>
+                                   <%end%>
+                <th align="center"><% if  crianca.opcao1 == session[:opcao]%>
+                                          <b><font color ="blue"><%=h crianca.opcao1%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao1%>
+                                    <%end%>
+                </th>
+                <th align="center"><% if  crianca.opcao2 == session[:opcao]%>
+                                          <b><font color ="blue"><%=h crianca.opcao2%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao2%>
+                                    <%end%>
+                </th>
+                <th align="center"><% if  crianca.opcao3 == session[:opcao]%>
+                                          <b><font color ="blue"><%=h crianca.opcao3%></font></b>
+                                    <%else%>
+                                          <%=h crianca.opcao3%>
+                                    <%end%>
+                </th>
+          <% end %>
+
+
+
+     </table>
+<table frame="box" rules="all"  width="100%">
+      <tr >
+        <th colspan="3" align="right"><b>TOTAL INSCRIÇÕES: </b>
+            <font color ="red "size="2"><b><%=$t %></b></font>
+          </th>
+      </tr>
+    </table>
+<font size="2"><b>Lista  sujeita a alterações a qualquer momento</b><font>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <font size ="1" ><b>Americana, <%= Time.now.strftime("%d/%m/%Y") %></b></font>
+
+
+  </div>
+
+<br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+p/  Unidade Escolar
+         
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Assinatura do Responsável<br/>
+
+</font>
+&nbsp&nbsp
+

@@ -1,0 +1,83 @@
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="3"><i><b><u>SISTEMA DE PONTUAÇÂO</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<font size="3"><b><u><%= $tipoclassificacao %> </u></b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<font size="3"><b><u>PONTUAÇÂO DE PROFESSORES </u></b></i><br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2">Ano letivo: <%= Time.current.strftime("%Y").to_i%></font><br/>
+<div class="tabs">
+  <br/>
+    <table width="100%" frame="box" rules="all" >
+     <tr >
+      <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
+      <th bgcolor="#cccccc" width = "40%">Nome</th>
+      <th bgcolor="#cccccc" width = "25%">Sede</th>
+      <th bgcolor="#cccccc" width = "5%">Pontuação</th>
+      <th bgcolor="#cccccc"  width = "20%">Função</th>
+     </tr>
+      <% for professor in @professor_impressao %>
+      <tr>
+        <td width = "7%"><center><%=h professor.matricula %></center></td>
+        <td width = "40%"><center><%=h professor.nome %></center></td>
+        <td width = "25%"><center><%=h professor.unidade.nome %></center></td>
+            <% if professor.pontuacao_final.nil? then %>
+                    <td width="5%"><%=h%></td>
+            <%else%>
+                <td width = "5%"><center><%=h professor.pontuacao_final%></center></td>
+            <%end%>
+        <td width = "20%"><center><%=h professor.funcao%></center></td>
+     <tr/>
+    <% end %>
+             </table>
+
+
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<font size ="1" ><b>Americana, <%= Time.now.strftime("%d/%m/%Y") %></b></font>
+
+
+  </div>
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+<br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Diretor da Unidade Escolar
+         
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+
+
+</font>
+&nbsp&nbsp
+
+
+    
+
+<br/>

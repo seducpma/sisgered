@@ -1,0 +1,43 @@
+<div id="interno2">
+<% title "EMPRESAS PARCEIRAS", :id =>"unidades" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>UNIDADES SEDUC</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <% form_remote_tag :url => consulta_tipo_unidade_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+         <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+               <a href="#" class="filtro_nome"><%= radio_button_tag(:type_of, "1") %></a>Nome
+               <a href="#" class="filtro_tipo"><%= radio_button_tag(:type_of, "2") %></a>Tipo
+               <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "3") %></a>Todos
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta" style="display:none"> <%= render "consulta" %> </div></td>
+           <td><div class="consulta1" style="display:none"> <%= render "consulta1" %> </div></td>
+           <td><div class="consulta2" style="display:none"> <%= render "consulta2" %> </div></td>
+           <tr>
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="unidades"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <br/>
+    <table id="grid">
+    </table>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" > <%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Consultar', {:action => "index"},:method => "get", :title => "Consultar" %></td>
+     
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+
+

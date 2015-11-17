@@ -1,0 +1,69 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  matricula: 1
+  nome: MyString
+  dt_atual: 2015-02-19 10:39:29
+  dt_ingresso: 2015-02-19 10:39:29
+  dt_nasc: 2015-02-19 10:39:29
+  RG: MyString
+  CPF: MyString
+  INEP: 1
+  RD: 1
+  n_filhos: 1
+  sede_id: 
+  funcao: MyString
+  funcao2: MyString
+  enderes: MyString
+  complemento: MyString
+  num: 1
+  telefone: 1
+  cidade: MyString
+  obs: MyString
+  total_trabalhado: 1
+  total_titulacao: 1
+  pontuacao_final: 1
+  flag: 1
+  sede_id_ant: 
+  log_user: MyString
+  prioridade: 1
+  titulo_arrumado: 1
+  entrada_concurso: 1
+  excluido: 1
+  data_exclusao: 2015-02-19 10:39:29
+  motivo: MyString
+  cep: MyString
+
+two:
+  matricula: 1
+  nome: MyString
+  dt_atual: 2015-02-19 10:39:29
+  dt_ingresso: 2015-02-19 10:39:29
+  dt_nasc: 2015-02-19 10:39:29
+  RG: MyString
+  CPF: MyString
+  INEP: 1
+  RD: 1
+  n_filhos: 1
+  sede_id: 
+  funcao: MyString
+  funcao2: MyString
+  enderes: MyString
+  complemento: MyString
+  num: 1
+  telefone: 1
+  cidade: MyString
+  obs: MyString
+  total_trabalhado: 1
+  total_titulacao: 1
+  pontuacao_final: 1
+  flag: 1
+  sede_id_ant: 
+  log_user: MyString
+  prioridade: 1
+  titulo_arrumado: 1
+  entrada_concurso: 1
+  excluido: 1
+  data_exclusao: 2015-02-19 10:39:29
+  motivo: MyString
+  cep: MyString

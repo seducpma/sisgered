@@ -1,0 +1,21 @@
+  <div class="tabs">
+    <table bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC" >
+            <th width="25%">Tipo</th>
+            <th width="40%">Nome</th>
+            <th width="5%" colspan="3">Administração</th>
+        </tr>
+        <% @unidades.each do |unidade| %>
+            <tr bgcolor="#F5F5F5">
+                <td align="left"><%=h unidade.tipo%></td>
+                <td align="left"><%=h unidade.nome%></td>
+                <td align="center"><td align="center" ><%= button_to 'Visualizar',{:action => "show", :id =>unidade}, :method => "get", :title => "Visualizar"%></td></td>
+                  <% if current_user.has_role?('admin')or  current_user.has_role?('planejamento') %>
+                      <td align="center" ><%= button_to 'Editar',{:action => "edit", :id =>unidade}, :method => "get", :title => "Editar"%></td>
+                  <%else%>
+                      <td align="center" > -- </td>
+                  <%end%>
+            </tr>
+         <% end %>
+     </table>
+  </div>
