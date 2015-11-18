@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
 
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
+  
   map.resources :classes
   map.resources :informativos
   map.resources :logs
