@@ -68,7 +68,6 @@ class CriancasController < ApplicationController
   end
 
   def status
-    @crianca = Crianca.find(params[:id])
 
   end
 
@@ -78,6 +77,7 @@ class CriancasController < ApplicationController
   # POST /criancas.xml
   def create
     @crianca = Crianca.new(params[:crianca])
+
     data=@crianca.nascimento
       if  (data <= Date.today and data >= '2015-02-01'.to_date)
            @crianca.grupo_id = 1
@@ -97,6 +97,7 @@ class CriancasController < ApplicationController
                 end
            end
        end
+
   $flag_imp = 0
   $flag_btimp = 0
 
@@ -116,6 +117,7 @@ class CriancasController < ApplicationController
   # PUT /criancas/1.xml
   def update
     @crianca = Crianca.find(params[:id])
+
     data=@crianca.nascimento
       if  (data <= Date.today and data >= '2015-02-01'.to_date)
            @crianca.grupo_id = 1
@@ -135,6 +137,7 @@ class CriancasController < ApplicationController
                 end
            end
        end
+
 
     respond_to do |format|
       if @crianca.update_attributes(params[:crianca])
@@ -542,12 +545,10 @@ end
        @unidades1 =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades2 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and (id not between 70 and 77)  and (id <> 54)" ],:order => "nome")
-       
     else
        @unidades1 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and id=?", session[:unidade]  ],:order => "nome")
        @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades2 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and (id not between 70 and 77) and (id <> 54)"  ],:order => "nome")
-
     end
 
     

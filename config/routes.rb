@@ -29,8 +29,10 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_altera_status '/consulta_altera_status', :controller => 'criancas', :action => 'consulta_altera_status'
   map.altera_classe '/altera_classe', :controller => 'criancas', :action => 'altera_classe'
   map.altera_nascimento '/altera_nascimento', :controller => 'criancas', :action => 'altera_nascimento'
+
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
+
 
   map.grafico '/grafico', :controller => 'grafico'
   map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_demanda_geral'

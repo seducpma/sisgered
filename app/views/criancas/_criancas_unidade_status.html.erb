@@ -23,7 +23,27 @@
                      <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></th>
                 <%end%>
                 <th align="left"><%=h crianca.nome%></th>
-               <th align="left"><%=h crianca.grupo.nome%></th>
+                                 <% if  crianca.grupo_id == 1%>
+                                     <th align="center"> BERÇÁRIO I</th>
+                                <%else if  crianca.grupo_id == 2%>
+                                     <th align="left"> BERÇÁRIO II</th>
+                                        <%else if  crianca.grupo_id == 3%>
+                                           <th align="center"> MATERNAL I</th>
+                                              <%else if  crianca.grupo_id == 4%>
+                                                 <th align="center"> MATERNAL I</th>
+                                                   <%else if  crianca.grupo_id == 5%>
+                                                      <th align="center"> MATERNAL II</th>
+                                                       <%else if  crianca.grupo_id == 6%>
+                                                         <th align="center"> NÍVEL I</th>
+                                                             <%else if  crianca.grupo_id == 7%>
+                                                                <th align="center"> NÍVEL II</th>
+                                                             <%end%>
+                                                       <%end%>
+                                                   <%end%>
+                                               <%end%>
+                                          <%end%>
+                                     <%end%>
+                                <%end%>
                 <th align="center"><% if  crianca.opcao1 == session[:opcao]%>
                                           <b><font color ="blue"><%=h crianca.opcao1%></font></b>
                                     <%else%>
