@@ -13,20 +13,22 @@ class AlteracaosController < ApplicationController
   end
   
   def alterar_classe
+    $nregistros = 0
     @criancas_alteracao = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'" ])
     for crianca in @criancas_alteracao
+      anterior = crianca.grupo_id
        if (crianca.nascimento <= '2015-10-31'.to_date and crianca.nascimento >= '2015-02-01'.to_date)
-           crianca.grupo_id = 11
+           crianca.grupo_id = 1
        else if(crianca.nascimento <= '2015-01-31'.to_date and crianca.nascimento >= '2014-07-01'.to_date)
-               crianca.grupo_id = 22
+               crianca.grupo_id = 2
             else if(crianca.nascimento <= '2014-06-30'.to_date and crianca.nascimento >= '2013-07-01'.to_date)
-                    crianca.grupo_id = 44
+                    crianca.grupo_id = 4
                  else if(crianca.nascimento <= '2013-06-30'.to_date and crianca.nascimento >= '2012-07-01'.to_date)
-                         crianca.grupo_id = 55
+                         crianca.grupo_id = 5
                       else if(crianca.nascimento <= '2012-06-30'.to_date and crianca.nascimento >= '2011-07-01'.to_date)
-                              crianca.grupo_id = 66
+                              crianca.grupo_id = 6
                            else if(crianca.nascimento <= '2011-06-30'.to_date and crianca.nascimento >= '2010-07-01'.to_date)
-                                   crianca.grupo_id = 77
+                                   crianca.grupo_id = 7
 
                                 end
                            end
@@ -34,16 +36,23 @@ class AlteracaosController < ApplicationController
                    end
                end
            end
-      
+      atual = crianca.grupo_id
       crianca.save
-      
-      
+
+      if anterior != atual
+        $nregistros = $nregistros + 1
+      end
+  
 
     end
+    t1=$nregistros
+    t0 =1
       render :update do |page|
         page.replace_html 'confirma', :text => "ATUALIZAÇÂO CONCLUIDA"
+        page.replace_html 'confirma1', :text => "Foram alterados " + ($nregistros.to_s) +" resgistros"
       end
-    
+
+
   end
 
 
