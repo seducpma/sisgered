@@ -1,6 +1,6 @@
 class AlteracaosController < ApplicationController
 
-  require_role ["admin","planejamento"], :except => ['relatorio_ficha']
+  #require_role ["admin","planejamento"], :except => ['relatorio_ficha']
   #before_filter :login_require
 
   layout :define_layout
