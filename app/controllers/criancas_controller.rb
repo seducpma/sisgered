@@ -284,13 +284,13 @@ end
 
 def consulta_altera_status
      if params[:type_of].to_i == 1
-        @criancas = Crianca.find(:all,:conditions => ["nome like ? and  status = 'NA_DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+        @criancas = Crianca.find(:all,:conditions => ["nome like ? ", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
         render :update do |page|
           page.replace_html 'criancas', :partial => "criancas_unidade_status"
         end
 
      else if params[:type_of].to_i == 2
-              @criancas = Crianca.find( :all,:conditions => ["status = 'CANCELADA'"],:order => 'nome ASC, unidade_id ASC')
+              @criancas = Crianca.find( :all,:order => 'nome ASC, unidade_id ASC')
              render :update do |page|
                 page.replace_html 'criancas', :partial => 'criancas_unidade_status'
 

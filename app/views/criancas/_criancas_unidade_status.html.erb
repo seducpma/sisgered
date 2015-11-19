@@ -4,6 +4,7 @@
 
             <th width="1%">Nº_Ins- <br/>crição</th>
             <th width="10%">Data/Hora <br/>Inscrição</th>
+            <th width="10%">Status</th>
             <th width="20%">Nome</th>
             <th width="10%">Classe</th>
             <th width="10%">1ªOpção</th>
@@ -22,6 +23,7 @@
                 <%else%>
                      <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></th>
                 <%end%>
+                <th align="left"><%=h crianca.status%></th>
                 <th align="left"><%=h crianca.nome%></th>
                                  <% if  crianca.grupo_id == 1%>
                                      <th align="center"> BERÇÁRIO I</th>

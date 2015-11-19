@@ -72,11 +72,8 @@
            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
            <font size ="4">
-           <b> Status da Inscrição</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp            <% if session[:status] == "MATRICULADA" %>
-                MATRICULADA
-            <%else%>
+           <b> Status da Inscrição</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <b><%= f.select :status, options_for_select(Crianca::Status) %></b>
-            <%end%>
            </font>
          </td>
       </tr>
