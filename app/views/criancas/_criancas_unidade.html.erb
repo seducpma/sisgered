@@ -3,9 +3,10 @@
        <table bgcolor="#DCDCDC" width="100%">
         <tr bgcolor="#DCDCDC" >
             <th width="2%">Nº</th>
-            <th width="1%">Nº_Ins- <br/>crição</th>
-            <th width="10%">Data/Hora <br/>Inscrição</th>
+            <th width="1%">Inscrição</th>
+            <th width="10%">Data/Hora</th>
             <th width="20%">Nome</th>
+            <th width="20%">Nasci/o</th>
             <th width="10%">Classe</th>
             <th width="5%">Mãe <br/>Trabalha</th>
             <th width="5%">Mãe <br/>Servidora</th>
@@ -27,6 +28,7 @@
                      <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%></th>
                 <%end%>
                 <th align="left"><%=h crianca.nome%></th>
+                <th align="center"><%=h crianca.nascimento.strftime("%d/%m/%Y ")%></th>
                 <th align="left"><%=h crianca.grupo.nome%></th>
                                    <% if crianca.trabalho == 0 %>
                                       <th align="center">NÃO</th>
@@ -70,7 +72,7 @@
               <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
               </tr>
                <tr>
-                <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
+                 <td align="center" colspan="2"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
                 <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>crianca.id}, :method => "get", :title => "Editar"%></td>
               </tr>
                 <%else%>
