@@ -118,7 +118,7 @@
 
  <fieldset>
   <legend><font size=4>Dados da Inscrição</font></legend>
-  <table width="100%"" >
+  <table width="100%"  >
       <tr>
          <td width ="25%"><b> <%= f.label :unidade, 'Unidade da Inscrição' %></b></td>
          <td><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => '---Selecione---' %>
@@ -134,7 +134,7 @@
          </td>
       </tr>
       <tr>
-        <td colspan="2">
+        <td colspan="3">
           <fieldset> <legend><font size=4>Prioridade</font></legend>
             <table width="100%">
               <tr>
@@ -259,6 +259,10 @@
 
          </td>
       </tr>
+      <tr>
+        <td valign="top"><b>Observações:</b></td>
+        <td colspan="2"align="left" ><%= f.text_area(:obs, :cols=> "75", :rows=>"3") %></td>
+      </tr>
 
 
      </table>
@@ -373,7 +377,7 @@
          </td>
       </tr>
       <tr>
-        <td colspan="2">
+        <td colspan="3">
           <fieldset> <legend><font size=4>Prioridade</font></legend>
             <table width="100%" >
               <tr>
@@ -436,6 +440,10 @@
       <tr>
          <td><b>Data Inscrição:</b></td>
          <td><%=h @crianca.created_at.strftime("%d/%m/%Y")%></td>
+      </tr>
+      <tr>
+        <td valign="top"><b>Observações:</b></td>
+        <td colspan="2"align="left" ><%= f.text_area(:obs, :cols=> "75", :rows=>"3") %></td>
       </tr>
      </table>
 
