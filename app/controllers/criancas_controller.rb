@@ -61,6 +61,8 @@ class CriancasController < ApplicationController
     t=(params[:id])
      t=1
     @crianca = Crianca.find(params[:id])
+    data=@crianca.nascimento
+    t=0
     session[:status] = @crianca.status
     #@unidade_matricula = Unidade.find_by_sql("select u.id, u.nome from unidades u right join criancas c on u.id in (c.option1, c.option2, c.option3, c.option4) where c.id = " + (@crianca.id).to_s)
     session[:id_crianca] = params[:id]
@@ -106,6 +108,7 @@ class CriancasController < ApplicationController
         flash[:notice] = 'Criança cadastrada com sucesso.'
         format.html { redirect_to(@crianca) }
         format.xml  { render :xml => @crianca, :status => :created, :location => @crianca }
+
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @crianca.errors, :status => :unprocessable_entity }
@@ -139,10 +142,34 @@ class CriancasController < ApplicationController
            end
        end
 
-
     respond_to do |format|
       if @crianca.update_attributes(params[:crianca])
+        session[:id]=@crianca.id
+        @crianca = Crianca.find(session[:id])
+
+    data=@crianca.nascimento
+    t=0
+      if  (data <= Date.today and data >= '2015-02-01'.to_date)
+           @crianca.grupo_id = 1
+      else if(data <= '2015-01-31'.to_date and data >= '2014-07-01'.to_date)
+           @crianca.grupo_id = 2
+           else if(data <= '2014-06-30'.to_date and data >= '2013-07-01'.to_date)
+                  @crianca.grupo_id = 4
+                else if(data <= '2013-06-30'.to_date and data >= '2012-07-01'.to_date)
+                        @crianca.grupo_id = 5
+                      else if(data <= '2012-06-30'.to_date and data >= '2011-07-01'.to_date)
+                              @crianca.grupo_id = 6
+                            else if(data <= '2011-06-30'.to_date and data >= '2010-07-01'.to_date)
+                                  @crianca.grupo_id = 7
+                                 end
+                           end
+                     end
+                end
+           end
+       end
+
         flash[:notice] = 'Criança atualizada com sucesso.'
+
         format.html { redirect_to(@crianca) }
         format.xml  { head :ok }
       else
@@ -262,9 +289,6 @@ end
 def consulta_status
      if params[:type_of].to_i == 1
            @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'"],:order => 'nome ASC, unidade_id ASC')
-        render :update do |page|
-          page.replace_html 'criancas', :partial => "criancas_unidade_status"
-        end
      else if params[:type_of].to_i == 2
               @criancas = Crianca.find( :all,:conditions => ["status = 'CANCELADA'"],:order => 'nome ASC, unidade_id ASC')
              render :update do |page|
@@ -280,6 +304,31 @@ def consulta_status
      end
     
 end
+
+def consulta_status_demanda
+ unidade =(params[:criancaD_unidade_idD])
+  @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND unidade_id = ?", unidade],:order => 'nome ASC, unidade_id ASC')
+     render :update do |page|
+         page.replace_html 'criancas', :partial => "criancas_unidade_status"
+     end
+end
+
+def consulta_status_cancelada
+ unidade =(params[:criancaC_unidade_idC])
+  @criancas = Crianca.find( :all,:conditions => ["status = 'CANCELADA' AND unidade_id = ?", unidade],:order => 'nome ASC, unidade_id ASC')
+  render :update do |page|
+         page.replace_html 'criancas', :partial => "criancas_unidade_status"
+     end
+end
+
+def consulta_status_matriculada
+ unidade =(params[:criancaM_unidadeM_id])
+  @criancas = Crianca.find( :all,:conditions => ["status = 'MATRICULADA' AND unidade_id = ?", unidade],:order => 'nome ASC, unidade_id ASC')
+     render :update do |page|
+         page.replace_html 'criancas', :partial => "criancas_unidade_status"
+     end
+end
+
 
 
 def consulta_altera_status
@@ -550,6 +599,7 @@ end
        @unidades1 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and id=?", session[:unidade]  ],:order => "nome")
        @unidades =  Unidade.find(:all,  :conditions => ["tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8" ],:order => "nome")
        @unidades2 =  Unidade.find(:all,  :conditions => ["(tipo = 3 or tipo = 1 or tipo = 7 or tipo = 8) and (id not between 70 and 77) and (id <> 54)"  ],:order => "nome")
+       
     end
 
     

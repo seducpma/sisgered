@@ -1,0 +1,10 @@
+<table width="100%" align="center" >
+   <tr>
+     <td colspan="2"align="right"left"><font size="2"> <b class="label_busca2"> Unidade:</b></font>
+         <%= collection_select :criancaD, :unidade_idD, @unidades1, :id, :nome, :include_blank => ' -- Selecionar -- ', :class=> "txt_busca2"  %>
+         <%= observe_field 'criancaD_unidade_idD',
+                :url    => { :action => 'consulta_status_demanda' },
+               :with   => 'criancaD_unidade_idD' %>
+     </td>
+   </tr>
+  </table>

@@ -427,9 +427,56 @@ $(".sem_filtro").click(function ()
    {
      $(".consulta2").show();
      $(".consulta_unidade").show();
-     $(".txt_busca2").show()
+     $(".txt_busca2").show();
      $(".label_busca2").show();
+     $(".consulta_unidade_m").hide();
+     $(".txt_buscam").hide();
+     $(".label_buscam").hide();
+     $(".consulta_unidade_c").hide();
+     $(".txt_buscac").ride();
+     $(".label_buscac").ride();
+     $(".consulta_unidade_m").ride();
+     $(".txt_buscam").hide();
+     $(".label_buscam").hide();
      $(".consulta").hide();
+     $(".consulta1").hide();
+     $(".consulta_professor").hide();
+     $(".consulta_data").hide();
+     $(".label_busca1").hide();
+     $(".consulta_classe").hide();
+   });
+
+   $(".filtro_unidade_c").click(function ()
+   {
+     $(".consulta2").show();
+     $(".consulta_unidade").hide();
+     $(".consulta_unidade_c").show();
+     $(".txt_buscac").show();
+     $(".label_buscac").show();
+     $(".consulta").hide();
+     $(".consulta_unidade_m").hide();
+     $(".txt_buscam").ride()
+     $(".label_buscam").ride();
+     $(".consulta1").hide();
+     $(".consulta_professor").hide();
+     $(".consulta_data").hide();
+     $(".label_busca1").hide();
+     $(".consulta_classe").hide();
+   });
+
+   $(".filtro_unidade_m").click(function ()
+   {
+     $(".consulta2").show();
+     $(".consulta_unidade").hide();
+     $(".consulta_unidade_c").hide();
+     $(".consulta_unidade_m").show();
+     $(".txt_buscam").show();
+     $(".label_buscam").show();
+     $(".txt_busca2").ide();
+     $(".label_busca2").ride();
+     $(".consulta").hide();
+     $(".txt_buscac").ride();
+     $(".label_buscac").ride();
      $(".consulta1").hide();
      $(".consulta_professor").hide();
      $(".consulta_data").hide();

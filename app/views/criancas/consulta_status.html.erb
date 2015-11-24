@@ -8,13 +8,16 @@
     <% form_remote_tag :url => consulta_status_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
             <td>
-              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "1") %></a>Demanda
-              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "2") %></a>Canceladas
-              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "3") %></a>Matriculadas
+              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "1") %></a>Demanda
+              <a href="#" class="filtro_unidade_c"><%= radio_button_tag(:type_of, "2") %></a>Canceladas
+              <a href="#" class="filtro_unidade_m"><%= radio_button_tag(:type_of, "3") %></a>Matriculadas
             </td>
          </tr>
          <tr>
-           <td><div class="consulta" style="display:none"> <%= render "consulta" %> </div></td>
+           <td><div class="consulta_unidade" style="display:none"> <%= render "consulta_status_demanda" %> </div>
+               <div class="consulta_unidade_c" style="display:none"> <%= render "consulta_status_cancelada" %> </div>
+               <div class="consulta_unidade_m" style="display:none"> <%= render "consulta_status_matriculada" %> </div>
+           </td>
                
         </tr>
         </table>
@@ -27,7 +30,7 @@
   <table>
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <td align="left"><%= button_to 'Consultar', consulta_unidade_path, :title => "Consultar" %></td>
+     <td align="left"><%= button_to 'Consultar', consulta_status_path , :title => "Consultar" %></td>
     </tr>
   </table>
  </div>

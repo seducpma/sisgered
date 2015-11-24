@@ -110,15 +110,11 @@
   </tr>
  </table>
  <% session[:child] = @crianca.id %>
- 
+  <% $alteracao_status = 1 %>
  <table>
          <tr>
             <td width="4%"align="left"><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
-            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@crianca}, :method => "get", :title => "Editar"%></td>
-              <%else%>
-                <td align="center"></td>
-             <%end%>
              <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
              <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_criancas_path(:crianca => session[:child])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
 
