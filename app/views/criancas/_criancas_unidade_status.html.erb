@@ -21,16 +21,7 @@
                 <%  if crianca.created_at.nil?%>
                     <th align="center"></th>
                 <%else%>
-                     <% hora =  crianca.created_at.strftime("%H")%>
-                     <% min =  crianca.created_at.strftime("%M")%>
-                     <% ano =  crianca.created_at.strftime("%Y")%>
-                     <% if ano == '2014'%>
-                          <% horan = hora.to_i + 2 %>
-                     <%else%>
-                          <% horan = hora.to_i + 3 %>
-                     <%end%>
-
-                     <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y")%><br/><%= horan%>:<%= min%></th>
+                     <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %M:%M")%><br/></th>
                 <%end%>
                 <th align="left"><%=h crianca.status%></th>
                 <th align="left"><%=h crianca.nome%></th>
@@ -55,19 +46,19 @@
                                           <%end%>
                                      <%end%>
                                 <%end%>
-                <th align="center"><% if  crianca.opcao1 == session[:opcao]%>
+                <th align="center"><% if  crianca.opcao1 == session[:opcaos]%>
                                           <b><font color ="blue"><%=h crianca.opcao1%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao1%>
                                     <%end%>
                 </th>
-                <th align="center"><% if  crianca.opcao2 == session[:opcao]%>
+                <th align="center"><% if  crianca.opcao2 == session[:opcaos]%>
                                           <b><font color ="blue"><%=h crianca.opcao2%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao2%>
                                     <%end%>
                 </th>
-                <th align="center"><% if  crianca.opcao3 == session[:opcao]%>
+                <th align="center"><% if  crianca.opcao3 == session[:opcaos]%>
                                           <b><font color ="blue"><%=h crianca.opcao3%></font></b>
                                     <%else%>
                                           <%=h crianca.opcao3%>

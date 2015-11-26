@@ -16,7 +16,7 @@
                :url => { :action => 'mesmo_nome' } %>
           </td>
          <td><b><%= f.label :nascimento, 'Nascimento' %></b></td>
-         <td>    <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 5)) %>
+         <td>    <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 3)) %>
                         <%= observe_field :crianca_nascimento,
                         :with => :crianca_nascimento,
                          :url => { :action => 'valida_nascimento' } %>

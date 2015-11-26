@@ -336,8 +336,12 @@ end
 
 def consulta_status_matriculada
  unidade =(params[:criancaM_unidade_idM])
-  @criancas = Crianca.find( :all,:conditions => ["status = 'MATRICULADA' AND unidade_id = ?", unidade],:order => 'nome ASC, unidade_id ASC')
-  t=0
+ session[:opcaos] = Unidade.find(unidade).nome
+  @criancas1 = Crianca.find( :all,:conditions => ["status = 'MATRICULADA' AND opcao1 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas2 = Crianca.find( :all,:conditions => ["status = 'MATRICULADA' AND opcao2 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas3 = Crianca.find( :all,:conditions => ["status = 'MATRICULADA' AND opcao3 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas = @criancas1 + @criancas2 + @criancas3
+
      render :update do |page|
          page.replace_html 'criancas', :partial => "criancas_unidade_status"
      end
