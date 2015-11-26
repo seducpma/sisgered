@@ -10,12 +10,12 @@
           <tr>
             <td>
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Nome
-              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "2") %></a>Unidade
+              <a href="#" class="filtro_unidade_status"><%= radio_button_tag(:type_of, "2") %></a>Unidade
             </td>
          </tr>
          <tr>
            <td><div class="consulta_unidade" style="display:none"> <%= render "consulta_unidade_status" %> </div></td>
-           <td><div class="consulta" style="display:none"> <%= render "consulta_nome_status" %> </div></td>
+           <td><div class="consulta_nome" style="display:none"> <%= render "consulta_nome_status" %> </div></td>
 
         </tr>
       </table>

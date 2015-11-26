@@ -9,13 +9,37 @@ class Crianca < ActiveRecord::Base
   validates_presence_of :nascimento
   validates_presence_of :opcao1
   before_save  :maiusculo
-
+  before_update  :reclassificacao
   
- 
+  Status = %w(NA_DEMANDA CANCELADA MATRICULADA)
+
+
+  def reclassificacao
+    data=   (self.nascimento).to_s
+    hoje = Date.today.to_s
+    final = '2012-07-01'
+    if (hoje > data)  and (data >= final)
+      if  (data <= Date.today.to_s and data >= '2015-02-01')
+           self.grupo_id = 1
+      else if(data <= '2015-01-31' and data >= '2014-07-01')
+           self.grupo_id = 2
+           else if(data <= '2014-06-30' and data >= '2013-07-01')
+                  self.grupo_id = 4
+                else if(data <= '2013-06-30' and data >= '2012-07-01')
+                        self.grupo_id = 5
+                      else if(data <= '2012-06-30' and data >= '2011-07-01')
+                              self.grupo_id = 6
+                            else if(data <= '2011-06-30'and data >= '2010-07-01')
+                                  self.grupo_id = 7
+                                 end
+                           end
+                     end
+                end
+           end
+       end
+ end
   
-
-
- Status = %w(NA_DEMANDA CANCELADA MATRICULADA)
+  end
 
 def self.na_demanda
     Crianca.find(:all, :conditions => {:status => 'NA_DEMANDA' })

@@ -360,6 +360,7 @@ $("#localizacao_data_aquisicao").datepicker({dateFormat: 'dd-mm-yy', changeYear:
      $(".consulta").show();
      $(".txt_busca").show();
      $(".label_busca").show();
+     $(".consulta_nome").show();
      $(".txt_busca").val("Digite parte da busca").css("color","gray");
      $(".consulta1").hide();
      $(".consulta_unidade").hide();
@@ -423,6 +424,16 @@ $(".sem_filtro").click(function ()
 
   });
 
+ $(".filtro_unidade_status").click(function ()
+   { $(".consulta_unidade").show();
+     $(".txt_busca2").show();
+     $(".label_busca2").show();
+     $(".label_busca").hide();
+     $(".txt_busca").hide();
+     $(".consulta_nome").hide();
+
+  });
+
    $(".filtro_unidade").click(function ()
    {
      $(".consulta2").show();
@@ -444,6 +455,11 @@ $(".sem_filtro").click(function ()
      $(".consulta_data").hide();
      $(".label_busca1").hide();
      $(".consulta_classe").hide();
+     $(".label_busca").hide();
+     $(".txt_busca").hide();
+     $(".consulta_nome").hide();
+
+
    });
 
    $(".filtro_unidade_c").click(function ()

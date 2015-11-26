@@ -6,7 +6,7 @@ class CriancasController < ApplicationController
   before_filter :load_unidades
   before_filter :load_criancas
   before_filter :load_criancas_mat
- # require_role ["seduc","admin","escola","secretaria"], :for => :update # don't allow contractors to update
+  # require_role ["seduc","admin","escola","secretaria"], :for => :update # don't allow contractors to update
   require_role ["seduc","admin"], :for => :destroy # don't allow contractors to destroy
   require_role ["seduc"], :for => [:atualiza_grupo,:matric,:config,:confirma] #
 
@@ -62,7 +62,7 @@ class CriancasController < ApplicationController
      t=1
     @crianca = Crianca.find(params[:id])
     data=@crianca.nascimento
-    t=0
+
     session[:status] = @crianca.status
     #@unidade_matricula = Unidade.find_by_sql("select u.id, u.nome from unidades u right join criancas c on u.id in (c.option1, c.option2, c.option3, c.option4) where c.id = " + (@crianca.id).to_s)
     session[:id_crianca] = params[:id]
@@ -73,6 +73,10 @@ class CriancasController < ApplicationController
 
   end
 
+def reclassifica
+  $novadata= params[:crianca_nascimento]
+  t=0
+end
 
 
   # POST /criancas
@@ -132,57 +136,12 @@ end
   # PUT /criancas/1
   # PUT /criancas/1.xml
   def update
-
     @crianca = Crianca.find(params[:id])
-
-    data=@crianca.nascimento
-      if  (data <= Date.today and data >= '2015-02-01'.to_date)
-           @crianca.grupo_id = 1
-      else if(data <= '2015-01-31'.to_date and data >= '2014-07-01'.to_date)
-           @crianca.grupo_id = 2
-           else if(data <= '2014-06-30'.to_date and data >= '2013-07-01'.to_date)
-                  @crianca.grupo_id = 4
-                else if(data <= '2013-06-30'.to_date and data >= '2012-07-01'.to_date)
-                        @crianca.grupo_id = 5
-                      else if(data <= '2012-06-30'.to_date and data >= '2011-07-01'.to_date)
-                              @crianca.grupo_id = 6
-                            else if(data <= '2011-06-30'.to_date and data >= '2010-07-01'.to_date)
-                                  @crianca.grupo_id = 7
-                                 end
-                           end
-                     end
-                end
-           end
-       end
-
-    respond_to do |format|
+      respond_to do |format|
       if @crianca.update_attributes(params[:crianca])
         session[:id]=@crianca.id
         @crianca = Crianca.find(session[:id])
-
-    data=@crianca.nascimento
-    t=0
-      if  (data <= Date.today and data >= '2015-02-01'.to_date)
-           @crianca.grupo_id = 1
-      else if(data <= '2015-01-31'.to_date and data >= '2014-07-01'.to_date)
-           @crianca.grupo_id = 2
-           else if(data <= '2014-06-30'.to_date and data >= '2013-07-01'.to_date)
-                  @crianca.grupo_id = 4
-                else if(data <= '2013-06-30'.to_date and data >= '2012-07-01'.to_date)
-                        @crianca.grupo_id = 5
-                      else if(data <= '2012-06-30'.to_date and data >= '2011-07-01'.to_date)
-                              @crianca.grupo_id = 6
-                            else if(data <= '2011-06-30'.to_date and data >= '2010-07-01'.to_date)
-                                  @crianca.grupo_id = 7
-                                 end
-                           end
-                     end
-                end
-           end
-       end
-
         flash[:notice] = 'Criança atualizada com sucesso.'
-
         format.html { redirect_to(@crianca) }
         format.xml  { head :ok }
       else
@@ -232,7 +191,12 @@ end
  
   def consultacrianca
      if params[:type_of].to_i == 1
-        @criancas = Crianca.find(:all,:conditions => ["nome like ? and  status = 'NA_DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+         if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+                 @criancas = Crianca.find( :all,:conditions => ["nome like ? and status = 'NA_DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC, unidade_id ASC')
+              else
+                 @criancas = Crianca.find( :all,:conditions => ["nome like ? and status = 'NA_DEMANDA' and unidade_id = ?", "%" + params[:search1].to_s + "%", current_user.unidade_id ],:order => 'nome ASC')
+              end
+
         render :update do |page|
           page.replace_html 'criancas', :partial => "criancas"
         end
@@ -320,15 +284,24 @@ end
 
 def consulta_status_demanda
  unidade =(params[:criancaD_unidade_idD])
-  @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND unidade_id = ?", unidade],:order => 'nome ASC, unidade_id ASC')
-     render :update do |page|
+  session[:opcaos] = Unidade.find(unidade).nome
+  @criancas1 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND opcao1 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas2 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND opcao2 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas3 = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' AND opcao3 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas = @criancas1 + @criancas2 + @criancas3
+    render :update do |page|
          page.replace_html 'criancas', :partial => "criancas_unidade_status"
      end
 end
 
 def consulta_status_cancelada
  unidade =(params[:criancaC_unidade_idC])
-  @criancas = Crianca.find( :all,:conditions => ["status = 'CANCELADA' AND unidade_id = ?", unidade],:order => 'nome ASC, unidade_id ASC')
+  session[:opcaos] = Unidade.find(unidade).nome
+  @criancas1 = Crianca.find( :all,:conditions => ["status = 'CANCELADA' AND opcao1 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas2 = Crianca.find( :all,:conditions => ["status = 'CANCELADA' AND opcao2 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas3 = Crianca.find( :all,:conditions => ["status = 'CANCELADA' AND opcao3 = ?", session[:opcaos]],:order => 'nome ASC, unidade_id ASC')
+  @criancas = @criancas1 + @criancas2 + @criancas3
+
   render :update do |page|
          page.replace_html 'criancas', :partial => "criancas_unidade_status"
      end

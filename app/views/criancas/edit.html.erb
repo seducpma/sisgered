@@ -23,7 +23,12 @@
                :url => { :action => 'mesmo_nome' } %>
           </td>
          <td><b><%= f.label :nascimento, 'Nascimento' %></b></td>
-         <td> <%=h @crianca.nascimento.strftime("%d/%m/%Y")%>   <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 30)) %><BR /></td>
+         <td> <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 3)) %> <BR /></td>
+
+
+
+
+    <% $novadata = f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 3)) %>
        </tr>
        <tr>
          <td><b><font color="red" size="5">*</font>Mãe</b></td>
