@@ -91,7 +91,26 @@
             </tr>
             <tr bgcolor="#F5F5F5"  width="100%">
               <td valign="top" align="left" width="10%"><b>Região:  <br/><br/> Classificação:</b></td>
-              <td valign="top"align="left" ><%=h @crianca.regiao.nome%><br/><br/></td>
+              <td valign="top"align="left" ><%=h @crianca.regiao.nome%><br/><br/>
+                    <%if @crianca.grupo.id == 1%>
+                         BERÇARIO I
+                    <% else if @crianca.grupo.id == 2 %>
+                                BERÇARIO II
+                           <% else if @crianca.grupo.id == 4 %>
+                                      MATERNAL I
+                                  <% else if @crianca.grupo.id == 5 %>
+                                           MATERNAL II
+                                          <% else if @crianca.grupo.id == 6 %>
+                                                 NIVEL I
+                                                  <% else if @crianca.grupo.id == 7 %>
+                                                         NIVEL II
+                                                          <%end%>
+                                                   <%end%>
+                                          <%end%>
+                                  <%end%>
+                          <%end%>
+                    <%end%>
+              </td>
               <td valign="top"><b>Opções: </b></td>
               <td valign="top">- <%=h @crianca.opcao1%> <br/>
                                - <%=h @crianca.opcao2%> <br/>

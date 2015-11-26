@@ -25,15 +25,7 @@
                 <%  if crianca.created_at.nil? %>
                      <th align="center"></th>
                 <%else%>
-                     <% hora =  crianca.created_at.strftime("%H")%>
-                     <% min =  crianca.created_at.strftime("%M")%>
-                     <% ano =  crianca.created_at.strftime("%Y")%>
-                     <% if ano == '2014'%>
-                          <% horan = hora.to_i + 2 %>
-                     <%else%>
-                          <% horan = hora.to_i + 3 %>
-                     <%end%>
-                     <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y")%><br/><%= horan%>:<%= min%></th>
+                     <th align="center"><%=h crianca.created_at.strftime("%d/%m/%Y %H:%M")%><br/><%= horan%>:<%= min%></th>
                 <%end%>
                 <th align="left"><%=h crianca.nome%></th>
                 <th align="center"><%=h crianca.nascimento.strftime("%d/%m/%Y ")%></th>
