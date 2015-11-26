@@ -22,7 +22,10 @@
      <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
   </tr>
  </table>
-  <fieldset><legend><font  size=2><b> Dados da Criança</b></font></legend>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp<font size="1"><strong>Inscrição nº<%=h crianca.id %> </strong></font>
+  <fieldset><legend><font  size=1><b> Dados da Criança</b></font></legend>
        <table width="100%" frame="box" rules="all" >
             <tr style="font-size:8px">
                <th align="left" width="7%"><b>Nome:</b></th>
@@ -77,7 +80,7 @@
             </tr>
           </table>
          </fieldset>
-         <fieldset><legend><font  size=2><b> Dados da Inscrição</b></font></legend>
+         <fieldset><legend><font  size=1><b> Dados da Inscrição</b></font></legend>
          <table width="100%" width="100%" frame="box" rules="all" >
            <tr style="font-size:8px">
               <th align="left" width="12%"><b>Local Inscrição:</b></th>
@@ -126,7 +129,6 @@
          </table>
        </fieldset>
    <%end%>
-<br/>
 &nbsp&nbsp&nbsp
 <font size ="1" >
    Eu, __________________________________________________________________, responsável pelo menor em questão, estou ciente que deverei informar a esta unidade
@@ -165,7 +167,7 @@ p/  Unidade Escolar
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-Assinatura do Responsável<br/>
+Assinatura do Responsável
 
 </font>
 &nbsp&nbsp
@@ -186,9 +188,9 @@ Assinatura do Responsável<br/>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <font size="1"><b><i> Secretaria da Educação</i></b>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
+&nbsp&nbsp&nbsp&nbsp<font size="1"><strong>Inscrição nº<%=h crianca.id %> </strong></font>
 <%for crianca in @crianca%>
-  <fieldset><legend><font  size=2><b> COMPROVANTE DE INSCRIÇÂO</b></font></legend>
+  <fieldset><legend><font  size=1><b> COMPROVANTE DE INSCRIÇÂO</b></font></legend>
        <table width="100%" frame="box" rules="all" >
             <tr style="font-size:8px">
                <th align="left" width="7%"><b>Nome:</b></th>
