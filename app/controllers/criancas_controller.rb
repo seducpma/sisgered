@@ -335,8 +335,9 @@ def consulta_status_cancelada
 end
 
 def consulta_status_matriculada
- unidade =(params[:criancaM_unidadeM_id])
+ unidade =(params[:criancaM_unidade_idM])
   @criancas = Crianca.find( :all,:conditions => ["status = 'MATRICULADA' AND unidade_id = ?", unidade],:order => 'nome ASC, unidade_id ASC')
+  t=0
      render :update do |page|
          page.replace_html 'criancas', :partial => "criancas_unidade_status"
      end
