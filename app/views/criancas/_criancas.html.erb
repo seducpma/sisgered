@@ -19,7 +19,25 @@
                 <td align="left"><%=h crianca.nome%></td>
                 <td align="left"><%=h crianca.mae%></td>
                 <td align="left"><%=h crianca.unidade.nome%></td>
-                <td align="center"><%=h crianca.grupo.nome%></td>
+                <td align="center">
+                          <%if crianca.grupo.id == 1%>
+                             BERÇARIO I
+                        <% else if crianca.grupo.id == 2 %>
+                                    BERÇARIO II
+                               <% else if crianca.grupo.id == 4 %>
+                                          MATERNAL I
+                                      <% else if crianca.grupo.id == 5 %>
+                                               MATERNAL II
+                                              <% else if crianca.grupo.id == 6 %>
+                                                     NIVEL I
+                                                      <% else if crianca.grupo.id == 7 %>
+                                                             NIVEL II
+                                                              <%end%>
+                                                       <%end%>
+                                              <%end%>
+                                      <%end%>
+                              <%end%>
+                        <%end%>
                 <td align="left"><%=h crianca.opcao1%></td>
                 <td align="left"><%=h crianca.opcao2%></td>
                 <td align="left"><%=h crianca.opcao3%></td>
