@@ -80,18 +80,24 @@ class CriancasController < ApplicationController
   def create
     @crianca = Crianca.new(params[:crianca])
 
-    data=@crianca.nascimento
-      if  (data <= Date.today and data >= '2015-02-01'.to_date)
+    data=@crianca.nascimento.strftime("%Y-%m-%d")
+    hoje = Date.today.to_s
+    final = '2012-07-01'
+
+
+    if (hoje > data)  and (data >= final)
+      if  (data <= Date.today.to_s and data >= '2015-02-01')
            @crianca.grupo_id = 1
-      else if(data <= '2015-01-31'.to_date and data >= '2014-07-01'.to_date)
+
+      else if(data <= '2015-01-31' and data >= '2014-07-01')
            @crianca.grupo_id = 2
-           else if(data <= '2014-06-30'.to_date and data >= '2013-07-01'.to_date)
+           else if(data <= '2014-06-30' and data >= '2013-07-01')
                   @crianca.grupo_id = 4
-                else if(data <= '2013-06-30'.to_date and data >= '2012-07-01'.to_date)
+                else if(data <= '2013-06-30' and data >= '2012-07-01')
                         @crianca.grupo_id = 5
-                      else if(data <= '2012-06-30'.to_date and data >= '2011-07-01'.to_date)
+                      else if(data <= '2012-06-30' and data >= '2011-07-01')
                               @crianca.grupo_id = 6
-                            else if(data <= '2011-06-30'.to_date and data >= '2010-07-01'.to_date)
+                            else if(data <= '2011-06-30'and data >= '2010-07-01')
                                   @crianca.grupo_id = 7
                                  end
                            end
@@ -114,8 +120,15 @@ class CriancasController < ApplicationController
         format.xml  { render :xml => @crianca.errors, :status => :unprocessable_entity }
       end
     end
+  
+  else
+    respond_to do |format|
+        flash[:notice] = 'Verificar DATA DE NASCIMENTO .'
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @crianca.errors, :status => :unprocessable_entity }
+    end
   end
-
+end
   # PUT /criancas/1
   # PUT /criancas/1.xml
   def update
