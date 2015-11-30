@@ -432,6 +432,7 @@ $(".sem_filtro").click(function ()
      $(".txt_busca").hide();
      $(".consulta_nome").hide();
 
+
   });
 
    $(".filtro_unidade").click(function ()
@@ -441,6 +442,7 @@ $(".sem_filtro").click(function ()
      $(".txt_busca2").show();
      $(".label_busca2").show();
      $(".consulta_unidade_m").hide();
+     $(".consulta_classe").hide();
      $(".txt_buscam").hide();
      $(".label_buscam").hide();
      $(".consulta_unidade_c").hide();
