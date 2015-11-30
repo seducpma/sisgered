@@ -132,7 +132,7 @@
   <% $alteracao_status = 1 %>
  <table>
          <tr>
-            <td width="4%"align="left"><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+            <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_unidade_path, :title => "Consultar" %></td>
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@crianca}, :method => "get", :title => "Editar"%></td>
              <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
              <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_criancas_path(:crianca => session[:child])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
