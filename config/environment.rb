@@ -6,7 +6,9 @@
 RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
+#require 'brI18n'
 require File.join(File.dirname(__FILE__), 'boot')
+
 Rails::Initializer.run do |config|
 
   # Settings in config/environments/* take precedence over those specified here.
@@ -33,7 +35,8 @@ Rails::Initializer.run do |config|
   config.gem 'whenever', :lib => false
   #config.gem "will_paginate", :version => '2.3.15'
   #config.gem "searchlogic", :version => '2.4.14'
-  # config.gem 'brazilian-rails', :version =>'2.1.15'
+  #config.gem 'brazilian-rails', :version =>'2.1.15'
+  #
   # config.gem 'time_diff', :version => '0.2.2'
 # Only load the plugins named here, in .the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
@@ -62,8 +65,8 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_infoseduc_session',
-    :secret      => '4b93827b0be767a6b6940a7ab780ad122c9dcbf83beb14ffe02ebe2603944ee5c5f91d0d789342a7e0f405481b754d266b39ecc6aefd0c14c63256126f278f11'
+    :session_key => '_demanda_session',
+    :secret      => '80b373ea47e294e1d1b9bc811d8749aa34d1357093c5290f2797470ea12d3ff991f4575ebd7a279b4a67a3cc06ab4dfbd464652c9c64b17429840391eefb6784'
   }
 
   # Use the database for sessions instead of the cookie-based default,
@@ -80,6 +83,7 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
   config.i18n.default_locale = "pt-br"
+  
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label]=I18n.t("pagination.prev")
 WillPaginate::ViewHelpers.pagination_options[:next_label]=I18n.t("pagination.next")
