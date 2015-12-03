@@ -1,0 +1,37 @@
+<br/><br/>
+<div id="conteudo">
+<table width="70%" border="1" align="center" class="login">
+  <tr>
+    <td colspan="2" align="center">
+<!--      <font color="red" size="4">< %= link_to "Área de Consultas", visaos_path %></font>-->
+    </td>
+  </tr>
+  <tr>
+     <td rowspan="2">
+       <center><div id="img"></div></center>
+     </td>
+     <td width="40%" align="center">
+       <p align="center"><font color="blue" size="3">SISDEMAN</font></p>
+       <p align="center"><font color="RED" size="2"><b>Usuario ou senha NÂO confere</b></font></p>
+       <p align="center"><font color="RED" size="2"><b>Tente novamente</b></font></p>
+       <p align="center"><%= button_to 'Voltar', new_session_path, {:method => "get"}  %></p>
+     </td>
+  </tr>
+  <tr>
+   <td colspan="2" align="center">
+        <font size="2"><b>Problemas com a senha?</b></font><br/>
+        <%= link_to 'Não possuo senha', signup_path %>  <br/>
+        <%= link_to 'Esqueci a senha', new_password_path%>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <!-- Inicio do botao do Firefox -->
+      <a href="http://br.mozdev.org/" target="_blank"><img src="http://www.mozilla.org/contribute/buttons/110x32bubble_r_pt.png" alt="Firefox" width="110" height="32" style="border-style:none;" title="Mozilla Firefox" /></a>
+      <!-- Fim do botao do Firefox -->
+    </td>
+  </tr>
+
+ </table>
+</div>
+<br/>

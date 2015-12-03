@@ -6,6 +6,10 @@ class SessionsController < ApplicationController
   # render new.erb.html
   def new
   end
+  
+  def erro
+    
+  end
 
   
    def create
@@ -24,7 +28,7 @@ class SessionsController < ApplicationController
     #    flash[:notice] = "SISTEMA INDISPONÍVEL - NÃO PODE SERACESSADO"
     #  end
     else
-      render :action => 'new'
+      render :action => 'erro'
   end
   end
   
