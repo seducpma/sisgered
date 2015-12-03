@@ -32,6 +32,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
+  map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
 
 
   map.grafico '/grafico', :controller => 'grafico'

@@ -64,8 +64,8 @@
                                           <%=h crianca.opcao3%>
                                     <%end%>
                 </th>
-                <% $alteracao_status = 0 %>
-                <td align="center"><font size="2"><%= button_to 'Alterar Status', {:action => "edit", :id =>crianca.id}, :method => "get", :title => "Status"%></font></td>
+
+                <td align="center"><font size="2"><%= button_to 'Alterar Status', {:action => "alteracao_status", :id =>crianca.id}, :method => "get", :title => "Status"%></font></td>
 
               </tr>
 

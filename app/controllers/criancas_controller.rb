@@ -57,7 +57,7 @@ class CriancasController < ApplicationController
 
   # GET /criancas/1/edit
   def edit
-    a1 = $alteracao_status
+
     t=(params[:id])
      t=1
     @crianca = Crianca.find(params[:id])
@@ -68,6 +68,21 @@ class CriancasController < ApplicationController
     session[:id_crianca] = params[:id]
     session[:nome] = params[:nome]
   end
+
+ def alteracao_status
+    @crianca = Crianca.find(params[:id])
+    data=@crianca.nascimento
+
+    session[:status] = @crianca.status
+    #@unidade_matricula = Unidade.find_by_sql("select u.id, u.nome from unidades u right join criancas c on u.id in (c.option1, c.option2, c.option3, c.option4) where c.id = " + (@crianca.id).to_s)
+    session[:id_crianca] = params[:id]
+    session[:nome] = params[:nome]
+  end
+
+
+
+
+
 
   def status
 
