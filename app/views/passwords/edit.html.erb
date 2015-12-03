@@ -1,28 +1,54 @@
-<br/>
-<br/>
-<br/>
-<br/>
+<div id="interno2">
+<% title "RECUPERA" %>
+<div class ="tabs">
 
-<table border="1" align="center" frame="box" rules="all">
+<br/><br/>
+ <table bgcolor="#DCDCDC" width="50%"align="center" >
+   <tr bgcolor="#DCDCDC"  width="100%" >
+     <td>
+       <font size="5"><strong>ALTERAÇÃO DE SENHA</strong></font></br>
+     </td>
+   </tr>
+
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3></font></legend>
+         <table width="100%">
+            <tr bgcolor="#F5F5F5">
+               <td align="center">
+                <br/><br/>
+                   <% form_tag url_for(:action => "atualiza", :id => params[:id]) do %>
+                         <b> Nova Senha</b>:
+                          <%= password_field_tag :password %><br /><br />
+                          <b>Confirma senha:</b>
+                          <%= password_field_tag :password_confirmation %><br /><br />
+                          <%= submit_tag "Salvar" %>
+                        <% end %>
+                      <br/><br/>
+                 </td>
+            </tr>
+         </table>
+       </fieldset>
+     </td>
+  </tr>
   <tr>
     <td>
-      <h2>Alterando sua Senha</h2>
+     <fieldset>
+       <table>
+         <tr>
+           <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+       </table>
+     </fieldset>
     </td>
   </tr>
-  <tr>
-    <td align="center">
-      <% form_tag url_for(:action => "atualiza", :id => params[:id]) do %>
-        Password:<br />
-        <%= password_field_tag :password %><br />
-        Confirm Password:<br />
-        <%= password_field_tag :password_confirmation %><br />
-        <%= submit_tag "Trocar a senha" %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <%= link_to 'Voltar', new_password_path %>
-    </td>
-  </tr>
-</table>
+ </table>
+
+
+</div>
+<br/>
+</div>
+
+
+
+

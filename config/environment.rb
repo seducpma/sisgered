@@ -1,4 +1,4 @@
-# Uncomment below to force Rails into production mode when
+  # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
 

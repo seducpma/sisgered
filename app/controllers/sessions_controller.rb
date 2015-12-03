@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/')
-      flash[:notice] = "SISDEMAN ver4.1"
+      flash[:notice] = "SISDEMAN ver5.2"
     else
       note_failed_signin
       @login       = params[:login]

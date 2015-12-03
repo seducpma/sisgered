@@ -14,7 +14,7 @@
        <p align="center"><font color="blue" size="3">SISDEMAN</font></p>
          <% form_tag session_path do -%>
             <p align="center"><b><label for="login">Login</label></b>
-          <%= text_field_tag 'login','',:size => 10 %><br/>
+           &nbsp'<%= text_field_tag 'login','',:size => 10 %><br/>
           <b><label for="password">Senha</label></b>
           <%= password_field_tag 'password','',:size => 10 %><br/><br/>
 
@@ -29,8 +29,9 @@
   </tr>
   <tr>
    <td colspan="2" align="center">
-        <font size="2"><b>Ainda não possui senha?</b></font><br/>
-        <%= link_to 'Clique aqui', signup_path %>
+        <font size="2"><b>Problemas com a senha?</b></font><br/>
+        <%= link_to 'Não possuo senha', signup_path %>  <br/>
+        <%= link_to 'Esqueci a senha', new_password_path%>
    </td>
   </tr>
   <tr>
