@@ -1,0 +1,50 @@
+<div id="interno2">
+<% title "USUÁRIOS" %>
+<div class="tabs">
+   <div id="caixa_titulo">
+     <font size="3"><strong>USUÁRIO</strong></font><br/>
+ </div>
+
+     <table width="100%" bgcolor="#DCDCDC" align="center">
+        <tr bgcolor="#DCDCDC" >
+          <th align="left"width ="200">Login:</th>
+          <th align="left" width="300">Nível de acesso:</th>
+          <th align="left" width="150">Data de Cadastramento:</th>
+       </tr>
+       <% form_for(@user) do |f| %>
+       
+         <tr bgcolor="	#F5F5F5">
+            <td><br/><%=h @user.login %><br/></td>
+             <%if Role.find(@user.roles_user.role_id).name == 'admin' then%>
+               <td><br/>Administrador do sistema. Acesso total ao sistema.<br/></td>
+             <%else%>
+                  <td><br/>Usuário sem acesso ao sistema.<br/></td>
+              <%end%>
+             <td align="center"><br/> <%=h @user.created_at.strftime("%d/%m/%y") %><br/></td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <br/><br/>
+              <b><font size="3">USUÁRIO CRIADO COM SUCESSO, ENTRE EM CONTATO COM O ADMINISTRADOR DO SISTEMA PARA LIBERAÇÃO</b></font>
+              <br/><br/>
+            </td>
+          </tr>
+       <%end%>
+    </table>
+    <table>
+      <tr>
+        <td>
+        </td>
+      </tr>
+      <tr>
+                <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                <td></td>
+          
+     </tr>
+   </table>
+</div>
+  <br/>
+</div>
+
+
+
