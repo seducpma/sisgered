@@ -207,9 +207,9 @@ end
   def consultacrianca
      if params[:type_of].to_i == 1
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-                 @criancas = Crianca.find( :all,:conditions => ["nome like ? and status = 'NA_DEMANDA'", "%" + params[:search1].to_s + "%"],:order => 'nome ASC, unidade_id ASC')
+                 @criancas = Crianca.find( :all,:conditions => ["nome like ?" , "%" + params[:search1].to_s + "%"],:order => 'nome ASC, unidade_id ASC')
               else
-                 @criancas = Crianca.find( :all,:conditions => ["nome like ? and status = 'NA_DEMANDA' and unidade_id = ?", "%" + params[:search1].to_s + "%", current_user.unidade_id ],:order => 'nome ASC')
+                 @criancas = Crianca.find( :all,:conditions => ["nome like ?  and unidade_id = ?", "%" + params[:search1].to_s + "%", current_user.unidade_id ],:order => 'nome ASC')
               end
 
         render :update do |page|
@@ -217,15 +217,15 @@ end
         end
      else if params[:type_of].to_i == 2
               if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'"],:order => 'nome ASC, unidade_id ASC')
+                 @criancas = Crianca.find( :all,:order => 'nome ASC, unidade_id ASC')
               else
-                 @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA' and unidade_id = ?", current_user.unidade_id ],:order => 'nome ASC')
+                 @criancas = Crianca.find( :all,:conditions => [" unidade_id = ?", current_user.unidade_id ],:order => 'nome ASC')
               end
              render :update do |page|
                 page.replace_html 'criancas', :partial => "criancas"
               end
          else if params[:type_of].to_i == 6
-                @criancas = Crianca.find( :all,:conditions => ["status = 'NA_DEMANDA'" ],:order => 'nome ASC')
+                @criancas = Crianca.find( :all,:order => 'nome ASC')
                 render :update do |page|
                    page.replace_html 'criancas', :partial => "criancas"
                end

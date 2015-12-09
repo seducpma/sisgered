@@ -9,7 +9,8 @@
             <th width="10%">1ªOpção</th>
             <th width="10%">2ªOpção</th>
             <th width="10%">3ªOpção</th>
-            <th colspan="2"></th>
+            <th width="10%">Status</th>
+            
         </tr>
            <%$t=0%>
            <% @criancas.each do |crianca| %>
@@ -41,11 +42,15 @@
                 <td align="left"><%=h crianca.opcao1%></td>
                 <td align="left"><%=h crianca.opcao2%></td>
                 <td align="left"><%=h crianca.opcao3%></td>
+                <td align="left"><%=h crianca.status%></td>
+          </tr>
+          <tr>
                 <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
                 
-                    <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>crianca}, :method => "get", :title => "Editar"%></td>
+                    <td align="left"><%= button_to 'Editar', {:action => "edit", :id =>crianca}, :method => "get", :title => "Editar"%></td>
                 
               </tr>
+
             <% end %>
 
 

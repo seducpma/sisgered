@@ -54,7 +54,7 @@
            <tr bgcolor="#F5F5F5"  width="100%">
              <td align="left" width="18%"><b>Local Inscrição:</b></td>
              <td align="left" ><%=h @crianca.unidade.nome%></td>
-             <td width="18%" ><b>Responsável p/ criança </b> </td>
+             <td width="10%" ><b>Responsável: </b> </td>
                 <% if @crianca.responsavel == 0 %>
                     <td>NÃO</td>
                 <%else%>
@@ -120,7 +120,7 @@
            <tr bgcolor="#F5F5F5"  width="100%">
              <td align="left" width="18%"><b>Dia/Hora Matricula:</b></td>
              <td  align="left" ><%=h @crianca.created_at.strftime("%e/%m/%Y - %H:%M horas")%></td>
-             <td><b>Status:</b></td> <td><%=h @crianca.status%></td>
+             <td><b>Status:</b></td> <td><%=h @crianca.status%> - <%=h @crianca.matriculado%></td>
            </tr>
          </table>
        </fieldset>

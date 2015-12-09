@@ -71,14 +71,11 @@
       <tr >
          <td width ="20%"><b> <%= f.label :unidade, 'Unidade da Inscrição' %></b></td>
          <td><%=h @crianca.unidade.nome %>
-           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           <font size ="4">
-           <b> Status da Inscrição</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           <b><%= f.select :status, options_for_select(Crianca::Status) %></b>
-            
-           </font>
-         </td>
+      </tr>
+       <tr>
+        <td> <font size ="3" color ="'blue"><b> Status da Inscrição:</b>  </font></td>
+        <td> <font size ="3"><b><%= f.select :status, options_for_select(Crianca::Status) %></b> </font></td>
+        <td> <font size ="3"color ="'blue"><b>&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp Unidade Matricula:</b> <%= f.collection_select  :matriculado  , @unidades, :nome, :nome, :include_blank => ' --- Selecione opção ---'  %> </font></td>
       </tr>
       <tr>
         <td colspan="3">
