@@ -452,7 +452,7 @@ end
         else
           render :update do |page|
              page.replace_html 'nome_mae', :text => ''
-             page.replace_html 'Certeza', :text => "<input id='crianca_submit' name='commit' type='submit' value='Cadastrar' />"
+             page.replace_html 'Certeza', :text => "<input id='crianca_submit' name='commit' type='submit' value='Salvar' />"
           end
 
        end

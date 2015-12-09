@@ -56,7 +56,7 @@ ActionController::Routing::Routes.draw do |map|
   
   
   
-  
+  #map.edicao :criancas, :path_prefix => '/criancas/:crianca/edit'
   
   
 
