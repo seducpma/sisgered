@@ -126,18 +126,17 @@
   <table width="100%"  >
       <tr>
          <td width ="25%"><b> <%= f.label :unidade, 'Unidade da Inscrição' %></b></td>
-         <td><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => '---Selecione---' %>
-           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           <b> Status da Inscrição:</td>
-
-         <td>
-            <% if session[:status] == "MATRICULADA" %>
-                MATRICULADA
-            <%else%>
-               <%= f.select :status, options_for_select(Crianca::Status) %>
-            <%end%>
-         </td>
+         <td><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => '---Selecione---' %></td>
+      </tr>    
+       <tr>
+        <td> <b> Status da Inscrição:</b></td>
+        <td> <%= f.select :status, options_for_select(Crianca::Status) %></b>
+             <b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               Unidade Matricula:</b> <%= f.collection_select  :matriculado  , @unidades, :nome, :nome, :include_blank => ' --- Selecione opção ---'  %> </td>
       </tr>
+
+
+
       <tr>
         <td colspan="3">
           <fieldset> <legend><font size=4>Prioridade</font></legend>
