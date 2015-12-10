@@ -75,7 +75,7 @@
        <tr>
         <td> <font size ="3" color ="'blue"><b> Status da Inscrição:</b>  </font></td>
         <td> <font size ="3"><b><%= f.select :status, options_for_select(Crianca::Status) %></b> </font></td>
-        <td> <font size ="3"color ="'blue"><b>&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp Unidade Matricula:</b> <%= f.collection_select  :matriculado  , @unidades, :nome, :nome, :include_blank => ' --- Selecione opção ---'  %> </font></td>
+        <td> <font size ="3"color ="'blue"><b>&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp Unidade Matricula:</b> <%= f.collection_select  :matriculado  , @unidades, :nome, :nome, :include_blank => 'Selecione opção se MATRICULADA'  %> </font></td>
       </tr>
       <tr>
         <td colspan="3">
