@@ -123,15 +123,15 @@
 
  <fieldset>
   <legend><font size=4>Dados da Inscrição</font></legend>
-  <table width="100%"  >
+  <table width="100%">
       <tr>
-         <td width ="25%"><b> <%= f.label :unidade, 'Unidade da Inscrição' %></b></td>
-         <td><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => '---Selecione---' %></td>
+         <td width ="18%"><b> <%= f.label :unidade, 'Unidade da Inscrição' %></b></td>
+         <td align="left"><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => '---Selecione---' %></td>
       </tr>    
        <tr>
         <td> <b> Status da Inscrição:</b></td>
-        <td> <%= f.select :status, options_for_select(Crianca::Status) %></b>
-             <b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <td align="left"> <%= f.select :status, options_for_select(Crianca::Status) %></b>
+             <b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                Unidade Matricula:</b> <%= f.collection_select  :matriculado  , @unidades, :nome, :nome, :include_blank => ' --- Selecione opção ---'  %> </td>
       </tr>
 
