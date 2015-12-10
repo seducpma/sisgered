@@ -1,0 +1,318 @@
+<div style='display:none'>
+  <div id='inline_edicao' style='padding:10px; background:#EEE9E9;'>
+<% form_remote_for(:crianca, :url => { :action => 'edit' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
+<%= f.error_messages %>
+<div id="interno2">
+<% title "CRIANCAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong> ALTERAÇÂO DE CADASTRO</strong></font><br/>
+ </div>
+
+
+  <div class="tabs">
+
+  <font color ="red"  size="4"> Campos com <b><font size="5"> * </font></b> preenchimento obrigatório </font>
+  <fieldset>
+   <legend><font size=4>Dados da Criança</font></legend>
+   <table width="100%">
+       <tr>
+         <td><b><font color="red" size="5">*</font>Nome </b></td>
+         <td><%= f.text_field :nome, :size=>"38" %>
+             <%= observe_field :crianca_nome,
+               :with => :crianca_nome,
+               :url => { :action => 'mesmo_nome' } %>
+          </td>
+         <td><b><%= f.label :nascimento, 'Nascimento' %></b></td>
+         <td> <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 3)) %> <BR /></td>
+
+
+
+
+    <% $novadata = f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 3)) %>
+       </tr>
+       <tr>
+         <td><b><font color="red" size="5">*</font>Mãe</b></td>
+         <td><%= f.text_field :mae, :size=>"38"%>
+             <%= observe_field :crianca_mae,
+               :with => :crianca_mae,
+               :url => { :action => "mesma_mae" } %>
+         </td>
+         <td><b>Pai </b></td>
+         <td><%= f.text_field :pai, :size=>"38" %></td>
+
+       </tr>
+       <tr>
+         <td></td>
+         <td><b><div id='nome_aviso' ></div>  <div id='aviso_mae'></div></b></td>
+         <td colspan="3"><b><div id='nome_mae'></div></b></td>
+
+       </tr>
+      <tr>
+        <td colspan="2"> <script>
+               $(document).ready(function()
+                {
+                  $("#dropdownbutton13").click(function ()
+                   {
+                     $("#menu13").slideToggle("high");
+                    });
+                });
+               </script>
+               <b>Responsável Legal pela criança?</b>
+          <a href="#" id="dropdownbutton13"><%= f.check_box :responsavel %></a>SIM
+                                            <%=f.check_box :sexo %>NÃO
+        </td>
+        <td colspan="3">
+           <div id="menu13" style="display:none">
+             <b>Nome:</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <%= f.text_field :responsavel_n, :size => "15"%>&nbsp&nbsp
+              <b>Parentesco</b><%= f.select :parentesco, GRAU, :include_blank => ''%>
+           </div>
+          </td>
+
+      </tr>
+       <tr>
+         <td><b>Endereço  </b></td>
+         <td><%= f.text_field :endereco %> &nbsp&nbsp<b>Nº</b><%= f.text_field :numero, :size=>"2" %></td>
+         <td><b>Bairro</b></td>
+         <td><%= f.text_field :bairro, :size=>"38" %></td>
+       </tr>
+       <tr>
+          <td><b>Complemento</b></td>
+          <td><%= f.text_field :complemento, :size=>"38" %></td>
+          <td><b><font color="red" size="5">*</font>Fone</b></td>
+          <td><%= f.text_field :tel1,:size =>"13" %>&nbsp&nbsp
+              <b>Celular</b>&nbsp&nbsp<%= f.text_field :celular,:size =>"14"%>
+          </td>
+       </tr>
+        <tr>
+        </tr>
+        <tr>
+          <td><b>Fone(s) Recado</b></td>
+         <td><%= f.text_field :tel2, :size =>"36" %></td>
+         <td><b>Nome</b></td>
+         <td> <%= f.text_field :nomerecado, :size =>"38" %>  </td>
+       </tr>
+       <tr>
+          <td><b><font color="red" size="5">*</font>Classificação </b></td>
+          <td colspan="2"><%=h @crianca.grupo.nome%>
+         &nbsp&nbsp
+           <script>
+               $(document).ready(function()
+                {
+                  $("#dropdownbutton20").click(function ()
+                   {
+                     $("#menu20").slideToggle("high");
+                    });
+                });
+             </script>
+               <b>Necessidade(s) Especial(s)?</b>
+               <a href="#" id="dropdownbutton20"><%= f.check_box :n_especial %></a>SIM
+                                           <%=f.check_box :sexo %>NÃO
+
+          </td>
+          <td>
+            <div id="menu20" style="display:none">
+              <b>Necessidade </b><%= f.text_field :necessidade  , :size=> "27"%>&nbsp&nbsp
+            </div>
+
+
+         </td>
+       </tr>
+      </table>
+  </fieldset>
+
+ <fieldset>
+  <legend><font size=4>Dados da Inscrição</font></legend>
+  <table width="100%"  >
+      <tr>
+         <td width ="25%"><b> <%= f.label :unidade, 'Unidade da Inscrição' %></b></td>
+         <td><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => '---Selecione---' %>
+           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+           <b> Status da Inscrição:</td>
+
+         <td>
+            <% if session[:status] == "MATRICULADA" %>
+                MATRICULADA
+            <%else%>
+               <%= f.select :status, options_for_select(Crianca::Status) %>
+            <%end%>
+         </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <fieldset> <legend><font size=4>Prioridade</font></legend>
+            <table width="100%">
+              <tr>
+                <td width ="28%"><script>
+                       $(document).ready(function()
+                        {
+                          $("#dropdownbutton11").click(function ()
+                           {
+                             $("#menu11").slideToggle("high");
+                            });
+                        });
+                       </script>
+                       <b>1) Mãe trabalha?</b>
+                </td>
+                <td width="20%">
+                     <a href="#" id="dropdownbutton11"><%= f.check_box :trabalho %></a>SIM
+                                                       <%=f.check_box :sexo %>NÃO
+                    <td>
+                         <div id="menu11" style="display:none">
+                           <b>Local </b><%= f.text_field :local_trabalho, :size =>"15" %>&nbsp&nbsp
+                           <b>Fone</b><%= f.text_field :fone_trabalho, :size =>"8"  %>
+                         </div>
+                    </td>
+                   </td>
+              </tr>
+              <tr>
+                <td><script>
+                       $(document).ready(function()
+                        {
+                          $("#dropdownbutton14").click(function ()
+                           {
+                             $("#menu14").slideToggle("high");
+                            });
+                        });
+                       </script>
+                       <b>2) Filho(a) de Servidora Pública</b>
+                </td>
+                <td>
+                     <a href="#" id="dropdownbutton14"><%= f.check_box :servidor_publico %></a>SIM
+                                                       <%=f.check_box :sexo %>NÃO
+                    <td>
+                         <div id="menu14" style="display:none">
+                           <b>Local </b><%= f.text_field :servidor_local %>&nbsp&nbsp
+                         </div>
+                    </td>
+                   </td>
+              </tr>
+              <tr>
+                <td> <script>
+                       $(document).ready(function()
+                        {
+                          $("#dropdownbutton9").click(function ()
+                           {
+                             $("#menu9").slideToggle("high");
+                            });
+                        });
+                       </script>
+                       <b>3) Possui irmão(s) matriculado(s)?</b>
+                </td>
+                <td>
+                  <a href="#" id="dropdownbutton9"><%= f.check_box :irmao %></a>SIM
+                                                   <%=f.check_box :sexo %>NÃO
+                 <td>
+                   <div id="menu9" style="display:none">
+                     <b>Unidade</b><%= f.collection_select  :unidade_i, @unidades, :nome, :nome, :include_blank => ' --- Selecione opção ---'  %>
+                   </div>
+                  </td>
+                 </td>
+              </tr>
+
+              <tr>
+                <td> <script>
+                       $(document).ready(function()
+                        {
+                          $("#dropdownbutton12").click(function ()
+                           {
+                             $("#menu12").slideToggle("high");
+                            });
+                        });
+                       </script>
+                       <b>4) Transferência?</b>
+                </td>
+                <td>
+                  <a href="#" id="dropdownbutton12"><%= f.check_box :transferencia %></a>SIM
+                                                    <%=f.check_box :sexo %>NÃO
+                 <td>
+                   <div id="menu12" style="display:none">
+                     <b>Unidade</b><%= f.collection_select  :unidade_t, @unidades, :id, :nome, :include_blank => ' --- Selecione opção ---'  %>
+                   </div>
+                  </td>
+                 </td>
+              </tr>
+            </table>
+          </fieldset>
+        </td>
+      </tr>
+
+
+      <tr>
+         <td><b><font color="red" size="5">*</font><%= f.label :regiao, 'Região de Preferência  ' %> </b></td>
+         <td><%= f.collection_select :regiao_id, @regiaos, :id, :nome, :include_blank => '---Selecione---' %>
+             <%= observe_field '#crianca_regiao_id',
+                 :with => :crianca_regiao_id,
+                 :url => { :action => 'rg' } %>
+         </td>
+      </tr>
+       <tr>
+         <td><b><font color="red" size="5">*</font><%= f.label :opcao1, 'Opção 1 ' %></b></td>
+         <td><%= f.collection_select  :opcao1, @unidades, :nome, :nome, :include_blank => ' --- Selecione opção ---'  %></td>
+       </tr>
+       <tr>
+         <td>&nbsp&nbsp&nbsp<b><%= f.label :opcao2, 'Opção 2' %></b></td>
+         <td><%= f.collection_select  :opcao2, @unidades, :nome, :nome, :include_blank => ' --- Selecione opção ---'  %></td>
+       </tr>
+       <tr>
+         <td>&nbsp&nbsp&nbsp<b><%= f.label :opcao3, 'Opção 3' %></b></td>
+        <td><%= f.collection_select  :opcao3, @unidades, :nome, :nome, :include_blank => ' --- Selecione opção ---'  %></td>
+       </tr>
+      <tr>
+         <td><b>Data Inscrição:</b></td>
+         <td>  <%= f.datetime_select(:created_at, :order => [:day, :month, :year, :hour, :minute ], :start_year => (Date.today.year), :end_year => (Date.today.year - 30)) %>
+
+         </td>
+      </tr>
+      <tr>
+        <td valign="top"><b>Observações:</b></td>
+        <td colspan="2"align="left" ><%= f.text_area(:obs, :cols=> "75", :rows=>"3") %></td>
+      </tr>
+
+
+     </table>
+
+  </fieldset>
+ <br/>
+   <script>
+       $(document).ready(function()
+         {
+            $("#dropdownbutton5").click(function ()
+               {
+                  $("#menu5").slideToggle("high");
+               });
+         });
+   </script>
+
+ <br/>
+
+
+
+      <fieldset>
+       <table width="100%" >
+         <tr>
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+         </tr>
+       </table>
+      </fieldset>
+    </fieldset>
+  </font>
+  </div>
+
+</div>
+<br/>
+</div>
+
+<br/>
+ </div>
+</div>
+
+

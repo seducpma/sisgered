@@ -45,10 +45,8 @@
                 <td align="left"><%=h crianca.status%></td>
           </tr>
           <tr>
-                <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>crianca},:method => "get", :title => "Visualizar") %></td>
-                
-                    <td align="left"><%= button_to 'Editar', {:action => "edit", :id =>crianca}, :method => "get", :title => "Editar"%></td>
-                
+                <td align="center"><%= link_to image_tag("/stylesheets/images/visualizar.png"), {:action => "show", :id =>crianca},:target => '_blank', :title => "Visualizar" %></td>
+                 <td align="left" ><%= link_to image_tag("/stylesheets/images/editar1.png"),  {:action => "edit", :id =>crianca}, :target => '_blank', :title => "Editar" %></td>
               </tr>
 
             <% end %>
