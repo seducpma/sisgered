@@ -16,7 +16,7 @@
                :url => { :action => 'mesmo_nome' } %>
           </td>
          <td><b><%= f.label :nascimento, 'Nascimento' %></b></td>
-         <td>    <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 3)) %><BR /></td>
+         <td>    <%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 5)) %><BR /></td>
        </tr>
        <tr>
          <td><b><font color="red" size="5">*</font>Mãe</b></div></td>
