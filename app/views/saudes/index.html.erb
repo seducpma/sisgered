@@ -1,0 +1,72 @@
+<h1>Listing saudes</h1>
+
+<table>
+  <tr>
+    <th>Aluno</th>
+    <th>Saude plano saude</th>
+    <th>Saude cartao sus</th>
+    <th>Saude necessidade especial</th>
+    <th>Saude tipo sangue</th>
+    <th>Saude hab motora</th>
+    <th>Saude fumante</th>
+    <th>Saude antecedentes mae</th>
+    <th>Saude parto</th>
+    <th>Saude alimentacao</th>
+    <th>Saude sono</th>
+    <th>Saude neuropsico</th>
+    <th>Saude medicamento</th>
+    <th>Saude antipiretico</th>
+    <th>Saude pelicilina</th>
+    <th>Saude alergia</th>
+    <th>Saude cirurgia</th>
+    <th>Saude fratura</th>
+    <th>Saude probl visao</th>
+    <th>Saude hospitalizado</th>
+    <th>Saude doenças</th>
+    <th>Saude antecedentes familia</th>
+    <th>Saude doenças</th>
+    <th>Saude antecedentes familia</th>
+    <th>Saude fumante casa</th>
+    <th>Saude dependetes quimicos</th>
+    <th>Saude obs</th>
+  </tr>
+
+<% @saudes.each do |saude| %>
+  <tr>
+    <td><%=h saude.aluno_id %></td>
+    <td><%=h saude.saude_plano_saude %></td>
+    <td><%=h saude.saude_cartao_sus %></td>
+    <td><%=h saude.saude_necessidade_especial %></td>
+    <td><%=h saude.saude_tipo_sangue %></td>
+    <td><%=h saude.saude_hab_motora %></td>
+    <td><%=h saude.saude_fumante %></td>
+    <td><%=h saude.saude_antecedentes_mae %></td>
+    <td><%=h saude.saude_parto %></td>
+    <td><%=h saude.saude_alimentacao %></td>
+    <td><%=h saude.saude_sono %></td>
+    <td><%=h saude.saude_neuropsico %></td>
+    <td><%=h saude.saude_medicamento %></td>
+    <td><%=h saude.saude_antipiretico %></td>
+    <td><%=h saude.saude_pelicilina %></td>
+    <td><%=h saude.saude_alergia %></td>
+    <td><%=h saude.saude_cirurgia %></td>
+    <td><%=h saude.saude_fratura %></td>
+    <td><%=h saude.saude_probl_visao %></td>
+    <td><%=h saude.saude_hospitalizado %></td>
+    <td><%=h saude.saude_doenças %></td>
+    <td><%=h saude.saude_antecedentes_familia %></td>
+    <td><%=h saude.saude_doenças %></td>
+    <td><%=h saude.saude_antecedentes_familia %></td>
+    <td><%=h saude.saude_fumante_casa %></td>
+    <td><%=h saude.saude_dependetes_quimicos %></td>
+    <td><%=h saude.saude_obs %></td>
+    <td><%= link_to 'Show', saude %></td>
+    <td><%= link_to 'Edit', edit_saude_path(saude) %></td>
+    <td><%= link_to 'Destroy', saude, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New saude', new_saude_path %>

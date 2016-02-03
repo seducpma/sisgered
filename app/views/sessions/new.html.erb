@@ -11,7 +11,7 @@
        <center><div id="img"></div></center>
      </td>
      <td width="40%">
-       <p align="center"><font color="blue" size="3">SISDEMAN</font></p>
+       <p align="center"><font color="blue" size="3">SISGERED</font></p>
          <% form_tag session_path do -%>
             <p align="center"><b><label for="login">Login</label></b>
            &nbsp'<%= text_field_tag 'login','',:size => 10 %><br/>
@@ -30,13 +30,14 @@
   <tr>
    <td colspan="2" align="center">
         <font size="2"><b>Problemas com a senha?</b></font><br/>
-        <%= link_to 'Não possuo senha', signup_path %>  <br/>
+        <%= link_to 'Não possui senha', signup_path %>  <br/>
         <%= link_to 'Esqueci a senha', new_password_path%>
    </td>
   </tr>
   <tr>
     <td colspan="2" align="center">
       <!-- Inicio do botao do Firefox -->
+      Utilize preferencialmente o navegador
       <a href="http://br.mozdev.org/" target="_blank"><img src="http://www.mozilla.org/contribute/buttons/110x32bubble_r_pt.png" alt="Firefox" width="110" height="32" style="border-style:none;" title="Mozilla Firefox" /></a>
       <!-- Fim do botao do Firefox -->
     </td>

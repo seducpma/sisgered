@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-    <title><%= "SISDEMAN - Sistema de Demanda Escolar" %></title>
+    <title><%= "SISGERED - Sistema de Gerenciamento Educacional" %></title>
 
     
     <%= stylesheet_link_tag 'application' %>
@@ -91,43 +91,63 @@ display: none;
      <img src="/stylesheets/images/nav-bg-l.jpg" alt="" class="float-left" />
      <img src="/stylesheets/images/nav-bg-r.jpg" alt="" class="float-right" />
             <ul id="nav-container" class="nav-container">
-              <li><a class="item-primary" href="#">Arquivo</a>
+              <li><a class="item-primary" href="#">SISGERED</a>
                 <ul style="width:108px;">
                   <li><%= link_to 'Inicio', root_path %></li>
                   <li><%= link_to 'Sair', logout_path,:confirm => "Tem certeza que deseja fazer logout?" %></li>
                 </ul>
               </li>
               <li><span class="divider divider-vert" ></span></li>
-              <li><a class="item-primary" href="#;">Inscrição</a>
+              <li><a class="item-primary" href="#;">Cadastro</a>
                  <ul style="width:108px;">
 
-                          <li><%= link_to "Inscrição",new_crianca_path %></li>
 
-                        <li><a>Consultas</a>
-                           <ul>
-                              <li><%= link_to "Inscrição",consultas_criancas_path %></li>
-                              <li><%= link_to "Status",consulta_status_path %></li>
-                           </ul>
-                        </li>
+                          <li><a class="item-primary" href="#;">Aluno</a>
+                              <ul>
+                                <li><%= link_to "Dados Pessoais", new_aluno_path%> </li>
+                                <li><%= link_to "Saude", new_saude_path%></li>
+                                <li><%= link_to "Socioeconomico", new_socioeconomico_path%></li>
 
-                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
-                            
-                            <li><%= link_to "Alteração Status",consulta_unidade_status_path  %></li>
-                        <%end%>
-                     </ul>
+                              </ul>
+                         </li>
+                         <li><%= link_to "Básico",new_pessoa_path %></li>
+
+             <!--         <li><a class="item-primary" href="#;">Classe</a>
+                              <ul>
+                                <li><%= link_to "Cadastrar",new_class_path %></li>
+                                <li><%= link_to "Montar",montar_classe_path%></li>
+
+
+                              </ul>
+                         </li>
+             -->
+
+                        <li><%= link_to "Classe",new_class_path %></li>
+                       <% if current_user.has_role?('admin') %>
+                          <li><%= link_to "Professor",new_professor_path %></li>
+                       <%end%>
+
+                  </ul>
               </li>
-              
-              <li><a class="item-primary" href="#;">Classificação</a>
+              <li><a class="item-primary" href="#;">Consulta</a>
                  <ul style="width:108px;">
-                          <li><%= link_to "Classificação",consulta_unidade_path %></li>
-                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao'))%>
-                           <li><%= link_to "Gráficos", grafico_path %></li>
-                          <%end%>
-                          <li><%= link_to "Relatório",consulta_geral_path %></li>
-                            
-                           </ul>
+                     <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                  </ul>
               </li>
-              
+              <li><span class="divider divider-vert" ></span></li>
+              <li><a class="item-primary" href="#;">Documentos</a>
+                 <ul style="width:108px;">
+                        <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
+                          <li><a class="item-primary" href="#;">Fichas Separadas</a>
+                        <ul>
+                          <li><%= link_to "Pessoal", new_aluno_path%> </li>
+                          <li><%= link_to "Saude", new_saude_path%></li>
+                          <li><%= link_to "Socioeconomico", new_socioeconomico_path%></li>
+
+                        </ul>
+                      </li>
+                  </ul>
+              </li>
 
 
 
@@ -155,8 +175,8 @@ display: none;
                      </li>
                      <li><a>Unidades</a>
                         <ul>
-                          <li><%= link_to 'Cadastrar', new_unidade_path %></li>
-     <!--                     <li><%= link_to 'Consultar', unidades_path  %></li> -->
+                           <li><%= link_to "Cadastrar",new_unidade_path %></li>
+                           <li><%= link_to "Consultar",consultas_unidades_path %></li>
                         </ul>
                      </li>
 
@@ -165,6 +185,17 @@ display: none;
               </li>
               <%end%>
               
+
+
+              <li><a class="item-primary" href="#;">Unidades</a>
+                 <ul style="width:108px;">
+                     <% if current_user.has_role?('admin') %>
+                        <li><%= link_to "Cadastrar",new_unidade_path %></li>
+                     <%end%>
+                     <li><%= link_to "Consultar",consultas_unidades_path %></li>
+                  </ul>
+              </li>
+
 
 
 

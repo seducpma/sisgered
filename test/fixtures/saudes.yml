@@ -1,0 +1,59 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  aluno_id: 
+  saude_plano_saude: MyString
+  saude_cartao_sus: MyString
+  saude_necessidade_especial: MyString
+  saude_tipo_sangue: MyString
+  saude_hab_motora: MyString
+  saude_fumante: MyString
+  saude_antecedentes_mae: MyString
+  saude_parto: MyString
+  saude_alimentacao: MyString
+  saude_sono: MyString
+  saude_neuropsico: MyString
+  saude_medicamento: MyString
+  saude_antipiretico: MyString
+  saude_pelicilina: MyString
+  saude_alergia: MyString
+  saude_cirurgia: MyString
+  saude_fratura: MyString
+  saude_probl_visao: MyString
+  saude_hospitalizado: MyString
+  saude_doenças: MyString
+  saude_antecedentes_familia: MyString
+  saude_doenças: MyString
+  saude_antecedentes_familia: MyString
+  saude_fumante_casa: MyString
+  saude_dependetes_quimicos: MyString
+  saude_obs: MyString
+
+two:
+  aluno_id: 
+  saude_plano_saude: MyString
+  saude_cartao_sus: MyString
+  saude_necessidade_especial: MyString
+  saude_tipo_sangue: MyString
+  saude_hab_motora: MyString
+  saude_fumante: MyString
+  saude_antecedentes_mae: MyString
+  saude_parto: MyString
+  saude_alimentacao: MyString
+  saude_sono: MyString
+  saude_neuropsico: MyString
+  saude_medicamento: MyString
+  saude_antipiretico: MyString
+  saude_pelicilina: MyString
+  saude_alergia: MyString
+  saude_cirurgia: MyString
+  saude_fratura: MyString
+  saude_probl_visao: MyString
+  saude_hospitalizado: MyString
+  saude_doenças: MyString
+  saude_antecedentes_familia: MyString
+  saude_doenças: MyString
+  saude_antecedentes_familia: MyString
+  saude_fumante_casa: MyString
+  saude_dependetes_quimicos: MyString
+  saude_obs: MyString

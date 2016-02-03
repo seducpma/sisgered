@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  classe: MyString
+  professor_id: 
+  unidade_id: 
+  auxiliar: MyString
+  estagiario: MyString
+  descricao: MyString
+
+two:
+  classe: MyString
+  professor_id: 
+  unidade_id: 
+  auxiliar: MyString
+  estagiario: MyString
+  descricao: MyString

@@ -1,0 +1,60 @@
+<h1>Listing socioeconomicos</h1>
+
+<table>
+  <tr>
+    <th>Pessoa</th>
+    <th>Economico casa</th>
+    <th>Economico tipo casa</th>
+    <th>Economico comodos</th>
+    <th>Economico eletricidade</th>
+    <th>Economico esgoto</th>
+    <th>Economico agua</th>
+    <th>Economico residentes</th>
+    <th>Economico irmaos</th>
+    <th>Economico religao</th>
+    <th>Economico remunerada</th>
+    <th>Economico renda familiar</th>
+    <th>Economico menores</th>
+    <th>Economico carro</th>
+    <th>Economico computador</th>
+    <th>Economico moto</th>
+    <th>Economico geladeira</th>
+    <th>Economico frezer</th>
+    <th>Economico tv</th>
+    <th>Economico internet</th>
+    <th>Economico obs</th>
+  </tr>
+
+<% @socioeconomicos.each do |socioeconomico| %>
+  <tr>
+    <td><%=h socioeconomico.pessoa_id %></td>
+    <td><%=h socioeconomico.economico_casa %></td>
+    <td><%=h socioeconomico.economico_tipo_casa %></td>
+    <td><%=h socioeconomico.economico_comodos %></td>
+    <td><%=h socioeconomico.economico_eletricidade %></td>
+    <td><%=h socioeconomico.economico_esgoto %></td>
+    <td><%=h socioeconomico.economico_agua %></td>
+    <td><%=h socioeconomico.economico_residentes %></td>
+    <td><%=h socioeconomico.economico_irmaos %></td>
+    <td><%=h socioeconomico.economico_religao %></td>
+    <td><%=h socioeconomico.economico_remunerada %></td>
+    <td><%=h socioeconomico.economico_renda_familiar %></td>
+    <td><%=h socioeconomico.economico_menores %></td>
+    <td><%=h socioeconomico.economico_carro %></td>
+    <td><%=h socioeconomico.economico_computador %></td>
+    <td><%=h socioeconomico.economico_moto %></td>
+    <td><%=h socioeconomico.economico_geladeira %></td>
+    <td><%=h socioeconomico.economico_frezer %></td>
+    <td><%=h socioeconomico.economico_tv %></td>
+    <td><%=h socioeconomico.economico_internet %></td>
+    <td><%=h socioeconomico.economico_obs %></td>
+    <td><%= link_to 'Show', socioeconomico %></td>
+    <td><%= link_to 'Edit', edit_socioeconomico_path(socioeconomico) %></td>
+    <td><%= link_to 'Destroy', socioeconomico, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New socioeconomico', new_socioeconomico_path %>

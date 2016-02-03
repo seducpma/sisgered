@@ -1,0 +1,51 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  aluno_pessoa: 
+  aluno_inep: MyString
+  aluno_rm: MyString
+  aluno_ra: MyString
+  aluno_nis: MyString
+  aluno_sus: MyString
+  aluno_reside_com: MyString
+  aluno_pai: 
+  aluno_mae: 
+  aluno_responsavel: 
+  aluno_resticao: MyString
+  aluno_bolsa_familia: MyString
+  aluno_imagem: MyString
+  aluno_vai_embora_so: MyString
+  aluno_acompanhante: MyString
+  aluno_aut_passeio: MyString
+  aluno_aut_ativ_fisica: MyString
+  aluno_atu_ativ_extraclasse: MyString
+  aluno_brasil_carinho: MyString
+  aluno_renda_cidada: MyString
+  aluno_contato1: 
+  aluno_contato_2: 
+  aluno_obs: MyString
+
+two:
+  aluno_pessoa: 
+  aluno_inep: MyString
+  aluno_rm: MyString
+  aluno_ra: MyString
+  aluno_nis: MyString
+  aluno_sus: MyString
+  aluno_reside_com: MyString
+  aluno_pai: 
+  aluno_mae: 
+  aluno_responsavel: 
+  aluno_resticao: MyString
+  aluno_bolsa_familia: MyString
+  aluno_imagem: MyString
+  aluno_vai_embora_so: MyString
+  aluno_acompanhante: MyString
+  aluno_aut_passeio: MyString
+  aluno_aut_ativ_fisica: MyString
+  aluno_atu_ativ_extraclasse: MyString
+  aluno_brasil_carinho: MyString
+  aluno_renda_cidada: MyString
+  aluno_contato1: 
+  aluno_contato_2: 
+  aluno_obs: MyString

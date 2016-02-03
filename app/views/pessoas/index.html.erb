@@ -1,0 +1,82 @@
+<h1>Listing pessoas</h1>
+
+<table>
+  <tr>
+    <th>Pessoa tipo</th>
+    <th>Pessoa nome</th>
+    <th>Pessoa sexo</th>
+    <th>Pessoa nascimento</th>
+    <th>Pessoa naturalidade</th>
+    <th>Pessoa nacionalidade</th>
+    <th>Pessoa chegada brasil</th>
+    <th>Pessoa rg</th>
+    <th>Pessoa emissaorg</th>
+    <th>Pessoa cpf</th>
+    <th>Pessoa emissaocpf</th>
+    <th>Pessoa estado civil</th>
+    <th>Pessoa pai</th>
+    <th>Pessoa fone pai</th>
+    <th>Pessoa email pai</th>
+    <th>Pessoa mae</th>
+    <th>Pessoa fone mae</th>
+    <th>Pessoa email mae</th>
+    <th>Pessoa endereco</th>
+    <th>Pessoa num</th>
+    <th>Pessoa complemento</th>
+    <th>Pessoa cep</th>
+    <th>Pessoa bairro</th>
+    <th>Pessoa cidade</th>
+    <th>Pessoa fone fixo</th>
+    <th>Pessoa fone cel</th>
+    <th>Pessoa escolaridade</th>
+    <th>Pessoa profissao</th>
+    <th>Pessoa condicao profissao</th>
+    <th>Pessoa local trabalho</th>
+    <th>Pessoa fone trabalho</th>
+    <th>Obs</th>
+  </tr>
+
+<% @pessoas.each do |pessoa| %>
+  <tr>
+    <td><%=h pessoa.pessoa_tipo %></td>
+    <td><%=h pessoa.pessoa_nome %></td>
+    <td><%=h pessoa.pessoa_sexo %></td>
+    <td><%=h pessoa.pessoa_nascimento %></td>
+    <td><%=h pessoa.pessoa_naturalidade %></td>
+    <td><%=h pessoa.pessoa_nacionalidade %></td>
+    <td><%=h pessoa.pessoa_chegada_brasil %></td>
+    <td><%=h pessoa.pessoa_RG %></td>
+    <td><%=h pessoa.pessoa_emissaoRG %></td>
+    <td><%=h pessoa.pessoa_CPF %></td>
+    <td><%=h pessoa.pessoa_emissaoCPF %></td>
+    <td><%=h pessoa.pessoa_estado_civil %></td>
+    <td><%=h pessoa.pessoa_pai %></td>
+    <td><%=h pessoa.pessoa_fone_pai %></td>
+    <td><%=h pessoa.pessoa_email_pai %></td>
+    <td><%=h pessoa.pessoa_mae %></td>
+    <td><%=h pessoa.pessoa_fone_mae %></td>
+    <td><%=h pessoa.pessoa_email_mae %></td>
+    <td><%=h pessoa.pessoa_endereco %></td>
+    <td><%=h pessoa.pessoa_num %></td>
+    <td><%=h pessoa.pessoa_complemento %></td>
+    <td><%=h pessoa.pessoa_cep %></td>
+    <td><%=h pessoa.pessoa_bairro %></td>
+    <td><%=h pessoa.pessoa_cidade %></td>
+    <td><%=h pessoa.pessoa_fone_fixo %></td>
+    <td><%=h pessoa.pessoa_fone_cel %></td>
+    <td><%=h pessoa.pessoa_escolaridade %></td>
+    <td><%=h pessoa.pessoa_profissao %></td>
+    <td><%=h pessoa.pessoa_condicao_profissao %></td>
+    <td><%=h pessoa.pessoa_local_trabalho %></td>
+    <td><%=h pessoa.pessoa_fone_trabalho %></td>
+    <td><%=h pessoa.obs %></td>
+    <td><%= link_to 'Show', pessoa %></td>
+    <td><%= link_to 'Edit', edit_pessoa_path(pessoa) %></td>
+    <td><%= link_to 'Destroy', pessoa, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New pessoa', new_pessoa_path %>

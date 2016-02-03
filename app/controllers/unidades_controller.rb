@@ -1,6 +1,12 @@
 class UnidadesController < ApplicationController
-    
- before_filter :load_unidades
+  # GET /unidades
+  # GET /unidades.xml
+   before_filter :load_unidades
+   before_filter :load_tipos
+
+def load_tipos
+      @tipos = Tipo.find(:all, :order => 'nome ASC')
+end
 
 
   def load_unidades
@@ -8,95 +14,114 @@ class UnidadesController < ApplicationController
   end
 
   def index
-    @unidades = Unidade.find(:all, :order => 'nome ASC')
-  end
+    @unidades = Unidade.all
 
-  def show
-    @unidade = Unidade.find(params[:id])
-  end
-
-  def new
-    @unidade = Unidade.new
-  end
-
-  def create
-    @unidade = Unidade.new(params[:unidade])
-    if @unidade.save
-      flash[:notice] = "CADASTRADO COM SUCESSO."
-      redirect_to @unidade
-    else
-      render :action => 'new'
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @unidades }
     end
   end
 
+  # GET /unidades/1
+  # GET /unidades/1.xml
+  def show
+    @unidade = Unidade.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @unidade }
+    end
+  end
+
+  # GET /unidades/new
+  # GET /unidades/new.xml
+  def new
+    @unidade = Unidade.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @unidade }
+    end
+  end
+
+  # GET /unidades/1/edit
   def edit
     @unidade = Unidade.find(params[:id])
   end
 
-  def update
-    @unidade = Unidade.find(params[:id])
-    if @unidade.update_attributes(params[:unidade])
-      flash[:notice] = "CADASTRADO COM SUCESSO."
-      redirect_to @unidade
-    else
-      render :action => 'edit'
+  # POST /unidades
+  # POST /unidades.xml
+  def create
+    @unidade = Unidade.new(params[:unidade])
+
+    respond_to do |format|
+      if @unidade.save
+        flash[:notice] = 'Unidade was successfully created.'
+        format.html { redirect_to(@unidade) }
+        format.xml  { render :xml => @unidade, :status => :created, :location => @unidade }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @unidade.errors, :status => :unprocessable_entity }
+      end
     end
   end
 
+  # PUT /unidades/1
+  # PUT /unidades/1.xml
+  def update
+    @unidade = Unidade.find(params[:id])
+
+    respond_to do |format|
+      if @unidade.update_attributes(params[:unidade])
+        flash[:notice] = 'Unidade was successfully updated.'
+        format.html { redirect_to(@unidade) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @unidade.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /unidades/1
+  # DELETE /unidades/1.xml
   def destroy
     @unidade = Unidade.find(params[:id])
     @unidade.destroy
-    flash[:notice] = "EXCLUIDO COM SUCESSO."
-    redirect_to unidades_url
-  end
 
-  def mesmo_nome
-    session[:nome] = params[:unidade_nome]
-    @verifica = Unidade.find_by_nome(session[:nome])
-    if @verifica then
-      render :update do |page|
-        page.replace_html 'nome_aviso', :text => 'EMPRESA JÁ CADASTRADA'
-        page.replace_html 'Certeza', :text =>'EMPRESA JÁ CADASTRADA'
-    end
-    else
-      render :update do |page|
-        page.replace_html 'nome_aviso', :text => ''
-      end
-
+    respond_to do |format|
+      format.html { redirect_to(unidades_url) }
+      format.xml  { head :ok }
     end
   end
 
-  def consulta_tipo_unidade
-   
-     if params[:type_of].to_i == 3
-        @unidades = Unidade.find(:all, :order => 'nome ASC')
-        render :update do |page|
-         page.replace_html 'unidades', :partial => "unidades"
-        end
-     else
-      if params[:type_of].to_i == 1
-          
-          @unidades = Unidade.paginate( :all,:page => params[:page], :per_page => 50, :conditions => ["nome like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
-          render :update do |page|
-            page.replace_html 'unidades', :partial =>  'unidades'
+ def consulta_unidade
+   if params[:type_of].to_i == 1
+
+   else if params[:type_of].to_i == 2
+    t=0
+            @unidades = Unidade.find(:all, :conditions => ["endereco like ?", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+           render :update do |page|
+                page.replace_html 'unidades', :partial => "unidades"
+              end
+         else if params[:type_of].to_i == 3
+              end
           end
-          else if params[:type_of].to_i == 2
-          @unidades = Unidade.all(:conditions => ["tipo =?", params[:search]])
-          render :update do |page|
-              page.replace_html 'unidades', :partial =>  'unidades'
-            end
-          end
-      end
-   end
+  end
 end
-
-  def consulta_nome
-    render 'consulta_nome'
-  end
 
  def lista_unidade_nome
-    $unidade = params[:unidade_unidade_id]
-    @unidades = Unidade.find(:all, :conditions => ['id=' + $unidade])
+    @unidades = Unidade.find(:all, :conditions => ['id=?', params[:unidade_unidade_id]])
     render :partial => 'unidades'
   end
+
+ def lista_tipo
+   @unidades = Unidade.find(:all, :conditions => ['tipo_id=?', params[:unidade_tipo_id]])
+   
+   render :partial => 'unidades'
+  end
+
+
 end
+
+

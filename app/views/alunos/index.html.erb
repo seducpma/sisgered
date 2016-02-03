@@ -1,0 +1,64 @@
+<h1>Listing alunos</h1>
+
+<table>
+  <tr>
+    <th>Aluno pessoa</th>
+    <th>Aluno inep</th>
+    <th>Aluno rm</th>
+    <th>Aluno ra</th>
+    <th>Aluno nis</th>
+    <th>Aluno sus</th>
+    <th>Aluno reside com</th>
+    <th>Aluno pai</th>
+    <th>Aluno mae</th>
+    <th>Aluno responsavel</th>
+    <th>Aluno resticao</th>
+    <th>Aluno bolsa familia</th>
+    <th>Aluno imagem</th>
+    <th>Aluno vai embora so</th>
+    <th>Aluno acompanhante</th>
+    <th>Aluno aut passeio</th>
+    <th>Aluno aut ativ fisica</th>
+    <th>Aluno atu ativ extraclasse</th>
+    <th>Aluno brasil carinho</th>
+    <th>Aluno renda cidada</th>
+    <th>Aluno contato1</th>
+    <th>Aluno contato 2</th>
+    <th>Aluno obs</th>
+  </tr>
+
+<% @alunos.each do |aluno| %>
+  <tr>
+    <td><%=h aluno.aluno_pessoa %></td>
+    <td><%=h aluno.aluno_inep %></td>
+    <td><%=h aluno.aluno_rm %></td>
+    <td><%=h aluno.aluno_ra %></td>
+    <td><%=h aluno.aluno_nis %></td>
+    <td><%=h aluno.aluno_sus %></td>
+    <td><%=h aluno.aluno_reside_com %></td>
+    <td><%=h aluno.aluno_pai %></td>
+    <td><%=h aluno.aluno_mae %></td>
+    <td><%=h aluno.aluno_responsavel %></td>
+    <td><%=h aluno.aluno_resticao %></td>
+    <td><%=h aluno.aluno_bolsa_familia %></td>
+    <td><%=h aluno.aluno_imagem %></td>
+    <td><%=h aluno.aluno_vai_embora_so %></td>
+    <td><%=h aluno.aluno_acompanhante %></td>
+    <td><%=h aluno.aluno_aut_passeio %></td>
+    <td><%=h aluno.aluno_aut_ativ_fisica %></td>
+    <td><%=h aluno.aluno_atu_ativ_extraclasse %></td>
+    <td><%=h aluno.aluno_brasil_carinho %></td>
+    <td><%=h aluno.aluno_renda_cidada %></td>
+    <td><%=h aluno.aluno_contato1 %></td>
+    <td><%=h aluno.aluno_contato_2 %></td>
+    <td><%=h aluno.aluno_obs %></td>
+    <td><%= link_to 'Show', aluno %></td>
+    <td><%= link_to 'Edit', edit_aluno_path(aluno) %></td>
+    <td><%= link_to 'Destroy', aluno, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New aluno', new_aluno_path %>

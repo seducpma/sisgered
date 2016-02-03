@@ -1,0 +1,248 @@
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2"><i><b><u>CADASTRO DE ALUNO</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<font size="1"><b><u></u> DADOS PESSOAIS & AUTORIZAÇÔES      </b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<font size="1">Unidade Escolar: <% @aluno.each do |aluno| %><%=h aluno.unidade.nome %> <%end%> </font><br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp
+
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+<br/>
+<% @aluno.each do |aluno| %>
+<font  size=3><b> Dados Pessoais</b></font></legend>
+         <table frame="box" rules="all">
+           <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Nome:</b></td>
+               <td colspan="4" align="left"> <%=h aluno.pessoa.pessoa_nome %></td>
+               <td align="right"><b>Sexo:</b></td>
+               <td colspan="2" align="left"><%=h aluno.pessoa.pessoa_sexo %></td>
+            </tr>
+           <tr style="font-size:9px">
+               <td align="left"><b>Nascimento:</b></td>
+               <td colspan="2"align="left">  <%=h aluno.pessoa.pessoa_nascimento.strftime("%d/%m/%Y")%></td>
+               <td align="right"><b>Naturalidade:&nbsp&nbsp</b></td>
+               <td colspan="4"align="left"><%=h aluno.pessoa.pessoa_naturalidade %></td>
+            </tr>
+           <tr style="font-size:9px">
+               <td align="left"><b>Nacionalidade:</b></td>
+               <td colspan="2"align="left"><%=h aluno.pessoa.pessoa_nacionalidade %></td>
+               <% if aluno.pessoa.pessoa_nacionalidade = 'BRASILEIRO' %>
+                  <td colspan="5"></td>
+               <%else%>
+                   <td align="right"><b>Chegada Brasil:&nbsp&nbsp</b></td>
+                   <td colspan="4" align="left">  <%=h aluno.pessoa.pessoa_chegada_brasil.strftime("%d/%m/%Y")%></td>
+              <%end%>
+            </tr>
+           <tr style="font-size:9px">
+               <td align="left"><b>RG:</b></td>
+               <td align="left">  <%=h aluno.pessoa.pessoa_RG%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td colspan="5"align="left"><%=h aluno.pessoa.pessoa_emissaoRG %></td>
+            </tr>
+           <tr style="font-size:9px">
+               <td align="left"><b>CPF:</b></td>
+               <td align="left">  <%=h aluno.pessoa.pessoa_CPF%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td colspan="5"align="left"><%=h aluno.pessoa.pessoa_emissaoCPF %></td>
+           </tr>
+           <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Mãe:</b></td>
+               <td align="left" colspan="7"><%=h aluno.pessoa.pessoa_mae %></td>
+          </tr>
+           <tr style="font-size:9px">
+             <td></td>
+               <td align="left"><b>Fone:</b></td>
+               <td align="left"><%=h aluno.pessoa.pessoa_fone_mae %></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="4"align="left"><%=h aluno.pessoa.pessoa_email_mae %></td>
+           </tr>
+            <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Pai:</b></td>
+               <td align="left"colspan="7"><%=h aluno.pessoa.pessoa_pai %></td>
+          </tr>
+           <tr style="font-size:9px">
+             <td></td>
+               <td align="left"><b>Fone:</b></td>
+               <td align="left"><%=h aluno.pessoa.pessoa_fone_pai %></td></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="4" align="left"><%=h aluno.pessoa.pessoa_email_pai%></td>
+            </tr>
+
+            <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Endereço:</b></td>
+               <td colspan="3" align="left"><%=h aluno.pessoa.pessoa_endereco %> - <%=h aluno.pessoa.pessoa_num %></td>
+               <td align="left" width="4%"><b>Complemento:</b></td>
+               <td colspan="4" align="left"><%=h aluno.pessoa.pessoa_complemento %></td>
+            </tr>
+            <tr  style="font-size:9px">
+               <td align="left" width="4%"><b>Bairro:</b></td>
+               <td  align="left"><%=h aluno.pessoa.pessoa_bairro %></td>
+               <td align="left" width="4%"><b>CEP:</b></td>
+               <td  align="left"><%=h aluno.pessoa.pessoa_cep %></td>
+               <td align="left" width="4%"><b>Cidade:</b></td>
+               <td colspan="3" align="left"><%=h aluno.pessoa.pessoa_cidade %></td>
+            </tr>
+            <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Telefone:</b></td>
+               <td align="left"><%=h aluno.pessoa.pessoa_fone_fixo %></td>
+               <td align="left"><b>Celular:</b></td>
+               <td align="left"><%=h aluno.pessoa.pessoa_fone_cel %></td></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="3"align="left"><%=h aluno.pessoa.pessoa_email%></td></td>
+            </tr>
+            <tr style="font-size:9px">
+               <td align="left"><b>Observação::</b></td>
+               <td colspan="7" align="left"><%=h aluno.pessoa.pessoa_obs %></td>
+            </tr>
+           <%if !aluno.aluno_responsavel_pessoa_id.nil? %>
+           <tr style="font-size:9px">
+             <td align="left" ><b>Responsável:</b></td>
+              <td colspan="7" align="left"> <%=h  session[:responsavel] %></td>
+           </tr>
+            <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Endereço:</b></td>
+               <td colspan="3" align="left"><%=h  session[:responsavel]%>, Nº <%=h  session[:responsavel] %> </td>
+               <td align="left" width="4%"><b>Complemento:</b></td>
+               <td colspan="4" align="left"><%=h  session[:complemento]%></td>
+            </tr>
+            <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Bairro:</b></td>
+               <td  align="left"><%=h  session[:bairro]%></td>
+               <td align="left" width="4%"><b>CEP:</b></td>
+               <td  align="left"><%=h  session[:CEP]%></td>
+               <td align="left" width="4%"><b>Cidade:</b></td>
+               <td colspan="3" align="left"><%=h  session[:cidade]%></td>
+            </tr>
+            <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Telefone:</b></td>
+               <td align="left"><%=h  session[:fone_fixo]%></td>
+               <td align="left"><b>Celular:</b></td>
+               <td align="left"><%=h  session[:fone_cel]%></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="3"align="left"><%=h  session[:email]%></td>
+            </tr>
+           <%end%>
+           <tr>
+             <td width =" 12%"><b>Reside com:</b></td>
+             <td colspan="7">  <%=h aluno.aluno_reside_com %></td>
+           </tr>
+           <tr>
+              <td width =" 22%"><b>Nº INEP:</b></td>
+              <td width ="15%">   <%=h aluno.aluno_inep %></td>
+              <td width =" 12%"><b>Nº RM:</b></td>
+              <td>   <%=h aluno.aluno_rm %></td>
+              <td width =" 20%"><b>Nº RA:</b></td>
+              <td>   <%=h aluno.aluno_ra %></td>
+              <td width =" 12%"><b>Nº NIS:</b></td>
+              <td>   <%=h aluno.aluno_nis %></td>
+           </tr>
+
+           <tr>
+             <td colspan="4"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
+             <td colspan="4"><%=h aluno.aluno_restricao %></td>
+
+           </tr>
+           <tr>
+              <td width ="17%"><b>Bolsa Família:</b></td>
+              <td><%=h aluno.aluno_bolsa_familia %></td>
+              <td colspan="2" width =" 15%"><b>Nome Beneficiário:</b></td>
+              <td colspan="4"> <%=h aluno.aluno_nome_beneficiario %></td>
+           </tr>
+           <tr>
+             <td colspan="2" ><b> Possui necessidade(s) especial(s):</b> </td>
+             <td colspan="6"><%=h aluno.aluno_especial %></td>
+           </tr>
+        </table>
+
+           <hr>  
+         <font  size=3><b> Autorizações</b></font></legend>
+      <table frame="box" rules="all" width="100%">
+       <tr>
+         <td colspan="7">1) Autorizo participar normalmente das atividades física, pois a criança não apresenta problemas de saúde que o impeça de paricipar.</td>
+         <td ><%=h aluno.aluno_autoriza_ativ_fisica %></td>
+       </tr>
+      <tr>
+          <td colspan="7">2) Autorizo participar de atividades extra calsse (passeios, excursões e outras atiivades curriculares), na cidade de Americana, devidamente acompanhado pelos professores:</td>
+         <td ><%=h aluno.aluno_autoriza_ativ_extraclasse%></td>
+
+      </tr>
+      <tr>
+          <td colspan="7">3) Autorizo a Secretaria de Educação a fazer uso da imagem da criança em trabalhos pedagógicos para fins de exibição  na escola ou lugares afins</td>
+            <td ><%=h aluno.aluno_autoriza_imagem%></td>
+      </tr>
+      <tr>
+          <td colspan="7">4) Autorizo tratamento médico emergencial, em caso de enfermidade ou acidente na escola, ministrar primeiros socorros e providenciar deslocamento até hospital</td>
+          <td ><%=h aluno.aluno_emergencial%></td>
+
+      </tr>
+      <tr>
+          <td colspan="7">5) Autorizo tratamento odontologio, se disponibilizado pela Prefeitura Municipal de Americana</td>
+          <td ><%=h aluno.aluno_odontologico%></td>
+      </tr>
+      <tr>
+          <td colspan="7">6) Autorizo a aplicação de fluor</td>
+          <td ><%=h aluno.aluno_fluor%></td>
+    </tr>
+      <tr>
+          <td colspan="7">7) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros.
+                         Nome pessoa(s) autorizadas:   <b><%=h aluno.aluno_acompanhante %></b>
+          <td><%=h aluno.aluno_vai_embora_so %></td>
+      </tr>
+         </table>
+
+
+<%end%>
+
+<br/>
+<font size="2">
+  Declaro qie todos os dados fornecidos para efetivação deste ato são verdadeiros e que respondo perante a lei pelas informações
+  contidas neste ficha.
+</font>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <font size ="1" >Americana, <%= Time.now.strftime("%d/%m/%Y") %></font>
+
+
+  </div>
+
+<br/><br/><br/><br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+p/  Unidade Escolar
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Assinatura do Responsável<br/>
+
+</font>
+&nbsp&nbsp
+

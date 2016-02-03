@@ -18,7 +18,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: demanda
+  database: sisgered_development
   pool: 5
   username: root
   password: s3inf09
@@ -31,7 +31,7 @@ test:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: demanda_test
+  database: sisgered_test
   pool: 5
   username: root
   password: s3inf09
@@ -41,7 +41,7 @@ production:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: demanda_production
+  database: sisgered_production
   pool: 5
   username: root
   password: s3inf05

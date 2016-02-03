@@ -1,21 +1,49 @@
   <div class="tabs">
     <table bgcolor="#DCDCDC" width="100%">
-        <tr bgcolor="#DCDCDC" >
-            <th width="25%">Tipo</th>
-            <th width="40%">Nome</th>
-            <th width="5%" colspan="3">Administração</th>
-        </tr>
         <% @unidades.each do |unidade| %>
-            <tr bgcolor="#F5F5F5">
-                <td align="left"><%=h unidade.tipo%></td>
-                <td align="left"><%=h unidade.nome%></td>
-                <td align="center"><td align="center" ><%= button_to 'Visualizar',{:action => "show", :id =>unidade}, :method => "get", :title => "Visualizar"%></td></td>
-                  <% if current_user.has_role?('admin')or  current_user.has_role?('planejamento') %>
-                      <td align="center" ><%= button_to 'Editar',{:action => "edit", :id =>unidade}, :method => "get", :title => "Editar"%></td>
-                  <%else%>
-                      <td align="center" > -- </td>
-                  <%end%>
+            <tr  bgcolor="#F5F5F5">
+                <td width ="10%"><b>Nome: </b></td>
+                <td colspan="3"width ="30%"><%=h unidade.tipo.nome %> <%=h unidade.nome %></td>
             </tr>
+            <tr bgcolor="#F5F5F5">
+               <td width ="10%"><b>Endereço: </b></td>
+               <td width ="30%"><%=h unidade.endereco %></td>
+               <td  width ="10%">&nbsp <b>Nº &nbsp&nbsp</b><%=h unidade.num %></td>
+               <td width ="30%"><b>Bairro: </b>&nbsp&nbsp&nbsp&nbsp<%=h unidade.bairro %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td><b>CEP: </b></td>
+                <td><%=h unidade.CEP  %>&nbsp&nbsp&nbsp&nbsp
+                     <b>&nbsp Fones: &nbsp&nbsp</b><%=h unidade.fone %></td>
+               <td><b>&nbsp E_mail: </b></td>
+               <td><%=h unidade.email %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td><b>Diretor: </b></td>
+                <td> <%=h unidade.diretor %></td>
+                <td><b>Vice-diretor:</b></td>
+                <td> <%=h unidade.vice %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td><b>Coordenador:</b></td>
+                <td> <%=h unidade.coordenador %></td>
+                <td><b>Supervisão: </b></td>
+                <td> <%=h unidade.supervisao %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td ><b>Observação:</b></td>
+                <td colspan="3"> <%=h unidade.obs %></td>
+
+            </tr>
+            <tr>
+                <td><%= link_to image_tag("/stylesheets/images/botao.png"), "https://www.google.com/maps/d/edit?hl=pt-BR&authuser=0&mid=zNj5sTNCo6CY.kex3W_prFKOA",:target => '_blank', :title => "Localização"%></td>
+                
+                  <% if current_user.has_role?('admin')or  current_user.has_role?('planejamento') %>
+                      <td colspan="4"align="left" ><%= button_to 'Editar',{:action => "edit", :id =>unidade}, :method => "get", :title => "Editar"%></td>
+                  <%else%>
+                      <td align="center" >  </td>
+                  <%end%>
+           </tr>
          <% end %>
      </table>
   </div>

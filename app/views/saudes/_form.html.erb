@@ -1,0 +1,108 @@
+<% form_for (@saude) do |f| %>
+ <%= f.error_messages %>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp
+<font color ="red"  size="4"align="left"><b> Quanto a resposta for diferente de NÃO, favor especificar </b></font>
+
+  <fieldset>
+   <legend><font size=4>Dados Pessoais</font></legend>
+   <table width="100%">
+       <tr bgcolor="#F5F5F5">
+          <td align="left"  width ="20%"><b>Nome:</b></td>
+          <td align="left" colspan="3"><%= f.collection_select :pessoa_id, @pessoas_aluno, :id, :pessoa_nome, :include_blank => ' -- Selecione -- ' %>
+
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Possui Cartão SUS:</b></td>
+         <td><%= f.text_field :saude_cartao_sus, :size=>"30", :value => "NÃO" %></td>
+         <td width ="20%"><b>Possui Plano de Saúde:</b></td>
+         <td><%= f.text_field :saude_plano_saude, :size=>"30", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td colspan="4"><b>Necessidades Especiais:</b>
+         <%= f.text_field :saude_necessidade_especial, :size=>"50", :value => "NÃO" %>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Tipo Sanguineo:&nbsp&nbsp&nbsp</b>
+         <%= f.select :saude_tipo_sangue, (SANGUE).sort, :include_blank => '-- Selecionar --' %>
+       </tr>
+        <tr bgcolor="#F5F5F5">
+          <td colspan="4"><b>Problema Neuropsicologico:</b> 
+         <%= f.text_field :saude_neuropsico, :size=>"36", :value => "NÃO" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         <b>Habilidade Motora:</b>&nbsp&nbsp<%= f.select :saude_hab_motora,(HABILIDADE).sort, :include_blank => '-- Selecionar --' %></td>
+         </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Doenças na Gravidez:</b></td>
+         <td colspan="3"><%= f.text_field :saude_antecedentes_mae , :size => "85", :value => "INFECÇÂO URINÁRIO / DIABETS / HIPERTENSÃO / RUBÉOLA / SÍFILIS / TOXOPLASMOSE" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td colspan="6"><b>Parto:</b> &nbsp&nbsp&nbsp <%= f.select :saude_parto, (PARTO).sort, :include_blank => '-- Selecionar --' %>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sono:</b>&nbsp&nbsp&nbsp<%= f.select :saude_sono, (SONO).sort, :include_blank => '-- Selecionar --' %>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Tem Alergia:</b>&nbsp&nbsp&nbsp<%= f.text_field :saude_alergia, :size=>"38", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td colspan="4"><b>Alimentação:</b>&nbsp&nbsp&nbsp<%= f.select :saude_alimentacao,(ALIMENTO).sort, :include_blank => '-- Selecionar --' %>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b> Especificar intolerância alimentar:</b>
+         &nbsp&nbsp&nbsp&nbsp<%= f.text_field :saude_intolerancia, :size=>"30", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Toma Medicamento:</b></td>
+         <td colspan="3"><%= f.text_field :saude_medicamento , :size => "85", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Toma Antipirético:</b></td>
+         <td><%= f.text_field :saude_antipiretico, :size=>"30", :value => "NÃO" %></td>
+         <td width ="20%" align="right"><b>Já tomou Pelicilina:</b></td>
+         <td align=""><%= f.text_field :saude_pelicilina, :size=>"30", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Já fez Cirurgia:</b></td>
+         <td><%= f.text_field :saude_cirurgia, :size=>"30", :value => "NÃO" %></td>
+         <td width ="20%" align="right"><b>Já sofreu Fratura:</b></td>
+         <td align=""><%= f.text_field :saude_fratura, :size=>"30", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Problema de visão:</b></td>
+         <td><%= f.text_field :saude_probl_visao, :size=>"30", :value => "NÃO" %></td>
+         <td width ="20%" align="right"><b>Já foi Hospitalizado:</b></td>
+         <td align=""><%= f.text_field :saude_hospitalizado, :size=>"30", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Fumante em casa:</b></td>
+         <td><%= f.text_field :saude_fumante_casa, :size=>"30", :value => "NÃO" %></td>
+         <td width ="20%" align="right"><b>Dependente Químico:</b></td>
+         <td align=""><%= f.text_field :saude_dependetes_quimicos, :size=>"30", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Antecendentes do Aluno:</b></td>
+         <td><%= f.text_field :saude_doencas, :size=>"30", :value => "NÃO" %></td>
+         <td width ="20%" align="right"><b>Antedentes Familiar:</b></td>
+         <td align=""><%= f.text_field :saude_antecedentes_familia, :size=>"30", :value => "NÃO" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td valign="top"><b>Observação:</b></td>
+        <td colspan="5"><%= f.text_area(:saude_obs, :cols=> "83", :rows=>"3") %> </td>
+      </tr>
+    </table>
+  </fieldset>
+
+ <br/>
+
+
+
+  
+       <table width="100%" >
+         <tr>
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+            
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    
+  
+
+         </tr>
+       </table>
+  
+
+  </font>
+

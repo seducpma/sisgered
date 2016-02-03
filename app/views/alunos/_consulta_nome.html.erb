@@ -1,0 +1,13 @@
+  <table width="100%" align="center" border="2" >
+   <tr>
+     <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
+        <%= collection_select :professor, :professor_id, @professors, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca1"  %>
+          <%= observe_field 'professor_professor_id',
+               :update => "professors",
+               :url    => { :action => 'lista_professor_nome' },
+               :with   => 'professor_professor_id' %>
+         
+     </td>
+   </tr>
+  </table>
+

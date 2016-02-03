@@ -1,0 +1,108 @@
+<div id="interno2">
+<% title "SAUDE" %>
+<div class ="tabs">
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> Dados Saúde</b></font></legend>
+         <table width="100%">
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Nome:</b></td>
+               <td colspan="4" align="left"> <%=h @saude.pessoa.pessoa_nome %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td width ="22%"><b>Cartão SUS:</b></td>
+               <td width ="32%">  <%=h @saude.saude_cartao_sus%></td>
+               <td width ="18%"><b>Plano de Saúde:</b></td>
+               <td width ="28%"><%=h @saude.saude_plano_saude %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td><b>Necessidades Especial::</b></td>
+               <td>  <%=h @saude.saude_necessidade_especial%></td>
+               <td><b>Tipo Sanguineo:</b></td>
+               <td><%=h @saude.saude_tipo_sangue %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td><b>Problema Neuropsicologico:</b></td>
+               <td><%=h @saude.saude_neuropsico%></td>
+               <td><b>Habilidade Motora:</b></td>
+               <td><%=h @saude.saude_hab_motora %></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td> <b>Parto:</b> &nbsp&nbsp&nbsp <%=h @saude.saude_plano_saude %></td>
+                <td><b>Sono:</b>&nbsp&nbsp&nbsp <%=h @saude.saude_sono%></td>
+                 <td><b>Tem Alergia:</b></td><td><%= @saude.saude_alergia%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+                <td><b>Doenças na Gravidez (mãe):</b></td>
+                <td colspan="3"><%=h @saude.saude_antecedentes_mae %></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Alimentação:</b></td>
+               <td colspan="3"><%=h @saude.saude_alimentacao %> - <%=h @saude_saude_intolerancia %></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Toma Medicamento:</b></td>
+               <td colspan="3"><%=h @saude.saude_antecedentes_mae%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Toma Antipirético:</b></td>
+               <td><%=h @saude.saude_antipiretico%></td>
+               <td><b>Tomou Pelicilina:</b></td>
+               <td><%=h @saude.saude_pelicilina%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Fez Cirurgia:</b></td>
+               <td><%=h @saude.saude_cirurgia%></td>
+               <td><b>Sofreu Fratura:</b></td>
+               <td align=""><%=h @saude.saude_fratura%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Problema de visão:</b></td>
+               <td><%=h @saude.saude_probl_visao%></td>
+               <td><b>Foi Hospitalizado:</b></td>
+               <td><%=h @saude.saude_hospitalizado%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Fumante em casa:</b></td>
+               <td><%=h @saude.saude_fumante_casa %></td>
+               <td><b>Dependente Químico:</b></td>
+               <td><%=h @saude.saude_dependetes_quimicos%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Antecendentes do Aluno:</b></td>
+               <td><%=h @saude.saude_doencas %></td>
+               <td> <b>Antedentes Familiar:</b></td>
+               <td><%=h @saude.saude_antecedentes_familia%></td>
+             </tr>
+
+             <tr bgcolor="#F5F5F5">
+               <td valign="top"><b>Observação:</b></td>
+              <td colspan="5"><%=h @saude.saude_obs%> </td>
+             </tr>
+         </table>
+       </fieldset>
+  <% session[:saude] = @saude.id %>
+  <% session[:pessoa] = @saude.pessoa_id %>
+     </td>
+  </tr>
+ </table>
+
+       <table width="100%" >
+         <tr>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+            <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@saude}, :method => "get", :title => "Editar"%></td>
+            <td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_saude_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+            <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td align="right"><%= button_to 'Continuar Cadastrando' ,new_socioeconomico_path, :title => "Continuar" %></td></td>
+         </tr>
+       </table>
+    </table>
+
+
+</div>
+<br/>
+</div>
+
+
+

@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     #  session[:ip] = request.remote_ip
     #  if session[:ip] == '200.232.60.242' or session[:ip] == '201.77.127.49' # or session[:ip] == '201.92.73.126'
         redirect_back_or_default(home_path)
-        flash[:notice] = "BEM VINDO AO SISDEMAN."
+        flash[:notice] = "BEM VINDO AO SISGERED."
     #  else
     #    redirect_to(visaos_path)
     #    flash[:notice] = "SISTEMA INDISPONÍVEL - NÃO PODE SERACESSADO"
@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/')
-      flash[:notice] = "SISDEMAN ver5.2"
+      flash[:notice] = "SISGERED ver.1.0"
     else
       note_failed_signin
       @login       = params[:login]
@@ -56,7 +56,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_killing_session!
-    flash[:notice] = "VOCẼ ACABOU DE SAIR DO SISDEMANA"
+    flash[:notice] = "VOCẼ ACABOU DE SAIR DO SISGERED"
     redirect_back_or_default('/')
   end
 

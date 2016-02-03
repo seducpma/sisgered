@@ -3,67 +3,75 @@
 one:
   matricula: 1
   nome: MyString
-  dt_atual: 2015-02-19 10:39:29
-  dt_ingresso: 2015-02-19 10:39:29
-  dt_nasc: 2015-02-19 10:39:29
+  dt_atual: 2016-01-22 09:41:55
+  dt_ingresso: 2016-01-22 09:41:55
+  dt_nasc: 2016-01-22 09:41:55
   RG: MyString
   CPF: MyString
   INEP: 1
   RD: 1
   n_filhos: 1
-  sede_id: 
+  unidade_id:
+  jornada_sem: 1
   funcao: MyString
   funcao2: MyString
-  enderes: MyString
+  endres: MyString
   complemento: MyString
-  num: 1
-  telefone: 1
+  bairro: MyString
+  num: MyString
+  telefone: MyString
+  cel: MyString
   cidade: MyString
+  cep: MyString
+  email: MyString
   obs: MyString
   total_trabalhado: 1
   total_titulacao: 1
   pontuacao_final: 1
   flag: 1
-  sede_id_ant: 
+  sede_id_ant: 1
   log_user: MyString
   prioridade: 1
   titulo_arrumado: 1
-  entrada_concurso: 1
-  excluido: 1
-  data_exclusao: 2015-02-19 10:39:29
+  entrada_concurso: MyString
+  desligado: 1
+  data_desligado: 2016-01-22 09:41:55
   motivo: MyString
-  cep: MyString
 
 two:
   matricula: 1
   nome: MyString
-  dt_atual: 2015-02-19 10:39:29
-  dt_ingresso: 2015-02-19 10:39:29
-  dt_nasc: 2015-02-19 10:39:29
+  dt_atual: 2016-01-22 09:41:55
+  dt_ingresso: 2016-01-22 09:41:55
+  dt_nasc: 2016-01-22 09:41:55
   RG: MyString
   CPF: MyString
   INEP: 1
   RD: 1
   n_filhos: 1
-  sede_id: 
+  unidade_id:
+  jornada_sem: 1
   funcao: MyString
   funcao2: MyString
-  enderes: MyString
+  endres: MyString
   complemento: MyString
-  num: 1
-  telefone: 1
+  bairro: MyString
+  num: MyString
+  telefone: MyString
+  cel: MyString
   cidade: MyString
+  cep: MyString
+  email: MyString
   obs: MyString
   total_trabalhado: 1
   total_titulacao: 1
   pontuacao_final: 1
   flag: 1
-  sede_id_ant: 
+  sede_id_ant: 1
   log_user: MyString
   prioridade: 1
   titulo_arrumado: 1
-  entrada_concurso: 1
-  excluido: 1
-  data_exclusao: 2015-02-19 10:39:29
+  entrada_concurso: MyString
+  desligado: 1
+  data_desligado: 2016-01-22 09:41:55
   motivo: MyString
-  cep: MyString

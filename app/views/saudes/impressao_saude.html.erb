@@ -1,0 +1,144 @@
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2"><i><b><u>CADASTRO DE ALUNOS</u></b><br/>
+&nbsp&nbsp&nbsp
+     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<font size="1"><b><u></u> DADOS DE SAÚDE  </b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="1"><b><i> Secretaria da Educação</i></b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<font size="1">Unidade Escolar: <% @saude.each do |saude| %><%=h saude.unidade.nome %><%end%> </font><br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp
+
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+<br/>
+<% @saude.each do |saude| %>
+<font  size=3><b> Dados Saúde</b></font></legend>
+         <table frame="box" rules="all" width ="100%">
+           <tr style="font-size:9px">
+               <td align="left" width="4%"><b>Nome:</b></td>
+               <td colspan="3" align="left"> <%=h saude.pessoa.pessoa_nome %></td>
+            </tr>
+           <tr style="font-size:9px">
+               <td width ="22%"><b>Cartão SUS:</b></td>
+               <td width ="32%">  <%=h saude.saude_cartao_sus%></td>
+               <td width ="18%"><b>Plano de Saúde:</b></td>
+               <td width ="28%"><%=h saude.saude_plano_saude %></td>
+            </tr>
+           <tr style="font-size:9px">
+               <td><b>Necessidades Especial::</b></td>
+               <td>  <%=h saude.saude_necessidade_especial%></td>
+               <td><b>Tipo Sanguineo:</b></td>
+               <td><%=h saude.saude_tipo_sangue %></td>
+            </tr>
+            <tr style="font-size:9px">
+               <td><b>Problema Neuropsicologico:</b></td>
+               <td><%=h saude.saude_neuropsico%></td>
+               <td><b>Habilidade Motora:</b></td>
+               <td><%=h saude.saude_hab_motora %></td>
+             </tr>
+             <tr style="font-size:9px">
+               <td> <b>Parto:</b> &nbsp&nbsp&nbsp <%=h saude.saude_plano_saude %></td>
+                <td><b>Sono:</b>&nbsp&nbsp&nbsp <%=h saude.saude_sono%></td>
+                 <td><b>Tem Alergia:</b></td><td><%= saude.saude_alergia%></td>
+             </tr>
+             <tr style="font-size:9px">
+                <td><b>Doenças na Gravidez:</b></td>
+                <td colspan="3"><%=h saude.saude_antecedentes_mae %></td>
+             </tr>
+             <tr style="font-size:9px">
+               <td><b>Alimentação:</b></td>
+               <td colspan="3"><%=h saude.saude_alimentacao %>  <%=h saude.saude_intolerancia%></td>
+             </tr>
+             <tr style="font-size:9px">
+               <td><b>Toma Medicamento:</b></td>
+               <td colspan="3"><%=h saude.saude_antecedentes_mae%></td>
+             </tr>
+             <tr style="font-size:9px">
+               <td><b>Toma Antipirético:</b></td>
+               <td><%=h saude.saude_antipiretico%></td>
+               <td><b>Tomou Pelicilina:</b></td>
+               <td><%=h saude.saude_pelicilina%></td>
+             </tr>
+             <tr style="font-size:9px">
+               <td><b>Fez Cirurgia:</b></td>
+               <td><%=h saude.saude_cirurgia%></td>
+               <td><b>Sofreu Fratura:</b></td>
+               <td align=""><%=h saude.saude_fratura%></td>
+             </tr>
+             <tr style="font-size:9px">
+               <td><b>Problema de visão:</b></td>
+               <td><%=h saude.saude_probl_visao%></td>
+               <td><b>Foi Hospitalizado:</b></td>
+               <td><%=h saude.saude_hospitalizado%></td>
+             </tr>
+             <tr style="font-size:9px">
+               <td><b>Fumante em casa:</b></td>
+               <td><%=h saude.saude_fumante_casa %></td>
+               <td><b>Dependente Químico:</b></td>
+               <td><%=h saude.saude_dependetes_quimicos%></td>
+             </tr>
+             <tr style="font-size:9px">
+               <td><b>Antecendentes do Aluno:</b></td>
+               <td><%=h saude.saude_doencas %></td>
+               <td> <b>Antedentes Familiar:</b></td>
+               <td><%=h saude.saude_antecedentes_familia%></td>
+             </tr>
+
+             <tr style="font-size:9px">
+               <td valign="top"><b>Observação:</b></td>
+              <td colspan="5"><%=h saude.saude_obs%> </td>
+             </tr>
+         </table>
+
+<%end%>
+
+<br/>
+<font size="2">
+  Declaro que todos os dados fornecidos para efetivação deste ato são verdadeiros e que respondo perante a lei pelas informações
+  contidas neste ficha.
+</font>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <font size ="1" >Americana, <%= Time.now.strftime("%d/%m/%Y") %></font>
+
+
+  </div>
+
+<br/><br/><br/><br/>
+<font size="1">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+________________________________<br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+p/  Unidade Escolar
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+Assinatura do Responsável<br/>
+
+</font>
+&nbsp&nbsp
+

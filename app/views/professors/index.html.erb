@@ -1,0 +1,90 @@
+<h1>Listing professors</h1>
+
+<table>
+  <tr>
+    <th>Matricula</th>
+    <th>Nome</th>
+    <th>Dt atual</th>
+    <th>Dt ingresso</th>
+    <th>Dt nasc</th>
+    <th>Rg</th>
+    <th>Cpf</th>
+    <th>Inep</th>
+    <th>Rd</th>
+    <th>N filhos</th>
+    <th>Sede</th>
+    <th>Jornada sem</th>
+    <th>Funcao</th>
+    <th>Funcao2</th>
+    <th>Endres</th>
+    <th>Complemento</th>
+    <th>Bairro</th>
+    <th>Num</th>
+    <th>Telefone</th>
+    <th>Cel</th>
+    <th>Cidade</th>
+    <th>Cep</th>
+    <th>Email</th>
+    <th>Obs</th>
+    <th>Total trabalhado</th>
+    <th>Total titulacao</th>
+    <th>Pontuacao final</th>
+    <th>Flag</th>
+    <th>Sede id ant</th>
+    <th>Log user</th>
+    <th>Prioridade</th>
+    <th>Titulo arrumado</th>
+    <th>Entrada concurso</th>
+    <th>Desligado</th>
+    <th>Data desligado</th>
+    <th>Motivo</th>
+  </tr>
+
+<% @professors.each do |professor| %>
+  <tr>
+    <td><%=h professor.matricula %></td>
+    <td><%=h professor.nome %></td>
+    <td><%=h professor.dt_atual %></td>
+    <td><%=h professor.dt_ingresso %></td>
+    <td><%=h professor.dt_nasc %></td>
+    <td><%=h professor.RG %></td>
+    <td><%=h professor.CPF %></td>
+    <td><%=h professor.INEP %></td>
+    <td><%=h professor.RD %></td>
+    <td><%=h professor.n_filhos %></td>
+    <td><%=h professor.unidade_id %></td>
+    <td><%=h professor.jornada_sem %></td>
+    <td><%=h professor.funcao %></td>
+    <td><%=h professor.funcao2 %></td>
+    <td><%=h professor.endres %></td>
+    <td><%=h professor.complemento %></td>
+    <td><%=h professor.bairro %></td>
+    <td><%=h professor.num %></td>
+    <td><%=h professor.telefone %></td>
+    <td><%=h professor.cel %></td>
+    <td><%=h professor.cidade %></td>
+    <td><%=h professor.cep %></td>
+    <td><%=h professor.email %></td>
+    <td><%=h professor.obs %></td>
+    <td><%=h professor.total_trabalhado %></td>
+    <td><%=h professor.total_titulacao %></td>
+    <td><%=h professor.pontuacao_final %></td>
+    <td><%=h professor.flag %></td>
+    <td><%=h professor.sede_id_ant %></td>
+    <td><%=h professor.log_user %></td>
+    <td><%=h professor.prioridade %></td>
+    <td><%=h professor.titulo_arrumado %></td>
+    <td><%=h professor.entrada_concurso %></td>
+    <td><%=h professor.desligado %></td>
+    <td><%=h professor.data_desligado %></td>
+    <td><%=h professor.motivo %></td>
+    <td><%= link_to 'Show', professor %></td>
+    <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
+    <td><%= link_to 'Destroy', professor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New professor', new_professor_path %>

@@ -1,0 +1,90 @@
+<% form_for (@socioeconomico) do |f| %>
+ <%= f.error_messages %>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp
+<font color ="red"  size="4"align="left"><b> Quanto a resposta for diferente de NÃO, favor especificar </b></font>
+
+  <fieldset>
+   <legend><font size=4>Dados Pessoais</font></legend>
+   <table width="100%">
+       <tr bgcolor="#F5F5F5">
+          <td align="left" ><b>Nome:</b></td>
+          <td align="left" colspan="6"><%= f.collection_select :pessoa_id, @pessoas_aluno, :id, :pessoa_nome, :include_blank => ' -- Selecione -- ' %>
+
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td witdh ="15%"><b>Casa:</b></td>
+         <td witdh ="22%"><%= f.select :economico_casa,(CASA).sort, :include_blank => '-- Selecionar --' %></td>
+         <td witdh ="20%"><b>Nº Cômodos:</b></td>
+         <td witdh ="22%"><%= f.text_field :economico_comodos, :size=>"3" %></td>
+         <td width ="16%"><b>Tipo de Construção:</b></td>
+         <td witdh ="20%"><%= f.select :economico_tipo_casa,(CASATIPO).sort, :include_blank => '-- Selecionar --' %></td>
+       </tr>
+         <tr bgcolor="#F5F5F5">
+         <td><b>Rede Eletrica:</b></td>
+         <td><%= f.select :economico_eletricidade,(ELETRICIDADE).sort, :include_blank => '-- Selecionar --' %></td>
+         <td><b>Rede Esgoto:</b></td>
+         <td><%= f.select :economico_esgoto,(ESGOTO).sort, :include_blank => '-- Selecionar --' %></td>
+         <td><b>Rede Água:</b></td>
+         <td><%= f.select :economico_agua,(AGUA).sort, :include_blank => '-- Selecionar --' %></td>
+       </tr>
+        <tr bgcolor="#F5F5F5">
+           <td colspan="6"><b>Quantos residem na casa:&nbsp
+                 <%= f.text_field :economico_residentes, :size=>"2" %>&nbsp&nbsp&nbsp
+              Quantos menores de 12 anos:&nbsp<%= f.text_field :economico_menores, :size=>"2" %>&nbsp&nbsp&nbsp
+              Quantos trabalham:&nbsp&nbsp&nbsp<%= f.text_field :economico_remunerada, :size=>"2" %>&nbsp&nbsp&nbsp
+              Renda Familiar:</b>&nbsp&nbsp&nbsp<%= f.text_field :economico_renda_familiar, :size=>"9" %>
+           </td>
+       </tr>
+        <tr bgcolor="#F5F5F5">
+           <td colspan="6"><b>Irmãos que estudam:&nbsp <%= f.text_field :economico_irmaos, :size=>"86",  :value => "NÃO" %></td>
+       </tr>
+         <tr bgcolor="#F5F5F5">
+         <td><b>Religião:</b></td>
+         <td><%= f.select :economico_religiao,(RELIGIAO).sort, :include_blank => '-- Selecionar --' %></td>
+         <td><b>Possui Geladeira:</b></td>
+         <td><%= f.select :economico_geladeira,(OPCAO).sort, :include_blank => '-- Selecionar --' %></td>
+         <td><b>Possui Freezer:</b></td>
+         <td><%= f.select :economico_freezer,(OPCAO).sort, :include_blank => '-- Selecionar --' %></td>
+
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width="15%"><b>Possui Carro:</b></td>
+         <td><%= f.select :economico_carro,(OPCAO).sort, :include_blank => '-- Selecionar --' %></td>
+         <td><b>Possui Moto:</b></td>
+         <td><%= f.select :economico_moto,(OPCAO).sort, :include_blank => '-- Selecionar --' %></td>
+         <td><b>Possui Computador:</b></td>
+         <td><%= f.select :economico_computador,(OPCAO).sort, :include_blank => '-- Selecionar --' %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Possui TV à Cabo:</b></td>
+         <td><%= f.select :economico_tv,(OPCAO).sort, :include_blank => '-- Selecionar --' %></td>
+         <td><b>Possui Internet:</b></td>
+         <td><%= f.select :economico_internet,(OPCAO).sort, :include_blank => '-- Selecionar --' %></td>
+         <td><b>Possui Lava Roupa:</b></td>
+         <td><%= f.select :economico_lava_roupa,(OPCAO).sort, :include_blank => '-- Selecionar --' %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td valign="top"><b>Observação:</b></td>
+        <td colspan="5"><%= f.text_area(:economico_obs, :cols=> "86", :rows=>"3") %> </td>
+      </tr>
+
+
+       <table width="100%" >
+         <tr>
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+            
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    
+  
+
+         </tr>
+       </table>
+  
+
+  </font>
+
+

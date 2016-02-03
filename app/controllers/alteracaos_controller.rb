@@ -155,13 +155,13 @@ class AlteracaosController < ApplicationController
         if current_user.regiao_id == 53 or current_user.regiao_id == 52 then
           @professor_com_ficha = Ficha.paginate(:all,:joins => :professor,:page=>params[:page],:per_page =>25,:conditions => ['ano_letivo = ?', params[:year]])
         else
-          @professor_com_ficha = Ficha.paginate(:all,:joins => :professor,:page=>params[:page],:per_page =>25,:conditions => ['ano_letivo = ? and (professors.sede_id = ? or professors.sede_id = 54)', params[:year], current_user.regiao_id])
+          @professor_com_ficha = Ficha.paginate(:all,:joins => :professor,:page=>params[:page],:per_page =>25,:conditions => ['ano_letivo = ? and (professors.unidade_id = ? or professors.unidade_id = 54)', params[:year], current_user.regiao_id])
         end
       else
         if current_user.regiao_id == 53 or current_user.regiao_id == 52 then
           @professor_com_ficha = Ficha.paginate(:all,:joins => :professor,:page=>params[:page],:per_page =>25,:conditions => ['ano_letivo = ? and professors.matricula = ?', params[:year],params[:search]])
         else
-          @professor_com_ficha = Ficha.paginate(:all,:joins => :professor,:page=>params[:page],:per_page =>25,:conditions => ['ano_letivo = ? and (professors.sede_id = ? or professors.sede_id = 54)  and professors.matricula = ?', params[:year], current_user.regiao_id,params[:search]])
+          @professor_com_ficha = Ficha.paginate(:all,:joins => :professor,:page=>params[:page],:per_page =>25,:conditions => ['ano_letivo = ? and (professors.unidade_id = ? or professors.unidade_id = 54)  and professors.matricula = ?', params[:year], current_user.regiao_id,params[:search]])
         end
       end
 
@@ -174,12 +174,12 @@ class AlteracaosController < ApplicationController
   def acertar_unidade
     #p_u_c => Professores com Unidade Correta
     #p_u_a => Professores com Unidade Antiga
-    @arruma_unidade = Professor.find_by_sql("SELECT p_u_c.id, p_u_c.matricula, p_u_c.sede_id as 'ser_corrigida',p_u_c.sede_id_ant, p_u_a.sede_id as 'unidades_corretas' FROM `professors` p_u_c inner join professors2 p_u_a on p_u_c.matricula=p_u_a.matricula where p_u_c.sede_id <> p_u_a.sede_id order by p_u_c.id")
+    @arruma_unidade = Professor.find_by_sql("SELECT p_u_c.id, p_u_c.matricula, p_u_c.unidade_id as 'ser_corrigida',p_u_c.sede_id_ant, p_u_a.unidade_id as 'unidades_corretas' FROM `professors` p_u_c inner join professors2 p_u_a on p_u_c.matricula=p_u_a.matricula where p_u_c.unidade_id <> p_u_a.unidade_id order by p_u_c.id")
 
     @arruma_unidade.each do |a_u|
       @professor = Professor.find(a_u)
       @professor.id
-      @professor.sede_id = a_u.unidades_corretas
+      @professor.unidade_id = a_u.unidades_corretas
       @professor.save
     end
 

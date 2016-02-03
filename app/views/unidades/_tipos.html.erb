@@ -1,0 +1,45 @@
+
+  <div class="tabs">
+    <table bgcolor="#DCDCDC" width="100%">
+      <tr   bgcolor="#F5F5F5">
+       <th>Nome</th>
+       <th>Endereco</th>
+       <th>Num</th>
+       <th>CEP</th>
+       <th>Bairro</th>
+       <th>Fone</th>
+       <th>Email</th>
+      </tr>
+      <% for unidade in @unidades %>
+      <tr   bgcolor="#F5F5F5">
+       <td><%=h unidade.nome %></td>
+       <td><%=h unidade.endereco %></td>
+       <td><%=h unidade.num %></td>
+       <td><%=h unidade.CEP %></td>
+       <td><%=h unidade.bairro %></td>
+       <td><%=h unidade.fone %></td>
+       <td><%=h unidade.email %></td>
+
+     <div class="botao">
+     <tr>
+       <td colspan="12">
+          <div class="botao">
+            <table >
+              <tr>
+                  <td><%= link_to image_tag("/stylesheets/images/botao.png"), "https://www.google.com/maps/d/edit?hl=pt-BR&authuser=0&mid=zNj5sTNCo6CY.kex3W_prFKOA",:target => '_blank', :title => "Localização"%></td>
+
+                  <% if current_user.has_role?('admin')or  current_user.has_role?('planejamento') %>
+                      <td colspan="4"align="left" ><%= button_to 'Editar',{:action => "edit", :id =>unidade}, :method => "get", :title => "Editar"%></td>
+                  <%else%>
+                      <td align="center" >  </td>
+                  <%end%>
+                 <td colspan="4"align="left" ><%= button_to 'Visualizar',{:action => "show", :id =>unidade}, :method => "get", :title => "Editar"%></td>
+              </tr>
+            </table>
+           </div>
+       </td>
+    </tr>
+   </div>
+   <% end %>
+  </table>
+ </font>

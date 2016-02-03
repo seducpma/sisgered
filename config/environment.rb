@@ -28,7 +28,7 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem 'i18n', :version => '0.6.1'
+  #config.gem 'i18n', :version => '0.6.1'
   config.gem 'paperclip', :version => '~>2.3'
   config.gem 'rdoc'
   config.gem "googlecharts", :lib => "gchart"
@@ -65,7 +65,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_demanda_session',
+    :session_key => '_sisgered_session',
     :secret      => '80b373ea47e294e1d1b9bc811d8749aa34d1357093c5290f2797470ea12d3ff991f4575ebd7a279b4a67a3cc06ab4dfbd464652c9c64b17429840391eefb6784'
   }
 

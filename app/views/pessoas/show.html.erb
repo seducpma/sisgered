@@ -1,0 +1,136 @@
+<div id="interno2">
+<% title "PESSOA" %>
+<div class ="tabs">
+<font size="5"><%=h "#{@pessoa.pessoa_nome}" %> </strong></font></br>
+ <hr>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> Dados Pessoais</b></font></legend>
+         <table width="100%">
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="5%"><b>Tipo Cadastro:</b></td>
+               <td colspan="7" align="left"><%=h @pessoa.pessoa_tipo %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Nome:</b></td>
+               <td colspan="4" align="left"><%=h @pessoa.pessoa_nome %></td>
+               <td align="left"><b>Sexo:</b></td>
+               <td colspan="2" align="left"><%=h @pessoa.pessoa_sexo %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Nascimento:</b></td>
+               <td colspan="2"align="left">  <%=h @pessoa.pessoa_nascimento.strftime("%d/%m/%Y")%></td>
+               <td align="left"><b>Naturalidade:</b></td>
+               <td colspan="4"align="left"><%=h @pessoa.pessoa_naturalidade %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">           
+               <td align="left"><b>Nacionalidade:</b></td>
+               <td colspan="2"align="left"><%=h @pessoa.pessoa_nacionalidade %></td>
+               <td align="left"><b>Chegada Brasil:</b></td>
+               <td colspan="4" align="left">  <%=h @pessoa.pessoa_chegada_brasil.strftime("%d/%m/%Y")%></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"><b>RG:</b></td>
+               <td align="left">  <%=h @pessoa.pessoa_RG%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td colspan="5"align="left"><%=h @pessoa.pessoa_emissaoRG %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"><b>CPF:</b></td>
+               <td align="left">  <%=h @pessoa.pessoa_CPF%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td colspan="5"align="left"><%=h @pessoa.pessoa_emissaoCPF %></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Mãe:</b></td>
+               <td align="left"><%=h @pessoa.pessoa_mae %></td>
+               <td align="left"><b>Fone:</b></td>
+               <td align="left"><%=h @pessoa.pessoa_fone_mae %></td></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="3"align="left"><%=h @pessoa.pessoa_email_mae %></td></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Pai:</b></td>
+               <td align="left"><%=h @pessoa.pessoa_pai %></td>
+               <td align="left"><b>Fone:</b></td>        
+               <td align="left"><%=h @pessoa.pessoa_fone_pai %></td></td>
+               <td align="left"><b>E-mail:</b></td>        
+               <td colspan="3" align="left"><%=h @pessoa.pessoa_email_pai%></td></td>
+            </tr>
+
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Endereço:</b></td>
+               <td colspan="3" align="left"><%=h @pessoa.pessoa_endereco %> - <%=h @pessoa.pessoa_num %></td>
+               <td align="left" width="4%"><b>Complemento:</b></td>
+               <td colspan="4" align="left"><%=h @pessoa.pessoa_complemento %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Bairro:</b></td>
+               <td  align="left"><%=h @pessoa.pessoa_bairro %></td>
+               <td align="left" width="4%"><b>CEP:</b></td>
+               <td  align="left"><%=h @pessoa.pessoa_cep %></td>
+               <td align="left" width="4%"><b>Cidade:</b></td>
+               <td colspan="3" align="left"><%=h @pessoa.pessoa_cidade %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Telefone:</b></td>
+               <td align="left"><%=h @pessoa.pessoa_fone_fixo %></td>
+               <td align="left"><b>Celular:</b></td>
+               <td align="left"><%=h @pessoa.pessoa_fone_cel %></td></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="3"align="left"><%=h @pessoa.pessoa_email%></td></td>
+            </tr>
+            <% if  @pessoa.pessoa_tipo != 'ALUNO'then  %>
+            <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Estado Civil:</b></td>
+               <td align="left"><%=h @pessoa.pessoa_estado_civil %></td></td>
+               <td align="left" width="4%"><b>Escolaridade:</b></td>
+               <td align="left"><%=h @pessoa.pessoa_escolaridade %></td>
+               <td align="left" width="4%"><b>Profissão:</b></td>
+               <td colspan="2"align="left"><%=h @pessoa.pessoa_profissao%></td></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+              <td width=" 12%"align="left"><b>Local Trabalho:</b></td>
+              <td colspan="2"align="left"><%=h @pessoa.pessoa_local_trabalho %></td></td>
+               <td colspan="2" align="LEFT"><b>Condição Profissional:</b> &nbsp<%=h @pessoa.pessoa_condicao_profissao %></td>
+               <td align="left"width="3%"><b>Fone:</b>
+               <td align="left"><%=h @pessoa.pessoa_fone_trabalho%></td></td>
+            </tr>
+            <%end%>
+            <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Observação::</b></td>
+               <td colspan="7" align="left"><%=h @pessoa.pessoa_obs %></td>
+            </tr>
+
+
+
+         </table>
+         </fieldset>
+
+     </td>
+  </tr>
+ </table>
+ <% session[:child] = @pessoa.id %>
+
+ <table>
+         <tr>
+            <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_unidade_path, :title => "Consultar" %></td>
+             <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@pessoa}, :method => "get", :title => "Editar"%></td>
+             <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+             <td width="4%"><%= button_to 'Novo', new_pessoa_path  %></td>
+             <td align="right"><%= button_to 'Continuar',  new_aluno_path  %></td>
+
+          </tr>
+    </table>
+
+
+</div>
+<br/>
+</div>
+
+
+
+
+<%= link_to 'Edit', edit_pessoa_path(@pessoa) %> |
+<%= link_to 'Back', pessoas_path %>

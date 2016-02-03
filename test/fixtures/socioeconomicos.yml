@@ -1,0 +1,47 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pessoa_id: 
+  economico_casa: MyString
+  economico_tipo_casa: MyString
+  economico_comodos: 1
+  economico_eletricidade: MyString
+  economico_esgoto: MyString
+  economico_agua: MyString
+  economico_residentes: 1
+  economico_irmaos: MyString
+  economico_religao: MyString
+  economico_remunerada: 1
+  economico_renda_familiar: MyString
+  economico_menores: 1
+  economico_carro: MyString
+  economico_computador: MyString
+  economico_moto: MyString
+  economico_geladeira: MyString
+  economico_frezer: MyString
+  economico_tv: MyString
+  economico_internet: MyString
+  economico_obs: MyString
+
+two:
+  pessoa_id: 
+  economico_casa: MyString
+  economico_tipo_casa: MyString
+  economico_comodos: 1
+  economico_eletricidade: MyString
+  economico_esgoto: MyString
+  economico_agua: MyString
+  economico_residentes: 1
+  economico_irmaos: MyString
+  economico_religao: MyString
+  economico_remunerada: 1
+  economico_renda_familiar: MyString
+  economico_menores: 1
+  economico_carro: MyString
+  economico_computador: MyString
+  economico_moto: MyString
+  economico_geladeira: MyString
+  economico_frezer: MyString
+  economico_tv: MyString
+  economico_internet: MyString
+  economico_obs: MyString

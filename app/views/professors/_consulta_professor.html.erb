@@ -1,0 +1,10 @@
+<table width="100%" align="center" >
+   <tr>
+     <td colspan="2"align="right"><font size="2"> <b class="label_busca3">
+     <b>Função/Cargo: </b><%= select_tag :search, options_for_select(CARGO).sort, :include_blank => '-- Selecionar --' %>
+     
+         <%= submit_tag "Filtrar", :class => "btn_filtrar" %>
+     </td>
+   </tr>
+  </table>
+

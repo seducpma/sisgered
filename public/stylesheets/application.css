@@ -4,7 +4,10 @@ body {
 
     }
 
-
+  select.lista_alunos {
+   width:300px;
+   height: 200px;
+  }
 
 .tabelas {
   border: solid 3px #000000;

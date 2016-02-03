@@ -1,0 +1,51 @@
+<% form_for @classe, :html => { :multipart => true } do |f| %>
+ <%= f.error_messages %>
+  <font  size="2">
+    <br/>
+      <table width="70%" align="center"  bgcolor="#F5F5F5" >
+        <tr>
+          <td><b><font size="4">ATRIBUIÇÃO DE CLASSES</b></td>
+        </tr>
+        <tr>
+          <td><hr></td>
+        </tr>
+
+        <tr>
+          <td><b>Classe: </b><%= f.text_field :classe_classe, :size => 5 %>&nbsp&nbsp&nbsp&nbsp
+              <b>Descrição: </b><%= f.text_field :classe_descricao, :size => 55 %></td>
+        </tr>
+        <tr>
+          <td ><b>Professor: </b><%= f.collection_select :professor_id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size => 10 %>
+          </td>
+        </tr>
+                <tr>
+                  <td colspan="3">
+                    <b><%= f.label :assunto_id, "Lista de Alunos
+                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+                         Alunos na Classe" %></b>
+                    <div id="assuntos"><%= render "alunos"%></div>
+                 </td>
+                </tr>
+          
+      </table>
+      <br/>
+    <table width="70%"  align="center">
+      <tr>
+            <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consulta_unidade_path, :title => "Consultar" %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    
+  
+
+         </tr>
+       </table>
+    
+    
+  </font>
+
+
+
+
+

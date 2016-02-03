@@ -1,54 +1,45 @@
 require 'test_helper'
 
 class UnidadesControllerTest < ActionController::TestCase
-  def test_index
+  test "should get index" do
     get :index
-    assert_template 'index'
+    assert_response :success
+    assert_not_nil assigns(:unidades)
   end
 
-  def test_show
-    get :show, :id => Unidade.first
-    assert_template 'show'
-  end
-
-  def test_new
+  test "should get new" do
     get :new
-    assert_template 'new'
+    assert_response :success
   end
 
-  def test_create_invalid
-    Unidade.any_instance.stubs(:valid?).returns(false)
-    post :create
-    assert_template 'new'
+  test "should create unidade" do
+    assert_difference('Unidade.count') do
+      post :create, :unidade => { }
+    end
+
+    assert_redirected_to unidade_path(assigns(:unidade))
   end
 
-  def test_create_valid
-    Unidade.any_instance.stubs(:valid?).returns(true)
-    post :create
-    assert_redirected_to unidade_url(assigns(:unidade))
+  test "should show unidade" do
+    get :show, :id => unidades(:one).to_param
+    assert_response :success
   end
 
-  def test_edit
-    get :edit, :id => Unidade.first
-    assert_template 'edit'
+  test "should get edit" do
+    get :edit, :id => unidades(:one).to_param
+    assert_response :success
   end
 
-  def test_update_invalid
-    Unidade.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Unidade.first
-    assert_template 'edit'
+  test "should update unidade" do
+    put :update, :id => unidades(:one).to_param, :unidade => { }
+    assert_redirected_to unidade_path(assigns(:unidade))
   end
 
-  def test_update_valid
-    Unidade.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Unidade.first
-    assert_redirected_to unidade_url(assigns(:unidade))
-  end
+  test "should destroy unidade" do
+    assert_difference('Unidade.count', -1) do
+      delete :destroy, :id => unidades(:one).to_param
+    end
 
-  def test_destroy
-    unidade = Unidade.first
-    delete :destroy, :id => unidade
-    assert_redirected_to unidades_url
-    assert !Unidade.exists?(unidade.id)
+    assert_redirected_to unidades_path
   end
 end

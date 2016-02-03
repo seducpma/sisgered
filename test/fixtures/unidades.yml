@@ -1,7 +1,45 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
 one:
+  tipo_id: 
+  regiao_id: 
   nome: MyString
-  tipo: 1
+  endereco: MyString
+  num: MyString
+  CEP: MyString
+  bairro: MyString
+  cidade: MyString
+  fone: MyString
+  email: MyString
+  diretor: MyString
+  coordenador: MyString
+  obs: MyString
+  estagiarioM: 1
+  estagiarioV: 1
+  estagiarioN: 1
+  estagiarioE: 1
+  ip: MyString
+  biblioteca: MyString
+  status: 1
 
 two:
+  tipo_id: 
+  regiao_id: 
   nome: MyString
-  tipo: 1
+  endereco: MyString
+  num: MyString
+  CEP: MyString
+  bairro: MyString
+  cidade: MyString
+  fone: MyString
+  email: MyString
+  diretor: MyString
+  coordenador: MyString
+  obs: MyString
+  estagiarioM: 1
+  estagiarioV: 1
+  estagiarioN: 1
+  estagiarioE: 1
+  ip: MyString
+  biblioteca: MyString
+  status: 1

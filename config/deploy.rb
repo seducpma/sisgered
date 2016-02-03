@@ -1,8 +1,8 @@
 set :application, "192.168.0.12"
-set :repository, "git://github.com/seducpma/demanda.git"
+set :repository, "git://github.com/seducpma/sisgered.git"
 set :user, "servidor"
 set :use_sudo, false
-set :deploy_to, "/home/#{user}/demanda.seducpma.com"
+set :deploy_to, "/home/#{user}/sisgered.seducpma.com"
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 

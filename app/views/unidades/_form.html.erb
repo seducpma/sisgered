@@ -2,44 +2,46 @@
  <%= f.error_messages %>
   <font  size="2">
     <fieldset><legend><font  size=3> Unidade</font></legend>
-      <table width="100%" align="center"  bgcolor="#F5F5F5">
-
+      <table width="100%" bgcolor="#F5F5F5">
         <tr>
-         <td width="50%">
-           <b>Nome:</b><%= f.text_field :nome, :size =>45 %>
-              <%= observe_field :unidade_nome,
-               :with => :unidade_nome,
-               :url => { :action => 'mesmo_nome' } %>
-         </td>
-         <td>
-            <%= f.label :tipo, 'Tipo' %>
-            <select id="_unidade_tipo" name="unidade[tipo]">
-              <option value="0"> ---Selecione---</option>
-              <option value="CRECHE">CRECHE</option>
-              <option value="EMEI">EMEI</option>
-              <option value="CASA DA CRIANÇA">CASA DA CRIANCA</option>
-              <option value="EMEF">EMEF</option>
-              <option value="CIEP">CIEP</option>
-              <option value="EDUCAÇÃO ESPECIAL">EDUCAÇÃO ESPECIAL</option>
-            </select>
-
-         </td>
+            <td width ="15%"><b>Tipo: </b></td>
+            <td width ="30%"><%= f.select :tipo_id, (TIPOUNIDADE).sort, :include_blank => '-- Selecionar --' %></td>
+            <td width ="15%"><b>&nbsp Nome:</b></td>
+            <td width ="30%"> <%= f.text_field :nome, :size =>"38" %></td>
         </tr>
         <tr>
-          <td colspan="2">
-            <font size="4" color="red"><div id='nome_aviso'></div></font>
-         </td>
-       </tr>
+           <td><b>Endereço: </b></td>
+           <td><%= f.text_field :endereco, :size=>"40" %></td>
+           <td>&nbsp <b>Nº &nbsp&nbsp</b><%= f.text_field :num, :size =>"2" %></td>
+           <td><b>Bairro: </b>&nbsp&nbsp&nbsp&nbsp<%= f.text_field :bairro, :size =>"30" %></td>
+        </tr>
+        <tr>
+            <td><b>CEP: </b></td>
+            <td><%= f.text_field :CEP, :size =>"8" %>&nbsp&nbsp&nbsp&nbsp
+                 <b>&nbsp Fones: &nbsp&nbsp</b><%= f.text_field :fone, :size =>"19" %></td>
+           <td><b>&nbsp E_mail: </b></td>
+           <td><%= f.text_field :email, :size=>"38" %></td>
+        </tr>
+        <tr>
+            <td><b>Diretor: </b></td>
+            <td> <%= f.text_field :diretor, :size =>"39" %></td>
+            <td><b>Vice-diretor:</b></td>
+            <td> <%= f.text_field :vice, :size =>"38" %></td>
+        </tr>
+        <tr>
+            <td><b>Coordenador:</b></td>
+            <td> <%= f.text_field :coordenador, :size =>"38" %></td>
+            <td><b>Superisão: </b></td>
+            <td> <%= f.text_field :supervisao, :size =>"39" %></td>
+
+        </tr>
+
+     </table>
+   </fieldset>
+    <table>
       <tr>
-        <td>
-        <table>
-          <tr>
-            <td width="4%"> <%= f.submit "Salvar" %></td>
+         <td width="4%"> <%= f.submit "Salvar" %></td>
      <% end %>
-            <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
-        </table>
-        </td>
-      </tr>
-  </table>
-  </font>
+      </table>

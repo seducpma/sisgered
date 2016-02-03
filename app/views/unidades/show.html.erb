@@ -1,32 +1,66 @@
 <div id="interno2">
-<% title "EMPRESA PARCEIRA" %>
+<% title "UNIDADE" %>
 <div class ="tabs">
-    <font size="5"><strong><%=h "#{@unidade.nome}" %></strong></font></br>
-      <hr>
-       <table bgcolor="#DCDCDC" width="100%">
-        <tr bgcolor="#DCDCDC"  width="100%">
-         <td>
-         <fieldset><legend><font  size=3> UNIDADE SEDUC</font></legend>
-           <table  width="100%">
-            <tr bgcolor="#F5F5F5"  width="100%">
-             <td  width="10%"><strong>Tipo: </strong></td>
-             <td><%=h "#{@unidade.tipo}" %></td>
-            <tr bgcolor="#F5F5F5">
-             <td><strong>Nome:</strong></td>
-             <td><%=h @unidade.nome%></td>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> Dados Unidade</b></font></legend>
+         <table width="100%">
+            <tr  bgcolor="#F5F5F5">
+                <td width ="10%"><b>Tipo: </b></td>
+                <td width ="30%"><%=h @unidade.tipo.nome %></td>
+                <td width ="10%"><b>Nome:</b></td>
+                <td width ="30%"> <%=h @unidade.nome %></td>
             </tr>
-           </table>
-          </fieldset>
-        </td>
-      </tr>
-       <table>
-          <tr>
-            <td width="6%"align="left" > <%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-            <td align="left"><%= button_to 'Consultar', {:action => "index"},:method => "get", :title => "Consultar" %></td>
-          </tr>
-        </table>
+            <tr bgcolor="#F5F5F5">
+               <td><b>Endereço: </b></td>
+               <td><%=h @unidade.endereco %></td>
+               <td>&nbsp <b>Nº &nbsp&nbsp</b><%=h @unidade.num %></td>
+               <td><b>Bairro: </b>&nbsp&nbsp&nbsp&nbsp<%=h @unidade.bairro %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td><b>CEP: </b></td>
+                <td><%=h @unidade.CEP  %>&nbsp&nbsp&nbsp&nbsp
+                     <b>&nbsp Fones: &nbsp&nbsp</b><%=h @unidade.fone %></td>
+               <td><b>&nbsp E_mail: </b></td>
+               <td><%=h @unidade.email %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td><b>Diretor: </b></td>
+                <td> <%=h @unidade.diretor %></td>
+                <td><b>Vice-diretor:</b></td>
+                <td> <%=h @unidade.vice %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td><b>Coordenador:</b></td>
+                <td> <%=h @unidade.coordenador %></td>
+                <td><b>Supervisão: </b></td>
+                <td> <%=h @unidade.supervisao %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td ><b>Observação:</b></td>
+                <td colspan="3"> <%=h @unidade.obs %></td>
+
+            </tr>
+         </table>
+       </fieldset>
+    </td>
+  </tr>
+ </table>
+
+       <table width="100%" >
+         <tr>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_unidades_path, :title => "Consultar" %></td>
+            <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@unidade}, :method => "get", :title => "Editar"%></td>
+            <td width="6%"align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td><%= link_to image_tag("/stylesheets/images/botao.png"), "https://www.google.com/maps/d/edit?hl=pt-BR&authuser=0&mid=zNj5sTNCo6CY.kex3W_prFKOA",:target => '_blank', :title => "Localização"%></td>
+            
+         </tr>
+       </table>
+
+
+
 </div>
 <br/>
 </div>
-
 

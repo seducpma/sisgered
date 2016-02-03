@@ -1,0 +1,141 @@
+<% form_for (@aluno) do |f| %>
+ <%= f.error_messages %>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp
+<font color ="red"  size="4"align="left"><b> Quanto a resposta for diferente de NÃO, favor especificar </b></font>
+ 
+  <fieldset><legend><font size=4>Dados Pessoais</font></legend>
+    <table width="100%" >
+
+       <tr bgcolor="#F5F5F5">
+          <td align="left" width ="15%"><b>Nome:</b></td>
+          <td colspan="4" align="left"><%= f.collection_select :pessoa_id, @pessoas_aluno, :id, :pessoa_nome, :include_blank => ' -- Selecione -- ' %>
+             <%= observe_field 'aluno_pessoa_id',
+               :frequency => 0.2,
+               :with => :aluno_pessoa_id,
+               :url => { :action => 'verifica_dados_aluno' } ,
+               :update => "dados_aluno"%></td>
+          <td colspan="2"><font color="red"> <b>Caso NÃO cadastrado clicar no botão ano lado<b></td>
+          <td><%= link_to image_tag("/stylesheets/images/botao.png"), new_pessoa_path,  :target => '_blank', :title => "Cadastrar Participante" %></td>
+       </tr>         
+       <tr bgcolor="#F5F5F5">
+          <td  colspan="8"> <div id='dados_aluno'></div></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td align="left" ><b>Responsável:</b></td>
+          <td colspan="7">
+              <table width="100%">
+                <tr>
+                  <td align="left"> <%= f.collection_select :aluno_responsavel_pessoa_id, @pessoas_responsavel, :id, :pessoa_nome, :include_blank => ' -- Selecione -- ' %>
+                       <%= observe_field 'aluno_aluno_responsavel_pessoa_id',
+                         :frequency => 0.2,
+                         :with => :aluno_aluno_responsavel_pessoa_id,
+                         :url => { :action => 'verifica_dados_responsavel' } ,
+                         :update => "dados_responsavel"%></td>
+
+                    <td  align="right"><font color="red"> <b>Caso NÃO cadastrado clicar no botão ano lado<b></td>
+                    <td  align="right"><%= link_to image_tag("/stylesheets/images/botao.png"), new_pessoa_path,   :target => '_blank',:title => "Cadastrar Participante" %></td>
+                 </tr>
+                 <tr>
+                   <td colspan="3"><div id='dados_responsavel'></div></td>
+                 </tr>
+
+            </table>
+         </td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Reside com:</b></td>
+         <td colspan="7"> <%= f.select :aluno_reside_com, (RESIDECOM).sort, :include_blank => '-- Selecionar --' %>
+         &nbsp&nbsp<b>Há restrições no caso de guarda da criança? </b>
+         &nbsp&nbsp<%= f.text_field :aluno_restricao, :value => "NÃO", :size=>"39"%></td>
+
+       </tr>
+       <tr bgcolor="#F5F5F5">
+          <td width =" 22%"><b>Nº INEP:</b></td>
+          <td width ="15%"> <%= f.text_field :aluno_inep, :size=>"5" %></td>
+          <td width =" 12%" align="right"><b>Nº RM: &nbsp&nbsp</b></td>
+          <td> <%= f.text_field :aluno_rm, :size=>"5" %></td>
+          <td width =" 20%" align="right"><b>Nº RA: &nbsp&nbsp</b></td>
+          <td> <%= f.text_field :aluno_ra, :size=>"5" %></td>
+          <td width =" 12%" align="right"><b>Nº NIS: &nbsp&nbsp</b></td>
+          <td> <%= f.text_field :aluno_nis, :size=>"5" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+          <td width ="17%"><b>Bolsa Família:</b></td>
+          <td><%= f.select :aluno_bolsa_familia, (OPCAO).sort %></td>
+          <td width =" 15%"><b>Nome Beneficiário:</b></td>
+          <td colspan="3"> <%= f.text_field :aluno_nome_beneficiario, :size=>"45" %></td>
+         <td width ="18%"><b>Renda Cidadã:</b></td>
+          <td> <%= f.select :aluno_renda_cidada, (OPCAO).sort %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td colspan="3" ><b> Possui necessidade(s) especial(s):</b> </td>
+         <td colspan="6"><%= f.text_field :aluno_especial, :value => "NÃO", :size => "75"%></td>
+       </tr>
+     </table>
+  </fieldset>
+ <fieldset><legend><font size=4>Autorizações</font></legend>
+   <table width="100%" >
+       <tr bgcolor="#F5F5F5">
+         <td><b>1) Autorizo participar normalmente das atividades física, pois a criança não apresenta problemas de saúde que o impeça de paricipar.</b></td>
+          <td><%= f.select :aluno_autoriza_ativ_fisica, (OPCAO).sort %>  </td>
+       </tr>
+      <tr bgcolor="#F5F5F5">
+          <td><b>2) Autorizo participar de atividades extra calsse (passeios, excursões e outras atiivades curriculares), na cidade de Americana, devidamente acompanhado pelos professores:</b></td>
+          <td><%= f.select :aluno_autoriza_ativ_extraclasse, (OPCAO).sort %></td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+          <td><b>3) Autorizo a Secretaria de Educação a fazer uso da imagem da criança em trabalhos pedagógicos para fins de exibição  na escola ou lugares afins</b></td>
+          <td><%= f.select :aluno_autoriza_imagem, (OPCAO).sort %></td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+          <td><b>4) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros</b></br>
+              <b> Nome pessoa(s) autorizadas: &nbsp <%= f.text_field :aluno_acompanhante, :size=>"70" %>      </td>
+          <td> <%= f.select :aluno_vai_embora_so, (OPCAO).sort %></td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+          <td><b>5) Autorizo tratamento médico emergencial, em caso de enfermidade ou acidente na escola, ministrar primeiros socorros e providenciar deslocamento até hospital</td>
+          <td> <%= f.select :aluno_emergencial, (OPCAO).sort %>  </td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+          <td><b>6) Autorizo tratamento odontologio, se disponibilizado pela Prefeitura Municipal de Americana</b></td>
+          <td> <%= f.select :aluno_odontologico, (OPCAO).sort %> </td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+          <td><b>7) Autorizo a aplicação de fluor</b></td>
+          <td><%= f.select :aluno_fluor, (OPCAO).sort %>    </td>
+      </tr>
+   </table>
+
+  </fieldset>
+
+ <br/>
+
+
+
+  
+       <table width="100%" >
+         <tr>
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+            
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    
+  
+
+         </tr>
+       </table>
+  
+
+  </font>
+
+
+
+
+
+
+
+
+

@@ -1,10 +1,26 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.resources :classes
+
+  map.resources :professors
+
+  map.resources :tipos
+
+  map.resources :unidades,  :collection => {:consultas => :get}
+
+  map.resources :socioeconomicos
+
+  map.resources :saudes
+
+  map.resources :pessoas
+
+  map.resources :alunos, :collection => {:consulta_ficha => :get}
+
   map.resources :logs
   map.resources :roles_users
   map.resources :users
 
   map.resource :session
-  map.resources :unidades
   map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :status => :get, :impressao_geral => :get, :status => :get, :update => :put}
   map.resources :grupos
   map.resources :regiaos
@@ -20,16 +36,8 @@ ActionController::Routing::Routes.draw do |map|
   map.grafico '/grafico', :controller => 'grafico'
   map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_geral_demanda'
   map.grafico_por_unidade '/grafico/crianca_por_unidade', :controller => 'grafico', :action => 'crianca_por_unidade'
-  map.relatorio_crianca '/crianca/relatorio_crianca', :controller => 'criancas', :action => 'relatorio_crianca'
-  map.consulta_geral '/geral', :controller => 'criancas', :action => 'relatorio_geral'
-  map.consulta_unidade '/unidade', :controller => 'criancas', :action => 'consulta_unidade'
-  map.consulta_unidade_status '/unidade_status', :controller => 'criancas', :action => 'consulta_unidade_status'
-  map.consulta_classe '/consulta_classe', :controller => 'criancas', :action => 'consulta_classe'
-  map.consulta_status '/consulta_status', :controller => 'criancas', :action => 'consulta_status'
-  map.consulta_altera_status '/consulta_altera_status', :controller => 'criancas', :action => 'consulta_altera_status'
-  map.altera_classe '/altera_classe', :controller => 'criancas', :action => 'altera_classe'
-  map.altera_nascimento '/altera_nascimento', :controller => 'criancas', :action => 'altera_nascimento'
-
+  
+  
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
 
@@ -39,25 +47,26 @@ ActionController::Routing::Routes.draw do |map|
   map.grafico_unidade '/grafico/grafico_demanda_unidade', :controller => 'grafico', :action => 'grafico_demanda_unidade'
 
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
+  map.impressao_alunos '/impressao_alunos', :controller => 'alunos', :action => 'impressao_alunos'
+  map.impressao_saude '/impressao_saude', :controller => 'saudes', :action => 'impressao_saude'
+  map.impressao_socioeconomico '/impressao_socioeconomico', :controller => 'socioeconomicos', :action => 'impressao_socioeconomico'
+  map.impressao_ficha_completa '/impressao_ficha_completa', :controller => 'socioeconomicos', :action => 'impressao_ficha_completa'
+  map.impressao_ficha '/impressao_ficha', :controller => 'alunos', :action => 'impressao_ficha'
+
+  map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
 
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
   
   map.resources :classes
   map.resources :informativos
   map.resources :logs
-  map.resources :unidades
   map.resources :fichas
 
   
-
-  
-  map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
-  
-  
-  
-  
-  
-  
+  map.consulta_unidade '/consulta_unidade', :controller => 'unidades', :action => 'consulta_unidade'
+  map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
+  map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
+  map.consulta_ficha_cadastral '/consulta_ficha_cadastral', :controller => 'alunos', :action => 'consulta_ficha_cadastral'
 
   map.resources :roles_users, :collection => {:lista_users => :get}
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'

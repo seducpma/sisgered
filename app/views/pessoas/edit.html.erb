@@ -1,0 +1,185 @@
+<div id="interno2">
+<% title "PESSOAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CADASTRO DE DADOS PESSOAIS</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+<% form_for (@pessoa) do |f| %>
+ <%= f.error_messages %>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+ <font color ="red"  size="4"align="left"> Campos com <b><font size="5"> * </font></b> preenchimento obrigatório </font>
+  <fieldset>
+   <legend><font size=4>Dados Pessoais</font></legend>
+  <table width="100%">
+       <tr>
+         <td> <b>Tipo Cadastro: </b></td>
+         <td colspan="4"><%=h @pessoa.pessoa_tipo %></td>
+       </tr>
+       <tr>
+         <td width =" 12%"><b><font color="red" size="5">*</font>Nome:</b></td>
+         <td colspan="3"><%= f.text_field :pessoa_nome, :size=>"64" %>
+             <%= observe_field :pessoa_pessoa_nome,
+               :with => :pessoa_pessoa_nome,
+               :url => { :action => 'mesmo_nome' } %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <b>Sexo:</b>&nbsp&nbsp
+          <%= f.select :pessoa_sexo,(SEXO).sort, :include_blank => '-- Selecionar --' %></td>
+       </tr>
+       <tr>
+         <td><b><%= f.label :pessoa_nascimento, 'Nascimento' %></b></td>
+         <td colspan="3">    <%= f.date_select(:pessoa_nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
+           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+           <b>Naturalidade (Cidade-Estado):</b>&nbsp&nbsp
+            <%= f.text_field :pessoa_naturalidade, :size=>'35'%> </td>
+       </tr>
+       <tr>
+         <td><b>Nacionalidade:</b></td>
+         <td colspan="3"><%= f.text_field :pessoa_nacionalidade, :size=>'23', :value => "BRASILEIRO"%>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <b>Chegada Brasil (se estrangeiro):</b>&nbsp&nbsp
+            <%= f.date_select(:pessoa_chegada_brasil, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)) %><BR /></td>
+       </tr>
+       <tr>
+          <td><b>RG:</b></td>
+          <td colspan="3"><%= f.text_field :pessoa_RG, :size=>'23'%>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+             <b>Data/Orgão Expedição:</b>&nbsp&nbsp
+             <%= f.text_field :pessoa_emissaoRG, :size=>'40' %> </td>
+       </tr>
+       <tr>
+         <td><b>CPF:</b></td>
+         <td colspan="3"><%= f.text_field :pessoa_CPF, :size=>'23'%>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <b>Data/Orgão Expedição:</b>&nbsp&nbsp
+           <%= f.text_field :pessoa_emissaoCPF, :size=>'40'%> </td>
+       </tr>
+       <tr>
+         <td><b><font color="red" size="5">*</font>Mãe: </b></td>
+         <td colspan="3"><%= f.text_field :pessoa_mae, :size=>"30"%>
+             <%= observe_field :pessoa_pessoa_mae,
+               :with => :pessoa_pessoa_mae,
+               :url => { :action => "mesma_mae" } %>
+          &nbsp&nbsp&nbsp&nbsp
+          <b>Fone: </b>&nbsp&nbsp
+          <%= f.text_field :pessoa_fone_mae, :size=>"15"%>
+          &nbsp&nbsp&nbsp&nbsp
+          <b>E_mail: </b>&nbsp&nbsp
+          <%= f.text_field :pessoa_email_mae, :size=>"20"%></td>
+       </tr>
+        <tr>
+         <td></td>
+         <td colspan="2"><b><div id='nome_aviso' ></div>  <div id='aviso_mae'></div></b></td>
+         <td colspan="2"><b><div id='nome_mae'></div></b></td>
+       </tr>
+       <tr>
+         <td><b></font>Pai: </b></td>
+         <td colspan="3"><%= f.text_field :pessoa_pai, :size=>"30"%>
+          &nbsp&nbsp&nbsp&nbsp
+          <b>Fone: </b>&nbsp&nbsp
+          <%= f.text_field :pessoa_fone_pai, :size=>"15"%>
+          &nbsp&nbsp&nbsp&nbsp
+          <b>E_mail: </b>&nbsp&nbsp
+          <%= f.text_field :pessoa_email_pai, :size=>"20"%>
+      </tr>
+      <tr>
+         <td><b>Endereço: </b></td>
+         <td colspan="3"><%= f.text_field :pessoa_endereco, :size=>"45"%><b> nº</b> <%= f.text_field :pessoa_num, :size=>"2"%>
+           &nbsp&nbsp&nbsp&nbsp
+           <b>Complemento: </b>&nbsp&nbsp
+            <%= f.text_field :pessoa_complemento, :size=>"19"%></td>
+      </tr>
+       <tr>
+         <td><b>Bairro: </b></td>
+         <td colspan="3"><%= f.text_field :pessoa_bairro, :size=>"30"%>
+           &nbsp&nbsp&nbsp&nbsp
+           <b>CEP: </b>&nbsp&nbsp
+           <%= f.text_field :pessoa_cep, :size=>"8"%>
+           &nbsp&nbsp&nbsp&nbsp
+           <b>Cidade: </b>&nbsp&nbsp
+          <%= f.text_field :pessoa_cidade, :size=>"27"%></td>
+      </tr>
+      <tr>
+         <td><b>Telefone: </b></td>
+         <td colspan="3"><%= f.text_field :pessoa_fone_fixo, :size=>"20"%>
+          &nbsp&nbsp&nbsp&nbsp
+          <b>Celular: </b>&nbsp&nbsp
+          <%= f.text_field :pessoa_fone_cel, :size=>"20"%>
+          &nbsp&nbsp&nbsp&nbsp
+          <b>E_mail: </b>&nbsp&nbsp
+         <%= f.text_field :pessoa_email, :size=>"23"%></td>
+       </tr>
+       <tr>
+         <td colspan="4">
+           <% if  @pessoa.pessoa_tipo != 'ALUNO'then  %>
+                 <table>
+                <tr>
+                   <td><b>Estado Civil:</b></td>
+                   <td colspan="3"><%= f.select :pessoa_estado_civil,(CIVIL).sort, :include_blank => '-- Selecionar --' %>
+                      &nbsp&nbsp&nbsp&nbsp
+                     <b>Escolaridade: </b>&nbsp&nbsp
+                     <%= f.select :pessoa_escolaridade,(ESCOLARIDADE).sort, :include_blank => '-- Selecionar --' %>
+                     &nbsp&nbsp&nbsp&nbsp
+                     <b>Profissão: </b>&nbsp&nbsp
+                    <%= f.text_field :pessoa_profissao, :size=>"23"%></td>
+                 </tr>
+                 <tr>
+                   <td><b>Local Trabalho: </b></td>
+                   <td colspan="3"><%= f.text_field :pessoa_local_trabalho, :size=> '20' %>
+                     &nbsp&nbsp&nbsp&nbsp
+                    <b>Condição Profissional: </b>&nbsp&nbsp
+                    <%= f.select :pessoa_condicao_profissao,(PROFISSAO).sort, :include_blank => '-- Selecionar --' %>
+                     &nbsp&nbsp&nbsp&nbsp
+                    <b>Fone: </b>&nbsp&nbsp
+                    <%= f.text_field :pessoa_fone_trabalho, :size=>"14"%>
+                </tr>
+                </table>
+            <% end %>
+         </td>
+       </tr>
+
+      <tr>
+        <td><b>Observação:</b></td>
+        <td colspan="5"><%= f.text_area(:pessoa_obs, :cols=> "88", :rows=>"3") %> </td>
+      </tr>
+    </table>
+  </fieldset>
+
+ <br/>
+
+
+
+
+       <table width="100%" >
+         <tr>
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+         </tr>
+       </table>
+
+
+  </font>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+<br/>
+</div>

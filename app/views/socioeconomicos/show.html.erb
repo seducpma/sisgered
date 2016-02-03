@@ -1,0 +1,91 @@
+<div id="interno2">
+<% title "SAUDE" %>
+<div class ="tabs">
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> Dados Socioeconômicos</b></font></legend>
+         <table width="100%">
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Nome:</b></td>
+               <td colspan="5" align="left"> <%=h @socioeconomico.pessoa.pessoa_nome %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td witdh ="20%"><b>Casa:</b></td>
+               <td witdh ="10%"><%=h @socioeconomico.economico_casa %></td>
+               <td witdh ="10%"><b>Nº Cômodos:</b></td>
+               <td witdh = "15%"><%=h @socioeconomico.economico_comodos %></td>
+               <td width ="18%"><b>Tipo de Construção:</b></td>
+               <td witdh ="5%"><%=h @socioeconomico.economico_tipo_casa%></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td><b>Rede Eletrica:</b></td>
+               <td><%=h @socioeconomico.economico_eletricidade %></td>
+               <td><b>Rede Esgoto:</b></td>
+               <td><%=h @socioeconomico.economico_esgoto %></td>
+               <td><b>Rede Água:</b></td>
+               <td><%=h @socioeconomico.economico_agua %></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+                 <td colspan="6"><b>Quantos residem na casa:&nbsp</b>
+                       <%= h @socioeconomico.economico_residentes%>&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <b>Quantos menores de 12 anos:</b>&nbsp<%= h @socioeconomico.economico_menores%>&nbsp&nbsp&nbsp
+                    <b>Quantos trabalham:</b>&nbsp&nbsp&nbsp<%=h @socioeconomico.economico_remunerada %>&nbsp&nbsp&nbsp
+                    <b>Renda Familiar:</b>&nbsp&nbsp&nbsp<%=h @socioeconomico.economico_renda_familiar%>
+                 </td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+                 <td colspan="6"><b>Irmãos que estudam:&nbsp</b> <%=h @socioeconomico.economico_irmaos%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Religião:</b></td>
+               <td><%=h @socioeconomico.economico_religiao%></td>
+               <td><b>Possui Geladeira:</b></td>
+               <td><%=h @socioeconomico.economico_geladeira%></td>
+               <td><b>Possui Freezer:</b></td>
+               <td><%=h @socioeconomico.economico_freezer%></td>
+
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td width ="15%"><b>Possui Carro:</b></td>
+               <td><%=h @socioeconomico.economico_carro%></td>
+               <td><b>Possui Moto:</b></td>
+               <td><%=h @socioeconomico.economico_moto %></td>
+               <td><b>Possui Computador:</b></td>
+               <td><%=h @socioeconomico.economico_computador%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td><b>Possui TV à Cabo:</b></td>
+               <td><%=h @socioeconomico.economico_tv%></td>
+               <td><b>Possui Internet:</b></td>
+               <td><%=h @socioeconomico.economico_internet %></td>
+               <td><b>Possui Lava Roupa:</b></td>
+               <td><%=h @socioeconomico.economico_lava_roupa%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+               <td valign="top"><b>Observação:</b></td>
+              <td colspan="5"><%=h @socioeconomico.economico_obs %> </td>
+            </tr>
+  <% session[:socioeconomico] = @socioeconomico.id %>
+  <% session[:pessoa] = @socioeconomico.pessoa_id %>
+     </td>
+  </tr>
+ </table>
+
+       <table width="100%" >
+         <tr>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+            <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@socioeconomico}, :method => "get", :title => "Editar"%></td>
+            <td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_socioeconomico_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+            <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td align="right"><%= button_to 'Imprimir Ficha' ,impressao_ficha_completa_path, :title => "Continuar" %></td></td>
+         </tr>
+       </table>
+    </table>
+
+
+</div>
+<br/>
+</div>
+
+

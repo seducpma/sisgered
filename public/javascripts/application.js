@@ -146,6 +146,20 @@ $("#midia_lista_tombos").focus();
 });
 
 
+
+
+//Codigo para gerar 2 multi-selects para alunos_classes
+$('#add').click(function() {
+  return !$('#todos option:selected').remove().appendTo('#classe_aluno_ids');
+ });
+ $('#remove').click(function() {
+  return !$('#classe_aluno_ids option:selected').remove().appendTo('#todos');
+ });
+//Fim do codigo
+
+
+
+
 //Codigo para Multi-tombos - cadastro de midias
 
 $("#type_midia_0").click(function ()
@@ -437,6 +451,8 @@ $(".sem_filtro").click(function ()
 
    $(".filtro_unidade").click(function ()
    {
+     $(".consulta_professor").hide();
+     $(".consulta").hide();
      $(".consulta2").show();
      $(".consulta_unidade").show();
      $(".txt_busca2").show();
@@ -451,15 +467,16 @@ $(".sem_filtro").click(function ()
      $(".consulta_unidade_m").ride();
      $(".txt_buscam").hide();
      $(".label_buscam").hide();
-     $(".consulta").hide();
+
      $(".consulta1").hide();
-     $(".consulta_professor").hide();
+     
      $(".consulta_data").hide();
      $(".label_busca1").hide();
      $(".consulta_classe").hide();
      $(".label_busca").hide();
      $(".txt_busca").hide();
      $(".consulta_nome").hide();
+
 
 
    });

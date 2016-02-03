@@ -50,6 +50,14 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation, :unidade_id
 
 
+  def self.current
+    Thread.current[:user]
+  end
+  
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
+
   # Activates the user in the database.
   def activate!
     @activated = true
@@ -186,6 +194,12 @@ class User < ActiveRecord::Base
     @rolesuser.user_id = self.id
     @rolesuser.save
   end
+
+
+
+
+
+
     protected
       def encrypt_password
         return if password.blank?

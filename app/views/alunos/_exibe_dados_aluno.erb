@@ -1,0 +1,101 @@
+<table width="100%" >
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Nome:</b></td>
+               <td colspan="3 " align="left"><%=h @dados.pessoa_nome %></td>
+               <td align="left"><b>Sexo:</b></td>
+               <td colspan="2" align="left"><%=h @dados.pessoa_sexo %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Nascimento:</b></td>
+               <td colspan="2"align="left">  <%=h @dados.pessoa_nascimento.strftime("%d/%m/%Y")%>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               <b>Naturalidade:</b></td>
+               <td colspan="4"align="left"><%=h @dados.pessoa_naturalidade %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Nacionalidade:</b></td>
+               <td colspan="2"align="left"><%=h @dados.pessoa_nacionalidade %></td>
+               <% if @dados.pessoa_nacionalidade = 'BRASILEIRO' %>
+                 <td colspan="5"></td>
+               <%else%>
+                  <td align="right"><b>Chegada Brasil:&nbsp&nbsp</b></td>
+                  <td colspan="4" align="left">  <%=h @dados.pessoa_chegada_brasil.strftime("%d/%m/%Y")%></td>              <%end%>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"><b>RG:</b></td>
+               <td align="left">  <%=h @dados.pessoa_RG%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td colspan="5"align="left"><%=h @dados.pessoa_emissaoRG %></td>
+            </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"><b>CPF:</b></td>
+               <td align="left">  <%=h @dados.pessoa_CPF%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td colspan="5"align="left"><%=h @dados.pessoa_emissaoCPF %></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Mãe:</b></td>
+               <td align="left"><%=h @dados.pessoa_mae %></td>
+               <td align="left"><b>Fone:</b></td>
+               <td align="left"><%=h @dados.pessoa_fone_mae %></td></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="3"align="left"><%=h @dados.pessoa_email_mae %></td></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Pai:</b></td>
+               <td align="left"><%=h @dados.pessoa_pai %></td>
+               <td align="left"><b>Fone:</b></td>
+               <td align="left"><%=h @dados.pessoa_fone_pai %></td></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="3" align="left"><%=h @dados.pessoa_email_pai%></td></td>
+            </tr>
+
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Endereço:</b></td>
+               <td colspan="3" align="left"><%=h @dados.pessoa_endereco %> - <%=h @dados.pessoa_num %></td>
+               <td align="left" width="4%"><b>Complemento:</b></td>
+               <td colspan="4" align="left"><%=h @dados.pessoa_complemento %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Bairro:</b></td>
+               <td  align="left"><%=h @dados.pessoa_bairro %></td>
+               <td align="left" width="4%"><b>CEP:</b></td>
+               <td  align="left"><%=h @dados.pessoa_cep %></td>
+               <td align="left" width="4%"><b>Cidade:</b></td>
+               <td colspan="3" align="left"><%=h @dados.pessoa_cidade %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Telefone:</b></td>
+               <td align="left"><%=h @dados.pessoa_fone_fixo %></td>
+               <td align="left"><b>Celular:</b></td>
+               <td align="left"><%=h @dados.pessoa_fone_cel %></td></td>
+               <td align="left"><b>E-mail:</b></td>
+               <td colspan="3"align="left"><%=h @dados.pessoa_email%></td></td>
+            </tr>
+            <% if  @dados.pessoa_tipo != 'ALUNO'then  %>
+            <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Estado Civil:</b></td>
+               <td align="left"><%=h @dados.pessoa_estado_civil %></td></td>
+               <td align="left" width="4%"><b>Escolaridade:</b></td>
+               <td align="left"><%=h @dados.pessoa_escolaridade %></td>
+               <td align="left" width="4%"><b>Profissão:</b></td>
+               <td colspan="2"align="left"><%=h @dados.pessoa_profissao%></td></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+              <td width=" 12%"align="left"><b>Local Trabalho:</b></td>
+              <td colspan="2"align="left"><%=h @dados.pessoa_local_trabalho %></td></td>
+               <td colspan="2" align="LEFT"><b>Condição Profissional:</b> &nbsp<%=h @dados.pessoa_condicao_profissao %></td>
+               <td align="left"width="3%"><b>Fone:</b>
+               <td align="left"><%=h @dados.pessoa_fone_trabalho%></td></td>
+            </tr>
+            <%end%>
+            <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Observação::</b></td>
+               <td colspan="7" align="left"><%=h @dados.pessoa_obs %></td>
+            </tr>
+
+
+
+         </table>
