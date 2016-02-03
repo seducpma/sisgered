@@ -64,12 +64,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :fichas
 
   
-<<<<<<< HEAD
   map.consulta_unidade '/consulta_unidade', :controller => 'unidades', :action => 'consulta_unidade'
   map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
   map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
   map.consulta_ficha_cadastral '/consulta_ficha_cadastral', :controller => 'alunos', :action => 'consulta_ficha_cadastral'
-=======
 
   
   map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
@@ -79,7 +77,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.edicao :criancas, :path_prefix => '/criancas/:crianca/edit'
   
   
->>>>>>> 0405771af78a527871abe32b96e349291f326863
+
 
   map.resources :roles_users, :collection => {:lista_users => :get}
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'

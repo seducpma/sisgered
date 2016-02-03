@@ -1,0 +1,462 @@
+# Logfile created on Wed Feb 03 10:40:27 -0200 2016  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-02-03 10:42:12) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 53ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2016-02-03 10:42:12) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 199ms (View: 137, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2016-02-03 10:42:17) [POST]
+  Parameters: {"login"=>"ngarcia", "password"=>"mus@and2", "commit"=>"Entrar", "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'ngarcia' and activated_at IS NOT NULL) LIMIT 1[0m
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Redirected to http://localhost:3000/
+Completed in 20ms (DB: 2) | 302 Found [http://localhost/session]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-02-03 10:42:17) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:42:17' AND ends_at >= '2016-02-03 12:42:17') [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.3ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 136ms (View: 119, DB: 4) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-02-03 10:43:09) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:43:09' AND ends_at >= '2016-02-03 12:43:09') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 47ms (View: 30, DB: 3) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#new (for 127.0.0.1 at 2016-02-03 10:43:19) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Load (0.6ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoas.pessoa_tipo = "ALUNO" and unidade_id = 52) ORDER BY pessoa_nome[0m
+  [4;35;1mPessoa Load (0.3ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "MÃE") ORDER BY pessoa_nome[0m
+  [4;36;1mPessoa Load (0.8ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE ((pessoa_tipo = "AVÔ" or pessoa_tipo = "AVÓ" or pessoa_tipo = "ENTEADO(A)" or pessoa_tipo = "OUTROS" or pessoa_tipo = "RESPONSÁVEL") and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;35;1mAluno Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Rendering template within layouts/application
+Rendering alunos/new
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mPessoa Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+Rendered alunos/_form (33.1ms)
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:43:19' AND ends_at >= '2016-02-03 12:43:19') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 95ms (View: 62, DB: 8) | 200 OK [http://localhost/alunos/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PessoasController#new (for 127.0.0.1 at 2016-02-03 10:43:25) [GET]
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPessoa Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `pessoas`[0m
+Rendering template within layouts/application
+Rendering pessoas/new
+Rendered pessoas/_form (35.6ms)
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:43:25' AND ends_at >= '2016-02-03 12:43:25') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 101ms (View: 74, DB: 5) | 200 OK [http://localhost/pessoas/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PessoasController#dados_trabalho (for 127.0.0.1 at 2016-02-03 10:43:30) [POST]
+  Parameters: {"pessoa_pessoa_tipo"=>"ALUNO", "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendered pessoas/_dados_trabalho (0.6ms)
+Completed in 18ms (View: 4, DB: 1) | 200 OK [http://localhost/pessoas/dados_trabalho]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PessoasController#mesmo_nome (for 127.0.0.1 at 2016-02-03 10:43:48) [POST]
+  Parameters: {"pessoa_pessoa_nome"=>"Nome aluno teste", "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (50.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+
+ActionController::UnknownAction (No action responded to mesmo_nome. Actions: access_denied, check_roles, create, dados_trabalho, destroy, edit, index, new, render_optional_error_file, role_requirements, role_requirements=, set_current_user, show, and update):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PessoasController#mesma_mae (for 127.0.0.1 at 2016-02-03 10:44:16) [POST]
+  Parameters: {"pessoa_pessoa_mae"=>"Maria antonai aluno teste", "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+
+ActionController::UnknownAction (No action responded to mesma_mae. Actions: access_denied, check_roles, create, dados_trabalho, destroy, edit, index, new, render_optional_error_file, role_requirements, role_requirements=, set_current_user, show, and update):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PessoasController#create (for 127.0.0.1 at 2016-02-03 10:44:52) [POST]
+  Parameters: {"commit"=>"Salvar", "pessoa"=>{"pessoa_email"=>"dsadsaads", "pessoa_cep"=>"123456", "pessoa_nascimento(2i)"=>"2", "pessoa_nacionalidade"=>"BRASILEIRO", "pessoa_nascimento(3i)"=>"12", "pessoa_emissaoRG"=>"ssssdasd  132131", "pessoa_num"=>"2", "pessoa_email_pai"=>"312312", "pessoa_email_mae"=>"sad", "pessoa_RG"=>"123", "pessoa_fone_cel"=>"1231231231", "pessoa_fone_pai"=>"123", "pessoa_fone_mae"=>"123", "pessoa_mae"=>"Maria antonai aluno teste", "pessoa_chegada_brasil(1i)"=>"2016", "pessoa_sexo"=>"MASCULINO", "pessoa_endereco"=>"rua ksob e eu não seio descer", "pessoa_chegada_brasil(2i)"=>"2", "pessoa_complemento"=>"22", "pessoa_chegada_brasil(3i)"=>"3", "pessoa_naturalidade"=>"", "pessoa_bairro"=>"São vito", "pessoa_obs"=>"testet", "pessoa_emissaoCPF"=>"agora", "pessoa_nome"=>"Nome aluno teste", "pessoa_fone_fixo"=>"123", "pessoa_cidade"=>"Americana", "pessoa_pai"=>"asdas", "pessoa_CPF"=>"asd", "pessoa_nascimento(1i)"=>"2001", "pessoa_tipo"=>"ALUNO"}, "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPessoa Create (0.5ms)[0m   [0;1mINSERT INTO `pessoas` (`pessoa_cep`, `pessoa_email`, `updated_at`, `pessoa_nacionalidade`, `pessoa_local_trabalho`, `pessoa_emissaoRG`, `pessoa_RG`, `pessoa_email_pai`, `pessoa_email_mae`, `pessoa_num`, `pessoa_sexo`, `pessoa_fone_pai`, `pessoa_mae`, `pessoa_fone_mae`, `pessoa_fone_cel`, `pessoa_endereco`, `pessoa_naturalidade`, `pessoa_complemento`, `pessoa_profissao`, `pessoa_endereco_trabalho`, `pessoa_fone_trabalho`, `pessoa_estado_civil`, `pessoa_bairro`, `pessoa_nome`, `pessoa_emissaoCPF`, `pessoa_obs`, `unidade_id`, `pessoa_nascimento`, `pessoa_CPF`, `pessoa_pai`, `pessoa_cidade`, `pessoa_fone_fixo`, `pessoa_condicao_profissao`, `pessoa_tipo`, `pessoa_chegada_brasil`, `pessoa_escolaridade`, `created_at`) VALUES('123456', 'dsadsaads', '2016-02-03 12:44:52', 'BRASILEIRO', NULL, 'SSSSDASD 132131', '123', '312312', 'sad', '2', 'MASCULINO', '123', 'MARIA ANTONAI ALUNO TESTE', '123', '1231231231', 'RUA KSOB E EU NÃO SEIO DESCER', '', '22', NULL, NULL, NULL, NULL, 'SÃO VITO', 'NOME ALUNO TESTE', 'AGORA', 'testet', 52, '2001-02-12', 'asd', 'ASDAS', 'AMERICANA', '123', NULL, 'ALUNO', '2016-02-03', NULL, '2016-02-03 12:44:52')[0m
+  [4;35;1mSQL (120.8ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/pessoas/29
+Completed in 158ms (DB: 124) | 302 Found [http://localhost/pessoas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PessoasController#show (for 127.0.0.1 at 2016-02-03 10:44:52) [GET]
+  Parameters: {"id"=>"29"}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+  [4;35;1mPessoa Load (0.3ms)[0m   [0mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+Rendering template within layouts/application
+Rendering pessoas/show
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:44:52' AND ends_at >= '2016-02-03 12:44:52') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 59ms (View: 35, DB: 5) | 200 OK [http://localhost/pessoas/29]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#new (for 127.0.0.1 at 2016-02-03 10:45:05) [POST]
+  Parameters: {"authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Load (0.6ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoas.pessoa_tipo = "ALUNO" and unidade_id = 52) ORDER BY pessoa_nome[0m
+  [4;35;1mPessoa Load (0.3ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "MÃE") ORDER BY pessoa_nome[0m
+  [4;36;1mPessoa Load (0.4ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE ((pessoa_tipo = "AVÔ" or pessoa_tipo = "AVÓ" or pessoa_tipo = "ENTEADO(A)" or pessoa_tipo = "OUTROS" or pessoa_tipo = "RESPONSÁVEL") and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;35;1mAluno Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Rendering template within layouts/application
+Rendering alunos/new
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mPessoa Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+Rendered alunos/_form (24.7ms)
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:45:05' AND ends_at >= '2016-02-03 12:45:05') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (4.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 140ms (View: 97, DB: 12) | 200 OK [http://localhost/alunos/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#verifica_dados_aluno (for 127.0.0.1 at 2016-02-03 10:45:08) [POST]
+  Parameters: {"aluno_pessoa_id"=>"29", "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPessoa Load (0.1ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoas.pessoa_tipo = "ALUNO" and unidade_id = 52) ORDER BY pessoa_nome[0m
+  [4;36;1mPessoa Load (0.1ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "MÃE") ORDER BY pessoa_nome[0m
+  [4;35;1mPessoa Load (0.1ms)[0m   [0mSELECT * FROM `pessoas` WHERE ((pessoa_tipo = "AVÔ" or pessoa_tipo = "AVÓ" or pessoa_tipo = "ENTEADO(A)" or pessoa_tipo = "OUTROS" or pessoa_tipo = "RESPONSÁVEL") and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;36;1mPessoa Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+  [4;35;1mPessoa Load (0.2ms)[0m   [0mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+Rendered alunos/_exibe_dados_aluno (9.5ms)
+Completed in 41ms (View: 14, DB: 3) | 200 OK [http://localhost/alunos/verifica_dados_aluno]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#create (for 127.0.0.1 at 2016-02-03 10:45:45) [POST]
+  Parameters: {"commit"=>"Salvar", "aluno"=>{"aluno_renda_cidada"=>"NÃO", "aluno_restricao"=>"NÃO", "aluno_fluor"=>"SIM", "aluno_nome_beneficiario"=>"", "aluno_reside_com"=>"PAIS", "aluno_responsavel_pessoa_id"=>"", "aluno_odontologico"=>"SIM", "aluno_vai_embora_so"=>"SIM", "aluno_bolsa_familia"=>"NÃO", "aluno_nis"=>"123123", "aluno_ra"=>"123123", "aluno_rm"=>"12312", "aluno_autoriza_imagem"=>"SIM", "aluno_autoriza_ativ_extraclasse"=>"SIM", "aluno_autoriza_ativ_fisica"=>"SIM", "pessoa_id"=>"29", "aluno_inep"=>"123", "aluno_emergencial"=>"SIM", "aluno_acompanhante"=>"asddsdds", "aluno_especial"=>"NÃO"}, "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Load (0.1ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoas.pessoa_tipo = "ALUNO" and unidade_id = 52) ORDER BY pessoa_nome[0m
+  [4;35;1mPessoa Load (0.1ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "MÃE") ORDER BY pessoa_nome[0m
+  [4;36;1mPessoa Load (0.1ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE ((pessoa_tipo = "AVÔ" or pessoa_tipo = "AVÓ" or pessoa_tipo = "ENTEADO(A)" or pessoa_tipo = "OUTROS" or pessoa_tipo = "RESPONSÁVEL") and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;35;1mAluno Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPessoa Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `pessoas`[0m
+  [4;36;1mPessoa Load (0.4ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+  [4;35;1mAluno Create (0.6ms)[0m   [0mINSERT INTO `alunos` (`aluno_restricao`, `aluno_renda_cidada`, `aluno_status`, `aluno_reside_com`, `aluno_responsavel_pessoa_id`, `aluno_nome_beneficiario`, `aluno_fluor`, `aluno_mae_pessoa_id`, `aluno_odontologico`, `aluno_contato1_pessoa_id`, `aluno_vai_embora_so`, `aluno_autoriza_passeio`, `aluno_rm`, `aluno_ra`, `aluno_nis`, `aluno_pai_pessoa_id`, `aluno_bolsa_familia`, ` updated_at`, `aluno_autoriza_imagem`, `aluno_contato2_pessoa_id`, `aluno_autoriza_ativ_fisica`, `aluno_autoriza_ativ_extraclasse`, `pessoa_id`, `aluno_inep`, `unidade_id`, `aluno_nome`, `aluno_acompanhante`, `aluno_brasil_carinhoso`, `aluno_emergencial`, `aluno_obs`, `aluno_especial`, `created_at`) VALUES('NÃO', 'NÃO', NULL, 'PAIS', NULL, '', 'SIM', NULL, 'SIM', NULL, 'SIM', NULL, 12312, 123123, 123123, NULL, 'NÃO', NULL, 'SIM', NULL, 'SIM', 'SIM', 29, 123, 52, 'NOME ALUNO TESTE', 'ASDDSDDS', NULL, 'SIM', NULL, 'NÃO', '2016-02-03 12:45:45')[0m
+  [4;36;1mSQL (80.0ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/alunos/32
+Completed in 128ms (DB: 86) | 302 Found [http://localhost/alunos]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-02-03 10:45:46) [GET]
+  Parameters: {"id"=>"32"}
+  [4;35;1mUser Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPessoa Load (0.3ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoas.pessoa_tipo = "ALUNO" and unidade_id = 52) ORDER BY pessoa_nome[0m
+  [4;36;1mPessoa Load (0.2ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "MÃE") ORDER BY pessoa_nome[0m
+  [4;35;1mPessoa Load (0.1ms)[0m   [0mSELECT * FROM `pessoas` WHERE ((pessoa_tipo = "AVÔ" or pessoa_tipo = "AVÓ" or pessoa_tipo = "ENTEADO(A)" or pessoa_tipo = "OUTROS" or pessoa_tipo = "RESPONSÁVEL") and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;36;1mAluno Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.5ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 32) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Rendering template within layouts/application
+Rendering alunos/show
+  [4;36;1mPessoa Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+  [4;35;1mPessoa Load (0.2ms)[0m   [0mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:45:46' AND ends_at >= '2016-02-03 12:45:46') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 138ms (View: 40, DB: 7) | 200 OK [http://localhost/alunos/32]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SaudesController#new (for 127.0.0.1 at 2016-02-03 10:45:55) [POST]
+  Parameters: {"authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Load (0.6ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "ALUNO" and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;35;1mSaude Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `saudes`[0m
+Rendering template within layouts/application
+Rendering saudes/new
+  [4;36;1mPessoa Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+Rendered saudes/_form (27.0ms)
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:45:55' AND ends_at >= '2016-02-03 12:45:55') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 148ms (View: 58, DB: 7) | 200 OK [http://localhost/saudes/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SaudesController#new (for 127.0.0.1 at 2016-02-03 10:53:23) [POST]
+  Parameters: {"authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;35;1mUser Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPessoa Load (0.3ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "ALUNO" and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;36;1mSaude Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `saudes`[0m
+Rendering template within layouts/application
+Rendering saudes/new
+  [4;35;1mPessoa Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `pessoas`[0m
+Rendered saudes/_form (22.5ms)
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:53:23' AND ends_at >= '2016-02-03 12:53:23') [0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 80ms (View: 46, DB: 7) | 200 OK [http://localhost/saudes/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SaudesController#create (for 127.0.0.1 at 2016-02-03 10:53:33) [POST]
+  Parameters: {"commit"=>"Salvar", "saude"=>{"saude_obs"=>"", "saude_antecedentes_familia"=>"NÃO", "saude_parto"=>"", "saude_hab_motora"=>"", "saude_fumante_casa"=>"NÃO", "saude_fratura"=>"NÃO", "saude_alimentacao"=>"", "saude_tipo_sangue"=>"", "saude_doencas"=>"NÃO", "saude_probl_visao"=>"NÃO", "saude_antipiretico"=>"NÃO", "saude_intolerancia"=>"NÃO", "saude_sono"=>"", "saude_plano_saude"=>"NÃO", "saude_medicamento"=>"NÃO", "saude_pelicilina"=>"NÃO", "saude_alergia"=>"NÃO", "pessoa_id"=>"29", "saude_hospitalizado"=>"NÃO", "saude_antecedentes_mae"=>"INFECÇÂO URINÁRIO / DIABETS / HIPERTENSÃO / RUBÉOLA / SÍFILIS / TOXOPLASMOSE", "saude_neuropsico"=>"NÃO", "saude_necessidade_especial"=>"NÃO", "saude_cartao_sus"=>"NÃO", "saude_dependetes_quimicos"=>"NÃO", "saude_cirurgia"=>"NÃO"}, "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Load (0.2ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "ALUNO" and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;35;1mSaude Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `saudes`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSaude Create (0.5ms)[0m   [0mINSERT INTO `saudes` (`saude_hab_motora`, `saude_parto`, `saude_antecedentes_familia`, `saude_obs`, `updated_at`, `saude_fratura`, `saude_fumante_casa`, `saude_alimentacao`, `saude_tipo_sangue`, `saude_antipiretico`, `saude_probl_visao`, `saude_doencas`, `saude_plano_saude`, `saude_intolerancia`, `saude_sono`, `saude_medicamento`, `pessoa_id`, `saude_pelicilina`, `saude_alergia`, `unidade_id`, `saude_cartao_sus`, `saude_necessidade_especial`, `saude_antecedentes_mae`, `saude_neuropsico`, `saude_hospitalizado`, `saude_fumante`, `saude_cirurgia`, `saude_dependetes_quimicos`, `created_at`) VALUES('', '', 'NÃO', '', '2016-02-03 12:53:33', 'NÃO', 'NÃO', '', '', 'NÃO', 'NÃO', 'NÃO', 'NÃO', 'NÃO', '', 'NÃO', 29, 'NÃO', 'NÃO', 52, 'NÃO', 'NÃO', 'INFECÇÂO URINÁRIO / DIABETS / HIPERTENSÃO / RUBÉOLA / SÍFILIS / TOXOPLASMOSE', 'NÃO', 'NÃO', NULL, 'NÃO', 'NÃO', '2016-02-03 12:53:33')[0m
+  [4;36;1mSQL (44.0ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/saudes/10
+Completed in 84ms (DB: 48) | 302 Found [http://localhost/saudes]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SaudesController#show (for 127.0.0.1 at 2016-02-03 10:53:33) [GET]
+  Parameters: {"id"=>"10"}
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPessoa Load (0.2ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "ALUNO" and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;36;1mSaude Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `saudes`[0m
+  [4;35;1mSaude Load (0.3ms)[0m   [0mSELECT * FROM `saudes` WHERE (`saudes`.`id` = 10) [0m
+Rendering template within layouts/application
+Rendering saudes/show
+  [4;36;1mPessoa Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+  [4;35;1mPessoa Load (0.1ms)[0m   [0mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:53:33' AND ends_at >= '2016-02-03 12:53:33') [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 137ms (View: 105, DB: 7) | 200 OK [http://localhost/saudes/10]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SocioeconomicosController#new (for 127.0.0.1 at 2016-02-03 10:53:36) [POST]
+  Parameters: {"authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Load (0.1ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "ALUNO" and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;35;1mSocioeconomico Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `socioeconomicos`[0m
+Rendering template within layouts/application
+Rendering socioeconomicos/new
+  [4;36;1mPessoa Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `pessoas`[0m
+Rendered socioeconomicos/_form (28.1ms)
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:53:37' AND ends_at >= '2016-02-03 12:53:37') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 145ms (View: 115, DB: 7) | 200 OK [http://localhost/socioeconomicos/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SocioeconomicosController#create (for 127.0.0.1 at 2016-02-03 10:54:12) [POST]
+  Parameters: {"commit"=>"Salvar", "authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ=", "socioeconomico"=>{"economico_geladeira"=>"SIM", "economico_eletricidade"=>"GERADOR PRÒPRIO", "economico_casa"=>"ALUGADA", "economico_computador"=>"NÃO", "economico_freezer"=>"SIM", "economico_irmaos"=>"NÃO", "economico_esgoto"=>"FOSSA", "economico_religiao"=>"RITUAIS AFROBASILEIROS", "economico_moto"=>"SIM", "economico_comodos"=>"2", "economico_lava_roupa"=>"SIM", "economico_internet"=>"SIM", "economico_tv"=>"SIM", "economico_renda_familiar"=>"", "economico_residentes"=>"", "pessoa_id"=>"29", "economico_carro"=>"SIM", "economico_obs"=>"", "economico_menores"=>"", "economico_remunerada"=>"", "economico_agua"=>"NÂO TEM", "economico_tipo_casa"=>"ALVENARIA"}}
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPessoa Load (0.1ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "ALUNO" and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;36;1mSocioeconomico Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `socioeconomicos`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSocioeconomico Create (0.4ms)[0m   [0;1mINSERT INTO `socioeconomicos` (`updated_at`, `economico_casa`, `economico_eletricidade`, `economico_geladeira`, `economico_esgoto`, `economico_irmaos`, `economico_computador`, `economico_freezer`, `economico_religiao`, `economico_comodos`, `economico_moto`, `economico_renda_familiar`, `economico_tv`, `economico_internet`, `economico_lava_roupa`, `pessoa_id`, `economico_residentes`, `economico_carro`, `unidade_id`, `economico_menores`, `economico_obs`, `economico_tipo_casa`, `economico_agua`, `economico_remunerada`, `created_at`) VALUES('2016-02-03 12:54:12', 'ALUGADA', 'GERADOR PRÒPRIO', 'SIM', 'FOSSA', 'NÃO', 'NÃO', 'SIM', 'RITUAIS AFROBASILEIROS', 2, 'SIM', '', 'SIM', 'SIM', 'SIM', 29, NULL, 'SIM', 52, NULL, '', 'ALVENARIA', 'NÂO TEM', NULL, '2016-02-03 12:54:12')[0m
+  [4;35;1mSQL (96.5ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/socioeconomicos/12
+Completed in 192ms (DB: 100) | 302 Found [http://localhost/socioeconomicos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SocioeconomicosController#show (for 127.0.0.1 at 2016-02-03 10:54:12) [GET]
+  Parameters: {"id"=>"12"}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPessoa Load (0.1ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "ALUNO" and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;35;1mSocioeconomico Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `socioeconomicos`[0m
+  [4;36;1mSocioeconomico Load (0.4ms)[0m   [0;1mSELECT * FROM `socioeconomicos` WHERE (`socioeconomicos`.`id` = 12) [0m
+Rendering template within layouts/application
+Rendering socioeconomicos/show
+  [4;35;1mPessoa Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `pessoas`[0m
+  [4;36;1mPessoa Load (0.2ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:54:12' AND ends_at >= '2016-02-03 12:54:12') [0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 70ms (View: 38, DB: 6) | 200 OK [http://localhost/socioeconomicos/12]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SocioeconomicosController#impressao_ficha_completa (for 127.0.0.1 at 2016-02-03 10:54:14) [POST]
+  Parameters: {"authenticity_token"=>"XvtT4Y0g4kdH1jOXsD4Wk7jzBca7PrLzssoiJ7TDslQ="}
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPessoa Load (0.2ms)[0m   [0mSELECT * FROM `pessoas` WHERE (pessoa_tipo = "ALUNO" and unidade_id=52) ORDER BY pessoa_nome[0m
+  [4;36;1mSocioeconomico Load (0.5ms)[0m   [0;1mSELECT * FROM `socioeconomicos` WHERE (id = 12) [0m
+  [4;35;1mPessoa Load (0.4ms)[0m   [0mSELECT * FROM `pessoas` WHERE (id = 29) [0m
+  [4;36;1mSaude Load (0.3ms)[0m   [0;1mSELECT * FROM `saudes` WHERE (pessoa_id = 29) [0m
+  [4;35;1mAluno Load (0.4ms)[0m   [0mSELECT * FROM `alunos` WHERE (pessoa_id = 29) [0m
+Rendering template within layouts/impressao
+Rendering socioeconomicos/impressao_ficha_completa
+  [4;36;1mAluno Columns (2.3ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mUnidade Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.6ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+  [4;35;1mPessoa Columns (2.5ms)[0m   [0mSHOW FIELDS FROM `pessoas`[0m
+  [4;36;1mPessoa Load (0.2ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mSaude Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `saudes`[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+  [4;35;1mSocioeconomico Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `socioeconomicos`[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `pessoas` WHERE (`pessoas`.`id` = 29) [0m
+Completed in 111ms (View: 60, DB: 14) | 200 OK [http://localhost/impressao_ficha_completa]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#new (for 127.0.0.1 at 2016-02-03 10:54:29) [GET]
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mUnidade Load (1.5ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (33.3ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (34.6ms)[0m   [0mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+  [4;36;1mProfessor Columns (2.8ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Rendering template within layouts/application
+Rendering professors/new
+  [4;35;1mUnidade Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered professors/_form (31.5ms)
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:54:29' AND ends_at >= '2016-02-03 12:54:29') [0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 311ms (View: 67, DB: 77) | 200 OK [http://localhost/professors/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#consulta_nome (for 127.0.0.1 at 2016-02-03 10:54:37) [GET]
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (3.3ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (2.5ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+Rendering template within layouts/application
+Rendering professors/consulta_nome
+Rendered professors/_consulta (1.0ms)
+  [4;35;1mUnidade Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered professors/_consulta_unidade (10.0ms)
+Rendered professors/_consulta_professor (1.3ms)
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-03 12:54:37' AND ends_at >= '2016-02-03 12:54:37') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 226ms (View: 113, DB: 11) | 200 OK [http://localhost/consulta_professor_nome]
