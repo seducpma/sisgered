@@ -22,14 +22,12 @@
                         <td colspan="2" align="left"><%= f.text_field :login, :size => "50" %> <br/>
                            <font  color="red" size="2" ><b>Utilize o padrão unidade.nome - Ex: anaja.jose</b></font>
                         </td>
-
                       </tr>
-
                       <tr>
                         <td align="left"><b>e-mail:</b></td>
-                        <td align="left" colspan="2" align="left"><%= f.text_field :email, :size => "50" %></td>
+                        <td align="left" colspan="2" align="left"><%= f.text_field :email, :size => "50" %>
+                        </td>
                       </tr>
-
                       <tr>
                          <td align="left" ><b>Senha:</b></td>
                          <td align="left"><%= f.password_field :password, :size => "10" %></td>
@@ -38,24 +36,34 @@
                        <tr>
                          <td align="left"width="12%"><b>Confirma Senha:</b></td>
                          <td align="left"><%= f.password_field :password_confirmation, :size => "10" %></td>
+<<<<<<< HEAD
                          <td align="left"><b><i><font  color="red" size="2" >Digitar novamente a senha</font></i></b></td>
                          <td></td>
+=======
+                         <td align="left"><b><i><font  color="red" size="2" >Digite novamente a senha</font></i></b></td>
+>>>>>>> 0405771af78a527871abe32b96e349291f326863
                        </tr>
                       <tr>
                         <td align="left"><b>Unidade:</b></td>
                         <td colspan="2" align="left"><%= f.collection_select :unidade_id,Unidade.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %>
+<<<<<<< HEAD
                         &nbsp&nbsp<b><i><font  color="red" size="2" >Selecionar Unidade</font></i></b></td>
+=======
+                        &nbsp&nbsp<b><i><font  color="red" size="2" >Selecione unidade</font></i></b>
+                        </td>
+>>>>>>> 0405771af78a527871abe32b96e349291f326863
                       </tr>
 
                </table>
              </font>
            </fieldset>
             <table>
-                <td width="8%"><%= submit_tag 'Cadastrar' %></td>
-                <td width="8%"><%= button_to 'Voltar', home_path, {:method => "get"}  %></td>
+                <td width="8%"><%= submit_tag 'Salvar' %></td>
+<% end %>
+                <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
                 <td></td>
               </table>
-           <% end -%>
+           
 
               </td>
       </tr>

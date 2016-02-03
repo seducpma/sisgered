@@ -48,14 +48,20 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+
+  def criado
+    
+  end
  
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
     success = @user && @user.save
     if success && @user.errors.empty?
-      redirect_back_or_default('/')
+     # redirect_back_or_default('/')
+      render :action => 'criado'
       flash[:notice] = "USUÁRIO CRIADO COM SUCESSO, ENTRE EM CONTATO COM O ADMINISTRADOR DO SISTEMA PARA LIBERAÇÃO."
+      t=0
     else
       flash[:error]  = "SENHA OU USUÁRIO NÃO AUTORIZADO "
       render :action => 'new'

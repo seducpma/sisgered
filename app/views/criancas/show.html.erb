@@ -1,0 +1,149 @@
+<div id="interno2">
+<% title "CRIANÇA" %>
+<div class ="tabs">
+<font size="5"><strong>Inscrição nº<%=h "#{@crianca.id}" %> </strong></font></br>
+ <hr>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> Dados da Criança</b></font></legend>
+         <table width="100%">
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Nome:</b></td>
+               <td colspan="3" align="left"><%=h @crianca.nome %></td>
+               <td align="left"><b>Nascimento:</b></td>
+               <td align="left">  <%=h @crianca.nascimento.strftime("%d/%m/%Y")%></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Mãe:</b></td>
+               <td colspan="3" align="left"><%=h @crianca.mae %></td>
+               <td align="left" width="4%"><b>Pai:</b></td>
+               <td align="left"><%=h @crianca.pai %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Responsável:</b></td>
+               <td colspan="3" align="left"><%=h @crianca.responsavel_n %></td>
+               <td align="left" width="4%"><b>Parentesco:</b></td>
+               <td align="left"><%=h @crianca.parentesco %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Endereço:</b></td>
+               <td colspan="3" align="left"><%=h @crianca.endereco %> - <%=h @crianca.numero %></td>
+               <td align="left" width="4%"><b>Bairro:</b></td>
+               <td  align="left"><%=h @crianca.bairro %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left" width="4%"><b>Complemento:</b></td>
+               <td  align="left"><%=h @crianca.complemento %></td>
+              <td align="left" width="4%"><b>Telefone:</b></td>
+               <td align="left">  <%=h @crianca.tel1%></td>
+               <td> <b>Celular:</b></td>
+               <td><%=h @crianca.celular%>  </td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Fone (recado):</b></td>
+               <td align="left" colspan="3">  <%=h @crianca.tel2%></td>
+               <td><b>Nome:</b> </td>
+               <td><%=h @crianca.nomerecado%>  </td>
+            </tr>
+
+          </table>
+         </fieldset>
+       <fieldset><legend><font  size=3><b> Dados da inscrição</b></font></legend>
+         <table width="100%">
+           <tr bgcolor="#F5F5F5"  width="100%">
+             <td align="left" width="18%"><b>Local Inscrição:</b></td>
+             <td align="left" ><%=h @crianca.unidade.nome%></td>
+             <td width="10%" ><b>Responsável: </b> </td>
+                <% if @crianca.responsavel == 0 %>
+                    <td>NÃO</td>
+                <%else%>
+                    <td>SIM - <%=h @crianca.responsavel_n%> - (<%=h @crianca.parentesco%>)</td>
+                <%end%>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+              <td> <b>Filho Servidor Público:</b></td>
+                 <% if @crianca.servidor_publico == 0 %>
+                    <td align="left">NÃO</td>
+                  <%else%>
+                     <td align="left">SIM - <%=h @crianca.servidor_local%></td>
+                  <%end%>
+                     <td><b>Mãe trabalha: </b></td>
+                  <% if @crianca.trabalho == 0 %>
+                     <td>NÃO</td>
+                  <%else%>
+                     <td>SIM - <%=h @crianca.local_trabalho%> (<%=h @crianca.fone_trabalho%>)</td>
+                  <%end%>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+              <td><b>Irmão(s) matriculado(s): </b></td>
+                  <% if @crianca.irmao == 0 %>
+                      <td align="left">NÃO</td>
+                  <%else%>
+                      <td align="left">SIM - <%=h @crianca.unidade.nome%></td>
+                  <%end%>
+                      <td><b>Transferência: </b> </td>
+                   <% if @crianca.transferencia == 0 %>
+                      <td align="left">NÃO</td>
+                   <%else%>
+                       <td align="left">SIM - <%=h @crianca.unidade.nome%></td>
+                   <%end%>
+            </tr>
+            <tr bgcolor="#F5F5F5"  width="100%">
+              <td valign="top" align="left" width="10%"><b>Região:  <br/><br/> Classificação:</b></td>
+              <td valign="top"align="left" ><%=h @crianca.regiao.nome%><br/><br/>
+                    <%if @crianca.grupo.id == 1%>
+                         BERÇARIO I
+                    <% else if @crianca.grupo.id == 2 %>
+                                BERÇARIO II
+                           <% else if @crianca.grupo.id == 4 %>
+                                      MATERNAL I
+                                  <% else if @crianca.grupo.id == 5 %>
+                                           MATERNAL II
+                                          <% else if @crianca.grupo.id == 6 %>
+                                                 NIVEL I
+                                                  <% else if @crianca.grupo.id == 7 %>
+                                                         NIVEL II
+                                                          <%end%>
+                                                   <%end%>
+                                          <%end%>
+                                  <%end%>
+                          <%end%>
+                    <%end%>
+              </td>
+              <td valign="top"><b>Opções: </b></td>
+              <td valign="top">- <%=h @crianca.opcao1%> <br/>
+                               - <%=h @crianca.opcao2%> <br/>
+                               - <%=h @crianca.opcao3%> <br/></td>
+
+            </tr>
+           <tr bgcolor="#F5F5F5"  width="100%">
+             <td align="left" width="18%"><b>Dia/Hora Matricula:</b></td>
+             <td  align="left" ><%=h @crianca.created_at.strftime("%e/%m/%Y - %H:%M horas")%></td>
+             <td><b>Status:</b></td> <td><%=h @crianca.status%> - <%=h @crianca.matriculado%></td>
+           </tr>
+         </table>
+       </fieldset>
+
+     </td>
+  </tr>
+ </table>
+ <% session[:child] = @crianca.id %>
+
+ <table>
+         <tr>
+            <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_unidade_path, :title => "Consultar" %></td>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@crianca}, :method => "get", :title => "Editar"%></td>
+             <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+             <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_criancas_path(:crianca => session[:child])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+
+          </tr>
+    </table>
+ 
+           
+</div>
+<br/>
+</div>
+
+
+

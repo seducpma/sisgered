@@ -1,0 +1,52 @@
+
+<div id="interno2">
+<% title "ALTERA_NSACIMENTO".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>ATUALIZAÇÃO DE CLASSE POR DATA DE NASCIMENTO</strong></font><br/>
+ </div>
+    <div class="tabs">
+    <% form_tag altera_classe_path, :method => 'get' do %>
+      
+       
+       <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td align="center"> <b><br/><br/><br/>
+                Atualiza classe em função da data de nascimento
+                <br/><br/><br/></b>
+                <%= submit_tag "Atualizar", :name => nil %>
+                <br/><br/>
+            </td>
+          </tr>
+       </table>
+       
+
+    <% end %>
+       <br/>
+       <table>
+         <tr>
+           <td align="center">
+             <div id="confirma"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+           </td>
+         </tr>
+       </table>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"></td>
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
+
+
+
+

@@ -1,0 +1,44 @@
+<div id="interno2">
+<% title "CRIANÇAS1", :id =>"crianças1" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>ALTERAÇÃO DO STATUS DA INSCRIÇÃO</strong></font><br/>
+   </div>
+  <div class="tabs">
+    
+      <% form_remote_tag :url => consulta_altera_status_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>        <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Nome
+              <a href="#" class="filtro_unidade_status"><%= radio_button_tag(:type_of, "2") %></a>Unidade
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta_unidade" style="display:none"> <%= render "consulta_unidade_status" %> </div></td>
+           <td><div class="consulta_nome" style="display:none"> <%= render "consulta_nome_status" %> </div></td>
+
+        </tr>
+      </table>
+    <% end %>
+    <tr>
+      <td>
+            <br/>
+    <hr/>
+        <div id="criancas"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+     </td>
+   </tr>
+    <br/>
+</table>
+  <table>
+    <tr>
+     <td width="4%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td width="4%" align="left"><%= button_to 'Consultar', :title => "Consultar" %></td>
+     <td><b><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_class_unidade_criancas_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+     
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+
