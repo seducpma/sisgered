@@ -8,7 +8,7 @@
          <table width="100%">
             <tr bgcolor="#F5F5F5">
                <td align="left" width="4%"><b>Nome:</b></td>
-               <td colspan="4" align="left"> <%=h @saude.pessoa.pessoa_nome %></td>
+               <td colspan="4" align="left"> <%=h @saude.aluno.aluno_nome %></td>
             </tr>
            <tr bgcolor="#F5F5F5">
                <td width ="22%"><b>Cartão SUS:</b></td>
@@ -78,12 +78,11 @@
 
              <tr bgcolor="#F5F5F5">
                <td valign="top"><b>Observação:</b></td>
-              <td colspan="5"><%=h @saude.saude_obs%> </td>
+               <td colspan="5"><%=h @saude.saude_obs%> </td>
              </tr>
          </table>
        </fieldset>
   <% session[:saude] = @saude.id %>
-  <% session[:pessoa] = @saude.pessoa_id %>
      </td>
   </tr>
  </table>

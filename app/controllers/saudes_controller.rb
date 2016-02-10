@@ -2,8 +2,7 @@ class SaudesController < ApplicationController
   # GET /saudes
   # GET /saudes.xml
 
-  before_filter :load_pessoas
-
+  before_filter :load_alunos
 
   def index
     @saudes = Saude.all
@@ -48,7 +47,7 @@ class SaudesController < ApplicationController
 
     respond_to do |format|
       if @saude.save
-        flash[:notice] = 'Saude was successfully created.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@saude) }
         format.xml  { render :xml => @saude, :status => :created, :location => @saude }
       else
@@ -65,7 +64,7 @@ class SaudesController < ApplicationController
 
     respond_to do |format|
       if @saude.update_attributes(params[:saude])
-        flash[:notice] = 'Saude was successfully updated.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@saude) }
         format.xml  { head :ok }
       else
@@ -103,8 +102,8 @@ end
   protected
     #Inicialização variavel / combobox grupo
 
-  def load_pessoas
-    @pessoas_aluno =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "ALUNO" and unidade_id=?', current_user.unidade_id],:order => "pessoa_nome")
+  def load_alunos
+    @pessoas_aluno =  Aluno.find(:all, :conditions=> ['unidade_id=?', current_user.unidade_id],:order => "aluno_nome")
 
   end
 

@@ -2,7 +2,7 @@ class SocioeconomicosController < ApplicationController
   # GET /socioeconomicos
   # GET /socioeconomicos.xml
 
-   before_filter :load_pessoas
+   before_filter :load_alunos
 
   def index
     @socioeconomicos = Socioeconomico.all
@@ -47,7 +47,7 @@ class SocioeconomicosController < ApplicationController
 
     respond_to do |format|
       if @socioeconomico.save
-        flash[:notice] = 'Socioeconomico was successfully created.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@socioeconomico) }
         format.xml  { render :xml => @socioeconomico, :status => :created, :location => @socioeconomico }
       else
@@ -64,7 +64,7 @@ class SocioeconomicosController < ApplicationController
 
     respond_to do |format|
       if @socioeconomico.update_attributes(params[:socioeconomico])
-        flash[:notice] = 'Socioeconomico was successfully updated.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@socioeconomico) }
         format.xml  { head :ok }
       else
@@ -89,17 +89,17 @@ class SocioeconomicosController < ApplicationController
 
 def impressao_socioeconomico
        @socioeconomico = Socioeconomico.find(:all,:conditions => ["id = ?",  session[:socioeconomico]])
-       @pessoa = Pessoa.find(:all, :conditions => ["id = ?", session[:pessoa]])
+      
       render :layout => "impressao"
 end
 
 def impressao_ficha_completa
 
        @socioeconomico = Socioeconomico.find(:all,:conditions => ["id = ?",  session[:socioeconomico]])
-       @pessoa = Pessoa.find(:all, :conditions => ["id = ?", session[:pessoa]])
-       teste =session[:pessoa]
-       @saude = Saude.find(:all,:conditions => ["pessoa_id = ?",  session[:pessoa]])
-       @aluno = Aluno.find(:all, :conditions => ["pessoa_id = ?", session[:pessoa]])
+       #@pessoa = Pessoa.find(:all, :conditions => ["id = ?", session[:pessoa]])
+
+       @saude = Saude.find(:all,:conditions => ["aluno_id = ?",  session[:aluno]])
+       @aluno = Aluno.find(:all, :conditions => ["id = ?", session[:aluno]])
    
 
       render :layout => "impressao"
@@ -109,8 +109,8 @@ end
   protected
     #Inicialização variavel / combobox grupo
 
-  def load_pessoas
-    @pessoas_aluno =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "ALUNO" and unidade_id=?', current_user.unidade_id],:order => "pessoa_nome")
+  def load_alunos
+    @pessoas_aluno =  Aluno.find(:all, :conditions=> ['unidade_id=?', current_user.unidade_id],:order => "aluno_nome")
   end
 
 

@@ -8,7 +8,7 @@
          <table width="100%">
             <tr bgcolor="#F5F5F5">
                <td align="left" width="4%"><b>Nome:</b></td>
-               <td colspan="5" align="left"> <%=h @socioeconomico.pessoa.pessoa_nome %></td>
+               <td colspan="5" align="left"> <%=h @socioeconomico.aluno.aluno_nome %></td>
             </tr>
             <tr bgcolor="#F5F5F5">
                <td witdh ="20%"><b>Casa:</b></td>
@@ -67,7 +67,7 @@
               <td colspan="5"><%=h @socioeconomico.economico_obs %> </td>
             </tr>
   <% session[:socioeconomico] = @socioeconomico.id %>
-  <% session[:pessoa] = @socioeconomico.pessoa_id %>
+  <% session[:aluno] = @socioeconomico.aluno_id %>
      </td>
   </tr>
  </table>

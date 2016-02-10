@@ -50,15 +50,21 @@ PESSOA = { 'ALUNO'=> 'ALUNO',
            'ENTEADO(A)'=> 'ENTEADO(A)',
            'OUTROS' => 'OUTROS'
         }
-RESIDECOM = {'PAIS'=>'PAIS',
-           'PAI'=> 'PAI',
-           'MÃE'=> 'MÃE',
-           'IRMÃO' => 'IRMÃO',
-           'AVÓS' => 'AVÓS',
-           'RESPONSÁVEL'=> 'RESPONSÁVEL',
+RESIDECOM = {'PAI'=> 'PAI',
+           'MÃE'=> 'MAE',
+           'PAIS'=> 'PAIS',
+           'RESPONSÁVEL'=> 'RESPONSAVEL',
+        }
+PARENTE = {'MADRASTA'=>'MADRASTA',
+           'PADRASTO'=>'PADRASTO',
+            'AVÔ' => 'AVÔ',
+           'AVÓ' => 'AVÓ',
+           'TIO(A)'=> 'TIO(A)',
            'ENTEADO(A)'=> 'ENTEADO(A)',
            'OUTROS' => 'OUTROS'
         }
+
+
 PROFISSAO = { 'DESEMPREGADO'=> 'DESEMPREGADO',
               'AUTÔNOMO'=> 'AUTÔNOMO',
               'CARTEIRA ASSINADA'=> 'CARTEIRA ASSINADA',

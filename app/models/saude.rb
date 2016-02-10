@@ -1,9 +1,9 @@
 class Saude < ActiveRecord::Base
-  belongs_to :pessoa
+  belongs_to :aluno
   before_save  :maiusculo
   before_save  :atribui_unidade
   belongs_to :unidade
-  belongs_to :unidade
+
 
 
 
@@ -29,6 +29,10 @@ class Saude < ActiveRecord::Base
     self.saude_hospitalizado.upcase!
     self.saude_fumante_casa.upcase!
     self.saude_dependetes_quimicos.upcase!
+    if  !self.saude_obs.nil?
+      self.saude_obs.upcase!
+    end
+
 
   end
 
