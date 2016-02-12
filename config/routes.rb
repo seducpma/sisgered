@@ -53,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_socioeconomico '/impressao_socioeconomico', :controller => 'socioeconomicos', :action => 'impressao_socioeconomico'
   map.impressao_ficha_completa '/impressao_ficha_completa', :controller => 'socioeconomicos', :action => 'impressao_ficha_completa'
   map.impressao_ficha '/impressao_ficha', :controller => 'alunos', :action => 'impressao_ficha'
+  map.impressao_classe '/impressao_classe', :controller => 'classes', :action => 'impressao_classe'
 
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
 
@@ -68,8 +69,8 @@ ActionController::Routing::Routes.draw do |map|
   map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
   map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
   map.consulta_ficha_cadastral '/consulta_ficha_cadastral', :controller => 'alunos', :action => 'consulta_ficha_cadastral'
-
-  
+  map.consulta_classe_aluno '/consulta_classe_aluno', :controller => 'classes', :action => 'consulta_classe_aluno'
+  map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
   map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
   
   

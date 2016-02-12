@@ -11,12 +11,13 @@
         </tr>
 
         <tr>
-          <td><b>Classe: </b><%= f.text_field :classe_classe, :size => 5 %>&nbsp&nbsp&nbsp&nbsp
-              <b>Descrição: </b><%= f.text_field :classe_descricao, :size => 55 %></td>
+          <td><b>Classe: </b><%= f.text_field :classe_classe, :size => 5 %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <b>Professor: </b><%= f.collection_select :professor_id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+            </td>
         </tr>
         <tr>
-          <td ><b>Professor: </b><%= f.collection_select :professor_id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size => 10 %>
+          <td ><b>Descrição: </b><%= f.text_field :classe_descricao, :size => 50 %>
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size => 5 %>
           </td>
         </tr>
                 <tr>

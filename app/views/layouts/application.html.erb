@@ -101,9 +101,8 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Cadastro</a>
                  <ul style="width:108px;">
-
-
-                          <li><a class="item-primary" href="#;">Aluno</a>
+                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                         <li><a class="item-primary" href="#;">Aluno</a>
                               <ul>
                                 <li><%= link_to "Dados Pessoais", new_aluno_path%> </li>
                                 <li><%= link_to "Saude", new_saude_path%></li>
@@ -111,9 +110,10 @@ display: none;
 
                               </ul>
                          </li>
-                         <li><%= link_to "Básico",new_pessoa_path %></li>
+                   <%end%>
+                <!--      <li><%= link_to "Básico",new_pessoa_path %></li>
 
-             <!--         <li><a class="item-primary" href="#;">Classe</a>
+                          <li><a class="item-primary" href="#;">Classe</a>
                               <ul>
                                 <li><%= link_to "Cadastrar",new_class_path %></li>
                                 <li><%= link_to "Montar",montar_classe_path%></li>
@@ -122,31 +122,29 @@ display: none;
                               </ul>
                          </li>
              -->
-
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao'))%>
                         <li><%= link_to "Classe",new_class_path %></li>
-                       <% if current_user.has_role?('admin') %>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao'))%>
                           <li><%= link_to "Professor",new_professor_path %></li>
                        <%end%>
-
+                      <%end%>
                   </ul>
               </li>
               <li><a class="item-primary" href="#;">Consulta</a>
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                  <ul style="width:108px;">
-                     <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                   <li><%= link_to "Aluno",consulta_ficha_alunos_path %></li>
+                   <li><%= link_to "Classe",consulta_classe_path %></li>
+                   <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                   
                   </ul>
+               <%end%>
               </li>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Documentos</a>
                  <ul style="width:108px;">
                         <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
-                          <li><a class="item-primary" href="#;">Fichas Separadas</a>
-                        <ul>
-                          <li><%= link_to "Pessoal", new_aluno_path%> </li>
-                          <li><%= link_to "Saude", new_saude_path%></li>
-                          <li><%= link_to "Socioeconomico", new_socioeconomico_path%></li>
 
-                        </ul>
-                      </li>
                   </ul>
               </li>
 

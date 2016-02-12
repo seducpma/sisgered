@@ -10,8 +10,7 @@
        <fieldset><legend><font  size=3><b> ATRIBULIÇÃO DE CLASSE</b></font></legend>
          <table width="100%">
            <tr bgcolor="#F5F5F5"  width="100%">
-             <td valign="top"  width="10%" >
-             </td>
+ 
              <td valign="top">
                <table  bgcolor="#DCDCDC" width="100%">
                 <tr bgcolor="#F5F5F5" >
@@ -31,7 +30,7 @@
                   <td colspan="7" align="left"> <%=h @classe.classe_ano_letivo %></td>
                 </tr>
                 <tr bgcolor="#F5F5F5">
-                  <td><b> Alunos:</b> </td>
+                  <td valign="top"><b> Alunos:</b> </td>
                   <td>   <% @classe.alunos.each do |aluno| %>
                             <b>-</b> <%="#{ aluno.aluno_nome}" %><br/>
                         <%end%>

@@ -104,7 +104,7 @@
     <table>
          <tr>
             <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_professor_nome_path, :title => "Consultar" %></td>
-            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao'))%>
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@professor}, :method => "get", :title => "Editar"%></td>
               <%else%>
                 <td align="center"></td>

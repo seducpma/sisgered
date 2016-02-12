@@ -16,7 +16,7 @@
                 <td align="left"><%=h professor.funcao%></td>
                 <td align="left"><%=h professor.unidade.nome%></td>
                 <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>professor},:method => "get", :title => "Visualizar") %></td>
-               <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')%>
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') )%>
                     <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>professor}, :method => "get", :title => "Editar"%></td>
                 <%else%>
                     <td align="center"> --- </td>

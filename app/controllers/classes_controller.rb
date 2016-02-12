@@ -117,8 +117,18 @@ class ClassesController < ApplicationController
   end
 
 
+def consulta_classe_aluno
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_classe'
+       end
+end
 
-
+def impressao_classe
+       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe]])
+       
+      render :layout => "impressao"
+end
 
  def load_classes
    if current_user.unidade_id == 53 or current_user.unidade_id == 52

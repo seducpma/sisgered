@@ -2,7 +2,7 @@ class AlunosController < ApplicationController
   # GET /alunos
   # GET /alunos.xml
 
-  before_filter :load_pessoas
+  before_filter :load_alunos
 
 
   def index
@@ -111,12 +111,12 @@ end
  
 
 def consulta_ficha_cadastral
-     session[:pessoa] = params[:aluno][:pessoa_id]
+       session[:aluno] = params[:aluno][:id]
 
-       @dados = Pessoa.find(:all,:conditions =>['id = ?', session[:pessoa]])
-       @aluno = Aluno.find(:all,:conditions =>['pessoa_id = ?', session[:pessoa]])
-       @saude = Saude.find(:all,:conditions =>['pessoa_id = ?', session[:pessoa]])
-       @socioeconomico = Socioeconomico.find(:all,:conditions =>['pessoa_id = ?', session[:pessoa]])
+       
+       @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
+       @saude = Saude.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
+       @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
 
 
        render :update do |page|
@@ -125,11 +125,9 @@ def consulta_ficha_cadastral
 end
 
 def impressao_ficha
-       @socioeconomico = Socioeconomico.find(:all,:conditions => ["id = ?",  session[:socioeconomico]])
-       @dados = Pessoa.find(:all, :conditions => ["id = ?", session[:pessoa]])
-       teste =session[:pessoa]
-       @saude = Saude.find(:all,:conditions => ["pessoa_id = ?",  session[:pessoa]])
-       @aluno = Aluno.find(:all, :conditions => ["pessoa_id = ?", session[:pessoa]])
+       @socioeconomico = Socioeconomico.find(:all,:conditions => ["aluno_id = ?",  session[:aluno]])
+       @saude = Saude.find(:all,:conditions => ["aluno_id = ?",  session[:aluno]])
+       @aluno = Aluno.find(:all, :conditions => ["id = ?", session[:aluno]])
       render :layout => "impressao"
 end
 
@@ -165,12 +163,12 @@ end
   end
 
 
-   protected
+   protected 
     #Inicialização variavel / combobox grupo
 
-  def load_pessoas
+  def load_alunos
 
-    @pessoas_aluno =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_nome")
+    @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_nome")
 
     #@pessoas_mae =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "MÃE"'],:order => "pessoa_nome")
     #@pessoas_pai =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "PAI"'],:order => "pessoa_nome")

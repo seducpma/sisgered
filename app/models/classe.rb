@@ -7,7 +7,9 @@ class Classe < ActiveRecord::Base
    before_save :atribui_unidade
 
     def caps_look
-      self.classe_descricao.upcase!
+      if !self.classe_descricao.nil?
+         self.classe_descricao.upcase!
+      end
       self.classe_classe.upcase!
     end
 
