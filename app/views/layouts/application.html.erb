@@ -114,9 +114,10 @@ display: none;
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao'))%>
                         <li><%= link_to "Classe",new_class_path %></li>
+                      <%end%>
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                           <li><%= link_to "Professor",new_professor_path %></li>
-                       <%end%>
+
                       <%end%>
                   </ul>
               </li>
