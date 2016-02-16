@@ -149,7 +149,7 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
 <!--=========================================== NOVO MENU==============-->
 
-              <% if current_user.has_role?('admin') %>
+              <% if current_user.has_role?('admin') or  current_user.has_role?('direcao') %>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Gerenciar</a>
                  <ul style="width:108px;">

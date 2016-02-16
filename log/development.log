@@ -36233,3 +36233,347 @@ Processing SessionsController#new (for 127.0.0.1 at 2016-02-16 13:29:59) [GET]
 Rendering template within layouts/login
 Rendering sessions/new
 Completed in 16ms (View: 4, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:05:27) [GET]
+
+NoMethodError (undefined method `unidade_id' for nil:NilClass):
+  app/controllers/alunos_controller.rb:171:in `load_alunos'
+
+Rendered rescues/_trace (93.2ms)
+Rendered rescues/_request_and_response (9.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-02-16 14:05:39) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2016-02-16 14:05:40) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 15ms (View: 4, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2016-02-16 14:05:45) [POST]
+  Parameters: {"commit"=>"Entrar", "login"=>"ngarcia", "password"=>"mus@and2", "authenticity_token"=>"CGdM6nUnwHkDuW0aw22h6qcnc/uVHZU64lWTsmQeqAQ="}
+  [4;35;1mUser Load (113.8ms)[0m   [0mSELECT * FROM `users` WHERE (login = 'ngarcia' and activated_at IS NOT NULL) LIMIT 1[0m
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Redirected to http://localhost:3000/
+Completed in 188ms (DB: 115) | 302 Found [http://localhost/session]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-02-16 14:05:45) [GET]
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (23.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-16 16:05:45' AND ends_at >= '2016-02-16 16:05:45') [0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 134ms (View: 95, DB: 26) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#new (for 127.0.0.1 at 2016-02-16 14:05:49) [GET]
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Columns (2.0ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Rendering template within layouts/application
+Rendering alunos/new
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Rendered alunos/_form (189.3ms)
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-16 16:05:49' AND ends_at >= '2016-02-16 16:05:49') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 241ms (View: 212, DB: 6) | 200 OK [http://localhost/alunos/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-02-16 14:05:52) [GET]
+  Parameters: {"id"=>"16"}
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 16) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-16 16:05:52' AND ends_at >= '2016-02-16 16:05:52') [0m
+Completed in 61ms (View: 32, DB: 5) | 200 OK [http://localhost/alunos/16]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:05:56) [GET]
+  [4;36;1mUser Columns (3.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (id = 16) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;36;1mAluno Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mUnidade Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (35.8ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 150ms (View: 46, DB: 43) | 200 OK [http://localhost/impressao_alunos]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:06:14) [GET]
+  [4;35;1mUser Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = 16) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;35;1mAluno Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mUnidade Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 69ms (View: 40, DB: 6) | 200 OK [http://localhost/impressao_alunos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:06:41) [GET]
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (id = 16) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;36;1mAluno Columns (3.0ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mUnidade Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 71ms (View: 40, DB: 7) | 200 OK [http://localhost/impressao_alunos]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:08:09) [GET]
+  [4;35;1mUser Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = 16) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;35;1mAluno Columns (3.5ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mUnidade Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 147ms (View: 114, DB: 8) | 200 OK [http://localhost/impressao_alunos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:08:55) [GET]
+  [4;36;1mUser Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (id = 16) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;36;1mAluno Columns (2.0ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mUnidade Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 67ms (View: 41, DB: 6) | 200 OK [http://localhost/impressao_alunos]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:09:23) [GET]
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = 16) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;35;1mAluno Columns (3.2ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mUnidade Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 72ms (View: 41, DB: 7) | 200 OK [http://localhost/impressao_alunos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:09:26) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (id = 16) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;36;1mAluno Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mUnidade Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 56ms (View: 29, DB: 6) | 200 OK [http://localhost/impressao_alunos]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-02-16 14:09:38) [GET]
+  [4;35;1mUser Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = 16) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;35;1mAluno Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mUnidade Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 136ms (View: 41, DB: 5) | 200 OK [http://localhost/impressao_alunos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-02-16 14:10:15) [GET]
+  [4;36;1mUser Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-16 16:10:15' AND ends_at >= '2016-02-16 16:10:15') [0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 43ms (View: 25, DB: 3) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#consulta_ficha (for 127.0.0.1 at 2016-02-16 14:10:19) [GET]
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+Rendering template within layouts/application
+Rendering alunos/consulta_ficha
+  [4;35;1mAluno Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-02-16 16:10:19' AND ends_at >= '2016-02-16 16:10:19') [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Completed in 58ms (View: 32, DB: 6) | 200 OK [http://localhost/alunos/consulta_ficha]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#consulta_ficha_cadastral (for 127.0.0.1 at 2016-02-16 14:10:23) [GET]
+  Parameters: {"authenticity_token"=>"CGdM6nUnwHkDuW0aw22h6qcnc/uVHZU64lWTsmQeqAQ=", "_"=>"1455639023317", "aluno"=>{"id"=>"16"}}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 52) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (77.9ms)[0m   [0mSELECT * FROM `alunos` WHERE (id = '16') [0m
+  [4;36;1mSaude Load (0.3ms)[0m   [0;1mSELECT * FROM `saudes` WHERE (aluno_id = '16') [0m
+  [4;35;1mSocioeconomico Load (0.2ms)[0m   [0mSELECT * FROM `socioeconomicos` WHERE (aluno_id = '16') [0m
+  [4;36;1mAluno Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mUnidade Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 52) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mSaude Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `saudes`[0m
+  [4;35;1mSocioeconomico Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `socioeconomicos`[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 16) [0m
+Rendered alunos/_dados_ficha_cadastral (53.2ms)
+Completed in 179ms (View: 54, DB: 89) | 200 OK [http://localhost/consulta_ficha_cadastral?authenticity_token=CGdM6nUnwHkDuW0aw22h6qcnc%2FuVHZU64lWTsmQeqAQ%3D&aluno%5Bid%5D=16&authenticity_token=CGdM6nUnwHkDuW0aw22h6qcnc%2FuVHZU64lWTsmQeqAQ%3D&_=1455639023317]

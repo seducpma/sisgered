@@ -36,17 +36,21 @@
            <tr style="font-size:9px">
                <td align="left"><b>Nascimento:</b></td>
                <td colspan="2"align="left">  <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
-               <td align="right"><b>Naturalidade:&nbsp&nbsp</b></td>
-               <td colspan="4"align="left"><%=h aluno.aluno_naturalidade %></td>
-            </tr>
+               <td align="right"><b>NºCertidão:&nbsp&nbsp</b></td>
+               <td aslign="left"><%=h aluno.aluno_certidao_nascimento %></td>
+
+           </tr>
            <tr style="font-size:9px">
                <td align="left"><b>Nacionalidade:</b></td>
                <td colspan="2"align="left"><%=h aluno.aluno_nacionalidade %></td>
+              <td align="right"><b>Naturalidade:&nbsp&nbsp</b></td>
+               <td align="left"><%=h aluno.aluno_naturalidade %></td>
+
                <% if aluno.aluno_nacionalidade = 'BRASILEIRO' %>
-                  <td colspan="5"></td>
+                  <td colspan="4"></td>
                <%else%>
-                   <td align="right"><b>Chegada Brasil:&nbsp&nbsp</b></td>
-                   <td colspan="4" align="left">  <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%></td>
+                   <td align="right"><b>Chegada Brasil:&nbsp&nbsp</b>
+                    <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%></td>
               <%end%>
             </tr>
            <tr style="font-size:9px">
