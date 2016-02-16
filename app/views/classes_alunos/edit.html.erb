@@ -1,0 +1,20 @@
+<h1>Editing classes_aluno</h1>
+
+<% form_for(@classes_aluno) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :classe_id %><br />
+    <%= f.text_field :classe_id %>
+  </p>
+  <p>
+    <%= f.label :aluno_id %><br />
+    <%= f.text_field :aluno_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @classes_aluno %> |
+<%= link_to 'Back', classes_alunos_path %>

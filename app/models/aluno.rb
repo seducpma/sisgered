@@ -3,6 +3,7 @@ class Aluno < ActiveRecord::Base
   has_many :saudes
   has_many :socioeconomicos
   has_and_belongs_to_many :classes
+  has_and_belongs_to_many :notas
 
 
   before_save  :maiusculo

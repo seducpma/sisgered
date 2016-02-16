@@ -16,11 +16,14 @@
             </tr>
            <tr bgcolor="#F5F5F5">
                <td align="left"><b>Nascimento:</b></td>
-               <td colspan="2"align="left">  <%=h @aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
-               <td align="right"><b>Naturalidade:&nbsp&nbsp</b></td>
-               <td colspan="4"align="left"><%=h @aluno.aluno_naturalidade %></td>
+               <td align="left">  <%=h @aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
+               <td align="left"><b>Nº Certidão:</b></td>
+               <td colspan="5"align="left"><%=h @aluno.aluno_certidao_nascimento %></td>
             </tr>
            <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Naturalidade:</b></td>
+               <td align="left"><%=h @aluno.aluno_naturalidade %></td>
+
                <td align="left"><b>Nacionalidade:</b></td>
                 <td colspan="2"align="left"><%=h @aluno.aluno_nacionalidade %></td>
                 <% if @aluno.aluno_nacionalidade = 'BRASILEIRO' %>

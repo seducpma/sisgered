@@ -1,4 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :notas_alunos
+
+  map.resources :notas
+
+  map.resources :classes_alunos
+
+  map.resources :notas
+
   
   map.resources :classes
 

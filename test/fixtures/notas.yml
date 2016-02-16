@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  aluno_id: 
+  unidade_id: 
+  professor_id: 
+  ano_letivo: 1
+  nota: 9.99
+  faltas: 1
+  obs: MyString
+
+two:
+  aluno_id: 
+  unidade_id: 
+  professor_id: 
+  ano_letivo: 1
+  nota: 9.99
+  faltas: 1
+  obs: MyString

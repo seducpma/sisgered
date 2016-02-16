@@ -21,8 +21,12 @@
          <td><b><%= f.label :aluno_nascimento, 'Nascimento' %></b></td>
          <td colspan="3">    <%= f.date_select(:aluno_nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           <b>Naturalidade (Cidade-Estado):</b>&nbsp&nbsp
-            <%= f.text_field :aluno_naturalidade, :size=>'35'%> </td>
+           <b>Nº Certião Nascimento:</b>&nbsp&nbsp
+            <%= f.text_field :aluno_certidao_nascimento, :size=>'40'%> </td>
+       </tr>
+       <tr  bgcolor="#F5F5F5">
+         <td colspan="4" ><b>Naturalidade (Cidade-Estado)</b>:&nbsp&nbsp&nbsp
+         <%= f.text_field :aluno_naturalidade, :size=>'77'%> </td>
        </tr>
        <tr bgcolor="#F5F5F5">
          <td><b>Nacionalidade:</b></td>
@@ -53,7 +57,7 @@
                                 :url => { :action => 'dados_pai' }%>
 
          &nbsp&nbsp<b>Há restrições no caso de guarda da criança? </b>
-         &nbsp&nbsp<%= f.text_field :aluno_restricao, :value => "NÃO", :size=>"35"%></td>
+         &nbsp&nbsp<%= f.text_field :aluno_restricao, :value => "NÃO", :size=>"36"%></td>
        </tr>
        <tr bgcolor="#F5F5F5">
          <td><b></font>Pai: </b></td>

@@ -1,0 +1,13 @@
+<p>
+  <b>Nota:</b>
+  <%=h @notas_aluno.nota_id %>
+</p>
+
+<p>
+  <b>Aluno:</b>
+  <%=h @notas_aluno.aluno_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_notas_aluno_path(@notas_aluno) %> |
+<%= link_to 'Back', notas_alunos_path %>

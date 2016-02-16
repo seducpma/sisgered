@@ -1,0 +1,38 @@
+<p>
+  <b>Aluno:</b>
+  <%=h @nota.aluno_id %>
+</p>
+
+<p>
+  <b>Unidade:</b>
+  <%=h @nota.unidade_id %>
+</p>
+
+<p>
+  <b>Professor:</b>
+  <%=h @nota.professor_id %>
+</p>
+
+<p>
+  <b>Ano letivo:</b>
+  <%=h @nota.ano_letivo %>
+</p>
+
+<p>
+  <b>Nota:</b>
+  <%=h @nota.nota %>
+</p>
+
+<p>
+  <b>Faltas:</b>
+  <%=h @nota.faltas %>
+</p>
+
+<p>
+  <b>Obs:</b>
+  <%=h @nota.obs %>
+</p>
+
+
+<%= link_to 'Edit', edit_nota_path(@nota) %> |
+<%= link_to 'Back', notas_path %>

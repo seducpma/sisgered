@@ -1,0 +1,26 @@
+<table width="100%">
+     <% for classe in @classe %>
+      <tr bgcolor="#F5F5F5">
+          <td align="left"><b> Ano Letivo:</b></td>
+          <td colspan="7" align="left"> <%=h classe.classe_ano_letivo %></td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+           <td align="left"><b>Classe:</b></td>
+           <td align="left">  <%=h classe.classe_classe%></td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+          <td align="left"><b>Descrição:</b></td>
+          <td align="left">  <%=h classe.classe_descricao %></td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+        <td valign="top"> <b> Alunos:</b> </td>
+             <td>   <% classe.alunos.each do |aluno| %>
+                            <b>-</b> <%="#{ aluno.aluno_nome}" %><br/>
+                    <%end%>
+            </td>
+      </tr>
+
+     <%  session[:classe]=  classe.id%>
+         <%end%>
+</table>
+

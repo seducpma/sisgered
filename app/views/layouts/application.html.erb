@@ -111,20 +111,10 @@ display: none;
                               </ul>
                          </li>
                    <%end%>
-                <!--      <li><%= link_to "Básico",new_pessoa_path %></li>
 
-                          <li><a class="item-primary" href="#;">Classe</a>
-                              <ul>
-                                <li><%= link_to "Cadastrar",new_class_path %></li>
-                                <li><%= link_to "Montar",montar_classe_path%></li>
-
-
-                              </ul>
-                         </li>
-             -->
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao'))%>
                         <li><%= link_to "Classe",new_class_path %></li>
-                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao'))%>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                           <li><%= link_to "Professor",new_professor_path %></li>
                        <%end%>
                       <%end%>

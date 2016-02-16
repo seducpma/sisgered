@@ -1,0 +1,39 @@
+<h1>New nota</h1>
+
+<% form_for(@nota) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :aluno_id %><br />
+    <%= f.text_field :aluno_id %>
+  </p>
+  <p>
+    <%= f.label :unidade_id %><br />
+    <%= f.text_field :unidade_id %>
+  </p>
+  <p>
+    <%= f.label :professor_id %><br />
+    <%= f.text_field :professor_id %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.label :nota %><br />
+    <%= f.text_field :nota %>
+  </p>
+  <p>
+    <%= f.label :faltas %><br />
+    <%= f.text_field :faltas %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', notas_path %>

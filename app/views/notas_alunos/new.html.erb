@@ -1,0 +1,19 @@
+<h1>New notas_aluno</h1>
+
+<% form_for(@notas_aluno) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nota_id %><br />
+    <%= f.text_field :nota_id %>
+  </p>
+  <p>
+    <%= f.label :aluno_id %><br />
+    <%= f.text_field :aluno_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', notas_alunos_path %>
