@@ -7,31 +7,28 @@
  <table bgcolor="#DCDCDC" width="100%">
    <tr bgcolor="#DCDCDC"  width="100%">
      <td>
-       <fieldset><legend><font  size=3><b> ATRIBULIÇÃO DE CLASSE</b></font></legend>
+       <fieldset><legend><font  size=3><b> CLASSE</b></font></legend>
          <table width="100%">
            <tr bgcolor="#F5F5F5"  width="100%">
  
              <td valign="top">
                <table  bgcolor="#DCDCDC" width="100%">
-                <tr bgcolor="#F5F5F5" >
-                   <td align="left" width="22%"><b>Unidade:</b></td>
-                   <td align="left"><%=h @classe.unidade.nome%></td>
-                </tr>
                  <tr bgcolor="#F5F5F5">
+                  <td align="left" width="12%"><b> Ano Letivo:</b></td>
+                  <td align="left" width="12%"> <%=h @classe.classe_ano_letivo %></td>
+                   <td align="left" width="12%"><b>Unidade:</b></td>
+                   <td align="left" width="70%"> <%=h @classe.unidade.nome%> </td>
+                </tr>
+                <tr bgcolor="#F5F5F5" >
                    <td align="left"><b>Classe:</b></td>
                    <td align="left">  <%=h @classe.classe_classe%></td>
-                 <tr/>
-                 <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Descrição:</b></td>
-                   <td align="left">  <%=h @classe.classe_descricao %></td>
+                   <td align="left"> <%=h @classe.classe_descricao %></td>
                  </tr>
-                 <tr bgcolor="#F5F5F5">
-                  <td align="left"><b> Ano Letivo:</b></td>
-                  <td colspan="7" align="left"> <%=h @classe.classe_ano_letivo %></td>
-                </tr>
+
                 <tr bgcolor="#F5F5F5">
                   <td valign="top"><b> Alunos:</b> </td>
-                  <td>   <% @classe.alunos.each do |aluno| %>
+                  <td colspan="3" >   <% @classe.alunos.each do |aluno| %>
                             <b>-</b> <%="#{ aluno.aluno_nome}" %><br/>
                         <%end%>
                   </td>
@@ -58,7 +55,7 @@
               <%else%>
                 <td align="center"></td>
              <%end%>
-<td width="4%"align="left"><%= button_to 'Consultar' ,consulta_professor_nome_path, :title => "Consultar" %></td>
+<td width="4%"align="left"><%= button_to 'Consultar' ,consulta_classe_path, :title => "Consultar" %></td>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
     </table>

@@ -715,6 +715,15 @@ border-right: double;
     font-size:12px;
 
 }
+
+#interno3{
+    width:55%;
+    margin-top: 20px;
+    margin-left: 200px;
+    font-size:12px;
+}
+
+
 #interno_novo_usuario{
     width:60%;
     margin-top: 20px;

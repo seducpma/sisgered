@@ -2,22 +2,18 @@
  <%= f.error_messages %>
   <font  size="2">
     <br/>
-      <table width="70%" align="center"  bgcolor="#F5F5F5" >
+    <table width="70%" align="center"  bgcolor="#F5F5F5" >
         <tr>
-          <td><b><font size="4">ATRIBUIÇÃO DE CLASSES</b></td>
+          <td colspan="2"><b><font size="4">ATRIBUIÇÃO DE CLASSES</b></td>
         </tr>
         <tr>
-          <td><hr></td>
+          <td colspan="2"><hr></td>
         </tr>
 
         <tr>
-          <td><b>Classe: </b><%= f.text_field :classe_classe, :size => 5 %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <b>Professor: </b><%= f.collection_select :professor_id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %>
-            </td>
-        </tr>
-        <tr>
-          <td ><b>Descrição: </b><%= f.text_field :classe_descricao, :size => 50 %>
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size => 5 %>
+          <td><b>Classe: </b><%= f.text_field :classe_classe, :size => 5 %></td>
+          <td ><b>Descrição: </b><%= f.text_field :classe_descricao, :size => 40 %>
+             &nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size => 5 %>
           </td>
         </tr>
                 <tr>
