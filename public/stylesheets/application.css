@@ -6,7 +6,12 @@ body {
 
   select.lista_alunos {
    width:300px;
-   height: 200px;
+   height: 250px;
+  }
+
+ select.lista_professors {
+   width:300px;
+   height: 80px;
   }
 
 .tabelas {

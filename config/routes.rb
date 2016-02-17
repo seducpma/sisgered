@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :professors_classes
+
   map.resources :notas_alunos
 
   map.resources :notas
@@ -7,8 +9,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :notas
 
-  
-  map.resources :classes
+    map.resources :classes
 
   map.resources :professors
 
@@ -80,7 +81,11 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_classe_aluno '/consulta_classe_aluno', :controller => 'classes', :action => 'consulta_classe_aluno'
   map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
   map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
-  
+  map.consulta_responsaveis '/consulta_responsaveis', :controller => 'alunos', :action => 'consulta_responsaveis'
+  map.consulta_reponsavel '/consulta_reponsavel', :controller => 'alunos', :action => 'consulta_reponsavel'
+
+
+
   
   
   #map.edicao :criancas, :path_prefix => '/criancas/:crianca/edit'

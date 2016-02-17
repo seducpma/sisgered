@@ -16,14 +16,21 @@
              &nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size => 5 %>
           </td>
         </tr>
-                <tr>
-                  <td colspan="3">
-                    <b><%= f.label :assunto_id, "Lista de Alunos
+        <tr>
+           <td colspan="3"><b><%= f.label :assunto_id, "Lista de Professores
+                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         Professores na Classe" %></b>
+                    <div id="assuntos"><%= render "professores"%></div>
+            </td>
+         </tr>
+         
+         <tr>
+            <td colspan="3"><b><%= f.label :assunto_id, "Lista de Alunos
                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
                          Alunos na Classe" %></b>
                     <div id="assuntos"><%= render "alunos"%></div>
-                 </td>
-                </tr>
+            </td>
+         </tr>
           
       </table>
       <br/>

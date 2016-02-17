@@ -1,0 +1,18 @@
+<div class="fields">
+ <table>
+   <tr>
+    <td id="test"><%= select_tag("todos", options_for_select(@professors.collect { |ff| [ff.nome, ff.id] }, @classe.professors.collect { |fs| fs.id }), {:multiple=>true, :id => "todos", :size => 4, :class => "lista_professors"}) %></td>
+    <td>
+      <a class="botao" href="#" id="add">&gt;&gt;</a>
+      <br/><br/><br/>
+      <a class="botao" href="#" id="remove">&lt;&lt;</a>
+    </td>
+
+    <%if @professors_selecionados.present?%>
+     <td colspan="2"><%= select_tag("classe[professor_ids][]", options_for_select(@professor_selecionados.collect { |ff| [truncate(ff.nome, :length => 100, :omission => "..."), ff.id] }, @classe.professors.collect { |fs| fs.id }), {:multiple=>true, :id => "classe_professor_ids", :size => 4, :class => "lista_professors"}) %></td>
+     <%else%>
+     <td colspan="2"><select multiple="multiple" name="classe[professor_ids][]" id="classe_aluno_ids" class="lista_professors"></select></td>
+    <%end%>
+  </tr>
+  </table>
+</div>

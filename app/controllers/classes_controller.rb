@@ -45,6 +45,9 @@ class ClassesController < ApplicationController
     @alunos_selecionados = @classe.alunos
     @alunos = @alunos - @alunos_selecionados
 
+    @professors_selecionados = @classe.professors
+    @professors = @professors - @professors_selecionados
+
 #    @assuntos_selecionados = @livro.assuntos
 #    @assuntos = @assuntos - @assuntos_selecionados
 

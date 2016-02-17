@@ -25,11 +25,22 @@
                    <td align="left"><b>Descrição:</b></td>
                    <td align="left"> <%=h @classe.classe_descricao %></td>
                  </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td valign="top"><b> Professor(es):</b> </td>
+                  <% cont=1 %>
+                  <% cont1=1 %>
+                  <td colspan="3" >   <% @classe.professors.each do |prof| %>
+                            &nbsp <%= cont%> - <%="#{ prof.nome}" %>  ( <%="#{ prof.funcao}" %> )<br/>
+                            <%cont = cont+1%>
+                        <%end%>
+                  </td>
 
+                </tr>
                 <tr bgcolor="#F5F5F5">
                   <td valign="top"><b> Alunos:</b> </td>
                   <td colspan="3" >   <% @classe.alunos.each do |aluno| %>
-                            <b>-</b> <%="#{ aluno.aluno_nome}" %><br/>
+                           &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %><br/>
+                           <%cont1 = cont1+1%>
                         <%end%>
                   </td>
                     

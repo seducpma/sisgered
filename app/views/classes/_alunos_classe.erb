@@ -1,10 +1,10 @@
-<table width="100%">
+<table width="100%" >
      <% for classe in @classe %>
         <tr bgcolor="#F5F5F5" >
            <td align="left" width="12%"><b>Unidade:</b></td>
            <td align="left"  width="20%"><%=h classe.unidade.nome%></td>
            <td align="left" width="12%"><b> Ano Letivo:</b></td>
-           <td colspan="7" align="left"> <%=h classe.classe_ano_letivo %></td>
+           <td align="left"> <%=h classe.classe_ano_letivo %></td>
        </tr>
        <tr bgcolor="#F5F5F5">
            <td align="left"><b>Classe:</b></td>
@@ -16,9 +16,20 @@
 
       </tr>
       <tr bgcolor="#F5F5F5">
+        <td valign="top"> <b> Professor(es):</b> </td>
+        <% cont=1 %>
+         <% cont1=1 %>
+        <td colspan="4">   <% classe.professors.each do |prof| %>
+                         &nbsp <%= cont%> -  <%="#{ prof.nome}" %><br/>
+                         <%cont = cont+1%>
+                    <%end%>
+            </td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
         <td valign="top"> <b> Alunos:</b> </td>
-             <td>   <% classe.alunos.each do |aluno| %>
-                            <b>-</b> <%="#{ aluno.aluno_nome}" %><br/>
+        <td colspan="4">   <% classe.alunos.each do |aluno| %>
+                            &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %><br/>
+                            <%cont1 = cont1+1%>
                     <%end%>
             </td>
       </tr>

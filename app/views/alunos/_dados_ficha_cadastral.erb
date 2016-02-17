@@ -225,8 +225,53 @@
              </tr>
          <%end%>
        </table>
-
-         </fieldset>
+  </fieldset>
+       <fieldset><legend><font  size=3><b> Responsável</b></font></legend>
+         <table width="100%">
+           <tr bgcolor="#F5F5F5">
+               <td width ="12%" ><b>Profissão:</b></td>
+               <td colspan="3"> <%= aluno.aluno_profissao_responsavel%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               <b>Condição Profissional: </b>
+                 <%= aluno.aluno_condicao_profissao_responsavel %></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+               <td colspan="4"> <b>Local Trabalho: </b><%= aluno.aluno_local_trabalho_responsavel %>
+                 &nbsp&nbsp&nbsp&nbsp
+                <b>Fone: </b>&nbsp&nbsp
+                <%= aluno.aluno_fone_trabalho_responsavel%></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+               <td><b>Contato:</b></td>
+               <td> <%= aluno.aluno_contato1%>&nbsp&nbsp
+                 <b>Fone:</b><%= aluno.aluno_contato1_fone%></td>
+                <td><b>Contato:</b></td>
+               <td> <%= aluno.aluno_contato2%>&nbsp&nbsp
+                 <b>Fone:</b><%= aluno.aluno_contato2_fone%></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+               <td><b>Contato:</b></td>
+               <td> <%= aluno.aluno_contato3%>&nbsp&nbsp
+                 <b>Fone:</b><%= aluno.aluno_contato3_fone%></td>
+                <td><b>Contato:</b></td>
+               <td> <%= aluno.aluno_contato4%>&nbsp&nbsp
+                 <b>Fone:</b><%= aluno.aluno_contato4_fone%></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+               <td><b>Contato:</b></td>
+               <td> <%= aluno.aluno_contato5%>&nbsp&nbsp
+                 <b>Fone:</b><%= aluno.aluno_contato5_fone%></td>
+                <td><b>Contato:</b></td>
+               <td> <%= aluno.aluno_contato6%>&nbsp&nbsp
+                 <b>Fone:</b><%= aluno.aluno_contato6_fone%></td>
+           </tr>
+          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+             <tr>
+               
+               <td colspan="7"align="RIGHT"><%= button_to 'Editar', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get", :title => "Editar"%></td>
+             </tr>
+         <%end%>
+         </table>
+       </fieldset>
 <%end%>
 
 <%for  saude in  @saude%>

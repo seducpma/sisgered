@@ -112,17 +112,27 @@ end
 
 def consulta_ficha_cadastral
        session[:aluno] = params[:aluno][:id]
-
        
        @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
        @saude = Saude.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
        @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
-
-
        render :update do |page|
           page.replace_html 'ficha', :partial => 'dados_ficha_cadastral'
        end
 end
+
+
+def consulta_responsaveis
+       session[:aluno] = params[:aluno][:id]
+       @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
+       t=1
+       render :update do |page|
+          page.replace_html 'ficha', :partial => 'dados_responsaveis'
+       end
+end
+
+
+
 
 def impressao_ficha
        @socioeconomico = Socioeconomico.find(:all,:conditions => ["aluno_id = ?",  session[:aluno]])
