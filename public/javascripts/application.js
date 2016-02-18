@@ -157,7 +157,14 @@ $('#add').click(function() {
  });
 //Fim do codigo
 
-
+//Codigo para gerar 2 multi-selects para professores_classes
+$('#add1').click(function() {
+  return !$('#todos1 option:selected').remove().appendTo('#classe_professor_ids');
+ });
+ $('#remove1').click(function() {
+  return !$('#classe_professor_ids option:selected').remove().appendTo('#todos1');
+ });
+//Fim do codigo
 
 
 //Codigo para Multi-tombos - cadastro de midias
