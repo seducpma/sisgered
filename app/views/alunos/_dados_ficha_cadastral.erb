@@ -41,18 +41,35 @@
                  <b>Folha:&nbsp&nbsp</b><%=h aluno.aluno_folha %>&nbsp&nbsp&nbsp&nbsp
                </td>
             </tr>
-           <tr >
+            <tr >
+               <td align="left"><b>Naturalidade:</b></td>
+               <td align="left"><%=h aluno.aluno_naturalidade %></td>
+
                <td align="left"><b>Nacionalidade:</b></td>
-               <td colspan="2"align="left"><%=h aluno.aluno_nacionalidade %></td>
-              <td align="right"><b>Naturalidade:&nbsp&nbsp</b></td>
-               <td colspan="2"align="left"><%=h aluno.aluno_naturalidade %></td>
-               <% if aluno.aluno_nacionalidade = 'BRASILEIRO' %>
-                  <td colspan="5"></td>
-               <%else%>
-                   <td align="right"><b>Chegada Brasil:&nbsp&nbsp</b></td>
-                   <td colspan="4" align="left">  <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%></td>
-              <%end%>
+                <td align="left"><%=h aluno.aluno_nacionalidade %></td>
+
+                <%if aluno.aluno_nacionalidade != 'BRASILEIRO'%>
+                <td colspan="3"><b>Se estangeiro: &nbsp&nbsp Chegada Brasil:&nbsp&nbsp</b>
+                       <%if !aluno.aluno_chegada_brasil.nil?%>
+                           <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%>
+                       <%end%>
+
+                </td>
+           </tr>
+           <tr>
+             <td></td> <td></td><td></td>
+             <td ><b>RNE:&nbsp&nbsp</b><%=h aluno.aluno_RNE %></td>
+             <td> <b>Classificação:&nbsp&nbsp</b><%=h aluno.aluno_classificacao %></td>
+             <td colspan="2"><b>Validade:&nbsp&nbsp</b>
+                                   <%if !aluno.aluno_validade_estrangeiro.nil?%>
+                                       <%=h aluno.aluno_validade_estrangeiro.strftime("%d/%m/%Y")%>
+                                     <%end%>
+             </td>
+
+
+
             </tr>
+            <%end%>
            <tr >
                <td align="left"><b>RG:</b></td>
                <td align="left">  <%=h aluno.aluno_RG%></td>

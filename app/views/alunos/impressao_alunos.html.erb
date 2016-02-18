@@ -42,18 +42,34 @@
 
            </tr>
            <tr style="font-size:9px">
-               <td align="left"><b>Nacionalidade:</b></td>
-               <td colspan="2"align="left"><%=h aluno.aluno_nacionalidade %></td>
-              <td align="right"><b>Naturalidade:&nbsp&nbsp</b></td>
+              <td align="left"><b>Naturalidade:&nbsp&nbsp</b></td>
                <td align="left"><%=h aluno.aluno_naturalidade %></td>
+               <td align="left"><b>Nacionalidade:</b></td>
+               <td align="left"><%=h aluno.aluno_nacionalidade %></td>
+               <%if aluno.aluno_nacionalidade != 'BRASILEIRO'%>
+                <td colspan="4"><b>Se estangeiro: &nbsp&nbsp Chegada Brasil:&nbsp&nbsp</b>
+                       <%if !aluno.aluno_chegada_brasil.nil?%>
+                           <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%>
+                       <%end%>
 
-               <% if aluno.aluno_nacionalidade = 'BRASILEIRO' %>
-                  <td colspan="4"></td>
-               <%else%>
-                   <td align="right"><b>Chegada Brasil:&nbsp&nbsp</b>
-                    <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%></td>
-              <%end%>
+                </td>
+           </tr>
+           <tr>
+             <td></td> <td></td><td></td>
+             <td ><b>RNE:&nbsp&nbsp</b><%=h aluno.aluno_RNE %></td>
+             <td> <b>Classificação:&nbsp&nbsp</b><%=h aluno.aluno_classificacao %></td>
+             <td colspan="3"><b>Validade:&nbsp&nbsp</b>
+                                   <%if !aluno.aluno_validade_estrangeiro.nil?%>
+                                       <%=h aluno.aluno_validade_estrangeiro.strftime("%d/%m/%Y")%>
+                                     <%end%>
+             </td>
+
+
+
             </tr>
+            
+            <%end%>
+            
            <tr style="font-size:9px">
                <td align="left"><b>RG:</b></td>
                <td align="left">  <%=h aluno.aluno_RG%></td>
@@ -190,13 +206,13 @@
 
 
             <tr>
-              <td width =" 22%"><b>Nº INEP:</b></td>
-              <td width ="15%">   <%=h aluno.aluno_inep %></td>
-              <td width =" 12%"><b>Nº RM:</b></td>
+              <td>Nº INEP:</b></td>
+              <td>   <%=h aluno.aluno_inep %></td>
+              <td><b>Nº RM:</b></td>
               <td>   <%=h aluno.aluno_rm %></td>
-              <td width =" 20%"><b>Nº RA:</b></td>
+              <td><b>Nº RA:</b></td>
               <td>   <%=h aluno.aluno_ra %></td>
-              <td width =" 12%"><b>Nº NIS:</b></td>
+              <td><b>Nº NIS:</b></td>
               <td>   <%=h aluno.aluno_nis %></td>
            </tr>
 

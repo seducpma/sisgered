@@ -83,6 +83,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
   map.consulta_responsaveis '/consulta_responsaveis', :controller => 'alunos', :action => 'consulta_responsaveis'
   map.consulta_reponsavel '/consulta_reponsavel', :controller => 'alunos', :action => 'consulta_reponsavel'
+  map.consulta_bolsa_familia '/consulta_bolsa_familia', :controller => 'alunos', :action => 'consulta_bolsa_familia'
 
 
 

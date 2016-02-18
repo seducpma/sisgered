@@ -42,16 +42,32 @@
                <td align="right"><b>Naturalidade:&nbsp&nbsp</b></td>
                <td colspan="4"align="left"><%=h aluno.aluno_naturalidade %></td>
             </tr>
-           <tr>
+           <tr >
                <td align="left"><b>Nacionalidade:</b></td>
-               <td colspan="2"align="left"><%=h aluno.aluno_nacionalidade %></td>
-               <% if aluno.aluno_nacionalidade = 'BRASILEIRO' %>
-                  <td colspan="5"></td>
-               <%else%>
-                   <td align="right"><b>Chegada Brasil:&nbsp&nbsp</b></td>
-                   <td colspan="4" align="left">  <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%></td>
-              <%end%>
+               <td align="left"><%=h aluno.aluno_nacionalidade %></td>
+               <%if aluno.aluno_nacionalidade != 'BRASILEIRO'%>
+                <td colspan="4"><b>Se estangeiro: &nbsp&nbsp Chegada Brasil:&nbsp&nbsp</b>
+                       <%if !aluno.aluno_chegada_brasil.nil?%>
+                           <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%>
+                       <%end%>
+
+                </td>
+           </tr>
+           <tr>
+             <td></td> <td></td><td></td>
+             <td ><b>RNE:&nbsp&nbsp</b><%=h aluno.aluno_RNE %></td>
+             <td> <b>Classificação:&nbsp&nbsp</b><%=h aluno.aluno_classificacao %></td>
+             <td colspan="3"><b>Validade:&nbsp&nbsp</b>
+                                   <%if !aluno.aluno_validade_estrangeiro.nil?%>
+                                       <%=h aluno.aluno_validade_estrangeiro.strftime("%d/%m/%Y")%>
+                                     <%end%>
+             </td>
+
+
+
             </tr>
+
+            <%end%>
            <tr>
                <td align="left"><b>RG:</b></td>
                <td align="left">  <%=h aluno.aluno_RG%></td>
@@ -158,8 +174,8 @@
                 </tr>
               <%end%>
               <tr>
-             <td colspan="2"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
-             <td colspan="6 "><%=h aluno.aluno_restricao %></td>
+             <td colspan="5 "><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
+             <td colspan="3 "><%=h aluno.aluno_restricao %></td>
 
            </tr>
            <tr>
@@ -185,18 +201,18 @@
                <td colspan="3"align="left"><%=h aluno.aluno_email%></td></td>
             </tr>
             <tr>
-              <td width =" 22%"><b>Nº INEP:</b></td>
-              <td width ="15%">   <%=h aluno.aluno_inep %></td>
-              <td width =" 12%"><b>Nº RM:</b></td>
-              <td>   <%=h aluno.aluno_rm %></td>
-              <td width =" 20%"><b>Nº RA:</b></td>
+              <td ><b>Nº INEP:</b></td>
+              <td >   <%=h aluno.aluno_inep %></td>
+              <td ><b>Nº RM:</b></td>
+              <td>  <%=h aluno.aluno_rm %></td>
+              <td ><b>Nº RA:</b></td>
               <td>   <%=h aluno.aluno_ra %></td>
-              <td width =" 12%"><b>Nº NIS:</b></td>
+              <td ><b>Nº NIS:</b></td>
               <td>   <%=h aluno.aluno_nis %></td>
            </tr>
           <tr>
-             <td colspan="4"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
-             <td colspan="4"><%=h aluno.aluno_restricao %></td>
+             <td colspan="5"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
+             <td colspan="3"><%=h aluno.aluno_restricao %></td>
 
            </tr>
            <tr>

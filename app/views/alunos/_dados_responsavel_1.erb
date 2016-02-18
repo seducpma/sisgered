@@ -1,0 +1,23 @@
+
+      <tr bgcolor="#F5F5F5">
+        <td><b></font>Endereço: </b></td>
+        <td><%= text_field :aluno_endereco_responsavel, :size=>"30"%></td>
+        <td><b></font>Parentesco: </b></td>
+        <%=  select :aluno_parente,(PARENTE).sort, :include_blank => '-- Selecionar --' %></td>
+     </tr>
+      <tr bgcolor="#F5F5F5">
+       <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b></font>Cidade: </b></td>
+        <td><%= text_field :aluno_cidade_responsavel, :size=>"30"%></td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b></font>Fone(s): </b></td>
+         <td colspan="3">
+          <%= text_field :aluno_fone_responsavel, :size=>"15"%>
+          &nbsp&nbsp&nbsp&nbsp
+          <b>E_mail: </b>&nbsp&nbsp
+          <%= text_field :aluno_email_responsavel, :size=>"20"%></td>
+      </tr>
+
+
+
+     

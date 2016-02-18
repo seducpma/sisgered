@@ -6,7 +6,7 @@
 <font color ="red"  size="4"align="left"><b> Quanto a resposta for diferente de NÃO, favor especificar </b></font>
  
   <fieldset><legend><font size=4>Dados alunos</font></legend>
-    <table width="100%" >
+    <table width="100%">
        <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>Nome:</b></td>
          <td colspan="3"><%= f.text_field :aluno_nome, :size=>"64" %>
@@ -36,24 +36,34 @@
        </tr>
        <tr bgcolor="#F5F5F5">
          <td><b>Nacionalidade:</b></td>
-         <td colspan="3"><%= f.text_field :aluno_nacionalidade, :size=>'23', :value => "BRASILEIRO"%>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp         
-            <b>Chegada Brasil (se estrangeiro):</b>&nbsp&nbsp
-            <%= f.date_select(:aluno_chegada_brasil, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)) %><BR /></td>
+         <td><%= f.text_field :aluno_nacionalidade, :size=>'12', :value => "BRASILEIRO"%>
+            &nbsp&nbsp&nbsp&nbsp
+            <b>Se estrangeiro: &nbsp&nbsp Chegada Brasil:</b>&nbsp&nbsp
+            <%= f.date_select(:aluno_chegada_brasil, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year-50)) %>
+             &nbsp&nbsp&nbsp&nbsp<b>RNE:</b>&nbsp&nbsp<%= f.text_field :aluno_RNE, :size=>'12'%>
+         </td>
        </tr>
+       <tr bgcolor="#F5F5F5">
+         <td></td>
+         <td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+           <b>Classificação:</b>&nbsp&nbsp<%= f.text_field :aluno_classificacao, :size=>'12'%>
+            &nbsp&nbsp<b>Validade:</b>&nbsp&nbsp
+            <%= f.date_select(:aluno_validade_estrangeiro, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year + 25)) %></td>
+         
+       </tr>
+ 
        <tr bgcolor="#F5F5F5">
           <td><b>RG:</b></td>
-          <td colspan="3"><%= f.text_field :aluno_RG, :size=>'23'%>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-             <b>Data/Orgão Expedição:</b>&nbsp&nbsp
-             <%= f.text_field :aluno_emissaoRG, :size=>'40' %> </td>
-       </tr>
-       <tr bgcolor="#F5F5F5">
-         <td><b>CPF:</b></td>
-         <td colspan="3"><%= f.text_field :aluno_CPF, :size=>'23'%>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp         
-            <b>Data/Orgão Expedição:</b>&nbsp&nbsp
-           <%= f.text_field :aluno_emissaoCPF, :size=>'40'%> </td>
+          <td colspan="3"><%= f.text_field :aluno_RG, :size=>'12'%>
+            &nbsp&nbsp
+             <b>Expedição:</b>&nbsp&nbsp
+             <%= f.text_field :aluno_emissaoRG, :size=>'12' %> 
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>CPF:</b>
+             <%= f.text_field :aluno_CPF, :size=>'12'%>
+              &nbsp&nbsp
+              <b>Expedição:</b>&nbsp&nbsp
+             <%= f.text_field :aluno_emissaoCPF, :size=>'12'%> </td>
        </tr>
         <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>Reside com:</b></td>

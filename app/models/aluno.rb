@@ -14,13 +14,17 @@ class Aluno < ActiveRecord::Base
   def atribui_dados
     
     self.unidade_id = User.current.unidade_id
-
+    if self.aluno_nacionalidade == 'BRASILEIRO'
+       self.aluno_chegada_brasil = nil
+       self.aluno_validade_estrangeiro = nil
+    end
   
   end
 
     def maiusculo
     self.aluno_especial.upcase!
     self.aluno_nome.upcase!
+     self.aluno_nacionalidade.upcase!
 
     self.aluno_emissaoRG.upcase!
     if  !self.aluno_emissaoCPF.nil?

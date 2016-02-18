@@ -125,13 +125,17 @@ end
 def consulta_responsaveis
        session[:aluno] = params[:aluno][:id]
        @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
-       t=1
+ 
        render :update do |page|
           page.replace_html 'ficha', :partial => 'dados_responsaveis'
        end
 end
 
+def consulta_bolsa_familia
 
+    @aluno = Aluno.find(:all,:conditions =>['unidade_id = ? and aluno_bolsa_familia ="SIM" ', current_user.unidade_id ])
+
+end
 
 
 def impressao_ficha

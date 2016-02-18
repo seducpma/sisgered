@@ -1,6 +1,6 @@
 <b><u>RESPONSÁVEL:</u></b>
 <% @aluno.each do |aluno| %>
-         <table width="100%">
+<table width="100%" >
            <%  if aluno.aluno_restricao == 'SIM'%>
            <tr bgcolor="#F5F5F5">
              <td colspan="4"><b>Há restrições no caso de pais separados ou guarda da criança -  </b></td>
@@ -66,13 +66,45 @@
            <tr>
              <td colspan="8">  <hr>   </td>
            </tr>
+           <tr>
+             <td colspan="8"><b><u>OUTROS CONTATOS:</u></b>   </td>
+           </tr>
            <tr bgcolor="#F5F5F5">
-               <td><b>Contato:</b></td>
-               <td> <%= aluno.aluno_contato1%>&nbsp&nbsp
-                 <b>Fone:</b><%= aluno.aluno_contato1_fone%></td>
-                <td><b>Contato:</b></td>
-               <td> <%= aluno.aluno_contato2%>&nbsp&nbsp
-                 <b>Fone:</b><%= aluno.aluno_contato2_fone%></td>
+             <td colspan="8">
+               <table  width="100%">
+                 <tr>
+                    <td width="5%"><b>Contato:</b></td>
+                    <td width="15%"> <%= aluno.aluno_contato1%></td>
+                    <td width="4%"><b>Fone:</b></td>
+                    <td width="15%"><%= aluno.aluno_contato1_fone%></td>
+                     <td width="5%"><b>Contato:</b></td>
+                     <td width="15%"> <%= aluno.aluno_contato2%></td>
+                     <td width="4%"><b>Fone:</b></td>
+                     <td width="15%"><%= aluno.aluno_contato2_fone%></td>
+                 </tr>
+                 <tr>
+                     <td><b>Contato:</b></td>
+                     <td> <%= aluno.aluno_contato3%></td>
+                     <td><b>Fone:</b></td>
+                     <td><%= aluno.aluno_contato3_fone%></td>
+                     <td><b>Contato:</b></td>
+                     <td> <%= aluno.aluno_contato4%></td>
+                     <td><b>Fone:</b></td>
+                     <td><%= aluno.aluno_contato4_fone%></td>
+                 </tr>
+                                  <tr>
+                     <td><b>Contato:</b></td>
+                     <td> <%= aluno.aluno_contato5%></td>
+                     <td><b>Fone:</b></td>
+                     <td><%= aluno.aluno_contato5_fone%></td>
+                     <td><b>Contato:</b></td>
+                     <td> <%= aluno.aluno_contato6%></td>
+                     <td><b>Fone:</b></td>
+                     <td><%= aluno.aluno_contato6_fone%></td>
+                 </tr>
+
+               </table>
+             </td>
            </tr>
          </table>
 <%end%>
