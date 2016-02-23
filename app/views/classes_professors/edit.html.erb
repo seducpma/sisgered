@@ -1,0 +1,20 @@
+<h1>Editing classes_professor</h1>
+
+<% form_for(@classes_professor) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :classe_id %><br />
+    <%= f.text_field :classe_id %>
+  </p>
+  <p>
+    <%= f.label :professor_id %><br />
+    <%= f.text_field :professor_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @classes_professor %> |
+<%= link_to 'Back', classes_professors_path %>

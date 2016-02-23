@@ -1,0 +1,2 @@
+module ClassesProfessorsHelper
+end

@@ -1,9 +1,14 @@
 class ClassesController < ApplicationController
+
+
+
+
   # GET /classes
   # GET /classes.xml
   before_filter :load_professors
   before_filter :load_classes
   before_filter :load_alunos
+  
 
 
   def index
@@ -40,16 +45,15 @@ class ClassesController < ApplicationController
   # GET /classes/1/edit
   def edit
     @classe = Classe.find(params[:id])
-#    @livro = Livro.find(params[:id])
-
+#   @livro = Livro.find(params[:id])
     @alunos_selecionados = @classe.alunos
     @alunos = @alunos - @alunos_selecionados
 
     @professors_selecionados = @classe.professors
     @professors = @professors - @professors_selecionados
-
 #    @assuntos_selecionados = @livro.assuntos
 #    @assuntos = @assuntos - @assuntos_selecionados
+
 
 
 
@@ -59,7 +63,6 @@ class ClassesController < ApplicationController
   # POST /classes.xml
   def create
     @classe = Classe.new(params[:classe])
-
     respond_to do |format|
       if @classe.save
         flash[:notice] = 'Class was successfully created.'
@@ -77,8 +80,10 @@ class ClassesController < ApplicationController
   def update
     @classe = Classe.find(params[:id])
 
+
     respond_to do |format|
       if @classe.update_attributes(params[:classe])
+
         flash[:notice] = 'Class was successfully updated.'
         format.html { redirect_to(@classe) }
         format.xml  { head :ok }
@@ -92,14 +97,74 @@ class ClassesController < ApplicationController
   # DELETE /classes/1
   # DELETE /classes/1.xml
   def destroy
-    @classe = Class.find(params[:id])
+    @classe = Classe.find(params[:id])
     @classe.destroy
 
     respond_to do |format|
-      format.html { redirect_to(classes_url) }
+      format.html { redirect_to(home_path) }
       format.xml  { head :ok }
     end
   end
+
+
+def destroy_classe_aluno
+  aluno_id=params[:id]
+  classe_id= session[:classe_id]
+  @classe =Classe.find(session[:classe_id])
+  results = ActiveRecord::Base.connection.execute("DELETE FROM `alunos_classes` WHERE `aluno_id`="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
+end
+ #aluno_id=params[:id]
+# classe_id= session[:classe_id]
+
+ # @classealuno = AlunosClasse.find_by_sql("SELECT * FROM `alunos_classes`WHERE `aluno_id`="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
+ 
+  #@classealuno = AlunosClasse.find_by_sql("DELETE FROM `alunos_classes` WHERE `aluno_id`="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
+
+ #    Post.delete_all("aluno_id="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
+
+  # @classealuno.destroy
+
+
+
+
+   #respond_to do |format|
+    #  format.html { redirect_to(home_path) }
+     # format.xml  { head :ok }
+   # end
+ # end
+
+
+
+
+#def destroy_classe_aluno
+#  aluno_id=params[:id]
+#  classe_id= session[:classe_id]
+#  @classealuno = AlunosClasse.find_by_sql("SELECT * FROM `alunos_classes`WHERE `aluno_id`="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
+#t=0
+#  if @classealuno.nil? flash[:error] = "object is not not found"
+#      else if @classealuno.destroy flash[:notice] = 'blah'
+#            respond_to do |format|
+#               format.html { redirect_to home_path }
+#               format.json { head :no_content }
+#               format.js end
+#           else flash[:error] = 'There was a problem fetching the record'
+#              redirect_to home_path
+#           end
+#     end
+# end
+
+
+
+
+def destroy_classe_professor
+  professor_id=params[:id]
+  classe_id= session[:classe_id]
+  @classe =Classe.find(session[:classe_id])
+  results = ActiveRecord::Base.connection.execute("DELETE FROM `classes_professors` WHERE `professor_id`="+(professor_id).to_s + " and classe_id="+(classe_id).to_s)
+end
+
+
+
 
 
   def seleciona_montar_classe
@@ -124,6 +189,13 @@ def consulta_classe_aluno
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
+       end
+end
+
+def editar_classe_aluno
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_classe_editar'
        end
 end
 

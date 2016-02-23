@@ -22,15 +22,25 @@
                 <tr bgcolor="#F5F5F5" >
                    <td align="left"><b>Classe:</b></td>
                    <td align="left">  <%=h @classe.classe_classe%></td>
-                   <td align="left"><b>Descrição:</b></td>
-                   <td align="left"> <%=h @classe.classe_descricao %></td>
+                   <td align="left"><b>Horário:</b></td>
+                   <td align="left"> <%=h @classe.horario %></td>
                  </tr>
+                 <tr bgcolor="#F5F5F5" >
+                   <td align="left"><b>Descrição:</b></td>
+                   <td colspan="3"align="left"> <%=h @classe.classe_descricao %></td>
+                 </tr>
+               <%  session[:classe]=  @classe.id%>
                 <tr bgcolor="#F5F5F5">
                   <td valign="top"><b> Professor(es):</b> </td>
                   <% cont=1 %>
                   <% cont1=1 %>
                   <td colspan="3" >   <% @classe.professors.each do |prof| %>
-                            &nbsp <%= cont%> - <%="#{ prof.nome}" %>  ( <%="#{ prof.funcao}" %> )<br/>
+                           <table>
+                              <tr>
+                                <td width="80%">&nbsp <%= cont%> - <%="#{ prof.nome}" %>  ( <%="#{ prof.funcao}" %> )</td>
+                                <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_professor", :id =>prof}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+                              </tr>
+                            </table>
                             <%cont = cont+1%>
                         <%end%>
                   </td>
@@ -39,16 +49,17 @@
                 <tr bgcolor="#F5F5F5">
                   <td valign="top"><b> Alunos:</b> </td>
                   <td colspan="3" >   <% @classe.alunos.each do |aluno| %>
-                           &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %><br/>
+                           <table>
+                              <tr>
+                                <td width="80%"> &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %> </td>
+                                <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_aluno", :id =>aluno}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+                              </tr>
+                            </table>
                            <%cont1 = cont1+1%>
                         <%end%>
                   </td>
                     
                 </tr>
-
-
-
-
                </table>
            </td>
         </tr>
@@ -62,11 +73,13 @@
          <tr>
             
             <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
-                <td width="6%"align="left" ><%= button_to 'Alunos', {:action => "edit", :id =>@classe}, :method => "get", :title => "Editar"%></td>
-              <%else%>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@classe}, :method => "get", :title => "Editar"%></td>
+                 <td width="6%"align="left" ><%= button_to 'Excluir Classe', {:action => "destroy", :id =>@classe}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+                
+            <%else%>
                 <td align="center"></td>
              <%end%>
-<td width="4%"align="left"><%= button_to 'Consultar' ,consulta_classe_path, :title => "Consultar" %></td>
+           <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_classe_path, :title => "Consultar" %></td>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
     </table>

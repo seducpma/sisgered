@@ -1,0 +1,13 @@
+<p>
+  <b>Classe:</b>
+  <%=h @classes_professor.classe_id %>
+</p>
+
+<p>
+  <b>Professor:</b>
+  <%=h @classes_professor.professor_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_classes_professor_path(@classes_professor) %> |
+<%= link_to 'Back', classes_professors_path %>

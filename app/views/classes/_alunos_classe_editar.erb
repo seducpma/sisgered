@@ -1,0 +1,58 @@
+<table width="100%">
+     <% for classe in @classe %>
+        <tr bgcolor="#F5F5F5" >
+           <td align="left" width="10%"><b>Unidade:</b></td>
+           <td align="left">  <%=h classe.unidade.nome%></td>
+           <td align="left" width="18%"><b> Ano Letivo:</b></td>
+           <td align="left"> <%=h classe.classe_ano_letivo %></td>
+       </tr>
+
+       <tr bgcolor="#F5F5F5">
+           <td align="left"><b>Classe:</b></td>
+           <td align="left">  <%=h classe.classe_classe%></td>
+           <td align="left"><b>Horário:</b></td>
+           <td align="left">  <%=h classe.horario %></td>
+      </tr>
+        <tr bgcolor="#F5F5F5" >
+          <td align="left"><b>Descrição:</b></td>
+          <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+       </tr>
+      <%  session[:classe_id]= classe.id %>
+      <tr bgcolor="#F5F5F5">
+        <td valign="top"> <b> Professor(es):</b> </td>
+        <% cont=1 %>
+         <% cont1=1 %>
+        <td colspan="4">   <% classe.professors.each do |prof| %>
+                            <table>
+                              <tr>
+                                <td width="80%">&nbsp <%= cont%> -  <%="#{ prof.nome}" %> ( <%="#{ prof.funcao}" %> )</td>
+                                <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_professor", :id =>prof}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+                              </tr>
+                            </table>
+                         
+                         <%cont = cont+1%>
+                    <%end%>
+            </td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+        <td valign="top"> <b> Alunos:</b> </td>
+        <td colspan="4">   <% classe.alunos.each do |aluno| %>
+                            <table>
+                              <tr>
+                                <td width="80%"> &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %> </td>
+                                <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_aluno", :id =>aluno}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+                              </tr>
+                            </table>
+                            <%cont1 = cont1+1%>
+                    <%end%>
+            </td>
+      </tr>
+      <tr>
+        
+        <td colspan="7"align="right"><br/><%= button_to 'Editar Classe', {:controller =>"classes", :action => "edit", :id =>classe}, :method => "get", :title => "Editar"%></td>
+      </tr>
+
+     <%  session[:classe]=  classe.id%>
+         <%end%>
+</table>
+

@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :professors_classes
+  map.resources :classes_professors
 
   map.resources :notas_alunos
 
@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :notas
 
-    map.resources :classes
+    map.resources :classes,:collection => { :editar_classe=>:get}
 
   map.resources :professors
 
@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :pessoas
 
-  map.resources :alunos, :collection => {:consulta_ficha => :get}
+  map.resources :alunos, :collection => {:consulta_ficha => :get , :editar_ficha=>:get}
 
   map.resources :logs
   map.resources :roles_users
@@ -78,7 +78,9 @@ ActionController::Routing::Routes.draw do |map|
   map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
   map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
   map.consulta_ficha_cadastral '/consulta_ficha_cadastral', :controller => 'alunos', :action => 'consulta_ficha_cadastral'
+  map.editar_ficha_cadastral '/editar_ficha_cadastral', :controller => 'alunos', :action => 'editar_ficha_cadastral'
   map.consulta_classe_aluno '/consulta_classe_aluno', :controller => 'classes', :action => 'consulta_classe_aluno'
+  map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'
   map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
   map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
   map.consulta_responsaveis '/consulta_responsaveis', :controller => 'alunos', :action => 'consulta_responsaveis'
