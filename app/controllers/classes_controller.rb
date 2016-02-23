@@ -218,7 +218,7 @@ end
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `id`not in (SELECT alunos_classes.aluno_id FROM classes INNER JOIN alunos_classes ON classes.id = alunos_classes.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+" )")
     else
-        @alunos = Aluno.find(:all, :conditions => ['unidade_id = ? ', current_user.unidade_id], :order => 'classe_classe ASC')
+        @alunos = Aluno.find(:all, :conditions => ['unidade_id = ? ', current_user.unidade_id], :order => 'aluno_nome ASC')
     end
 
  end
