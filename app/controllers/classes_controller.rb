@@ -49,8 +49,7 @@ class ClassesController < ApplicationController
     @alunos_selecionados = @classe.alunos
     @alunos = @alunos - @alunos_selecionados
 
-    @professors_selecionados = @classe.professors
-    @professors = @professors - @professors_selecionados
+  
 #    @assuntos_selecionados = @livro.assuntos
 #    @assuntos = @assuntos - @assuntos_selecionados
 
@@ -169,7 +168,7 @@ end
 
   def seleciona_montar_classe
     @classe1 = Classe.find(:all, :conditions => ['id= ?',params[:classe_id]])
-    t=0
+  
     render :partial => 'dados_classe'
   end
 
@@ -187,6 +186,7 @@ end
 
 def consulta_classe_aluno
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
@@ -194,10 +194,24 @@ end
 
 def editar_classe_aluno
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe_editar'
        end
 end
+
+
+ def destroy_professor
+   t=(params[:id])
+    @atribuicao = Atribuicao.find(params[:id])
+    t=0
+    @atribuicao.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(home_path) }
+      format.xml  { head :ok }
+    end
+  end
 
 def impressao_classe
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe]])

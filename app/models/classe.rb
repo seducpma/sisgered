@@ -3,7 +3,7 @@ class Classe < ActiveRecord::Base
   
   belongs_to :unidade
   has_and_belongs_to_many :alunos
-  has_and_belongs_to_many :professors
+  has_many :atribuicaos
 
    before_save :caps_look
    before_save :atribui_unidade

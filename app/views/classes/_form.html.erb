@@ -20,26 +20,7 @@
         <tr>
           <td colspan="4"><b>Descrição: </b><%= f.text_field :classe_descricao, :size => 65 %></td>
         </tr>
-        <tr>
-           <td colspan="3"><b><%= "Lista de Professores
-                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                         Professores na Classe" %></b>
- <table>
-   <tr>
-    <td id="test"><%= select_tag("todos1", options_for_select(@professors.collect { |ff| [ff.nome, ff.id] }, @classe.professors.collect { |fs| fs.id }), {:multiple=>true, :id => "todos1", :size => 4, :class => "lista_professors"}) %></td>
-    <td valign="topo">
-      <a class="botao" href="#" id="add1" >&gt;&gt;</a>
-      <br/><br/><br/><br/>
-    </td>
-    <%if @professors_selecionados.present?%>
-    <td colspan="2"><%= select_tag("classe[professor_ids][]", options_for_select(@professors_selecionados.collect { |ff| [truncate(ff.nome, :length => 100, :omission => "..."), ff.id] }, @classe.professors.collect { |fs| fs.id }), {:multiple=>true, :id => "classe_professor_ids", :size => 4, :class => "lista_professors"}) %></td>
-     <%else%>
-     <td colspan="2"><select multiple="multiple" name="classe[professor_ids][]" id="classe_professor_ids" class="lista_professors"></select></td>
-    <%end%>
-  </tr>
-  </table>
-            </td>
-         </tr>
+
          
          <tr>
             <td colspan="4"><b><%= "Lista de Alunos

@@ -94,7 +94,12 @@ class AlunosController < ApplicationController
        @aluno = Aluno.find(:all,:conditions => ["id = ?",  session[:aluno]])
        
       render :layout => "impressao"
-end  
+end
+
+  def impressao_bolsa_familia
+      @aluno = Aluno.find(:all,:conditions =>['unidade_id = ? and aluno_bolsa_familia ="SIM" ', current_user.unidade_id ])
+      render :layout => "impressao"
+end
 
  def verifica_dados_aluno
     @dados = Pessoa.find(params[:aluno_pessoa_id])

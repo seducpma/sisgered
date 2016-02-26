@@ -1,10 +1,10 @@
 class Professor < ActiveRecord::Base
-  has_and_belongs_to_many :classes
+
   belongs_to :unidade
+  has_many :atribuicaos
   
-  
-  has_one :tempo_servico, :dependent => :delete
-  has_one :titulo_professor, :dependent => :delete
+  #has_one :tempo_servico, :dependent => :delete
+  #has_one :titulo_professor, :dependent => :delete
 
 validates_presence_of :matricula, :message => ' -  MATRÍCULA - PREENCHIMENTO OBRIGATÓRIO'
 validates_presence_of :nome, :message => ' -  NOME - PREENCHIMENTO OBRIGATÓRIO'

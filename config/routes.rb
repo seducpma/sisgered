@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :atribuicaos
+
   map.resources :classes_professors
 
   map.resources :notas_alunos
@@ -11,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
 
     map.resources :classes,:collection => { :editar_classe=>:get}
 
-  map.resources :professors
+  map.resources :professors,:collection => { :consulta_classe=>:get}
 
   map.resources :tipos
 
@@ -63,6 +65,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_ficha_completa '/impressao_ficha_completa', :controller => 'socioeconomicos', :action => 'impressao_ficha_completa'
   map.impressao_ficha '/impressao_ficha', :controller => 'alunos', :action => 'impressao_ficha'
   map.impressao_classe '/impressao_classe', :controller => 'classes', :action => 'impressao_classe'
+  map.impressao_bolsa_familia '/impressao_bolsa_familia', :controller => 'alunos', :action => 'impressao_bolsa_familia'
 
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
 
@@ -86,7 +89,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_responsaveis '/consulta_responsaveis', :controller => 'alunos', :action => 'consulta_responsaveis'
   map.consulta_reponsavel '/consulta_reponsavel', :controller => 'alunos', :action => 'consulta_reponsavel'
   map.consulta_bolsa_familia '/consulta_bolsa_familia', :controller => 'alunos', :action => 'consulta_bolsa_familia'
-
+  map.consulta_classe_professor '/consulta_classe_professor', :controller => 'professors', :action => 'consulta_classe_professor'
 
 
   

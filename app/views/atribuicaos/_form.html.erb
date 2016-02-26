@@ -1,0 +1,44 @@
+<% form_for (@atribuicao) do |f| %>
+ <%= f.error_messages %>
+
+  <fieldset><legend><font size=4>Atribuição</font></legend>
+    <table width="100%">
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Classe:</b></td>
+         <td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
+         <td width =" 12%"><b>Professor:</b></td>
+         <td><%= f.collection_select  :professor_id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Disciplina:</b></td>
+         <td colspan="3"><%= f.text_field :disciplina, :size=>"30" %></td>
+
+      </tr>
+   </table>
+  </fieldset>
+ <br/>
+ 
+       <table width="100%" >
+         <tr bgcolor="#F5F5F5">
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+            
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    
+  
+
+         </tr>
+       </table>
+  
+
+  </font>
+
+
+
+
+
+
+
+
+

@@ -114,11 +114,14 @@ display: none;
                               </ul>
                          </li>
                    <%end%>
-<!--
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                       <li><%= link_to "Atribuição",new_atribuicao_path %></li>
+                   <%end%>
+
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                         <li><%= link_to "Classe",new_class_path %></li>
                       <%end%>
--->
+
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                           <li><%= link_to "Professor",new_professor_path %></li>
 
@@ -132,23 +135,24 @@ display: none;
                    <li><%= link_to "Bolsa Família",consulta_bolsa_familia_path %></li>
                    <li><%= link_to "Classe",consulta_classe_path %></li>
                    <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                   <li><%= link_to "Professor/Classe",consulta_classe_professors_path %></li>
                     <li><%= link_to "Responsável",consulta_reponsavel_path %></li>
                     <li><%= link_to "Unidade",consultas_unidades_path %></li>
                   </ul>
                <%end%>
               </li>
               <li><span class="divider divider-vert" ></span></li>
-              <li><a class="item-primary" href="#;">EDITAR</a>
-               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                 <ul style="width:108px;">
+
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                <li><a class="item-primary" href="#;">EDITAR</a>
+                <ul style="width:108px;">
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
                    <li><%= link_to "Classe",editar_classe_classes_path %></li>
                    <li><%= link_to "Professor",consulta_professor_nome_path %></li>
                    <li><%= link_to "Unidade",consultas_unidades_path %></li>
                  </ul>
-               <%end%>
               </li>
-
+             <%end%>
               <li><a class="item-primary" href="#;">DOCUMENTOS</a>
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                  <ul style="width:108px;">
@@ -157,6 +161,16 @@ display: none;
                   </ul>
                <%end%>
               </li>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                         <li><a class="item-primary" href="#;">Notas</a>
+                              <ul>
+                                 <% if current_user.has_role?('admin') %>
+                                      <li><%= link_to "Professor/Classe",professors_path %></li>
+                                 <%end%>
+
+                              </ul>
+                         </li>
+                   <%end%>
 
 
 
@@ -172,11 +186,6 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">GERENCIAR</a>
                  <ul style="width:108px;">
-
-                    <li><a>Atualizações</a>
-                         <li><%= link_to 'Reclassificar', alteracao_path %></li>
-                     </li>
-
                      <li><a>Usuários</a>
                         <ul>
                           <li><%= link_to 'Gerenciar', roles_users_path %></li>

@@ -30,22 +30,9 @@
                    <td colspan="3"align="left"> <%=h @classe.classe_descricao %></td>
                  </tr>
                <%  session[:classe]=  @classe.id%>
-                <tr bgcolor="#F5F5F5">
-                  <td valign="top"><b> Professor(es):</b> </td>
-                  <% cont=1 %>
+                
                   <% cont1=1 %>
-                  <td colspan="3" >   <% @classe.professors.each do |prof| %>
-                           <table>
-                              <tr>
-                                <td width="80%">&nbsp <%= cont%> - <%="#{ prof.nome}" %>  ( <%="#{ prof.funcao}" %> )</td>
-                                <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_professor", :id =>prof}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
-                              </tr>
-                            </table>
-                            <%cont = cont+1%>
-                        <%end%>
-                  </td>
-
-                </tr>
+                 
                 <tr bgcolor="#F5F5F5">
                   <td valign="top"><b> Alunos:</b> </td>
                   <td colspan="3" >   <% @classe.alunos.each do |aluno| %>

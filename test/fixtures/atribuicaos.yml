@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  classe_id: 
+  professor_id: 
+  disciplina: MyString
+  ano_letivo: 1
+
+two:
+  classe_id: 
+  professor_id: 
+  disciplina: MyString
+  ano_letivo: 1

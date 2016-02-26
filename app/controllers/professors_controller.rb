@@ -3,7 +3,15 @@ class ProfessorsController < ApplicationController
   # GET /professors.xml
      before_filter :load_unidades
      before_filter :load_professors
+     before_filter :load_classes
 
+   def load_classes
+   if current_user.unidade_id == 53 or current_user.unidade_id == 52
+        @classes = Classe.find(:all, :order => 'classe_classe ASC')
+    else
+        @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
+    end
+ end
 
   def load_unidades
       @unidades = Unidade.find(:all, :order => 'nome ASC')
@@ -162,5 +170,16 @@ end
     @professors = Professor.find(:all, :conditions => ['unidade_id=' + $sede])
     render :partial => 'professores'
   end
+
+  def consulta_classe_professor
+
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
+
+       render :update do |page|
+          page.replace_html 'classe_professors', :partial => 'professors_classe'
+       end
+end
+
 
 end
