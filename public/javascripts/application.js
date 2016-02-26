@@ -582,6 +582,41 @@ $(".sem_filtro").click(function ()
 
   // Fim Filtros
 
+$(".filtro_classe1").click(function ()
+   {
+     $(".consulta_classe1").show();
+     $(".txt_busca3").show()
+     $(".label_busca3").show();
+     $(".consulta_periodo").hide();
+     $(".consulta_professor_nome1").hide();
+     $(".txt_busca4").hide()
+     $(".label_busca4").hide();
+
+   });
+
+   $(".filtro_periodo").click(function ()
+   {
+     $(".consulta_periodo").show();
+     $(".txt_busca4").show()
+     $(".label_busca4").show();
+     $(".consulta_professor_nome1").hide();
+     $(".consulta_classe1").hide();
+     $(".txt_busca3").hide()
+     $(".label_busca3").hide();
+
+   });
+
+   $(".filtro_professor_nome1").click(function ()
+   {
+     $(".consulta_professor_nome1").show();
+     $(".consulta_classe1").hide();
+     $(".consulta_periodo").hide();
+     $(".txt_busca3").hide()
+     $(".label_busca3").hide();
+
+
+   });
+
 // Letras em maiusculo
 
 //$("input").keyup(function(){

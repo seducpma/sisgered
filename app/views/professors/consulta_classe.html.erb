@@ -7,15 +7,23 @@
     <div class="tabs">
     <% form_remote_tag :url => consulta_classe_professor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
-       <table width="100%" align="center" bgcolor="#DCDCDC" >
+                 <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Classe:</b></font>
-               &nbsp&nbsp&nbsp
-                <%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
-               <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
-          </td>
-        </tr>
-       </table>
+            <td>
+              <a href="#" class="filtro_classe1"><%= radio_button_tag(:type_of, "1") %></a>Classe
+              <a href="#" class="filtro_periodo"><%= radio_button_tag(:type_of, "2") %></a>Periodo
+              <a href="#" class="filtro_professor_nome1"><%= radio_button_tag(:type_of, "3") %></a>Professor
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta_classe1" style="display:none"> <%= render "classe" %> </div>
+               <div class="consulta_periodo" style="display:none"> <%= render "periodo" %> </div>
+               <div class="consulta_professor_nome1" style="display:none"> <%= render "professor_nome1" %> </div>
+           </td>
+         </tr>
+        </table>
+
+
        </fieldset>
       <fieldset>
         <table width="100%"frame="box" rules="all">

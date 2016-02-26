@@ -1,0 +1,22 @@
+
+<fieldset>
+<table width="100%">
+    <tr bgcolor="#F5F5F5" >
+      <td align="left"width="10%"><b> Classe:</b></td>
+      <td align="left" width="30%"><b>Professor</b></td>
+      <td align="left"width="10%"><b> Disciplina:</b></td>
+
+    </tr>
+  <% for atrib in @atribuicao_classe %>
+    <tr bgcolor="#F5F5F5" >
+      <td align="center" ><%=h atrib.classe.classe_classe%></td>
+      <td align="left" ><%=h atrib.professor.nome%></td>
+      <td align="left"> <%=h atrib.disciplina %></td>
+       
+
+    </tr>
+ <%end%>
+</table>
+</fieldset>
+
+

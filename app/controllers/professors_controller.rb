@@ -172,13 +172,26 @@ end
   end
 
   def consulta_classe_professor
+    if params[:type_of].to_i == 1
 
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-
        render :update do |page|
           page.replace_html 'classe_professors', :partial => 'professors_classe'
        end
+     else if params[:type_of].to_i == 2
+           @atribuicao_classe = Atribuicao.find(:all, :joins => "inner join classes  on atribuicaos.classe_id = classes.id ", :conditions =>["classes.horario =? and classes.unidade_id =? ", params[:search], current_user.unidade_id])
+               render :update do |page|
+                  page.replace_html 'classe_professors', :partial => 'professors_classe1'
+               end
+         else if params[:type_of].to_i == 3
+                @atribuicao_classe = Atribuicao.find(:all, :joins => "inner join professors  on atribuicaos.professor_id = professors.id ", :conditions =>["professors.id =? ", params[:professor][:id]])
+                  render :update do |page|
+                    page.replace_html 'classe_professors', :partial => 'professors_classe1'
+                     end
+              end
+         end
+    end
 end
 
 
