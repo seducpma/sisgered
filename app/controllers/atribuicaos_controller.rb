@@ -102,7 +102,7 @@ class AtribuicaosController < ApplicationController
     if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @professors = Professor.find(:all, :order => 'nome ASC')
     else
-        @professors = Professor.find(:all, :conditions => ['unidade_id = ? or unidade_id = 54', current_user.unidade_id  ],:order => 'matricula ASC')
+        @professors = Professor.find(:all, :conditions => ['unidade_id = ? or unidade_id = 54', current_user.unidade_id  ],:order => 'nome ASC')
     end
   end
 
