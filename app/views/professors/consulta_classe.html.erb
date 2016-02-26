@@ -42,10 +42,8 @@
        <table>
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <td width="6%"align="left"><%= button_to 'Consultar', consulta_classe_path, :title => "Consultar" %></td>
-     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-          <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-     <%end%>
+     <td align="left"><%= button_to 'Consultar', consulta_classe_professors_path, :title => "Consultar" %></td>
+
     </tr>
   </table>
  </div>
