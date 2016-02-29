@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = current_user
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = 'CADASTRADO COM SUCESSO.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else

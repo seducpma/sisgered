@@ -64,7 +64,7 @@ class ClassesController < ApplicationController
     @classe = Classe.new(params[:classe])
     respond_to do |format|
       if @classe.save
-        flash[:notice] = 'Class was successfully created.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@classe) }
         format.xml  { render :xml => @classe, :status => :created, :location => @classs }
       else
@@ -83,7 +83,7 @@ class ClassesController < ApplicationController
     respond_to do |format|
       if @classe.update_attributes(params[:classe])
 
-        flash[:notice] = 'Class was successfully updated.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@classe) }
         format.xml  { head :ok }
       else
@@ -109,6 +109,7 @@ class ClassesController < ApplicationController
 def destroy_classe_aluno
   aluno_id=params[:id]
   classe_id= session[:classe_id]
+  t=0
   @classe =Classe.find(session[:classe_id])
   results = ActiveRecord::Base.connection.execute("DELETE FROM `alunos_classes` WHERE `aluno_id`="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
 end

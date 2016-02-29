@@ -47,7 +47,7 @@ class SocioeconomicosController < ApplicationController
 
     respond_to do |format|
       if @socioeconomico.save
-        flash[:notice] = 'CADASTRADO COM SUCESSO.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@socioeconomico) }
         format.xml  { render :xml => @socioeconomico, :status => :created, :location => @socioeconomico }
       else
@@ -64,7 +64,7 @@ class SocioeconomicosController < ApplicationController
 
     respond_to do |format|
       if @socioeconomico.update_attributes(params[:socioeconomico])
-        flash[:notice] = 'CADASTRADO COM SUCESSO.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@socioeconomico) }
         format.xml  { head :ok }
       else

@@ -47,7 +47,7 @@ class SaudesController < ApplicationController
 
     respond_to do |format|
       if @saude.save
-        flash[:notice] = 'CADASTRADO COM SUCESSO.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@saude) }
         format.xml  { render :xml => @saude, :status => :created, :location => @saude }
       else
@@ -64,7 +64,7 @@ class SaudesController < ApplicationController
 
     respond_to do |format|
       if @saude.update_attributes(params[:saude])
-        flash[:notice] = 'CADASTRADO COM SUCESSO.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@saude) }
         format.xml  { head :ok }
       else
@@ -88,7 +88,7 @@ class SaudesController < ApplicationController
 
    def impressao_saude
        @saude = Saude.find(:all,:conditions => ["id = ?",  session[:saude]])
-       @pessoa = Pessoa.find(:all, :conditions => ["id = ?", session[:pessoa]])
+       
       render :layout => "impressao"
 end  
 

@@ -15,7 +15,7 @@
                <table  bgcolor="#DCDCDC" width="100%">
                  <tr bgcolor="#F5F5F5">
                   <td align="left" width="12%"><b> Ano Letivo:</b></td>
-                  <td align="left" width="12%"> <%=h @classe.classe_ano_letivo %></td>
+                  <td align="left" width="12%"> <%=h @classe.classe_ano_letivo %><% session[:classe_id] = @classe.id%></td>
                    <td align="left" width="12%"><b>Unidade:</b></td>
                    <td align="left" width="70%"> <%=h @classe.unidade.nome%> </td>
                 </tr>
@@ -29,7 +29,7 @@
                    <td align="left"><b>Descrição:</b></td>
                    <td colspan="3"align="left"> <%=h @classe.classe_descricao %></td>
                  </tr>
-               <%  session[:classe]=  @classe.id%>
+
                 
                   <% cont1=1 %>
                  
@@ -47,6 +47,7 @@
                   </td>
                     
                 </tr>
+                 
                </table>
            </td>
         </tr>

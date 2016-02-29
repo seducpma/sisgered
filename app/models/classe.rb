@@ -18,7 +18,7 @@ class Classe < ActiveRecord::Base
       self.classe_classe.upcase!
     end
 
-  before_save  :atribui_unidade
+
 
 
 

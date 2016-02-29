@@ -56,7 +56,7 @@ end
 
     respond_to do |format|
       if @unidade.save
-        flash[:notice] = 'Unidade was successfully created.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@unidade) }
         format.xml  { render :xml => @unidade, :status => :created, :location => @unidade }
       else
@@ -73,7 +73,7 @@ end
 
     respond_to do |format|
       if @unidade.update_attributes(params[:unidade])
-        flash[:notice] = 'Unidade was successfully updated.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@unidade) }
         format.xml  { head :ok }
       else

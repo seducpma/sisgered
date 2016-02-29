@@ -4,7 +4,7 @@
            <td align="left" width="10%"><b>Unidade:</b></td>
            <td align="left">  <%=h classe.unidade.nome%></td>
            <td align="left" width="18%"><b> Ano Letivo:</b></td>
-           <td align="left"> <%=h classe.classe_ano_letivo %></td>
+           <td align="left"> <%=h classe.classe_ano_letivo %> <%  session[:classe]=  classe.id%></td>
        </tr>
 
        <tr bgcolor="#F5F5F5">
@@ -17,8 +17,7 @@
           <td align="left"><b>Descrição:</b></td>
           <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
        </tr>
-      <%  session[:classe_id]= classe.id %>
-      <tr bgcolor="#F5F5F5">
+       <tr bgcolor="#F5F5F5">
         <td valign="top"> <b> Professor(es):</b> </td>
         <% cont=1 %>
          <% cont1=1 %>
@@ -57,7 +56,7 @@
         <td colspan="7"align="right"><br/><%= button_to 'Editar Classe', {:controller =>"classes", :action => "edit", :id =>classe}, :method => "get", :title => "Editar"%></td>
       </tr>
 
-     <%  session[:classe]=  classe.id%>
+
          <%end%>
 </table>
 

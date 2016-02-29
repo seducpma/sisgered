@@ -50,7 +50,7 @@ class AtribuicaosController < ApplicationController
 
     respond_to do |format|
       if @atribuicao.save
-        flash[:notice] = 'Atribuicao was successfully created.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@atribuicao) }
         format.xml  { render :xml => @atribuicao, :status => :created, :location => @atribuicao }
       else
@@ -67,7 +67,7 @@ class AtribuicaosController < ApplicationController
 
     respond_to do |format|
       if @atribuicao.update_attributes(params[:atribuicao])
-        flash[:notice] = 'Atribuicao was successfully updated.'
+        flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@atribuicao) }
         format.xml  { head :ok }
       else
