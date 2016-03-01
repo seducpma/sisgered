@@ -37,9 +37,14 @@ class RolesUsersController < ApplicationController
 
   def index
     $new_id = 0
-    
-    @role_users = RolesUser.find(:all, :joins => :user, :order => 'login ASC')
-    respond_to do |format|
+   if current_user.unidade_id == 53 or current_user.unidade_id == 52
+        @role_users = RolesUser.find(:all, :joins => :user, :order => 'login ASC')
+    else
+         @role_users = RolesUser.find(:all, :joins => :user,:conditions => ['users.unidade_id = ? ', current_user.unidade_id], :order => 'login ASC')
+       
+    end
+
+   respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @role_users }
     end

@@ -7,15 +7,25 @@
     <div class="tabs">
     <% form_remote_tag :url => consulta_ficha_cadastral_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
-       <table width="100%" align="center" bgcolor="#DCDCDC" >
+        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
-               &nbsp&nbsp&nbsp
-                <%= collection_select :aluno, :id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
-               <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
-          </td>
-        </tr>
-       </table>
+            <td>
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Nome
+              <a href="#" class="ra_filtro"><%= radio_button_tag(:type_of, "2") %></a>RA
+              <a href="#" class="rm_filtro"><%= radio_button_tag(:type_of, "4") %></a>RN
+              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "3") %></a>Todos
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta" style="display:none"> <%= render "consulta_nome" %> </div>
+               <div class="consulta_ra" style="display:none"> <%= render "consulta_ra" %> </div>
+               <div class="consulta_rm" style="display:none"> <%= render "consulta_rm" %> </div>
+           </td>
+         </tr>
+        </table>
+
+
+
        </fieldset>
       <fieldset>
         <table width="100%"frame="box" rules="all" bgcolor="#F5F5F5">
