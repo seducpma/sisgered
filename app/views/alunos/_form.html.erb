@@ -276,20 +276,24 @@
           <td><%= f.select :aluno_autoriza_imagem, (OPCAO).sort %></td>
       </tr>
       <tr bgcolor="#F5F5F5">
-          <td><b>4) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros</b></br>
-              <b> Nome aluno(s) autorizadas: &nbsp <%= f.text_field :aluno_acompanhante, :size=>"70" %>      </td>
+          <td><b>4) Autorizo meu filho (a) ir embora sozinho</b></td>
           <td> <%= f.select :aluno_vai_embora_so, (OPCAO).sort %></td>
       </tr>
       <tr bgcolor="#F5F5F5">
-          <td><b>5) Autorizo tratamento médico emergencial, em caso de enfermidade ou acidente na escola, ministrar primeiros socorros e providenciar deslocamento até hospital</td>
+          <td><b>5) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros</b></br>
+              <b> Nome aluno(s) autorizadas: &nbsp <%= f.text_field :aluno_acompanhante, :size=>"70" %>      </td>
+          <td> <%= f.select :aluno_vai_embora, (OPCAO).sort %></td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+          <td><b>6) Autorizo tratamento médico emergencial, em caso de enfermidade ou acidente na escola, ministrar primeiros socorros e providenciar deslocamento até hospital</td>
           <td> <%= f.select :aluno_emergencial, (OPCAO).sort %>  </td>
       </tr>
       <tr bgcolor="#F5F5F5">
-          <td><b>6) Autorizo tratamento odontologio, se disponibilizado pela Prefeitura Municipal de Americana</b></td>
+          <td><b>7) Autorizo tratamento odontologio, se disponibilizado pela Prefeitura Municipal de Americana</b></td>
           <td> <%= f.select :aluno_odontologico, (OPCAO).sort %> </td>
       </tr>
       <tr bgcolor="#F5F5F5">
-          <td><b>7) Autorizo a aplicação de fluor</b></td>
+          <td><b>8) Autorizo a aplicação de fluor</b></td>
           <td><%= f.select :aluno_fluor, (OPCAO).sort %>    </td>
       </tr>
    </table>

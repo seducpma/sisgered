@@ -113,18 +113,80 @@ end
     render :partial => 'exibe_dados'
   end
 
- 
+  def lista_aluno_nome
+           @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
+           @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+           @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+
+           render :update do |page|
+              page.replace_html 'ficha', :partial => 'dados_ficha_cadastral'
+           end
+
+  end
+
+ def lista_aluno_nome
+
+
+           @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
+           @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+           @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+            render :partial =>  'dados_ficha_cadastral'
+  end
+
+  def lista_aluno_ra
+           @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_ra]])
+           @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_ra]])
+           @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_ra]])
+              render :partial =>  'dados_ficha_cadastral'
+  end
+
+  def lista_aluno_rm
+          id_rm = params[:aluno_aluno_rm]
+           @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_rm]])
+           @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_rm]])
+           @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_rm]])
+              render :partial =>  'dados_ficha_cadastral'
+  end
 
 def consulta_ficha_cadastral
-       session[:aluno] = params[:aluno][:id]
-       
-       @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
-       @saude = Saude.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
-       @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
-       render :update do |page|
-          page.replace_html 'ficha', :partial => 'dados_ficha_cadastral'
+
+      if params[:type_of].to_i == 1
+
+       else if params[:type_of].to_i == 2
+            else if params[:type_of].to_i == 3
+                 else if params[:type_of].to_i == 4
+                     if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+                         @professors = Professor.find(:all,:conditions => ["nome like ?", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+                     else
+                         @professors = Professor.find(:all, :conditions=> ["nome like ? and (unidade_id = ? or unidade_id = 54)" ,"%" + params[:search1].to_s + "%", current_user.unidade_id], :order => 'unidade_id,nome ASC')
+                     end
+                     render :update do |page|
+                          page.replace_html 'professores', :partial => "professores"
+                     end
+                 else if params[:type_of].to_i == 5
+                         render :update do |page|
+                           page.replace_html 'professores', :partial => "professores"
+                          end
+                      else if params[:type_of].to_i == 6
+                               if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+                                   @professors = Professor.find( :all,:conditions => ["funcao like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
+                               else
+                                   @professors = Professor.find(:all, :conditions=> ["desligado = 0 and funcao like ? and (unidade_id = ? or unidade_id = 54)" ,"%" + params[:search].to_s + "%", current_user.unidade_id], :order => 'unidade_id,nome ASC')
+                               end
+                               render :update do |page|
+                                      page.replace_html 'professores', :partial => "professores"
+                               end
+                             end
+                      end
+                 end
+
+            end
        end
+    end
+
+
 end
+
 def editar_ficha_cadastral
        session[:aluno] = params[:aluno][:id]
 
@@ -198,6 +260,8 @@ end
   def load_alunos
 
     @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_nome")
+    @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_ra")
+    @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_rm")
 
     #@pessoas_mae =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "MÃE"'],:order => "pessoa_nome")
     #@pessoas_pai =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "PAI"'],:order => "pessoa_nome")

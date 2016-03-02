@@ -21,7 +21,7 @@ class Aluno < ActiveRecord::Base
   
   end
 
-    def maiusculo
+ def maiusculo
     self.aluno_especial.upcase!
     self.aluno_nome.upcase!
      self.aluno_nacionalidade.upcase!
@@ -80,6 +80,9 @@ class Aluno < ActiveRecord::Base
     if  !self.aluno_obs.nil?
       self.aluno_obs.upcase!
     end
+   if  !self.aluno_naturalidade.nil?
+       self.aluno_naturalidade.upcase
+   end
   end
 
 

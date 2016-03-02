@@ -32,6 +32,13 @@
                <td align="right"><b>Sexo:</b></td>
                <td colspan="2" align="left"><%=h aluno.aluno_sexo %></td>
             </tr>
+            <tr >
+              <td width =" 12%"><b>Nº RM:</b></td>
+              <td>   <%=h aluno.aluno_rm %></td>
+              <td width =" 20%"><b>Nº RA:</b></td>
+             <td>   <%=h aluno.aluno_ra %></td>
+           </tr>
+
            <tr >
                <td align="left"><b>Nascimento:</b></td>
                <td colspan="2"align="left">  <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
@@ -202,8 +209,6 @@
                <td align="left"><b>E-mail:</b></td>
                <td colspan="3"align="left"><%=h aluno.aluno_email%></td></td>
             </tr>
-
-
 
             <tr >
               <td width =" 22%"><b>Nº INEP:</b></td>
@@ -453,8 +458,8 @@
             <tr bgcolor="#F5F5F5">
                 <td>4) Autorizo tratamento médico emergencial, em caso de enfermidade ou acidente na escola, ministrar primeiros socorros e providenciar deslocamento até hospital</td>
                 <td ><%=h aluno.aluno_emergencial%></td>
-
             </tr>
+
             <tr bgcolor="#F5F5F5">
                 <td>5) Autorizo tratamento odontologio, se disponibilizado pela Prefeitura Municipal de Americana</td>
                 <td ><%=h aluno.aluno_odontologico%></td>
@@ -464,9 +469,13 @@
                 <td ><%=h aluno.aluno_fluor%></td>
             </tr>
             <tr bgcolor="#F5F5F5">
-                <td>7) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros.
+                <td>7) Autorizo meu filho (a) ir embora sozinho</td>
+                <td> <%=h aluno.aluno_vai_embora_so %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td>8) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros.
                   Nome pessoa(s) autorizadas: <b>  <%=h aluno.aluno_acompanhante %> </b></td>
-                <td>  <%=h aluno.aluno_vai_embora_so %></td>
+                <td>  <%=h aluno.aluno_vai_embora %></td>
             </tr>
          </table>
        </fieldset>

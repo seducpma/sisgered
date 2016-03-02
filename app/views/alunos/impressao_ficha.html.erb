@@ -36,6 +36,13 @@
                <td align="right"><b>Sexo:</b></td>
                <td colspan="2" align="left"><%=h aluno.aluno_sexo %></td>
             </tr>
+            <tr>
+              <td ><b>Nº RM:</b></td>
+              <td>  <%=h aluno.aluno_rm %></td>
+              <td ><b>Nº RA:</b></td>
+              <td colspan="5">   <%=h aluno.aluno_ra %></td>
+           </tr>
+
            <tr>
                <td align="left"><b>Nascimento:</b></td>
                <td colspan="2"align="left">  <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
@@ -436,9 +443,13 @@
                 <td ><%=h aluno.aluno_fluor%></td>
             </tr>
             <tr>
-                <td>7) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros.
+                <td>7) Autorizo meu filho (a) ir embora sozinho</td>
+                <td> <%=h aluno.aluno_vai_embora_so %></td>
+            </tr>
+            <tr>
+                <td>8) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros.
                   Nome pessoa(s) autorizadas: <b>  <%=h aluno.aluno_acompanhante %> </b></td>
-                <td>  <%=h aluno.aluno_vai_embora_so %></td>
+                <td>  <%=h aluno.aluno_vai_embora %></td>
             </tr>
          </table>
        

@@ -387,7 +387,25 @@ $("#localizacao_data_aquisicao").datepicker({dateFormat: 'dd-mm-yy', changeYear:
      $(".consulta_unidade").hide();
      $(".consulta_professor").hide();
      $(".consulta2").hide();
+     $(".consulta_ra").hide();
+     $(".consulta_rm").hide();
    });
+
+$(".ra_filtro").click(function ()
+   { $(".consulta_ra").show();
+     $(".consulta_rm").hide();
+     $(".consulta").hide();
+
+   });
+
+
+$(".rm_filtro").click(function ()
+   { $(".consulta_rm").show();
+     $(".consulta").hide();
+     $(".consulta_ra").hide();
+   });
+
+
 
 $(".filtro_nome").click(function ()
    {

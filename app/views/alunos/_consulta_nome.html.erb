@@ -1,10 +1,13 @@
-       <table width="100%" align="center" bgcolor="#DCDCDC" >
-          <tr>
-            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
-               &nbsp&nbsp&nbsp
-                <%= collection_select :aluno, :id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
-               <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
-          </td>
-        </tr>
-       </table>
+  <table width="100%"  >
+   <tr>
+     <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
+        <%= collection_select :aluno, :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+          <%= observe_field 'aluno_aluno_id',
+               :update => "ficha",
+               :url    => { :action => 'lista_aluno_nome' },
+               :with   => 'aluno_aluno_id' %>
+         
+     </td>
+   </tr>
+  </table>
 
