@@ -1,17 +1,16 @@
 class Atribuicao < ActiveRecord::Base
+  belongs_to :discipĺina
   belongs_to :classe
   belongs_to :professor
- before_save :caps_look
+
+
+
    before_save :atribui
 
   HORARIO = %w(--Selecionar-- MATUTINO VESPERTINO NOTURNO INTEGRAL)
 
 
-    def caps_look
 
-        self.disciplina.upcase!
-
-    end
 
 
 

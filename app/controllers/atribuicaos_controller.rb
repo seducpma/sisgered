@@ -4,6 +4,7 @@ class AtribuicaosController < ApplicationController
 
  before_filter :load_professors
   before_filter :load_classes
+    before_filter :load_disciplinas
 
 
 
@@ -106,5 +107,10 @@ class AtribuicaosController < ApplicationController
     end
   end
 
+   def load_disciplinas
+
+        @disciplinas = Disciplina.find(:all,:order => 'disciplina ASC')
+
+  end
 
 end
