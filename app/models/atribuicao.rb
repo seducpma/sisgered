@@ -1,5 +1,5 @@
 class Atribuicao < ActiveRecord::Base
-  belongs_to :discipĺina
+  belongs_to :disciplina
   belongs_to :classe
   belongs_to :professor
 
