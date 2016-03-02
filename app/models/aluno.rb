@@ -81,8 +81,15 @@ class Aluno < ActiveRecord::Base
       self.aluno_obs.upcase!
     end
    if  !self.aluno_naturalidade.nil?
-       self.aluno_naturalidade.upcase
+       self.aluno_naturalidade.upcase!
    end
+   if  !self.aluno_profissao_responsavel.nil?
+      self.aluno_profissao_responsavel.upcase!
+   end
+   if  !self.aluno_local_trabalho_responsavel.nil?
+      self.aluno_local_trabalho_responsavel.upcase!
+   end
+
   end
 
 
