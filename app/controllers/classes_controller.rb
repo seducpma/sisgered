@@ -194,6 +194,7 @@ def consulta_classe_aluno
 end
 
 def editar_classe_aluno
+       
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
        render :update do |page|
@@ -205,7 +206,7 @@ end
  def destroy_professor
    t=(params[:id])
     @atribuicao = Atribuicao.find(params[:id])
-    t=0
+
     @atribuicao.destroy
 
     respond_to do |format|

@@ -39,7 +39,11 @@ class AlunosController < ApplicationController
 
   # GET /alunos/1/edit
   def edit
+
+t=0
     @aluno = Aluno.find(params[:id])
+    t=(params[:id])
+    t=0
   end
 
   # POST /alunos
@@ -63,7 +67,11 @@ class AlunosController < ApplicationController
   # PUT /alunos/1
   # PUT /alunos/1.xml
   def update
+    t=0
     @aluno = Aluno.find(params[:id])
+
+        t=(params[:id])
+    t=0
 
     respond_to do |format|
       if @aluno.update_attributes(params[:aluno])
@@ -188,6 +196,8 @@ def consulta_ficha_cadastral
 end
 
 def editar_ficha_cadastral
+
+  tr=0
        session[:aluno] = params[:aluno][:id]
 
        @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
