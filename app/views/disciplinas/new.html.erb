@@ -1,15 +1,15 @@
-<h1>New disciplina</h1>
 
-<% form_for(@disciplina) do |f| %>
-  <%= f.error_messages %>
+</div><div id="interno3">
+<% title "CLASSES".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CADASTRO DE DISCIPLINAS</strong></font><br/>
+ </div>
+      <div class="tabs">
+      <%= render :partial => 'form' %>
+    </div>
+</div>
+<br/>
+</div>
 
-  <p>
-    <%= f.label :disciplina %><br />
-    <%= f.text_field :disciplina %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
 
-<%= link_to 'Back', disciplinas_path %>

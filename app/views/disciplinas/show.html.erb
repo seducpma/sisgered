@@ -1,3 +1,46 @@
+<div id="interno3">
+<% title "DISCIPLINA" %>
+<div class ="tabs">
+
+
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b>DISCIPLINA</b></font></legend>
+         <table width="100%">
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Disciplina:</b></td>
+              <td align="left"> <%=h @disciplina.disciplina%></td>
+         </tr>
+      </table>
+     </fieldset>
+   </td>
+  </tr>
+ </table>
+
+    <table>
+         <tr>
+
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@disciplina}, :method => "get", :title => "Editar"%></td>
+                 <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@disciplina}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+
+            <%else%>
+                <td align="center"></td>
+             <%end%>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+    </table>
+
+
+</div>
+<br/>
+</div>
+
+
+
+
+
 <p>
   <b>Disciplina:</b>
   <%=h @disciplina.disciplina %>
