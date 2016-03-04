@@ -58,7 +58,7 @@ class AlunosController < ApplicationController
     if (@verifica and @verifica2) then
        respond_to do |format|
          format.html { render :action => "new" }
-         flash[:notice1] = "ALUNOS JÁ CADASTRADO"
+         flash[:notice1] = "ALUNO(A) JÁ CADASTRADO(A)"
     end
     else
     respond_to do |format|
