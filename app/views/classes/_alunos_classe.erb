@@ -3,7 +3,7 @@
         <tr bgcolor="#F5F5F5" >
            <td align="left" width="10%"><b>Unidade:</b></td>
            <td align="left">  <%=h classe.unidade.nome%></td>
-           <td align="left" width="18%"><b> Ano Letivo:</b></td>
+           <td align="left" width="10%"><b> Ano Letivo:</b></td>
            <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
        </tr>
 
@@ -35,7 +35,7 @@
       </tr>
       <tr bgcolor="#F5F5F5">
         <td valign="top"> <b> Alunos:</b> </td>
-        <td colspan="4">   <% classe.alunos.each do |aluno| %>
+        <td colspan="4">   <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
                             <table>
                               <tr>
                                 <td width="80%"> &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %> </td>

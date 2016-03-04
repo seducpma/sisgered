@@ -24,7 +24,7 @@ class ClassesController < ApplicationController
   # GET /classes/1.xml
   def show
     @classe = Classe.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @class }
@@ -195,7 +195,6 @@ def consulta_classe_aluno
 end
 
 def editar_classe_aluno
-       
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
        render :update do |page|
@@ -218,7 +217,8 @@ end
 
 def impressao_classe
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe]])
-       
+
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe]])
       render :layout => "impressao"
 end
 

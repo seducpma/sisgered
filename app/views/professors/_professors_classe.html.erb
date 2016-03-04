@@ -1,12 +1,12 @@
 <table width="100%">
   <% for classe in @classe %>
     <tr bgcolor="#F5F5F5" >
-      <td align="left" width="10%" ><b>Unidade:</b></td>
-      <td align="left" width="20%" ><%=h classe.unidade.nome%></td>
-       <td align="left"width="10%"><b> Classe:</b></td>
-       <td align="left"width="10%" ><%=h classe.classe_classe%></td>
-       <td align="left"width="10%"><b> Periodo:</b></td>
-       <td align="left"> <%=h classe.horario %></td>
+      <td align="left" valign="top" width="10%" ><b>Unidade:</b></td>
+      <td align="left" valign="top" width="50%" ><%=h classe.unidade.nome%></td>
+       <td align="left"valign="top" width="10%"><b> Classe:</b></td>
+       <td align="left" valign="top"width="10%" ><%=h classe.classe_classe%></td>
+       <td align="left" valign="top"width="10%"><b> Periodo:</b></td>
+       <td align="left" valign="top"> <%=h classe.horario %></td>
 
        
 
@@ -24,7 +24,7 @@
   <% for atrib in @atribuicao_classe %>
     <tr bgcolor="#F5F5F5" >
       <td align="left" ><%=h atrib.professor.nome%></td>
-      <td align="left"> <%=h atrib.disciplina %></td>
+      <td align="left"> <%=h atrib.disciplina.disciplina %></td>
        
 
     </tr>

@@ -49,17 +49,22 @@
       </tr>
       <tr >
         <td valign="top"> <b> Professor(s):</b> </td>
-        <td colspan="3">
-                    <% classe.professors.each do |prof| %>
-                            <b>-</b> <%="#{ prof.nome}" %><br/>
-                    <%end%>
-            </td>
+             <% cont=1 %>
+         <% cont1=1 %>
+        <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                               &nbsp<%= cont%> - <%=h atrib.professor.nome%>
+                               &nbsp&nbsp&nbsp  (<%=h atrib.disciplina.disciplina %>)<br/>
+                           
+                          <% cont= cont+1 %>
+                         <%end%>
+        </td>
       </tr>
       <tr >
         <td valign="top"> <b> Alunos:</b> </td>
         <td colspan="3">
-                    <% classe.alunos.each do |aluno| %>
-                            <b>-</b> <%="#{ aluno.aluno_nome}" %><br/>
+                    <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
+                            &nbsp<%= cont1%> - <%="#{ aluno.aluno_nome}" %><br/>
+                     <% cont1= cont1+1 %>
                     <%end%>
             </td>
       </tr>

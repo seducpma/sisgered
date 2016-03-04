@@ -35,7 +35,8 @@
                  
                 <tr bgcolor="#F5F5F5">
                   <td valign="top"><b> Alunos:</b> </td>
-                  <td colspan="3" >   <% @classe.alunos.each do |aluno| %>
+                  <td colspan="3" >   <% @classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
+                                        
                            <table>
                               <tr>
                                 <td width="80%"> &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %> </td>
