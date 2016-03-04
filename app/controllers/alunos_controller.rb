@@ -39,19 +39,28 @@ class AlunosController < ApplicationController
 
   # GET /alunos/1/edit
   def edit
-
-t=0
     @aluno = Aluno.find(params[:id])
     t=(params[:id])
-    t=0
+
   end
 
   # POST /alunos
   # POST /alunos.xml
   def create
-       user = current_user.unidade_id
+    user = current_user.unidade_id
     @aluno = Aluno.new(params[:aluno])
+    @verifica = Aluno.find_by_aluno_nome(@aluno.aluno_nome)
+    @verifica2 = Aluno.find_by_aluno_nascimento(@aluno.aluno_nascimento)
+    t=@verifica
+    t1=@verifica2
+    t=0
 
+    if (@verifica and @verifica2) then
+       respond_to do |format|
+         format.html { render :action => "new" }
+         flash[:notice1] = "ALUNOS JÁ CADASTRADO"
+    end
+    else
     respond_to do |format|
       if @aluno.save
         flash[:notice] = 'CADASTRADO COM SUCESSO.'
@@ -61,17 +70,20 @@ t=0
         format.html { render :action => "new" }
         format.xml  { render :xml => @aluno.errors, :status => :unprocessable_entity }
       end
-    end
+     end
   end
+end
+
+
+
+
 
   # PUT /alunos/1
   # PUT /alunos/1.xml
   def update
-    t=0
+    
     @aluno = Aluno.find(params[:id])
 
-        t=(params[:id])
-    t=0
 
     respond_to do |format|
       if @aluno.update_attributes(params[:aluno])
@@ -96,6 +108,25 @@ t=0
       format.xml  { head :ok }
     end
 
+  end
+
+  def mesmo_nome
+    session[:nome] = params[:aluno_aluno_nome]
+    t=session[:nome]
+    @verifica = Aluno.find_by_aluno_nome(session[:nome])
+    if @verifica then
+      render :update do |page|
+        page.replace_html 'nome_aviso', :text => 'Nome já cadastrado no sistema'
+        page.replace_html 'Certeza', :text =>  'Criança ja cadastrada'
+
+    end
+    else
+      render :update do |page|
+        page.replace_html 'nome_aviso', :text => ''
+        
+      end
+
+    end
   end
 
  def impressao_alunos

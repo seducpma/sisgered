@@ -2,7 +2,7 @@
  <%= f.error_messages %>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-&nbsp&nbsp&nbsp&nbsp&nbsp
+
 <font color ="red"  size="4"align="left"><b> Quando a resposta for diferente de NÃO, favor especificar </b></font>
  
   <fieldset><legend><font size=4>Dados alunos</font></legend>
@@ -16,6 +16,12 @@
           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <b>Sexo:</b>&nbsp&nbsp
           <%= f.select :aluno_sexo,(SEXO).sort, :include_blank => '-- Selecionar --' %></td>
+       </tr>
+       <tr>
+         <td></td>
+         <td><b><font color ="red" size="4"><div id='nome_aviso' ></div></b></font></td>
+         
+
        </tr>
        <tr bgcolor="#F5F5F5">
          <td><b><%= f.label :aluno_nascimento, 'Nascimento' %></b></td>

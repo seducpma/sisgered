@@ -79,10 +79,10 @@ display: none;
       </tr>
 
       </table>
-      <center><font style="color: red"><%= flash[:notice] %></font></center>
+      <center><font style="color: red"><b><marquee behavior=alternate><%= flash[:notice1] %></marquee></b></font><%= flash[:notice] %></center>
    <%else%>
       <%= link_to '|Entrar|', login_path %>
-        <font style="color: red"><%= flash[:notice] %></font>
+      <font style="color: red"><%= flash[:notice] %></font>
    <%end%>
  </div>
  
