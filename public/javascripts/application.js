@@ -635,6 +635,19 @@ $(".filtro_classe1").click(function ()
 
    });
 
+ $(".SEDUC_filtro").click(function ()
+   {
+     $(".consulta_SEDUC").show();
+     $(".consulta_OUTRAS").hide();
+   });
+
+
+ $(".OUTRAS_filtro").click(function ()
+   {
+     $(".consulta_OUTRAS").show();
+     $(".consulta_SEDUC").hide();
+   });
+
 // Letras em maiusculo
 
 //$("input").keyup(function(){

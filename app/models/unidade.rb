@@ -6,4 +6,5 @@ class Unidade < ActiveRecord::Base
   has_many :saude
   has_many :socioeconomicos
   has_many :classes
+  has_many :transferencias
 end

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :transferencias
+
   map.resources :disciplinas
 
   map.resources :atribuicaos
@@ -94,7 +96,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_classe_professor '/consulta_classe_professor', :controller => 'professors', :action => 'consulta_classe_professor'
   map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
   map.consulta_classe_nota '/consulta_classe_nota', :controller => 'notas', :action => 'consulta_classe_nota'
-  
+  map.consulta_transferencia '/consulta_transferencia', :controller => 'transferencias', :action => 'consulta_transferencia'
   
   #map.edicao :criancas, :path_prefix => '/criancas/:crianca/edit'
   

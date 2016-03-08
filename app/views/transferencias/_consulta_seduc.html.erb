@@ -1,0 +1,32 @@
+<% form_for (@transferencia) do |f| %>
+ <%= f.error_messages %>
+  <font  size="2">
+    <br/>
+    
+      <table width="100%" align="center"  bgcolor="#F5F5F5" >
+        <tr> <td></td> </tr>
+        <tr>
+          <td><b>Procedência: </b></td><td><%= f.collection_select :de, @unidade_de, :nome, :nome, :include_blank => ' -- Selecione -- ' %>
+                     <%= observe_field :tranferencia_de,
+                          :with => :tranferencia_de,
+                          :url => { :action => 'unidade_transferencia' },
+                          :update => "alunos_trans" %>
+          </td>
+
+        </tr>
+        <tr>
+          <td><b>Aluno: </b></td><td> <div id="alunos_trans"></div></td>
+        </tr>
+
+        <tr> <td></td> </tr>
+      </table>
+       <table width="100%" >
+         <tr> <td> <br/></td> </tr>
+         <tr>
+            <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+<%end%>
+            <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+         </tr>
+       </table>
+      
+  </font>

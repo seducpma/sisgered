@@ -110,8 +110,6 @@ display: none;
                                  <% if current_user.has_role?('admin') %>
                                       <li><%= link_to "Cadastrar",new_unidade_path %></li>
                                  <%end%>
-
-
                               </ul>
                          </li>
                    <%end%>
@@ -130,7 +128,11 @@ display: none;
                       <% if current_user.has_role?('admin') or current_user.has_role?('direcao')%>
                            <li><%= link_to "Disciplina",new_disciplina_path %></li>
                       <%end%>
-                  </ul>
+<!--
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                            <li><%= link_to "Transferencias", new_transferencia_path%></li>
+                      <%end%>-->
+                 </ul>
               </li>
               <li><a class="item-primary" href="#;">CONSULTAR</a>
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>

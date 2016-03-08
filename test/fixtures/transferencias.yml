@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  de: MyString
+  para: 
+  aluno_id: 
+  ano_letivo: 1
+
+two:
+  de: MyString
+  para: 
+  aluno_id: 
+  ano_letivo: 1

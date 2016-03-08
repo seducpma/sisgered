@@ -19,9 +19,9 @@
        </tr>
       <tr bgcolor="#F5F5F5">
         <td valign="top"> <b> Professor(es):</b> </td>
-        <% cont=1 %>
+         <% cont=1 %>
          <% cont1=1 %>
-        <td colspan="4">  <% for atrib in @atribuicao_classe %>
+         <td colspan="4">  <% for atrib in @atribuicao_classe %>
                            <table width="100%">
                               <tr bgcolor="#F5F5F5" >
                                  <td align="left" width="50%">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
@@ -31,22 +31,27 @@
                            </table>
                           <% cont= cont+1 %>
                          <%end%>
-        </td>
+         </td>
       </tr>
-      <tr bgcolor="#F5F5F5">
-        <td valign="top"> <b> Alunos:</b> </td>
-        <td colspan="4">   <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
-                            <table>
-                              <tr>
-                                <td width="80%"> &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %> </td>
-                              </tr>
-                            </table>
-                            <%cont1 = cont1+1%>
-                    <%end%>
-            </td>
-      </tr>
+   </table>
+  <%end%>
+<table width="100%">
+     <tr>
+       <td align="center"width ="10%"><b>Nº</b></td>
+       <td width ="20%"><b>RA</b></td>
+       <td width ="60%"><b>NOME</b></td>
+     </tr>
 
-
-         <%end%>
+     <% for classe in @classe %>
+        <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
+         <tr bgcolor="#F5F5F5">
+           <td align="center"> &nbsp <%= cont1%> </td>
+           <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
+           <td align="left"> <%="#{ aluno.aluno_nome}"%> </td>
+          <%cont1 = cont1+1%>
+       <%end%>
+    <%end%>
+    </tr>
 </table>
+
 

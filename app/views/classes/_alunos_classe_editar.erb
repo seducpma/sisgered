@@ -34,28 +34,27 @@
                            </table>
                           <% cont= cont+1 %>
                          <%end%>
-
-        </td>
+         </td>
       </tr>
-      <tr bgcolor="#F5F5F5">
-        <td valign="top"> <b> Alunos:</b> </td>
+   </table>
+  <%end%>
+<table width="100%">
+     <tr>
+       <td align="center"width ="10%"><b>Nº</b></td>
+       <td width ="12%"><b>RA</b></td>
+       <td width ="60%"><b>NOME</b></td>
+       <td align="center"width ="10%"><b></b></td>
+     </tr>
 
-        <td colspan="4">   <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
-                            <table>
-                              <tr>
-                                <td width="80%"> &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %> </td>
-                                <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_aluno", :id =>aluno}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
-                              </tr>
-                            </table>
-                            <%cont1 = cont1+1%>
-                    <%end%>
-            </td>
-      </tr>
-       <tr>
-         <td><%=  button_to '', {:action => "edit", :id =>@classe}, :method => "get", :title => "Editar"%></td>
-        <td colspan="7"align="right"><br/><%= button_to 'Editar Classe', {:action => "edit", :id =>@classe}, :method => "get", :title => "Editar"%></td>
-      </tr>
-
-         <%end%>
+     <% for classe in @classe %>
+        <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
+         <tr bgcolor="#F5F5F5">
+           <td align="center"> &nbsp <%= cont1%> </td>
+           <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
+           <td align="left"> <%="#{ aluno.aluno_nome}"%> </td>
+           <td align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_aluno", :id =>aluno}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+          <%cont1 = cont1+1%>
+       <%end%>
+    <%end%>
+    </tr>
 </table>
-

@@ -1,0 +1,65 @@
+<div id="interno2">
+<% title "TRANSFERENCIA".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>TRASNFERENCIA</strong></font><br/>
+ </div>
+    <div class="tabs">
+    <% form_remote_tag :url => consulta_transferencia_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+         <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="SEDUC_filtro"><%= radio_button_tag(:type_of, "1") %></a>SEDUC
+              <a href="#" class="OUTRAS_filtro"><%= radio_button_tag(:type_of, "2") %></a>OUTRAS
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta_SEDUC" style="display:none"> <%= render "consulta_seduc" %> </div>
+               <div class="consulta_OUTRAS" style="display:none"> <%= render "consulta_outras" %> </div>
+
+           </td>
+         </tr>
+        </table>
+
+
+       </fieldset>
+      <fieldset>
+        <table width="100%"frame="box" rules="all" bgcolor="#F5F5F5">
+          <tr>
+            <td>
+                <div id="ficha"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+              <br/>
+            </td>
+          </tr>
+       </table>
+          <% end %>
+
+      </fieldset>
+
+       <br/>
+       <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td width="6%"align="left"><%= button_to 'Consultar', consulta_ficha_alunos_path, :title => "Consultar" %></td>
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+            <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_ficha_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+    <%end%>
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
+
+
+
+
+
+
+
+
