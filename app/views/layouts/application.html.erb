@@ -128,10 +128,10 @@ display: none;
                       <% if current_user.has_role?('admin') or current_user.has_role?('direcao')%>
                            <li><%= link_to "Disciplina",new_disciplina_path %></li>
                       <%end%>
-<!--
+
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                             <li><%= link_to "Transferencias", new_transferencia_path%></li>
-                      <%end%>-->
+                      <%end%>
                  </ul>
               </li>
               <li><a class="item-primary" href="#;">CONSULTAR</a>
@@ -143,6 +143,7 @@ display: none;
                    <li><%= link_to "Professor",consulta_professor_nome_path %></li>
                    <li><%= link_to "Professor/Classe",consulta_classe_professors_path %></li>
                     <li><%= link_to "Responsável",consulta_reponsavel_path %></li>
+                    <li><%= link_to "Transferência",consulta_transferencia_path %></li>
                     <li><%= link_to "Unidade",consultas_unidades_path %></li>
                   </ul>
                <%end%>

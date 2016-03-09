@@ -1,28 +1,48 @@
-<h1>Editing transferencia</h1>
 
-<% form_for(@transferencia) do |f| %>
-  <%= f.error_messages %>
+<div id="interno4">
+<% title "TRANSFERENCIA".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>TRANSFERÊNCIA</strong></font><br/>
+ </div>
+    <div class="tabs">
 
-  <p>
-    <%= f.label :de %><br />
-    <%= f.text_field :de %>
-  </p>
-  <p>
-    <%= f.label :para %><br />
-    <%= f.text_field :para %>
-  </p>
-  <p>
-    <%= f.label :aluno_id %><br />
-    <%= f.text_field :aluno_id %>
-  </p>
-  <p>
-    <%= f.label :ano_letivo %><br />
-    <%= f.text_field :ano_letivo %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+         <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="SEDUC_filtro"><%= radio_button_tag(:type_of, "1") %></a>SEDUC
+              <a href="#" class="OUTRAS_filtro"><%= radio_button_tag(:type_of, "2") %></a>OUTRAS
+            </td>
+         </tr>
 
-<%= link_to 'Show', @transferencia %> |
-<%= link_to 'Back', transferencias_path %>
+      </table>
+      <fieldset>
+        <table width="100%">
+
+         <tr>
+           <td><div class="consulta_SEDUC" style="display:none"> <%= render "consulta_seduc" %> </div>
+               <div class="consulta_OUTRAS" style="display:none"> <%= render "consulta_outras" %> </div>
+
+           </td>
+         </tr>
+       <tr>
+         <td></td>
+         <td><b><div id='teste'></b></td>
+
+       </tr>
+        </table>
+
+
+
+
+
+       <br/>
+
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>

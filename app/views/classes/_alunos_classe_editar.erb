@@ -57,4 +57,20 @@
        <%end%>
     <%end%>
     </tr>
+    <%cont11 = cont1%>
+    <% for trans in @transferencia %>
+          <tr bgcolor="#F5F5F5">
+           <td align="center"> &nbsp <%= cont11%> </td>
+           <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
+           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> (Transf.) </td>
+           <td align="left" ><%= button_to 'Excluir', {:controller => 'transferencias', :action => "destroy", :id =>trans}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+          <%cont11 = cont11+1%>
+         </tr>
+
+    <%end%>
+      <tr>
+
+        <td colspan="7"align="right"><br/><%= button_to 'Editar Classe', {:controller =>"classes", :action => "edit", :id =>classe}, :method => "get", :title => "Editar"%></td>
+      </tr>
+
 </table>

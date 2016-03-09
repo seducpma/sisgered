@@ -3,11 +3,11 @@
   <font  size="2">
     <br/>
     
-      <table width="100%" align="center"  bgcolor="#F5F5F5" >
+    <table width="100%" align="center" bgcolor="#F5F5F5">
         <tr> <td></td> </tr>
         <tr>
           <td><b>Procedência: </b></td><td><%= f.collection_select :de, @unidade_de, :nome, :nome, :include_blank => ' -- Selecione -- ' %>
-                     <%= observe_field :tranferencia_de,
+                     <%= observe_field 'tranferencia_de',
                           :with => :tranferencia_de,
                           :url => { :action => 'unidade_transferencia' },
                           :update => "alunos_trans" %>
@@ -15,8 +15,20 @@
 
         </tr>
         <tr>
-          <td><b>Aluno: </b></td><td> <div id="alunos_trans"></div></td>
+          <td colspan="2">
+            <div id="alunos_trans">
+              <table>
+                <tr>
+                  <td width ="19%"><b>Aluno: </b></td><td><%= f.collection_select :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+                </tr>
+                <tr>
+                  <td width ="19%"><b>Classe: </b></td><td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> <div id="alunos_trans"></div></td>
+                </tr>
+              </table>
+           </div>
+          </td>
         </tr>
+
 
         <tr> <td></td> </tr>
       </table>

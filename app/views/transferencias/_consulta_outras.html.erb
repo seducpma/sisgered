@@ -2,21 +2,30 @@
  <%= f.error_messages %>
   <font  size="2">
     <br/>
-     <table width="100%" bgcolor="#F5F5F5"align="center" >
+    <table width="100%" align="center" bgcolor="#F5F5F5">
         <tr> <td></td> </tr>
         <tr>
-          <td><b>Procedência: </b></td><td><%= f.collection_select :de, @unidade_de, :nome, :nome, :include_blank => ' -- Selecione -- ' %>
-                     <%= observe_field :transferencia_de,
-                          :with => :transferencia_de,
-                          :url => { :action => 'unidade_transferencia' } %>
-
+          <td width ="16%"><b>Procedência: </b></td><td><%= f.text_field :de, :size=>"30"  %>
           </td>
+
         </tr>
         <tr>
-          <td><b>Aluno: </b><div di="alunos>"</td><td><%= f.text_field :aluno, :size=> '30' %></div></td>
+          <td colspan="2">
+            <div id="alunos_trans">
+              <table>
+                <tr>
+                  <td width ="23%"><b>Aluno: </b></td><td><%= f.collection_select :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+                </tr>
+                <tr>
+                  <td width ="23%"><b>Classe: </b></td><td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> <div id="alunos_trans"></div></td>
+                </tr>
+              </table>
+           </div>
+          </td>
         </tr>
 
-        <tr> <td> </td> </tr>
+
+        <tr> <td></td> </tr>
       </table>
        <table width="100%" >
          <tr> <td><br/></td> </tr>
