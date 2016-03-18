@@ -37,6 +37,7 @@
   <%end%>
 <table width="100%">
      <tr>
+       <td><b>Alunos:</b></td>
        <td align="center"width ="10%"><b>Nº</b></td>
        <td width ="20%"><b>RA</b></td>
        <td width ="60%"><b>NOME</b></td>
@@ -45,6 +46,7 @@
      <% for classe in @classe %>
         <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
          <tr bgcolor="#F5F5F5">
+           <td></td>
            <td align="center"> &nbsp <%= cont1%> </td>
            <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
            <td align="left"> <%="#{ aluno.aluno_nome}"%> </td>
@@ -55,6 +57,7 @@
     <%cont11 = cont1%>
     <% for trans in @transferencia %>
           <tr bgcolor="#F5F5F5">
+            <td></td>
            <td align="center"> &nbsp <%= cont11%> </td>
            <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
            <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> (Transf.) </td>

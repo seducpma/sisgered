@@ -2,7 +2,7 @@ class Atribuicao < ActiveRecord::Base
   belongs_to :disciplina
   belongs_to :classe
   belongs_to :professor
-
+  has_many :notas
 
 
    before_save :atribui

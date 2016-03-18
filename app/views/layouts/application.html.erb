@@ -120,11 +120,12 @@ display: none;
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                         <li><%= link_to "Classe",new_class_path %></li>
                       <%end%>
-
+<!--
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao'))%>
                           <li><%= link_to "Professor",new_professor_path %></li>
 
                       <%end%>
+-->
                       <% if current_user.has_role?('admin') or current_user.has_role?('direcao')%>
                            <li><%= link_to "Disciplina",new_disciplina_path %></li>
                       <%end%>
@@ -168,20 +169,20 @@ display: none;
                   </ul>
                <%end%>
               </li>
+ <!--
 
-       <!--
+           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+            <li><span class="divider divider-vert" ></span></li>
+
               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                         <li><a class="item-primary" href="#;">Notas</a>
-                              <ul>
-                                 <% if current_user.has_role?('admin') %>
-                                      <li><%= link_to "Professor/Classe",professors_path %></li>
-                                 <%end%>
-
-                              </ul>
-                         </li>
-                   <%end%>
-
-
+                <li><a class="item-primary" href="#;">LANÇAMENTOS</a>
+                <ul style="width:108px;">
+                   <li><%= link_to "Notas/Faltas",consulta_classe_atribuicaos_path %></li>
+                 </ul>
+              </li>
+             <%end%>
+            <%end%>
+ 
 
 
 

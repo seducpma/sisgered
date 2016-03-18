@@ -219,7 +219,7 @@ end
 
 def impressao_classe
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe]])
-
+@transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe]])
       render :layout => "impressao"
 end

@@ -8,6 +8,12 @@
   <fieldset><legend><font size=4>Dados alunos</font></legend>
     <table width="100%">
        <tr bgcolor="#F5F5F5">
+         <td colspan="4"><b>Nº RA: &nbsp&nbsp</b> <%= f.text_field :aluno_ra, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Nº RM: &nbsp&nbsp</b> <%= f.text_field :aluno_rm, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Nº INEP:</b>&nbsp&nbsp <%= f.text_field :aluno_inep, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Nº NIS: &nbsp&nbsp</b> <%= f.text_field :aluno_nis, :size=>"10" %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>Nome:</b></td>
          <td colspan="3"><%= f.text_field :aluno_nome, :size=>"64" %>
              <%= observe_field :aluno_aluno_nome,
@@ -201,12 +207,7 @@
           <b>E_mail: </b>&nbsp&nbsp
          <%= f.text_field :aluno_email, :size=>"23"%></td>
       </tr>
-       <tr bgcolor="#F5F5F5">
-         <td colspan="4"><b>Nº INEP:</b>&nbsp&nbsp <%= f.text_field :aluno_inep, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                         <b>Nº RM: &nbsp&nbsp</b> <%= f.text_field :aluno_rm, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                         <b>Nº RA: &nbsp&nbsp</b> <%= f.text_field :aluno_ra, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                         <b>Nº NIS: &nbsp&nbsp</b> <%= f.text_field :aluno_nis, :size=>"10" %></td>
-       </tr>
+
        <tr bgcolor="#F5F5F5">
          <td colspan="4"><b>Bolsa Família:</b>&nbsp&nbsp <%= f.select :aluno_bolsa_familia, (OPCAO).sort %>&nbsp&nbsp&nbsp&nbsp
               <b>Nome Beneficiário:</b>&nbsp&nbsp <%= f.text_field :aluno_nome_beneficiario, :size=>"40" %>&nbsp&nbsp&nbsp&nbsp

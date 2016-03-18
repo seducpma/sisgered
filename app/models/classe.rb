@@ -4,7 +4,6 @@ class Classe < ActiveRecord::Base
   belongs_to :unidade
   has_and_belongs_to_many :alunos
   has_many :atribuicaos
-  has_many :notas
   has_many :transferencias
 
    before_save :caps_look

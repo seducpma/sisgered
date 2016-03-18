@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :disciplinas
 
-  map.resources :atribuicaos
+  map.resources :atribuicaos, :collection => { :consulta_classe=>:get  }
 
   map.resources :classes_professors
 
@@ -95,10 +95,11 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_bolsa_familia '/consulta_bolsa_familia', :controller => 'alunos', :action => 'consulta_bolsa_familia'
   map.consulta_classe_professor '/consulta_classe_professor', :controller => 'professors', :action => 'consulta_classe_professor'
   map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
-  map.consulta_classe_nota '/consulta_classe_nota', :controller => 'notas', :action => 'consulta_classe_nota'
+  map.consulta_classe_nota1 '/consulta_classe_nota1', :controller => 'atribuicaos', :action => 'consulta_classe_nota1'
   map.consulta_transferencia '/consulta_transferencia', :controller => 'transferencias', :action => 'consulta_transferencia'
   map.consulta_transferencia_classe '/consulta_transferencia_classe', :controller => 'transferencias', :action => 'consulta_transferencia_classe'
-  #map.edicao :criancas, :path_prefix => '/criancas/:crianca/edit'
+  map.consulta_classe_nota '/consulta_classe_nota', :controller => 'atribuicaos', :action => 'consulta_classe_nota'
+
   
   
 

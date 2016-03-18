@@ -28,7 +28,7 @@
                          Alunos na Classe" %></b>
  <table>
    <tr>
-    <td id="test"><%= select_tag("todos", options_for_select(@alunos.collect { |ff| [ff.aluno_nome,ff.aluno_ra, ff.id] }, @classe.alunos.collect { |fs| fs.id }), {:multiple=>true, :id => "todos", :size => 4, :class => "lista_alunos"}) %></td>
+    <td id="test"><%= select_tag("todos", options_for_select(@alunos.collect { |ff| [ff.aluno_nome, ff.id] }, @classe.alunos.collect { |fs| fs.id }), {:multiple=>true, :id => "todos", :size => 4, :class => "lista_alunos"}) %></td>
     <td valign="topo" >
       <a class="botao" href="#" id="add">&gt;&gt;</a>
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

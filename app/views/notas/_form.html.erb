@@ -1,0 +1,46 @@
+<% form_for (@nota) do |f| %>
+ <%= f.error_messages %>
+  <fieldset><legend><font size=4>Dados alunos</font></legend>
+    <table width="100%">
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Aluno:</b></td>
+         <td colspan="3" > <%= session[:ra]%> -  <%= session[:aluno] %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Classe:</b></td>
+         <td><%= session[:classe]%></td>
+         <td width =" 12%"><b>Periodo:</b></td>
+         <td><%= session[:periodo]%> - <%= session[:ano]%></td>
+       </tr>
+        <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Disciplina:</b></td>
+         <td> <%= session[:disciplina]%></td>
+         <td width =" 12%"><b>Professor:</b></td>
+         <td> <%= session[:professor]%></td>
+      </tr>
+
+
+     </table>
+  </fieldset>
+
+
+
+       <table width="100%" >
+         <tr bgcolor="#F5F5F5">
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_criancas_path, :title => "Consultar" %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+         </tr>
+       </table>
+
+
+  </font>
+
+
+
+
