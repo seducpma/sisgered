@@ -8,6 +8,16 @@
      <td>
        <fieldset><legend><font  size=3><b> Dados Pessoais</b></font></legend>
          <table width="100%">
+                       <tr bgcolor="#F5F5F5">
+              <td width =" 22%"><b>Nº RA:</b></td>
+              <td width ="15%">   <%=h @aluno.aluno_ra %></td>
+              <td width =" 12%"><b>Nº RM:</b></td>
+              <td>   <%=h @aluno.aluno_rm %></td>
+              <td width =" 20%"><b>Nº INEP:</b></td>
+              <td>   <%=h @aluno.aluno_inep %></td>
+              <td width =" 12%"><b>Nº NIS:</b></td>
+              <td>   <%=h @aluno.aluno_nis %></td>
+           </tr>
             <tr bgcolor="#F5F5F5">
                <td align="left" width="4%"><b>Nome:</b></td>
                <td colspan="4" align="left"> <%=h @aluno.aluno_nome %></td>
@@ -154,6 +164,16 @@
                    <td align="left" colspan="4"><b>E-mail:</b><%=h @aluno.aluno_email_responsavel%></td>
                 </tr>
               <%end%>
+           <%  if @aluno.aluno_reside_com == 'PAIS'%>
+               <tr bgcolor="#F5F5F5">
+                  <td align="left" width="4%"><b>Pai:</b></td>
+                  <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
+               </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td align="left" width="4%"><b>Mãe:</b></td>
+                  <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
+               </tr>
+              <%end%>
            <tr bgcolor="#F5F5F5">
              <td colspan="4"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
              <td colspan="4"><%=h @aluno.aluno_restricao %></td>
@@ -181,16 +201,7 @@
                <td align="left"><b>E-mail:</b></td>
                <td colspan="3"align="left"><%=h @aluno.aluno_email%></td></td>
             </tr>
-            <tr bgcolor="#F5F5F5">
-              <td width =" 22%"><b>Nº INEP:</b></td>
-              <td width ="15%">   <%=h @aluno.aluno_inep %></td>
-              <td width =" 12%"><b>Nº RM:</b></td>
-              <td>   <%=h @aluno.aluno_rm %></td>
-              <td width =" 20%"><b>Nº RA:</b></td>
-              <td>   <%=h @aluno.aluno_ra %></td>
-              <td width =" 12%"><b>Nº NIS:</b></td>
-              <td>   <%=h @aluno.aluno_nis %></td>
-           </tr>
+
 
            <tr bgcolor="#F5F5F5">
               <td width ="17%"><b>Bolsa Família:</b></td>

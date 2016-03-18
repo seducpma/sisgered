@@ -8,7 +8,7 @@
        <table  width="100%" bgcolor="#F5F5F5">
          <tr>
            <td width="10%" valign="top"><b><font size="2">Aluno:</font></b></td>
-           <td><%= f.collection_select :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
+           <td colspan="3"><%= f.collection_select :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
          </tr>
         <tr>
             <td width="10%" valign="top"><b><font size="2">Nota</font></b></td>

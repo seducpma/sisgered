@@ -177,7 +177,7 @@ display: none;
               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                 <li><a class="item-primary" href="#;">LANÇAMENTOS</a>
                 <ul style="width:108px;">
-                   <li><%= link_to "Notas/Faltas",consulta_classe_atribuicaos_path %></li>
+                   <li><%= link_to "Notas/Faltas",lancar_notas_atribuicaos_path %></li>
                  </ul>
               </li>
              <%end%>

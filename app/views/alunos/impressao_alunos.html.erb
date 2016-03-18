@@ -28,17 +28,22 @@
 <font  size=3><b> Dados Pessoais</b></font></legend>
          <table frame="box" rules="all">
            <tr style="font-size:9px">
+              <td width =" 22%"><b>Nº RA:</b></td>
+              <td width ="15%">   <%=h aluno.aluno_ra %></td>
+              <td width =" 12%"><b>Nº RM:</b></td>
+              <td>   <%=h aluno.aluno_rm %></td>
+              <td width =" 20%"><b>Nº INEP:</b></td>
+              <td>   <%=h aluno.aluno_inep %></td>
+              <td width =" 12%"><b>Nº NIS:</b></td>
+              <td>   <%=h aluno.aluno_nis %></td>
+           </tr>
+           <tr style="font-size:9px">
                <td align="left" width="4%"><b>Nome:</b></td>
                <td colspan="4" align="left"> <%=h aluno.aluno_nome %></td>
                <td align="right"><b>Sexo:</b></td>
                <td colspan="2" align="left"><%=h aluno.aluno_sexo %></td>
             </tr>
-            <tr>
-              <td ><b>Nº RM:</b></td>
-              <td>  <%=h aluno.aluno_rm %></td>
-              <td ><b>Nº RA:</b></td>
-              <td colspan="5">   <%=h aluno.aluno_ra %></td>
-           </tr>
+
            <tr style="font-size:9px">
                <td align="left"><b>Nascimento:</b></td>
                <td colspan="2"align="left">  <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
@@ -181,6 +186,17 @@
                    <td align="left" colspan="4"><b>E-mail:</b><%=h aluno.aluno_email_responsavel%></td>
                 </tr>
               <%end%>
+           <%  if aluno.aluno_reside_com == 'PAIS'%>
+                <tr style="font-size:9px">
+                  <td align="left" width="4%"><b>Pai:</b></td>
+                  <td colspan="7" align="left"><%=h aluno.aluno_pai %></td>
+               </tr>
+                 <tr style="font-size:9px">
+                  <td align="left" width="4%"><b>Mãe:</b></td>
+                  <td colspan="7" align="left"><%=h aluno.aluno_mae %></td>
+               </tr>
+              <%end%>
+
               <tr style="font-size:9px">
              <td colspan="2"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
              <td colspan="6 "><%=h aluno.aluno_restricao %></td>
@@ -208,20 +224,6 @@
                <td align="left"><b>E-mail:</b></td>
                <td colspan="3"align="left"><%=h aluno.aluno_email%></td></td>
             </tr>
-
-
-
-            <tr>
-              <td>Nº INEP:</b></td>
-              <td>   <%=h aluno.aluno_inep %></td>
-              <td><b>Nº RM:</b></td>
-              <td>   <%=h aluno.aluno_rm %></td>
-              <td><b>Nº RA:</b></td>
-              <td>   <%=h aluno.aluno_ra %></td>
-              <td><b>Nº NIS:</b></td>
-              <td>   <%=h aluno.aluno_nis %></td>
-           </tr>
-
            <tr>
              <td colspan="4"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
              <td colspan="4"><%=h aluno.aluno_restricao %></td>

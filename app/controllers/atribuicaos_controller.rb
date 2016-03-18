@@ -94,16 +94,38 @@ class AtribuicaosController < ApplicationController
 
   def consulta_classe_nota
 
-       @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
-       for dis in @disci
-           disc_id = dis.id
-       end
+      @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+        for dis in @disci
+            disc_id = dis.id
+        end
        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], disc_id])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], disc_id])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+       
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
+  end
+
+
+  def lancar_notas
+if ( params[:disciplina].present?)
+
+      @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+        for dis in @disci
+            disc_id = dis.id
+        end
+       @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], disc_id])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], disc_id])
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+
+# if (params[:search].present?)
+ #      @chamados = Chamado.find(:all, :conditions => ["id = ?",  params[:search]])
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @classes }
+    end
   end
 
     def create_notas
@@ -111,11 +133,10 @@ class AtribuicaosController < ApplicationController
       @nota = Nota.new(params[:nota])
       @nota.ano_letivo =  Time.now.year
       @nota.atribuicao_id= session[:id]
-      @nota.aluno_id= session[:aluno]
       @nota.professor_id= session[:professor_id]
-
+      session[:aluno_id] = @nota.aluno_id
       if @nota.save
-        @notas = Nota.all(:conditions => ["atribuicao_id is null"])
+        @notas = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =?", session[:id], session[:aluno_id]])
         t=0
         session[:nota_id] = @nota.id
          render :update do |page|
@@ -170,7 +191,12 @@ class AtribuicaosController < ApplicationController
     else
         @professors1 = Professor.find(:all, :conditions => ['id = ?', current_user.professor_id  ],:order => 'nome ASC')
         @professors = Professor.find(:all, :order => 'nome ASC')
-        @alunos1 = Aluno.find(:all,  :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.professor_id = ?', current_user.professor_id])
+
+        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+        #disciplinas1 = Disciplina.find_(:all, :joins => :atribuicao, :conditions => ['atribuicaos.ano_letivo = ?  and atribuicaos.professor_id = ?',  Time.now.year, current_user.professor_id  ])
+        #@alunos1 = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+
     end
   end
 

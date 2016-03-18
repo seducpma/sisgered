@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :disciplinas
 
-  map.resources :atribuicaos, :collection => { :consulta_classe=>:get  }
+  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :lancar_notas => :get  }
 
   map.resources :classes_professors
 
