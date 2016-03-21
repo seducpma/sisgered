@@ -22,39 +22,37 @@
 
         </tr>
        </table>
-       </fieldset>
 
-           <%if @classe.present?%>
-                  <table width="100%">
-                    <fieldset>
-                       <% for classe in @classe %>
-                          <tr bgcolor="#F5F5F5" >
-                             <td align="left" width="10%"><b>Unidade:</b></td>
-                             <td align="left">  <%=h classe.unidade.nome%></td>
-                             <td align="left" width="10%"><b> Ano Letivo:</b></td>
-                             <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
-                         </tr>
-
-                         <tr bgcolor="#F5F5F5">
-                             <td align="left"><b>Classe:</b></td>
-                             <td align="left">  <%=h classe.classe_classe%></td>
-                             <td align="left"><b>Horário:</b></td>
-                             <td align="left">  <%=h classe.horario %></td>
-                        </tr>
-                          <tr bgcolor="#F5F5F5" >
-                            <td align="left"><b>Descrição:</b></td>
-                            <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
-                         </tr>
-                        <tr bgcolor="#F5F5F5">
-                          <td valign="top"> <b> Professor(es):</b> </td>
-                           <% cont=1 %>
-                           <% cont1=1 %>
-                           <td colspan="4">  <% for atrib in @atribuicao_classe %>
-                                             <table width="100%">
-                                                <tr bgcolor="#F5F5F5" >
-                                                   <td align="left" width="50%"> <%=h atrib.professor.nome%></td>
-                                                   <td align="left"width="10%"><b> Disciplina:</b></td>
-                                                   <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+    <%if @classe.present?%>
+      <fieldset>
+        <table width="100%">
+           <% for classe in @classe %>
+              <tr bgcolor="#F5F5F5" >
+                  <td align="left" width="10%"><b>Unidade:</b></td>
+                   <td align="left">  <%=h classe.unidade.nome%></td>
+                   <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                   <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
+               </tr>
+                <tr bgcolor="#F5F5F5">
+                    <td align="left"><b>Classe:</b></td>
+                    <td align="left">  <%=h classe.classe_classe%></td>
+                    <td align="left"><b>Horário:</b></td>
+                    <td align="left">  <%=h classe.horario %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5" >
+                     <td align="left"><b>Descrição:</b></td>
+                     <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                     <td valign="top"> <b> Professor(es):</b> </td>
+                          <% cont=1 %>
+                          <% cont1=1 %>
+                      <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                                           <table width="100%">
+                                              <tr bgcolor="#F5F5F5" >
+                                                 <td align="left" width="50%"> <%=h atrib.professor.nome%></td>
+                                                 <td align="left"width="10%"><b> Disciplina:</b></td>
+                                                 <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
                                                    <% session[:disciplina] = atrib.disciplina.disciplina %>
                                                    <% session[:professor] = atrib.professor.nome %>
                                                    <% session[:professor_id] = atrib.professor.id %>
@@ -66,38 +64,44 @@
                                              </table>
                                             <% cont= cont+1 %>
                                            <%end%>
-                           </td>
-                        </tr>
-                      </fieldset>
-                     </table>
-                    <%end%>
-
-              <fieldset>
-        <table>
+               </td>
+            </tr>
+         </table>
+     <%end%>
+        <table width="100%">
           <tr bgcolor="#F5F5F5">
             <td colspan="8"><b> Alunos: </b></td>
           </tr>
           <tr bgcolor="#F5F5F5">
-             <td align="center"width ="1%"><b>Nº</b></td>
-             <td width ="5%"><b>RA</b></td>
-             <td width ="20%"><b>NOME</b></td>
-             <td width ="5%"><b>1ºBim</b></td>
-             <td width ="5%"><b>2ºBim</b></td>
-             <td width ="5%"><b>3ºBim</b></td>
-             <td width ="5%"><b>4ºBim</b></td>
-             <td width ="5%"><b>Final</b></td>
+             <td width ="10%"><b>RA</b></td>
+             <td width ="45%"><b>NOME</b></td>
+             <td width ="5%"><b>Nota</b></td>
+             <td width ="5%"><b>Faltas</b></td>
+             <td width ="30%"><b>Observações</b></td>
+             <td width ="4%"><b></b></td>
          </tr>
           <tr bgcolor="#F5F5F5">
             <td colspan="8"> <div id="notas_aluno">
+                                <table border="1" frame="box" rules="all" width="100%">
+                                    <%@notas.each do |nota|%>
+                                    <tr>
+                                      <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
+                                      <td width ="50%"><%= nota.aluno.aluno_nome %></td>
+                                      <td width ="5%" align="center"><%= nota.nota1 %></td>
+                                      <td width ="5%" align="center"><%= nota.faltas1 %></td>
+                                      <td width ="30%"><%= nota.obs1 %></td>
+                                      <td align="center"><%= link_to image_tag("/stylesheets/images/editar1.png"), nota, :confirm => 'Confirma?', :method => :delete, :title => "Excluir Familiar" %></td>
+                                   </tr>
 
-
+                                  <%end%>
+                                </table>
 
 
 
                              </div></td>
           </tr>
        </table>
-        </fieldset>
+     
 
 
            <%end%>
@@ -118,3 +122,4 @@
           
   <br/>
 </font>
+    <%= render "form_notas" %>

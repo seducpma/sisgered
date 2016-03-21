@@ -7,8 +7,8 @@
         <tr> <td></td> </tr>
         <tr>
           <td><b>Procedência: </b></td><td><%= f.collection_select :de, @unidade_de, :nome, :nome, :include_blank => ' -- Selecione -- ' %>
-                     <%= observe_field 'tranferencia_de',
-                          :with => :tranferencia_de,
+                     <%= observe_field 'transferencia_de',
+                          :with => :transferencia_de,
                           :url => { :action => 'unidade_transferencia' },
                           :update => "alunos_trans" %>
           </td>

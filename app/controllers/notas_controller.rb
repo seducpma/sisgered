@@ -83,7 +83,7 @@ before_filter :load_professores
     @nota.destroy
 
     respond_to do |format|
-      format.html { redirect_to(notas_url) }
+      format.html { redirect_to(home_url) }
       format.xml  { head :ok }
     end
   end

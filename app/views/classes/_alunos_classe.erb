@@ -44,14 +44,37 @@
      </tr>
 
      <% for classe in @classe %>
+
         <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
-         <tr bgcolor="#F5F5F5">
-           <td></td>
-           <td align="center"> &nbsp <%= cont1%> </td>
-           <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
-           <td align="left"> <%="#{ aluno.aluno_nome}"%> </td>
-          <%cont1 = cont1+1%>
-         </tr>
+          <%  if (@transferencia.empty?)%>
+             <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="center"> &nbsp <%= cont1%> </td>
+                   <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
+                   <td align="left"> <%="#{ aluno.aluno_nome}"%>
+                     <% if aluno.trans_in == 1 %>
+                     <font color ="blue"> (Tranf.)</font>
+                     <%end%>
+                   </td>
+                  <%cont1 = cont1+1%>
+                 </tr>
+           <%else%>
+             <% for trans in @transferencia %>
+              <% if aluno.aluno_nome != trans.aluno.aluno_nome%>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="center"> &nbsp <%= cont1%> </td>
+                   <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
+                   <td align="left"> <%="#{ aluno.aluno_nome}"%>
+                     <% if aluno.trans_in == 1 %>
+                     <font color ="blue"> (Tranf.)</font>
+                     <%end%>
+                   </td>
+                  <%cont1 = cont1+1%>
+                 </tr>
+               <%end%>
+             <%end%>
+         <%end%>
        <%end%>
     <%end%>
     <%cont11 = cont1%>
@@ -60,7 +83,7 @@
             <td></td>
            <td align="center"> &nbsp <%= cont11%> </td>
            <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
-           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> (Transf.) </td>
+           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> <font color ="red">(Transf.)<font> </td>
           <%cont11 = cont11+1%>
          </tr>
       

@@ -46,6 +46,25 @@
 
                         &nbsp&nbsp<b><i><font  color="red" size="2" >Selecionar Unidade</font></i></b></td>
                       </tr>
+                      <tr>
+                        <td colspan="3"><br/></td>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                          <fieldset><legend><b>SOMENTE PARA PROFESSORES </b></legend>
+                            <table>
+                              <tr>
+                                <td colspan="3" align="center"><b>Professores necessitam ser previamente cadastrado no sistema</b></td>
+                              </tr>
+                                <td align="left"><b>Professor:</b></td>
+                                <td colspan="2" align="left"><%= f.collection_select :professor_id, Professor.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %>
+                                 <b><i><font  color="red" size="2" >Se seu nome não consta na lista favor entrar em contato com o diretor(a) de sua unidade escolar.</font></i></b></td>
+
+                            </table>
+                          </fieldset>
+                        </td>
+                      </tr>
+
 
                </table>
              </font>

@@ -2,7 +2,7 @@
   <div id='inline_notas' style='padding:10px; background:#EEE9E9;'>
     <% form_remote_for(:nota,:url => { :action => 'create_notas' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
   
-    <b><u>Lançamentos Alunos</u></b> <br/>
+    <b><u>Lançamentos / Alunos</u></b> <br/>
       <hr>
        <%= error_messages_for 'contact' %>
        <table  width="100%" bgcolor="#F5F5F5">
@@ -18,12 +18,12 @@
         </tr>
 
         <tr>
-          <td valign="top"><font size="2"><b>Observação:></font></b></td>
+          <td valign="top"><font size="2"><b>Observação:</font></b></td>
           <td colspan="3"> <%= f.text_field :obs1, :cols=>'45', :rows=> '3' %></td>
         </tr>
 
         <tr>
-            <td align="right" colspan="2"><%= f.submit "Salvar" %></td>
+          <td colspan="4" align="right"><%= f.submit "Salvar" %></td>
         </tr>
        </table>
       <%end%>

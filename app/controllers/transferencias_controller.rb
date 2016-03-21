@@ -107,9 +107,7 @@ end
    @alunos = Aluno.find(:all, :conditions =>['unidade_id =?',  unidade_id], :order => 'aluno_nome')
    @unidade_para = Unidade.find(:all, :conditions => ['id =?', current_user.unidade_id], :order => 'nome ASC')
    @classes = Classe.find(:all, :conditions =>['unidade_id =?',  current_user.unidade_id], :order => 'classe_classe')
-     render :update do |page|
-       page.replace_html 'alunos_trans', :partial => 'selecao_alunos'
-     end
+   render :partial => 'selecao_alunos'
 
 
 
