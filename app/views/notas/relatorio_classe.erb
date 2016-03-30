@@ -1,0 +1,122 @@
+<div id="interno2">
+<% title "RELATORIO_CLASSE".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTOS</strong></font><br/>
+ </div>
+    <div class="tabs">
+       <% form_tag relatorio_classe_notas_path, :method => 'get' do %>
+      <fieldset>
+       <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Classe:</b></font>
+               &nbsp&nbsp&nbsp<%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
+            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Disciplina:</b></font>
+              &nbsp&nbsp&nbsp<%= select_tag :disciplina, options_for_select(@disciplinas1.collect { |ff| [ff.disciplina, ff.disciplina] }.insert(0, '--Selecionar--')) %></td>
+
+            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Professor:</b></font>
+               &nbsp&nbsp&nbsp<%= collection_select :professor, :id, @professors1, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+           <td> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
+
+        </tr>
+       </table>
+
+    <%if @classe.present?%>
+      <fieldset>
+        <table width="100%">
+           <% for classe in @classe %>
+              <tr bgcolor="#F5F5F5" >
+                  <td align="left" width="10%"><b>Unidade:</b></td>
+                   <td align="left">  <%=h classe.unidade.nome%></td>
+                   <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                   <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
+               </tr>
+                <tr bgcolor="#F5F5F5">
+                    <td align="left"><b>Classe:</b></td>
+                    <td align="left">  <%=h classe.classe_classe%></td>
+                    <td align="left"><b>Horário:</b></td>
+                    <td align="left">  <%=h classe.horario %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5" >
+                     <td align="left"><b>Descrição:</b></td>
+                     <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                     <td valign="top"> <b> Professor(es):</b> </td>
+                          <% cont=1 %>
+                          <% cont1=1 %>
+                      <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                                           <table width="100%">
+                                              <tr bgcolor="#F5F5F5" >
+                                                 <td align="left" width="50%"> <%=h atrib.professor.nome%></td>
+                                                 <td align="left"width="10%"><b> Disciplina:</b></td>
+                                                 <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                                                   <% session[:disciplina] = atrib.disciplina.disciplina %>
+                                                   <% session[:professor] = atrib.professor.nome %>
+                                                   <% session[:professor_id] = atrib.professor.id %>
+                                                   <% session[:classe] = atrib.classe.classe_classe %>
+                                                   <% session[:ano] = atrib.ano_letivo %>
+                                                   <% session[:periodo] = atrib.classe.horario %>
+                                                   <% session[:id] = atrib.id %>
+                                               </tr>
+                                             </table>
+                                            <% cont= cont+1 %>
+                                           <%end%>
+               </td>
+            </tr>
+         </table>
+     <%end%>
+        <table width="100%">
+          <tr bgcolor="#F5F5F5">
+            <td colspan="8"><b> Alunos: </b></td>
+          </tr>
+          <tr bgcolor="#F5F5F5">
+             <td width ="10%"><b>RA</b></td>
+             <td width ="45%"><b>NOME</b></td>
+             <td width ="5%"><b>Nota</b></td>
+             <td width ="5%"><b>Faltas</b></td>
+             <td width ="30%"><b>Observações</b></td>
+             <td width ="4%"><b></b></td>
+         </tr>
+          <tr bgcolor="#F5F5F5">
+            <td colspan="8"> <div id="notas_aluno">
+                                <table border="1" frame="box" rules="all" width="100%">
+                                    <%@notas.each do |nota|%>
+                                    <tr>
+                                      <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
+                                      <td width ="50%"><%= nota.aluno.aluno_nome %></td>
+                                      <td width ="5%" align="center"><%= nota.nota1 %></td>
+                                      <td width ="5%" align="center"><%= nota.faltas1 %></td>
+                                      <td width ="30%"><%= nota.obs1 %></td>
+                                      <td align="center"><%= link_to image_tag("/stylesheets/images/excluir.png"), nota, :confirm => 'Confirma?', :method => :delete, :title => "Excluir Familiar" %></td>
+                                   </tr>
+
+                                  <%end%>
+                                </table>
+
+
+
+                             </div></td>
+          </tr>
+       </table>
+     
+
+
+           <%end%>
+        </fieldset>
+      <% end %>
+          
+       <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td width="6%"align="left"><%= link_to image_tag('/stylesheets/images/lancar.png', :title => 'Lançamentos'), '#inline_notas', :class => 'inline'%></td>
+     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+          <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+     <%end%>
+
+    </tr>
+  </table>
+          
+  <br/>
+</font>
+    <%= render "form_notas" %>

@@ -16,14 +16,23 @@
               <td align="left" width ="15%"><b> Aluno:</b></td>
               <td align="left"> <%=h @transferencia.aluno.aluno_nome%></td>
            </tr>
-           <tr bgcolor="#F5F5F5"  width="100%">
-              <td align="left" width ="15%"><b> Destino:</b></td>
-              <td align="left"> <%=h @transferencia.unidade.nome%></td>
-           </tr>
-           <tr bgcolor="#F5F5F5"  width="100%">
-              <td align="left" width ="15%"><b> Classe:</b></td>
-              <td align="left"> <%=h @transferencia.classe.classe_classe%></td>
-           </tr>
+           <% if @transferencia.unidade_id.nil?%>
+             <tr bgcolor="#F5F5F5"  width="100%">
+                <td align="left" width ="15%"><b> Destino:</b></td>
+                <td align="left"> <%=h @transferencia.unidade.nome%></td>
+             </tr>
+           <%else%>
+             <tr bgcolor="#F5F5F5"  width="100%">
+                <td align="left" width ="15%"><b> Destino:</b></td>
+                <td align="left"> <%=h @transferencia.para%></td>
+             </tr>
+           <%end%>
+           <% if !@transferencia.classe_id.nil? %>
+               <tr bgcolor="#F5F5F5"  width="100%">
+                  <td align="left" width ="15%"><b> Classe:</b></td>
+                  <td align="left"> <%=h @transferencia.classe.classe_classe%></td>
+               </tr>
+           <%end%>
            <tr bgcolor="#F5F5F5"  width="100%">
               <td align="left" width ="15%"><b> Data:</b></td>
               <td align="left"> <%=h @transferencia.created_at.strftime("%d/%m/%Y - %H:%M") %> horas</td>

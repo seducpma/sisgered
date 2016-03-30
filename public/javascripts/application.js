@@ -412,13 +412,42 @@ $(".filtro_nome").click(function ()
      $(".consulta1").show();
      $(".txt_busca1").show();
      $(".label_busca1").show();
+     $(".consulta_nome").show();
 
      $(".consulta").hide();
      $(".consulta2").hide();
      $(".txt_busca2").hide();
      $(".label_busca1").hide();
+     $(".consulta_classe").hide();
+     $(".consulta_professor").hide();
+     
 
    });
+
+$(".classe_filtro").click(function ()
+   {
+     $(".consulta_classe").show();
+
+
+     $(".consulta_nome").hide();
+     $(".consulta_professor").hide();
+     $(".txt_busca2").hide();
+     $(".label_busca1").hide();
+
+   });
+
+$(".prof_filtro").click(function ()
+   {
+     $(".consulta_professor").show();
+
+
+     $(".consulta_nome").hide();
+     $(".consulta_classe").hide();
+     $(".txt_busca2").hide();
+     $(".label_busca1").hide();
+
+   });
+
 
    $(".filtro_tipo").click(function ()
    { $(".consulta2").show();
@@ -639,6 +668,7 @@ $(".filtro_classe1").click(function ()
    {
      $(".consulta_SEDUC").show();
      $(".consulta_OUTRAS").hide();
+     $(".consulta_OUTRAS1").hide();
    });
 
 
@@ -646,6 +676,14 @@ $(".filtro_classe1").click(function ()
    {
      $(".consulta_OUTRAS").show();
      $(".consulta_SEDUC").hide();
+     $(".consulta_OUTRAS1").hide();
+   });
+
+$(".OUTRAS1_filtro").click(function ()
+   {
+     $(".consulta_OUTRAS1").show();
+     $(".consulta_SEDUC").hide();
+     $(".consulta_OUTRAS").hide();
    });
 
 // Letras em maiusculo

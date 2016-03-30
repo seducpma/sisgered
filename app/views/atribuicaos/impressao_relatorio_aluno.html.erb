@@ -1,0 +1,119 @@
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<br/><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+
+<font size="4"><i><b><u>RELATÓRIO DE ALUNOS</u></b><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+     <font size="3"><i><b>Prefeitua Municipal de  Americana </b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="2"><b><i> Secretaria da Educação</i></b><br/>
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+<font size="1">Unidade Escolar: <% @aluno.each do |aluno| %><%=h aluno.unidade.nome %> <%end%>  </font><br/>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+
+
+<legend><font  size=3><b> Dados Pessoais</b></font></legend>
+<% @aluno.each do |aluno| %>
+  <table  border="1" frame="box" rules="all" width="100%">
+            <tr >
+              <td width =" 10%"><b>Nº RM:</b></td>
+              <td>   <%=h aluno.aluno_rm %></td>
+              <td width =" 10%"><b>Nº RA:</b></td>
+             <td>   <%=h aluno.aluno_ra %></td>
+             <td width="10%"><b>Nome:</b></td>
+             <td  colspan="4"> <%=h aluno.aluno_nome %></td>
+            </tr>
+           <tr >
+               <td align="left"><b>RG:</b></td>
+               <td align="left">  <%=h aluno.aluno_RG%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td align="left"><%=h aluno.aluno_emissaoRG %></td>
+               <td align="left"><b>CPF:</b></td>
+               <td align="left">  <%=h aluno.aluno_CPF%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td align="left"><%=h aluno.aluno_emissaoCPF %></td>
+           </tr>
+              <tr >
+                  <td align="left"><b>Pai:</b></td>
+                  <td colspan="2" align="left"><%=h aluno.aluno_pai %></td>
+                  <td align="left"><b>Mãe:</b></td>
+                  <td colspan="4" align="left"><%=h aluno.aluno_mae %></td>
+               </tr>
+  <% session[:aluno] = aluno.id %>
+         </table>
+
+<%end%>
+<br/>
+<legend><font  size=3><b> Classe</b></font></legend>
+ <% for classe in @classe %>
+  <table  border="1" frame="box" rules="all" width="100%">
+     <tr >
+       <td align="left" width="10%"><b>Unidade:</b></td>
+       <td align="left">  <%=h classe.unidade.nome%></td>
+       <td align="left" width="12%"><b> Ano Letivo:</b></td>
+       <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
+     </tr>
+     <tr>
+       <td align="left"><b>Classe:</b></td>
+         <td align="left">  <%=h classe.classe_classe%></td>
+         <td align="left"><b>Horário:</b></td>
+         <td align="left">  <%=h classe.horario %></td>
+      </tr>
+      <tr >
+         <td align="left"><b>Descrição:</b></td>
+         <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+      </tr>
+     <%end%>
+  </table>
+
+<br/>
+<legend><font  size=3><b> Notas / Freqüências / Observação</b></font></legend>
+ <table border="1" frame="box" rules="all" width="100%">
+        <tr>
+          <td align="center" width ="10%" ><b>Disciplina</b></td>
+          <td align="center" width ="25%" ><b>Professor</b></td>
+          <td align="center" width ="5%" ><b>Bimestre</b></td>
+           <td align="center" width ="5%" ><b>Nota</b></td>
+           <td align="center" width ="5%"><b>Faltas</b></td>
+           <td align="left" width ="50%">&nbsp&nbsp&nbsp<b> Observações</b></td>
+        </tr>
+
+
+  <%@notas.each do |nota|%>
+
+        <tr>
+           <td align="center"><%= nota.atribuicao.disciplina.disciplina %></td>
+           <td align="center"><%= nota.atribuicao.professor.nome %></td>
+           <td align="center"><%= nota.bimestre %>º</td>
+           <td align="center"><%= nota.nota1 %></td>
+           <td align="center"><%= nota.faltas1 %></td>
+           <td> <%= nota.obs1 %></td>
+
+        </tr>
+    <%end%>
+     </table>
+
+
+
+
+
+
+
+

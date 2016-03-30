@@ -3,19 +3,19 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :disciplinas
 
-  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :lancar_notas => :get  }
+  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get  }
 
   map.resources :classes_professors
 
   map.resources :notas_alunos
 
-  map.resources :notas, :collection => { :consulta_classe =>:get}
+  map.resources :notas, :collection => { :consulta_classe =>:get }
 
   map.resources :classes_alunos
 
   map.resources :notas
 
-    map.resources :classes,:collection => { :editar_classe=>:get}
+  map.resources :classes,:collection => { :editar_classe=>:get}
 
   map.resources :professors,:collection => { :consulta_classe=>:get}
 
@@ -70,6 +70,9 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_ficha '/impressao_ficha', :controller => 'alunos', :action => 'impressao_ficha'
   map.impressao_classe '/impressao_classe', :controller => 'classes', :action => 'impressao_classe'
   map.impressao_bolsa_familia '/impressao_bolsa_familia', :controller => 'alunos', :action => 'impressao_bolsa_familia'
+  map.impressao_relatorio_aluno '/impressao_relatorio_aluno', :controller => 'atribuicaos', :action => 'impressao_relatorio_aluno'
+  map.impressao_relatorio_classe '/impressao_relatorio_classe', :controller => 'atribuicaos', :action => 'impressao_relatorio_classe'
+  map.impressao_relatorio_professor '/impressao_relatorio_professor', :controller => 'atribuicaos', :action => 'impressao_relatorio_professor'
 
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
 

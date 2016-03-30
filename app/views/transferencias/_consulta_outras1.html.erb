@@ -1,0 +1,38 @@
+<% form_for (@transferencia) do |f| %>
+ <%= f.error_messages %>
+  <font  size="2">
+    <br/>
+    <table width="100%" align="center" bgcolor="#F5F5F5">
+        <tr> <td></td> </tr>
+        <tr>
+          <td colspan="2">
+              <table>
+                <tr>
+                  <td><b>Procedência: </b></td><td><%= f.collection_select :de, @unidade_de, :nome, :nome, :include_blank => ' -- Selecione -- ' %> </td>
+                </tr>
+                <tr>
+                  <td width ="15%"><b>Aluno: </b></td><td><%= f.collection_select :aluno_id, @alunos2, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+                </tr>
+                <tr>
+                   <td width ="15%"><b>Para: </b></td><td><%= f.text_field :para, :size=>"30"  %></td>
+                </tr>
+
+              </table>
+
+          </td>
+        </tr>
+        <tr> <td></td> </tr>
+      </table>
+       <table width="100%" >
+         <tr> <td><br/></td> </tr>
+         <tr>
+            <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+   <%end%>
+            <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+            <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_ficha_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+    <%end%>
+         </tr>
+       </table>
+
+  </font>

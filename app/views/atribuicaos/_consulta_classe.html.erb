@@ -1,0 +1,13 @@
+       <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Classesssss:</b></font>
+               &nbsp&nbsp&nbsp
+                <%= collection_select  :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
+                      <%= observe_field 'classe_id',
+                        :update => "relatorio",
+                        :url    => { :action => 'relatorio_aluno_classe' },
+                        :with   => 'classe_id' %>
+          </td>
+        </tr>
+       </table>
+

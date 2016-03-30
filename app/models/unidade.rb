@@ -7,4 +7,5 @@ class Unidade < ActiveRecord::Base
   has_many :socioeconomicos
   has_many :classes
   has_many :transferencias
+  has_many :notas
 end

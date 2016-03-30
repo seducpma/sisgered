@@ -1,0 +1,75 @@
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<br/><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+
+<font size="4"><i><b><u>RELATÓRIO DE ALUNOS</u></b><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+     <font size="3"><i><b>Prefeitua Municipal de  Americana </b></i><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <font size="2"><b><i> Secretaria da Educação</i></b><br/>
+
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+   <font size="1">Unidade Escolar: <% @notas.each do |nota| %> <% session[:nome]= nota.unidade.nome %><%end%> <%= session[:nome] %>  </font><br/>
+
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp
+
+  <legend><font  size=3><b> Dados Professor</b></font></legend>
+      <% @professor.each do |professor| %>
+        <table border="1" frame="box" rules="all" width="100%">
+                <tr >
+                   <td><b>Nome:</b></td>
+                   <td  width="50%"> <%=h professor.nome %></td>
+                    <td><b>Sede:</b></td>
+                   <td  width="40%"> <%=h professor.unidade.nome %></td>
+                  </tr>
+                  <tr >
+                   <td><b>Endereço:</b></td>
+                   <td  width="50%"> <%=h professor.endres%>, nº <%=h professor.num%></td>
+                    <td><b>Cidade:</b></td>
+                   <td  width="40%"> <%=h professor.cidade%> &nbsp&nbsp&nbsp&nbsp <b>Fone:</b> <%=h professor.telefone%> / <%=h professor.cel%></td>
+                  </tr>
+          </table>
+       <%end%>
+    <br/>
+    <legend><font  size=3><b> Notas / Freqüências / Observação</b></font></legend>
+       <table border="1" frame="box" rules="all" width="100%">
+              <tr>
+                <td align="center" width ="5%" ><b>Classe</b></td>
+                <td align="center" width ="30%" ><b>Aluno</b></td>
+                <td align="center" width ="20%" ><b>Disciplina</b></td>
+                <td align="center" width ="5%" ><b>Bimestre</b></td>
+                 <td align="center" width ="5%" ><b>Nota</b></td>
+                 <td align="center" width ="5%"><b>Faltas</b></td>
+                 <td align="left" width ="50%">&nbsp&nbsp&nbsp<b> Observações</b></td>
+              </tr>
+        <%@notas.each do |nota|%>
+              <tr>
+                 <td align="center"width="3%"><%=h nota.atribuicao.classe.classe_classe %></td>
+                 <td align="left" width="20%"> <%=h nota.aluno.aluno_nome%></td>
+                 <td align="left" width="10%"> <%=h nota.atribuicao.disciplina.disciplina %></td>
+                 <td align="center"width="5%"><%= nota.bimestre %>º</td>
+                 <td align="center"width="5%"><%= nota.nota1 %></td>
+                 <td align="center"width="5%"><%= nota.faltas1 %></td>
+                 <td align="left"width="5%"><%= nota.obs1 %></td>
+              </tr>
+          <%end%>
+
+       </table>
+
+    
+
+
+
+
+
+

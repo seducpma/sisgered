@@ -122,6 +122,31 @@ def create_notas_aluno
 end
 
 
+def relatorio_classe
+if ( params[:disciplina].present?)
+
+      @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+        for dis in @disci
+            session[:disc_id] = dis.id
+        end
+       session[:classe_id] = params[:classe][:id]
+       @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+       @notas = Nota.find(:all, :joins => :atribuicao, :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]])
+       #@alunos1 = Aluno.find(:all, :joins => [:alunos_classe, :classe], :conditions =>['classes.id = ?', params[:classe][:id]])
+       @alunos1 = Aluno.find(:all, :joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', params[:classe][:id]])
+       #@users_admin = User.all(:joins => ' INNER JOIN roles_users         ON  users.id=roles_users.user_id      INNER JOIN roles   ON roles.id=roles_users.role_id', :conditions => ["roles.name = 'administrador' or users.id = ?", current_user.id])
+# if (params[:search].present?)
+ #      @chamados = Chamado.find(:all, :conditions => ["id = ?",  params[:search]])
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @classes }
+    end
+  end
+
+
 
  def load_classes
    if current_user.unidade_id == 53 or current_user.unidade_id == 52

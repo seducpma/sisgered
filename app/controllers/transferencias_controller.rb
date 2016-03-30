@@ -128,6 +128,7 @@ end
        else
              @classe = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
        end
-       t=0
+       @alunos1 = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+unidade.to_s+" AND`id`not in (SELECT alunos_classes.aluno_id FROM classes INNER JOIN alunos_classes ON classes.id = alunos_classes.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")ORDER BY aluno_nome ASC")
+       @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'aluno_nome')
   end
 end

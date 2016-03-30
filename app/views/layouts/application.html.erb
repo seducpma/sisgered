@@ -136,12 +136,16 @@ display: none;
                  </ul>
               </li>
               <li><a class="item-primary" href="#;">CONSULTAR</a>
-               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('professor'))%>
                  <ul style="width:108px;">
                    <li><%= link_to "Aluno",consulta_ficha_alunos_path %></li>
-                   <li><%= link_to "Bolsa Família",consulta_bolsa_familia_path %></li>
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                      <li><%= link_to "Bolsa Família",consulta_bolsa_familia_path %></li>
+                   <%end%>
                    <li><%= link_to "Classe",consulta_classe_path %></li>
-                   <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                        <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                   <%end%>
                    <li><%= link_to "Professor/Classe",consulta_classe_professors_path %></li>
                     <li><%= link_to "Responsável",consulta_reponsavel_path %></li>
                     <li><%= link_to "Transferência",consulta_transferencia_path %></li>
@@ -162,19 +166,21 @@ display: none;
               </li>
              <%end%>
               <li><a class="item-primary" href="#;">DOCUMENTOS</a>
-                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria') or current_user.has_role?('professor')%>
                  <ul style="width:108px;">
                         <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
-
+                    <% if current_user.has_role?('admin') or  current_user.has_role?('direcao')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria') or current_user.has_role?('professor')%>
+                        <li><%= link_to "Relatório Classe",relatorios_classe_atribuicaos_path %></li>
+                    <% end %>
                   </ul>
                <%end%>
-              </li>
- <!--
 
-           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+              </li>
+ 
+           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria') or current_user.has_role?('professor'))%>
             <li><span class="divider divider-vert" ></span></li>
 
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('professor'))%>
                 <li><a class="item-primary" href="#;">LANÇAMENTOS</a>
                 <ul style="width:108px;">
                    <li><%= link_to "Notas/Faltas",lancar_notas_atribuicaos_path %></li>
@@ -209,7 +215,7 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">NOTAS</a>
                  <ul style="width:108px;">
-                    <li><%= link_to 'Lançemento', consulta_classe_notas_path %></li>
+                    <li><%= link_to 'Lançamento', consulta_classe_notas_path %></li>
                  </ul>
               </li>
               <%end%>

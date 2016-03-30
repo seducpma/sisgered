@@ -17,10 +17,10 @@ class Transferencia < ActiveRecord::Base
     classe.save
 
     aluno_trans_i = Aluno.find(:all, :conditions => ["id =?" , self.aluno_id])
-    aluno_trans_i.each do |classe|
-      classe.trans_in = 1
-      classe.unidade_id = self.unidade_id
-      classe.save
+    aluno_trans_i.each do |aluno|
+      aluno.trans_in = 1
+      aluno.unidade_id = self.unidade_id
+      aluno.save
     end
     
      
