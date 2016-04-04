@@ -8,7 +8,7 @@
        <table  width="100%" bgcolor="#F5F5F5">
          <tr>
            <td width="10%" valign="top"><b><font size="2">Aluno:</font></b></td>
-           <td colspan="3"><%= f.collection_select :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
+           <td colspan="3"><%= f.collection_select :aluno_id, @alunos3, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
          </tr>
         <tr>
             <td width="10%" valign="top"><b><font size="2">Nota</font></b></td>
@@ -16,7 +16,14 @@
             <td align="left"><font size="2"><b>Faltas:</b></font></td>
            <td align="left" ><font size="2"> <%=  f.text_field :faltas1, :size => '3',  :value => 0 %></font></td>
         </tr>
-
+        <tr>
+            <td></td>
+            <td colspan="3"><font  size="2"color="red"> <b>1) UTILIZE PONTO PARA SEPARAÇÃO DE VALORES FRACIONADOS   ex. 8.50 (correto)</b></font></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3"><font size ="2" color="red"><b>2) NÂO UTILIZE VIGULA PARA SEPARAÇÃO DE VALORES FRACIONADOS   ex. 8,50 (errado)</b></td>
+        </tr>
         <tr>
           <td valign="top"><font size="2"><b>Observação:</font></b></td>
           <td colspan="3"> <%= f.text_field :obs1, :cols=>'45', :rows=> '3' %></td>

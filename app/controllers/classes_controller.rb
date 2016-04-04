@@ -188,8 +188,10 @@ end
 
 def consulta_classe_aluno
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       #@alunos_cl = Aluno.find(:all, :joins => :alunos_classe, :conditions=>[ "alunos_classes.classe_id =?", params[:classe][:id]])
+        #Topic.find(:all, :conditions => { :forum_id => @forums.map(&:id) })
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
         render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
@@ -198,7 +200,7 @@ end
 def editar_classe_aluno
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe_editar'
        end

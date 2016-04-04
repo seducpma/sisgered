@@ -62,7 +62,7 @@
           <tr bgcolor="#F5F5F5">
            <td align="center"> &nbsp <%= cont11%> </td>
            <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
-           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> (Transf.) </td>
+           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> <Font color ="blue">(Transferência)</font> </td>
            <td align="left" ><%= button_to 'Excluir', {:controller => 'transferencias', :action => "destroy", :id =>trans}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
           <%cont11 = cont11+1%>
          </tr>

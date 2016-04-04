@@ -44,21 +44,40 @@
 
      <% for classe in @classe %>
         <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
-         <tr bgcolor="#F5F5F5">
-           <td align="center"> &nbsp <%= cont1%> </td>
-           <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
-           <td align="left" colspan="2"> <%="#{ aluno.aluno_nome}"%> </td>
-           
+            <% if aluno.unidade_anterior  != User.current.unidade_id%>
+                    <%if aluno.trans_in == 1 %>
+                          <tr bgcolor="#F5F5F5">
+                          <td align="center"> &nbsp <%= cont1%> </td>
+                          <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
+                          <td align="left" colspan="2"> <%="#{ aluno.aluno_nome}"%><font color ="red"> (Transferido)</font></td>
+                      </tr>
+                    <%else%>
+                      <tr bgcolor="#F5F5F5">
+                          <td align="center"> &nbsp <%= cont1%> </td>
+                          <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
+                          <td align="left" colspan="2"> <%="#{ aluno.aluno_nome}"%></td>
+                      </tr>
+                    <%end%>
+                    <%else%>
+                       <tr bgcolor="#F5F5F5">
+                          <td align="center"> &nbsp <%= cont1%> </td>
+                          <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
+                          <td align="left" colspan="2"> <%="#{ aluno.aluno_nome}"%><font color ="red"> (Transferido)</font></td>
+                      </tr>
+                    
+                      
+
+                <%end%>
           <%cont1 = cont1+1%>
        <%end%>
     <%end%>
-    </tr>
+
     <%cont11 = cont1%>
     <% for trans in @transferencia %>
           <tr bgcolor="#F5F5F5">
            <td align="center"> &nbsp <%= cont11%> </td>
            <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
-           <td align="left" colspan="2"> <%="#{ trans.aluno.aluno_nome}"%> (Transf.) </td>
+           <td align="left" colspan="2"> <%="#{ trans.aluno.aluno_nome}"%> <font color ="Blue"> (Transferência)</font> </td>
            
           <%cont11 = cont11+1%>
          </tr>

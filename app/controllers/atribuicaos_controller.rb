@@ -122,6 +122,11 @@ if ( params[:disciplina].present?)
        @notas = Nota.find(:all, :joins => :atribuicao, :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]])
        #@alunos1 = Aluno.find(:all, :joins => [:alunos_classe, :classe], :conditions =>['classes.id = ?', params[:classe][:id]])
        @alunos1 = Aluno.find(:all, :joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', params[:classe][:id]])
+       t=params[:classe][:id]
+       t1=current_user.unidade_id
+       t=0
+       @alunos2 = Aluno.find(:all, :joins => "INNER JOIN transferencias ON alunos.id = transferencias.aluno_id INNER JOIN classes ON classes.id=transferencias.classe_id", :conditions=> ["transferencias.unidade_id = ? AND transferencias.classe_id=?  AND  alunos.unidade_id = ?", current_user.unidade_id, params[:classe][:id], current_user.unidade_id, ])
+       @alunos3= @alunos1+@alunos2
        #@users_admin = User.all(:joins => ' INNER JOIN roles_users         ON  users.id=roles_users.user_id      INNER JOIN roles   ON roles.id=roles_users.role_id', :conditions => ["roles.name = 'administrador' or users.id = ?", current_user.id])
 # if (params[:search].present?)
  #      @chamados = Chamado.find(:all, :conditions => ["id = ?",  params[:search]])
@@ -295,6 +300,7 @@ end
         @professors = Professor.find(:all, :order => 'nome ASC')
 
         @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         #disciplinas1 = Disciplina.find_(:all, :joins => :atribuicao, :conditions => ['atribuicaos.ano_letivo = ?  and atribuicaos.professor_id = ?',  Time.now.year, current_user.professor_id  ])
         #@alunos1 = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )

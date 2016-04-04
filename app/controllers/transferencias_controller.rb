@@ -104,6 +104,7 @@ end
 
   def unidade_transferencia
    unidade_id = Unidade.find_by_nome(params[:transferencia_de])
+
    @alunos = Aluno.find(:all, :conditions =>['unidade_id =?',  unidade_id], :order => 'aluno_nome')
    @unidade_para = Unidade.find(:all, :conditions => ['id =?', current_user.unidade_id], :order => 'nome ASC')
    @classes = Classe.find(:all, :conditions =>['unidade_id =?',  current_user.unidade_id], :order => 'classe_classe')
