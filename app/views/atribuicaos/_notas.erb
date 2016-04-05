@@ -1,12 +1,16 @@
 <table border="1" frame="box" rules="all" width="100%">
     <%@notas.each do |nota|%>
     <tr>
-      <td width ="8%"><%= nota.aluno.aluno_ra  %></td>
+      <td width ="4%"><%= nota.aluno.aluno_ra  %></td>
       <td width ="50%"><%= link_to nota.aluno.aluno_nome,  nota, :title => "Visualizar"%></td>
+      <td width ="5%" align="center"><%= nota.bimestre %>°</td>
       <td width ="5%" align="center"><%= nota.nota1 %></td>
       <td width ="5%" align="center"><%= nota.faltas1 %></td>
+      <td width ="5%" align="center"><%= link_to image_tag("/stylesheets/images/excluir.png"), nota, :confirm => 'Confirma?', :method => :delete, :title => "Excluir Familiar" %></td>
+    </tr>
+    <tr>
+     <td></td>
       <td width ="30%"><%= nota.obs1 %></td>
-      <td align="center"><%= link_to image_tag("/stylesheets/images/excluir.png"), nota, :confirm => 'Confirma?', :method => :delete, :title => "Excluir Familiar" %></td>
    </tr>
 
   <%end%>
@@ -17,10 +21,14 @@
     <tr>
       <td width ="8%"><%= nota.aluno.aluno_ra  %></td>
       <td width ="50%"><%= nota.aluno.aluno_nome %></td>
+      <td width ="5%" align="center"><%= nota.bimestre %>°</td>
       <td width ="5%" align="center"><%= nota.nota1 %></td>
       <td width ="5%" align="center"><%= nota.faltas1 %></td>
+      <td width ="5%" align="center"<%= link_to image_tag("/stylesheets/images/excluir.png"), nota, :confirm => 'Confirma?', :method => :delete, :title => "Excluir Familiar" %></td>
+    </tr>
+    <tr>
+      <td></td>
       <td  width ="30%"><%= nota.obs1 %></td>
-      <td align="center"><%= link_to image_tag("/stylesheets/images/excluir.png"), nota, :confirm => 'Confirma?', :method => :delete, :title => "Excluir Familiar" %></td>
    </tr>
 
   <%end%>

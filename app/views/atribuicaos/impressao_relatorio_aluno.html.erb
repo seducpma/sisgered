@@ -92,7 +92,6 @@
           <td align="center" width ="5%" ><b>Bimestre</b></td>
            <td align="center" width ="5%" ><b>Nota</b></td>
            <td align="center" width ="5%"><b>Faltas</b></td>
-           <td align="left" width ="50%">&nbsp&nbsp&nbsp<b> Observações</b></td>
         </tr>
 
 
@@ -100,11 +99,14 @@
 
         <tr>
            <td align="center"><%= nota.atribuicao.disciplina.disciplina %></td>
-           <td align="center"><%= nota.atribuicao.professor.nome %></td>
+           <td><%= nota.atribuicao.professor.nome %></td>
            <td align="center"><%= nota.bimestre %>º</td>
            <td align="center"><%= nota.nota1 %></td>
            <td align="center"><%= nota.faltas1 %></td>
-           <td> <%= nota.obs1 %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="4"><b>OBS:</b> <%= nota.obs1 %></td>
 
         </tr>
     <%end%>

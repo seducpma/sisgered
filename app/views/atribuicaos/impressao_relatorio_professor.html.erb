@@ -47,10 +47,10 @@
                 <td align="center" width ="5%" ><b>Classe</b></td>
                 <td align="center" width ="30%" ><b>Aluno</b></td>
                 <td align="center" width ="20%" ><b>Disciplina</b></td>
-                <td align="center" width ="5%" ><b>Bimestre</b></td>
+                <td align="center" width ="5%" ><b>Bim.</b></td>
                  <td align="center" width ="5%" ><b>Nota</b></td>
                  <td align="center" width ="5%"><b>Faltas</b></td>
-                 <td align="left" width ="50%">&nbsp&nbsp&nbsp<b> Observações</b></td>
+                 
               </tr>
         <%@notas.each do |nota|%>
               <tr>
@@ -60,7 +60,10 @@
                  <td align="center"width="5%"><%= nota.bimestre %>º</td>
                  <td align="center"width="5%"><%= nota.nota1 %></td>
                  <td align="center"width="5%"><%= nota.faltas1 %></td>
-                 <td align="left"width="5%"><%= nota.obs1 %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td colspan="5"align="left"width="5%"><b>OBS:</b> <%= nota.obs1 %></td>
               </tr>
           <%end%>
 

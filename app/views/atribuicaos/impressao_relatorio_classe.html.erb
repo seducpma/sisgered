@@ -51,24 +51,26 @@
        <table border="1" frame="box" rules="all" width="100%">
               <tr>
                 <td align="center" width ="5%" ><b>RA</b></td>
-                <td align="center" width ="20%" ><b>Aluno</b></td>
+                <td align="center" width ="30%" ><b>Aluno</b></td>
                 <td align="center" width ="10%" ><b>Disciplina</b></td>
-                <td align="center" width ="25%" ><b>Professor</b></td>
-                <td align="center" width ="5%" ><b>Bimestre</b></td>
+                <td align="center" width ="20%" ><b>Professor</b></td>
+                <td align="center" width ="5%" ><b>Bim.</b></td>
                  <td align="center" width ="5%" ><b>Nota</b></td>
                  <td align="center" width ="5%"><b>Faltas</b></td>
-                 <td align="left" width ="50%">&nbsp&nbsp&nbsp<b> Observações</b></td>
               </tr>
         <%@notas.each do |nota|%>
               <tr>
                  <td><%= nota.aluno.aluno_ra  %></td>
                  <td><%= nota.aluno.aluno_nome %></td>
                  <td align="center"><%= nota.atribuicao.disciplina.disciplina %></td>
-                 <td align="center"><%= nota.atribuicao.professor.nome %></td>
+                 <td><%= nota.atribuicao.professor.nome %></td>
                  <td align="center"><%= nota.bimestre %>º</td>
                  <td align="center"><%= nota.nota1 %></td>
                  <td align="center"><%= nota.faltas1 %></td>
-                 <td> <%= nota.obs1 %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td colspan="5"><b>OBS:</b> <%= nota.obs1 %></td>
 
               </tr>
           <%end%>

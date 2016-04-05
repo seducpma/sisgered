@@ -1,38 +1,57 @@
-<p>
-  <b>Aluno:</b>
-  <%=h @nota.aluno_id %>
-</p>
-
-<p>
-  <b>Unidade:</b>
-  <%=h @nota.unidade_id %>
-</p>
-
-<p>
-  <b>Professor:</b>
-  <%=h @nota.professor_id %>
-</p>
-
-<p>
-  <b>Ano letivo:</b>
-  <%=h @nota.ano_letivo %>
-</p>
-
-<p>
-  <b>Nota:</b>
-  <%=h @nota.nota %>
-</p>
-
-<p>
-  <b>Faltas:</b>
-  <%=h @nota.faltas %>
-</p>
-
-<p>
-  <b>Obs:</b>
-  <%=h @nota.obs %>
-</p>
+<div id="interno3">
+<% title "ATRIBUICAO" %>
+  <div class ="tabs">
 
 
-<%= link_to 'Edit', edit_nota_path(@nota) %> |
-<%= link_to 'Back', notas_path %>
+  <fieldset><legend><font size=4>LANÇAMENTOS ALTERADOS</font></legend>
+    <table width="100%">
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>RA:</b></td>
+         <td><%= @nota.aluno.aluno_ra  %></td>
+         <td width =" 12%"><b>Aluno:</b></td>
+         <td><%= @nota.aluno.aluno_nome %></td>
+      </tr>
+
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Escola:</b></td>
+         <td colspan="3" ><%= session[:aluno] %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Classe:</b></td>
+         <td><%= session[:classe]%></td>
+         <td width =" 12%"><b>Periodo:</b></td>
+         <td><%= session[:periodo]%> - <%= session[:ano]%></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Disciplina:</b></td>
+         <td> <%= session[:disciplina]%></td>
+         <td width =" 12%"><b>Professor:</b></td>
+         <td> <%= session[:professor]%></td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Bimestre:</b></td>
+         <td colspan="3"><%= @nota.bimestre%>º
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+             <b>Nota</b>&nbsp&nbsp<%= @nota.nota1%>
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+             <b>Faltas:</b>&nbsp&nbsp<%= @nota.faltas1 %>
+         </td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%" valign="top"><b>Observação:</b></td>
+         <td colspan="4"><%= @nota.obs1 %>
+         </td>
+      </tr>
+    </table>
+  </fieldset>
+  <table width="100%" >
+         <tr>
+            <td width="6%"align="left" ><%= button_to 'Alterar' ,lancamentos_notas_notas_path, :title => "Alterar" %></td>
+            <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+         </tr>
+       </table>
+
+</div>
+<br/><br/>
+

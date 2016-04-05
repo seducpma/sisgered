@@ -9,11 +9,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :notas_alunos
 
-  map.resources :notas, :collection => { :consulta_classe =>:get }
+  map.resources :notas, :collection => { :lancamentos_notas =>:get }
 
   map.resources :classes_alunos
-
-  map.resources :notas
 
   map.resources :classes,:collection => { :editar_classe=>:get}
 
@@ -73,6 +71,8 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_relatorio_aluno '/impressao_relatorio_aluno', :controller => 'atribuicaos', :action => 'impressao_relatorio_aluno'
   map.impressao_relatorio_classe '/impressao_relatorio_classe', :controller => 'atribuicaos', :action => 'impressao_relatorio_classe'
   map.impressao_relatorio_professor '/impressao_relatorio_professor', :controller => 'atribuicaos', :action => 'impressao_relatorio_professor'
+  map.impressao_lancamentos_notas '/impressao_lancamentos_notas', :controller => 'atribuicaos', :action => 'impressao_lancamentos_notas'
+  map.impressao_alteracao_lancamentos '/impressao_alteracao_lancamentos', :controller => 'notas', :action => 'impressao_alteracao_lancamentos'
 
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
 
