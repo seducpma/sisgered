@@ -5,7 +5,7 @@
     <b><u>Lançamentos / Alunos</u></b> <br/>
       <hr>
        <%= error_messages_for 'contact' %>
-       <table border ="2" width="100%" bgcolor="#F5F5F5">
+       <table width="100%" bgcolor="#F5F5F5">
          <tr>
            <td width="5%" valign="top"><b><font size="2">Aluno:</font></b></td>
            <td colspan="5"><%= f.collection_select :aluno_id, @alunos3, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
