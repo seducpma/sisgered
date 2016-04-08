@@ -52,7 +52,7 @@
              <% cont=1 %>
          <% cont1=1 %>
         <td colspan="4">  <% for atrib in @atribuicao_classe %>
-                           <table width="100%">
+                           <table frame="box" rules="all" width="100%">
                               <tr>
                                  <td align="left" width="50%">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
                                  <td align="left"width="10%"><b> Disciplina:</b></td>
@@ -68,7 +68,7 @@
              <% cont=1 %>
          <% cont1=1 %>
         <td colspan="4">
-          <table width="100%">
+          <table frame="box" rules="all" width="100%" >
                              <tr>
                                <td align="center"width ="10%"><b>Nº</b></td>
                                <td width ="20%"><b>RA</b></td>
@@ -92,7 +92,7 @@
                                       <tr>
                                        <td align="center"> &nbsp <%= cont11%> </td>
                                        <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
-                                       <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> (Transf.) </td>
+                                       <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> (Transferência) </td>
                                       <%cont11 = cont11+1%>
                                      </tr>
 

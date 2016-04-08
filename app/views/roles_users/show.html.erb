@@ -29,7 +29,11 @@
                            <%if  Role.find(@roles_user.role_id).name == 'secretaria' then%>
                              <td width="25%">Secretaria U.E.</td>
                              <td>Acesso exclusivo - Funcinário de Unidade Escolar</td>
-                           <%else%>
+                            <%else%>
+                                <%if  Role.find(@roles_user.role_id).name == 'professor' then%>
+                                 <td width="25%">Professor U.E.</td>
+                                 <td>Acesso exclusivo - Professor Escolar</td>
+                           <%end%>
                                <td width="25%">Usuário</td>
                                <td>Sem acesso ao sistema.</td>
                            <%end%>

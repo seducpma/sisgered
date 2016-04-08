@@ -187,6 +187,7 @@ end
 
 
 def consulta_classe_aluno
+       session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        #@alunos_cl = Aluno.find(:all, :joins => :alunos_classe, :conditions=>[ "alunos_classes.classe_id =?", params[:classe][:id]])
         #Topic.find(:all, :conditions => { :forum_id => @forums.map(&:id) })
@@ -198,6 +199,7 @@ def consulta_classe_aluno
 end
 
 def editar_classe_aluno
+       session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
@@ -220,9 +222,11 @@ end
   end
 
 def impressao_classe
-       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe]])
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
-       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe]])
+       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
+
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
+       t=0
       render :layout => "impressao"
 end
 
