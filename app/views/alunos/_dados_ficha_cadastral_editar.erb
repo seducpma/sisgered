@@ -237,7 +237,7 @@
              <td colspan="6"><%=h aluno.aluno_especial %></td>
            </tr>
            <tr >
-               <td align="left"><b>Observação::</b></td>
+               <td align="left"><b>Observação:</b></td>
                <td colspan="7" align="left"><%=h aluno.aluno_obs %></td>
             </tr>
           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>

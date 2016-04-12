@@ -21,7 +21,7 @@ development:
   database: sisgered_development
   pool: 5
   username: root
-  password: s3inf09
+  password: 1234
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -34,7 +34,7 @@ test:
   database: sisgered_test
   pool: 5
   username: root
-  password: s3inf09
+  password: 1234
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -44,7 +44,7 @@ production:
   database: sisgered_production
   pool: 5
   username: root
-  password: s3inf05
+  password: 16#gjl@
   socket: /var/run/mysqld/mysqld.sock
 
 
