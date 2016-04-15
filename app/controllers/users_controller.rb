@@ -59,13 +59,13 @@ class UsersController < ApplicationController
     t=@user.login
     t1= @user.unidade_id
     t2= @user.professor_id
-    t3=0
+
     success = @user && @user.save
     if success && @user.errors.empty?
      # redirect_back_or_default('/')
       render :action => 'criado'
       flash[:notice] = "USUÁRIO CRIADO COM SUCESSO, ENTRE EM CONTATO COM O ADMINISTRADOR DO SISTEMA PARA LIBERAÇÃO."
-      t=0
+ 
     else
       flash[:error]  = "SENHA OU USUÁRIO NÃO AUTORIZADO "
       render :action => 'new'
