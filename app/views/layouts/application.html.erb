@@ -68,9 +68,13 @@ display: none;
                    <% if current_user.has_role?('secretaria') %>
                        <td>Acesso Secretaria UE</td>
                       <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
-                   <%else%>
-                       <td>Acesso Público</td>
-                      <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
+                   <%else if current_user.has_role?('professor') %>
+                       <td>Acesso Professor</td>
+                       <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
+                         <%else%>
+                             <td>Acesso Público</td>
+                            <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
+                         <%end%>
                    <%end%>
                 <%end%>
               <%end%>
