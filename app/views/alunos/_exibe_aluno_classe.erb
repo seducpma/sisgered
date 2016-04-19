@@ -1,0 +1,20 @@
+  <% for classe in @classe %>
+        <table>
+           <tr bgcolor="#F5F5F5" >
+             <td align="left" width="10%"><b>Unidade:</b></td>
+             <td align="left">  <%=h classe.unidade.nome%></td>
+             <td align="left" width="12%"><b> Ano Letivo:</b></td>
+             <td align="left"> <%=h classe.classe_ano_letivo %><%  session[:classe]=  classe.id%></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+             <td align="left"><b>Classe:</b></td>
+               <td align="left">  <%=h classe.classe_classe%></td>
+               <td align="left"><b>Horário:</b></td>
+               <td align="left">  <%=h classe.horario %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5" >
+               <td align="left"><b>Descrição:</b></td>
+               <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+            </tr>
+           <%end%>
+        </table>
