@@ -15,14 +15,11 @@
                     <td><b>Nome: </b><%= f.text_field :nome, :size => 59 %></td>
                   </tr>
                   <tr>
-                    <td><b>Data de Nascimento:</b> <%=h @professor.dt_nasc.strftime("%d/%m/%Y")%> <font color="red"> =========></font> </td>
-                    <td> <%= datepicker_tag(:professor, :dt_nasc,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %><b><font color ="red">  (é necessário selecionar novamente a data)</b></font></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><b>RG: </b><%= f.text_field :RG, :size => 9 %>&nbsp&nbsp&nbsp
-                        <b>CPF: </b><%= f.text_field :CPF, :size => 9 %>&nbsp&nbsp&nbsp
-                         <b>RD: </b><%= f.text_field :RD, :size => 9 %>&nbsp&nbsp&nbsp
-                        <b>INEP: </b><%= f.text_field :INEP, :size => 9 %></td>
+                    <td colspan="2"><b>Data de Nascimento:</b> <%=h @professor.dt_nasc.strftime("%d/%m/%Y")%><%= datepicker_tag(:professor, :dt_nasc,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %>&nbsp&nbsp
+                        <b>RG: </b><%= f.text_field :RG, :size => 9 %>&nbsp&nbsp
+                        <b>CPF: </b><%= f.text_field :CPF, :size => 12 %>&nbsp&nbsp
+                         <b>RD: </b><%= f.text_field :RD, :size => 8 %>&nbsp&nbsp
+                        <b>INEP: </b><%= f.text_field :INEP, :size => 6 %></td>
                   </tr>
 
                   <tr>
@@ -47,16 +44,12 @@
                   <tr>
 
 
-                    <td><b>Data Ingresso:  </b> <%=h @professor.dt_ingresso.strftime("%d/%m/%Y")%> <font color="red"> ===============></font> </td>
-                    <td><%= datepicker_tag(:professor, :dt_ingresso,{:size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-60:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %> <b><font color ="red">  (é necessário selecionar novamente a data)</font></b></td>
-                  </tr>
-                  <tr>
-                    <td><b>Formação: </b><%=h @professor.entrada_concurso %> <font color="red"> ===></font>  </td>
-                    <td><%= f.select :entrada_concurso, options_for_select(Professor::Curso), :include_blank => true%><b><font color ="red">(é necessário selecionar novamente)</font></b></td>
-                  </tr>
-                  <tr>
-                     <td><b>Função/Cargo: </b><%=h @professor.funcao%> <font color="red"> =====></font></td>
-                     <td>   <%= f.select :funcao, (CARGO).sort, :include_blank => '-- Selecionar --' %><b> <font color ="red">(é necessário selecionar novamente a opção)</font></b></td>
+                    <td colspan="2"><b>Data Ingresso:  </b> <%=h @professor.dt_ingresso.strftime("%d/%m/%Y")%>
+                        <%= datepicker_tag(:professor, :dt_ingresso,{:size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-60:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %> 
+
+                       &nbsp&nbsp&nbsp<b>Formação: </b><%=h @professor.entrada_concurso %>
+                       &nbsp&nbsp&nbsp <b>Função/Cargo: </b><%=h @professor.funcao%> </td>
+                     
                   </tr>
                   <tr>
 
