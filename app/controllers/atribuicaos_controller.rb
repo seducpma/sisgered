@@ -138,6 +138,7 @@ if ( params[:disciplina].present?)
       n=(params[:nota])
       @nota = Nota.new(params[:nota])
       @nota.ano_letivo =  Time.now.year
+      @nota.bimestre = 1
       @nota.atribuicao_id= session[:id]
       @nota.professor_id= session[:professor_id]
       @nota.unidade_id= current_user.unidade_id
