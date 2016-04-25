@@ -94,10 +94,15 @@ class TransferenciasController < ApplicationController
 
 def consulta_transferencia_classe
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+
+
+       @transferencia1 = Transferencia.find(:all, :conditions => ['unidade_id =? and classe_id=?',current_user.unidade_id,params[:classe][:id]] )
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
+       @transferencia = Transferencia.find(:all, :joins => [:aluno], :conditions => ['alunos.unidade_anterior =? and transferencias.classe_id=?',current_user.unidade_id,params[:classe][:id]] )
+       #@notas = Nota.find(:all, :joins => [:atribuicao, :aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'notas.bimestre ASC, alunos.aluno_nome ASC')
+      # @transferencia =  @transferencia1 + (@alunos_trasnf -  @transferencia1)
        render :update do |page|
-          page.replace_html 'classe_alunos', :partial => 'transferencias_classe'
+          page.replace_html 'transf_alunos', :partial => 'transferencias_classe'
        end
 end
 

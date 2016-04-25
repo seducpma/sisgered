@@ -52,7 +52,14 @@
           <tr bgcolor="#F5F5F5">
            <td align="center"> &nbsp <%= cont11%> </td>
            <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
-           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> (Transf.) </td>
+           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%>
+
+             <% if trans.unidade_id.nil? %>
+               <font color ="Red">&nbsp&nbsp (Transferido)</font> 
+             <%else''%>
+               <font color ="Blue">&nbsp&nbsp (Transferência)</font> 
+             <%end%>
+           </td>
            <td align="left" ><%= button_to 'Visualizar',{:action => "show", :id =>trans}, :method => "get", :title => "Editar"%></td>
           <%cont11 = cont11+1%>
          </tr>
