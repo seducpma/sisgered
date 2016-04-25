@@ -6,7 +6,7 @@
     <table width="100%" align="center" bgcolor="#F5F5F5">
         <tr> <td></td> </tr>
         <tr>
-          <td><b>Procedência: </b></td><td><%= f.collection_select :unidade_anterior, @unidade_de, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+          <td><b>Procedência: </b></td><td><%= f.collection_select :de, @unidade_de, :nome, :nome, :include_blank => ' -- Selecione -- ' %>
                      <%= observe_field 'transferencia_de',
                           :with => :transferencia_de,
                           :url => { :action => 'unidade_transferencia' },
