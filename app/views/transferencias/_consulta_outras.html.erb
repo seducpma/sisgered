@@ -13,10 +13,12 @@
             <div id="alunos_trans">
               <table>
                 <tr>
-                  <td width ="23%"><b>Aluno: </b></td><td><%= f.collection_select :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+                  <td><b>Aluno: </b> &nbsp&nbsp&nbsp<%= f.collection_select :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
                 </tr>
                 <tr>
-                  <td width ="23%"><b>Classe: </b></td><td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> <div id="alunos_trans"></div></td>
+                  <td><b>Classe: </b>&nbsp&nbsp<%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                      <b>Data Transferência: </b><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%><div id="alunos_trans"></div></td>
+
                 </tr>
               </table>
            </div>
