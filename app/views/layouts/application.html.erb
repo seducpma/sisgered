@@ -102,10 +102,12 @@ display: none;
                   <li><%= link_to 'Sair', logout_path,:confirm => "Tem certeza que deseja fazer logout?" %></li>
                 </ul>
               </li>
+              
               <li><span class="divider divider-vert" ></span></li>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
               <li><a class="item-primary" href="#;">CADASTRAR</a>
                  <ul style="width:108px;">
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                  
                          <li><a class="item-primary" href="#;">Aluno</a>
                               <ul>
                                 <li><%= link_to "Dados Pessoais", new_aluno_path%> </li>
@@ -116,7 +118,7 @@ display: none;
                                  <%end%>
                               </ul>
                          </li>
-                   <%end%>
+
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                        <li><%= link_to "Atribuição",new_atribuicao_path %></li>
                    <%end%>
@@ -139,21 +141,25 @@ display: none;
                       <%end%>
                  </ul>
               </li>
+     <%end%>
               <li><a class="item-primary" href="#;">CONSULTAR</a>
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('professor'))%>
                  <ul style="width:108px;">
                    <li><%= link_to "Aluno",consulta_ficha_alunos_path %></li>
-                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                      <li><%= link_to "Bolsa Família",consulta_bolsa_familia_path %></li>
-                   <%end%>
-                   <li><%= link_to "Classe",consulta_classe_path %></li>
-                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                        <li><%= link_to "Professor",consulta_professor_nome_path %></li>
-                   <%end%>
-                   <li><%= link_to "Professor/Classe",consulta_classe_professors_path %></li>
-                    <li><%= link_to "Responsável",consulta_reponsavel_path %></li>
-                    <li><%= link_to "Transferência",consulta_transferencia_path %></li>
-                    <li><%= link_to "Unidade",consultas_unidades_path %></li>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                          <li><%= link_to "Bolsa Família",consulta_bolsa_familia_path %></li>
+                       <%end%>
+                     <%end%>
+                       <li><%= link_to "Classe",consulta_classe_path %></li>
+                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                           <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                           <li><%= link_to "Professor/Classe",consulta_classe_professors_path %></li>
+                           <li><%= link_to "Responsável",consulta_reponsavel_path %></li>
+                           <li><%= link_to "Transferência",consulta_transferencia_path %></li>
+                     <%end%>
+                        <li><%= link_to "Unidade",consultas_unidades_path %></li>
+
                   </ul>
                <%end%>
               </li>
