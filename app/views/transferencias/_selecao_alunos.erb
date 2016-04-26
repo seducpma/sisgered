@@ -3,8 +3,7 @@
             <td width ="15%"><b>Aluno: </b>&nbsp&nbsp&nbsp<%= collection_select  :transferencia, :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' --- Selecione ---'  %></td>
           </tr>
           <tr>
-            <td width ="15%"><b>Classe: </b>&nbsp&nbsp&nbsp<%= collection_select  :transferencia, :classe_id, @classes, :id, :classe_classe, :include_blank => ' --- Selecione  ---'  %>
-            <b>Data Transferência: </b><%= date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
+            <td width ="15%"><b>Classe: </b>&nbsp&nbsp&nbsp<%= collection_select  :transferencia, :classe_id, @classes, :id, :classe_classe, :include_blank => ' --- Selecione  ---'  %></td>
           </tr>
 </table>
 

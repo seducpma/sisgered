@@ -10,7 +10,7 @@ class Transferencia < ActiveRecord::Base
   end
 
   def gera_aluno_classe
-    self.data_transferencia = Time.now
+    
     classe = AlunosClasse.new
     classe.classe_id = self.classe_id
     classe.aluno_id = self.aluno_id
