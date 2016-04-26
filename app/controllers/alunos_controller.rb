@@ -239,8 +239,6 @@ def consulta_ficha_cadastral
 end
 
 def editar_ficha_cadastral
-
-  tr=0
        session[:aluno] = params[:aluno][:id]
 
        @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])

@@ -56,7 +56,11 @@
                           <td align="left"> <%="#{ aluno.aluno_nome}"%></td>
                           <td> <font color ="blue"> Transferência</font></td>
                           <td align="left"> <%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
-                          <td> <%= aluno.transferido.strftime("%d/%m/%Y")%></td>
+                          <td> <%if aluno.transferido.nil? %>
+                               <%else%>
+                                   <%= aluno.transferido.strftime("%d/%m/%Y")%>
+                              <%end%>                          
+                          </td>
                       </tr>
                     <%else%>
                       <tr bgcolor="#F5F5F5">

@@ -41,6 +41,21 @@ class TransferenciasController < ApplicationController
     @transferencia = Transferencia.find(params[:id])
   end
 
+  def editar_transferencia
+   
+end
+
+  def editar_transfenrecia_aluno
+       session[:aluno] = params[:aluno][:id]
+
+       @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
+       @saude = Saude.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
+       @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
+       render :update do |page|
+          page.replace_html 'ficha', :partial => 'dados_ficha_cadastral_editar'
+       end
+end
+
   # POST /transferencias
   # POST /transferencias.xml
   def create
