@@ -130,8 +130,7 @@
            <td align="center"> &nbsp <%= cont11%> </td>
            <td align="center"> <%="#{ trans.aluno.aluno_rm}"%> </td>
            <td align="center"> <%="#{ trans.aluno.aluno_ra}"%> </td>
-           <td align="left"><%="#{ trans.aluno.aluno_nome}"%>
-                                 <%if trans.aluno.aluno_status.nil?%>
+           <td align="left"> <%if trans.aluno.aluno_status.nil?%>
                                    <%="#{ trans.aluno.aluno_nome}"%>
                               <%else%>
                                    <%="#{ trans.aluno.aluno_nome}"%><%="#{ trans.aluno.aluno_status}"%>
