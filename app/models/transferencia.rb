@@ -21,7 +21,7 @@ class Transferencia < ActiveRecord::Base
       aluno.trans_in = 1
       aluno.unidade_anterior = aluno.unidade_id
       aluno.unidade_id = self.unidade_id
-      aluno.transferido = Time.now
+      aluno.transferido = self.data_transferencia
       aluno.save
     end
     
