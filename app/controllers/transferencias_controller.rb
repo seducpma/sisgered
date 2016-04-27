@@ -45,14 +45,12 @@ class TransferenciasController < ApplicationController
    
 end
 
-  def editar_transfenrecia_aluno
-       session[:aluno] = params[:aluno][:id]
+  def editar_transferencia_aluno
 
-       @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
-       @saude = Saude.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
-       @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
+       session[:aluno] = params[:aluno][:id]
+       @transferencia = Transferencia.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
        render :update do |page|
-          page.replace_html 'ficha', :partial => 'dados_ficha_cadastral_editar'
+          page.replace_html 'transferencia', :partial => 'dados_transferencia'
        end
 end
 
@@ -151,5 +149,10 @@ end
        end
        @alunos1 = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+unidade.to_s+" AND`id`not in (SELECT alunos_classes.aluno_id FROM classes INNER JOIN alunos_classes ON classes.id = alunos_classes.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")ORDER BY aluno_nome ASC")
        @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'aluno_nome')
+       
+       @alunos_transferencia = Transferencia.find_by_sql("SELECT * FROM  `transferencias` tr JOIN `alunos` al ON tr.aluno_id = al.id AND tr.unidade_id ="+current_user.unidade_id.to_s)
+       
+       
+
   end
 end

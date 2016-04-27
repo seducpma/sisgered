@@ -1,4 +1,4 @@
-<div id="interno2">
+<div id="interno3">
 <% title "CONSULTA_FICHA".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -11,7 +11,7 @@
           <tr>
             <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
                &nbsp&nbsp&nbsp
-                <%= collection_select :aluno, :id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+                <%= collection_select :aluno, :id, @alunos_transferencia, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
                <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
           </td>
         </tr>
