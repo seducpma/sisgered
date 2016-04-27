@@ -128,32 +128,6 @@ if ( params[:disciplina].present?)
 # if (params[:search].present?)
  #      @chamados = Chamado.find(:all, :conditions => ["id = ?",  params[:search]])
 
-          for atrib in @atribuicao_classe
-       for alun in @alunos3
-         n=(params[:nota])
-            @nota = Nota.new(params[:nota])
-            @nota.aluno_id = alun.id
-            @nota.atribuicao_id= atrib.id
-            @nota.professor_id= atrib.professor.id
-            @nota.unidade_id= current_user.unidade_id
-            @nota.ano_letivo =  Time.now.year
-            @nota.nota1= 0.0
-            @nota.faltas1= 0
-            @nota.obs1 = '---'
-            @nota.nota2= 0.0
-            @nota.faltas2= 0
-            @nota.obs2 = '---'
-            @nota.nota3= 0.0
-            @nota.faltas3= 0
-            @nota.obs3 = '---'
-            @nota.nota4= 0.0
-            @nota.faltas4= 0
-            @nota.obs4 = '---'
-                  if @nota.save
-                     flash[:notice] = 'DADOS SALVOS COM SUCESSO!'
-                  end
-         end
-     end
 
     end
     respond_to do |format|
