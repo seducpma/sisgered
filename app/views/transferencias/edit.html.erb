@@ -23,7 +23,13 @@
                   </tr>
 
                    <tr>
-                     <td><b>Classe:</b></td><td> <%=h @transferencia.classe.classe_classe%> &nbsp&nbsp====>&nbsp&nbsp<%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
+                     <td><b>Classe:</b></td>
+                     <td>
+                          <%if @transferencia.nil? %>
+                          <%else%>                   
+                               <%=h @transferencia.classe.classe_classe%> &nbsp&nbsp====>&nbsp&nbsp<%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
+                          <%end%>
+                     </td>
                    </tr>
                    <tr>
                      <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
