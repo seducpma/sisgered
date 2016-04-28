@@ -156,11 +156,7 @@ if ( params[:disciplina].present?)
       end
     end
 
-
-
-
-
-  def relatorio_aluno_nome
+    def relatorio_aluno_nome
        @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
        session[:aluno] =params[:aluno_aluno_id]
        @classeAtribuicaos = AlunosClasse.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],Time.now.year ])
