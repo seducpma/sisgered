@@ -110,7 +110,6 @@ class AtribuicaosController < ApplicationController
 
   def lancar_notas
 
-
 if ( params[:disciplina].present?)
 
       @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
@@ -130,7 +129,6 @@ if ( params[:disciplina].present?)
 # if (params[:search].present?)
  #      @chamados = Chamado.find(:all, :conditions => ["id = ?",  params[:search]])
 
-  t=0
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -138,7 +136,31 @@ if ( params[:disciplina].present?)
     end
   end
 
- def relatorio_aluno_nome
+    def create_notas
+      n=(params[:nota])
+      @nota = Nota.new(params[:nota])
+      @nota.ano_letivo =  Time.now.year
+      @nota.bimestre = 1
+      @nota.atribuicao_id= session[:id]
+      @nota.professor_id= session[:professor_id]
+      @nota.unidade_id= current_user.unidade_id
+      session[:aluno_id] = @nota.aluno_id
+      @notas = Nota.find(:all, :joins => :atribuicao, :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  session[:classe_id], session[:professor_id], session[:disc_id]])
+      if @nota.save
+        @nota = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =?", session[:id], session[:aluno_id]])
+        t=0
+        session[:nota_id] = @nota.id
+         render :update do |page|
+            page.replace_html 'notas_aluno', :partial => "notas"
+        end
+      end
+    end
+
+
+
+
+
+  def relatorio_aluno_nome
        @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
        session[:aluno] =params[:aluno_aluno_id]
        @classeAtribuicaos = AlunosClasse.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],Time.now.year ])
@@ -279,7 +301,7 @@ end
       if current_user.professor_id.nil?
          @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE  atribuicaos.ano_letivo = "+Time.now.year.to_s)
       else
-       @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id ="+ (current_user.professor_id).to_s+" AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
+         @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id ="+ (current_user.professor_id).to_s+" AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
       end
        # @disciplinas1 = Disciplina.find_(:all, :joins => :atribuicao, :conditions => ['atribuicaos.ano_letivo = ?  and atribuicaos.professor_id = ?',  Time.now.year, current_user.professor_id  ])
 
