@@ -199,9 +199,9 @@ display: none;
               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('professor'))%>
                 <li><a class="item-primary" href="#;">LANÇAMENTOS</a>
                 <ul style="width:108px;">
-<!--                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%> -->
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%> 
                      <li><%= link_to "Alterações",lancamentos_notas_notas_path %></li>
-<!--                  <%end%>    -->
+                  <%end%>   
                   <li><%= link_to "Notas/Faltas",lancar_notas_atribuicaos_path %></li>
 
 
