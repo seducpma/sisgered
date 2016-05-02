@@ -291,7 +291,7 @@ end
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @classes = Classe.find(:all, :order => 'classe_classe ASC')
     else
-       @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ?', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
+       @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? and (unidade_id BETWEEN 42 and 51)', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
       #@classes = Classe.find(:all, :select => 'count(distinct(classe_classe))', :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.professor_id = ?', current_user.professor_id])
       #@classes = Classe.find(:all, :select => 'distinct(classe_classe) ', :joins => :atribuicaos, :conditions => ['unidade_id = ? and classe_ano_letivo = ? and atribuicaos.professor_id = ?', current_user.unidade_id, Time.now.year, current_user.professor_id  ], :order => 'classe_classe ASC')
       if current_user.professor_id.nil?
