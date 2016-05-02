@@ -1,192 +1,139 @@
+<table width="100%">
+  <tr>
+    <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+        <% @aluno.each do |aluno| %>
+             <center><font size="1">Unidade Escolar:  <%=h aluno.unidade.nome %>  </font></center> 
+             <center><font size="1"><%=h aluno.unidade.endereco%><%=h aluno.unidade.num%> - Americana - SP  </font>
+             <font size="1"><%=h aluno.unidade.CEP%> - <%=h aluno.unidade.fone%>  </font></center> 
+        <%end%>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="22" align="right"><font size="2"><b>BOLETIM DE FERQUẼNCIA E REDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+    </td>
+  </tr>
+</table>
+<table frame="box" rules="all" width="100%">
+  <tr>
+    <% @aluno.each do |aluno| %>
+      <td><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></td>
+      <% session[:aluno] = aluno.id %>
+    <%end%>
+  </tr>
+  <tr bgcolor="#F5F5F5">
+  <% for classe in @classe %>
 
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<br/><br/>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         <td ><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Período:</b>&nbsp&nbsp <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Ano Letivo:</b> &nbsp&nbsp<%=h classe.classe_ano_letivo %></td>
+             <%  session[:classe]=  classe.id%>
+      </tr>
+  <%end%>
+<% @aluno.each do |aluno| %>
+  <table frame="box" rules="all" width="100%">
+    <tr>
+      <td width=" 25%" rowspan="2" align="center"><b>Disciplina</b></td>
+      <td width=" 15%" colspan="3" align="center"><b>1º Bimetre</b></td>
+      <td width=" 15%"colspan="3" align="center"><b>2º Bimetre</b></td>
+      <td width=" 15%" colspan="3" align="center"><b>3º Bimetre</b></td>
+      <td width=" 15%" colspan="3" align="center"><b>4º Bimetre</b></td>
+      <td width=" 15%" colspan="3" align="center"><b>FINAL</b></td>
+   </tr>
+   <tr>
+     <td width ="5%" align="center" ><b>Nota</b></td>
+     <td width ="5%" align="center" ><b>Falta</b></td>
+     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center" ><b>Nota</b></td>
+     <td width ="5%" align="center" ><b>Falta</b></td>
+     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center" ><b>Nota</b></td>
+     <td width ="5%" align="center" ><b>Falta</b></td>
+     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center" ><b>Nota</b></td>
+     <td width ="5%" align="center"><b>Falta</b></td>
+     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center" ><b>Nota</b></td>
+     <td width ="5%" align="center" ><b>Falta</b></td>
+     <td width ="5%" align="center"></td>
+   </tr>
+   <tr>
+     <%@notas.each do |nota|%>
 
-
-<font size="4"><i><b><u>RELATÓRIO DE ALUNOS</u></b><br/>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
-     <font size="3"><i><b>Prefeitua Municipal de  Americana </b></i><br/>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <font size="2"><b><i> Secretaria da Educação</i></b><br/>
-
-
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<%if @aluno.present?%>
-    <font size="1">Unidade Escolar: <% @aluno.each do |aluno| %><%=h aluno.unidade.nome %> <%end%>  </font><br/>
-
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    &nbsp&nbsp&nbsp&nbsp
-
-    <fieldset><legend><font  size=3><b> Dados Pessoais</b></font></legend>
-      <% @aluno.each do |aluno| %>
-        <table>
-                  <tr >
-                    <td width =" 10%"><b>Nº RM:</b></td>
-                    <td>   <%=h aluno.aluno_rm %></td>
-                    <td width =" 10%"><b>Nº RA:</b></td>
-                   <td>   <%=h aluno.aluno_ra %></td>
-                   <td width="10%"><b>Nome:</b></td>
-                   <td  colspan="4"> <%=h aluno.aluno_nome %></td>
-                  </tr>
-                 <tr >
-                     <td align="left"><b>RG:</b></td>
-                     <td align="left">  <%=h aluno.aluno_RG%></td>
-                     <td align="left"><b>Emissão:</b></td>
-                     <td align="left"><%=h aluno.aluno_emissaoRG %></td>
-                     <td align="left"><b>CPF:</b></td>
-                     <td align="left">  <%=h aluno.aluno_CPF%></td>
-                     <td align="left"><b>Emissão:</b></td>
-                     <td align="left"><%=h aluno.aluno_emissaoCPF %></td>
-                 </tr>
-                    <tr >
-                        <td align="left"><b>Pai:</b></td>
-                        <td colspan="2" align="left"><%=h aluno.aluno_pai %></td>
-                        <td align="left"><b>Mãe:</b></td>
-                        <td colspan="4" align="left"><%=h aluno.aluno_mae %></td>
-                     </tr>
-        <% session[:aluno] = aluno.id %>
-               </table>
-          </fieldset>
+      <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
+      <%if nota.bimestre == 1%>
+           <td align="center"><%= nota.nota1 %></td>
+           <td align="center"><%= nota.faltas1 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
       <%end%>
-      <fieldset><legend><font  size=3><b> Classe</b></font></legend>
-       <% for classe in @classe %>
-        <table>
-           <tr bgcolor="#F5F5F5" >
-             <td align="left" width="10%"><b>Unidade:</b></td>
-             <td align="left">  <%=h classe.unidade.nome%></td>
-             <td align="left" width="12%"><b> Ano Letivo:</b></td>
-             <td align="left"> <%=h classe.classe_ano_letivo %><%  session[:classe]=  classe.id%></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-             <td align="left"><b>Classe:</b></td>
-               <td align="left">  <%=h classe.classe_classe%></td>
-               <td align="left"><b>Horário:</b></td>
-               <td align="left">  <%=h classe.horario %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5" >
-               <td align="left"><b>Descrição:</b></td>
-               <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
-            </tr>
-           <%end%>
-        </table>
-       </fieldset>
+      <%if nota.bimestre == 2%>
+           <td align="center"><%= nota.nota2 %></td>
+           <td align="center"><%= nota.faltas2 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.bimestre == 3%>
+           <td align="center"><%= nota.nota3 %></td>
+           <td align="center"><%= nota.faltas3 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.bimestre == 4%>
+           <td align="center"><%= nota.nota4 %></td>
+           <td align="center"><%= nota.faltas4 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.bimestre == 5%>
+           <td align="center"><%= nota.nota5 %></td>
+           <td align="center"><%= nota.faltas5 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+   </tr>
+    <%end%>
+   <tr>
+     <td colspan="23"><hr></td>
+   </tr>
 
-      <fieldset><legend><font  size=3><b> Notas / Freqüências / Observação</b></font></legend>
-       <table border="1" frame="box" rules="all" width="100%">
-              <tr>
-                <td align="center" width ="10%" ><b>Disciplina</b></td>
-                <td align="center" width ="25%" ><b>Professor</b></td>
-                <td align="center" width ="5%" ><b>Bimestre</b></td>
-                 <td align="center" width ="5%" ><b>Nota</b></td>
-                 <td align="center" width ="5%"><b>Faltas</b></td>
-              </tr>
-
-
-        <%@notas.each do |nota|%>
-
-              <tr>
-                 <td align="center"><%= nota.atribuicao.disciplina.disciplina %></td>
-                 <td><%= nota.atribuicao.professor.nome %></td>
-                 <td align="center"><%= nota.bimestre %>º</td>
-                 <td align="center"><%= nota.nota1 %></td>
-                 <td align="center"><%= nota.faltas1 %></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td colspan="4"><b>OBS:</b> <%= nota.obs1 %></td>
-
-              </tr>
-          <%end%>
-           </table>
-
-
-      </fieldset>
-      <table  width="100% ">
-          <tr>
-           <td width="6%"align="left" ><%= button_to '', home_path, {:method => "get"}  %></td>
-
-          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                  <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-          <%end%>
-          </tr>
-        </table>
-<%else%>
-    <font size="1">Unidade Escolar: <% @classe.each do |aluno| %><%=h aluno.unidade.nome %> <%end%>  </font><br/>
-
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    &nbsp&nbsp&nbsp&nbsp
-
-
-      <fieldset><legend><font  size=3><b> Classe</b></font></legend>
-       <% for classe in @classe %>
-        <table>
-           <tr bgcolor="#F5F5F5" >
-             <td align="left" width="10%"><b>Unidade:</b></td>
-             <td align="left">  <%=h classe.unidade.nome%></td>
-             <td align="left" width="12%"><b> Ano Letivo:</b></td>
-             <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-             <td align="left"><b>Classe:</b></td>
-               <td align="left">  <%=h classe.classe_classe%></td>
-               <td align="left"><b>Horário:</b></td>
-               <td align="left">  <%=h classe.horario %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5" >
-               <td align="left"><b>Descrição:</b></td>
-               <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
-            </tr>
-           <%end%>
-        </table>
-       </fieldset>
-
-      <fieldset><legend><font  size=3><b> Notas / Freqüências / Observação</b></font></legend>
-       <table border="1" frame="box" rules="all" width="100%">
-              <tr>
-                <td align="center" width ="5%" ><b>RA</b></td>
-                <td align="center" width ="30%" ><b>Aluno</b></td>
-                <td align="center" width ="10%" ><b>Disciplina</b></td>
-                <td align="center" width ="20%" ><b>Professor</b></td>
-                <td align="center" width ="5%" ><b>Bimestre</b></td>
-                 <td align="center" width ="5%" ><b>Nota</b></td>
-                 <td align="center" width ="5%"><b>Faltas</b></td>
-                 
-              </tr>
-        <%@notas.each do |nota|%>
-              <tr>
-                 <td><%= nota.aluno.aluno_ra  %></td>
-                 <td><%= nota.aluno.aluno_nome %></td>
-                 <td align="center"><%= nota.atribuicao.disciplina.disciplina %></td>
-                 <td align="center"><%= nota.atribuicao.professor.nome %></td>
-                 <td align="center"><%= nota.bimestre %>º</td>
-                 <td align="center"><%= nota.nota1 %></td>
-                 <td align="center"><%= nota.faltas1 %></td>
-              </tr>
-              <tr>
-                <td colspan="2"></td>
-                <td colspan="5"><b>OBS: </b> <%= nota.obs1 %></td>
-
-              </tr>
-          <%end%>
-           </table>
-      </fieldset>
-      <table  width="100% ">
-          <tr>
-           <td width="6%"align="left" ><%= button_to '', home_path, {:method => "get"}  %></td>
-
-          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                  <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-          <%end%>
-          </tr>
-        </table>
-
-
+   <tr>
+     <td colspan="23"><b>Observações:</b></td>
+   </tr>
+    <%@notas.each do |nota|%>
+     <tr>
+        <td align="right"><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</td>
+        <td colspan="15"><%= nota.obs1%> </td>
+    </tr>
+   <%end%>
+ </table>
+<br/><br/>
 <%end%>
+</table>
+<table  width="100%">
+  <tr><td></td>
+  </tr>
+
+
+</table>
 

@@ -189,9 +189,12 @@ end
 
 
  def load_classes
-   if current_user.unidade_id == 53 or current_user.unidade_id == 52
-        @classes = Classe.find(:all, :order => 'classe_classe ASC')
-        @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
+   if current_user.unidade_id == 53 or current_user.unidade_id == 52 or  current_user.has_role?('direcao')
+        @classes = Classe.find(:all, :conditions => ['unidade_id=?', current_user.unidade_id], :order => 'classe_classe ASC')
+        #@classes = Classe.find.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)..uniq
+
+        #@disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
+        @disciplinas1 = Disciplina.all
         @professors1 = Professor.find(:all, :order => 'nome ASC')
 
     else
