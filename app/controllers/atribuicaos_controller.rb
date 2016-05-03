@@ -101,7 +101,7 @@ class AtribuicaosController < ApplicationController
        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], disc_id])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], disc_id])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
-       @notas =
+       #@notas =
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
@@ -167,8 +167,8 @@ if ( params[:disciplina].present?)
       @classe.each do |classe|
          session[:unidade]=classe.unidade_id
        end
-
-      @notas = Nota.find(:all,:conditions => ['aluno_id =?', params[:aluno_aluno_id]])
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =? ", params[:aluno_aluno_id]],:order =>'disciplinas.ordem ASC , notas.bimestre ASC')
+      #@notas = Nota.find(:all,:conditions => ['aluno_id =?', params[:aluno_aluno_id]])
       render :partial => 'relatorio_aluno'
 end
 
@@ -220,9 +220,10 @@ def relatorio_aluno_classe
 
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe_id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe_id]])
-       @notas = Nota.find(:all, :joins => [:atribuicao, :aluno], :conditions => ["atribuicaos.classe_id =? ",  params[:classe_id]],:order => 'notas.bimestre ASC, alunos.aluno_nome ASC')
-
-      render :partial => 'relatorio_aluno'
+       #@notas = Nota.find(:all, :joins => [:atribuicao, :aluno], :conditions => ["atribuicaos.classe_id =? ",  params[:classe_id]],:order =>'notas.bimestre ASC, alunos.aluno_nome ASC')
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? ",  params[:classe_id]],:order =>'disciplinas.ordem ASC , notas.bimestre ASC')
+       @alunos = Aluno.find(:all, :joins => "inner join alunos_classes on alunos.id = alunos_classes.aluno_id", :conditions =>['alunos_classes.classe_id =?', params[:classe_id]])
+      render :partial => 'relatorio_classe'
        
 end
 
