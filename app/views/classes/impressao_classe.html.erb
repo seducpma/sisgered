@@ -15,31 +15,31 @@
      <td colspan="4"align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
   </tr>
 
-        <tr  style="line-height:40%">
+        <tr  style="line-height:25%">
            <td align="left" width="15%" style="font-size: 7px"><b>Unidade:</b></td>
            <td align="left" style="font-size: 7px"><%=h classe.unidade.nome%></td>
           <td align="left"width="15%" style="font-size: 7px"><b> Ano Letivo:</b></td>
           <td colspan="7" align="left" style="font-size: 7px"> <%=h classe.classe_ano_letivo %></td>
       </tr>
 
-      <tr style="line-height:40%">
+      <tr style="line-height:25%">
            <td align="left" style="font-size: 7px"><b>Classe:</b></td>
            <td align="left" style="font-size: 7px">  <%=h classe.classe_classe%></td>
            <td align="left" style="font-size: 7px"><b>Horário:</b></td>
            <td align="left" style="font-size: 7px">  <%=h classe.horario%></td>
 
       </tr>
-      <tr style="line-height:40%">
+      <tr style="line-height:25%">
           <td align="left" style="font-size: 7px"><b>Descrição:</b></td>
           <td colspan="3" align="left" style="font-size: 7px">  <%=h classe.classe_descricao %></td>
       </tr>
-      <tr style="line-height:40%">
+      <tr style="line-height:25%">
         <td valign="top" style="font-size: 7px"> <b> Professor(s):</b> </td>
              <% cont=1 %>
          <% cont1=1 %>
         <td colspan="4">  <% for atrib in @atribuicao_classe %>
                            <table  frame="box" rules="all" width="100%">
-                              <tr style="line-height:40%">
+                              <tr style="line-height:25%">
                                  <td align="left" width="50%" style="font-size: 7px">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
                                  <td align="left"width="10%" style="font-size: 7px"><b> Disciplina:</b></td>
                                  <td align="left" width="30%" style="font-size: 7px"> <%=h atrib.disciplina.disciplina %></td>
@@ -49,13 +49,13 @@
                          <%end%>
         </td>
       </tr>
-      <tr style="line-height:40%">
+      <tr style="line-height:25%">
         <td valign="top" style="font-size: 7px"> <b> Alunos:</b> </td>
              <% cont=1 %>
          <% cont1=1 %>
         <td colspan="4">
           <table frame="box" rules="all" width="100%" >
-                             <tr style="line-height:40%">
+                             <tr style="line-height:25%">
                                <td align="center"width ="2%" style="font-size: 7px"><b>Nº</b></td>
                                <td width ="20%" style="font-size: 7px"><b>RM</b></td>
                                <td width ="20%" style="font-size: 7px"><b>RA</b></td>
@@ -68,7 +68,7 @@
         <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
             <% if aluno.unidade_anterior  != User.current.unidade_id%>
                     <%if aluno.trans_in == 1 %>
-                       <tr style="line-height:40%">
+                       <tr style="line-height:25%">
                           <td align="center" style="font-size: 7px"> &nbsp <%= cont1%> </td>
                           <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_rm}"%> </td>
                           <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_ra}"%> </td>
@@ -81,13 +81,13 @@
                                <%end%>
                             </td>
                           <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
-                          <td> <%= aluno.transferido.strftime("%d/%m/%Y")%>
+                          <td style="font-size: 7px"> <%= aluno.transferido.strftime("%d/%m/%Y")%>
 
 
                           </td>
                       </tr>
                     <%else%>
-                      <tr style="line-height:40%">
+                      <tr style="line-height:25%">
                           <td align="center" style="font-size: 7px"> &nbsp <%= cont1%> </td>
                           <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_rm}"%> </td>
                           <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_ra}"%> </td>
@@ -102,7 +102,7 @@
                       </tr>
                     <%end%>
                     <%else%>
-                       <tr style="line-height:40%">
+                       <tr style="line-height:25%">
                           <td align="center" style="font-size: 7px"> &nbsp <%= cont1%> </td>
                           <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_rm}"%> </td>
                           <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_ra}"%> </td>
@@ -131,7 +131,7 @@
 
     <%cont11 = cont1%>
     <% for trans in @transferencia %>
-          <tr style="line-height:40%">
+          <tr style="line-height:25%">
            <td align="center" style="font-size: 7px"> &nbsp <%= cont11%> </td>
            <td align="left" style="font-size: 7px"> <%="#{ trans.aluno.aluno_rm}"%> </td>
            <td align="left" style="font-size: 7px"> <%="#{ trans.aluno.aluno_ra}"%> </td>
