@@ -291,13 +291,24 @@ end
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @classes = Classe.find(:all, :order => 'classe_classe ASC')
     else
-       @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? and (unidade_id BETWEEN 42 and 51)', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
+       @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ?', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
       #@classes = Classe.find(:all, :select => 'count(distinct(classe_classe))', :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.professor_id = ?', current_user.professor_id])
       #@classes = Classe.find(:all, :select => 'distinct(classe_classe) ', :joins => :atribuicaos, :conditions => ['unidade_id = ? and classe_ano_letivo = ? and atribuicaos.professor_id = ?', current_user.unidade_id, Time.now.year, current_user.professor_id  ], :order => 'classe_classe ASC')
       if current_user.professor_id.nil?
-         @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE  atribuicaos.ano_letivo = "+Time.now.year.to_s)
+          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+              @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+          else
+            @disciplinas1 = Disciplina.find(:all, :conditions => ["id < 26 or id > 27"])
+          end
+
       else
-         @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id ="+ (current_user.professor_id).to_s+" AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
+          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+              @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+          else
+            @disciplinas1 = Disciplina.find(:all, :conditions => ["id != 27 and id !=26"])
+          end
+          #    @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id ="+ (current_user.professor_id).to_s+" AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
+
       end
        # @disciplinas1 = Disciplina.find_(:all, :joins => :atribuicao, :conditions => ['atribuicaos.ano_letivo = ?  and atribuicaos.professor_id = ?',  Time.now.year, current_user.professor_id  ])
 
@@ -322,7 +333,20 @@ end
 
    def load_disciplinas
 
-        @disciplinas = Disciplina.find(:all,:order => 'disciplina ASC')
+      if current_user.professor_id.nil?
+          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+              @disciplinas = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+          else
+            @disciplinas = Disciplina.find(:all, :conditions => ["id < 26 or id > 27"])
+          end
+
+      else
+          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+              @disciplinas = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+          else
+            @disciplinas = Disciplina.find(:all, :conditions => ["id != 27 and id !=26"])
+          end
+      end
    
   end
 
