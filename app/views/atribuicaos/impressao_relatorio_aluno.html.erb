@@ -1,3 +1,9 @@
+<table class ="invisible_to_print ">
+  <tr>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+</table>
+
 <table frame="box" rules="all" width="100%">
   <tr>
     <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
@@ -11,9 +17,7 @@
     </td>
   </tr>
   <tr  class ="invisible_to_print ">
-    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
-
-    <td  align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E REDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+    <td colspan="2" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
     </td>
   </tr>
 </table>
@@ -116,15 +120,6 @@
      <td colspan="23"><hr></td>
    </tr>
 
-   <tr>
-     <td colspan="23"><b>Observações:</b></td>
-   </tr>
-    <%@notas.each do |nota|%>
-     <tr>
-        <td align="right" style="font-size: 8px" ><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</td>
-        <td colspan="15" style="font-size: 8px" ><%= nota.obs1%> </td>
-    </tr>
-   <%end%>
  </table>
 
 <%end%>

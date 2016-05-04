@@ -1,3 +1,11 @@
+<table  class ="invisible_to_print ">
+<tr >
+          <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+
+          <td  align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+          </td>
+        </tr>
+ </table>
 <% @alunos.each do |aluno| %>
       <table frame="box" rules="all" width="100%">
         <tr>
@@ -11,10 +19,8 @@
               <%end%>
           </td>
         </tr>
-        <tr  class ="invisible_to_print ">
-          <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
-
-          <td  align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E REDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+        <tr>
+           <td colspan="2"  align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
           </td>
         </tr>
       </table>

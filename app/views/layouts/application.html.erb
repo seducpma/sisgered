@@ -189,7 +189,7 @@ display: none;
                  <ul style="width:108px;">
                         <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
                     <% if current_user.has_role?('admin') or  current_user.has_role?('direcao')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria') or current_user.has_role?('professor')%>
-                        <li><%= link_to "Relatório Classe",relatorios_classe_atribuicaos_path %></li>
+                        <li><%= link_to "Boletim Escolar",relatorios_classe_atribuicaos_path %></li>
                     <% end %>
                   </ul>
                <%end%>

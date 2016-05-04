@@ -1,3 +1,14 @@
+<table  width="100% "bgcolor="#DCDCDC" >
+   <tr>
+      <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+             <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+          <%end%>
+   </tr>
+   <tr>
+     <td colspan="2"><hr><br/></td>
+  </tr>
+</table>
 <% @alunos.each do |aluno| %>
       <table width="100%">
         <tr>
@@ -15,7 +26,7 @@
           <td></td>
         </tr>
         <tr>
-          <td colspan="22" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E REDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+          <td colspan="22" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
           </td>
         </tr>
       </table>
@@ -130,25 +141,22 @@
           <%end%>
            </table>
 
-      <br/><br/>
+
       </table>
 
 <table width="100%" align="center" bgcolor="#DCDCDC" >
   <tr><td> <br/><hr><br/><br/></td>
   </tr>
-
+</table>
+<%end%>
+<table  width="100% "bgcolor="#DCDCDC" >
+   <tr>
+      <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+             <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+          <%end%>
+   </tr>
 
 </table>
 
-<%end%>
-
-      <table  width="100% ">
-          <tr>
-           <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-
-          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                  <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-          <%end%>
-          </tr>
-        </table>
    
