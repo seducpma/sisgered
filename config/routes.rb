@@ -1,32 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.resources :transferencias,:collection => { :editar_transferencia=>:get}
-
   map.resources :disciplinas
-
-  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :consulta_lista => :get  }
-
+  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get  }
   map.resources :classes_professors
-
   map.resources :notas_alunos
-
   map.resources :notas, :collection => { :lancamentos_notas =>:get }
-
   map.resources :classes_alunos
-
   map.resources :classes,:collection => { :editar_classe=>:get}
-
   map.resources :professors,:collection => { :consulta_classe=>:get}
-
   map.resources :tipos
-
   map.resources :unidades,  :collection => {:consultas => :get}
-
   map.resources :socioeconomicos
-
   map.resources :saudes
-
   map.resources :pessoas
-
   map.resources :alunos, :collection => {:consulta_ficha => :get , :editar_ficha=>:get}
 
   map.resources :logs
@@ -67,6 +54,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_ficha_completa '/impressao_ficha_completa', :controller => 'socioeconomicos', :action => 'impressao_ficha_completa'
   map.impressao_ficha '/impressao_ficha', :controller => 'alunos', :action => 'impressao_ficha'
   map.impressao_classe '/impressao_classe', :controller => 'classes', :action => 'impressao_classe'
+  map.impressao_lista '/impressao_lista', :controller => 'classes', :action => 'impressao_lista'
   map.impressao_bolsa_familia '/impressao_bolsa_familia', :controller => 'alunos', :action => 'impressao_bolsa_familia'
   map.impressao_relatorio_aluno '/impressao_relatorio_aluno', :controller => 'atribuicaos', :action => 'impressao_relatorio_aluno'
   map.impressao_relatorio_classe '/impressao_relatorio_classe', :controller => 'atribuicaos', :action => 'impressao_relatorio_classe'
@@ -94,17 +82,17 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_ficha_cadastral '/consulta_ficha_cadastral', :controller => 'alunos', :action => 'consulta_ficha_cadastral'
   map.consulta_classe_aluno '/consulta_classe_aluno', :controller => 'classes', :action => 'consulta_classe_aluno'
   map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
+  map.consulta_lista_classe '/consulta_lista_classe', :controller => 'classes', :action => 'consulta_lista_classe'
+  map.consulta_lista '/consulta_lista', :controller => 'classes', :action => 'consulta_lista'
   map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
   map.consulta_responsaveis '/consulta_responsaveis', :controller => 'alunos', :action => 'consulta_responsaveis'
   map.consulta_reponsavel '/consulta_reponsavel', :controller => 'alunos', :action => 'consulta_reponsavel'
   map.consulta_bolsa_familia '/consulta_bolsa_familia', :controller => 'alunos', :action => 'consulta_bolsa_familia'
   map.consulta_classe_professor '/consulta_classe_professor', :controller => 'professors', :action => 'consulta_classe_professor'
-  map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
   map.consulta_classe_nota1 '/consulta_classe_nota1', :controller => 'atribuicaos', :action => 'consulta_classe_nota1'
   map.consulta_transferencia '/consulta_transferencia', :controller => 'transferencias', :action => 'consulta_transferencia'
   map.consulta_transferencia_classe '/consulta_transferencia_classe', :controller => 'transferencias', :action => 'consulta_transferencia_classe'
   map.consulta_classe_nota '/consulta_classe_nota', :controller => 'atribuicaos', :action => 'consulta_classe_nota'
-
   
   
 

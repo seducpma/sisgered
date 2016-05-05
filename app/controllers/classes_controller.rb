@@ -226,11 +226,31 @@ end
 def impressao_classe
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
-
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
-       t=0
       render :layout => "impressao"
 end
+
+def impressao_lista
+       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
+
+      render :layout => "impressao"
+end
+
+def consulta_lista_classe
+       session[:classe_id]=params[:classe][:id]
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
+
+        render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_lista'
+       end
+end
+
+
+
 
  def load_classes
    if current_user.unidade_id == 53 or current_user.unidade_id == 52

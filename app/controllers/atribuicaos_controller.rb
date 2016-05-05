@@ -93,7 +93,6 @@ class AtribuicaosController < ApplicationController
 
 
   def consulta_classe_nota
-
       @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
         for dis in @disci
             disc_id = dis.id
@@ -101,7 +100,7 @@ class AtribuicaosController < ApplicationController
        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], disc_id])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], disc_id])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
-       #@notas =
+
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
@@ -275,6 +274,7 @@ def impressao_lancamentos
 
     render :layout => "impressao"
 end
+
 
 
    def load_professores11
