@@ -194,7 +194,7 @@ def consulta_classe_aluno
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
        
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
-       t=0
+
         render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
