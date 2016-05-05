@@ -238,8 +238,13 @@ def impressao_relatorio_classe
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe]])
        #@notas = Nota.find(:all, :joins => [:atribuicao, :aluno], :conditions => ["atribuicaos.classe_id =? ",  params[:classe_id]],:order =>'notas.bimestre ASC, alunos.aluno_nome ASC')
        @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? ",  session[:classe]],:order =>'disciplinas.ordem ASC , notas.bimestre ASC')
-       @alunos = Aluno.find(:all, :joins => "inner join alunos_classes on alunos.id = alunos_classes.aluno_id", :conditions =>['alunos_classes.classe_id =?',session[:classe]],:order => 'aluno_nome' )
-    render :layout => "impressao"
+       #@alunos = Aluno.find(:all, :joins => "inner join alunos_classes on alunos.id = alunos_classes.aluno_id", :conditions =>['alunos_classes.classe_id =?',session[:classe]],:order => 'aluno_nome' )
+      @alunos1 = Aluno.find(:all, :joins => "inner join alunos_classes on alunos.id = alunos_classes.aluno_id", :conditions =>['alunos_classes.classe_id =?', session[:classe]],:order =>'aluno_nome')
+       @alunos2 = Aluno.find(:all, :joins => [:transferencias], :conditions=> ["transferencias.unidade_id = ? AND transferencias.classe_id=?", current_user.unidade_id, session[:classe]], :order => 'aluno_nome')
+       @alunos=   @alunos1 + @alunos2
+
+
+  render :layout => "impressao"
 end
 
 
