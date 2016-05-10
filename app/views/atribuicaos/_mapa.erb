@@ -1,0 +1,125 @@
+<table  width="100% "bgcolor="#DCDCDC" >
+   <tr>
+      <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+             <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+          <%end%>
+   </tr>
+   <tr>
+     <td colspan="2"><hr><br/></td>
+  </tr>
+</table>
+<% @classe.each do |classe| %>
+    <table width="100%">
+         <tr>
+            <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+             <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+                <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
+                <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
+                <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                <%  session[:classe]=  classe.id%>
+             </td>
+          </tr>
+          <tr>
+              <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <hr/>
+            </td>
+          </tr>
+           <tr >
+              <td colspan="2"><b> Classe:</b> <%=h classe.classe_classe%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Bimestre:</b> 1º &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Período:</b> <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              </td>
+            </tr>
+            <table frame="box" rules="all" width="100%">
+              <tr>
+                 <% @atribuicao_classe.each do |atrib| %>
+                
+                <% if (atrib.disciplina.disciplina).length > 14 %>
+                     <td align="center"width ="5%"  valign="top"><b><font size ="1px"><%= atrib.disciplina.disciplina %> </font></b><br/>
+                <%else%>
+                    <td align="center"width ="5%"  valign="top">&nbsp<br/><b><font size ="1px"><%= atrib.disciplina.disciplina %> </font></b><br/>
+                 <%end%>
+                   <table frame="box" rules="all" width="100%">
+                          <%cont = 0%>
+                       <tr>
+                             <td align="center"> <font size ="1px"> <b> Nº </b></font> </td>
+                            <td align="center"><font size ="1px"><b>Nota</b></font></td>
+                            <td align="center"><font size ="1px"><b>Falta</b></font></td>
+                       </tr>
+                         <% @alunos.each do |aluno| %>
+                             <%@notas.each do |nota|%>
+                                <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                    <tr>
+                                       <%  cont =cont+1%>
+                                      <td align="center"width ="33%" ><font size="1px"><b><%= cont %></b></font> </td>
+                                       <td align="center"width ="33%"><font size="1px"><% if  nota.nota1.nil? %>
+
+
+                                                                                       <%else%>
+                                                                                          <%= nota.nota1 %>
+                                                                                       <%end %>
+                                         </font> </td>
+                                       <td align="center" width ="33%"><font size="1px"><%= nota.faltas1%></font></td>
+                                    </tr>
+
+                              <%end%>
+                            <%end%>
+
+                         <%end%>
+                   <% cont2 = 0 %>
+                   <%for cont2 in ((cont+1)..40) %>
+                       <tr>
+                         <td align="center"width ="33%" ><font size="1px"><b><%= cont2 %></b></font> </td>
+                          <td align="center"width ="33%">&nbsp</td>
+                          <td align="center" width ="33%">&nbsp</td>
+                      </tr>
+                  <% end  %>
+                  </table>
+
+
+
+
+
+                  <b><font size ="1px"><b>Prof:</b> <%= atrib.professor.nome %> </font></b>
+                 </td>
+
+
+
+                <%end%>
+              </tr>
+            </table>
+
+
+      <tr>
+        <td>
+
+        </td>
+      </tr>
+    </table>
+    <table width="100%" align="center" bgcolor="#DCDCDC" >
+      <tr><td> <br/><hr><br/><br/></td>
+      </tr>
+    </table>
+
+<%end%>
+
+
+
+
+
+<table  width="100% "bgcolor="#DCDCDC" >
+   <tr>
+      <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+             <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+          <%end%>
+   </tr>
+
+</table>
+

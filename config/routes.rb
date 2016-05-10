@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :transferencias,:collection => { :editar_transferencia=>:get}
+   map.resources :transferencias,:collection => { :editar_transferencia=>:get}
   map.resources :disciplinas
-  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get  }
+  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get  }
   map.resources :classes_professors
   map.resources :notas_alunos
   map.resources :notas, :collection => { :lancamentos_notas =>:get }
@@ -36,8 +36,8 @@ ActionController::Routing::Routes.draw do |map|
   map.grafico '/grafico', :controller => 'grafico'
   map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_geral_demanda'
   map.grafico_por_unidade '/grafico/crianca_por_unidade', :controller => 'grafico', :action => 'crianca_por_unidade'
-  
-  
+
+
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
@@ -59,13 +59,14 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_relatorio_aluno '/impressao_relatorio_aluno', :controller => 'atribuicaos', :action => 'impressao_relatorio_aluno'
   map.impressao_relatorio_classe '/impressao_relatorio_classe', :controller => 'atribuicaos', :action => 'impressao_relatorio_classe'
   map.impressao_relatorio_professor '/impressao_relatorio_professor', :controller => 'atribuicaos', :action => 'impressao_relatorio_professor'
+  map.impressao_relatorio_mapa '/impressao_relatorio_mapa', :controller => 'atribuicaos', :action => 'impressao_lencol'
   map.impressao_lancamentos '/impressao_lancamentos', :controller => 'atribuicaos', :action => 'impressao_lancamentos'
   map.impressao_alteracao_lancamentos '/impressao_alteracao_lancamentos', :controller => 'notas', :action => 'impressao_alteracao_lancamentos'
   map.impressao_lancamentos_notas '/impressao_lancamentos_notas', :controller => 'notas', :action => 'impressao_lancamentos_notas'
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
 
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
-  
+
   map.resources :classes
   map.resources :informativos
   map.resources :logs
@@ -75,7 +76,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editar_transferencia_aluno '/editar_transferencia_aluno', :controller => 'transferencias', :action => 'editar_transferencia_aluno'
   map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'
 
-  
+
   map.consulta_unidade '/consulta_unidade', :controller => 'unidades', :action => 'consulta_unidade'
   map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
   map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
@@ -93,8 +94,8 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_transferencia '/consulta_transferencia', :controller => 'transferencias', :action => 'consulta_transferencia'
   map.consulta_transferencia_classe '/consulta_transferencia_classe', :controller => 'transferencias', :action => 'consulta_transferencia_classe'
   map.consulta_classe_nota '/consulta_classe_nota', :controller => 'atribuicaos', :action => 'consulta_classe_nota'
-  
-  
+
+  map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
 
 
   map.resources :roles_users, :collection => {:lista_users => :get}

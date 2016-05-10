@@ -1,0 +1,129 @@
+<% @classe.each do |classe| %>
+    <table frame="box" rules="all" width="100%">
+         <tr>
+            <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+            <td colspan="2"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+                <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
+                <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
+                <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                <%  session[:classe]=  classe.id%>
+             </td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+          <tr >
+          <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+
+          <td  align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+          </td>
+        </tr>
+          <tr>
+            <td colspan="2">
+              <hr/>
+            </td>
+          </tr>
+           <tr >
+              <td colspan="2"><b> Classe:</b> <%=h classe.classe_classe%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Bimestre:</b> 1º &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Período:</b> <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              </td>
+            </tr>
+            <table frame="box" rules="all" width="100%">
+              <tr>
+                 <% @atribuicao_classe.each do |atrib| %>
+
+                <% if (atrib.disciplina.disciplina).length > 15 %>
+                     <td style="font-size: 7px" align="center"width ="5%"  valign="top"><b><font size ="1px"><%= atrib.disciplina.disciplina %> </font></b><br/>
+                <%else%>
+                    <td style="font-size: 7px"  align="center"width ="5%"  valign="top"><br/><b><font size ="1px"><%= atrib.disciplina.disciplina %> </font></b><br/>
+                 <%end%>
+                   <table frame="box" rules="all" width="100%">
+                          <%cont = 0%>
+                       <tr>
+                            <td  style="font-size: 7px" ><b> Nº </b> </td>
+                            <td style="font-size: 7px" ><b>Nota</b></td>
+                            <td style="font-size: 7px" ><b>Falta</b></td>
+                       </tr>
+                         <% @alunos.each do |aluno| %>
+                             <%@notas.each do |nota|%>
+                                <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                    <tr>
+                                       <%  cont =cont+1%>
+                                      <td  style="font-size: 7px" align="center"width ="33%" ><font size="1px"><b><%= cont %></b></font> </td>
+                                       <td  style="font-size: 7px" align="center"width ="33%"><font size="1px"><% if  nota.nota1.nil? %>
+                                 <%else%>
+                                        <%= nota.nota1 %>
+                                 <%end %>
+                                   </font> </td>
+                                   <td align="center" width ="33%"><font size="1px"><%= nota.faltas1%></font></td>
+                               </tr>
+                              <%end%>
+                            <%end%>
+
+                         <%end%>
+                   <% cont2 = 0 %>
+                   <%for cont2 in ((cont+1)..40) %>
+                       <tr>
+                         <td  style="font-size: 7px" align="center"width ="33%" ><font size="1px"><b><%= cont2 %></b></font> </td>
+                          <td  style="font-size: 7px" align="center"width ="33%">&nbsp</td>
+                          <td  style="font-size: 7px" align="center" width ="33%">&nbsp</td>
+                      </tr>
+                  <% end  %>
+                  </table>
+
+
+
+
+
+                  <b><font size ="1"><b>Prof:</b> <%= atrib.professor.nome %> </font></b>
+                 </td>
+
+
+
+                <%end%>
+              </tr>
+            </table>
+
+
+      <tr>
+        <td>
+
+        </td>
+      </tr>
+    </table>
+  <table frame="box" rules="all" width="100%">
+       <tr>
+         <td align="center"> Carimbo da U.E </td>
+       </tr>
+       <tr>
+         <td rowspan="5"> </td>
+         <td width ="40%" align="center"><b> CURSO:</b></td>
+      </tr>
+       <tr>
+         <td width ="40%" align="center"> Ensino Fundamental</td>
+         
+      </tr>
+       <tr>
+         <td width ="40%" align="center"><br/></td>
+
+      </tr>
+
+       <tr>
+         <td width ="40%" align="center"><b> Ano:</b></td>
+
+      </tr>
+       <tr>
+         <td width ="40%" align="center"> <%= Time.now.year%> </td>
+         <th  rowspan="3"align="center" width ="40%" > Secretário(a) U.E</td>
+      </tr>
+</table>
+
+<%end%>
+<br/>
+
+
+
+

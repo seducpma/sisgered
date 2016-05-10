@@ -19,9 +19,15 @@
             <% if session[:trans] == 1  %>
               <tr>
                 <td align="center" colspan="4"><font color ="red">
-                        <b>TRANSFERIDO </b> </font>
+                   <br/>     <b>TRANSFERIDO </b> </font>
                   <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp em &nbsp&nbsp <%= session[:trans_data]%></b>
-                  <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp para &nbsp&nbsp <%=  session[:trans_unidade]%></b> </td>
+                  <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+                      <% if session[:de_para] == 1 %>
+                            de &nbsp&nbsp
+                      <%else%>
+                            para &nbsp&nbsp
+                      <%end%>
+        <%=  session[:trans_unidade]%></b> </td>
  
                  
                 </tr>
