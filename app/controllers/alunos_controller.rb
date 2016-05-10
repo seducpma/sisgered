@@ -188,13 +188,29 @@ end
   end
 
 
-    def nome_classe
-           @classe = Classe.find(:all, :joins => "inner join alunos_classes on classes.id = alunos_classes.classe_id", :conditions =>['alunos_classes.aluno_id =?', params[:aluno_aluno_id]])
+ def nome_classe
+       @classe = Classe.find(:all, :joins => "inner join alunos_classes on classes.id = alunos_classes.classe_id", :conditions =>['alunos_classes.aluno_id =?', params[:aluno_aluno_id]])
+       @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_aluno_id]])
 
-           
-            render  :partial => 'exibe_aluno_classe'
-           
+        @aluno.each do |aluno|
+           session[:trans]= aluno.trans_in
+           if aluno.transferido.nil?
+                session[:trans_data] = '-- /--/--'
+           else
+              session[:trans_data] =aluno.transferido.strftime("%d/%m/%Y")
+           end
+           alunoid = aluno.unidade_anterior
+            if (aluno.trans_in == 1)
+               
+               @unidade=  Unidade.find(alunoid)
+                session[:trans_unidade]= @unidade.nome
 
+            end
+
+        end
+            
+        render  :partial => 'exibe_aluno_classe'
+         
   end
 
 

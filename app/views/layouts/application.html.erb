@@ -128,8 +128,9 @@ display: none;
 <!--                   <%end%>   -->
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-<!--                        <% if current_user.unidade_id == 43 or (current_user.unidade_id == 50) or (current_user.unidade_id == 51) %>
-                        <%else%>    -->
+                       <% if current_user.unidade_id == 43 or (current_user.unidade_id == 50) or (current_user.unidade_id == 51) %>
+
+                       <%else%>
                            <li><%= link_to "Classe",new_class_path %></li>
                         <%end%>
                       <%end%>

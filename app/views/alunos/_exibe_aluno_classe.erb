@@ -1,5 +1,5 @@
   <% for classe in @classe %>
-        <table>
+<table width ="100%">
            <tr bgcolor="#F5F5F5" >
              <td align="left" width="10%"><b>Unidade:</b></td>
              <td align="left">  <%=h classe.unidade.nome%></td>
@@ -16,5 +16,16 @@
                <td align="left"><b>Descrição:</b></td>
                <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
             </tr>
+            <% if session[:trans] == 1  %>
+              <tr>
+                <td align="center" colspan="4"><font color ="red">
+                        <b>TRANSFERIDO </b> </font>
+                  <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp em &nbsp&nbsp <%= session[:trans_data]%></b>
+                  <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp para &nbsp&nbsp <%=  session[:trans_unidade]%></b> </td>
+ 
+                 
+                </tr>
+            <%end%>
+
            <%end%>
         </table>
