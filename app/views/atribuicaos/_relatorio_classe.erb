@@ -75,7 +75,7 @@
                <%@notas.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
                     <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
-                    <%if nota.bimestre == 1 %>
+                    <%if nota.nota1.present? %>
                          <td align="center"><%= nota.nota1 %> </td>
                          <td align="center"><%= nota.faltas1%></td>
                          <td align="center"></td>
@@ -84,7 +84,7 @@
                          <td align="center"></td>
                          <td align="center"></td>
                     <%end%>
-                    <%if nota.bimestre == 2%>
+                    <%if nota.nota2.present?%>
                          <td align="center"><%= nota.nota2 %></td>
                          <td align="center"><%= nota.faltas2 %></td>
                          <td align="center"></td>
@@ -94,7 +94,7 @@
                          <td align="center"></td>
                     <%end%>
 
-                    <%if nota.bimestre == 3%>
+                    <%if nota.nota3.present?%>
                          <td align="center"><%= nota.nota3 %></td>
                          <td align="center"><%= nota.faltas3 %></td>
                          <td align="center"></td>
@@ -103,7 +103,7 @@
                          <td align="center"></td>
                          <td align="center"></td>
                     <%end%>
-                    <%if nota.bimestre == 4%>
+                    <%if nota.nota4.present?%>
                          <td align="center"><%= nota.nota4 %></td>
                          <td align="center"><%= nota.faltas4 %></td>
                          <td align="center"></td>
@@ -112,7 +112,7 @@
                          <td align="center"></td>
                          <td align="center"></td>
                     <%end%>
-                    <%if nota.bimestre == 5 %>
+                    <%if nota.nota5.present? %>
                          <td align="center"><%= nota.nota5 %></td>
                          <td align="center"><%= nota.faltas5 %></td>
                          <td align="center"></td>
@@ -216,7 +216,7 @@
                <%@notas.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
                     <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
-                    <%if nota.bimestre == 1 %>
+                    <%if nota.nota1.present? %>
                          <td align="center"><%= nota.nota1 %> </td>
                          <td align="center"><%= nota.faltas1%></td>
                          <td align="center"></td>
@@ -225,7 +225,7 @@
                          <td align="center"></td>
                          <td align="center"></td>
                     <%end%>
-                    <%if nota.bimestre == 2%>
+                    <%if nota.nota2.present?%>
                          <td align="center"><%= nota.nota2 %></td>
                          <td align="center"><%= nota.faltas2 %></td>
                          <td align="center"></td>
@@ -235,7 +235,7 @@
                          <td align="center"></td>
                     <%end%>
 
-                    <%if nota.bimestre == 3%>
+                    <%if nota.nota3.present? %>
                          <td align="center"><%= nota.nota3 %></td>
                          <td align="center"><%= nota.faltas3 %></td>
                          <td align="center"></td>
@@ -244,7 +244,7 @@
                          <td align="center"></td>
                          <td align="center"></td>
                     <%end%>
-                    <%if nota.bimestre == 4%>
+                    <%if nota.nota4.present?%>
                          <td align="center"><%= nota.nota4 %></td>
                          <td align="center"><%= nota.faltas4 %></td>
                          <td align="center"></td>
@@ -253,7 +253,7 @@
                          <td align="center"></td>
                          <td align="center"></td>
                     <%end%>
-                    <%if nota.bimestre == 5 %>
+                    <%if nota.nota5.present? %>
                          <td align="center"><%= nota.nota5 %></td>
                          <td align="center"><%= nota.faltas5 %></td>
                          <td align="center"></td>

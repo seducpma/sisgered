@@ -46,16 +46,55 @@ before_filter :load_classes
   # POST /notas.xml
   def create
     @nota = Nota.new(params[:nota])
+    @atribuicaos = Atribuicao.find(:all)
 
     respond_to do |format|
-      if @nota.save
-        flash[:notice] = 'Nota was successfully created.'
-        format.html { redirect_to(@nota) }
-        format.xml  { render :xml => @nota, :status => :created, :location => @nota }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @nota.errors, :status => :unprocessable_entity }
-      end
+        for atrib in @atribuicaos
+           session[:classe]= atrib.classe_id
+           t4=session[:classe]
+           @classe = Classe.find(session[:classe])
+           session[:unidade]= @classe.unidade_id
+           session[:atribuicao]= atrib.id
+           session[:professor]= atrib.professor_id
+
+
+           @alunos1 = Aluno.find(:all, :joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe]])
+           @alunos2 = Aluno.find(:all, :joins => "INNER JOIN transferencias ON alunos.id = transferencias.aluno_id INNER JOIN classes ON classes.id=transferencias.classe_id", :conditions=> ["transferencias.unidade_id = ? AND transferencias.classe_id=?  AND  alunos.unidade_id = ?", session[:unidade], session[:classe], session[:unidade], ])
+
+           @alunos3= @alunos1+@alunos2
+           if (session[:unidade] > 41  and  session[:unidade] < 52)
+
+
+           for alun in @alunos3
+
+                @nota = Nota.new(params[:nota])
+                @nota.aluno_id = alun.id
+                @nota.atribuicao_id= session[:atribuicao]
+                @nota.professor_id= session[:professor]
+                @nota.unidade_id= session[:unidade]
+                @nota.ano_letivo =  Time.now.year
+                @nota.nota1 = nil
+                @nota.faltas1 = nil
+                @nota.nota2 = nil
+                @nota.faltas2 = nil
+                @nota.nota3 = nil
+                @nota.faltas3 = nil
+                @nota.nota4 = nil
+                @nota.faltas4 = nil
+                @nota.nota5 = nil
+                @nota.faltas5= nil
+
+                  if @nota.save
+                      flash[:notice] = 'NOTA LANÇADA .'
+                      format.html { redirect_to(@nota) }
+                      format.xml  { render :xml => @nota, :status => :created, :location => @nota }
+
+                  end
+             end
+           end
+
+       end
+
     end
   end
 
@@ -196,11 +235,14 @@ end
         #@disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
         @disciplinas1 = Disciplina.all
         @professors1 = Professor.find(:all, :conditions => 'desligado = 0',   :order => 'nome ASC')
+        @alunos = Aluno.find(:all, :order => 'aluno_nome ASC')
 
     else
         @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
         @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
         @professors1 = Professor.find(:all, :conditions => [' id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
+        @alunos = Aluno.find(:all,   :order => 'aluno_nome ASC')
+        @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
     end
  end
 

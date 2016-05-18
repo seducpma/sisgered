@@ -6,39 +6,9 @@
          <td width =" 12%"><b>RA:</b></td>
          <td><%= @nota.aluno.aluno_ra  %></td>
          <td width =" 12%"><b>Aluno:</b></td>
-         <td><%= @nota.aluno.aluno_nome %></td>
+         <td><%= f.collection_select :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
       </tr>
 
-       <tr bgcolor="#F5F5F5">
-         <td width =" 12%"><b>Escola:</b></td>
-         <td colspan="3" ><%= session[:aluno] %></td>
-       </tr>
-       <tr bgcolor="#F5F5F5">
-         <td width =" 12%"><b>Classe:</b></td>
-         <td><%= session[:classe]%></td>
-         <td width =" 12%"><b>Periodo:</b></td>
-         <td><%= session[:periodo]%> - <%= session[:ano]%></td>
-       </tr>
-       <tr bgcolor="#F5F5F5">
-         <td width =" 12%"><b>Disciplina:</b></td>
-         <td> <%= session[:disciplina]%></td>
-         <td width =" 12%"><b>Professor:</b></td>
-         <td> <%= session[:professor]%></td>
-      </tr>
-       <tr bgcolor="#F5F5F5">
-         <td width =" 12%"><b>Bimestre:</b></td>
-         <td colspan="3"><%= @nota.bimestre%>º
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-             <b>Nota</b>&nbsp&nbsp<%= f.text_field :nota1 , :size => '4'%>
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-             <b>Faltas:</b>&nbsp&nbsp<%= f.text_field :faltas1 , :size => '3'%>
-         </td>
-      </tr>
-       <tr bgcolor="#F5F5F5">
-         <td width =" 12%" valign="top"><b>Observação:</b></td>
-         <td colspan="4"><%= f.text_area :obs1, :cols=>'90', :rows=> '3' %>
-         </td>
-      </tr>
   
 
 
