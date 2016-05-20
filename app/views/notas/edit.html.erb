@@ -1,11 +1,90 @@
-</div><div id="interno2">
+</div><div id="interno3">
 <% title "NOTAS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>ALTERAÇÂO DE LANÇAMENTOS</strong></font><br/>
+     <font size="3"><strong>LANÇAMENTOS</strong></font><br/>
  </div>
       <div class="tabs">
-      <%= render :partial => 'form' %>
+        <% form_for (@nota) do |f| %>
+         <%= f.error_messages %>
+          <fieldset><legend><font size=4>Dados alunos</font></legend>
+            <table width="100%">
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>RA:</b></td>
+                 <td><%= @nota.aluno.aluno_ra  %></td>
+                 <td width =" 12%"><b>Aluno:</b></td>
+                 <td><%= @nota.aluno.aluno_nome %></td>
+              </tr>
+
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Unidade:</b></td>
+                 <td colspan="3" ><%= session[:unidade] %></td>
+               </tr>
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Classe:</b></td>
+                 <td><%= session[:classe]%></td>
+                 <td width =" 12%"><b>Periodo:</b></td>
+                 <td><%= session[:periodo]%> - <%= session[:ano]%></td>
+               </tr>
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Disciplina:</b></td>
+                 <td> <%= session[:disciplina]%></td>
+                 <td width =" 12%"><b>Professor:</b></td>
+                 <td> <%= session[:professor]%></td>
+              </tr>
+              <tr bgcolor="#F5F5F5">
+                 <td colspan="4"><font  size="3"color="red"><u> <b>ATENÇÃO:</b></u></font></td>
+              </tr>
+              <tr bgcolor="#F5F5F5">
+                 <td colspan="4"><font  size="2"color="red"> <b>1) UTILIZE PONTO PARA SEPARAÇÃO DE VALORES FRACIONADOS. <br/> &nbsp&nbsp&nbsp&nbsp ex. 8.50 (correto)</b></font></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td colspan="4"><font size ="2" color="red"><b>2) NÃO UTILIZE VÍGULA PARA SEPARAÇÃO DE VALORES  FRACIONADOS. <br/>  &nbsp&nbsp&nbsp&nbsp  ex. 8,50 (errado)</b></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Bimestre:</b></td>
+                 <td colspan="3">1º
+                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                     <b>Nota</b>&nbsp&nbsp<%= f.text_field :nota1 , :size => '4'%>
+                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                     <b>Faltas:</b>&nbsp&nbsp<%= f.text_field :faltas1 , :size => '3'%>
+                 </td>
+              </tr>
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%" valign="top"><b>Observação:</b></td>
+                 <td colspan="4"><%= f.text_area :obs1, :cols=>'50', :rows=> '3' %>
+                 </td>
+              </tr>
+            </table>
+          </fieldset>
+
+
+
+               <table width="100%" >
+                 <tr bgcolor="#F5F5F5">
+                   <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+        <%end%>
+                    
+                     <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+                 </tr>
+               </table>
+
+
+          </font>
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
 <br/>

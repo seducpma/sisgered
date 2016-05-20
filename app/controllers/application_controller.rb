@@ -170,7 +170,7 @@ HABILIDADE ={ 'CANHOTO'=>'CANHOTO',
 CASA ={ 'PRÓPRIA'=>'PRÓPRIA',
         'ALUGADA'=>'ALUGADA',
         'EMPRESTADA'=>'EMPRESTADA',
-        'EM CONSTRUÇÂO' => 'EM CONSTRUÇÂO',
+        'EM CONSTRUÇÃO' => 'EM CONSTRUÇÃO',
        }
 
 CASATIPO ={ 'ALVENARIA'=>'ALVENARIA',
@@ -180,22 +180,22 @@ CASATIPO ={ 'ALVENARIA'=>'ALVENARIA',
 
 ELETRICIDADE ={ 'REDE PÚBLICA'=> 'REDE PÙBLICA',
                 'GERADOR PRÓPRIO'=>'GERADOR PRÒPRIO',
-                'NÃO TEM'=> 'NÂO TEM'
+                'NÃO TEM'=> 'NÃO TEM'
               }
 
 ESGOTO ={ 'REDE PÙBLICA' => 'REDE PÚBLICA',
           'FOSSA'=> 'FOSSA',
-         'NÃO TEM'=> 'NÂO TEM'
+         'NÃO TEM'=> 'NÃO TEM'
          }
 
 AGUA ={ 'REDE PÙBLICA' => 'REDE PÚBLICA',
         'POÇO ARTESIANO'=> 'POÇO ARTESIANO',
-         'NÃO TEM'=> 'NÂO TEM'
+         'NÃO TEM'=> 'NÃO TEM'
          }
 
 TIPOUNIDADE ={ "CAIC" =>"1",
                "CASA DA CRIANCA" =>"2",
-               "EDUCAÇÂO ESPECIAL"  =>"3",
+               "EDUCAÇÃO ESPECIAL"  =>"3",
                "CIEP" => "4",
                "CRECHE" =>"5",
                "EMEF" =>"6",
@@ -215,9 +215,30 @@ RELIGIAO = { "CATÓLICO ROMANO" => "CATÓLICO ROMANO",
              "BATISTA" => "BATISTA",
              "NEOPENTECONSTAL"=>"NEOPENTECOSTAL",
              "ASSSEMBLEIA DE DEUS" => "ASSEMBLEIA DE DEUS",
-             "CONGREGAÇÂO CRISTÂ" => "CONGRAGAÇÂO CRISTÃ",
+             "CONGREGAÇÃO CRISTÃ" => "CONGRAGAÇÃO CRISTÃ",
              "EVANGELICA TRADICONAL"=> "EVANGELIZA TRADICONAL",
              "EVANGELICA PENSTESCOSTAL"=> "EVANGELICA PENSTECOSTAL",
              "METODISTA"=> "METODISTA"
-
 }
+
+TURMA ={ "1" =>"1",
+         "2" =>"2",
+         "3"  =>"3",
+         "4" => "4",
+         "5" =>"5",
+         "6" =>"6",
+         "7" =>"7",
+         "8" =>"8",
+         "9" =>"9"
+        }
+
+ANO   ={ "2015" =>"2015",
+         "2014" =>"2014",
+         "2013"  =>"2013",
+         "2012" => "2012",
+         "2011" =>"2011",
+         "2010" =>"2010",
+         "2009" =>"2009",
+         "2008" =>"2008",
+         "2007" =>"2007"
+        }

@@ -11,21 +11,33 @@
        <center><div id="img"></div></center>
      </td>
      <td width="40%">
+
+
+<!--
         <font size ="5" color =" red"><center><b><u>
               SISTEMA EM <br/><br/> MANUNTENÇÂO<br/><br/>
                </u></b> até dia 20/05
          </center>
 
-<!--
+<!-->
        <p align="center"><font color="blue" size="3">SISGERED</font></p>
+
          <% form_tag session_path do -%>
             <p align="center"><b><label for="login">Login</label></b>
            &nbsp<%= text_field_tag 'login','',:size => 10 %><br/>
           <b><label for="password">Senha</label></b>
           <%= password_field_tag 'password','',:size => 10 %><br/><br/>
 
+
+  
+          <%= submit_tag 'Entrar' %></p>
+         <% end%>
+ 
+<!--       <p align="center"><font color="blue" size="3">SISGERED</font></p>          <font size ="5" color ="red"><center> <b><u>SISTEMA EM <br/><br/> MANUTENÇÃO</u></b></center> </font>!-->
+
           <%= submit_tag 'Entrar' %></p>
          <% end -%>
+
 
   <br/>
   <br/>

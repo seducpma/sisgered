@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get  }
   map.resources :classes_professors
   map.resources :notas_alunos
-  map.resources :notas, :collection => { :lancamentos_notas =>:get }
+  map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get }
   map.resources :classes_alunos
   map.resources :classes,:collection => { :editar_classe=>:get}
   map.resources :professors,:collection => { :consulta_classe=>:get}
@@ -96,7 +96,8 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_classe_nota '/consulta_classe_nota', :controller => 'atribuicaos', :action => 'consulta_classe_nota'
 
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
-
+  map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'
+  map.lancar_notas_alunos_atribuicaos '/lancar_notas_alunos_atribuicaos', :controller => 'atribuicaos', :action => 'lancar_notas_alunos_atribuicao'
 
   map.resources :roles_users, :collection => {:lista_users => :get}
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'

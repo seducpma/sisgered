@@ -9,6 +9,7 @@
      <td colspan="2"><hr><br/></td>
   </tr>
 </table>
+<% cont=1 %>
 <% @alunos.each do |aluno| %>
       <table width="100%">
         <tr>
@@ -32,10 +33,11 @@
       </table>
       <table frame="box" rules="all" width="100%">
         <tr>
-            <td><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <td><b>Nº</b> <%= cont %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></td>
             <% session[:aluno] = aluno.id %>
         </tr>
+        <% cont= cont+1 %>
         <tr bgcolor="#F5F5F5">
         <% for classe in @classe %>
 
@@ -144,41 +146,7 @@
 
       </table>
 
-<table width="100%" align="center" bgcolor="#DCDCDC" >
-  <tr><td> <br/><hr><br/><br/></td>
-  </tr>
-</table>
-<%end%>
 
-<% @alunos.each do |aluno| %>
-      <table width="100%">
-        <tr>
-          <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-          <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
-              <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
-              <% @classe.each do |classe| %>
-                   <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
-                   <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
-                   <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
-              <%end%>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-        </tr>
-        <tr>
-          <td colspan="22" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
-          </td>
-        </tr>
-      </table>
-      <table frame="box" rules="all" width="100%">
-        <tr>
-            <td><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></td>
-            <% session[:aluno] = aluno.id %>
-        </tr>
-        <tr bgcolor="#F5F5F5">
-        <% for classe in @classe %>
 
                <td ><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                <b>Período:</b>&nbsp&nbsp <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -289,6 +257,7 @@
   <tr><td> <br/><hr><br/><br/></td>
   </tr>
 </table>
+
 <%end%>
 
 

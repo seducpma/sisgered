@@ -30,12 +30,21 @@ before_filter :load_classes
   # GET /notas/new.xml
   def new
     @nota = Nota.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @nota }
     end
   end
+
+
+  def new_nota_historico
+    @nota = Nota.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @nota }
+    end
+  end
+
 
   # GET /notas/1/edit
   def edit
@@ -63,7 +72,6 @@ before_filter :load_classes
 
            @alunos3= @alunos1+@alunos2
            if (session[:unidade] > 41  and  session[:unidade] < 52)
-
 
            for alun in @alunos3
 
@@ -98,21 +106,35 @@ before_filter :load_classes
     end
   end
 
+
   # PUT /notas/1
   # PUT /notas/1.xml
   def update
     @nota = Nota.find(params[:id])
+     if @nota.update_attributes(params[:nota])
+        @nota = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =?", session[:id], session[:aluno_id]])
+        t=0
+        session[:nota_id] = @nota.id
+        @disci = Disciplina.find(:all, :conditions => ["id =?",session[:disc_id]])
+        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',  session[:classe_id],session[:professor_id], session[:disc_id]])
+        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
+        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+        @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  session[:classe_id],session[:professor_id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
 
-    respond_to do |format|
-      if @nota.update_attributes(params[:nota])
-        flash[:notice] = 'Nota was successfully updated.'
-        format.html { redirect_to(@nota) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @nota.errors, :status => :unprocessable_entity }
-      end
-    end
+        render  :partial => 'notas'
+                         
+     end
+
+   # respond_to do |format|
+   #   if @nota.update_attributes(params[:nota])
+   #     flash[:notice] = 'LANÇAMENTOS EXECUTADOS.'
+   #     format.html { redirect_to( lancar_notas_notas_path) }
+   #     format.xml  { head :ok }
+   #   else
+   #     format.html { render :action => "edit" }
+   #     format.xml  { render :xml => @nota.errors, :status => :unprocessable_entity }
+   #   end
+   # end
   end
 
   # DELETE /notas/1
@@ -197,7 +219,7 @@ if ( params[:disciplina].present?)
        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
-       @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'notas.bimestre ASC, alunos.aluno_nome ASC')
+       @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -210,7 +232,7 @@ def impressao_alteracao_lancamentos
        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',session[:classe_id], session[:professor_id], session[:disc_id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',session[:classe_id], session[:professor_id], session[:disc_id]])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
-       @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?", session[:classe_id], session[:professor_id], session[:disc_id]],:order => 'notas.bimestre ASC, alunos.aluno_nome ASC')
+       @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?", session[:classe_id], session[:professor_id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
 render :layout => "impressao"
 
 end
@@ -220,28 +242,68 @@ def impressao_lancamentos_notas
        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',session[:classe_id], session[:professor_id], session[:disc_id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',session[:classe_id], session[:professor_id], session[:disc_id]])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
-       @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?", session[:classe_id], session[:professor_id], session[:disc_id]],:order => 'notas.bimestre ASC, alunos.aluno_nome ASC')
+       @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?", session[:classe_id], session[:professor_id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
  
 render :layout => "impressao"
 
 end
 
 
+def lancar_notas
+
+end
+
+
+def lancar_notas_alunos
+if ( params[:disciplina].present?)
+      @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+        for dis in @disci
+            session[:disc_id] = dis.id
+        end
+       session[:classe_id] = params[:classe][:id]
+       session[:professor_id]= params[:professor][:id]
+       @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+       @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
+       render :update do |page|
+          page.replace_html 'notas', :partial => 'notas'
+       end
+
+end
+  
+  end
+
+
+
+
+
+
+
  def load_classes
    if current_user.unidade_id == 53 or current_user.unidade_id == 52 or  current_user.has_role?('direcao')
-        @classes = Classe.find(:all, :conditions => ['unidade_id=?', current_user.unidade_id], :order => 'classe_classe ASC')
+         if current_user.has_role?('direcao')
+            @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
+         else
+            @classes = Classe.find(:all, :order => 'classe_classe ASC')  
+         end
         #@classes = Classe.find.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM dis-ciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)..uniq
-
         #@disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
-        @disciplinas1 = Disciplina.all
+        @disciplinas1 = Disciplina.all(:order => 'ordem ASC' )
+        @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
         @professors1 = Professor.find(:all, :conditions => 'desligado = 0',   :order => 'nome ASC')
         @alunos = Aluno.find(:all, :order => 'aluno_nome ASC')
 
     else
+      
         @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
         @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
         @professors1 = Professor.find(:all, :conditions => [' id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
+
+        @alunos = Aluno.find(:all, :conditions => ['unidade_id=?', current_user.unidade_id],   :order => 'aluno_nome ASC')
+
         @alunos = Aluno.find(:all,   :order => 'aluno_nome ASC')
+
         @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
     end
  end

@@ -1,42 +1,48 @@
 <div style='display:none'>
-  <div id='inline_notas' style='padding: 0; margin-right: .1em; background:#EEE9E9;'>
-    <% form_remote_for(:nota,:url => { :action => 'create_notas' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
+  <div id='inline_notas' style='padding:10px; background:#EEE9E9;'>
+    <% form_remote_for(:nota,:url => { :action => 'edit_notas', :id =>:nota }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
   
     <b><u>LANÇAMENTOS/ Alunos</u></b> <br/>
       <hr>
        <%= error_messages_for 'contact' %>
-       <table width="100%" bgcolor="#F5F5F5">
-         <tr>
-           <td width="5%" valign="top"><b><font size="2">Aluno:</font></b></td>
-           <td colspan="5"><%= f.collection_select :aluno_id, @alunos3, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
-         </tr>
-        <tr>
-           <td colspan="3"><font  size="3"color="red"><u> <b>ATENÇÃO:</b></u>z'</font></td>
-        </tr>
+            <table width="100%">
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>RA:</b></td>
+                 <td><%= @nota.aluno.aluno_ra  %></td>
+                 <td width =" 12%"><b>Aluno:</b></td>
+                 <td><%= @nota.aluno.aluno_nome %></td>
+              </tr>
 
-        <tr>
-           <td colspan="3"><font  size="2"color="red"> <b>1) UTILIZE PONTO PARA SEPARAÇÃO DE VALORES FRACIONADOS -  ex. 8.50 (correto)</b></font></td>
-        </tr>
-        <tr>
-            <td colspan="3"><font size ="2" color="red"><b>2) NÂO UTILIZE VIGULA PARA SEPARAÇÃO       DE VALORES FRACIONADOS -  ex. 8,50 (errado)</b></td>
-        </tr>
-        <tr>
-          <td colspan="3"><b><font size="2">Ano Letivo: &nbsp&nbsp</font></b> <%= Time.now.year %>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1º <b><font size="2">Bimestre</font></b>
-          </td>
-       </tr>
-       <tr>
-         <td colspan="3">  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-               <b><font size="2">Nota: </font></b> &nbsp&nbsp<%= f.text_field :nota1, :size=>'1' %>
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="2"><b>Faltas:</b></font><font size="2"> &nbsp&nbsp<%=  f.text_field :faltas1, :size => '1',  :value => 0 %></font>
-            </td>
-        </tr>
-
-        <tr>
-          <td valign="top"><font size="2"><b>Observação:</font></b></td>
-          <td colspan="3"> <%= f.text_area :obs1, :cols=>'40', :rows=> '3',  :value => 'sem observações' %></td>
-                       
-        </tr>
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Unidade:</b></td>
+                 <td colspan="3" ><%= session[:unidade] %></td>
+               </tr>
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Classe:</b></td>
+                 <td><%= session[:classe]%></td>
+                 <td width =" 12%"><b>Periodo:</b></td>
+                 <td><%= session[:periodo]%> - <%= session[:ano]%></td>
+               </tr>
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Disciplina:</b></td>
+                 <td> <%= session[:disciplina]%></td>
+                 <td width =" 12%"><b>Professor:</b></td>
+                 <td> <%= session[:professor]%></td>
+              </tr>
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Bimestre:</b></td>
+                 <td colspan="3"><%= @nota.bimestre%>º
+                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                     <b>Nota</b>&nbsp&nbsp<%= f.text_field :nota1 , :size => '4'%>
+                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                     <b>Faltas:</b>&nbsp&nbsp<%= f.text_field :faltas1 , :size => '3'%>
+                 </td>
+              </tr>
+               <tr bgcolor="#F5F5F5">
+                 <td width =" 12%" valign="top"><b>Observação:</b></td>
+                 <td colspan="4"><%= f.text_area :obs1, :cols=>'50', :rows=> '3' %>
+                 </td>
+              </tr>
 
         <tr>
           <td colspan="4" align="left"><%= f.submit "Salvar" %></td>

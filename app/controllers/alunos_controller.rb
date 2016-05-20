@@ -341,12 +341,14 @@ end
         @alunosRA =  Aluno.find(:all,:order => "aluno_ra")
         @alunosRM =  Aluno.find(:all,:order => "aluno_rm")
         @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     else
 
         @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_nome")
         @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_ra")
         @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_rm")
         @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     end
     #@pessoas_mae =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "MÃE"'],:order => "pessoa_nome")
     #@pessoas_pai =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "PAI"'],:order => "pessoa_nome")

@@ -3,7 +3,7 @@
   <div class ="tabs">
 
 
-  <fieldset><legend><font size=4>LANÇAMENTOS ALTERADOS</font></legend>
+  <fieldset><legend><font size=4>LANÇAMENTOS</font></legend>
     <table width="100%">
        <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>RA:</b></td>
@@ -13,8 +13,8 @@
       </tr>
 
        <tr bgcolor="#F5F5F5">
-         <td width =" 12%"><b>Escola:</b></td>
-         <td colspan="3" ><%= session[:aluno] %></td>
+         <td width =" 12%"><b>Unidade:</b></td>
+         <td colspan="3" ><%= @nota.aluno.unidade.nome %></td>
        </tr>
        <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>Classe:</b></td>
@@ -29,9 +29,7 @@
          <td> <%= session[:professor]%></td>
       </tr>
        <tr bgcolor="#F5F5F5">
-         <td width =" 12%"><b>Bimestre:</b></td>
-         <td colspan="3"><%= @nota.bimestre%>º
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         <td width =" 12%">
              <b>Nota</b>&nbsp&nbsp<%= @nota.nota1%>
              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
              <b>Faltas:</b>&nbsp&nbsp<%= @nota.faltas1 %>

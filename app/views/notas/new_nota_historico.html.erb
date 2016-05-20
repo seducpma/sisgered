@@ -1,0 +1,74 @@
+</div><div id="interno4">
+<% title "NOTAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>NOTAS</strong></font><br/>
+ </div>
+      <div class="tabs">
+          <% form_for (@nota) do |f| %>
+           <%= f.error_messages %>
+            <fieldset><legend><font size=4>Dados alunos</font></legend>
+              <table width="100%">
+                 <tr bgcolor="#F5F5F5">
+                   <td width =" 12%"><b>Aluno:</b></td>
+                   <td><%= f.collection_select :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td width =" 12%"><b>Disciplina:</b></td>
+                   <td><%= f.collection_select :disciplina_id, @disciplinas, :id, :disciplina, :include_blank => ' -- Selecione -- ' %>
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Ano Letivo:</b>
+                   <%= f.select :ano_letivo, (ANO).sort %>
+                   </td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td width =" 12%"><b>Nota:</b></td>
+                   <td><%= f.text_field :nota1 , :size => '4'%>
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       <b>Faltas:</b>&nbsp&nbsp<%= f.text_field :faltas1 , :size => '3'%>
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       <b>Classe:</b>&nbsp&nbsp<%= f.select  :turma, (TURMA).sort %></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td width =" 12%" valign="top"><b>Observação:</b></td>
+                   <td colspan="4"><%= f.text_area :obs1, :cols=>'60', :rows=> '3' %>
+                   </td>
+                </tr>
+
+
+
+
+
+               </table>
+            </fieldset>
+
+
+
+                 <table width="100%" >
+                   <tr bgcolor="#F5F5F5">
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+          <%end%>
+                      
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+                   </tr>
+                 </table>
+
+
+            </font>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+<br/>
+</div>
+
