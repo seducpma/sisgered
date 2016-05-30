@@ -241,7 +241,7 @@ def impressao_relatorio_aluno
        end
       @notas = Nota.find(:all,:conditions => ['aluno_id =?', session[:aluno]])
       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =? ", session[:aluno]],:order =>'disciplinas.ordem ASC ')
-
+t=0
     render :layout => "impressao"
 end
 
