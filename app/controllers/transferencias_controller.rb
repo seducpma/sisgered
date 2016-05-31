@@ -64,7 +64,7 @@ end
 
     respond_to do |format|
       if @transferencia.save
-        flash[:notice] = 'Transferencia was successfully created.'
+        flash[:notice] = 'TRANSFERẼNCIA REALIZADA COM SUCESSO'
         format.html { redirect_to(@transferencia) }
         format.xml  { render :xml => @transferencia, :status => :created, :location => @transferencia }
       else
@@ -81,7 +81,7 @@ end
 
     respond_to do |format|
       if @transferencia.update_attributes(params[:transferencia])
-        flash[:notice] = 'Transferencia was successfully updated.'
+        flash[:notice] = 'TRANSFERẼNCIA REALIZADA COM SUCESSO'
         format.html { redirect_to(@transferencia) }
         format.xml  { head :ok }
       else
