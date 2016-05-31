@@ -198,7 +198,8 @@ def create_notas
       @classe.each do |classe|
          session[:unidade]=classe.unidade_id
        end
-       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =? ", params[:aluno_aluno_id]],:order =>'disciplinas.ordem ASC ')
+       @notas = Nota.find(:all,:conditions => ['aluno_id =? and ano_letivo =?', session[:aluno], Time.now.year])
+      #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =? ", params[:aluno_aluno_id]],:order =>'disciplinas.ordem ASC ')
       #@notas = Nota.find(:all,:conditions => ['aluno_id =?', params[:aluno_aluno_id]])
       render :partial => 'relatorio_aluno'
 end
@@ -230,7 +231,9 @@ if ( params[:disciplina].present?)
 
 
 def impressao_relatorio_aluno
-       @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
+
+        @aluno = Aluno.find(:all,:conditions =>['id = ?',session[:aluno]])
+
        @classeAtribuicaos = AlunosClasse.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],Time.now.year ])
        @classeAtribuicaos.each do |classe|
          session[:classe]=classe.classe_id
@@ -239,9 +242,22 @@ def impressao_relatorio_aluno
       @classe.each do |classe|
          session[:unidade]=classe.unidade_id
        end
-      @notas = Nota.find(:all,:conditions => ['aluno_id =? and ano_letivo =?', session[:aluno], Time.now.year])
+       @notas = Nota.find(:all,:conditions => ['aluno_id =? and ano_letivo =?', session[:aluno], Time.now.year])
+
+
+
+#       @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
+#       @classeAtribuicaos = AlunosClasse.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],Time.now.year ])
+#       @classeAtribuicaos.each do |classe|
+#         session[:classe]=classe.classe_id
+#       end
+#      @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
+#      @classe.each do |classe|
+#         session[:unidade]=classe.unidade_id
+#       end
+#      @notas = Nota.find(:all,:conditions => ['aluno_id =? and ano_letivo =?', session[:aluno], Time.now.year])
       #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =? ", session[:aluno]],:order =>'disciplinas.ordem ASC ')
-      t=0
+#      t=0
       render :layout => "impressao"
 end
 
