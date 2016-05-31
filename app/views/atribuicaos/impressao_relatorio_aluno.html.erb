@@ -69,7 +69,7 @@
      <%@notas.each do |nota|%>
 
       <td  style="font-size: 8px" width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
-      <%if nota.bimestre == 1%>
+      <%if nota.nota1.present?%>
            <td  style="font-size: 8px" align="center"><%= nota.nota1 %></td>
            <td  style="font-size: 8px" align="center"><%= nota.faltas1 %></td>
            <td style="font-size: 8px" ></td>
@@ -78,7 +78,7 @@
            <td align="center" style="font-size: 8px" ></td>
            <td style="font-size: 8px" ></td>
       <%end%>
-      <%if nota.bimestre == 2%>
+      <%if nota.nota2.present?%>
            <td align="center" style="font-size: 8px" ><%= nota.nota2 %></td>
            <td align="center" style="font-size: 8px" ><%= nota.faltas2 %></td>
            <td style="font-size: 8px" ></td>
@@ -87,7 +87,7 @@
            <td align="center" style="font-size: 8px" ></td>
            <td style="font-size: 8px" ></td>
       <%end%>
-      <%if nota.bimestre == 3%>
+      <%if nota.nota3.present?%>
            <td align="center" style="font-size: 8px" ><%= nota.nota3 %></td>
            <td align="center" style="font-size: 8px" ><%= nota.faltas3 %></td>
            <td style="font-size: 8px" ></td>
@@ -96,7 +96,7 @@
            <td align="center" style="font-size: 8px" ></td>
            <td style="font-size: 8px" ></td>
       <%end%>
-      <%if nota.bimestre == 4%>
+      <%if nota.nota4.present?%>
            <td align="center" style="font-size: 8px" ><%= nota.nota4 %></td>
            <td align="center" style="font-size: 8px" ><%= nota.faltas4 %></td>
            <td></td>
@@ -105,7 +105,7 @@
            <td align="center" style="font-size: 8px" ></td>
            <td style="font-size: 8px" ></td>
       <%end%>
-      <%if nota.bimestre == 5%>
+      <%if nota.nota5.present?%>
            <td align="center" style="font-size: 8px" ><%= nota.nota5 %></td>
            <td align="center" style="font-size: 8px" ><%= nota.faltas5 %></td>
            <td style="font-size: 8px" ></td>
