@@ -26,7 +26,7 @@
 <br/>
 
 <font  size=3><b> Alunos</b></font></legend>
-          <table frame="box" rules="all" width="80%" >
+          <table border="1" cellspacing="0" cellpadding="1" width="80%">
              <tr  bgcolor="#F5F5F5">
                <td colspan="2"> <b>Unidade Escolar:</b><% @aluno.each do |aluno| %><% session[:aluno]= aluno.unidade.nome %> <%end%>&nbsp&nbsp&nbsp<%= session[:aluno]%></td>
               </tr>

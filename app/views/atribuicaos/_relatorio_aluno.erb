@@ -18,7 +18,7 @@
     </td>
   </tr>
 </table>
-<table frame="box" rules="all" width="100%">
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
   <tr>
     <% @aluno.each do |aluno| %>
       <td><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -36,17 +36,17 @@
       </tr>
   <%end%>
 <% @aluno.each do |aluno| %>
-  <table frame="box" rules="all" width="100%">
-    <tr>
+      <table border="1" cellspacing="0" cellpadding="1" width="100%">
+    <tr cellspacing="2" cellpadding="2" >
       <td width=" 25%" rowspan="2" align="center"><b>Disciplina</b></td>
       <td width=" 15%" colspan="3" align="center"><b>1º Bimestre</b></td>
       <td width=" 15%"colspan="3" align="center"><b>2º Bimestre</b></td>
       <td width=" 15%" colspan="3" align="center"><b>3º Bimestre</b></td>
       <td width=" 15%" colspan="3" align="center"><b>4º Bimestre</b></td>
       <td width=" 15%" colspan="3" align="center"><b>FINAL</b></td>
-   </tr>
+   </tr '>
    <tr>
-     <td width ="5%" align="center" ><b>Nota</b></td>
+     <td width = px align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
      <td width ="5%" align="center"></td>
      <td width ="5%" align="center" ><b>Nota</b></td>

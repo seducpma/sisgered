@@ -28,7 +28,7 @@
   </tr>
  </table>
 <legend><font  size=3><b>Lançamentos</b></font></legend>
-        <table  border="1" frame="box" rules="all" width="100%">
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
            <% for classe in @classe %>
               <tr>
                   <td align="left" width="10%"><b>Unidade:</b></td>
@@ -84,7 +84,7 @@
          </tr>
           <tr bgcolor="#F5F5F5">
             <td colspan="8"> <div id="notas_aluno">
-                                <table border="1" frame="box" rules="all" width="100%">
+                                <table border="1" cellspacing="0" cellpadding="1" width="100%">
                                     <%@notas.each do |nota|%>
                                     <tr>
                                       <td width ="4%" ><b><%= nota.aluno.aluno_ra  %></b></td>

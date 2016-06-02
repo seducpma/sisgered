@@ -18,7 +18,7 @@
        </table>
      </fieldset>
       <fieldset>
-        <table width="100%"frame="box" rules="all" bgcolor="#F5F5F5">
+        <table border="1" cellspacing="0" cellpadding="1" bgcolor="#F5F5F5">
           <tr>
             <td>
                 <div id="historico"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
@@ -92,7 +92,7 @@
          </tr>
           <tr bgcolor="#F5F5F5">
             <td colspan="8"> <div id="notas_aluno">
-                                <table border="1" frame="box" rules="all" width="100%">
+                                <table border="1" cellspacing="0" cellpadding="1" width="100%">
                                     <%@notas.each do |nota|%>
                                     <tr>
                                       <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>

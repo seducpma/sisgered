@@ -25,7 +25,7 @@
 
   <legend><font  size=3><b> Dados Professor</b></font></legend>
       <% @professor.each do |professor| %>
-        <table border="1" frame="box" rules="all" width="100%">
+        <<table border="1" cellspacing="0" cellpadding="1" width="100%">
                 <tr >
                    <td><b>Nome:</b></td>
                    <td  width="50%"> <%=h professor.nome %></td>
@@ -42,7 +42,7 @@
        <%end%>
     <br/>
     <legend><font  size=3><b> Notas / Freqüências / Observação</b></font></legend>
-       <table border="1" frame="box" rules="all" width="100%">
+       <table border="1" cellspacing="0" cellpadding="1" width="100%">
               <tr>
                 <td align="center" width ="5%" ><b>Classe</b></td>
                 <td align="center" width ="30%" ><b>Aluno</b></td>

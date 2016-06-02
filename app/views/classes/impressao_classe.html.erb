@@ -9,7 +9,7 @@
   </tr>
 </table>
 
-<table frame="box" rules="all" width="100%">
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
   
    <tr  class ="invisible_to_print ">
      <td colspan="4"align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
@@ -38,7 +38,7 @@
              <% cont=1 %>
          <% cont1=1 %>
         <td colspan="4">  <% for atrib in @atribuicao_classe %>
-                           <table  frame="box" rules="all" width="100%">
+                           <table border="1" cellspacing="0" cellpadding="1" width="100%">
                               <tr style="line-height:25%">
                                  <td align="left" width="50%" style="font-size: 7px">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
                                  <td align="left"width="10%" style="font-size: 7px"><b> Disciplina:</b></td>
@@ -54,7 +54,7 @@
              <% cont=1 %>
          <% cont1=1 %>
         <td colspan="4">
-          <table frame="box" rules="all" width="100%" >
+          <table border="1" cellspacing="0" cellpadding="1" width="100%">
                              <tr style="line-height:25%">
                                <td align="center"width ="2%" style="font-size: 7px"><b>Nº</b></td>
                                <td width ="20%" style="font-size: 7px"><b>RM</b></td>

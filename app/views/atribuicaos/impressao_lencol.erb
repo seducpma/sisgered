@@ -1,5 +1,5 @@
 <% @classe.each do |classe| %>
-    <table frame="box" rules="all" width="100%">
+    <table border="1" cellspacing="0" cellpadding="1" width="100%">
          <tr>
             <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
             <td colspan="2"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
@@ -31,7 +31,7 @@
                   <b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
               </td>
             </tr>
-            <table frame="box" rules="all" width="100%">
+            <table border="1" cellspacing="0" cellpadding="1" width="100%">
               <tr>
                  <% @atribuicao_classe.each do |atrib| %>
 
@@ -40,7 +40,7 @@
                 <%else%>
                     <td style="font-size: 7px"  align="center"width ="5%"  valign="top"><br/><b><font size ="1px"><%= atrib.disciplina.disciplina %> </font></b><br/>
                  <%end%>
-                   <table frame="box" rules="all" width="100%">
+                   <table border="1" cellspacing="0" cellpadding="1" width="100%">
                           <%cont = 0%>
                        <tr>
                             <td  style="font-size: 7px" ><b> Nº </b> </td>
@@ -94,7 +94,7 @@
         </td>
       </tr>
     </table>
-  <table frame="box" rules="all" width="100%">
+  <table border="1" cellspacing="0" cellpadding="1" width="100%">
        <tr>
          <td align="center"> Carimbo da U.E </td>
        </tr>

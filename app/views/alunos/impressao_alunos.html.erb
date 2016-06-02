@@ -26,7 +26,7 @@
 <br/>
 <% @aluno.each do |aluno| %>
 <font  size=3><b> Dados Pessoais</b></font></legend>
-         <table frame="box" rules="all">
+         <table border="1" cellspacing="0" cellpadding="1" width="100%">
            <tr style="font-size:9px">
               <td width =" 22%"><b>Nº RA:</b></td>
               <td width ="15%">   <%=h aluno.aluno_ra %></td>
@@ -246,7 +246,7 @@
 
         </table>
     <font  size=3><b> Responsávels</b></font></legend>
-       <table <table frame="box" rules="all" width="100%">
+     <table border="1" cellspacing="0" cellpadding="1" width="100%">
            <tr  style="font-size:9px">
                <td ><b>Profissão:</b></td>
                <td colspan="3"> <%= aluno.aluno_profissao_responsavel%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -287,7 +287,7 @@
 
 
       <font  size=3><b> Autorizações</b></font></legend>
-      <table frame="box" rules="all" width="100%">
+      <table border="1" cellspacing="0" cellpadding="1" width="100%">
        <tr>
          <td colspan="7">1) Autorizo participar normalmente das atividades física, pois a criança não apresenta problemas de saúde que o impeça de paricipar.</td>
          <td ><%=h aluno.aluno_autoriza_ativ_fisica %></td>

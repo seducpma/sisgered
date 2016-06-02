@@ -36,7 +36,7 @@
                   <b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
               </td>
             </tr>
-            <table frame="box" rules="all" width="100%">
+            <table border="1" cellspacing="0" cellpadding="1" width="100%">
               <tr>
                  <% @atribuicao_classe.each do |atrib| %>
                 
@@ -45,7 +45,7 @@
                 <%else%>
                     <td align="center"width ="5%"  valign="top">&nbsp<br/><b><font size ="1px"><%= atrib.disciplina.disciplina %> </font></b><br/>
                  <%end%>
-                   <table frame="box" rules="all" width="100%">
+                   <table border="1" cellspacing="0" cellpadding="1" width="100%">
                           <%cont = 0%>
                        <tr>
                              <td align="center"> <font size ="1px"> <b> Nº </b></font> </td>

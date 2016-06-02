@@ -18,8 +18,14 @@ class ProfessorsController < ApplicationController
   end
 
   def load_professors
+    if (current_user.unidade_id == 53 or current_user.unidade_id == 52 ) then
       @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
       @professors1 = Professor.find(:all,:conditions => 'desligado = 0', :order => 'matricula ASC')
+    else
+      @professors = Professor.find(:all, :conditions => ['desligado = 0 AND	unidade_id=?',current_user.unidade_id ], :order => 'nome ASC')
+      @professors1 = Professor.find(:all,:conditions => ['desligado = 0 AND	unidade_id=?',current_user.unidade_id ] , :order => 'matricula ASC')
+    end
+
   end
 
 
@@ -185,6 +191,8 @@ end
                   page.replace_html 'classe_professors', :partial => 'professors_classe1'
                end
          else if params[:type_of].to_i == 3
+             t=0
+                @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
                 @atribuicao_classe = Atribuicao.find(:all, :joins => "inner join professors  on atribuicaos.professor_id = professors.id ", :conditions =>["professors.id =? ", params[:professor][:id]])
                   render :update do |page|
                     page.replace_html 'classe_professors', :partial => 'professors_classe1'
