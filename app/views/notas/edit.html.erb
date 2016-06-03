@@ -8,87 +8,111 @@
         <% form_for (@nota) do |f| %>
          <%= f.error_messages %>
           <fieldset><legend><font size=4>Dados alunos</font></legend>
-            <table width="100%">
-               <tr bgcolor="#F5F5F5">
-                 <td width =" 12%"><b>RA:</b></td>
-                 <td><%= @nota.aluno.aluno_ra  %></td>
-                 <td width =" 12%"><b>Aluno:</b></td>
-                 <td><%= @nota.aluno.aluno_nome %></td>
-              </tr>
-
-               <tr bgcolor="#F5F5F5">
-                 <td width =" 12%"><b>Unidade:</b></td>
-                 <td colspan="3" ><%= session[:unidade] %></td>
-               </tr>
-               <tr bgcolor="#F5F5F5">
-                 <td width =" 12%"><b>Classe:</b></td>
-                 <td><%= session[:classe]%></td>
-                 <td width =" 12%"><b>Periodo:</b></td>
-                 <td><%= session[:periodo]%> - <%= session[:ano]%></td>
-               </tr>
-               <tr bgcolor="#F5F5F5">
-                 <td width =" 12%"><b>Disciplina:</b></td>
-                 <td> <%= session[:disciplina]%></td>
-                 <td width =" 12%"><b>Professor:</b></td>
-                 <td> <%= session[:professor]%></td>
-              </tr>
+            <table>
               <tr bgcolor="#F5F5F5">
                  <td colspan="4"><font  size="3"color="red"><u> <b>ATENÇÃO:</b></u></font></td>
               </tr>
               <tr bgcolor="#F5F5F5">
-                 <td colspan="4"><font  size="2"color="red"> <b>1) UTILIZE PONTO PARA SEPARAÇÃO DE VALORES FRACIONADOS. <br/> &nbsp&nbsp&nbsp&nbsp ex. 8.50 (correto)</b></font></td>
+                 <td colspan="6"><font  size="2"color="red"> <b>1) UTILIZE PONTO PARA SEPARAÇÃO DE VALORES FRACIONADOS. <br/> &nbsp&nbsp&nbsp&nbsp ex. 8.50 (correto)</b></font></td>
             </tr>
             <tr bgcolor="#F5F5F5">
-                <td colspan="4"><font size ="2" color="red"><b>2) NÃO UTILIZE VÍGULA PARA SEPARAÇÃO DE VALORES  FRACIONADOS. <br/>  &nbsp&nbsp&nbsp&nbsp  ex. 8,50 (errado)</b></td>
+                <td colspan="6"><font size ="2" color="red"><b>2) NÃO UTILIZE VÍGULA PARA SEPARAÇÃO DE VALORES  FRACIONADOS. <br/>  &nbsp&nbsp&nbsp&nbsp  ex. 8,50 (errado)</b></td>
             </tr>
             <tr bgcolor="#F5F5F5">
-                 <td width =" 12%"><b>Bimestre:</b></td>
-                 <td colspan="3">1º
-                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                     <b>Nota</b>&nbsp&nbsp<%= f.text_field :nota1 , :size => '4'%>
-                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                     <b>Faltas:</b>&nbsp&nbsp<%= f.text_field :faltas1 , :size => '3'%>
-                 </td>
-              </tr>
+                <td colspan="6"><font size ="2" color="red"><b>3) O LANÇAMENTO DE NOTAS E FALTAS  PODERÁ SER EXECUTA SOMENTE  <br/> &nbsp&nbsp&nbsp UMA ÚNICA VEZ. OBSERVAÇÔES PODEM SER LANÇADAS DIVERSAS <br/> &nbsp&nbsp&nbsp VEZES, PARA LANÇAR CLIQUE NO LINK  <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></font>.</b></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td colspan="6"><font size ="2" color="red"><b>4) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR <br/> &nbsp&nbsp&nbsp LANÇAMENTO JÁ EXECUTADO.</b></td>
+            </tr>
+
+
                <tr bgcolor="#F5F5F5">
-                 <td width =" 12%" valign="top"><b>Observação:</b></td>
-                 <td colspan="4"><%= f.text_area :obs1, :cols=>'50', :rows=> '3' %>
-                 </td>
+                 <td width =" 10%"><b>Aluno:</b></td>
+                 <td colspan="3"><font color="blue"><%= @nota.aluno.aluno_nome %></font></td>
               </tr>
+              <tr bgcolor="#F5F5F5">
+                 <td width =" 10%"><b>Classe:</b></td>
+                 <td><%= session[:classe]%></td>
+                 <td width =" 10%"><b>Periodo:</b></td>
+                 <td><%= session[:periodo]%> - <%= session[:ano]%></td>
+               </tr>
+             <tr>
+                <td colspan="6">
+                   <table>
+                      <tr bgcolor="#F5F5F5">
+                           <td width ="4%"></td>
+                           <td align="center" width ="6%"><b>1º Bimestre</b></td>
+                           <td align="center" width ="6%"><b>2º Bimestre</b></td>
+                           <td align="center" width ="6%"><b>3º Bimestre</b></td>
+                           <td align="center" width ="6%"><b>4º Bimestre</b></td>
+                      </tr>
+                      <tr  bgcolor="#F5F5F5">
+                         <td></td>
+                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                         <td width ="6%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                      </tr>
+                      <tr bgcolor="#F5F5F5">
+                         <td></td>
+                         <td width ="3%"> <%if @nota.nota1.present?%>
+                                             &nbsp&nbsp&nbsp<%= @nota.nota1%>
+                                          <%else%>
+                                             <%= f.text_field :nota1 , :size => '3'%>
+                                          <%end%>
+                                            &nbsp&nbsp&nbsp
+                                          <%if @nota.faltas1.present?%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas1%>
+                                          <%else%>
+                                              <%= f.text_field :faltas1 , :size => '3'%>
+                                          <%end%>
+                         </td>
+                                          <td width ="3%"> <%if @nota.nota2.present?%>
+                                             &nbsp&nbsp&nbsp&nbsp<%= @nota.nota2%>
+                                          <%else%>
+                                             <%= f.text_field :nota2 , :size => '3'%>
+                                          <%end%>
+                                            &nbsp&nbsp&nbsp
+                                          <%if @nota.faltas2.present?%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas2%>
+                                          <%else%>
+                                              <%= f.text_field :faltas2 , :size => '3'%>
+                                          <%end%>
+                         </td>
+                         <td width ="3%"><!--<%= f.text_field :nota3 , :size => '3'%>--> &nbsp&nbsp&nbsp&nbsp --- <!--<%= f.text_field :faltas3 , :size => '3'%>--> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp --- </td>
+                         <td width ="3%"><!--<%= f.text_field :nota4 , :size => '3'%>--> &nbsp&nbsp&nbsp&nbsp --- <!--<%= f.text_field :faltas4 , :size => '3'%>--> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp --- </td>
+
+                      </tr>
+                   </table>
+                </td>
+              </tr>
+         <tr>
+            <td width="2%" valign="top"><font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></font>
+              <font size ="1"color ="red"><b>Para lançar clique em observações</b></font>
+
+            </td>
+            <td colspan="4" valign="top"> <%if !@nota.obs1.nil?%>
+                                             <b>1. </b><%=h @nota.obs1%> - <b>Data:</b> <%= @nota.created_at.strftime("%d/%m/%Y") %>
+                                             <%end%><br/>
+            <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
+        </tr>
+
+
             </table>
           </fieldset>
-
-
-
                <table width="100%" >
                  <tr bgcolor="#F5F5F5">
                    <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
 
         <%end%>
-                    
+
                      <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-
-
-
                  </tr>
                </table>
-
-
           </font>
-
-
-
-
-
-
-
-
-
-
     </div>
 </div>
 <br/>
 </div>
 
-
-
+      <%= render "form_observacao" %>

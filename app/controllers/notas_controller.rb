@@ -49,6 +49,7 @@ before_filter :load_classes
   # GET /notas/1/edit
   def edit
     @nota = Nota.find(params[:id])
+    session[:id_nota] = params[:id]
   end
 
   # POST /notas
@@ -106,6 +107,26 @@ before_filter :load_classes
     end
   end
 
+
+  def create_observacao_nota
+
+   t=params[:observacao_nota]
+    @observacao_nota = ObservacaoNota.new(params[:observacao_nota])
+      t1=params[:observacao_nota]
+
+      @nota = Nota.find(session[:id_nota])
+      @observacao_nota.nota_id =@nota.id
+      @observacao_nota.data = Time.now
+
+      if @observacao_nota.save
+
+        render :update do |page|
+          page.replace_html 'dados', :partial => "observacoes"
+          page.replace_html 'edit'
+        end
+       end
+
+end
 
   # PUT /notas/1
   # PUT /notas/1.xml
@@ -306,7 +327,6 @@ end
         @alunos = Aluno.find(:all, :order => 'aluno_nome ASC')
 
     else
-t=0
         @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
         @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id = "+(current_user.professor_id).to_s + " AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
         @professors1 = Professor.find(:all, :conditions => [' id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')

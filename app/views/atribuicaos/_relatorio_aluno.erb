@@ -116,16 +116,33 @@
    <tr>
      <td colspan="23"><hr></td>
    </tr>
-
    <tr>
      <td colspan="23"><b>Observações:</b></td>
    </tr>
     <%@notas.each do |nota|%>
+     <% if !nota.obs1.nil? %>
      <tr>
-        <td align="right"><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</td>
-        <td colspan="15"><%= nota.obs1%> </td>
-    </tr>
+       <td align="right" valign="top"><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</td>
+        <td colspan="15"> <% if !nota.obs1.nil? %>
+                            <b>1.</b> <%=h nota.obs1%> - <b>Data: </b><%=h nota.created_at.strftime("%d/%m/%Y")  %><br/>
+                          <% end%>
+                              <% if nota.obs1.nil? %>
+                                  <% c=0 %>
+                              <%else%>
+                                  <% c=1 %>
+                              <%end%>
+                                 <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+                                     <% @obs.each do |obs|%>
+                                           <b><%= c=c+1%>.</b><%=obs.observacao %>  -
+                                               <b>Data: </b> <%  if !obs.data.nil?  %>
+                                                    <%=  obs.data.strftime("%d/%m/%Y")%><br/>
+                                         <%end%>
+                                     <%end%>
+          </td>
+     </tr>
+    <%end%>
    <%end%>
+>
  </table>
 
       <table  width="100% ">
