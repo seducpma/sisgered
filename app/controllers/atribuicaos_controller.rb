@@ -166,6 +166,7 @@ if ( params[:disciplina].present?)
 
 
 def create_notas
+
       n=(params[:nota])
       @nota = Nota.new(params[:nota])
       @nota.ano_letivo =  Time.now.year

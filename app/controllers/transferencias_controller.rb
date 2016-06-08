@@ -64,6 +64,11 @@ end
 
     respond_to do |format|
       if @transferencia.save
+        @notas= Nota.find(:all, :conditions=>["aluno_id = ?", @transferencia.aluno_id ])
+        for nota in @notas
+          nota.unidade_id=@transferencia.unidade_id
+          nota.save
+        end
         flash[:notice] = 'TRANSFERẼNCIA REALIZADA COM SUCESSO'
         format.html { redirect_to(@transferencia) }
         format.xml  { render :xml => @transferencia, :status => :created, :location => @transferencia }

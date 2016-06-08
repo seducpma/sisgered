@@ -121,11 +121,6 @@ display: none;
                               </ul>
                          </li>
 
-<!--                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>   -->
-       
-                       <li><%= link_to "Atribuição",new_atribuicao_path %></li>
-       
-<!--                   <%end%>   -->
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                        <% if current_user.unidade_id == 43 or (current_user.unidade_id == 50) or (current_user.unidade_id == 51) %>
@@ -144,6 +139,11 @@ display: none;
                            <li><%= link_to "Disciplina",new_disciplina_path %></li>
                       <%end%>
 -->
+<!--                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>   -->
+
+                       <li><%= link_to "Atribuição",new_atribuicao_path %></li>
+
+<!--                   <%end%>   -->
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                             <li><%= link_to "Transferencias", new_transferencia_path%></li>
@@ -211,7 +211,9 @@ display: none;
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('professor'))%>
                      <li><%= link_to "Notas/Faltas",lancar_notas_notas_path %></li>
                   <%end%>
-
+                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria') or current_user.has_role?('direcao'))%>
+                     <li><%= link_to "Histórico",new_nota_path %></li>
+                  <%end%>
                  </ul>
               </li>
              <%end%>
