@@ -59,16 +59,65 @@ end
   def create
     @transferencia = Transferencia.new(params[:transferencia])
     @transferencia.para = (current_user.unidade.nome).capitalize
-    
+  t1=   session[:unidade_ant_id]
+    @classe_ant= Classe.find(:all, :joins => "INNER JOIN  alunos_classes  ON  classes.id=alunos_classes.classe_id  INNER JOIN alunos ON alunos.id=alunos_classes.aluno_id", :conditions =>['aluno_id = ?',@transferencia.aluno_id])
+    for classe_ant in @classe_ant
+       session[:classe_ant]= classe_ant.id
+     t=session[:classe_ant]
 
+   end
+   @atribuicaos_ant = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_ant]])
+   t1= @transferencia.classe_id
+   @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id = ?', @transferencia.classe_id])
+   @notas_ant = Nota.find(:all, :conditions => ['aluno_id = ? AND unidade_id =? AND ano_letivo=?', @transferencia.aluno_id, session[:unidade_ant_id], Time.now.year])
 
     respond_to do |format|
       if @transferencia.save
+       if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
+       for atri in @atribuicao
+            @nota = Nota.new(params[:nota])
+            @nota.aluno_id = @transferencia.aluno_id
+            @nota.atribuicao_id= atri.id
+            @nota.professor_id= atri.professor_id
+            @nota.unidade_id=  @transferencia.unidade_id
+            @nota.disciplina_id= atri.disciplina_id
+            @nota.ano_letivo =  Time.now.year
+            for notas_ant in @notas_ant
+              t1=atri.disciplina_id
+              t2=notas_ant.disciplina_id
+              t=0
+              if atri.disciplina_id == notas_ant.disciplina_id
+                  if !notas_ant.nota1.nil?
+                    @nota.nota1 = notas_ant.nota1
+                  else
+                    @nota.nota1 = nil
+                  end
+                  if !notas_ant.nota2.nil?
+                    @nota.faltas2 = notas_ant.falt2
+                  else
+                    @nota.faltas2 = nil
+                  end
+                  if !notas_ant.nota3.nil?
+                    @nota.nota3 = notas_ant.nota3
+                  else
+                    @nota.nota3 = nil
+                  end
+                  if !notas_ant.nota4.nil?
+                    @nota.faltas4 = notas_ant.falt4
+                  else
+                    @nota.faltas4 = nil
+                  end
+              end
+            end
+            @nota.nota5 = nil
+            @nota.faltas5= nil
+              if @nota.save
+                 flash[:notice] = 'DADOS SALVOS COM SUCESSO!'
+              end
+         end
+       end
         @notas= Nota.find(:all, :conditions=>["aluno_id = ?", @transferencia.aluno_id ])
-        for nota in @notas
-          nota.unidade_id=@transferencia.unidade_id
-          nota.save
-        end
+
         flash[:notice] = 'TRANSFERẼNCIA REALIZADA COM SUCESSO'
         format.html { redirect_to(@transferencia) }
         format.xml  { render :xml => @transferencia, :status => :created, :location => @transferencia }
@@ -130,9 +179,12 @@ end
 
 
   def unidade_transferencia
-   unidade_id = Unidade.find_by_nome(params[:transferencia_de])
+   session[:unidade_ant_id] = Unidade.find_by_nome(params[:transferencia_de])
+t=   session[:unidade_ant_id]
 
-   @alunos = Aluno.find(:all, :conditions =>['unidade_id =?',  unidade_id], :order => 'aluno_nome')
+
+
+   @alunos = Aluno.find(:all, :conditions =>['unidade_id =?',  session[:unidade_ant_id]], :order => 'aluno_nome')
    @unidade_para = Unidade.find(:all, :conditions => ['id =?', current_user.unidade_id], :order => 'nome ASC')
    @classes = Classe.find(:all, :conditions =>['unidade_id =?',  current_user.unidade_id], :order => 'classe_classe')
    render :partial => 'selecao_alunos'
@@ -145,7 +197,11 @@ end
   end
 
   def load_dados_iniciais
-       @unidade_de = Unidade.find(:all, :order => 'nome ASC')
+       if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
+         @unidade_de = Unidade.find(:all,:conditions =>['id > 41 AND id <52'], :order => 'nome ASC')
+       else
+          @unidade_de = Unidade.find(:all, :order => 'nome ASC')
+       end
        @unidade_para = Unidade.find(:all, :order => 'nome ASC')
        @alunos = Aluno.find(:all, :order => 'aluno_nome')
        @classes = Classe.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'classe_classe')
