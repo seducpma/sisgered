@@ -147,6 +147,9 @@ display: none;
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                             <li><%= link_to "Transferencias", new_transferencia_path%></li>
+                            <li><%= link_to "Remanejamento"%></li>
+                            <li><%= link_to "Buscar Aluno"%></li>
+
                       <%end%>
                  </ul>
               </li>
@@ -193,7 +196,7 @@ display: none;
                         <li><%= link_to "Boletim Escolar",relatorios_classe_atribuicaos_path %></li>
                         <li><%= link_to "Lençol de Notas",mapa_classe_atribuicaos_path %></li>
                         <li><%= link_to "Lista Presença",consulta_lista_path %></li>
-                        <li><%= link_to "Histórico Escolar", historico_atribuicaos_path %></li>
+                        <li><%= link_to "Histórico Escolar"%></li>
                         <li><%= link_to "Transferência" %></li>
                     <% end %>
                   </ul>

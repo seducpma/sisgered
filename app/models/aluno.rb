@@ -6,7 +6,6 @@ class Aluno < ActiveRecord::Base
   has_and_belongs_to_many :classes
   has_many :notas
 
-
   before_save  :maiusculo
   before_save  :atribui_dados
  
@@ -90,6 +89,8 @@ class Aluno < ActiveRecord::Base
    if  !self.aluno_local_trabalho_responsavel.nil?
       self.aluno_local_trabalho_responsavel.upcase!
    end
+
+
 
   end
 

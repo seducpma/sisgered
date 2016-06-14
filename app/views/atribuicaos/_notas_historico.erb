@@ -108,16 +108,15 @@
            <tr>
               <td align="left"><%= disciplina.disciplina %></td>
               <%for ano in 0..8 %>
-<%  t=@ano_inicial.ano_letivo %>
-<%t1=0%>
               <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
                  <% for nota in @notas %>
-                   <% if nota.ano_letivo == (ano+@ano_inicial.ano_letivo)%>
-                  <%   t=0    %>
+                  <%if nota.ano_letivo.present?%>
+                      <% if nota.ano_letivo == (ano+@ano_inicial.ano_letivo)%>
                            <td align="center"><%=  nota.nota5%></td>
-                        
-
-                  <%end%>
+                      <%end%>
+                   <%else%>
+                       <td align="center">---</td>
+                   <%end%>
                 <%end%>
             <%end%>
            </tr>

@@ -314,14 +314,27 @@
                <td><%=h saude.saude_hab_motora %></td>
              </tr>
              <tr bgcolor="#F5F5F5">
-               <td> <b>Parto:</b> &nbsp&nbsp&nbsp <%=h saude.saude_plano_saude %></td>
+               <td> <b>Parto:</b> &nbsp&nbsp&nbsp <%=h saude.saude_parto %></td>
                 <td><b>Sono:</b>&nbsp&nbsp&nbsp <%=h saude.saude_sono%></td>
                  <td><b>Tem Alergia:</b></td><td><%= saude.saude_alergia%></td>
              </tr>
+             <tr bgcolor="#F5F5F5"">
+                <td><b>Doenças na Gravidez:</b></td>
+                <td colspan="3"><%=h saude.saude_antecedentes_mae %></td>
+             </tr>
+             <tr bgcolor="#F5F5F5"">
+               <td><b>Alimentação:</b></td>
+               <td colspan="3"><%=h saude.saude_alimentacao %>  <%=h saude.saude_intolerancia%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5"">
+               <td><b>Toma Medicamento:</b></td>
+               <td colspan="3"><%=h saude.saude_medicamento%></td>
+             </tr>
+
              <tr bgcolor="#F5F5F5">
                <td><b>Toma Antipirético:</b></td>
                <td><%=h saude.saude_antipiretico%></td>
-               <td><b>Tomou Pelicilina:</b></td>
+               <td><b>Tomou Penicilina:</b></td>
                <td><%=h saude.saude_pelicilina%></td>
              </tr>
              <tr bgcolor="#F5F5F5">

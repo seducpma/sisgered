@@ -51,9 +51,7 @@ class AlunosController < ApplicationController
     @aluno = Aluno.new(params[:aluno])
     @verifica = Aluno.find_by_aluno_nome(@aluno.aluno_nome)
     @verifica2 = Aluno.find_by_aluno_nascimento(@aluno.aluno_nascimento)
-    t=@verifica
-    t1=@verifica2
-    t=0
+
 
     if (@verifica and @verifica2) then
        respond_to do |format|

@@ -17,7 +17,7 @@ class Saude < ActiveRecord::Base
     self.saude_necessidade_especial.upcase!
     self.saude_neuropsico.upcase!
     self.saude_alergia.upcase!
-    self.saude_alergia.upcase!
+    self.saude_plano_saude.upcase!
     self.saude_antecedentes_mae.upcase!
     self.saude_intolerancia.upcase!
     self.saude_medicamento.upcase!
@@ -32,6 +32,15 @@ class Saude < ActiveRecord::Base
     if  !self.saude_obs.nil?
       self.saude_obs.upcase!
     end
+   if  !self.saude_antecedentes_familia.nil?
+      self.saude_antecedentes_familia.upcase!
+   end
+      if  !self.saude_doencas.nil?
+      self.saude_doencas.upcase!
+   end
+
+
+
 
 
   end
