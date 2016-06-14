@@ -17,16 +17,15 @@
          <td colspan="3" ><%= @nota.aluno.unidade.nome %></td>
        </tr>
        <tr bgcolor="#F5F5F5">
-         <td width =" 12%"><b>Classe:</b></td>
-         <td><%= session[:classe]%></td>
          <td width =" 12%"><b>Periodo:</b></td>
-         <td><%= session[:periodo]%> - <%= session[:ano]%></td>
-       </tr>
-       <tr bgcolor="#F5F5F5">
+         <td><%= session[:periodo]%> </td>
          <td width =" 12%"><b>Disciplina:</b></td>
          <td> <%= session[:disciplina]%></td>
+
+       </tr>
+       <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>Professor:</b></td>
-         <td> <%= session[:professor]%></td>
+         <td colspan="3"> <%= session[:professor]%></td>
       </tr>
        <tr bgcolor="#F5F5F5">
          
@@ -34,6 +33,8 @@
            <td colspan="3"><b>Nota:</b>&nbsp&nbsp<%= @nota.nota5%>
              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
              <b>Faltas:</b>&nbsp&nbsp<%= @nota.faltas5 %>
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+             <b>Turma:</b>&nbsp&nbsp<%= @nota.classe %> º Ano
          </td>
       </tr>
        <tr bgcolor="#F5F5F5">

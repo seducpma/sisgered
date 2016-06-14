@@ -12,7 +12,9 @@
                <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
                   <%= collection_select :aluno, :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
               </td>
+              <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
              </tr>
+
        </table>
      </fieldset>
      <fieldset>

@@ -1,0 +1,195 @@
+<table width="100%">
+  <tr>
+    <td rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+        <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center><br/>
+        <center><font size="2"><b><u>HISTÓRICO ESCOLAR</u> &nbsp&nbsp&nbsp&nbsp</b></font></center>
+
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+
+ </table>
+<table cellspacing="0" cellpadding="1" width="100%">
+   <% @aluno.each do |aluno| %>
+     <tr>
+        <td width =" 15%"><b>Unidade de Ensino:</b></td>
+        <td><b><%=h aluno.unidade.nome %></b></td>
+     </tr>
+     <tr>
+         <td><b>Endereço:</b></td>
+         <td><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
+     </tr>
+     <tr>
+        <td><b>Autorização:</b></td>
+        <td><%=h aluno.unidade.autorizacao%></td>
+     </tr>
+     <tr>
+       <td colspan="2" align="center"><br/><b>DADOS DO ALUNOS</b></td>
+
+     </tr>
+  <%end%>
+</table>
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
+  <% @aluno.each do |aluno| %>
+     <tr>
+        <td ><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %></td>
+        <td><b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %></td>
+        <td colspan="2"><b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+     </tr>
+     <% if (aluno.aluno_certidao_nascimento.present?)  %>
+         <tr>
+           <td colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                           <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                           <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
+           </td>
+         </tr>
+     <%end%>
+     <tr>
+        <td ><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %></td>
+        <td><b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
+        <% if !(aluno.aluno_nacionalidade == 'BRASILEIRO')   %>
+          <td><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
+        <%else%>
+          <td colspan="2"></td>
+        <%end%>
+     </tr>
+     <% if (aluno.aluno_RG.present?)  %>
+       <tr>
+          <td ><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
+          <td><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %></td>
+          <td><b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
+          <td><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoCPF %></td>
+       </tr>
+     <%end%>
+  <%end%>
+</table>
+<font size="1"><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></font><br/>
+<font size="1"><b><u> Fundamento Legal</u>: Lei Federal 9294/96 Art. 26, 32, 33, 34 -
+                      Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
+<% @aluno.each do |aluno| %>
+  <table border="1" cellspacing="0" cellpadding="1" width="100%">
+    <tr cellspacing="2" cellpadding="2" >
+      <td width=" 40%" rowspan="3" align="center"><b>ÁREAS DE CONHECIMENTO </b></td>
+      <td width=" 60%" colspan="9" align="center"><b>MENÇÔES OU NOTAS</b></td>
+      
+   </tr>
+  </table>
+<%end%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
+ <tr >
+     <td width ="30%"rowspan="2"> <b><center>CURRÍCULO BÁSICO   </center> </b></td>
+     <td width ="5%" align="center" ><b>1º</b></td>
+     <td width ="5%" align="center" ><b>2º</b></td>
+     <td width ="5%" align="center" ><b>3º</b></td>
+     <td width ="5%" align="center" ><b>4º</b></td>
+     <td width ="5%" align="center" ><b>5º</b></td>
+     <td width ="5%" align="center" ><b>6º</b></td>
+     <td width ="5%" align="center" ><b>7º</b></td>
+     <td width ="5%" align="center" ><b>8º</b></td>
+     <td width ="5%" align="center" ><b>9º</b></td>
+   </tr>
+   <tr>
+
+  <% ano = @ano_inicial.ano_letivo %>
+  <%for i in 0..8 %>
+     <td width ="5%" align="center" ><b><%= ano%></b></td>
+     <% ano = ano + 1 %>
+  <%end%>
+
+
+
+   <%@disciplinas.each do |disciplina|%>
+      <%if disciplina.curriculo == 'B'%>
+           <tr>
+              <td align="left"><%= disciplina.disciplina %></td>
+              <%for ano in 0..8 %>
+<%  t=@ano_inicial.ano_letivo %>
+<%t1=0%>
+              <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+                 <% for nota in @notas %>
+                   <% if nota.ano_letivo == (ano+@ano_inicial.ano_letivo)%>
+                  <%   t=0    %>
+                           <td align="center"><%=  nota.nota5%></td>
+                        
+
+                  <%end%>
+                <%end%>
+            <%end%>
+           </tr>
+      <%end%>
+   <%end%>
+
+
+  
+
+
+
+
+ </tr>
+  <tr>
+     <td><b> Carga Horária</b></td>
+   </tr>
+ <tr >
+     <td width ="30%"rowspan="2"> <b><center>OFICINAS DIVERSITICADAS   </center> </b></td>
+     <td width ="5%" align="center" ><b>1º</b></td>
+     <td width ="5%" align="center" ><b>2º</b></td>
+     <td width ="5%" align="center" ><b>3º</b></td>
+     <td width ="5%" align="center" ><b>4º</b></td>
+     <td width ="5%" align="center" ><b>5º</b></td>
+     <td width ="5%" align="center" ><b>6º</b></td>
+     <td width ="5%" align="center" ><b>7º</b></td>
+     <td width ="5%" align="center" ><b>8º</b></td>
+     <td width ="5%" align="center" ><b>9º</b></td>
+   </tr>
+   <tr>
+
+  <% ano = @ano_inicial.ano_letivo %>
+  <%for i in 0..8 %>
+     <td width ="5%" align="center" ><b><%= ano%></b></td>
+     <% ano = ano + 1 %>
+  <%end%>
+     
+   <%@disciplinas.each do |disciplina|%>
+      <%if disciplina.curriculo == 'D'%>
+         <tr> <td><%= disciplina.disciplina %></td></tr>
+      <%end%>
+   <%end%>
+
+
+
+
+
+
+
+                        <table>
+  <tr>
+    <td> <b></td>
+
+
+  </tr>
+
+</table>
+
+
+
+
+
+
+    
+      <table  width="100% ">
+          <tr>
+           <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+
+          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                  <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
+          <%end%>
+          </tr>
+        </table>
+
+
+

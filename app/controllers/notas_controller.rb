@@ -49,8 +49,8 @@ before_filter :load_classes
   
  def create
     @nota = Nota.new(params[:nota])
-
-    respond_to do |format|
+    @nota.unidade_id =  current_user.unidade_id
+   respond_to do |format|
       if @nota.save
         flash[:notice] = 'Nota was successfully created.'
         format.html { redirect_to(@nota) }

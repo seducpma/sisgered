@@ -355,6 +355,31 @@ t=0
 
 end
 
+def historico_aluno
+     @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
+     for aluno in @aluno
+       session[:unidade_id]= aluno.unidade_id
+       session[:aluno_id]= aluno.id
+     end
+     @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
+     @disciplinas = Disciplina.find(:all, :conditions =>['id < 22'],:order => 'ordem ASC' )
+
+      @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
+     t=0
+
+
+     
+     #@alunos1 = Aluno.find(:all, :joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe]])
+     #@disciplinas = Disciplina.find(:all, :joins => "INNER JOIN  notas  ON  disciplinas.id=notas.disciplina_id  INNER JOIN alunos ON alunos.id=notas.aluno_id", :conditions =>['disciplinas.id < 22 AND notas.aluno_id =?',session[:aluno_id] ],:order => 'disciplinas.ordem ASC,notas.ano_letivo ASC' )
+     t=0
+       render :update do |page|
+          page.replace_html 'historico', :partial => 'notas_historico'
+       end
+
+end
+
+
+
    def load_professores11
     @professores1 = type_user(current_user.unidade_id)
   end

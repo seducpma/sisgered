@@ -185,7 +185,7 @@ display: none;
                  </ul>
               </li>
              <%end%>
-              <li><a class="item-primary" href="#;">RELATÓRIOS</a>
+              <li><a class="item-primary" href="#;">DOCUMENTOS</a>
                 <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria') or current_user.has_role?('professor')%>
                  <ul style="width:108px;">
                         <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
@@ -193,6 +193,7 @@ display: none;
                         <li><%= link_to "Boletim Escolar",relatorios_classe_atribuicaos_path %></li>
                         <li><%= link_to "Lençol de Notas",mapa_classe_atribuicaos_path %></li>
                         <li><%= link_to "Lista Presença",consulta_lista_path %></li>
+                        <li><%= link_to "Transferência"%></li>
                     <% end %>
                   </ul>
                <%end%>
