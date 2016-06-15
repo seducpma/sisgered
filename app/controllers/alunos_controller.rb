@@ -108,6 +108,10 @@ end
 
   end
 
+  def construcao
+    
+  end
+
   def mesmo_nome
     session[:nome] = params[:aluno_aluno_nome]
     t=session[:nome]

@@ -276,8 +276,9 @@ end
   end
 
  def load_classes
-   t=0
+
    if current_user.unidade_id == 53 or current_user.unidade_id == 52 or  current_user.has_role?('direcao')
+     t=0
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52)
            @classes = Classe.find(:all, :order => 'classe_classe ASC')
          else
@@ -289,24 +290,32 @@ end
         @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52)
            @professors1 = Professor.find(:all, :conditions => 'desligado = 0',   :order => 'nome ASC')
-
+           t=0
          else
-           @professors1 = Professor.find(:all, :conditions => ['desligado = 0 and unidade_id =?',current_user.unidade_id],   :order => 'nome ASC')
-
+           @professors1 = Professor.find(:all, :conditions => ['desligado = 0 and (unidade_id =? or unidade_id =99)',current_user.unidade_id],   :order => 'nome ASC')
+           t=0
+         end
+         if (current_user.unidade_id == 53 or current_user.unidade_id == 52)
+            @alunos = Aluno.find(:all, :order => 'aluno_nome ASC')
+            t=0
+        else
+           @alunos = Aluno.find(:all, :conditions => ['unidade_id=?', current_user.unidade_id],   :order => 'aluno_nome ASC')
+           t=0
          end
 
-
-
-
-        @alunos = Aluno.find(:all, :order => 'aluno_nome ASC')
-
     else
-        @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
-        @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id = "+(current_user.professor_id).to_s + " AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
-        @professors1 = Professor.find(:all, :conditions => [' id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
-        @alunos = Aluno.find(:all, :conditions => ['unidade_id=?', current_user.unidade_id],   :order => 'aluno_nome ASC')
-        @alunos = Aluno.find(:all,   :order => 'aluno_nome ASC')
-        @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
+       if current_user.has_role?('professor')
+            @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
+            @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id = "+(current_user.professor_id).to_s + " AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
+            @professors1 = Professor.find(:all, :conditions => [' id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
+            @alunos = Aluno.find(:all, :conditions => ['unidade_id=?', current_user.unidade_id],   :order => 'aluno_nome ASC')
+            #@alunos = Aluno.find(:all,   :order => 'aluno_nome ASC')
+            @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
+       else if current_user.has_role?('secretaria')
+                @alunos = Aluno.find(:all, :conditions => ['unidade_id=?', current_user.unidade_id],   :order => 'aluno_nome ASC')
+                @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
+           end
+       end
     end
  end
 

@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :transferencias,:collection => { :editar_transferencia=>:get}
   map.resources :disciplinas
-  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get, :consulta_professor_classe=>:get, :historico_aluno=>:get, :historico => :get }
+  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get, :consulta_professor_classe=>:get, :historico_aluno=>:get, :historico => :get, :transferencia_aluno => :get, :transferenciaA=> :get}
   map.resources :classes_professors
   map.resources :notas_alunos
   map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get }
@@ -38,6 +38,8 @@ ActionController::Routing::Routes.draw do |map|
   map.grafico_por_unidade '/grafico/crianca_por_unidade', :controller => 'grafico', :action => 'crianca_por_unidade'
 
 
+  map.construcao '/construcao', :controller => 'alunos', :action => 'construcao'
+
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
@@ -63,6 +65,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_lancamentos '/impressao_lancamentos', :controller => 'atribuicaos', :action => 'impressao_lancamentos'
   map.impressao_alteracao_lancamentos '/impressao_alteracao_lancamentos', :controller => 'notas', :action => 'impressao_alteracao_lancamentos'
   map.impressao_lancamentos_notas '/impressao_lancamentos_notas', :controller => 'notas', :action => 'impressao_lancamentos_notas'
+  map.impressao_transferencia_aluno'impressao_transferencia_aluno', :controller => 'atribuicaos', :action => 'impressao_transferencia_aluno'
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
 
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'

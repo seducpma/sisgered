@@ -1,0 +1,325 @@
+<table class ="invisible_to_print ">
+  <tr>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+</table>
+
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
+  <tr>
+    <td rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+        <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center><br/>
+        <center><font size="2"><b><u>TRANSFERÊNCIA</u> &nbsp&nbsp&nbsp&nbsp</b></font></center>
+
+    </td>
+  </tr>
+
+ </table>
+<table cellspacing="0" cellpadding="1" width="100%">
+   <% @aluno.each do |aluno| %>
+     <tr>
+        <td style="font-size: 8px" width =" 15%"><b>Unidade de Ensino:</b></td>
+        <td style="font-size: 8px" ><b><%=h aluno.unidade.nome %></b></td>
+     </tr>
+     <tr>
+         <td style="font-size: 8px"><b>Endereço:</b></td>
+         <td style="font-size: 8px"><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
+     </tr>
+     <tr>
+        <td style="font-size: 8px"><b>Autorização:</b></td>
+        <td style="font-size: 8px"><%=h aluno.unidade.autorizacao%></td>
+     </tr>
+  <%end%>
+</table>
+ <br/>
+<table cellspacing="0" cellpadding="1" width="100%">
+  <% @aluno.each do |aluno| %>
+     <tr>
+     <td  style="font-size: 8px" colspan="3">
+
+
+               <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%=h aluno.aluno_nome %></b>  R.A.: <b><%=h aluno.aluno_ra %></b>,
+               <% if (aluno.aluno_RG.present?)  %>
+                  e RG: <b><%=h aluno.aluno_RG %></b> emitido em < <b><%=h aluno.aluno_emissaoRG %></b> ,
+               <%end%>
+               nascido(a) em <b><%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></b> na cidade de <br/>
+               <%=h aluno.aluno_naturalidade %>, encontra-se devidamente matriculado nesta unidade escolar na <b> classe  <% @classe.each do |classe| %> <%=h classe.classe_classe %> <%end%></b>,e nesta data deu entrada com o pedido de transferência nesta data,
+               estando apto(a) a frequentar
+               
+               <%=$var%>
+
+              ano do Ensino Fundamental de 9 anos.
+
+     </tr>
+     <tr>
+        <td style="font-size: 8px" ><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %></td>
+        <td style="font-size: 8px" ><b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
+     </tr>
+  <%end%>
+</table>
+
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
+<% @aluno.each do |aluno| %>
+      <table border="1" cellspacing="0" cellpadding="1" width="100%">
+    <tr cellspacing="2" cellpadding="2" >
+      <td style="font-size: 8px" width=" 25%" rowspan="2" align="center"><b>Disciplina</b></td>
+      <td style="font-size: 8px"  width=" 15%" colspan="3" align="center"><b>1º Bimestre</b></td>
+      <td style="font-size: 8px" width=" 15%"colspan="3" align="center"><b>2º Bimestre</b></td>
+      <td style="font-size: 8px" width=" 15%" colspan="3" align="center"><b>3º Bimestre</b></td>
+      <td style="font-size: 8px" width=" 15%" colspan="3" align="center"><b>4º Bimestre</b></td>
+      <td style="font-size: 8px" width=" 15%" colspan="3" align="center"><b>FINAL</b></td>
+   </tr>
+   <tr>
+     <td style="font-size: 8px" width = px align="center" ><b>Nota</b></td>
+     <td style="font-size: 8px" width ="5%" align="center" ><b>Falta</b></td>
+     <td style="font-size: 8px" width ="5%" align="center"></td>
+     <td style="font-size: 8px" width ="5%" align="center" ><b>Nota</b></td>
+     <td style="font-size: 8px" width ="5%" align="center" ><b>Falta</b></td>
+     <td style="font-size: 8px" width ="5%" align="center"></td>
+     <td style="font-size: 8px" width ="5%" align="center" ><b>Nota</b></td>
+     <td style="font-size: 8px" width ="5%" align="center" ><b>Falta</b></td>
+     <td style="font-size: 8px" width ="5%" align="center"></td>
+     <td style="font-size: 8px" width ="5%" align="center" ><b>Nota</b></td>
+     <td style="font-size: 8px" width ="5%" align="center"><b>Falta</b></td>
+     <td style="font-size: 8px" width ="5%" align="center"></td>
+     <td style="font-size: 8px" width ="5%" align="center" ><b>Nota</b></td>
+     <td style="font-size: 8px" width ="5%" align="center" ><b>Falta</b></td>
+     <td style="font-size: 8px" width ="5%" align="center"></td>
+   </tr>
+   <tr>
+     <%@notas.each do |nota|%>
+
+      <td style="font-size: 8px" width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
+      <%if nota.nota1.present?%>
+           <td style="font-size: 8px" align="center"><%= nota.nota1 %></td>
+           <td style="font-size: 8px" align="center"><%= nota.faltas1 %></td>
+           <td></td>
+      <%else%>
+           <td style="font-size: 8px" align="center"></td>
+           <td style="font-size: 8px" align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.nota2.present?%>
+           <td style="font-size: 8px" align="center"><%= nota.nota2 %></td>
+           <td style="font-size: 8px" align="center"><%= nota.faltas2 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.nota3.present?%>
+           <td style="font-size: 8px" align="center"><%= nota.nota3 %></td>
+           <td style="font-size: 8px" align="center"><%= nota.faltas3 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.nota4.present?%>
+           <td style="font-size: 8px" align="center"><%= nota.nota4 %></td>
+           <td style="font-size: 8px" align="center"><%= nota.faltas4 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.nota5.present?%>
+           <td style="font-size: 8px" align="center"><%= nota.nota5 %></td>
+           <td style="font-size: 8px" align="center"><%= nota.faltas5 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+   </tr>
+    <%end%>
+   <tr>
+     <td colspan="23"><hr></td>
+   </tr>
+   <tr>
+     <td style="font-size: 8px" colspan="23"><b>Observações:</b></td>
+   </tr>
+    <%@notas.each do |nota|%>
+     <% if !nota.obs1.nil? %>
+     <tr>
+       <td style="font-size: 8px" align="right" valign="top"><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</td>
+        <td style="font-size: 8px" colspan="15"> <% if !nota.obs1.nil? %>
+                            <b>1.</b> <%=h nota.obs1%> - <b>Data: </b><%=h nota.created_at.strftime("%d/%m/%Y")  %><br/>
+                          <% end%>
+                              <% if nota.obs1.nil? %>
+                                  <% c=0 %>
+                              <%else%>
+                                  <% c=1 %>
+                              <%end%>
+                                 <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+                                     <% @obs.each do |obs|%>
+                                           <b><%= c=c+1%>.</b><%=obs.observacao %>  -
+                                               <b>Data: </b> <%  if !obs.data.nil?  %>
+                                                    <%=  obs.data.strftime("%d/%m/%Y")%><br/>
+                                         <%end%>
+                                     <%end%>
+          </td>
+     </tr>
+    <%end%>
+   <%end%>
+
+ </table>
+
+      <table  width="100% ">
+          <tr>
+           <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+
+          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                  <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_transferencia_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+          <%end%>
+          </tr>
+        </table>
+<%end%>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
+  <tr>
+    <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td colspan="2"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+        <% @aluno.each do |aluno| %>
+             <center><font size="1">Unidade Escolar:  <%=h aluno.unidade.nome %>  </font></center>
+             <center><font size="1"><%=h aluno.unidade.endereco%><%=h aluno.unidade.num%> - Americana - SP  </font>
+             <font size="1"><%=h aluno.unidade.CEP%> - <%=h aluno.unidade.fone%>  </font></center>
+        <%end%>
+    </td>
+  </tr>
+  <tr  class ="invisible_to_print ">
+    <td colspan="2" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+    </td>
+  </tr>
+</table>
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
+  <tr>
+    <% @aluno.each do |aluno| %>
+      <td  style="font-size: 8px"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></td>
+      <% session[:aluno] = aluno.id %>
+    <%end%>
+  </tr>
+  <tr>
+  <% for classe in @classe %>
+
+         <td  style="font-size: 8px"><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Período:</b>&nbsp&nbsp <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Ano Letivo:</b> &nbsp&nbsp<%=h classe.classe_ano_letivo %></td>
+             <%  session[:classe]=  classe.id%>
+      </tr>
+  <%end%>
+<% @aluno.each do |aluno| %>
+<table border="1" cellspacing="0" cellpadding="1" width="100%">
+    <tr>
+      <td style="font-size: 8px" width=" 25%" rowspan="2" align="center"><b>Disciplina</b></td>
+      <td style="font-size: 8px" width=" 15%" colspan="3" align="center"><b>1º Bimestre</b></td>
+      <td style="font-size: 8px" width=" 15%"colspan="3" align="center"><b>2º Bimestre</b></td>
+      <td style="font-size: 8px" width=" 15%" colspan="3" align="center"><b>3º Bimestre</b></td>
+      <td style="font-size: 8px" width=" 15%" colspan="3" align="center"><b>4º Bimestre</b></td>
+      <td style="font-size: 8px" width=" 15%" colspan="3" align="center"><b>FINAL</b></td>
+   </tr>
+   <tr>
+     <td style="font-size: 8px" width ="3%" align="center" ><b>Nota</b></td>
+     <td style="font-size: 8px"  width ="3%" align="center" ><b>Falta</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center" ><b>Freq.</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center" ><b>Nota</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center" ><b>Falta</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center"><b>Falta</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center" ><b>Nota</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center" ><b>Falta</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center"><b>Falta</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center" ><b>Nota</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center"><b>Falta</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center"><b>Falta</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center" ><b>Nota</b></td>
+     <td style="font-size: 8px"  width ="3%" align="center" ><b>Falta</b></td>
+     <td  style="font-size: 8px" width ="3%" align="center"><b>Falta</b></td>
+   </tr>
+   <tr>
+     <%@notas.each do |nota|%>
+
+      <td  style="font-size: 8px" width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
+      <%if nota.nota1.present?%>
+           <td  style="font-size: 8px" align="center"><%= nota.nota1 %></td>
+           <td  style="font-size: 8px" align="center"><%= nota.faltas1 %></td>
+           <td style="font-size: 8px" ></td>
+      <%else%>
+           <td align="center" style="font-size: 8px" ></td>
+           <td align="center" style="font-size: 8px" ></td>
+           <td style="font-size: 8px" ></td>
+      <%end%>
+      <%if nota.nota2.present?%>
+           <td align="center" style="font-size: 8px" ><%= nota.nota2 %></td>
+           <td align="center" style="font-size: 8px" ><%= nota.faltas2 %></td>
+           <td style="font-size: 8px" ></td>
+      <%else%>
+           <td align="center" style="font-size: 8px" ></td>
+           <td align="center" style="font-size: 8px" ></td>
+           <td style="font-size: 8px" ></td>
+      <%end%>
+      <%if nota.nota3.present?%>
+           <td align="center" style="font-size: 8px" ><%= nota.nota3 %></td>
+           <td align="center" style="font-size: 8px" ><%= nota.faltas3 %></td>
+           <td style="font-size: 8px" ></td>
+      <%else%>
+           <td align="center" style="font-size: 8px" ></td>
+           <td align="center" style="font-size: 8px" ></td>
+           <td style="font-size: 8px" ></td>
+      <%end%>
+      <%if nota.nota4.present?%>
+           <td align="center" style="font-size: 8px" ><%= nota.nota4 %></td>
+           <td align="center" style="font-size: 8px" ><%= nota.faltas4 %></td>
+           <td></td>
+      <%else%>
+           <td align="center" style="font-size: 8px" ></td>
+           <td align="center" style="font-size: 8px" ></td>
+           <td style="font-size: 8px" ></td>
+      <%end%>
+      <%if nota.nota5.present?%>
+           <td align="center" style="font-size: 8px" ><%= nota.nota5 %></td>
+           <td align="center" style="font-size: 8px" ><%= nota.faltas5 %></td>
+           <td style="font-size: 8px" ></td>
+      <%else%>
+           <td align="center" style="font-size: 8px" ></td>
+           <td align="center" style="font-size: 8px" ></td>
+           <td style="font-size: 8px" ></td>
+      <%end%>
+   </tr>
+    <%end%>
+   <tr>
+     <td colspan="23"><hr></td>
+   </tr>
+
+ </table>
+
+<%end%>
+
