@@ -63,7 +63,9 @@
                                <%else%>
                                   <font color ="red"> Transferido</font> -
                                <%end%>
-                               <%= aluno.transferido.strftime("%d/%m/%Y")%>
+                           <%if !aluno.transferido.nil?%>
+                                <%= aluno.transferido.strftime("%d/%m/%Y")%>
+                            <%end%>
                           </td>
                       </tr>
                     <%else%>
