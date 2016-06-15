@@ -52,26 +52,45 @@ display: none;
            <font size="4" color="green"><%= link_to h(current_user.login.capitalize), edit_user_path(current_user) %>  </font>
         </td>
         <% if current_user.has_role?('admin') %>
-         <td>Acesso de Administrador do Sistema<font size="1">
+         <td>Acesso de Administrador do Sistema|
+                           <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
+                           <% uni = @unidade.first.nome  %>
+                           <font size="1">  <%= uni %></font><font size="1">
          <td align="right"></font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font>
         <%else%>
            <% if current_user.has_role?('SEDUC') %>
-              <td>Acesso SEDUC</td>
+              <td>Acesso SEDUC |
+                           <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
+                           <% uni = @unidade.first.nome  %>
+                           <font size="1">  <%= uni %></font></td>
               <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
            <%else%>
               <% if current_user.has_role?('supervisao') %>
-                  <td>Acesso Supervisão SEDUC</td>
+                  <td>Acesso Supervisão SEDUC |
+                           <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
+                           <% uni = @unidade.first.nome  %>
+                           <font size="1">  <%= uni %></font></td>
                   <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
               <%else%>
                  <% if current_user.has_role?('direcao') %>
-                    <td>Acesso Direção UE</td>
+                    <td>Acesso Direção UE |
+                           <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
+                           <% uni = @unidade.first.nome  %>
+                           <font size="1">  <%= uni %></font></td>
                     <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                 <%else%>
                    <% if current_user.has_role?('secretaria') %>
-                       <td>Acesso Secretaria UE</td>
+                       <td>Acesso Secretaria UE |
+                           <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
+                           <% uni = @unidade.first.nome  %>
+                           <font size="1">  <%= uni %></font></td>
                       <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                    <%else if current_user.has_role?('professor') %>
-                       <td>Acesso Professor</td>
+                       <td>Acesso Professor |  
+                           <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
+                           <% uni = @unidade.first.nome  %>
+                           <font size="1">  <%= uni %></font>
+                      </td>
                        <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                          <%else%>
                              <td>Acesso Público</td>
