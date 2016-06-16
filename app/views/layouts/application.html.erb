@@ -221,7 +221,7 @@ display: none;
       <!--                        <li><%= link_to "Histórico Escolar", historico_atribuicaos_path %></li>-->
                               <li><%= link_to "Histórico Escolar", construcao_path %></li>
        <!--                       <li><%= link_to "Transferência", transferenciaA_atribuicaos_path %></li>-->
-                              <li><%= link_to "Trasnferência", construcao_path %></li>
+                              <li><%= link_to "Transferência", construcao_path %></li>
                         <%end%>
                     <% end %>
                   </ul>
@@ -262,11 +262,7 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">GERENCIAR</a>
                  <ul style="width:108px;">
-                     <li><a>Usuários</a>
-                        <ul>
-                          <li><%= link_to 'Gerenciar', roles_users_path %></li>
-                        </ul>
-                     </li>
+                     <li><%= link_to 'Usuários', roles_users_path %></li>
                  </ul>
               </li>
               <%end%>
