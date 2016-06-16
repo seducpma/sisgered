@@ -82,6 +82,49 @@ class ClassesController < ApplicationController
 
     respond_to do |format|
       if @classe.update_attributes(params[:classe])
+        session[:classe]= @classe.id
+        @atribuicao= Atribuicao.find(:all, :conditions=>['classe_id=?', @classe.id])
+        for atrib in @atribuicao
+
+
+         session[:classe]= atrib.classe_id
+         session[:atribuicao]= atrib.id
+         session[:professor]= atrib.professor_id
+         @alunos1 = Aluno.find(:all, :joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe]])
+         @alunos2 = Aluno.find(:all, :joins => "INNER JOIN transferencias ON alunos.id = transferencias.aluno_id INNER JOIN classes ON classes.id=transferencias.classe_id", :conditions=> ["transferencias.unidade_id = ? AND transferencias.classe_id=?  AND  alunos.unidade_id = ?", current_user.unidade_id, session[:classe], current_user.unidade_id, ])
+         @alunos3= @alunos1+@alunos2
+         if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
+         for alun in @alunos3
+           n=(params[:nota])
+              @nota = Nota.new(params[:nota])
+              @nota.aluno_id = alun.id
+              @nota.atribuicao_id= session[:atribuicao]
+              @nota.professor_id= session[:professor]
+              @nota.unidade_id= current_user.unidade_id
+              @nota.ano_letivo =  Time.now.year
+              @nota.nota1 = nil
+              @nota.faltas1 = nil
+              @nota.nota2 = nil
+              @nota.faltas2 = nil
+              @nota.nota3 = nil
+              @nota.faltas3 = nil
+              @nota.nota4 = nil
+              @nota.faltas4 = nil
+              @nota.nota5 = nil
+              @nota.faltas5= nil
+
+                @nota.save
+             t=0
+            end
+           end
+         end
+
+
+
+
+
+
+
 
         flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@classe) }
