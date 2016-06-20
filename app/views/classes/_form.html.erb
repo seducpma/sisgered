@@ -35,6 +35,7 @@
     </td>
 
     <%if @alunos_selecionados.present?%>
+    
      <td colspan="2"><%= select_tag("classe[aluno_ids][]", options_for_select(@alunos_selecionados.collect { |ff| [truncate(ff.aluno_nome, :length => 100, :omission => "..."), ff.id] }, @classe.alunos.collect { |fs| fs.id }), {:multiple=>true, :id => "classe_aluno_ids", :size => 4, :class => "lista_alunos"}) %></td>
      <%else%>
      <td colspan="2"><select multiple="multiple" name="classe[aluno_ids][]" id="classe_aluno_ids" class="lista_alunos"></select></td>
@@ -50,7 +51,7 @@
       <tr>
             <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
 <%end%>
-            <td width="6%"align="left" ><%= button_to 'Consultar' ,consulta_unidade_path, :title => "Consultar" %></td>
+            <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consulta_unidade_path, :title => "Nova Consulta" %></td>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
     
   

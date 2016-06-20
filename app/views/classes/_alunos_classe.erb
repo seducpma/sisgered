@@ -82,7 +82,7 @@
                               <%end%>
                            </td>
                           <td></td>
-                          <td align="left"> <%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
+                          <td align="left"> <%  if !aluno.aluno_nascimento.nil? %><%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%><%end%> </td>
                           <td> <%if aluno.transferido.nil? %>
                                <%else%>
                                    <%= aluno.transferido.strftime("%d/%m/%Y")%>

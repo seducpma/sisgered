@@ -43,9 +43,8 @@
                nascido(a) em <b><%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></b> na cidade de <br/>
                <%=h aluno.aluno_naturalidade %>, encontra-se devidamente matriculado nesta unidade escolar na <b> classe  <% @classe.each do |classe| %> <%=h classe.classe_classe %> <%end%></b>,e nesta data deu entrada com o pedido de transferência nesta data,
                estando apto(a) a frequentar
-<form method="post" action="process.php">
-  <select name="taskOption"
-                     <option  value = "1">1º</option>
+                <select name="ano_teste">
+                     <option value= "1">1º</option>
                      <option value= "2">2º</option>
                      <option value= "3">3º</option>
                      <option value= "4">4º</option>
@@ -54,11 +53,26 @@
                      <option value= "7">7º</option>
                      <option value= "8">8º</option>
                      <option value= "9">9º </option>
- <input type="submit" value="Submit the form"/>
-</form>
-              $var = $_POST['taskOption'];
-              ano do Ensino Fundamental de 9 anos. 
+                </select>
 
+
+<select onchange="test(this)" id="select_id">
+  <option value="">Selecione uma cidade</option>
+  <option value="Cidade_1">Cidade_1</option>
+  <option value="Cidade_2">Cidade_2</option>
+  <option value="Cidade_3">Cidade_3</option>
+</select>
+
+
+<button id='mtodostipo' onclick="javascript:marcatodostipo;">Marcar Todos</button>
+
+
+<script>
+function test(el) {
+  var $lnk = document.getElementById("mtodostipo");
+  $lnk.onclick = $lnk.onclick.replace(/marcatodostipo(.*)/, 'marcatodostipo(' + el.value + ')');
+}
+</script>
 
 
 

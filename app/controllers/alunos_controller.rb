@@ -192,7 +192,6 @@ end
 
  def nome_classe
 
-
        session[:de_para]= 0
        @classe = Classe.find(:all, :joins => "inner join alunos_classes on classes.id = alunos_classes.classe_id", :conditions =>['alunos_classes.aluno_id =?', params[:aluno_aluno_id]])
        if @classe.empty?
@@ -201,6 +200,11 @@ end
        end
 
        @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_aluno_id]])
+       @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+       @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+
+
+
 
         @aluno.each do |aluno|
            session[:trans]= aluno.trans_in
@@ -346,10 +350,10 @@ end
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     else
 
-        @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_nome")
-        @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_ra")
-        @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ?', current_user.unidade_id],:order => "aluno_rm")
-        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_nome")
+        @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_ra")
+        @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_rm")
+        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =? AND aluno_status is null',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     end
     #@pessoas_mae =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "MÃE"'],:order => "pessoa_nome")

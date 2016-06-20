@@ -16,15 +16,17 @@
               <td align="left" width ="15%"><b> Aluno:</b></td>
               <td align="left"> <%=h @transferencia.aluno.aluno_nome%></td>
            </tr>
-           <% if @transferencia.unidade_id.nil?%>
+           <% if !@transferencia.classe_id.nil?%>
              <tr bgcolor="#F5F5F5"  width="100%">
                 <td align="left" width ="15%"><b> Destino:</b></td>
                 <td align="left"> <%=h @transferencia.unidade.nome%></td>
+                <% t=0 %>
              </tr>
            <%else%>
              <tr bgcolor="#F5F5F5"  width="100%">
                 <td align="left" width ="15%"><b> Destino:</b></td>
                 <td align="left"> <%=h @transferencia.para%></td>
+                                <% t=0 %>
              </tr>
            <%end%>
            <% if !@transferencia.classe_id.nil? %>

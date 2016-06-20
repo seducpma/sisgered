@@ -45,11 +45,11 @@ class ClassesController < ApplicationController
   # GET /classes/1/edit
   def edit
     @classe = Classe.find(params[:id])
+    session[:classe_id]=(params[:id])
 #   @livro = Livro.find(params[:id])
     @alunos_selecionados = @classe.alunos
     @alunos = @alunos - @alunos_selecionados
 
-  
 #    @assuntos_selecionados = @livro.assuntos
 #    @assuntos = @assuntos - @assuntos_selecionados
 
@@ -77,16 +77,21 @@ class ClassesController < ApplicationController
   # PUT /classes/1
   # PUT /classes/1.xml
   def update
+    @alunosA = Aluno.find(:all,:joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
+    t=0
     @classe = Classe.find(params[:id])
-
-
     respond_to do |format|
       if @classe.update_attributes(params[:classe])
+       @alunosD = Aluno.find(:all,:joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
+       @aluno = @alunosD -@alunosA
+#       for aluno in @aluno
+#          id_aluno= aluno.id
+          id_aluno=@aluno[0].id
+          t=0
+#       end
         session[:classe]= @classe.id
-        @atribuicao= Atribuicao.find(:all, :conditions=>['classe_id=?', @classe.id])
+        @atribuicao= Atribuicao.find(:all, :conditions=>['classe_id=? AND aluno_id', @classe.id, ])
         for atrib in @atribuicao
-
-
          session[:classe]= atrib.classe_id
          session[:atribuicao]= atrib.id
          session[:professor]= atrib.professor_id
@@ -118,14 +123,6 @@ class ClassesController < ApplicationController
             end
            end
          end
-
-
-
-
-
-
-
-
         flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@classe) }
         format.xml  { head :ok }

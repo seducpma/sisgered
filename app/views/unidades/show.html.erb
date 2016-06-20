@@ -50,7 +50,7 @@
 
        <table width="100%" >
          <tr>
-            <td width="6%"align="left" ><%= button_to 'Consultar' ,consultas_unidades_path, :title => "Consultar" %></td>
+            <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consultas_unidades_path, :title => "Nova Consulta" %></td>
             <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@unidade}, :method => "get", :title => "Editar"%></td>
             <td width="6%"align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
             <td><%= link_to image_tag("/stylesheets/images/botao.png"), "https://www.google.com/maps/d/edit?hl=pt-BR&authuser=0&mid=zNj5sTNCo6CY.kex3W_prFKOA",:target => '_blank', :title => "Localização"%></td>

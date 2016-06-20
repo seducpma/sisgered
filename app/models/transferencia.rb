@@ -2,7 +2,32 @@ class Transferencia < ActiveRecord::Base
    belongs_to :aluno
    belongs_to :unidade
    belongs_to :classe
-   before_save :atribui, :gera_aluno_classe
+   before_save :atribui, :gera_aluno_classe, :teste, :maiusculo
+
+
+def maiusculo
+    if  !self.para.nil?
+          self.para.upcase!
+    end
+    if  !self.de.nil?
+          self.de.upcase!
+    end
+end
+
+  def teste
+   if self.classe_id.nil?
+      aluno_t= Aluno.find(:all, :conditions =>['id = ?',self.aluno_id])
+      aluno_t.each do |aluno|
+         aluno.aluno_status = 'TRANSFERIDO'
+         aluno.save
+      end
+   end
+
+   
+
+
+    
+  end
 
    def atribui
     self.unidade_id = User.current.unidade_id
