@@ -78,18 +78,15 @@ class ClassesController < ApplicationController
   # PUT /classes/1.xml
   def update
     @alunosA = Aluno.find(:all,:joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
-    t=0
+
     @classe = Classe.find(params[:id])
     respond_to do |format|
       if @classe.update_attributes(params[:classe])
        @alunosD = Aluno.find(:all,:joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
        @aluno = @alunosD -@alunosA
-#       for aluno in @aluno
-#          id_aluno= aluno.id
-          id_aluno=@aluno[0].id
-          t=0
-#       end
+         id_aluno=@aluno[0].id
         session[:classe]= @classe.id
+
         @atribuicao= Atribuicao.find(:all, :conditions=>['classe_id=? AND aluno_id', @classe.id, ])
         for atrib in @atribuicao
          session[:classe]= atrib.classe_id
@@ -99,8 +96,8 @@ class ClassesController < ApplicationController
          @alunos2 = Aluno.find(:all, :joins => "INNER JOIN transferencias ON alunos.id = transferencias.aluno_id INNER JOIN classes ON classes.id=transferencias.classe_id", :conditions=> ["transferencias.unidade_id = ? AND transferencias.classe_id=?  AND  alunos.unidade_id = ?", current_user.unidade_id, session[:classe], current_user.unidade_id, ])
          @alunos3= @alunos1+@alunos2
          if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
-         for alun in @alunos3
-           n=(params[:nota])
+           for alun in @alunos3
+              n=(params[:nota])
               @nota = Nota.new(params[:nota])
               @nota.aluno_id = alun.id
               @nota.atribuicao_id= session[:atribuicao]
@@ -117,12 +114,10 @@ class ClassesController < ApplicationController
               @nota.faltas4 = nil
               @nota.nota5 = nil
               @nota.faltas5= nil
-
-                @nota.save
-             t=0
-            end
+              @nota.save
            end
          end
+        end
         flash[:notice] = 'SALVO COM SUCESSO!'
         format.html { redirect_to(@classe) }
         format.xml  { head :ok }
