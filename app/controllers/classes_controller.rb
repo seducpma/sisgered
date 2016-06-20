@@ -91,6 +91,7 @@ class ClassesController < ApplicationController
           for atrib in @atribuicao
            session[:classe]= atrib.classe_id
            session[:atribuicao]= atrib.id
+           session[:disciplina]= atrib.disciplina_id
            session[:professor]= atrib.professor_id
            @alunos1 = Aluno.find(:all, :joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe]])
            @aluno3 = Aluno.find(:all, :conditions => ['id = ?', session[:id_aluno]])
@@ -99,6 +100,7 @@ class ClassesController < ApplicationController
              n=(params[:nota])
                 @nota = Nota.new(params[:nota])
                 @nota.aluno_id = alun.id
+                @nota.disciplina_id = session[:disciplina]
                 @nota.atribuicao_id= session[:atribuicao]
                 @nota.professor_id= session[:professor]
                 @nota.unidade_id= current_user.unidade_id

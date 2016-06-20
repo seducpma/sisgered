@@ -277,7 +277,7 @@ end
 
  def load_classes
 
-   if current_user.unidade_id == 53 or current_user.unidade_id == 52 or  current_user.has_role?('direcao')
+   if current_user.unidade_id == 53 or current_user.unidade_id == 52 or  current_user.has_role?('direcao') or  current_user.has_role?('pedagogo')
      t=0
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52)
            @classes = Classe.find(:all, :order => 'classe_classe ASC')

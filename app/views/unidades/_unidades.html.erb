@@ -38,7 +38,7 @@
             <tr>
                 <td><%= link_to image_tag("/stylesheets/images/botao.png"), "https://www.google.com/maps/d/edit?hl=pt-BR&authuser=0&mid=zNj5sTNCo6CY.kex3W_prFKOA",:target => '_blank', :title => "Localização"%></td>
                 
-                  <% if current_user.has_role?('admin')or  current_user.has_role?('planejamento')or  current_user.has_role?('direcao')or  current_user.has_role?('secretaria') %>
+                  <% if (current_user.has_role?('admin')or  current_user.has_role?('planejamento')or  current_user.has_role?('direcao')or  current_user.has_role?('secretaria')) and (unidade.id == @professor[0].unidade_id) %>
                       <td colspan="4"align="left" ><%= button_to 'Editar',{:action => "edit", :id =>unidade}, :method => "get", :title => "Editar"%></td>
                   <%else%>
                       <td align="center" >  </td>

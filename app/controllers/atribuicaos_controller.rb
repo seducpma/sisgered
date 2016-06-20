@@ -54,6 +54,7 @@ class AtribuicaosController < ApplicationController
        session[:classe]= @atribuicao.classe_id
        session[:atribuicao]= @atribuicao.id
        session[:professor]= @atribuicao.professor_id
+       session[:disciplina]= @atribuicao.disciplina_id
        @alunos1 = Aluno.find(:all, :joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe]])
        @alunos2 = Aluno.find(:all, :joins => "INNER JOIN transferencias ON alunos.id = transferencias.aluno_id INNER JOIN classes ON classes.id=transferencias.classe_id", :conditions=> ["transferencias.unidade_id = ? AND transferencias.classe_id=?  AND  alunos.unidade_id = ?", current_user.unidade_id, session[:classe], current_user.unidade_id, ])
        @alunos3= @alunos1+@alunos2
@@ -65,6 +66,7 @@ class AtribuicaosController < ApplicationController
             @nota.atribuicao_id= session[:atribuicao]
             @nota.professor_id= session[:professor]
             @nota.unidade_id= current_user.unidade_id
+            @nota.disciplina_id = session[:disciplina]
             @nota.ano_letivo =  Time.now.year
             @nota.nota1 = nil
             @nota.faltas1 = nil
@@ -166,7 +168,6 @@ if ( params[:disciplina].present?)
 
 
 def create_notas
-
       n=(params[:nota])
       @nota = Nota.new(params[:nota])
       @nota.ano_letivo =  Time.now.year

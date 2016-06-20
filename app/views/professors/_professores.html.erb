@@ -5,18 +5,18 @@
             <th width="300">Nome</th>
             <th width="200">Função</th>
             <th width="200">Unidade</th>
-            <th colspan="3">Administração</th>
+            <th colspan="3"></th>
         </tr>
            <%$t=0%>
            <% @professors.each do |professor| %>
            <%$t = $t+1%>
-        <tr bgcolor="#F5F5F5">
+             <tr bgcolor="#F5F5F5">
                 <td align="left"><%=h professor.matricula%></td>
                 <td align="left"><%=h professor.nome%></td>
                 <td align="left"><%=h professor.funcao%></td>
                 <td align="left"><%=h professor.unidade.nome%></td>
                 <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>professor},:method => "get", :title => "Visualizar") %></td>
-               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+               <% if ((current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')) and (current_user.unidade_id == professor.unidade_id))%>
                     <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>professor}, :method => "get", :title => "Editar"%></td>
                 <%else%>
                     <td align="center"> --- </td>

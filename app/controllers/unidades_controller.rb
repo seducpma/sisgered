@@ -11,6 +11,7 @@ end
 
   def load_unidades
       @unidades = Unidade.find(:all, :order => 'nome ASC')
+      @professor= Professor.find(:all, :conditions => ['unidade_id=?', current_user.unidade_id])
   end
 
   def index

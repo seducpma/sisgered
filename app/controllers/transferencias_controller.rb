@@ -58,12 +58,8 @@ end
   # POST /transferencias.xml
   def create
     @transferencia = Transferencia.new(params[:transferencia])
-
-
      if session[:nao_fazer]== 0
-       t=0
         @transferencia.para = (current_user.unidade.nome).capitalize
-
      end
        @classe_ant= Classe.find(:all, :joins => "INNER JOIN  alunos_classes  ON  classes.id=alunos_classes.classe_id  INNER JOIN alunos ON alunos.id=alunos_classes.aluno_id", :conditions =>['aluno_id = ?',@transferencia.aluno_id])
         for classe_ant in @classe_ant
@@ -74,15 +70,15 @@ end
         @notas_ant = Nota.find(:all, :conditions => ['aluno_id = ? AND unidade_id =? AND ano_letivo=?', @transferencia.aluno_id, session[:unidade_ant_id], Time.now.year])
           respond_to do |format|
             if @transferencia.save
-
              if (!@transferencia.classe_id.nil?) then
-               t=0
+
               if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
                  for atri in @atribuicao
                    @nota = Nota.new(params[:nota])
                    @nota.aluno_id = @transferencia.aluno_id
                    @nota.atribuicao_id= atri.id
                    @nota.professor_id= atri.professor_id
+                   @nota.disciplina_id = atri.disciplina_id
                    @nota.unidade_id=  @transferencia.unidade_id
                    @nota.disciplina_id= atri.disciplina_id
                    @nota.ano_letivo =  Time.now.year
