@@ -496,9 +496,12 @@ end
         @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         #disciplinas1 = Disciplina.find_(:all, :joins => :atribuicao, :conditions => ['atribuicaos.ano_letivo = ?  and atribuicaos.professor_id = ?',  Time.now.year, current_user.professor_id  ])
         #@alunos1 = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
-
-    end
+       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id] )
+        #@alunos_transf = Aluno.find(:all, :joins => [:transferencias], :conditions =>['de =?',@alunos1[0].unidade.nome],:order => 'alunos.aluno_nome ASC')
+        @alunos_transf = Aluno.find(:all, :joins => [:transferencias], :conditions =>['transferencias.unidade_id =?',current_user.unidade_id],:order => 'alunos.aluno_nome ASC')
+        @alunos_boletim = ( @alunos1+@alunos_transf)
+        
+     end
   end
 
    def load_disciplinas

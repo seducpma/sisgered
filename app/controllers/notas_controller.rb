@@ -252,6 +252,7 @@ if ( params[:disciplina].present?)
         end
        session[:classe_id] = params[:classe][:id]
        session[:professor_id]= params[:professor][:id]
+       session[:current_user_unidade_id]= current_user.unidade_id
        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
        @transferencia = Transferencia.find(:all,  :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
@@ -260,20 +261,16 @@ if ( params[:disciplina].present?)
             session[:atrib_id] = atrib.id
        end
        t1=session[:atrib_id]
-
        @notast = Nota.find_by_sql("SELECT nt.* FROM transferencias tr JOIN notas nt ON tr.aluno_id = nt.aluno_id JOIN atribuicaos at ON tr.classe_id = at.classe_id WHERE (tr.unidade_id =" + (current_user.unidade_id).to_s + " AND tr.classe_id="+ (session[:classe_id]).to_s + " AND at.disciplina_id=" +(session[:disc_id]).to_s+" AND nt.atribuicao_id=" +(session[:atrib_id]).to_s+")")
-
        @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
-                
        @notas = @notas1- @notast
-
        render :update do |page|
           page.replace_html 'notas', :partial => 'notas'
        end
 
-end
-  
   end
+ end
+
 
  def load_classes
 

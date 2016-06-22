@@ -1,7 +1,7 @@
   <table width="100%"  >
    <tr>
      <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
-        <%= collection_select :aluno, :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+        <%= collection_select :aluno, :aluno_id, @alunos_boletim, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
           <%= observe_field 'aluno_aluno_id',
                :update => "relatorio",
                :url    => { :action => 'relatorio_aluno_nome' },

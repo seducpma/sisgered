@@ -67,7 +67,12 @@
                 <tr>
                   <td width ="4%" align="center"><%=  cont1%></td>
                   <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
-                  <td width ="57%" align="left"><%= nota.aluno.aluno_nome %></td>
+                  <td width ="57%" align="left">
+                        <%if (nota.aluno.trans_in == 1) and (nota.aluno.unidade_id != current_user.unidade_id)%>
+                          <%= nota.aluno.aluno_nome %><font color ="red"> (Transf.)</font>
+                        <%else%>
+                            <%= nota.aluno.aluno_nome %></td>
+                        <%end%>
                   <td width ="6%" align="center"><%= nota.nota1 %></td>
                   <td width ="6%" align="center"><%= nota.faltas1 %></td>
                   <td width ="7%" align="center"><%= nota.nota2 %></td>
@@ -78,16 +83,19 @@
               <%end%>
             </table>
             <table border="1" cellspacing="0" cellpadding="1" width="100%">
+           <% cont2=cont1 %>
               <%@notast.each do |nota|%>
                 <tr>
-                  <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
+                  <td width ="4%" align="center"><%=  cont2%></td>
+                  <td width ="11%" ><%= nota.aluno.aluno_ra  %></td>
                   <td width ="57%" align="left"><%= nota.aluno.aluno_nome %></td>
                   <td width ="6%" align="center"><%= nota.nota1 %></td>
                   <td width ="6%" align="center"><%= nota.faltas1 %></td>
-                  <td width ="6%" align="center"><%= nota.nota2 %></td>
-                  <td width ="7%" align="center"><%= nota.faltas2 %></td>
+                  <td width ="7%" align="center"><%= nota.nota2 %></td>
+                  <td width ="8%" align="center"><%= nota.faltas2 %></td>
                   <td width ="6%" align="center"><%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :id =>nota}, :method => "get", :title => "Editar" %></td>
                 </tr>
+               <% cont2=cont2+1 %>
               <%end%>
               <tr>
                 <td  colspan="7" width="6%"align="left" valign="center" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
