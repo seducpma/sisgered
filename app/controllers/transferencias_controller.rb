@@ -194,7 +194,7 @@ end
 
   def load_dados_iniciais
        if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
-         #@unidade_de = Unidade.find(:all,:conditions =>['id > 41 AND id <52'], :order => 'nome ASC')
+         @unidade_de1 = Unidade.find(:all,:conditions =>['id > 41 AND id <52'], :order => 'nome ASC')
          @unidade_de = Unidade.find(:all,:conditions =>['id = ?', current_user.unidade_id], :order => 'nome ASC')
        else
           @unidade_de = Unidade.find(:all, :order => 'nome ASC')

@@ -24,6 +24,7 @@ class AlunosClassesController < ApplicationController
   # GET /classes_alunos/new
   # GET /classes_alunos/new.xml
   def new
+    t=0
     @classes_aluno = ClassesAluno.new
 
     respond_to do |format|

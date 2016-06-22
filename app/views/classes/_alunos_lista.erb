@@ -25,8 +25,9 @@
        <td align="center"width ="5%"><b>Nº</b></td>
        <td align="center"width ="5%"><b>RM</b></td>
        <td width ="5%"><b>RA</b></td>
-       <td width ="55%"><b>NOME</b></td>
-       <td width ="35%"><b>ASSINATURA (Responsável)</b></td>
+       <td width ="50%"><b>NOME</b></td>
+       <td width ="12%"><b>NASC.</b></td>
+       <td width ="31%"><b>ASSINATURA (Responsável)</b></td>
        
      </tr>
 
@@ -45,6 +46,10 @@
                                    <%="#{ aluno.aluno_nome}"%><%="#{ aluno.aluno_status}"%>
                               <%end%>
 
+                          </td>
+                          <td align="center"><% if !aluno.aluno_nascimento.nil? %>
+                                                 <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%>
+                                            <%end%>
                           </td>
                           <td> <font color ="blue"> Transferência</font> -
                           
@@ -66,6 +71,10 @@
                                    <%="#{ aluno.aluno_nome}"%><%="#{ aluno.aluno_status}"%>
                               <%end%>
                            </td>
+                          <td align="center"><% if !aluno.aluno_nascimento.nil? %>
+                                                 <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%>
+                                            <%end%>
+                          </td>
                            <td>
                                <%if aluno.transferido.nil? %>
 
@@ -80,14 +89,19 @@
                           <td align="center"> &nbsp <%= cont1%> </td>
                           <td align="center"> <%="#{ aluno.aluno_rm}"%> </td>
                           <td align="center"> <%="#{ aluno.aluno_ra}"%> </td>
+
                           <td align="left">
                               <%if aluno.aluno_status.nil?%>
                                    <%="#{ aluno.aluno_nome}"%>
                               <%else%>
                                    <%="#{ aluno.aluno_nome}"%><%="#{ aluno.aluno_status}"%>
                               <%end%>
-
                           </td>
+                          <td align="center"><% if !aluno.aluno_nascimento.nil? %>
+                                                 <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%> 
+                                            <%end%>
+                          </td>
+
                           <td>  <%if aluno.mesma_unidade == 1%>
                                  <font color ="green"> Transferido</font> -
                                <%else%>
@@ -119,6 +133,10 @@
                                    <%="#{ trans.aluno.aluno_nome}"%><%="#{ trans.aluno.aluno_status}"%>
                               <%end%>
 
+           </td>
+            <td align="center"><% if !trans.aluno.aluno_nascimento.nil? %>
+                                    <%=h trans.aluno.aluno_nascimento.strftime("%d/%m/%Y")%>
+                               <%end%>
            </td>
            <td><font color ="Blue">Transferência</font> - 
                               <% if trans.data_transferencia.nil? %>

@@ -12,17 +12,11 @@
               <tr bgcolor="#F5F5F5">
                  <td colspan="4"><font  size="3"color="red"><u> <b>ATENÇÃO:</b></u></font></td>
               </tr>
-              <tr bgcolor="#F5F5F5">
-                 <td colspan="6"><font  size="2"color="red"> <b>1) UTILIZE PONTO PARA SEPARAÇÃO DE VALORES FRACIONADOS. <br/> &nbsp&nbsp&nbsp&nbsp ex. 8.50 (correto)</b></font></td>
+            <tr bgcolor="#F5F5F5">
+                <td colspan="6"><font size ="2" color="red"><b>1) O LANÇAMENTO DE NOTAS E FALTAS  PODERÁ SER EXECUTA SOMENTE  <br/> &nbsp&nbsp&nbsp UMA ÚNICA VEZ. OBSERVAÇÔES PODEM SER LANÇADAS DIVERSAS <br/> &nbsp&nbsp&nbsp VEZES, PARA LANÇAR CLIQUE NO LINK  <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></font>.</b></td>
             </tr>
             <tr bgcolor="#F5F5F5">
-                <td colspan="6"><font size ="2" color="red"><b>2) NÃO UTILIZE VÍGULA PARA SEPARAÇÃO DE VALORES  FRACIONADOS. <br/>  &nbsp&nbsp&nbsp&nbsp  ex. 8,50 (errado)</b></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-                <td colspan="6"><font size ="2" color="red"><b>3) O LANÇAMENTO DE NOTAS E FALTAS  PODERÁ SER EXECUTA SOMENTE  <br/> &nbsp&nbsp&nbsp UMA ÚNICA VEZ. OBSERVAÇÔES PODEM SER LANÇADAS DIVERSAS <br/> &nbsp&nbsp&nbsp VEZES, PARA LANÇAR CLIQUE NO LINK  <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></font>.</b></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-                <td colspan="6"><font size ="2" color="red"><b>4) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR <br/> &nbsp&nbsp&nbsp LANÇAMENTO JÁ EXECUTADO.</b></td>
+                <td colspan="6"><font size ="2" color="red"><b>2) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR <br/> &nbsp&nbsp&nbsp LANÇAMENTO JÁ EXECUTADO.</b></td>
             </tr>
 
 
@@ -55,7 +49,7 @@
                       </tr>
                       <tr bgcolor="#F5F5F5">
                          <td></td>
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao'))%>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
                            <td width ="3%"> <%= f.text_field :nota1 , :size => '3'%>&nbsp&nbsp&nbsp
                                             <%= f.text_field :faltas1 , :size => '3'%>
                                             
@@ -122,7 +116,8 @@
 
         <%end%>
 
-                     <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                     <td width="4%"align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                     <td><%= button_to 'Voltar',lancar_notas_notas_path, :method => :get %></td>
                  </tr>
                </table>
           </font>
