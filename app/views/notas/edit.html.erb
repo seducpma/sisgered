@@ -69,7 +69,7 @@
                                               <%end%>
                              </td>
                          <%end%>
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao'))%>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
                            <td width ="3%"> <%= f.text_field :nota2 , :size => '3'%>&nbsp&nbsp&nbsp
                                             <%= f.text_field :faltas2 , :size => '3'%>
 

@@ -9,7 +9,7 @@
 
     </td>
   </tr>
-  <tr>
+  <tr>app/views/atribuicaos/_transferencia.erb:264
     <td></td>
   </tr>
  </table>
@@ -17,7 +17,7 @@
    <% @aluno.each do |aluno| %>
      <tr>
         <td width =" 15%"><b>Unidade de Ensino:</b></td>
-        <td><b><%=h aluno.unidade.nome %></b></td>
+        <td><b><%=h aluno.unidade.nome%></b></td>
      </tr>
      <tr>
          <td><b>Endereço:</b></td>
@@ -34,8 +34,6 @@
   <% @aluno.each do |aluno| %>
      <tr>
      <td colspan="3">
-
-
                <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%=h aluno.aluno_nome %></b>  R.A.: <b><%=h aluno.aluno_ra %></b>,
                <% if (aluno.aluno_RG.present?)  %>
                   e RG: <b><%=h aluno.aluno_RG %></b> emitido em < <b><%=h aluno.aluno_emissaoRG %></b> ,
@@ -54,41 +52,22 @@
                      <option value= "8">8º</option>
                      <option value= "9">9º </option>
                 </select>
+ano do Ensino Fundamental de 9 anos.
 
 
-<select onchange="test(this)" id="select_id">
-  <option value="">Selecione uma cidade</option>
-  <option value="Cidade_1">Cidade_1</option>
-  <option value="Cidade_2">Cidade_2</option>
-  <option value="Cidade_3">Cidade_3</option>
-</select>
 
 
-<button id='mtodostipo' onclick="javascript:marcatodostipo;">Marcar Todos</button>
 
 
-<script>
-function test(el) {
-  var $lnk = document.getElementById("mtodostipo");
-  $lnk.onclick = $lnk.onclick.replace(/marcatodostipo(.*)/, 'marcatodostipo(' + el.value + ')');
-}
-</script>
 
 
 
      </tr>
-     <tr>
-        <td ><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %></td>
-        <td><b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
-        <% if !(aluno.aluno_nacionalidade == 'BRASILEIRO')   %>
-          <td><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
-        <%else%>
-          <td colspan="2"></td>
-        <%end%>
-     </tr>
+
   <%end%>
 </table>
-
+ <br/>
+ <font size="3"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp BOLETIM ESCOLAR  &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  Ano letivo <%= Time.now.year %></b></font>
 
 <table border="1" cellspacing="0" cellpadding="1" width="100%">
 <% @aluno.each do |aluno| %>
@@ -104,22 +83,30 @@ function test(el) {
    <tr>
      <td width = px align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
      <td width ="5%" align="center"><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
    </tr>
    <tr>
-     <%@notas.each do |nota|%>
+     <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO BÁSICO   </center> </b></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+   </tr>
+   <tr>
+     <%@notasB.each do |nota|%>
 
       <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
       <%if nota.nota1.present?%>
@@ -170,23 +157,80 @@ function test(el) {
    </tr>
     <%end%>
    <tr>
+     <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+   </tr>
+   <tr>
+     <%@notasD.each do |nota|%>
+
+      <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
+      <%if nota.nota1.present?%>
+           <td align="center"><%= nota.nota1 %></td>
+           <td align="center"><%= nota.faltas1 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.nota2.present?%>
+           <td align="center"><%= nota.nota2 %></td>
+           <td align="center"><%= nota.faltas2 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.nota3.present?%>
+           <td align="center"><%= nota.nota3 %></td>
+           <td align="center"><%= nota.faltas3 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.nota4.present?%>
+           <td align="center"><%= nota.nota4 %></td>
+           <td align="center"><%= nota.faltas4 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+      <%if nota.nota5.present?%>
+           <td align="center"><%= nota.nota5 %></td>
+           <td align="center"><%= nota.faltas5 %></td>
+           <td></td>
+      <%else%>
+           <td align="center"></td>
+           <td align="center"></td>
+           <td></td>
+      <%end%>
+   </tr>
+    <%end%>
+
+
+
+
+   <tr>
      <td colspan="23"><hr></td>
    </tr>
    <tr>
      <td colspan="23"><b>Observações:</b></td>
    </tr>
     <%@notas.each do |nota|%>
-     <% if !nota.obs1.nil? %>
+     <% if nota.observacao_notas.present? %>
      <tr>
-       <td align="right" valign="top"><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</td>
-        <td colspan="15"> <% if !nota.obs1.nil? %>
-                            <b>1.</b> <%=h nota.obs1%> - <b>Data: </b><%=h nota.created_at.strftime("%d/%m/%Y")  %><br/>
-                          <% end%>
-                              <% if nota.obs1.nil? %>
-                                  <% c=0 %>
-                              <%else%>
-                                  <% c=1 %>
-                              <%end%>
+       <td align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</td>
+        <td colspan="15">  <% c=0 %>
+
                                  <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
                                      <% @obs.each do |obs|%>
                                            <b><%= c=c+1%>.</b><%=obs.observacao %>  -
@@ -199,7 +243,26 @@ function test(el) {
     <%end%>
    <%end%>
 
+
  </table>
+ <br/>
+ <font size="3"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp HISTÓRICO ESCOLAR  </b></font>
+ <table border="1" cellspacing="0" cellpadding="1" width="100%">
+   <tr>
+     <td>
+       <br/>
+     </td>
+   </tr>
+ </table>
+ <br/>
+ <center><font size="3"><b>C E R T I F I C A D O</b></font><br/><br/></center>
+    <% @aluno.each do |aluno| %>
+        
+     O sr(a) diretor(a) <b><%=h aluno.unidade.nome%></b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
+certfica que o aluno(a) <%=h aluno.aluno_nome %> - RA <%=h aluno.aluno_ra%> <b>concluiu</b> o xxxxxxno ano letivo xxxxxxx,
+estando apto(a) ao prosseguimento dos estudos no(a) xxxxxxx  do Ensino Fundamental de 9 anos.
+
+   <%end%>
 
       <table  width="100% ">
           <tr>

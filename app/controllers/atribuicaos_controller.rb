@@ -400,8 +400,15 @@ def transferencia_aluno
        session[:aluno_id]= aluno.id
      end
      @classe = Classe.find(:all, :joins => "inner join alunos_classes on classes.id = alunos_classes.classe_id", :conditions =>['alunos_classes.aluno_id =? AND ano_letivo=?' , params[:aluno][:aluno_id], Time.now.year])
-     @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =? ", params[:aluno][:aluno_id]],:order =>'disciplinas.ordem ASC ')
-     
+     @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =?",  params[:aluno][:aluno_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC ')
+     @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =?",  params[:aluno][:aluno_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC ')
+     @notas = @notasB+@notasD
+   #  @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =? ", params[:aluno][:aluno_id]],:order =>'disciplinas.ordem ASC ')
+
+
+
+
+
 
        render :update do |page|
           page.replace_html 'transferencia', :partial => 'transferencia'
