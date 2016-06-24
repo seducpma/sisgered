@@ -48,19 +48,19 @@
    <tr>
      <td width = px align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><<b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
      <td width ="5%" align="center"><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
      <td width ="5%" align="center" ><b>Falta</b></td>
-     <td width ="5%" align="center"></td>
+     <td width ="5%" align="center"><b>Freq.</b></td>
    </tr>
    <tr>
      <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO BÁSICO   </center> </b></td>
@@ -191,26 +191,21 @@
      <td colspan="23"><b>Observações:</b></td>
    </tr>
     <%@notas.each do |nota|%>
-    <tr>
-       <td align="right" valign="top"><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</td>
-        <td colspan="15"> <% if !nota.obs1.nil? %>
-                            <b>1.</b> <%=h nota.obs1%> - <b>Data: </b><%=h nota.created_at.strftime("%d/%m/%Y")  %><br/>
-                          <% end%>
-                              <% if nota.obs1.nil? %>
-                                  <% c=0 %>
-                              <%else%>
-                                  <% c=1 %>
-                              <%end%>
-                                 <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+     <% if nota.observacao_notas.present? %>
+     <tr>
+       <td align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</td>
+        <td colspan="15">  <% c=0 %>
 
+                                 <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
                                      <% @obs.each do |obs|%>
-                                           <b><%= c=c+1%>. </b><%=obs.observacao %>  -
+                                           <b><%= c=c+1%>.</b><%=obs.observacao %>  -
                                                <b>Data: </b> <%  if !obs.data.nil?  %>
                                                     <%=  obs.data.strftime("%d/%m/%Y")%><br/>
                                          <%end%>
                                      <%end%>
           </td>
      </tr>
+    <%end%>
    <%end%>
 
  </table>

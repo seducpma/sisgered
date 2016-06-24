@@ -186,33 +186,28 @@
    <tr>
      <th colspan="23" bgcolor="#DCDCD0"><hr></th>
    </tr>
-      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+
          <tr>
            <th style="font-size: 8px"colspan="23" align="left"><b>Observações:</b></th>
          </tr>
-          <%@notas.each do |nota|%>
-          <tr>
-             <th style="font-size: 8px" align="right" valign="top"><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</th>
-            <th style="font-size: 8px" colspan="15" align="left"> <% if !nota.obs1.nil? %>
-                                  <b>1.</b> <%=h nota.obs1%> - <b>Data: </b><%=h nota.created_at.strftime("%d/%m/%Y")  %><br/>
-                                <% end%>
-                                    <% if nota.obs1.nil? %>
-                                        <% c=0 %>
-                                    <%else%>
-                                        <% c=1 %>
-                                    <%end%>
-                                       <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+            <%@notas.each do |nota|%>
+               <% if nota.observacao_notas.present? %>
+                 <tr>
+                   <th style="font-size: 8px" align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</th>        <th style="font-size: 8px" colspan="15" align="left"> <% c=0 %>
 
-                                           <% @obs.each do |obs|%>
-                                                 <b><%= c=c+1%>. </b><%=obs.observacao %>  -
-                                                     <b>Data: </b> <%  if !obs.data.nil?  %>
-                                                          <%=  obs.data.strftime("%d/%m/%Y")%><br/>
-                                               <%end%>
-                                           <%end%>
-                </th>
-           </tr>
-          <%end%>
-     <%end%>
+                                             <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+                                                 <% @obs.each do |obs|%>
+                                                       <b><%= c=c+1%>.</b><%=obs.observacao %>  -
+                                                           <b>Data: </b> <%  if !obs.data.nil?  %>
+                                                                <%=  obs.data.strftime("%d/%m/%Y")%><br/>
+                                                     <%end%>
+                                                 <%end%>
+                      </th>
+                 </tr>
+              <%end%>
+           <%end%>
+
+
  </table>
 
 <%end%>

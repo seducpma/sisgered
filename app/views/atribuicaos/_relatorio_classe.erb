@@ -6,12 +6,13 @@
           <%end%>
    </tr>
    <tr>
-     <td colspan="2"><hr><br/></td>
+     <td colspan="3"><hr><br/></td>
   </tr>
 </table>
 <% cont=1 %>
 <% @alunos.each do |aluno| %>
-      <table border="1" cellspacing="0" cellpadding="1" width="100%">
+<fieldset>
+      <table width="100%">
         <tr>
           <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
           <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
@@ -74,7 +75,16 @@
                <td width ="3%" align="center" ><b>Freq.</b></td>
              </tr>
              <tr>
-               <%@notas.each do |nota|%>
+               <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO BÁSICO   </center> </b></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+             </tr>
+
+             <tr>
+               <%@notasB.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
                     <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
                     <%if nota.nota1.present? %>
@@ -125,46 +135,99 @@
                     <%end%>
              </tr>
               <%end%>
-
           <%end%>
+             <tr>
+               <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+             </tr>
+             <tr>
+               <%@notasD.each do |nota|%>
+                  <%if nota.aluno_id == session[:aluno]%>
+                    <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
+                    <%if nota.nota1.present? %>
+                         <td align="center"><%= nota.nota1 %> </td>
+                         <td align="center"><%= nota.faltas1%></td>
+                         <td align="center"></td>
+                    <%else%>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                    <%end%>
+                    <%if nota.nota2.present?%>
+                         <td align="center"><%= nota.nota2 %></td>
+                         <td align="center"><%= nota.faltas2 %></td>
+                         <td align="center"></td>
+                    <%else%>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                    <%end%>
+
+                    <%if nota.nota3.present?%>
+                         <td align="center"><%= nota.nota3 %></td>
+                         <td align="center"><%= nota.faltas3 %></td>
+                         <td align="center"></td>
+                    <%else%>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                    <%end%>
+                    <%if nota.nota4.present?%>
+                         <td align="center"><%= nota.nota4 %></td>
+                         <td align="center"><%= nota.faltas4 %></td>
+                         <td align="center"></td>
+                    <%else%>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                    <%end%>
+                    <%if nota.nota5.present? %>
+                         <td align="center"><%= nota.nota5 %></td>
+                         <td align="center"><%= nota.faltas5 %></td>
+                         <td align="center"></td>
+                    <%else%>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                         <td align="center"></td>
+                    <%end%>
+             </tr>
+              <%end%>
+          <%end%>
+
+
              <tr>
                <td colspan="23"><hr></td>
              </tr>
              <tr>
                <td colspan="23"><b>Observações:</b></td>
              </tr>
-    <%@notas.each do |nota|%>
-         <%if nota.aluno_id == session[:aluno]%>
-            <% if !nota.obs1.nil? %>
-                  <tr>
-                       <td align="right" valign="top"><%= nota.atribuicao.disciplina.disciplina %>&nbsp&nbsp</td>
-                        <td colspan="15"> <% if !nota.obs1.nil? %>
-                                            <b>1.</b> <%=h nota.obs1%> - <b>Data: </b><%=h nota.created_at.strftime("%d/%m/%Y")  %><br/>
-                                          <% end%>
-                                              <% if nota.obs1.nil? %>
-                                                  <% c=0 %>
-                                              <%else%>
-                                                  <% c=1 %>
-                                              <%end%>
-                                                 <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
-                                                     <% @obs.each do |obs|%>
-                                                           <b><%= c=c+1%>.</b><%=obs.observacao %>  -
-                                                               <b>Data: </b> <%  if !obs.data.nil?  %>
-                                                                    <%=  obs.data.strftime("%d/%m/%Y")%><br/>
-                                                         <%end%>
-                                                     <%end%>
+              <%@notas.each do |nota|%>
+               <% if nota.observacao_notas.present? %>
+               <tr>
+                 <td align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</td>
+                  <td colspan="15">  <% c=0 %>
 
-                          </td>
-                     </tr>
-                <%end%>
-             <%end%>
-          <%end%>
-
-           </table>
+                                           <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+                                               <% @obs.each do |obs|%>
+                                                     <b><%= c=c+1%>.</b><%=obs.observacao %>  -
+                                                         <b>Data: </b> <%  if !obs.data.nil?  %>
+                                                              <%=  obs.data.strftime("%d/%m/%Y")%><br/>
+                                                   <%end%>
+                                               <%end%>
+                    </td>
+               </tr>
+            <%end%>
+           <%end%>
+          </table>
       </table>
-<table>
+</fieldset>
+<table  width="100% "bgcolor="#DCDCDC" >
   <tr>
-    <td><br/>==========================================================================================================<br/></td>
+    <td><br/>-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/><br/></td>
   </tr>
 </table>
 <br/>

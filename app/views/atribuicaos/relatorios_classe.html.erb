@@ -9,7 +9,7 @@
       <fieldset>
         <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td>
+            <td colspan="2">
               <a href="#" class="filtro_nome"><%= radio_button_tag(:type_of, "1") %></a>Aluno
               <a href="#" class="classe_filtro"><%= radio_button_tag(:type_of, "2") %></a>Classe
               <!--  <a href="#" class="prof_filtro"><%= radio_button_tag(:type_of, "3") %></a>Professor-->
@@ -17,11 +17,17 @@
             </td>
          </tr>
          <tr>
-           <td><div class="consulta_nome" style="display:none"> <%= render "consulta_nome" %> </div>
+           <td colspan="2"><div class="consulta_nome" style="display:none"> <%= render "consulta_nome" %> </div>
                <div class="consulta_classe" style="display:none"> <%= render "consulta_classe" %> </div>
                <div class="consulta_professor" style="display:none"> <%= render "consulta_professor" %> </div>
            </td>
          </tr>
+        <tr>
+         <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+         <td align="left"><%= button_to 'Nova Consulta', relatorios_classe_atribuicaos_path, :title => "Nova Consulta" %></td>
+
+        </tr>
+   <% end %>
         </table>
 
 
@@ -36,7 +42,7 @@
             </td>
           </tr>
        </table>
-          <% end %>
+
 
       </fieldset>
 
