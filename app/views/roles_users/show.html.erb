@@ -8,7 +8,7 @@
      <table width="100%" bgcolor="#DCDCDC" align="center">
         <tr bgcolor="#DCDCDC" >
           <th width ="100">Login:</th>
-          <th  width="300">Nome Usuário:</th>
+          <th  width="300">Tipo Usuário:</th>
           <th  width="300">Nível de acesso:</th>
        </tr>
        <tr bgcolor="	#F5F5F5">
@@ -33,10 +33,15 @@
                                 <%if  Role.find(@roles_user.role_id).name == 'professor' then%>
                                  <td width="25%">Professor U.E.</td>
                                  <td>Acesso exclusivo - Professor Escolar</td>
-                           <%end%>
-                               <td width="25%">Usuário</td>
-                               <td>Sem acesso ao sistema.</td>
-                           <%end%>
+                                <%else if  Role.find(@roles_user.role_id).name == 'pedagogo' then%>
+                                     <td width="25%">Pedagogo U.E.</td>
+                                     <td>Acesso exclusivo - Pedagogo</td>
+                                    <%else%>
+                                        <td width="25%">Usuário</td>
+                                       <td>Sem acesso ao sistema.</td>
+                                    <%end%>
+                            <%end%>
+                         <%end%>
                      <%end%>
                   <%end%>
                <%end%>

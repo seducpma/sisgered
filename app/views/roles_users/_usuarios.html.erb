@@ -30,9 +30,13 @@
                                   <%if  Role.find(role_user.role_id).name == 'professor' then%>
                                    <td>Professor U.E.</td>
                                    <td>Professor de Unidade Escolar</td>
-                                 <%else%>
-                                     <td>Usuário</td>
-                                     <td>Sem acesso ao sistema.</td>
+                                 <%else if  Role.find(role_user.role_id).name == 'pedagogo' then%>
+                                       <td>Pedagogor U.E.</td>
+                                       <td>Pedagogo de Unidade Escolar</td>%>
+                                       <%else%>
+                                           <td>Usuário</td>
+                                           <td>Sem acesso ao sistema.</td>
+                                       <%end%>
                                  <%end%>
                            <%end%>
                      <%end%>
