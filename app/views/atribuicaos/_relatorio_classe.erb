@@ -205,6 +205,7 @@
                <td colspan="23"><b>Observações:</b></td>
              </tr>
               <%@notas.each do |nota|%>
+              <%if nota.aluno_id == session[:aluno]%>
                <% if nota.observacao_notas.present? %>
                <tr>
                  <td align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</td>
@@ -219,6 +220,7 @@
                                                <%end%>
                     </td>
                </tr>
+             <%end%>
             <%end%>
            <%end%>
           </table>
