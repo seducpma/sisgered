@@ -49,7 +49,7 @@
         <%end%>  
             <table border="1" cellspacing="0" cellpadding="1" width="100%">
               <tr>
-                <td width=" 25%" rowspan="2" align="center"><b>Disciplina</b></td>
+                <td width=" 20%" rowspan="2" align="center"><b>Disciplina</b></td>
                 <td width=" 15%" colspan="3" align="center"><b>1º Bimestre</b></td>
                 <td width=" 15%"colspan="3" align="center"><b>2º Bimestre</b></td>
                 <td width=" 15%" colspan="3" align="center"><b>3º Bimestre</b></td>
@@ -85,7 +85,7 @@
              <tr>
                <%@notasB.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
-                    <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
+                    <td><%= nota.atribuicao.disciplina.disciplina %></td>
                     <%if nota.nota1.present? %>
                          <td align="center"><%= nota.nota1 %> </td>
                          <td align="center"><%= nota.faltas1%></td>
@@ -146,7 +146,7 @@
              <tr>
                <%@notasD.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
-                    <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
+                    <td><%= nota.atribuicao.disciplina.disciplina %></td>
                     <%if nota.nota1.present? %>
                          <td align="center"><%= nota.nota1 %> </td>
                          <td align="center"><%= nota.faltas1%></td>
