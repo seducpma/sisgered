@@ -68,10 +68,10 @@
                   <td width ="4%" align="center"><%=  cont1%></td>
                   <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
                   <td width ="57%" align="left">
-                        <%if (nota.aluno.trans_in == 1) and (nota.aluno.unidade_id != current_user.unidade_id)%>
+                        <%if (nota.ativo == 1)%>
                           <%= nota.aluno.aluno_nome %><font color ="red"> (Transf.)</font>
                         <%else%>
-                            <%= nota.aluno.aluno_nome %></td>
+                          <%= nota.aluno.aluno_nome %></td>
                         <%end%>
                   <td width ="6%" align="center"><%= nota.nota1 %></td>
                   <td width ="6%" align="center"><%= nota.faltas1 %></td>
