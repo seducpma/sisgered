@@ -428,6 +428,24 @@ def impressao_transferencia_aluno
 end
 
 
+
+def reserva_vaga
+     @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
+     session[:aluno_id]=params[:aluno][:aluno_id]
+     for aluno in @aluno
+       session[:unidade_id]= aluno.unidade_id
+       session[:aluno_id]= aluno.id
+     end
+     @classe = Classe.find(:all, :joins => "inner join alunos_classes on classes.id = alunos_classes.classe_id", :conditions =>['alunos_classes.aluno_id =? AND ano_letivo=?' , params[:aluno][:aluno_id], Time.now.year])
+       render :update do |page|
+          page.replace_html 'documento', :partial => 'reserva_vaga'
+       end
+end
+
+
+
+
+
    def load_professores11
     @professores1 = type_user(current_user.unidade_id)
   end

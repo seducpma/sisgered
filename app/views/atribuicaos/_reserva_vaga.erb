@@ -1,0 +1,72 @@
+
+<table width="100%">
+  <tr>
+    <td rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+        <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center><br/>
+        <center><font size="2"><b><u>RESERVA DE VAGAS</u> &nbsp&nbsp&nbsp&nbsp</b></font></center>
+
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+ </table>
+<table cellspacing="0" cellpadding="1" width="100%">
+   <% @aluno.each do |aluno| %>
+     <tr>
+        <td width =" 15%"><b>Unidade de Ensino:</b></td>
+        <td><b><%=h aluno.unidade.nome%></b></td>
+     </tr>
+     <tr>
+         <td><b>Endereço:</b></td>
+         <td><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%>  FONE: (19)<%=h aluno.unidade.fone%></td>
+     </tr>
+     <tr>
+        <td><b>Autorização:</b></td>
+        <td><%=h aluno.unidade.autorizacao%></td>
+     </tr>
+  <%end%>
+</table>
+ <br/>
+<table cellspacing="0" cellpadding="1" width="100%">
+  <% @aluno.each do |aluno| %>
+     <tr>
+     <td colspan="3"><br/><br/>
+               <b>DECLARO</b>, para fins de transferência, que há uma vaga reservada nesta Unidade Escolar para o(a)  aluno(a)<b> <%=h aluno.aluno_nome %></b>
+                R.A.: <b><%=h aluno.aluno_ra %></b>,
+                <% if (aluno.aluno_RG.present?)  %>
+                     e RG: <b><%=h aluno.aluno_RG %></b> emitido em < <b><%=h aluno.aluno_emissaoRG %></b> ,
+                <%end%>
+               nascido(a) em <b><%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %>, </b>
+               <% if (aluno.aluno_naturalidade?)  %>
+                  na cidade de <%=h aluno.aluno_naturalidade %>,
+               <%end%>
+                  no <select name="ano_teste">
+                       <option value= "1">1º</option>
+                       <option value= "2">2º</option>
+                       <option value= "3">3º</option>
+                       <option value= "4">4º</option>
+                       <option value= "5">5º</option>
+                       <option value= "6">6º</option>
+                       <option value= "7">7º</option>
+                       <option value= "8">8º</option>
+                       <option value= "9">9º </option>
+                    </select>
+               ano do Ensino Fundamental de 9 anos.
+     <br/><br/>
+     </tr>
+     <tr>
+       <td>
+
+       </td>
+     </tr>
+
+
+  <%end%>
+</table>
+ <br/>
+ 
+
+

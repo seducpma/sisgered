@@ -19,11 +19,11 @@ class ProfessorsController < ApplicationController
 
   def load_professors
     if (current_user.unidade_id == 53 or current_user.unidade_id == 52 ) then
-      @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
-      @professors1 = Professor.find(:all,:conditions => 'desligado = 0', :order => 'matricula ASC')
+      @professors = Professor.find(:all, :conditions => 'desligado = 0 AND diversas_unidades =1' , :order => 'nome ASC')
+      @professors1 = Professor.find(:all,:conditions => 'desligado = 0 AND diversas_unidades =1', :order => 'matricula ASC')
     else
-      @professors = Professor.find(:all, :conditions => ['desligado = 0 AND	unidade_id=?',current_user.unidade_id ], :order => 'nome ASC')
-      @professors1 = Professor.find(:all,:conditions => ['desligado = 0 AND	unidade_id=?',current_user.unidade_id ] , :order => 'matricula ASC')
+      @professors = Professor.find(:all, :conditions => ['desligado = 0 AND (diversas_unidades =1 OR	unidade_id=?)',current_user.unidade_id ], :order => 'nome ASC')
+      @professors1 = Professor.find(:all,:conditions => ['desligado = 0 AND (diversas_unidades =1 OR	unidade_id=?)',current_user.unidade_id ] , :order => 'matricula ASC')
     end
 
   end
