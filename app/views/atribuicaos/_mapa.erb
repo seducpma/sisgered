@@ -37,69 +37,141 @@
               </td>
             </tr>
             <table border="1" cellspacing="0" cellpadding="1" width="100%">
-              <tr>
+              <tr style="font-size: 8px">
                  <% @atribuicao_classe.each do |atrib| %>
                 
                 <% if (atrib.disciplina.disciplina).length > 12 %>
-                     <td align="center"width ="5%"  valign="top"><b><font size ="1px"><%= atrib.disciplina.disciplina %> </font></b><br/>
+                     <td align="center"width ="5%"  valign="top"><b><%= atrib.disciplina.disciplina %></b><br/>
                 <%else%>
-                    <td align="center"width ="5%"  valign="top">&nbsp<br/><b><font size ="1px"><%= atrib.disciplina.disciplina %> </font></b><br/>
+                    <td align="center"width ="5%"  valign="top">&nbsp<br/><b><%= atrib.disciplina.disciplina %></b><br/>
                  <%end%>
                    <table border="1" cellspacing="0" cellpadding="1" width="100%">
                           <%cont = 0%>
-                     
-                       <tr>
-                             <td align="center"> <font size ="1px"> <b> Nº </b></font> </td>
-                            <td align="center"><font size ="1px"><b>Nota</b></font></td>
-                            <td align="center"><font size ="1px"><b>Falta</b></font></td>
+                       <tr style="font-size: 8px">
+                             <td align="center"><b> Nº </b> </td>
+                            <td align="center"><b>Nota</b></td>
+                            <td align="center"><b>Falta</b></td>
                        </tr>
                          <% @alunos.each do |aluno| %>
                              <%@notas.each do |nota|%>
                                 <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                     <tr>
                                        <%  cont =cont+1%>
-                                      <td align="center"width ="33%" ><font size="1px"><b><%= cont %></b></font> </td>
-                                       <td align="center"width ="33%"><font size="1px"><% if  nota.nota1.nil? %>
+                                      <td align="center"width ="33%" ><b><%= cont %></b></font> </td>
+                                       <td align="center"width ="33%"><% if  nota.nota1.nil? %>
 
 
                                                                                        <%else%>
                                                                                           <%= nota.nota1 %>
                                                                                        <%end %>
                                          </font> </td>
-                                       <td align="center" width ="33%"><font size="1px"><%= nota.faltas1%></font></td>
+                                       <td align="center" width ="33%"><%= nota.faltas1%></td>
                                     </tr>
 
                               <%end%>
                             <%end%>
-
                          <%end%>
                    <% cont2 = 0 %>
                    <%for cont2 in ((cont+1)..40) %>
-                       <tr>
-                         <td align="center"width ="33%" ><font size="1px"><b><%= cont2 %></b></font> </td>
+                       <tr style="font-size: 8px">
+                         <td align="center"width ="33%" ><b><%= cont2 %></b></td>
                           <td align="center"width ="33%">&nbsp</td>
                           <td align="center" width ="33%">&nbsp</td>
                       </tr>
                   <% end  %>
                   </table>
-
-
-
-
-
-                  <b><font size ="1px"><b>Prof:</b> <%= atrib.professor.nome %> </font></b>
+                  <b><b>Prof:</b> <%= atrib.professor.nome %></b>
                  </td>
-
-
-
                 <%end%>
               </tr>
             </table>
-
-
       <tr>
         <td>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" align="center" bgcolor="#DCDCDC" >
+      <tr><td> <br/><hr><br/><br/></td>
+      </tr>
+    </table>
 
+    <table width="100%">
+         <tr>
+            <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+             <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+                <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
+                <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
+                <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                <%  session[:classe]=  classe.id%>
+             </td>
+          </tr>
+          <tr>
+              <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <hr/>
+            </td>
+          </tr>
+           <tr >
+              <td colspan="2"><b> Classe:</b> <%=h classe.classe_classe%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Bimestre:</b> 2º &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Período:</b> <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              </td>
+            </tr>
+            <table border="1" cellspacing="0" cellpadding="1" width="100%">
+              <tr style="font-size: 8px">
+                 <% @atribuicao_classe.each do |atrib| %>
+
+                <% if (atrib.disciplina.disciplina).length > 12 %>
+                     <td align="center"width ="5%"  valign="top"><b><%= atrib.disciplina.disciplina %></b><br/>
+                <%else%>
+                    <td align="center"width ="5%"  valign="top">&nbsp<br/><b><%= atrib.disciplina.disciplina %></b><br/>
+                 <%end%>
+                   <table border="1" cellspacing="0" cellpadding="1" width="100%">
+                          <%cont = 0%>
+                       <tr style="font-size: 8px">
+                             <td align="center"><b> Nº </b> </td>
+                            <td align="center"><b>Nota</b></td>
+                            <td align="center"><b>Falta</b></td>
+                       </tr>
+                         <% @alunos.each do |aluno| %>
+                             <%@notas.each do |nota|%>
+                                <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                    <tr>
+                                       <%  cont =cont+1%>
+                                      <td align="center"width ="33%" ><b><%= cont %></b></font> </td>
+                                       <td align="center"width ="33%"><% if  nota.nota2.nil? %>
+
+
+                                                                                       <%else%>
+                                                                                          <%= nota.nota2 %>
+                                                                                       <%end %>
+                                         </font> </td>
+                                       <td align="center" width ="33%"><%= nota.faltas2%></td>
+                                    </tr>
+
+                              <%end%>
+                            <%end%>
+                         <%end%>
+                   <% cont2 = 0 %>
+                   <%for cont2 in ((cont+1)..40) %>
+                       <tr style="font-size: 8px">
+                         <td align="center"width ="33%" ><b><%= cont2 %></b></td>
+                          <td align="center"width ="33%">&nbsp</td>
+                          <td align="center" width ="33%">&nbsp</td>
+                      </tr>
+                  <% end  %>
+                  </table>
+                  <b><b>Prof:</b> <%= atrib.professor.nome %></b>
+                 </td>
+                <%end%>
+              </tr>
+            </table>
+      <tr>
+        <td>
         </td>
       </tr>
     </table>
