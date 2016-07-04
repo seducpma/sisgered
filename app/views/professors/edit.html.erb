@@ -52,13 +52,24 @@
                      
                   </tr>
                   <tr>
-
                     <td  colspan="2"><b>Observações:</b><%= f.text_field :obs, :size => 60 %>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Jornada Semanal: </b><%= f.text_field :jornada_sem, :size =>5 %></td>
                    </tr>
+                   <tr>
+                     <td colspan="2"  >
+                       <fieldset><legend><font  size=2><b> Desligamento </b></font></legend>
+                          <table>
+                               <tr>
+                                 <td colspan="2"><b>Desligado:&nbsp&nbsp </b>SIM <%= f.check_box :desligado %> &nbsp&nbsp em <%= f.date_select(:data_desligado, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 10)) %>
+                                  &nbsp&nbsp Motivo:  <%= f.text_field :email, :size =>45%>
 
+                                 </td>
+                               </tr>
+                           </table>
+                          </fieldset>  
 
-
+                     </td>
+                   </tr>
                 </table>
 
 
