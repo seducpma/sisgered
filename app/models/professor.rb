@@ -34,15 +34,29 @@ Curso = ['SEM MAGISTÉRIO / PEDAGOGIA','MAGISTÉRIO - NÍVER MÉDIO','PEDAGOGIA 
 
   def caps_look
     self.pontuacao_final = (self.total_trabalhado + self.total_titulacao)
-    self.nome.upcase!
-    self.endres.upcase!
-    self.bairro.upcase!
-    self.complemento.upcase!
-    self.cidade.upcase!
-    self.funcao.upcase!
-    self.obs.upcase!
-    self.entrada_concurso.upcase!
 
+    self.nome.upcase!
+  if !self.endres.nil?
+    self.endres.upcase!
+  end
+  if !self.bairro.nil?
+    self.bairro.upcase!
+  end
+  if !self.complemento.nil?
+    self.complemento.upcase!
+  end
+  if !self.cidade.nil?
+    self.cidade.upcase!
+  end
+  if !self.funcao.nil?
+    self.funcao.upcase!
+  end
+   if !self.obs.nil?
+    self.obs.upcase!
+   end
+  if !self.entrada_concurso.nil?
+    self.entrada_concurso.upcase!
+  end
   end
 
 

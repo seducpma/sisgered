@@ -219,8 +219,8 @@ if ( params[:disciplina].present?)
  #      @notas1 = @notas = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
  #      @notas = @notas1- @notast
         @notast = Nota.find_by_sql("SELECT nt.* FROM transferencias tr JOIN notas nt ON tr.aluno_id = nt.aluno_id JOIN atribuicaos at ON tr.classe_id = at.classe_id WHERE (tr.unidade_id =" + (current_user.unidade_id).to_s + " AND tr.classe_id="+ (session[:classe_id]).to_s + " AND at.disciplina_id=" +(session[:disc_id]).to_s+" AND nt.atribuicao_id=" +(session[:atrib_id]).to_s+" AND nt.ativo is NULL" +")")
-       @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
-       @notas = @notas1- @notast
+        @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
+        @notas = @notas1- @notast
 
     end
     respond_to do |format|
