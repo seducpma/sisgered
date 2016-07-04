@@ -54,9 +54,7 @@ Curso = ['SEM MAGISTÉRIO / PEDAGOGIA','MAGISTÉRIO - NÍVER MÉDIO','PEDAGOGIA 
    if !self.obs.nil?
     self.obs.upcase!
    end
-  if !self.entrada_concurso.nil?
-    self.entrada_concurso.upcase!
-  end
+
   end
 
 

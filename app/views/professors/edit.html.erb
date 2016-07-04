@@ -17,9 +17,9 @@
                   <tr>
                     <td colspan="2"><b>Data de Nascimento:</b> <%=h @professor.dt_nasc.strftime("%d/%m/%Y")%><%= datepicker_tag(:professor, :dt_nasc,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %>&nbsp&nbsp
                         <b>RG: </b><%= f.text_field :RG, :size => 9 %>&nbsp&nbsp
-                        <b>CPF: </b><%= f.text_field :CPF, :size => 12 %>&nbsp&nbsp
-                         <b>RD: </b><%= f.text_field :RD, :size => 8 %>&nbsp&nbsp
-                        <b>INEP: </b><%= f.text_field :INEP, :size => 6 %></td>
+                        <b>CPF: </b><%= f.text_field :CPF, :size => 10 %>&nbsp&nbsp
+                         <b>RD: </b><%= f.text_field :RD, :size => 6 %>&nbsp&nbsp
+                        <b>INEP: </b><%= f.text_field :INEP, :size => 8 %></td>
                   </tr>
 
                   <tr>
@@ -61,7 +61,7 @@
                           <table>
                                <tr>
                                  <td colspan="2"><b>Desligado:&nbsp&nbsp </b>SIM <%= f.check_box :desligado %> &nbsp&nbsp em <%= f.date_select(:data_desligado, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 10)) %>
-                                  &nbsp&nbsp Motivo:  <%= f.text_field :email, :size =>45%>
+                                  &nbsp&nbsp Motivo:  <%= f.text_field :motivo, :size =>45%>
 
                                  </td>
                                </tr>
