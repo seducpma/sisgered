@@ -57,7 +57,7 @@
                                <%if aluno.aluno_status.nil?%>
                                    <%="#{ aluno.aluno_nome}"%>
                               <%else%>
-                                   <%="#{ aluno.aluno_nome}"%><%="#{ aluno.aluno_status}"%>
+                                   <%="#{ aluno.aluno_nome}"%> <%="#{ aluno.aluno_status}"%>
                               <%end%>
 
                           </td>
@@ -78,7 +78,7 @@
                                <%if aluno.aluno_status.nil?%>
                                    <%="#{ aluno.aluno_nome}"%>
                               <%else%>
-                                   <%="#{ aluno.aluno_nome}"%><%="#{ aluno.aluno_status}"%>
+                                   <%="#{ aluno.aluno_nome}"%> { aluno.aluno_status}"%>
                               <%end%>
                            </td>
                           <td></td>
@@ -90,7 +90,7 @@
                           </td>
                       </tr>
                     <%end%>
-                    <%else%>
+               <%else%>
                        <tr bgcolor="#F5F5F5">
                           <td align="center"> &nbsp <%= cont1%> </td>
                           <td align="center"> <%="#{ aluno.aluno_rm}"%> </td>
