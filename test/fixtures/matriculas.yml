@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  classe_id: 
+  aluno_id: 
+  ano_letico: 2016-07-06
+  status: MyString
+  unidade_id: 
+  procedencia: MyString
+  transf_unidade_id: 
+  para: MyString
+  rem_classe_id: 
+  data_transferencia: 2016-07-06
+  obs: MyString
+
+two:
+  classe_id: 
+  aluno_id: 
+  ano_letico: 2016-07-06
+  status: MyString
+  unidade_id: 
+  procedencia: MyString
+  transf_unidade_id: 
+  para: MyString
+  rem_classe_id: 
+  data_transferencia: 2016-07-06
+  obs: MyString

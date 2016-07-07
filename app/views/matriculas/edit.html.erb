@@ -1,0 +1,56 @@
+<h1>Editing matricula</h1>
+
+<% form_for(@matricula) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :classe_id %><br />
+    <%= f.text_field :classe_id %>
+  </p>
+  <p>
+    <%= f.label :aluno_id %><br />
+    <%= f.text_field :aluno_id %>
+  </p>
+  <p>
+    <%= f.label :ano_letico %><br />
+    <%= f.date_select :ano_letico %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= f.label :unidade_id %><br />
+    <%= f.text_field :unidade_id %>
+  </p>
+  <p>
+    <%= f.label :procedencia %><br />
+    <%= f.text_field :procedencia %>
+  </p>
+  <p>
+    <%= f.label :transf_unidade_id %><br />
+    <%= f.text_field :transf_unidade_id %>
+  </p>
+  <p>
+    <%= f.label :para %><br />
+    <%= f.text_field :para %>
+  </p>
+  <p>
+    <%= f.label :rem_classe_id %><br />
+    <%= f.text_field :rem_classe_id %>
+  </p>
+  <p>
+    <%= f.label :data_transferencia %><br />
+    <%= f.date_select :data_transferencia %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @matricula %> |
+<%= link_to 'Back', matriculas_path %>

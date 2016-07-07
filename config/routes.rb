@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :matriculas
+
 
   map.resources :transferencias,:collection => { :editar_transferencia=>:get}
   map.resources :disciplinas
