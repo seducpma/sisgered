@@ -68,11 +68,12 @@
      <%end%>
         <table  border="1" frame="box" rules="all" width="100%">
           <tr bgcolor="#F5F5F5">
-            <td width ="78%" colspan="2"><b> Alunos: </b></td>
+            <td width ="78%" colspan="3"><b> Alunos: </b></td>
             <td colspan="2" align="center"><b>1ºBim</b></td>
             <td colspan="2" align="center"><b>2ºBim</b></td>
           </tr>
           <tr bgcolor="#F5F5F5">
+             <td width ="4%"align="center"><b>Nº</b></td>
              <td width ="12%"><b>RA</b></td>
              <td width ="56%"><b>NOME</b></td>
              <td width ="6%" align="center"><b>Nota</b></td>
@@ -87,6 +88,7 @@
                                 <table border="1" cellspacing="0" cellpadding="1" width="100%">
                                     <%@notas.each do |nota|%>
                                     <tr>
+                                      <td width ="4%" align="center"><%=  cont1%></td>
                                       <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
                                       <td width ="57%" align="left"><%= nota.aluno.aluno_nome %></td>
                                       <td width ="6%" align="center"><%= nota.nota1 %></td>
@@ -95,8 +97,12 @@
                                       <td width ="6%" align="center"><%= nota.nota2 %></td>
                                       <td width ="7%" align="center"><%= nota.faltas2 %></td>
                                       <td width ="6%" align="center"><%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :id =>nota}, :method => "get", :title => "Editar" %></td>
-
                                     </tr>
+                                    <tr>
+                                      <td></td>
+                                      <td colspan="2">------</td>
+                                    </tr>
+                                    <% cont1=cont1+1 %>
                                   <%end%>
                                 </table>
                                 <table border="1" cellspacing="0" cellpadding="1" width="100%">
@@ -112,6 +118,7 @@
                                       <td width ="6%" align="center"><%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :id =>nota}, :method => "get", :title => "Editar" %></td>
 
                                     </tr>
+
                                   <%end%>
                                    <tr>
                                      <td  colspan="7" width="6%"align="left" valign="center" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
