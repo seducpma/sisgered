@@ -1,56 +1,122 @@
-<h1>Editing matricula</h1>
+<div id="interno1">
+<% title "TRANSFERENCIA".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>EDITAR MATRÍCULA</strong></font><br/>
+ </div>
+    <div class="tabs">
+          <% form_for (@matricula) do |f| %>
+           <%= f.error_messages %>
+            <font  size="2">
+              <br/>
+              <table width="100%" align="center" bgcolor="#F5F5F5">
+                  <tr> <td></td> </tr>
+                  <%if (@matricula.status.nil?) %>
+                    <tr>
+                      <td><b>Aluno: </b></td>
+                      <td> <%=h @matricula.aluno.aluno_nome%> &nbsp&nbsp (<font color="blue"><b>regularmente</b></font> matriculado)</td>
+                    </tr>
+                  <%else if (@matricula.status == 'TRANSFERIDO')%>
+                          <tr>
+                             <td><b>Aluno: </b></td>
+                             <td> <%=h @matricula.aluno.aluno_nome%> &nbsp&nbsp (TRANSFERIDO <font color="blue"><b> para</b> </font> outra escola)</td>
+                          </tr>
+                       <%else if (@matricula.status == 'TRANSFERENCIA')%>
+                               <tr>
+                                  <td><b>Aluno: </b></td>
+                                   <td> <%=h @matricula.aluno.aluno_nome%> &nbsp&nbsp (recebido por TRANSFERENCIA <font color="blue"><b> de</b> </font> outra escola)</td>
+                               </tr>
+                            <%else if (@matricula.status == 'REMANEJADO')%>
+                                         <tr>
+                                             <td><b>Aluno: </b></td>
+                                             <td> <%=h @matricula.aluno.aluno_nome%> &nbsp&nbsp (REMANEJADO <font color="blue"><b>para </b></font> outra classe)</td>
+                                         </tr>
+                                 <%else if (@matricula.status == '*REMANEJADO')%>
+                                            <tr>
+                                                <td><b>Aluno: </b></td>
+                                               <td> <%=h @matricula.aluno.aluno_nome%> &nbsp&nbsp (REMANEJADO <font color="blue"><b> de </b></font> outra classe)</td>
+                                            </tr>
+                                       <%end%>
+                                 <%end%>
+                            <%end%>
+                      <%end%>
+                  <%end%>
+                  <tr> <td></td> </tr>
+                  <tr>
+                    <td width ="10%"><b>Aluno Nº: </b></td>
+                    <td><%= f.text_field :classe_num, :size => '2'%>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Classe: </b>
+                        &nbsp&nbsp&nbsp&nbsp <%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
 
-<% form_for(@matricula) do |f| %>
-  <%= f.error_messages %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td ><b>Status: </b></td>
+                    <td><% if @matricula.status.nil? %>
+                            Matriculado
+                         <%else%>
+                           <%= h@matricula.status%>
+                          <%end%> 
+                          &nbsp&nbsp - &nbsp&nbsp<b> Alteração Status:</b> &nbsp&nbsp&nbsp&nbsp <%= f.select :status, (STATUS).sort, :include_blank => '' %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <fieldset><legend><b>SE TRANSFERÊNCIA</b></legend>
+                          <table>
+                               <tr>
+                                <td><b>Procedência: </b> </td>
+                                   <td><%= f.text_field :procedencia%></td>
+                              </tr>
+                              <tr>
+                                  <td ><b>Destino</b> (se externo à SEDUC)<b>: </b> </td>
+                                  <td valign="top"> <%= f.text_field :para%> </td>
+                               </tr>
+                              <tr>
+                                <td ><b>Destino</b> (se unidade SEDUC)<b>: </b></td>
+                                  <td valign="top"> <%= f.collection_select :transf_unidade_id, @unidade_procedencia1, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                              </tr>
+                                 <tr>
+                                    <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
+                                </tr>
+                          </table>
+                        </fieldset>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <fieldset><legend><b>SE REMANEJAMENTO</b></legend>
+                          <table>
+                              <tr>
+                                  <td ><b>Classe Destino: </b> </td>
+                                  <td><%= f.collection_select :rem_classe_id 	, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
+                               </tr>
+                                  <tr>
+                                    <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
+                                  </tr>
+                          </table>
+                        </fieldset>
+                    </td>
+                  </tr>
 
-  <p>
-    <%= f.label :classe_id %><br />
-    <%= f.text_field :classe_id %>
-  </p>
-  <p>
-    <%= f.label :aluno_id %><br />
-    <%= f.text_field :aluno_id %>
-  </p>
-  <p>
-    <%= f.label :ano_letico %><br />
-    <%= f.date_select :ano_letico %>
-  </p>
-  <p>
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </p>
-  <p>
-    <%= f.label :unidade_id %><br />
-    <%= f.text_field :unidade_id %>
-  </p>
-  <p>
-    <%= f.label :procedencia %><br />
-    <%= f.text_field :procedencia %>
-  </p>
-  <p>
-    <%= f.label :transf_unidade_id %><br />
-    <%= f.text_field :transf_unidade_id %>
-  </p>
-  <p>
-    <%= f.label :para %><br />
-    <%= f.text_field :para %>
-  </p>
-  <p>
-    <%= f.label :rem_classe_id %><br />
-    <%= f.text_field :rem_classe_id %>
-  </p>
-  <p>
-    <%= f.label :data_transferencia %><br />
-    <%= f.date_select :data_transferencia %>
-  </p>
-  <p>
-    <%= f.label :obs %><br />
-    <%= f.text_field :obs %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+                
+           </table>
+            <table width="100%" >
+                <tr> <td><br/></td> </tr>
+                   <tr>
+                      <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+             <%end%>
+                   <td align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+       <br/>
+ </div>
 
-<%= link_to 'Show', @matricula %> |
-<%= link_to 'Back', matriculas_path %>
+
+
+</div>
+
+<br/>
+</div>
+

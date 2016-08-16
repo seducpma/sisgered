@@ -1,45 +1,87 @@
-  <% for classe in @classe %>
+
     <table width ="100%" >
         <tr>
           <td colspan="5">
             <font size="3"> <b><u>Matrícula em <%= Time.now.year %>:</u></b>
           </td>
         </tr>
+          <% for matricula in @matriculas %>
            <tr bgcolor="#F5F5F5" >
              <td width="5%"></td>
              <td align="left" width="10%"><b>Unidade:</b></td>
-             <td align="left">  <%=h classe.unidade.nome%></td>
+             <td align="left">  <%=h matricula.unidade.nome%></td>
              <td align="left" width="12%"><b> Ano Letivo:</b></td>
-             <td align="left"> <%=h classe.classe_ano_letivo %><%  session[:classe]=  classe.id%></td>
+             <td align="left"> <%=h matricula.ano_letivo %><%  session[:classe]=  matricula.classe.id%></td>
            </tr>
            <tr bgcolor="#F5F5F5">
              <td></td>
              <td align="left"><b>Classe:</b></td>
-               <td align="left">  <%=h classe.classe_classe%></td>
+               <td align="left">  <%=h matricula.classe.classe_classe%></td>
                <td align="left"><b>Horário:</b></td>
-               <td align="left">  <%=h classe.horario %></td>
+               <td align="left">  <%=h matricula.classe.horario %></td>
             </tr>
             <tr bgcolor="#F5F5F5" >
               <td></td>
-               <td align="left"><b>Descrição:</b></td>
-               <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+               <td align="left"><b>Status:</b></td>
+               <% if  matricula.status.nil? %>
+                   <td align="left" colspan="3"> Matriculado</td>
+               <%else%>
+                  <td align="left" colspan="3"> <%=h matricula.status %>
+                    <%if matricula.status == 'TRANSFERIDO'%>
+                        <%if !matricula.para.nil?%>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Para:&nbsp&nbsp</b><%=h matricula.para %>
+                        <%end%>
+<!--TRANSFERIDO PARA.nil?  ESCOLAS-->
+                        <%if !matricula.transf_unidade_id.nil?%>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Para:&nbsp&nbsp</b>
+                                <%if matricula.transf_unidade_id == 42 %>
+                                   CIEP ZANAGA (PROFA. ONIVA DE MOURA BRIZOLA)
+                                <%else if matricula.transf_unidade_id == 43 %>
+                                      CIEP S.JERONIMO (PROF. ANISIO SPINOLA TEIXEIRA)
+                                      <%else if matricula.transf_unidade_id == 44 %>
+                                           CIEP C.JARDIM (PROF. OCTAVIO CESAR BORGHI)
+                                            <%else if matricula.transf_unidade_id == 45 %>
+                                                CIEP S.VITO (PROFA. PHILOMENA MAGALY MALUF ROSSETTI)
+                                                  <%else if matricula.transf_unidade_id == 46 %>
+                                                      CIEP JAGUARI (PROF. MARIA NILDE MASCELANI)
+                                                        <%else if matricula.transf_unidade_id == 47 %>
+                                                            CIEP PRAIA AZUL (PROF. MILTON SANTOS )
+                                                              <%else if matricula.transf_unidade_id == 48 %>
+                                                                  CAIC (PROF. SYLVINO CHINELATTO )
+                                                                   <%else if matricula.transf_unidade_id == 49 %>
+                                                                       EMEF PAULO FREIRE
+                                                                        <%else if matricula.transf_unidade_id == 50 %>
+                                                                           EMEF FLORESTAN FERNANDES
+                                                                              <%else if matricula.transf_unidade_id == 51 %>
+                                                                                 EMEF 	DARCY RIBEIRO
+                                                                                 <%end%>
+                                                                           <%end%>
+                                                                        <%end%>
+                                                                    <%end%>
+                                                              <%end%>
+                                                        <%end%>
+                                                  <%end%>
+                                            <%end%>
+                                      <%end%>
+                                <%end%>
+                     <%end%>
+<!--TRASNFERIDO ESCOLAS-->
+                <%end%>
+                    <%if matricula.status == 'TRANSFERENCIA'%>
+                        <%if !matricula.procedencia.nil?%>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Procedencia:&nbsp&nbsp</b><%=h matricula.procedencia %>
+                        <%end%>
+                    <%end%>
+               </td>
+              <%end%>
             </tr>
-            <% if session[:trans] == 1  %>
-              <tr>
-                <td align="center" colspan="5"><font color ="red">
-                   <br/>     <b>TRANSFERIDO </b> </font>
-                  <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp em &nbsp&nbsp <%= session[:trans_data]%></b>
-                  <b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-                      <% if session[:de_para] == 1 %>
-                            de &nbsp&nbsp
-                      <%else%>
-                            para &nbsp&nbsp
-                      <%end%>
-             <%=  session[:trans_unidade]%></b> </td>
- 
-                 
-                </tr>
-            <%end%>
+
+
+
+            <tr bgcolor="#F5F5F5" >
+              <td></td>
+               <td align="left" colspan="4"> ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</td>
+            </tr>
 
            <%end%>
         </table>

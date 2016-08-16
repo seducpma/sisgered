@@ -1,10 +1,10 @@
-<table frame="box" rules="all" width="100%">
-  <tr>
-    <td rowspan="4"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-    <td><center><b>CLASSE</b></center>
-        <center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+<table frame="box" rules="all" width="100%" style="border-color: white">
+  <tr style="border-color: white">
+    <td rowspan="4" style="border-color: white"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td style="border-color: white"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
         <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
         <center><font size="1">Unidade Escolar:     <% for classe in @classe %> <%=h classe.unidade.nome %>   </font></center>
+        <center><b>CLASSE</b></center>
     </td>
   </tr>
 </table>
@@ -34,28 +34,24 @@
           <td colspan="3" align="left" style="font-size: 7px">  <%=h classe.classe_descricao %></td>
       </tr>
       <tr style="line-height:25%">
-        <td valign="top" style="font-size: 7px"> <b> Professor(s):</b> </td>
-             <% cont=1 %>
+         <% cont=1 %>
          <% cont1=1 %>
-        <td colspan="4">  <% for atrib in @atribuicao_classe %>
-                           <table border="1" cellspacing="0" cellpadding="1" width="100%">
-                              <tr style="line-height:25%">
-                                 <td align="left" width="50%" style="font-size: 7px">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
-                                 <td align="left"width="10%" style="font-size: 7px"><b> Disciplina:</b></td>
-                                 <td align="left" width="30%" style="font-size: 7px"> <%=h atrib.disciplina.disciplina %></td>
-                             </tr>
-                           </table>
-                          <% cont= cont+1 %>
-                         <%end%>
+        <td colspan="4" style="font-size: 7px">
+          <b> Professor(s):</b> <br/>
+            <% for atrib in @atribuicao_classe %>
+             <ul style="line-height:25%"> &nbsp<%= cont%> - <%=h atrib.professor.nome%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               <b> Disciplina:</b>&nbsp&nbsp <%=h atrib.disciplina.disciplina %></ul>
+             <% cont= cont+1 %>
+           <%end%>
         </td>
       </tr>
       <tr style="line-height:25%">
-        <td valign="top" style="font-size: 7px"> <b> Alunos:</b> </td>
-             <% cont=1 %>
+         <% cont=1 %>
          <% cont1=1 %>
-        <td colspan="4">
-          <table border="1" cellspacing="0" cellpadding="1" width="100%">
-                             <tr style="line-height:25%">
+        <td style="font-size: 7px" colspan="4">
+          <b> Alunos: </b><br/>
+          <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                           <tr style="line-height:30%">
                                <td align="center"width ="2%" style="font-size: 7px"><b>Nº</b></td>
                                <td width ="20%" style="font-size: 7px"><b>RM</b></td>
                                <td width ="20%" style="font-size: 7px"><b>RA</b></td>
@@ -64,100 +60,35 @@
                                <td align="center"width ="10%" style="font-size: 7px"><b>NASC</b></td>
                                 <td align="center"width ="10%" style="font-size: 7px"><b>TRANSF</b></td>
                              </tr>
-     <% for classe in @classe %>
-        <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
-            <% if aluno.unidade_anterior  != User.current.unidade_id%>
-                    <%if aluno.trans_in == 1 %>
-                       <tr style="line-height:25%">
-                          <td align="center" style="font-size: 7px"> &nbsp <%= cont1%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_rm}"%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_ra}"%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_nome}"%></td>
-                          <td align="left" style="font-size: 7px">
-                            <%if aluno.mesma_unidade == 1%>
-                                 <font color ="green"> Trasnferido</font>
-                               <%else%>
-                                  <font color ="red"> Transferido</font>
-                               <%end%>
-                            </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
-                          <td style="font-size: 7px"> <%= aluno.transferido.strftime("%d/%m/%Y")%>
 
+                             <% for matricula in  @matriculas %>
+                                <tr style="line-height:25%">
+                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.classe_num}"%> </td>
+                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
+                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
+                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+                                  <td align="center" style="font-size: 7px"> <%  if  matricula.status =="TRANSFERIDO"%>
+                                                        <font color ="red"> Transferido </font>
+                                                    <%end%>
+                                                    <%  if  matricula.status =="TRANSFERENCIA"%>
+                                                        <font color ="blue"> Transferência </font>
+                                                    <%end%>
+                                                    <%  if  matricula.status =="REMANEJADO"%>
+                                                        <font color ="green"> Remanejado </font>
+                                                    <%end%>
+                                                    <%  if  matricula.status =="*REMANEJADO"%>
+                                                        <font color ="green"> *Remanejado </font>
+                                                    <%end%>
+                                  </td>
+                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
+                                  <td align="center" style="font-size: 7px"><%  if  matricula.data_transferencia.nil?%>
+                                                   <%else%>
+                                                         <%="#{ matricula.data_transferencia.strftime("%d/%m/%Y")}"%> </td>
+                                                   <%end%>
 
-                          </td>
-                      </tr>
-                    <%else%>
-                      <tr style="line-height:25%">
-                          <td align="center" style="font-size: 7px"> &nbsp <%= cont1%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_rm}"%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_ra}"%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_nome}"%></td>
-                          <td align="left" style="font-size: 7px">Regular</td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
-                          <td  style="font-size: 7px"> <%if aluno.transferido.nil? %>
-                               <%else%>
-                                   <%= aluno.transferido.strftime("%d/%m/%Y")%>
-                              <%end%>
-                          </td>
-                      </tr>
-                    <%end%>
-                    <%else%>
-                       <tr style="line-height:25%">
-                          <td align="center" style="font-size: 7px"> &nbsp <%= cont1%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_rm}"%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_ra}"%> </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_nome}"%></td>
-                          <td align="left" style="font-size: 7px">
-                            <%if aluno.mesma_unidade == 1%>
-                                 <font color ="green"> Transferido</font>
-                               <%else%>
-                                  <font color ="red"> Transferido</font>
-                               <%end%>
-                            </td>
-                          <td align="left" style="font-size: 7px"> <%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
-                          <td  style="font-size: 7px"> <%if aluno.transferido.nil? %>
-                               <%else%>
-                                   <%= aluno.transferido.strftime("%d/%m/%Y")%>
-                              <%end%>
-                          </td>
-                      </tr>
-
-
-
-                <%end%>
-          <%cont1 = cont1+1%>
-       <%end%>
-    <%end%>
-
-    <%cont11 = cont1%>
-    <% for trans in @transferencia %>
-          <tr style="line-height:25%">
-           <td align="center" style="font-size: 7px"> &nbsp <%= cont11%> </td>
-           <td align="left" style="font-size: 7px"> <%="#{ trans.aluno.aluno_rm}"%> </td>
-           <td align="left" style="font-size: 7px"> <%="#{ trans.aluno.aluno_ra}"%> </td>
-           <td align="left" style="font-size: 7px"><%="#{ trans.aluno.aluno_nome}"%> </td>
-          <td align="left" style="font-size: 7px"><font color ="Blue">Transferência</font> </td>
-           <td align="left" style="font-size: 7px"><%="#{ trans.aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%>  </td>
-           <td align="left" style="font-size: 7px">
-               <% if trans.data_transferencia.nil? %>
-               <% else%>
-                      <%= trans.data_transferencia.strftime("%d/%m/%Y") %>
-              <%end%>
-           </td>
-
-          <%cont11 = cont11+1%>
-         </tr>
-
-    <%end%>
-
-
-
-
-
-
-
-
-
+                               </tr>
+                            <%end%>
+                </table>
         </td>
       </tr>
 

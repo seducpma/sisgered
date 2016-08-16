@@ -193,7 +193,7 @@ end
  def nome_classe
 
        session[:de_para]= 0
-       @classe = Classe.find(:all, :joins => "inner join alunos_classes on classes.id = alunos_classes.classe_id", :conditions =>['alunos_classes.aluno_id =?', params[:aluno_aluno_id]])
+       @classe = Classe.find(:all, :joins => "inner join matriculas on classes.id = matriculas.classe_id", :conditions =>['matriculas.aluno_id =?', params[:aluno_aluno_id]])
        if @classe.empty?
          @classe = Classe.find(:all, :joins => "inner join transferencias on classes.id = transferencias.classe_id", :conditions =>['transferencias.aluno_id =?', params[:aluno_aluno_id]])  
          session[:de_para]=1
@@ -202,7 +202,7 @@ end
       @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_aluno_id]])
        @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
        @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
-
+        @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', params[:aluno_aluno_id]])
         @aluno.each do |aluno|
            session[:trans]= aluno.trans_in
            if aluno.transferido.nil?

@@ -1,0 +1,16 @@
+<h1>Editing situacao_aluno</h1>
+
+<% form_for(@situacao_aluno) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @situacao_aluno %> |
+<%= link_to 'Back', situacao_alunos_path %>

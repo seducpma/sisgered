@@ -1,23 +1,16 @@
+    <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+         <tr  style="border-color: white">
+            <td  style="border-color: white" rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+            <td  style="border-color: white" colspan="2"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+                <center><font size="1">Unidade Escolar: <% @aluno.each do |aluno| %><%=h aluno.unidade.nome %> <%end%>  </font></center><br/><br/>
+                <font size="4"><i><center><b><u>CADASTRO DE ALUNOS</u></b></center></i><br/>
+             </td>
+          </tr>
 
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<br/><br/>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     </table>
 
-<font size="4"><i><b><u>CADASTRO DE ALUNOS</u></b><br/>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
-     <font size="3"><i><b>Prefeitua Municipal de  Americana </b></i><br/>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <font size="2"><b><i> Secretaria da Educação</i></b><br/>
-
-
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<font size="1">Unidade Escolar: <% @aluno.each do |aluno| %><%=h aluno.unidade.nome %> <%end%>  </font><br/>
+<hr/>
 
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -29,7 +22,7 @@
  </table>
 <legend><font  size=3><b> Dados Pessoais</b></font></legend>
 <% @aluno.each do |aluno| %>
-         <table border="1" cellspacing="0" cellpadding="1">
+         <table border="1" cellspacing="0" cellpadding="1"style="border-color: white">
            <tr>
                <td align="left" width="4%"><b>Nome:</b></td>
                <td colspan="4" align="left"> <%=h aluno.aluno_nome %></td>
@@ -51,8 +44,9 @@
             </tr>
            <tr >
                <td align="left"><b>Nacionalidade:</b></td>
-               <td  colspan="2"align="left"><%=h aluno.aluno_nacionalidade %></td>
-               <%if aluno.aluno_nacionalidade != 'BRASILEIRO'%>
+               <%if aluno.aluno_nacionalidade == 'BRASILEIRO'%>
+               <td  colspan="7"align="left"><%=h aluno.aluno_nacionalidade %></td>
+               <%else%>
                 <td colspan="4"><b>Se estangeiro: &nbsp&nbsp Chegada Brasil:&nbsp&nbsp</b>
                        <%if !aluno.aluno_chegada_brasil.nil?%>
                            <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%>
@@ -240,7 +234,7 @@
 
 <br/>
     <font  size=3><b> Responsávels</b></font></legend>
-       <table border="1" cellspacing="0" cellpadding="1" width="100%">
+       <table border="1" cellspacing="0" cellpadding="1" width="100%"style="border-color: white">
            <tr>
                <td ><b>Profissão:</b></td>
                <td colspan="3"> <%= aluno.aluno_profissao_responsavel%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -279,10 +273,10 @@
            </tr>
          </table>
 <%end%>
- <br/>
+ <br/><br/><br/><br/><br/><br/><br/>
 <%for  saude in  @saude%>
        <legend><font  size=3><b> Dados Saúde</b></font></legend>
-         <table border="1" cellspacing="0" cellpadding="1">
+         <table border="1" cellspacing="0" cellpadding="1"style="border-color: white">
            <tr>
                <td width ="22%"><b>Cartão SUS:</b></td>
                <td width ="32%">  <%=h saude.saude_cartao_sus%></td>
@@ -359,7 +353,7 @@
 <br/>
 <%for  socioeconomico in  @socioeconomico%>
        <legend><font  size=3><b> Dados Socioeconômicos</b></font></legend>
-       <table border="1" cellspacing="0" cellpadding="1" width="100%">
+       <table border="1" cellspacing="0" cellpadding="1" width="100%"style="border-color: white">
             <tr>
                <td align="left" width="4%"><b>Nome:</b></td>
                <td colspan="5" align="left"> <%=h socioeconomico.aluno.aluno_nome %></td>
@@ -424,10 +418,10 @@
      
   <% session[:socioeconomico] = socioeconomico.id %>
 <%end%>
-<br/>
+<br/><br/><br/><br/><br/>
 <%for  aluno in  @aluno%>
        <font  size=3><b> Autorizações</b></font></legend>
-         <table border="1" cellspacing="0" cellpadding="1" width="100%">
+         <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
              <tr>
                <td>1) Autorizo participar normalmente das atividades física, pois a criança não apresenta problemas de saúde que o impeça de paricipar.</td>
                <td ><%=h aluno.aluno_autoriza_ativ_fisica %></td>

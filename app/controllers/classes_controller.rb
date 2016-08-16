@@ -1,10 +1,5 @@
 class ClassesController < ApplicationController
 
-
-
-
-  # GET /classes
-  # GET /classes.xml
   before_filter :load_professors
   before_filter :load_classes
   before_filter :load_alunos
@@ -20,8 +15,6 @@ class ClassesController < ApplicationController
     end
   end
 
-  # GET /classes/1
-  # GET /classes/1.xml
   def show
     @classe = Classe.find(params[:id])
     
@@ -31,8 +24,6 @@ class ClassesController < ApplicationController
     end
   end
 
-  # GET /classes/new
-  # GET /classes/new.xml
   def new
     @classe = Classe.new
 
@@ -42,24 +33,19 @@ class ClassesController < ApplicationController
     end
   end
 
-  # GET /classes/1/edit
+
   def edit
     @classe = Classe.find(params[:id])
     session[:classe_id]=(params[:id])
-#   @livro = Livro.find(params[:id])
+
     @alunos_selecionados = @classe.alunos
     @alunos = @alunos - @alunos_selecionados
-
-#    @assuntos_selecionados = @livro.assuntos
-#    @assuntos = @assuntos - @assuntos_selecionados
 
 
 
 
   end
 
-  # POST /classes
-  # POST /classes.xml
   def create
     @classe = Classe.new(params[:classe])
     respond_to do |format|
@@ -74,15 +60,13 @@ class ClassesController < ApplicationController
     end
   end
 
-  # PUT /classes/1
-  # PUT /classes/1.xml
   def update
-    @alunosA = Aluno.find(:all,:joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
+    @alunosA = Aluno.find(:all,:joins => "INNER JOIN  matriculas  ON  alunos.id=matriculas.aluno_id  INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
     t=0
     @classe = Classe.find(params[:id])
     respond_to do |format|
       if @classe.update_attributes(params[:classe])
-       @alunosD = Aluno.find(:all,:joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
+       @alunosD = Aluno.find(:all,:joins => "INNER JOIN  matriculas  ON  alunos.id=matriculas.aluno_id  INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
        @aluno = @alunosD -@alunosA
        for aluno in @aluno
           session[:id_aluno]= aluno.id
@@ -93,7 +77,7 @@ class ClassesController < ApplicationController
            session[:atribuicao]= atrib.id
            session[:disciplina]= atrib.disciplina_id
            session[:professor]= atrib.professor_id
-           @alunos1 = Aluno.find(:all, :joins => "INNER JOIN  alunos_classes  ON  alunos.id=alunos_classes.aluno_id  INNER JOIN classes ON classes.id=alunos_classes.classe_id", :conditions =>['classes.id = ?', session[:classe]])
+           @alunos1 = Aluno.find(:all, :joins => "INNER JOIN  matriculas  ON  alunos.id=matriculas.aluno_id  INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.id = ?', session[:classe]])
            @aluno3 = Aluno.find(:all, :conditions => ['id = ?', session[:id_aluno]])
            if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
            for alun in @aluno3
@@ -148,51 +132,9 @@ def destroy_classe_aluno
   classe_id= session[:classe_id]
 
   @classe =Classe.find(session[:classe_id])
-  results = ActiveRecord::Base.connection.execute("DELETE FROM `alunos_classes` WHERE `aluno_id`="+(aluno_id).to_s+ " and classe_id="+(classe_id).to_s)
-  t=0
+  results = ActiveRecord::Base.connection.execute("DELETE FROM `matriculas` WHERE `aluno_id`="+(aluno_id).to_s+ " and classe_id="+(classe_id).to_s)
+
 end
- #aluno_id=params[:id]
-# classe_id= session[:classe_id]
-
- # @classealuno = AlunosClasse.find_by_sql("SELECT * FROM `alunos_classes`WHERE `aluno_id`="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
- 
-  #@classealuno = AlunosClasse.find_by_sql("DELETE FROM `alunos_classes` WHERE `aluno_id`="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
-
- #    Post.delete_all("aluno_id="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
-
-  # @classealuno.destroy
-
-
-
-
-   #respond_to do |format|
-    #  format.html { redirect_to(home_path) }
-     # format.xml  { head :ok }
-   # end
- # end
-
-
-
-
-#def destroy_classe_aluno
-#  aluno_id=params[:id]
-#  classe_id= session[:classe_id]
-#  @classealuno = AlunosClasse.find_by_sql("SELECT * FROM `alunos_classes`WHERE `aluno_id`="+(aluno_id).to_s + " and classe_id="+(classe_id).to_s)
-#t=0
-#  if @classealuno.nil? flash[:error] = "object is not not found"
-#      else if @classealuno.destroy flash[:notice] = 'blah'
-#            respond_to do |format|
-#               format.html { redirect_to home_path }
-#               format.json { head :no_content }
-#               format.js end
-#           else flash[:error] = 'There was a problem fetching the record'
-#              redirect_to home_path
-#           end
-#     end
-# end
-
-
-
 
 def destroy_classe_professor
   professor_id=params[:id]
@@ -224,14 +166,11 @@ end
 
 
 def consulta_classe_aluno
+
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-       #@alunos_cl = Aluno.find(:all, :joins => :alunos_classe, :conditions=>[ "alunos_classes.classe_id =?", params[:classe][:id]])
-        #Topic.find(:all, :conditions => { :forum_id => @forums.map(&:id) })
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-       
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
-
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
         render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
@@ -241,7 +180,7 @@ def editar_classe_aluno
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe_editar'
        end
@@ -261,13 +200,19 @@ end
   end
 
 def impressao_classe
+  t=0
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
+       #@transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
+       t1=session[:classe_id]
+       t=0
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',  session[:classe_id]], :order => 'classe_num ASC')
+       t=0
       render :layout => "impressao"
 end
 
 def impressao_lista
+  t=0
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
@@ -276,11 +221,12 @@ def impressao_lista
 end
 
 def consulta_lista_classe
+  
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
-
+       #@transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
+       @matriculas = Matricula.find(:all,:conditions =>['id = ?', params[:classe][:id]])
         render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_lista'
        end
@@ -303,10 +249,10 @@ end
 
   def load_alunos
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
-        @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `id`not in (SELECT alunos_classes.aluno_id FROM classes INNER JOIN alunos_classes ON classes.id = alunos_classes.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+") ORDER BY aluno_nome ASC")
+        @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+") ORDER BY aluno_nome ASC")
     else
         unidade=  current_user.unidade_id
-        @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+unidade.to_s+" AND`id`not in (SELECT alunos_classes.aluno_id FROM classes INNER JOIN alunos_classes ON classes.id = alunos_classes.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")ORDER BY aluno_nome ASC")
+        @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+unidade.to_s+" AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")ORDER BY aluno_nome ASC")
       
        #@alunos = Aluno.find(:all, :conditions => ['unidade_id = ? AND id  not in ', current_user.unidade_id ], :order => 'aluno_nome ASC')
     end

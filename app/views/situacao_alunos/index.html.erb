@@ -1,0 +1,20 @@
+<h1>Listing situacao_alunos</h1>
+
+<table>
+  <tr>
+    <th>Status</th>
+  </tr>
+
+<% @situacao_alunos.each do |situacao_aluno| %>
+  <tr>
+    <td><%=h situacao_aluno.status %></td>
+    <td><%= link_to 'Show', situacao_aluno %></td>
+    <td><%= link_to 'Edit', edit_situacao_aluno_path(situacao_aluno) %></td>
+    <td><%= link_to 'Destroy', situacao_aluno, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New situacao_aluno', new_situacao_aluno_path %>

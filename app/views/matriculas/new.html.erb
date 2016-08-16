@@ -1,55 +1,36 @@
-<h1>New matricula</h1>
+<div id="interno4">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>MATRICULA ALUNO</strong></font><br/>
+ </div>
+      <div class="tabs">
+        <% form_for @matricula do |f| %>
+         <%= f.error_messages %>
+        <fieldset><legend><font size=4>Matrícula Aluno</font></legend>
+        <table>
+           <tr>
+             <td><b>Classe: </b></td>
+             <td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
+           </tr>
+           <tr>
+              <td><b>Aluno: </b></td>
+              <td><%= f.collection_select :aluno_id , @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+           </tr>
+         </table>
+         </fieldset>
+         <table>
+           <tr>
+              <td width="4%"> <%= f.submit "Salvar" %></td>
+      <% end %>
+             <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
 
-<% form_for(@matricula) do |f| %>
-  <%= f.error_messages %>
+    </div>
+</div>
+<br/>
+</div>
 
-  <p>
-    <%= f.label :classe_id %><br />
-    <%= f.text_field :classe_id %>
-  </p>
-  <p>
-    <%= f.label :aluno_id %><br />
-    <%= f.text_field :aluno_id %>
-  </p>
-  <p>
-    <%= f.label :ano_letico %><br />
-    <%= f.date_select :ano_letico %>
-  </p>
-  <p>
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </p>
-  <p>
-    <%= f.label :unidade_id %><br />
-    <%= f.text_field :unidade_id %>
-  </p>
-  <p>
-    <%= f.label :procedencia %><br />
-    <%= f.text_field :procedencia %>
-  </p>
-  <p>
-    <%= f.label :transf_unidade_id %><br />
-    <%= f.text_field :transf_unidade_id %>
-  </p>
-  <p>
-    <%= f.label :para %><br />
-    <%= f.text_field :para %>
-  </p>
-  <p>
-    <%= f.label :rem_classe_id %><br />
-    <%= f.text_field :rem_classe_id %>
-  </p>
-  <p>
-    <%= f.label :data_transferencia %><br />
-    <%= f.date_select :data_transferencia %>
-  </p>
-  <p>
-    <%= f.label :obs %><br />
-    <%= f.text_field :obs %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
 
-<%= link_to 'Back', matriculas_path %>
+

@@ -1,7 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :matriculas
-
-
+  map.resources :situacao_alunos
+  map.resources :matriculas,:collection => { :transferencia=>:get, :alterar=>:get, :saidas=>:get,}
   map.resources :transferencias,:collection => { :editar_transferencia=>:get}
   map.resources :disciplinas
   map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get, :consulta_professor_classe=>:get, :historico_aluno=>:get, :historico => :get, :transferencia_aluno => :get, :transferenciaA=> :get,  :reserva_vaga=> :get,  :reserva_vagas=> :get}
@@ -103,7 +102,9 @@ ActionController::Routing::Routes.draw do |map|
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
   map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'
   map.lancar_notas_alunos_atribuicaos '/lancar_notas_alunos_atribuicaos', :controller => 'atribuicaos', :action => 'lancar_notas_alunos_atribuicao'
-
+  map.alteracao_matricula '/alteracao_matricula', :controller => 'matriculas', :action => 'alteracao_matricula'
+  map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
+  map.matriculas_saidas '/matriculas_saidas', :controller => 'matriculas', :action => 'matriculas_saidas'
   map.resources :roles_users, :collection => {:lista_users => :get}
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'

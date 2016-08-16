@@ -40,37 +40,38 @@
   <%end%>
 <table width="100%">
      <tr>
-       <td align="center"width ="10%"><b>Nº</b></td>
-       <td width ="12%"><b>RA</b></td>
-       <td width ="60%"><b>NOME</b></td>
-       <td align="center"width ="10%"><b></b></td>
+       <td align="center"width ="1%"><b>Nº</b></td>
+       <td width ="5%"><b>Rm</b></td>
+       <td width ="10%"><b>RA</b></td>
+       <td width ="50%"><b>NOME</b></td>
+       <td width ="10%"><b>STATUS</b></td>
+       <td colspan="2" align="center"width ="10%"><b></b></td>
      </tr>
+     <% for matricula in @matriculas %>
+        <tr bgcolor="#F5F5F5">
+          <td align="center"> <%="#{ matricula.classe_num}"%> </td>
+          <td align="center"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
+          <td align="center"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
+          <td align="left"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+          <td align="left"> <%  if  matricula.status =="TRANSFERIDO"%>
+                              <font color ="red"> Transferido </font>
+                          <%end%>
+                          <%  if  matricula.status =="TRANSFERENCIA"%>
+                              <font color ="blue"> Transferência </font>
+                          <%end%>
+                          <%  if  matricula.status =="REMANEJADO"%>
+                              <font color ="green"> Remanejado </font>
+                          <%end%>
+                          <%  if  matricula.status =="*REMANEJADO"%>
+                              <font color ="green"> *Remanejado </font>
+                          <%end%>
+        </td>
+          <td align="left"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:controller =>"matriculas", :action => "edit_saida", :id =>matricula}, :method => "get", :title => "Editar"%></td>
+          <td align="left" ><%= link_to  image_tag('/stylesheets/images/excluir.png', :title => 'Excluir'), {:controller =>"matriculas", :action => "show_destroy", :id =>matricula}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
 
-     <% for classe in @classe %>
-        <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
-         <tr bgcolor="#F5F5F5">
-           <td align="center"> &nbsp <%= cont1%> </td>
-           <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
-           <td align="left"> <%="#{ aluno.aluno_nome}"%> </td>
-           <td align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_aluno", :id =>aluno}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
-          <%cont1 = cont1+1%>
-       <%end%>
-    <%end%>
-    </tr>
-    <%cont11 = cont1%>
-    <% for trans in @transferencia %>
-          <tr bgcolor="#F5F5F5">
-           <td align="center"> &nbsp <%= cont11%> </td>
-           <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
-           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> <Font color ="blue">(Transferência)</font> </td>
-           <td align="left" ></td>
-          <%cont11 = cont11+1%>
+
+
          </tr>
-
     <%end%>
-      <tr>
-
-        <td colspan="7"align="right"><br/><%= button_to 'Editar Classe', {:controller =>"classes", :action => "edit", :id =>classe}, :method => "get", :title => "Editar"%></td>
-      </tr>
 
 </table>

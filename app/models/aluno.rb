@@ -1,6 +1,6 @@
 class Aluno < ActiveRecord::Base
   belongs_to :unidade
-  has_many:transferencias
+  has_many:matriculas
   has_many :saudes
   has_many :socioeconomicos
   has_and_belongs_to_many :classes

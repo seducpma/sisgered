@@ -171,14 +171,24 @@ display: none;
                        <li><%= link_to "Atribuição",new_atribuicao_path %></li>
 
 <!--                   <%end%>   -->
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo'))%>
+                         <li><%= link_to "Matricula", new_matricula_path %></li>
+                      <%end%>
+
+
+
+
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo'))%>
-                            <li><%= link_to "Transferencias", new_transferencia_path%></li>
-                            <li><%= link_to "Remanejamento", construcao_path %></li>
-                            <li><%= link_to "Buscar Aluno", construcao_path %></li>
+                           <li><a class="item-primary" href="#;">Transferências</a>
+                              <ul>
+                                <li><%= link_to "Entradas", transferencia_matriculas_path%></li>
+                                <li><%= link_to "Saidas", saidas_matriculas_path%></li>
+                              </ul>
+                         </li>
+                         <li><%= link_to "Buscar Aluno", construcao_path %></li>
 
-                      <%end%>
-                 </ul>
+                      <%end%>                 </ul>
               </li>
      <%end%>
               <li><a class="item-primary" href="#;">CONSULTAR</a>
@@ -209,8 +219,8 @@ display: none;
                 <ul style="width:108px;">
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
                    <li><%= link_to "Classe",editar_classe_classes_path %></li>
+                   <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
                    <li><%= link_to "Professor",consulta_professor_nome_path %></li>
-                   <li><%= link_to "Transferências",editar_transferencia_transferencias_path %></li>
                    <li><%= link_to "Unidade",consultas_unidades_path %></li>
                  </ul>
               </li>

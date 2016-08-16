@@ -1,58 +1,153 @@
-<p>
-  <b>Classe:</b>
-  <%=h @matricula.classe_id %>
-</p>
+<div id="interno3">
+<% title "TRANSFERENCIA" %>
+<div class ="tabs">
 
-<p>
-  <b>Aluno:</b>
-  <%=h @matricula.aluno_id %>
-</p>
+<%if !@matricula.procedencia.nil?%>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b>TRANSFERÊNCIA</b></font></legend>
+         <table width="100%">
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Aluno:</b></td>
+              <td align="left"> <%=h @matricula.aluno.aluno_nome%>  &nbsp&nbsp&nbsp&nbsp <b> Nº:</b> <%=h @matricula.classe_num%></td>
+           </tr>
+           <%if @matricula.procedencia.nil? or !@matricula.procedencia.present?%>
+           <%else%>
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Procedência:</b></td>
+              <td align="left"> <%=h @matricula.procedencia%></td>
+           </tr>
+           <%end%>
+           <% if !@matricula.classe_id.nil?%>
+             <tr bgcolor="#F5F5F5"  width="100%">
+                <td align="left" width ="15%"><b> Destino:</b></td>
+                <td align="left"> <%=h @matricula.unidade.nome%></td>
+                <% t=0 %>
+             </tr>
+           <%else%>
+             <tr bgcolor="#F5F5F5"  width="100%">
+                <td align="left" width ="15%"><b> Destino:</b></td>
+                <td align="left"> <%=h @matricula.para%></td>
+                                <% t=0 %>
+             </tr>
+           <%end%>
+           <% if !@matricula.classe_id.nil? %>
+               <tr bgcolor="#F5F5F5"  width="100%">
+                  <td align="left" width ="15%"><b> Classe:</b></td>
+                  <td align="left"> <%=h @matricula.classe.classe_classe%></td>
+               </tr>
+           <%end%>
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Status:</b></td>
+              <td align="left"><%if @matricula.status.nil? or !@matricula.status.present?%>
+                                    Matriculado 
+                               <%else %>
+                                   <%=h @matricula.status%>
+                               <%end%>
+              </td>
+           </tr>
+           <%if @matricula.status.nil? or !@matricula.status.present?%>
+           <%else%>
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Data:</b></td>
+              <td align="left"><%=h @matricula.data_transferencia.strftime("%d/%m/%Y ") %> 
+             </td>
+           <%end%>
+           </tr>
+           <tr>
+             <td colspan="2">
+                <b> OBS:</b>  &nbsp&nbsp<font color ="red"><u> Transferido</u></font> => Aluno enviado
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="Blue"><u>Transferência</u></font> => Aluno recebido
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="green"><u>Remanejado</u></font> => Entre classes na mesma unidade
+             </td>
+           </tr>
+      </table>
 
-<p>
-  <b>Ano letico:</b>
-  <%=h @matricula.ano_letico %>
-</p>
+     </fieldset>
+   </td>
+  </tr>
+ </table>
 
-<p>
-  <b>Status:</b>
-  <%=h @matricula.status %>
-</p>
+    <table>
+         <tr>
 
-<p>
-  <b>Unidade:</b>
-  <%=h @matricula.unidade_id %>
-</p>
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@matricula}, :method => "get", :title => "Editar"%></td>
+                 <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@matricula}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
 
-<p>
-  <b>Procedencia:</b>
-  <%=h @matricula.procedencia %>
-</p>
+            <%else%>
+                <td align="center"></td>
+             <%end%>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+    </table>
 
-<p>
-  <b>Transf unidade:</b>
-  <%=h @matricula.transf_unidade_id %>
-</p>
-
-<p>
-  <b>Para:</b>
-  <%=h @matricula.para %>
-</p>
-
-<p>
-  <b>Rem classe:</b>
-  <%=h @matricula.rem_classe_id %>
-</p>
-
-<p>
-  <b>Data transferencia:</b>
-  <%=h @matricula.data_transferencia %>
-</p>
-
-<p>
-  <b>Obs:</b>
-  <%=h @matricula.obs %>
-</p>
+<%else%>
 
 
-<%= link_to 'Edit', edit_matricula_path(@matricula) %> |
-<%= link_to 'Back', matriculas_path %>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b>TRANSFERÊNCIA SAÍDA</b></font></legend>
+         <table width="100%">
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Unidade:</b></td>
+              <td align="left"> <%=h @matricula.unidade.nome%></td>
+           </tr>
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Aluno:</b></td>
+              <td align="left"> <%=h @matricula.aluno.aluno_nome%>  &nbsp&nbsp&nbsp&nbsp <b> Nº:</b> <%=h @matricula.classe_num%></td>
+           </tr>
+             <tr bgcolor="#F5F5F5"  width="100%">
+                <td align="left" width ="15%"><b> Destino:</b></td>
+                <td align="left"> <%=h @matricula.para%></td>
+                                <% t=0 %>
+             </tr>
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Status:</b></td>
+              <td align="left"> <%=h @matricula.status%></td>
+           </tr>
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width ="15%"><b> Data:</b></td>
+              <td align="left"> <%=h @matricula.data_transferencia.strftime("%d/%m/%Y ") %> </td>
+           </tr>
+           <tr>
+             <td colspan="2">
+                <b> OBS:</b>  &nbsp&nbsp<font color ="red"><u> Transferido</u></font> => Aluno enviado
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="Blue"><u>Transferência</u></font> => Aluno recebido
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="green"><u>Remanejado</u></font> => Entre classes na mesma unidade
+             </td>
+           </tr>
+      </table>
+
+     </fieldset>
+   </td>
+  </tr>
+ </table>
+
+    <table>
+         <tr>
+
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit_saida", :id =>@matricula}, :method => "get", :title => "Editar"%></td>
+                 <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@matricula}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+
+            <%else%>
+                <td align="center"></td>
+             <%end%>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+    </table>
+
+
+  
+<%end%>
+
+
+
+</div>
+<br/>
+</div>
+
+

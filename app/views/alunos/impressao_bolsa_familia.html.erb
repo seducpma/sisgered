@@ -1,22 +1,16 @@
+    <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+         <tr  style="border-color: white">
+            <td  style="border-color: white" rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+            <td  style="border-color: white" colspan="2"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+                <center><font size="1">Unidade Escolar:</b><% @aluno.each do |aluno| %><% session[:aluno]= aluno.unidade.nome %> <%end%>&nbsp&nbsp&nbsp<%= session[:aluno]%> </font></center><br/><br/>
+                <font size="4"><i><center><b><u>CADASTRO DE ALUNOS - BOLSA FAMÍLIA</u></b></center></i><br/>
+             </td>
+          </tr>
 
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-       <font size="2"><i><b><u>CADASTRO DE ALUNO</u></b><br/>
-&nbsp&nbsp&nbsp
-     <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     </table>
 
-<font size="1"><b><u></u> ALNOS COM BOLSA FAMÍLIA      </b></i><br/>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <font size="1"><b><i> Secretaria da Educação</i></b>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
-<font size="1">Unidade Escolar: <% @aluno.each do |aluno| %><%=h aluno.unidade.nome %> <%end%> </font><br/>
-
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-&nbsp&nbsp&nbsp&nbsp
+<hr/>
 
  <table  class ="invisible_to_print " >
    <tr  class ="invisible_to_print ">
@@ -26,10 +20,7 @@
 <br/>
 
 <font  size=3><b> Alunos</b></font></legend>
-          <table border="1" cellspacing="0" cellpadding="1" width="80%">
-             <tr  bgcolor="#F5F5F5">
-               <td colspan="2"> <b>Unidade Escolar:</b><% @aluno.each do |aluno| %><% session[:aluno]= aluno.unidade.nome %> <%end%>&nbsp&nbsp&nbsp<%= session[:aluno]%></td>
-              </tr>
+          <table border="1" cellspacing="0" cellpadding="1" width="80%" style="border-color: white">
               <tr  bgcolor="#F5F5F5">
                 <td><b>Nome Aluno</b></td>
                 <td><b>Nome Beneficiário</b></td>
