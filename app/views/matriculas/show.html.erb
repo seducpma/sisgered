@@ -23,13 +23,12 @@
              <tr bgcolor="#F5F5F5"  width="100%">
                 <td align="left" width ="15%"><b> Destino:</b></td>
                 <td align="left"> <%=h @matricula.unidade.nome%></td>
-                <% t=0 %>
              </tr>
            <%else%>
              <tr bgcolor="#F5F5F5"  width="100%">
                 <td align="left" width ="15%"><b> Destino:</b></td>
                 <td align="left"> <%=h @matricula.para%></td>
-                                <% t=0 %>
+
              </tr>
            <%end%>
            <% if !@matricula.classe_id.nil? %>

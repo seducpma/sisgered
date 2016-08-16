@@ -176,6 +176,16 @@ def consulta_classe_aluno
        end
 end
 
+def consulta_piloto
+
+       session[:classe_id]=params[:classe][:id]
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
+       render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_piloto'
+       end
+end
+
 def editar_classe_aluno
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
@@ -205,15 +215,19 @@ def impressao_classe
        #@transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
        t1=session[:classe_id]
-       t=0
+
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',  session[:classe_id]], :order => 'classe_num ASC')
-       t=0
       render :layout => "impressao"
 end
 
-def impressao_lista
-  t=0
+
+def impressao_piloto
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+       render :layout => "impressao"
+end
+def impressao_lista
+        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
        @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
 

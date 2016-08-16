@@ -13,6 +13,9 @@ class Matricula < ActiveRecord::Base
     if !self.procedencia.nil?
       self.procedencia.upcase!
     end
+    if !self.para.nil?
+      self.para.upcase!
+    end
    
   end
 
