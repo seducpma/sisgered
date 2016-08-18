@@ -2,16 +2,16 @@
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>ALTERAR MATRICULA</strong></font><br/>
+     <font size="3"><strong>MATRÍCULAS</strong></font><br/>
  </div>
     <div class="tabs">
     <% form_remote_tag :url => alteracao_matricula_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Classe:</b></font>
+            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
                &nbsp&nbsp&nbsp
-                <%= collection_select :classe, :id, @classe, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
+                <%= collection_select :aluno, :id, @alunos2, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
                <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
           </td>
         </tr>
@@ -34,15 +34,8 @@
        <table>
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-
-     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-         <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_classe_path, :title => "Nova Consulta" %></td>
-         <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-    <%else%>
-          <td align="left"><%= button_to 'Nova Consulta', consulta_classe_path, :title => "Nova Consulta" %></td>
-    <%end%>
-
-    </tr>
+     <td align="left"><%= button_to 'Nova Consulta', alterar_matriculas_path, :title => "Nova Consulta" %></td>
+   </tr>
   </table>
  </div>
 

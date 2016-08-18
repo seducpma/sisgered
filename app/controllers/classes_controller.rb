@@ -37,12 +37,8 @@ class ClassesController < ApplicationController
   def edit
     @classe = Classe.find(params[:id])
     session[:classe_id]=(params[:id])
-
     @alunos_selecionados = @classe.alunos
     @alunos = @alunos - @alunos_selecionados
-
-
-
 
   end
 
@@ -62,7 +58,6 @@ class ClassesController < ApplicationController
 
   def update
     @alunosA = Aluno.find(:all,:joins => "INNER JOIN  matriculas  ON  alunos.id=matriculas.aluno_id  INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
-    t=0
     @classe = Classe.find(params[:id])
     respond_to do |format|
       if @classe.update_attributes(params[:classe])
@@ -114,8 +109,6 @@ class ClassesController < ApplicationController
     end
   end
 
-  # DELETE /classes/1
-  # DELETE /classes/1.xml
   def destroy
     @classe = Classe.find(params[:id])
     @classe.destroy
@@ -130,7 +123,6 @@ class ClassesController < ApplicationController
 def destroy_classe_aluno
   aluno_id=params[:id]
   classe_id= session[:classe_id]
-
   @classe =Classe.find(session[:classe_id])
   results = ActiveRecord::Base.connection.execute("DELETE FROM `matriculas` WHERE `aluno_id`="+(aluno_id).to_s+ " and classe_id="+(classe_id).to_s)
 
@@ -143,17 +135,11 @@ def destroy_classe_professor
   results = ActiveRecord::Base.connection.execute("DELETE FROM `classes_professors` WHERE `professor_id`="+(professor_id).to_s + " and classe_id="+(classe_id).to_s)
 end
 
-
-
-
-
   def seleciona_montar_classe
     @classe1 = Classe.find(:all, :conditions => ['id= ?',params[:classe_id]])
   
     render :partial => 'dados_classe'
   end
-
-
 
 
   def load_professors
@@ -210,9 +196,7 @@ end
   end
 
 def impressao_classe
-  t=0
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
-       #@transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
        t1=session[:classe_id]
 
@@ -226,21 +210,19 @@ def impressao_piloto
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
        render :layout => "impressao"
 end
+
 def impressao_lista
         @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
-       @transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  session[:classe_id]] )
-       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
+        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',  session[:classe_id]], :order => 'classe_num ASC')
 
       render :layout => "impressao"
 end
 
 def consulta_lista_classe
-  
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-       #@transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
-       @matriculas = Matricula.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
+
         render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_lista'
        end
@@ -267,8 +249,6 @@ end
     else
         unidade=  current_user.unidade_id
         @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+unidade.to_s+" AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")ORDER BY aluno_nome ASC")
-      
-       #@alunos = Aluno.find(:all, :conditions => ['unidade_id = ? AND id  not in ', current_user.unidade_id ], :order => 'aluno_nome ASC')
     end
 
  end

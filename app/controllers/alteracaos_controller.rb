@@ -1,8 +1,5 @@
 class AlteracaosController < ApplicationController
 
-  #require_role ["admin","planejamento"], :except => ['relatorio_ficha']
-  #before_filter :login_require
-
   layout :define_layout
 
   def define_layout
@@ -63,11 +60,6 @@ class AlteracaosController < ApplicationController
     @titulos = TituloProfessor.find(:all,:joins => :professor, :conditions => ["(titulo_id = 6 or titulo_id = 7 or titulo_id = 8) and ano_letivo = ? and professors.titulo_arrumado = 1",params[:ano]])
   end
 
-
-  #Flag titulo_arrumado no BD indica se a atualização para remover os titulos anuais ja foi realizada
-  #Tipo booleana
-  # 0 - Significa que foi realizado
-  # 1 - Significa que ainda deve ser realiza
 
   def efetiva_arrumar_titulos
     @count = 0

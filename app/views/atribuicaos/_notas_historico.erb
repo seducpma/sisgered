@@ -68,15 +68,16 @@
      <%end%>
   <%end%>
 </table>
-<font size="1"><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></font><br/>
-<font size="1"><b><u> Fundamento Legal</u>: Lei Federal 9294/96 Art. 26, 32, 33, 34 -
+<br/>
+<font size="2"><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b></font><br/>
+<font size="1"><b> Lei Federal 9294/96 Art. 26, 32, 33, 34 -
                       Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
 <% @aluno.each do |aluno| %>
   <table border="1" cellspacing="0" cellpadding="1" width="100%">
     <tr cellspacing="2" cellpadding="2" >
       <td width=" 40%" rowspan="3" align="center"><b>ÁREAS DE CONHECIMENTO </b></td>
       <td width=" 60%" colspan="9" align="center"><b>MENÇÔES OU NOTAS</b></td>
-      
+
    </tr>
   </table>
 <%end%>
@@ -97,42 +98,56 @@
 
   <% ano = @ano_inicial.ano_letivo %>
   <%for i in 0..8 %>
-     <td width ="5%" align="center" ><b><%= ano%></b></td>
+     <%if ano < Time.now.year %>
+        <td width ="5%" align="center" ><b><%= ano%></b></td>
+     <%else%>
+        <td align="center" ><b></b></td>
+     <%end%>
+
      <% ano = ano + 1 %>
   <%end%>
-
-
 
    <%@disciplinas.each do |disciplina|%>
       <%if disciplina.curriculo == 'B'%>
            <tr>
               <td align="left"><%= disciplina.disciplina %></td>
-              <%for ano in 0..8 %>
               <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
-                 <% for nota in @notas %>
-                  <%if nota.ano_letivo.present?%>
-                      <% if nota.ano_letivo == (ano+@ano_inicial.ano_letivo)%>
-                           <td align="center"><%=  nota.nota5%></td>
-                      <%end%>
-                   <%else%>
-                       <td align="center">---</td>
-                   <%end%>
-                <%end%>
-            <%end%>
+              <% ano = 0 %>
+              <%  while ano < 9 %>
+                         <%fl1=1%>
+                         <% for nota in @notas %>
+                                <%if (nota.nota5.present?) and (nota.ano_letivo== (@ano_inicial.ano_letivo + ano))%>
+                                  <%if fl1==1 %>
+                                     <td align="center"><%= nota.nota5%></td>
+                                     <%fl1=0%>
+                                  <%end%>
+                                <%end%>
+                         <%end%>
+                         <%if fl1==1 %>
+                            <td align="center">---</td>
+                            <%fl1=0%>
+                         <%end%>
+                         <% ano = ano +1 %>
+              <%end%>
            </tr>
       <%end%>
    <%end%>
-
-
-  
-
-
-
-
  </tr>
-  <tr>
+  <tr bgcolor =" #DCDCDC">
      <td><b> Carga Horária</b></td>
-   </tr>
+      <% ano = @ano_inicial.ano_letivo %>
+      <%for i in 0..8 %>
+         <%if ano < Time.now.year %>
+            <td width ="5%" align="center" ><b>1000</b></td>
+         <%else%>
+            <td align="center" ><b></b></td>
+         <%end%>
+
+         <% ano = ano + 1 %>
+      <%end%>
+ </tr>
+
+
  <tr >
      <td width ="30%"rowspan="2"> <b><center>OFICINAS DIVERSITICADAS   </center> </b></td>
      <td width ="5%" align="center" ><b>1º</b></td>
@@ -146,32 +161,127 @@
      <td width ="5%" align="center" ><b>9º</b></td>
    </tr>
    <tr>
+        <% ano = @ano_inicial.ano_letivo %>
+        <%for i in 0..8 %>
+           <%if ano < Time.now.year %>
+              <td width ="5%" align="center" ><b><%= ano%></b></td>
+           <%else%>
+              <td align="center" ><b></b></td>
+           <%end%>
+           <% ano = ano + 1 %>
+        <%end%>
 
-  <% ano = @ano_inicial.ano_letivo %>
-  <%for i in 0..8 %>
-     <td width ="5%" align="center" ><b><%= ano%></b></td>
-     <% ano = ano + 1 %>
-  <%end%>
-     
-   <%@disciplinas.each do |disciplina|%>
-      <%if disciplina.curriculo == 'D'%>
-         <tr> <td><%= disciplina.disciplina %></td></tr>
-      <%end%>
-   <%end%>
-
-
-
-
-
-
-
-                        <table>
-  <tr>
-    <td> <b></td>
-
-
+         <%@disciplinas.each do |disciplina|%>
+            <%if disciplina.curriculo == 'D'%>
+                 <tr>
+                    <td align="left"><%= disciplina.disciplina %></td>
+                    <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+                    <% ano = 0 %>
+                    <%  while ano < 9 %>
+                               <%fl1=1%>
+                               <% for nota in @notas %>
+                                      <%if (nota.nota5.present?) and (nota.ano_letivo== (@ano_inicial.ano_letivo + ano))%>
+                                        <%if fl1==1 %>
+                                           <td align="center"><%= nota.nota5%></td>
+                                           <%fl1=0%>
+                                        <%end%>
+                                      <%end%>
+                               <%end%>
+                               <%if fl1==1 %>
+                                  <td align="center">---</td>
+                                  <%fl1=0%>
+                               <%end%>
+                               <% ano = ano +1 %>
+                    <%end%>
+                 </tr>
+            <%end%>
+         <%end%>
   </tr>
+  <tr bgcolor =" #DCDCDC">
+     <td><b> Carga Horária</b></td>
+      <% ano = @ano_inicial.ano_letivo %>
+      <%for i in 0..8 %>
+         <%if ano < Time.now.year %>
+            <td width ="5%" align="center" ><b>480</b></td>
+         <%else%>
+            <td align="center" ><b></b></td>
+         <%end%>
 
+         <% ano = ano + 1 %>
+      <%end%>
+ </tr>
+   <tr bgcolor =" #DCDCDC">
+     <td><b> Carga Horária Total do Curso </b></td>
+      <% ano = @ano_inicial.ano_letivo %>
+      <%for i in 0..8 %>
+         <%if ano < Time.now.year %>
+            <td width ="5%" align="center" ><b>1480</b></td>
+         <%else%>
+            <td align="center" ><b></b></td>
+         <%end%>
+
+         <% ano = ano + 1 %>
+      <%end%>
+ </tr>
+</table>
+<br/>
+
+
+
+<br/>
+<font size="2"><b><u><center> C E R T I F I C A D O</cente></u></b></font><br/>
+  <table border="1" cellspacing="0" cellpadding="1" width="100%">
+  <tr>
+    <td align="justify" colspan="8"> <font size="2">O Diretor da Unidade Escolar <b> <%= @matricula.unidade.nome %> </b> de acordo com artigo 24 VII da Lei Federal nº 9.394/96
+      e  <%= @matricula.unidade.autorizacao %>, certifica que o aluno(a)  <b><%= @matricula.aluno.aluno_nome %></b> RA <b><%= @matricula.aluno.aluno_ra %> </b> conclui</b> o
+         <% for nota in @notas_ano  %>
+             <% if nota.atribuicao.classe.classe_classe == 'EJA' %>
+                 <b>EJA - </b>
+              <%end%>
+             <%if (nota.nota1.present?) and (!nota.nota2.present?)%>
+                <b>  1º Ano </b>
+             <%else if (nota.nota2.present?) and (!nota.nota3.present?)%>
+                   <b> 2º Ano </b>
+                  <%else if (nota.nota3.present?) and (!nota.nota4.present?)%>
+                        <b> 3º Ano </b>
+                        <%else if (nota.nota4.present?) and (!nota.nota5.present?)%>
+                              <b> 4º Ano </b>
+                              <%else if (nota.nota5.present?) and (!nota.nota6.present?)%>
+                                    <b> 5º Ano </b>
+                                    <%else if (nota.nota6.present?) and (!nota.nota7.present?)%>
+                                          <b> 6º Ano </b>
+                                          <%else if (nota.nota7.present?) and (!nota.nota8.present?)%>
+                                                <b> 7º Ano </b>
+                                                <%else if (nota.nota8.present?) and (!nota.nota9.present?)%>
+                                                    <b> 8º Ano </b>
+                                                    <%else if (nota.nota9.present?) %>
+                                                       <b> 9º Ano </b>
+                                                          <%else if (!nota.nota1.present?)and (!nota.nota2.present?) %>
+                                                                 <b> --- </b>
+                                                                <%end%>
+                                                          <%end%>
+                                                    <%end%>
+                                                <%end%>
+                                          <%end%>
+                                    <%end%>
+                              <%end%>
+                        <%end%>
+                  <%end%>
+             <%end%>
+          <%end%>
+         do Ensino Fundamental de 9 anos, no <b> ano letivo de <%= @matricula.ano_letivo%></b>, estando apto(a) ao proseguimento dos estudos
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <br/><br/><br/>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp__________________________________________ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp_____________________________________________<br/>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Secretaria da Unidade Escolar             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Diretor da  Unidade Escolar    <br/>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b>
+      <br/><br/><br/>
+    </td>
+  </tr>
 </table>
 
 
@@ -179,13 +289,14 @@
 
 
 
-    
+
       <table  width="100% ">
           <tr>
            <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
 
           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                  <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
+                  <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_historico_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
+
           <%end%>
           </tr>
         </table>

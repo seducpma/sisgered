@@ -1,6 +1,4 @@
 class MatriculasController < ApplicationController
-  # GET /matriculas
-  # GET /matriculas.xml
 
     before_filter :load_dados_iniciais
 
@@ -13,8 +11,6 @@ class MatriculasController < ApplicationController
     end
   end
 
-  # GET /matriculas/1
-  # GET /matriculas/1.xml
   def show
     @matricula = Matricula.find(params[:id])
 
@@ -24,8 +20,6 @@ class MatriculasController < ApplicationController
     end
   end
 
-  # GET /matriculas/new
-  # GET /matriculas/new.xml
   def new
     @matricula = Matricula.new
 
@@ -44,7 +38,7 @@ class MatriculasController < ApplicationController
     end
 
   end
-  # GET /matriculas/1/edit
+
   def edit
     @matricula = Matricula.find(params[:id])
   end
@@ -54,8 +48,6 @@ class MatriculasController < ApplicationController
  end
 
 
-  # POST /matriculas
-  # POST /matriculas.xml
   def create
 
     @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
@@ -189,12 +181,6 @@ class MatriculasController < ApplicationController
     end
   end
 
-
-
-
-
-  # PUT /matriculas/1
-  # PUT /matriculas/1.xml
   def update
     @matricula = Matricula.find(params[:id])
 
@@ -211,8 +197,6 @@ class MatriculasController < ApplicationController
   end
 
 
-  # DELETE /matriculas/1
-  # DELETE /matriculas/1.xml
   def destroy
     @matricula = Matricula.find(params[:id])
     @matricula.destroy
@@ -232,7 +216,6 @@ class MatriculasController < ApplicationController
 
   def show_classe
     @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', session[:aluno_id]], :order => 'classe_num')
-    t=0
   end
 
 
@@ -254,13 +237,8 @@ class MatriculasController < ApplicationController
   end
 
 def alteracao_matricula
-       session[:classe_id]=params[:classe][:id]
-       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-       #@alunos_cl = Aluno.find(:all, :joins => :alunos_classe, :conditions=>[ "alunos_classes.classe_id =?", params[:classe][:id]])
-        #Topic.find(:all, :conditions => { :forum_id => @forums.map(&:id) })
-       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-       #@transferencia = Transferencia.find(:all, :conditions => ['unidade_id =? AND classe_id=?',current_user.unidade_id,  params[:classe][:id]] )
-       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
+       session[:aluno_id]=params[:aluno][:id]
+       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ?', params[:aluno][:id]], :order => 'classe_num ASC')
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
@@ -269,7 +247,6 @@ end
 def matriculas_saidas
        session[:aluno_id]=params[:aluno][:id]
        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ?', params[:aluno][:id]], :order => 'classe_num ASC')
-  t=0
         render :update do |page|
           page.replace_html 'aluno', :partial => 'alunos_classe'
        end
@@ -289,7 +266,7 @@ end
           @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
        end
        @alunos = Aluno.find(:all, :conditions => ['aluno_status is null'],:order => 'aluno_nome')
-       #@alunos1 = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+unidade.to_s+" AND`id`not in (SELECT alunos_classes.aluno_id FROM classes INNER JOIN alunos_classes ON classes.id = alunos_classes.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")ORDER BY aluno_nome ASC")
+
        @alunos1 = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+unidade.to_s+" AND`id`not in
                        (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")
                         ORDER BY aluno_nome ASC")
@@ -302,9 +279,5 @@ end
             @classe = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
         end
   end
-
-
-
-
 end
 

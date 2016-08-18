@@ -1,6 +1,5 @@
 class InformativosController < ApplicationController
-  # GET /informativos
-  # GET /informativos.xml
+
   def index
     @informativos = Informativo.all
 
@@ -10,8 +9,7 @@ class InformativosController < ApplicationController
     end
   end
 
-  # GET /informativos/1
-  # GET /informativos/1.xml
+
   def show
     @informativo = Informativo.find(params[:id])
 
@@ -21,25 +19,19 @@ class InformativosController < ApplicationController
     end
   end
 
-  # GET /informativos/new
-  # GET /informativos/new.xml
   def new
     @informativo = Informativo.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @informativo }
     end
   end
 
-  # GET /informativos/1/edit
-  def edit
+   def edit
     @informativo = Informativo.find(params[:id])
   end
 
-  # POST /informativos
-  # POST /informativos.xml
-  def create
+   def create
     @informativo = Informativo.new(params[:informativo])
 
     respond_to do |format|
@@ -54,8 +46,6 @@ class InformativosController < ApplicationController
     end
   end
 
-  # PUT /informativos/1
-  # PUT /informativos/1.xml
   def update
     @informativo = Informativo.find(params[:id])
 
@@ -71,8 +61,6 @@ class InformativosController < ApplicationController
     end
   end
 
-  # DELETE /informativos/1
-  # DELETE /informativos/1.xml
   def destroy
     @informativo = Informativo.find(params[:id])
     @informativo.destroy

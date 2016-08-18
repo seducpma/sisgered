@@ -1,14 +1,3 @@
-<table  width="100% "bgcolor="#DCDCDC" >
-   <tr>
-      <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-             <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-          <%end%>
-   </tr>
-   <tr>
-     <td colspan="2"><hr><br/></td>
-  </tr>
-</table>
 <% @classe.each do |classe| %>
     <table width="100%">
          <tr>
@@ -39,12 +28,15 @@
             <table border="1" cellspacing="0" cellpadding="1" width="100%">
               <tr style="font-size: 8px">
                  <% @atribuicao_classe.each do |atrib| %>
-                
-                <% if (atrib.disciplina.disciplina).length > 12 %>
-                     <td align="center"width ="5%"  valign="top"><b><%= atrib.disciplina.disciplina %></b><br/>
-                <%else%>
-                    <td align="center"width ="5%"  valign="top">&nbsp<br/><b><%= atrib.disciplina.disciplina %></b><br/>
-                 <%end%>
+                  <% if (atrib.disciplina.disciplina).length > 12 %>
+                       <% if (atrib.disciplina.disciplina).length < 20 %>
+                           <td align="center"width ="5%"  valign="top"><b><br/> <%= atrib.disciplina.disciplina %></b><br/>
+                       <%else%>
+                           <td align="center"width ="5%"  valign="top"><b><%= atrib.disciplina.disciplina %></b><br/>
+                       <% end %>
+                  <%else%>
+                      <td align="center"width ="5%"  valign="top">&nbsp<br/> <b><%= atrib.disciplina.disciplina %> </b><br/>
+                   <%end%>
                    <table border="1" cellspacing="0" cellpadding="1" width="100%">
                           <%cont = 0%>
                        <tr style="font-size: 8px">
@@ -57,10 +49,10 @@
                                 <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                     <tr>
                                        <%  cont =cont+1%>
-                                      <td align="center"width ="33%" ><b><%= cont %></b></font> </td>
+                                      <% @matricula = Matricula.find(:all,:conditions =>['classe_id = ? AND  ano_letivo=? AND aluno_id =?', session[:classe_id],Time.now.year, nota.aluno_id ]) %>
+                                      <td align="center"width ="33%" ><b><%= @matricula[0].classe_num %></b></font> </td>
                                        <td align="center"width ="33%"><% if  nota.nota1.nil? %>
-
-
+                                                                                          ---
                                                                                        <%else%>
                                                                                           <%= nota.nota1 %>
                                                                                        <%end %>
@@ -84,6 +76,13 @@
                  </td>
                 <%end%>
               </tr>
+               <tr>
+                 <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa1_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                      <%end%>
+               </tr>
+
             </table>
       <tr>
         <td>
@@ -137,15 +136,15 @@
                             <td align="center"><b>Nota</b></td>
                             <td align="center"><b>Falta</b></td>
                        </tr>
-                         <% @alunos.each do |aluno| %>
+                          <% @alunos.each do |aluno| %>
                              <%@notas.each do |nota|%>
                                 <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                     <tr>
                                        <%  cont =cont+1%>
-                                      <td align="center"width ="33%" ><b><%= cont %></b></font> </td>
-                                       <td align="center"width ="33%"><% if  nota.nota2.nil? %>
-
-
+                                      <% @matricula = Matricula.find(:all,:conditions =>['classe_id = ? AND  ano_letivo=? AND aluno_id =?', session[:classe_id],Time.now.year, nota.aluno_id ]) %>
+                                      <td align="center"width ="33%" ><b><%= @matricula[0].classe_num %></b></font> </td>
+                                       <td align="center"width ="33%"><% if  nota.nota1.nil? %>
+                                                                                          ---
                                                                                        <%else%>
                                                                                           <%= nota.nota2 %>
                                                                                        <%end %>
@@ -156,7 +155,7 @@
                               <%end%>
                             <%end%>
                          <%end%>
-                   <% cont2 = 0 %>
+                         <% cont2 = 0 %>
                    <%for cont2 in ((cont+1)..40) %>
                        <tr style="font-size: 8px">
                          <td align="center"width ="33%" ><b><%= cont2 %></b></td>
@@ -169,6 +168,12 @@
                  </td>
                 <%end%>
               </tr>
+               <tr>
+                 <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa2_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                      <%end%>
+               </tr>
             </table>
       <tr>
         <td>
@@ -186,13 +191,5 @@
 
 
 
-<table  width="100% "bgcolor="#DCDCDC" >
-   <tr>
-      <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-             <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-          <%end%>
-   </tr>
 
-</table>
 

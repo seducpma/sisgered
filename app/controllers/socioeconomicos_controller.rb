@@ -1,6 +1,4 @@
 class SocioeconomicosController < ApplicationController
-  # GET /socioeconomicos
-  # GET /socioeconomicos.xml
 
    before_filter :load_alunos
 
@@ -13,8 +11,6 @@ class SocioeconomicosController < ApplicationController
     end
   end
 
-  # GET /socioeconomicos/1
-  # GET /socioeconomicos/1.xml
   def show
     @socioeconomico = Socioeconomico.find(params[:id])
 
@@ -24,8 +20,6 @@ class SocioeconomicosController < ApplicationController
     end
   end
 
-  # GET /socioeconomicos/new
-  # GET /socioeconomicos/new.xml
   def new
     @socioeconomico = Socioeconomico.new
 
@@ -35,13 +29,10 @@ class SocioeconomicosController < ApplicationController
     end
   end
 
-  # GET /socioeconomicos/1/edit
   def edit
     @socioeconomico = Socioeconomico.find(params[:id])
   end
 
-  # POST /socioeconomicos
-  # POST /socioeconomicos.xml
   def create
     @socioeconomico = Socioeconomico.new(params[:socioeconomico])
 
@@ -57,8 +48,6 @@ class SocioeconomicosController < ApplicationController
     end
   end
 
-  # PUT /socioeconomicos/1
-  # PUT /socioeconomicos/1.xml
   def update
     @socioeconomico = Socioeconomico.find(params[:id])
 
@@ -74,8 +63,6 @@ class SocioeconomicosController < ApplicationController
     end
   end
 
-  # DELETE /socioeconomicos/1
-  # DELETE /socioeconomicos/1.xml
   def destroy
     @socioeconomico = Socioeconomico.find(params[:id])
     @socioeconomico.destroy
@@ -96,18 +83,15 @@ end
 def impressao_ficha_completa
 
        @socioeconomico = Socioeconomico.find(:all,:conditions => ["id = ?",  session[:socioeconomico]])
-       #@pessoa = Pessoa.find(:all, :conditions => ["id = ?", session[:pessoa]])
-
        @saude = Saude.find(:all,:conditions => ["aluno_id = ?",  session[:aluno]])
        @aluno = Aluno.find(:all, :conditions => ["id = ?", session[:aluno]])
-   
 
       render :layout => "impressao"
 end
 
 
   protected
-    #Inicialização variavel / combobox grupo
+
 
   def load_alunos
     @pessoas_aluno =  Aluno.find(:all, :conditions=> ['unidade_id=?', current_user.unidade_id],:order => "aluno_nome")

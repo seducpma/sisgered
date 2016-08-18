@@ -5,5 +5,6 @@ class Nota < ActiveRecord::Base
   belongs_to :aluno
   belongs_to :disciplina
   has_many :observacao_notas
+  belongs_to :matricula
  
 end

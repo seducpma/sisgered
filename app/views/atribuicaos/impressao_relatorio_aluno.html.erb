@@ -1,30 +1,31 @@
 <table class ="invisible_to_print ">
   <tr>
-    <th width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></th>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
   </tr>
 </table>
 
-<table border="1" cellspacing="0" cellpadding="1" width="100%">
-  <tr>
-    <th rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></th>
-    <th colspan="2"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+  <tr style="border-color: white">
+    <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
         <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
         <% @aluno.each do |aluno| %>
              <center><font size="1">Unidade Escolar:  <%=h aluno.unidade.nome %>  </font></center>
              <center><font size="1"><%=h aluno.unidade.endereco%><%=h aluno.unidade.num%> - Americana - SP  </font>
              <font size="1"><%=h aluno.unidade.CEP%> - <%=h aluno.unidade.fone%>  </font></center>
         <%end%>
-    </th>
+
+    </td>
   </tr>
-  <tr  class ="invisible_to_print ">
-    <th colspan="2" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
-    </th>
+  <tr style="border-color: white">
+    <td style="border-color: white" colspan="2" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font></td>
   </tr>
-</table>
-<table border="1" cellspacing="0" cellpadding="1" width="100%">
+ </table>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
   <tr>
     <% @aluno.each do |aluno| %>
-      <th  style="font-size: 8px"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <th colspan="16" align="left" style="font-size: 8px"><b>Nº</b> <%= session[:num] %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></th>
       <% session[:aluno] = aluno.id %>
     <%end%>
@@ -32,14 +33,17 @@
   <tr>
   <% for classe in @classe %>
 
-         <th  style="font-size: 8px"><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <th colspan="16"  align="left" style="font-size: 8px"><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                          <b>Período:</b>&nbsp&nbsp <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                          <b>Ano Letivo:</b> &nbsp&nbsp<%=h classe.classe_ano_letivo %></th>
              <%  session[:classe]=  classe.id%>
-      </tr>
+  </tr>
   <%end%>
+  <tr>
+    <td colspan="20"></td>
+  </tr>
 <% @aluno.each do |aluno| %>
-<table border="1" cellspacing="0" cellpadding="1" width="100%">
+
     <tr>
       <th style="font-size: 8px" width=" 25%" rowspan="2" align="center"><b>Disciplina</b></th>
       <th style="font-size: 8px" width=" 15%" colspan="3" align="center"><b>1º Bimestre</b></th>

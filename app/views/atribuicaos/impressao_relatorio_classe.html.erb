@@ -1,48 +1,48 @@
 <table  class ="invisible_to_print ">
-<tr >
+       <tr >
           <th width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></th>
 
-          <th  align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+          <th  align="right"><font size="2"></font>
           </th>
         </tr>
  </table>
 <% cont=1 %>
-<% @alunos.each do |aluno| %>
-     <table border="1" cellspacing="0" cellpadding="1" width="100%">
+<% @matriculas.each do |matricula| %>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+  <tr style="border-color: white">
+    <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+
+             <center><font size="1">Unidade Escolar:  <%=h matricula.aluno.unidade.nome %>  </font></center>
+             <center><font size="1"><%=h matricula.aluno.unidade.endereco%><%=h matricula.aluno.unidade.num%> - Americana - SP  </font>
+             <font size="1"><%=h matricula.aluno.unidade.CEP%> - <%=h matricula.aluno.unidade.fone%>  </font></center>
+
+
+    </td>
+  </tr>
+  <tr style="border-color: white">
+    <td style="border-color: white" colspan="2" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font></td>
+  </tr>
+ </table>
+
+      <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
         <tr>
-          <th rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></th>
-          <th colspan="2"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
-              <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
-              <% @classe.each do |classe| %>
-                   <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
-                   <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
-                   <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
-              <%end%>
-          </th>
+          <th align="left"style="font-size: 7px"><b>Nº</b> <%= matricula.classe_num %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp  <%=h matricula.aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <b>RA:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_ra %></th>
+            <% session[:aluno] = matricula.aluno.id %>
         </tr>
-        <tr>
-           <th colspan="2"  align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
-          </th>
-        </tr>
-      </table>
-      <table border="1" cellspacing="0" cellpadding="1" width="100%">
-        <tr>
-            <th style="font-size: 7px"><b>Nº</b> <%= cont %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></th>
-            <% session[:aluno] = aluno.id %>
-        </tr>
-        <% cont= cont+1 %>
         <tr>
         <% for classe in @classe %>
 
-               <th style="font-size: 7px" ><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <th align="left" style="font-size: 7px" ><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                <b>Período:</b>&nbsp&nbsp <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                <b>Ano Letivo:</b> &nbsp&nbsp<%=h classe.classe_ano_letivo %></th>
                    <%  session[:classe]=  classe.id%>
             </tr>
         <%end%>
 
-           <table border="1" cellspacing="0" cellpadding="1" width="100%">
+           <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
               <tr>
                 <th style="font-size: 7px" width=" 25%" rowspan="2" align="center"><b>Disciplina</b></th>
                 <th style="font-size: 7px" width=" 15%" colspan="3" align="center"><b>1º Bimestre</b></th>
@@ -79,55 +79,79 @@
 
              <tr>
                <%@notasB.each do |nota|%>
-                  <%if nota.aluno_id == session[:aluno]%>
-               <th style="font-size: 7px" align="left" width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
+                <%if nota.aluno_id == session[:aluno]%>
+                  <th style="font-size: 7px" align="left" width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
                     <%if nota.nota1.present? %>
                          <th style="font-size: 7px" align="center"><%= nota.nota1 %> </th>
                          <th style="font-size: 7px" align="center"><%= nota.faltas1%></th>
-                         <th style="font-size: 7px" align="center"></th>
+                         <th style="font-size: 7px" align="center"><%if nota.freq1 < 75 %>
+                                                   <font color ="red"> <%= nota.freq1 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq1 %>%
+                                              <%end%>
+                         </th>
                     <%else%>
-                         <td align="center"></th>
-                         <td align="center"></th>
-                         <td align="center"></thd>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
                     <%end%>
-                    <%if nota.nota2.present?%>
-                         <th style="font-size: 7px" align="center"><%= nota.nota2 %></th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas2 %></th>
-                         <th style="font-size: 7px" align="center"></th>
+                    <%if nota.nota2.present? %>
+                         <th style="font-size: 7px" align="center"><%= nota.nota2 %> </th>
+                         <th style="font-size: 7px" align="center"><%= nota.faltas2%></th>
+                         <th style="font-size: 7px" align="center"><%if nota.freq2 < 75 %>
+                                                   <font color ="red"> <%= nota.freq2 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq2 %>%
+                                              <%end%>
+                         </th>
                     <%else%>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
                     <%end%>
-
-                    <%if nota.nota3.present?%>
-                         <th style="font-size: 7px" align="center"><%= nota.nota3 %></th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas3 %></th>
-                         <th style="font-size: 7px" align="center"></th>
+                    <%if nota.nota3.present? %>
+                         <th style="font-size: 7px" align="center"><%= nota.nota3 %> </th>
+                         <th style="font-size: 7px" align="center"><%= nota.faltas3%></th>
+                         <th style="font-size: 7px" align="center"><%if nota.freq3 < 75 %>
+                                                   <font color ="red"> <%= nota.freq3 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq2 %>%
+                                              <%end%>
+                         </th>
                     <%else%>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
                     <%end%>
-                    <%if nota.nota4.present?%>
-                         <th style="font-size: 7px" align="center"><%= nota.nota4 %></th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas4 %></th>
-                         <th style="font-size: 7px" align="center"></th>
+                    <%if nota.nota4.present? %>
+                         <th style="font-size: 7px" align="center"><%= nota.nota4 %> </th>
+                         <th style="font-size: 7px" align="center"><%= nota.faltas4%></th>
+                         <th style="font-size: 7px" align="center"><%if nota.freq4 < 75 %>
+                                                   <font color ="red"> <%= nota.freq4 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq4 %>%
+                                              <%end%>
+                         </th>
                     <%else%>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
                     <%end%>
                     <%if nota.nota5.present? %>
-                         <th style="font-size: 7px" align="center"><%= nota.nota5 %></th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas5 %></th>
-                         <th style="font-size: 7px" align="center"></th>
+                         <th style="font-size: 7px" align="center"><%= nota.nota5 %> </th>
+                         <th style="font-size: 7px" align="center"><%= nota.faltas5%></th>
+                         <th style="font-size: 7px" align="center"><%if nota.freq5 < 75 %>
+                                                   <font color ="red"> <%= nota.freq5 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq5 %>%
+                                              <%end%>
+                         </th>
                     <%else%>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
+                         <th align="center" style="font-size: 7px">--</th>
                     <%end%>
-             </tr>
+                 </tr>
               <%end%>
           <%end%>
              <tr>
@@ -142,90 +166,93 @@
                <%@notasD.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
                     <th style="font-size: 7px" align="left" width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></th>
-                    <%if nota.nota1.present? %>
-                         <th style="font-size: 7px" align="center"><%= nota.nota1 %> </th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas1%></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%else%>
-                         <td align="center"></th>
-                         <td align="center"></th>
-                         <td align="center"></thd>
-                    <%end%>
-                    <%if nota.nota2.present?%>
-                         <th style="font-size: 7px" align="center"><%= nota.nota2 %></th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas2 %></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%else%>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%end%>
+                      <%if nota.nota1.present?%>
+                           <th style="font-size: 7px" align="center"><%= nota.nota1 %></th>
+                           <th style="font-size: 7px" align="center"><%= nota.faltas1 %></th>
+                           <th style="font-size: 7px" align="center"><%if nota.freq1 < 75 %>
+                                                   <font color ="red"> <%= nota.freq1 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq1 %>%
+                                              <%end%>
+                           </th>
 
-                    <%if nota.nota3.present?%>
-                         <th style="font-size: 7px" align="center"><%= nota.nota3 %></th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas3 %></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%else%>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%end%>
-                    <%if nota.nota4.present?%>
-                         <th style="font-size: 7px" align="center"><%= nota.nota4 %></th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas4 %></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%else%>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%end%>
-                    <%if nota.nota5.present? %>
-                         <th style="font-size: 7px" align="center"><%= nota.nota5 %></th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas5 %></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%else%>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                         <th style="font-size: 7px" align="center"></th>
-                    <%end%>
-             </tr>
+                      <%else%>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                      <%end%>
+                      <%if nota.nota2.present?%>
+                           <th style="font-size: 7px" align="center"><%= nota.nota2 %></th>
+                           <th style="font-size: 7px" align="center"><%= nota.faltas2 %></th>
+                           <th style="font-size: 7px" align="center"><%if nota.freq2 < 75 %>
+                                                   <font color ="red"> <%= nota.freq2 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq2 %>%
+                                              <%end%>
+                           </th>
+
+                      <%else%>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                      <%end%>
+                      <%if nota.nota3.present?%>
+                           <th style="font-size: 7px" align="center"><%= nota.nota3 %></th>
+                           <th style="font-size: 7px" align="center"><%= nota.faltas3 %></th>
+                           <th style="font-size: 7px" align="center"><%if nota.freq3 < 75 %>
+                                                   <font color ="red"> <%= nota.freq3 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq3 %>%
+                                              <%end%>
+                           </th>
+
+                      <%else%>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                      <%end%>
+                      <%if nota.nota4.present?%>
+                           <th style="font-size: 7px" align="center"><%= nota.nota4 %></th>
+                           <th style="font-size: 7px" align="center"><%= nota.faltas4 %></th>
+                           <th style="font-size: 7px" align="center"><%if nota.freq4 < 75 %>
+                                                   <font color ="red"> <%= nota.freq4 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq4 %>%
+                                              <%end%>
+                           </th>
+
+                      <%else%>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                      <%end%>
+                      <%if nota.nota5.present?%>
+                           <th style="font-size: 7px" align="center"><%= nota.nota5 %></th>
+                           <th style="font-size: 7px" align="center"><%= nota.faltas5 %></th>
+                           <th style="font-size: 7px" align="center"><%if nota.freq5 < 75 %>
+                                                   <font color ="red"> <%= nota.freq5 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq5 %>%
+                                              <%end%>
+                           </th>
+
+                      <%else%>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                           <th style="font-size: 7px" align="center">--</th>
+                      <%end%>
+                 </tr>
               <%end%>
           <%end%>
 
-
-             <tr>
-               <th style="font-size: 7px" colspan="23"><hr></th>
-             </tr>
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedadogo'))%>
-                     <tr>
-                       <th style="font-size: 7px" colspan="23"><b>Observações:</b></th>
-                     </tr>
-                      <%@notas.each do |nota|%>
-                       <% if nota.observacao_notas.present? %>
-                       <tr>
-                         <th style="font-size: 7px" align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</th>
-                          <th style="font-size: 7px" colspan="15">  <% c=0 %>
-
-                                                   <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
-                                                       <% @obs.each do |obs|%>
-                                                             <b><%= c=c+1%>.</b><%=obs.observacao %>  -
-                                                                 <b>Data: </b> <%  if !obs.data.nil?  %>
-                                                                      <%=  obs.data.strftime("%d/%m/%Y")%><br/>
-                                                           <%end%>
-                                                       <%end%>
-                            </th>
-                       </tr>
-                  <%end%>
-                <%end%>
-            <%end%>
-         </table>
+         
 
 
 
           
            </table>
       </table>
-<br/><br/><br/><hr><br/>
+<br/><br/><br/><hr/><br/>
 <div style="page-break-after: always"></div>
 <%end%>
 

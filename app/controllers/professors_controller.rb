@@ -1,6 +1,5 @@
 class ProfessorsController < ApplicationController
-  # GET /professors
-  # GET /professors.xml
+  
      before_filter :load_unidades
      before_filter :load_professors
      before_filter :load_classes
@@ -38,8 +37,6 @@ class ProfessorsController < ApplicationController
     end
   end
 
-  # GET /professors/1
-  # GET /professors/1.xml
   def show
     @professor = Professor.find(params[:id])
 
@@ -60,13 +57,11 @@ class ProfessorsController < ApplicationController
     end
   end
 
-  # GET /professors/1/edit
+  
   def edit
     @professor = Professor.find(params[:id])
   end
 
-  # POST /professors
-  # POST /professors.xml
   def create
     @professor = Professor.new(params[:professor])
 
@@ -82,8 +77,6 @@ class ProfessorsController < ApplicationController
     end
   end
 
-  # PUT /professors/1
-  # PUT /professors/1.xml
   def update
     @professor = Professor.find(params[:id])
 
@@ -99,8 +92,6 @@ class ProfessorsController < ApplicationController
     end
   end
 
-  # DELETE /professors/1
-  # DELETE /professors/1.xml
   def destroy
     @professor = Professor.find(params[:id])
     @professor.destroy
@@ -113,38 +104,24 @@ class ProfessorsController < ApplicationController
 
   def consultaprofessor
     if params[:type_of].to_i == 3
-#       if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+
           @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
-#       else
-#          @professors = Professor.find(:all, :conditions=> ["(unidade_id = ? or unidade_id = 54) AND'desligado = 0'," , current_user.unidade_id] ,:order => 'unidade_id,nome ASC ')
-#       end
       render :update do |page|
          page.replace_html 'professores', :partial => "professores"
       end
     else if params[:type_of].to_i == 2
-#            if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
                 @professors = Professor.find(:all, :conditions=> ["desligado = 0"],:order => 'nome ASC')
-#            else
-#                @professors = Professor.find(:all, :conditions=> ["desligado = 0 and (unidade_id = ? or unidade_id = 54)" , current_user.unidade_id], :order => 'unidade_id, nome ASC')
-#            end
             render :update do |page|
                page.replace_html 'professores', :partial => "professores"
              end
        else if params[:type_of].to_i == 4
-#               if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
                     @professors = Professor.find(:all, :conditions=> ["desligado = 1"],:order => 'nome ASC')
-#               else
-#                  @professors = Professor.find(:all, :conditions=> ["desligado = 1 and (unidade_id = ? or unidade_id = 54)" , current_user.unidade_id], :order => 'unidade_id, nome ASC')
-#               end
                render :update do |page|
                   page.replace_html 'professores', :partial => "professores"
                end
             else if params[:type_of].to_i == 1
-#                     if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+
                          @professors = Professor.find(:all,:conditions => ["nome like ?", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
-#                     else
-#                         @professors = Professor.find(:all, :conditions=> ["nome like ? and (unidade_id = ? or unidade_id = 54)" ,"%" + params[:search1].to_s + "%", current_user.unidade_id], :order => 'unidade_id,nome ASC')
-#                     end
                      render :update do |page|
                           page.replace_html 'professores', :partial => "professores"
                      end
@@ -153,11 +130,8 @@ class ProfessorsController < ApplicationController
                            page.replace_html 'professores', :partial => "professores"
                           end
                       else if params[:type_of].to_i == 6
-#                               if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+
                                    @professors = Professor.find( :all,:conditions => ["funcao like ? AND desligado = 0", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
-#                               else
-#                                   @professors = Professor.find(:all, :conditions=> ["desligado = 0 and funcao like ? and (unidade_id = ? or unidade_id = 54)" ,"%" + params[:search].to_s + "%", current_user.unidade_id], :order => 'unidade_id,nome ASC')
-#                               end
                                render :update do |page|
                                       page.replace_html 'professores', :partial => "professores"
                                end

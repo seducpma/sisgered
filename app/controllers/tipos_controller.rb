@@ -1,6 +1,5 @@
 class TiposController < ApplicationController
-  # GET /tipos
-  # GET /tipos.xml
+  
   def index
     @tipos = Tipo.all
 
@@ -10,8 +9,6 @@ class TiposController < ApplicationController
     end
   end
 
-  # GET /tipos/1
-  # GET /tipos/1.xml
   def show
     @tipo = Tipo.find(params[:id])
 
@@ -21,8 +18,6 @@ class TiposController < ApplicationController
     end
   end
 
-  # GET /tipos/new
-  # GET /tipos/new.xml
   def new
     @tipo = Tipo.new
 
@@ -32,13 +27,10 @@ class TiposController < ApplicationController
     end
   end
 
-  # GET /tipos/1/edit
   def edit
     @tipo = Tipo.find(params[:id])
   end
 
-  # POST /tipos
-  # POST /tipos.xml
   def create
     @tipo = Tipo.new(params[:tipo])
 
@@ -54,8 +46,6 @@ class TiposController < ApplicationController
     end
   end
 
-  # PUT /tipos/1
-  # PUT /tipos/1.xml
   def update
     @tipo = Tipo.find(params[:id])
 
@@ -71,8 +61,6 @@ class TiposController < ApplicationController
     end
   end
 
-  # DELETE /tipos/1
-  # DELETE /tipos/1.xml
   def destroy
     @tipo = Tipo.find(params[:id])
     @tipo.destroy

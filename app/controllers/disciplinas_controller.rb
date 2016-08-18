@@ -1,6 +1,4 @@
 class DisciplinasController < ApplicationController
-  # GET /disciplinas
-  # GET /disciplinas.xml
   def index
     @disciplinas = Disciplina.all
 
@@ -10,8 +8,6 @@ class DisciplinasController < ApplicationController
     end
   end
 
-  # GET /disciplinas/1
-  # GET /disciplinas/1.xml
   def show
     @disciplina = Disciplina.find(params[:id])
 
@@ -21,8 +17,6 @@ class DisciplinasController < ApplicationController
     end
   end
 
-  # GET /disciplinas/new
-  # GET /disciplinas/new.xml
   def new
     @disciplina = Disciplina.new
 
@@ -32,13 +26,11 @@ class DisciplinasController < ApplicationController
     end
   end
 
-  # GET /disciplinas/1/edit
   def edit
     @disciplina = Disciplina.find(params[:id])
   end
 
-  # POST /disciplinas
-  # POST /disciplinas.xml
+
   def create
     @disciplina = Disciplina.new(params[:disciplina])
 
@@ -54,8 +46,6 @@ class DisciplinasController < ApplicationController
     end
   end
 
-  # PUT /disciplinas/1
-  # PUT /disciplinas/1.xml
   def update
     @disciplina = Disciplina.find(params[:id])
 
@@ -71,8 +61,6 @@ class DisciplinasController < ApplicationController
     end
   end
 
-  # DELETE /disciplinas/1
-  # DELETE /disciplinas/1.xml
   def destroy
     @disciplina = Disciplina.find(params[:id])
     @disciplina.destroy

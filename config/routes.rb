@@ -16,13 +16,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :saudes
   map.resources :pessoas
   map.resources :alunos, :collection => {:consulta_ficha => :get , :editar_ficha=>:get}
-
   map.resources :logs
   map.resources :roles_users
   map.resources :users
-
+  map.resources :classes
+  map.resources :informativos
+  map.resources :logs
+  map.resources :fichas
   map.resource :session
-  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :status => :get, :impressao_geral => :get, :status => :get, :update => :put}
+  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :impressao_geral => :get, :status => :get, :update => :put}
   map.resources :grupos
   map.resources :regiaos
   map.resources :regiaos
@@ -34,21 +36,15 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.grafico '/grafico', :controller => 'grafico'
-  map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_geral_demanda'
-  map.grafico_por_unidade '/grafico/crianca_por_unidade', :controller => 'grafico', :action => 'crianca_por_unidade'
-
-
+  
+  
   map.construcao '/construcao', :controller => 'alunos', :action => 'construcao'
+  map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
 
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
 
-
-  map.grafico '/grafico', :controller => 'grafico'
-  map.grafico_geral '/grafico/grafico_demanda_geral', :controller => 'grafico', :action => 'grafico_demanda_geral'
-  map.grafico_unidade '/grafico/grafico_demanda_unidade', :controller => 'grafico', :action => 'grafico_demanda_unidade'
 
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
   map.impressao_alunos '/impressao_alunos', :controller => 'alunos', :action => 'impressao_alunos'
@@ -63,20 +59,19 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_relatorio_aluno '/impressao_relatorio_aluno', :controller => 'atribuicaos', :action => 'impressao_relatorio_aluno'
   map.impressao_relatorio_classe '/impressao_relatorio_classe', :controller => 'atribuicaos', :action => 'impressao_relatorio_classe'
   map.impressao_relatorio_professor '/impressao_relatorio_professor', :controller => 'atribuicaos', :action => 'impressao_relatorio_professor'
-  map.impressao_relatorio_mapa '/impressao_relatorio_mapa', :controller => 'atribuicaos', :action => 'impressao_lencol'
+  map.impressao_relatorio_mapa1 '/impressao_relatorio_mapa1', :controller => 'atribuicaos', :action => 'impressao_lencol1'
+  map.impressao_relatorio_mapa2 '/impressao_relatorio_mapa2', :controller => 'atribuicaos', :action => 'impressao_lencol2'
+  map.impressao_relatorio_mapa3 '/impressao_relatorio_mapa3', :controller => 'atribuicaos', :action => 'impressao_lencol3'
+  map.impressao_relatorio_mapa4 '/impressao_relatorio_mapa4', :controller => 'atribuicaos', :action => 'impressao_lencol4'
   map.impressao_lancamentos '/impressao_lancamentos', :controller => 'atribuicaos', :action => 'impressao_lancamentos'
   map.impressao_alteracao_lancamentos '/impressao_alteracao_lancamentos', :controller => 'notas', :action => 'impressao_alteracao_lancamentos'
   map.impressao_lancamentos_notas '/impressao_lancamentos_notas', :controller => 'notas', :action => 'impressao_lancamentos_notas'
   map.impressao_transferencia_aluno'impressao_transferencia_aluno', :controller => 'atribuicaos', :action => 'impressao_transferencia_aluno'
-  map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
+  map.impressao_historico'impressao_historico', :controller => 'atribuicaos', :action => 'impressao_historico'
+  map.impressao_historico_aluno'impressao_historico_aluno', :controller => 'atribuicaos', :action => 'impressao_historico_aluno'
 
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
-
-  map.resources :classes
-  map.resources :informativos
-  map.resources :logs
-  map.resources :fichas
-
+  map.alteracao_matricula '/alteracao_matricula', :controller => 'matriculas', :action => 'alteracao_matricula'
   map.editar_ficha_cadastral '/editar_ficha_cadastral', :controller => 'alunos', :action => 'editar_ficha_cadastral'
   map.editar_transferencia_aluno '/editar_transferencia_aluno', :controller => 'transferencias', :action => 'editar_transferencia_aluno'
   map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'
@@ -105,7 +100,7 @@ ActionController::Routing::Routes.draw do |map|
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
   map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'
   map.lancar_notas_alunos_atribuicaos '/lancar_notas_alunos_atribuicaos', :controller => 'atribuicaos', :action => 'lancar_notas_alunos_atribuicao'
-  map.alteracao_matricula '/alteracao_matricula', :controller => 'matriculas', :action => 'alteracao_matricula'
+
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
   map.matriculas_saidas '/matriculas_saidas', :controller => 'matriculas', :action => 'matriculas_saidas'
   map.resources :roles_users, :collection => {:lista_users => :get}
@@ -120,7 +115,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
 
-  #map.resource :password
+  
   map.reset_password '/reset_password/:id', :controller => 'passwords', :action => 'edit'
   map.resource :password
 

@@ -1,7 +1,4 @@
 class SaudesController < ApplicationController
-  # GET /saudes
-  # GET /saudes.xml
-
   before_filter :load_alunos
 
   def index
@@ -13,8 +10,6 @@ class SaudesController < ApplicationController
     end
   end
 
-  # GET /saudes/1
-  # GET /saudes/1.xml
   def show
     @saude = Saude.find(params[:id])
 
@@ -24,8 +19,6 @@ class SaudesController < ApplicationController
     end
   end
 
-  # GET /saudes/new
-  # GET /saudes/new.xml
   def new
     @saude = Saude.new
 
@@ -35,13 +28,11 @@ class SaudesController < ApplicationController
     end
   end
 
-  # GET /saudes/1/edit
+
   def edit
     @saude = Saude.find(params[:id])
   end
 
-  # POST /saudes
-  # POST /saudes.xml
   def create
     @saude = Saude.new(params[:saude])
 
@@ -57,8 +48,6 @@ class SaudesController < ApplicationController
     end
   end
 
-  # PUT /saudes/1
-  # PUT /saudes/1.xml
   def update
     @saude = Saude.find(params[:id])
 
@@ -74,8 +63,6 @@ class SaudesController < ApplicationController
     end
   end
 
-  # DELETE /saudes/1
-  # DELETE /saudes/1.xml
   def destroy
     @saude = Saude.find(params[:id])
     @saude.destroy
@@ -100,7 +87,6 @@ end
   end
 
   protected
-    #Inicialização variavel / combobox grupo
 
   def load_alunos
     @pessoas_aluno =  Aluno.find(:all, :conditions=> ['unidade_id=?', current_user.unidade_id],:order => "aluno_nome")

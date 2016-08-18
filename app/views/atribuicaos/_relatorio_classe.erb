@@ -10,7 +10,7 @@
   </tr>
 </table>
 <% cont=1 %>
-<% @alunos.each do |aluno| %>
+<% @matriculas.each do |matricula| %>
     <table width="100%">
         <tr>
           <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
@@ -33,11 +33,11 @@
       </table>
      <table border="1" cellspacing="0" cellpadding="1" width="100%">
         <tr>
-            <td><b>Nº</b> <%= cont %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></td>
-            <% session[:aluno] = aluno.id %>
+            <td><b>Nº</b> <%= matricula.classe_num %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <b>RA:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_ra %></td>
+            <% session[:aluno] = matricula.aluno.id %>
         </tr>
-        <% cont= cont+1 %>
+
         <tr bgcolor="#F5F5F5">
         <% for classe in @classe %>
 
@@ -46,7 +46,7 @@
                                <b>Ano Letivo:</b> &nbsp&nbsp<%=h classe.classe_ano_letivo %></td>
                    <%  session[:classe]=  classe.id%>
             </tr>
-        <%end%>  
+        <%end%>
             <table border="1" cellspacing="0" cellpadding="1" width="100%">
               <tr>
                 <td width=" 20%" rowspan="2" align="center"><b>Disciplina</b></td>
@@ -86,52 +86,76 @@
                <%@notasB.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
                     <td><%= nota.atribuicao.disciplina.disciplina %></td>
-                    <%if nota.nota1.present? %>
-                         <td align="center"><%= nota.nota1 %> </td>
-                         <td align="center"><%= nota.faltas1%></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
-                    <%if nota.nota2.present?%>
-                         <td align="center"><%= nota.nota2 %></td>
-                         <td align="center"><%= nota.faltas2 %></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
+                      <%if nota.nota1.present?%>
+                           <td align="center"><%= nota.nota1 %></td>
+                           <td align="center"><%= nota.faltas1 %></td>
+                           <td align="center"><%if nota.freq1 < 75 %>
+                                                   <font color ="red"> <%= nota.freq1 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq1 %>%
+                                              <%end%>
+                           </td>
+                      <%else%>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                      <%end%>
+                      <%if nota.nota2.present?%>
+                           <td align="center"><%= nota.nota2 %></td>
+                           <td align="center"><%= nota.faltas2 %></td>
+                          <td align="center"><%if nota.freq2 < 75 %>
+                                                   <font color ="red"> <%= nota.freq2 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq2 %>%
+                                              <%end%>
+                           </td>
+                      <%else%>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                      <%end%>
+                      <%if nota.nota3.present?%>
+                           <td align="center"><%= nota.nota3 %></td>
+                           <td align="center"><%= nota.faltas3 %></td>
+                           <td align="center"><%if nota.freq3 < 75 %>
+                                                   <font color ="red"> <%= nota.freq3 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq3 %>%
+                                              <%end%>
+                           </td>
+                      <%else%>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                      <%end%>
+                      <%if nota.nota4.present?%>
+                           <td align="center"><%= nota.nota4 %></td>
+                           <td align="center"><%= nota.faltas4 %></td>
+                           <td align="center"><%if nota.freq4 < 75 %>
+                                                   <font color ="red"> <%= nota.freq4 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq4 %>%
+                                              <%end%>
+                           </td>
 
-                    <%if nota.nota3.present?%>
-                         <td align="center"><%= nota.nota3 %></td>
-                         <td align="center"><%= nota.faltas3 %></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
-                    <%if nota.nota4.present?%>
-                         <td align="center"><%= nota.nota4 %></td>
-                         <td align="center"><%= nota.faltas4 %></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
-                    <%if nota.nota5.present? %>
-                         <td align="center"><%= nota.nota5 %></td>
-                         <td align="center"><%= nota.faltas5 %></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
+                      <%else%>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                      <%end%>
+                          <%if nota.nota5.present? %>
+                              <td align="center"><%= nota.nota5 %> </td>
+                          <%else%>
+                               <td align="center">--</td>
+                          <%end%>
+                            <td align="center"><%= nota.faltas5 %></td>
+                            <td align="center"><%if nota.freq5 < 75 %>
+                                                   <font color ="red"> <%= nota.freq5 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq5 %>%
+                                              <%end%>
+                           </td>
+
              </tr>
               <%end%>
           <%end%>
@@ -147,83 +171,81 @@
                <%@notasD.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
                     <td><%= nota.atribuicao.disciplina.disciplina %></td>
-                    <%if nota.nota1.present? %>
-                         <td align="center"><%= nota.nota1 %> </td>
-                         <td align="center"><%= nota.faltas1%></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
-                    <%if nota.nota2.present?%>
-                         <td align="center"><%= nota.nota2 %></td>
-                         <td align="center"><%= nota.faltas2 %></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
+                      <%if nota.nota1.present?%>
+                           <td align="center"><%= nota.nota1 %></td>
+                           <td align="center"><%= nota.faltas1 %></td>
+                           <td align="center"><%if nota.freq1 < 75 %>
+                                                   <font color ="red"> <%= nota.freq1 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq1 %>%
+                                              <%end%>
+                           </td>
+                      <%else%>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                           <td></td>
+                      <%end%>
+                      <%if nota.nota2.present?%>
+                           <td align="center"><%= nota.nota2 %></td>
+                           <td align="center"><%= nota.faltas2 %></td>
+                          <td align="center"><%if nota.freq2 < 75 %>
+                                                   <font color ="red"> <%= nota.freq2 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq2 %>%
+                                              <%end%>
+                           </td>
+                      <%else%>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                      <%end%>
+                      <%if nota.nota3.present?%>
+                           <td align="center"><%= nota.nota3 %></td>
+                           <td align="center"><%= nota.faltas3 %></td>
+                           <td align="center"><%if nota.freq3 < 75 %>
+                                                   <font color ="red"> <%= nota.freq3 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq3 %>%
+                                              <%end%>
+                           </td>
+                      <%else%>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                      <%end%>
+                      <%if nota.nota4.present?%>
+                           <td align="center"><%= nota.nota4 %></td>
+                           <td align="center"><%= nota.faltas4 %></td>
+                           <td align="center"><%if nota.freq4 < 75 %>
+                                                   <font color ="red"> <%= nota.freq4 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq4 %>%
+                                              <%end%>
+                           </td>
 
-                    <%if nota.nota3.present?%>
-                         <td align="center"><%= nota.nota3 %></td>
-                         <td align="center"><%= nota.faltas3 %></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
-                    <%if nota.nota4.present?%>
-                         <td align="center"><%= nota.nota4 %></td>
-                         <td align="center"><%= nota.faltas4 %></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
-                    <%if nota.nota5.present? %>
-                         <td align="center"><%= nota.nota5 %></td>
-                         <td align="center"><%= nota.faltas5 %></td>
-                         <td align="center"></td>
-                    <%else%>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                         <td align="center"></td>
-                    <%end%>
+                      <%else%>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                           <td align="center">--</td>
+                      <%end%>
+                          <%if nota.nota5.present? %>
+                              <td align="center"><%= nota.nota5 %> </td>
+                          <%else%>
+                               <td align="center">--</td>
+                          <%end%>
+                            <td align="center"><%= nota.faltas5 %></td>
+                            <td align="center"><%if nota.freq5 < 75 %>
+                                                   <font color ="red"> <%= nota.freq5 %>% </font>
+                                              <%else%>
+                                                   <%= nota.freq5 %>%
+                                              <%end%>
+                           </td>
+
              </tr>
               <%end%>
           <%end%>
 
-
-             <tr>
-               <td colspan="23"><hr></td>
-             </tr>
-             <tr>
-               <td colspan="23"><b>Observações:</b></td>
-             </tr>
-              <%@notas.each do |nota|%>
-              <%if nota.aluno_id == session[:aluno]%>
-               <% if nota.observacao_notas.present? %>
-               <tr>
-                 <td align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</td>
-                  <td colspan="15">  <% c=0 %>
-
-                                           <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
-                                               <% @obs.each do |obs|%>
-                                                     <b><%= c=c+1%>.</b><%=obs.observacao %>  -
-                                                         <b>Data: </b> <%  if !obs.data.nil?  %>
-                                                              <%=  obs.data.strftime("%d/%m/%Y")%><br/>
-                                                   <%end%>
-                                               <%end%>
-                    </td>
-               </tr>
-             <%end%>
-            <%end%>
-           <%end%>
-          </table>
+         </table>
       </table>
 
 <table  width="100% "bgcolor="#DCDCDC" >

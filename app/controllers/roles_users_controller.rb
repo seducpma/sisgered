@@ -1,11 +1,9 @@
 class RolesUsersController < ApplicationController
-  #require_role ["admin"]
+  
   before_filter :load_user
   before_filter :load_role
   layout "application"
-  # GET /role_users
-  # GET /role_users.xml
-
+  
   def lista_users
     if params[:type_of].to_i == 6
       @role_users = RolesUser.find(:all, :joins => :user, :order => 'login ASC')
@@ -49,8 +47,6 @@ class RolesUsersController < ApplicationController
 
   end
 
-  # GET /role_users/1
-  # GET /role_users/1.xml
   def show
     @roles_user = RolesUser.find(params[:id])
         respond_to do |format|
@@ -60,8 +56,6 @@ class RolesUsersController < ApplicationController
   end
 
 
-  # GET /role_users/new
-  # GET /role_users/new.xml
   def new
     @role_user = RolesUser.new
 
@@ -71,19 +65,12 @@ class RolesUsersController < ApplicationController
     end
   end
 
-  # GET /role_users/1/edit
   def edit
     @role_user = RolesUser.find(params[:id])
   end
 
-  # POST /role_users
-  # POST /role_users.xml
   def create
      @role_user = RolesUser.new(params[:roles_user])
-
-
-
-
     respond_to do |format|
       if @role_user.save
         flash[:notice] = 'OK'
@@ -94,34 +81,6 @@ class RolesUsersController < ApplicationController
         format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
       end
     end
-
-    #respond_to do |format|
-    #  if @role_user.save
-    #    flash[:notice] = 'OK'
-    #    format.html { redirect_to(@role_user) }
-    #    format.xml  { render :xml => @role_user, :status => :created, :location => @role_user }
-    #    $user_id= @role_user.user_id
-    #    @user = User.find(:all, :conditions => ['id =' +($user_id).to_s])
-        #@user = User.find_by_sql("SELECT * FROM roles_users,users WHERE roles_users.user_id = users.id and users.id = "+($user_id).to_s)
-        #$user_id = params[:user_id]
-    #    for user in @user
-    #      user.activate
-    #    end
-    #  else
-    #    format.html { render :action => "new" }
-    #    format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
-    #  end
-
-#   $user_id= @role_user.user_id
-#    @user = User.find(:all, :conditions => ['id =' +($user_id).to_s])
-    #@user = User.find_by_sql("SELECT * FROM roles_users,users WHERE roles_users.user_id = users.id and users.id = "+($user_id).to_s)
-    #$user_id = params[:user_id]
-#    for user in @user
-#      user.activate
-
-#  end
-
-
   end
 
   # PUT /role_users/1
@@ -141,8 +100,6 @@ class RolesUsersController < ApplicationController
     end
   end
 
-  # DELETE /role_users/1
-  # DELETE /role_users/1.xml
   def destroy
     @role_user = RolesUser.find(params[:id])
     @role_user.destroy

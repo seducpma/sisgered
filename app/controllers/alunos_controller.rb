@@ -1,9 +1,6 @@
 class AlunosController < ApplicationController
-  # GET /alunos
-  # GET /alunos.xml
 
   before_filter :load_alunos
-
 
   def index
     @alunos = Aluno.all
@@ -14,20 +11,14 @@ class AlunosController < ApplicationController
     end
   end
 
-  # GET /alunos/1
-  # GET /alunos/1.xml
   def show
     @aluno = Aluno.find(params[:id])
-    #maeid = @aluno.aluno_mae_pessoa_id
-   # @mae = Pessoa.find.pessoa_nome( :conditions => ["id = ?", maeid])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @aluno }
     end
   end
 
-  # GET /alunos/new
-  # GET /alunos/new.xml
   def new
     @aluno = Aluno.new
 
@@ -37,15 +28,13 @@ class AlunosController < ApplicationController
     end
   end
 
-  # GET /alunos/1/edit
+
   def edit
     @aluno = Aluno.find(params[:id])
     t=(params[:id])
 
   end
 
-  # POST /alunos
-  # POST /alunos.xml
   def create
     user = current_user.unidade_id
     @aluno = Aluno.new(params[:aluno])
@@ -72,16 +61,9 @@ class AlunosController < ApplicationController
   end
 end
 
-
-
-
-
-  # PUT /alunos/1
-  # PUT /alunos/1.xml
   def update
     
     @aluno = Aluno.find(params[:id])
-
 
     respond_to do |format|
       if @aluno.update_attributes(params[:aluno])
@@ -95,8 +77,6 @@ end
     end
   end
 
-  # DELETE /alunos/1
-  # DELETE /alunos/1.xml
   def destroy
     @aluno = Aluno.find(params[:id])
     @aluno.destroy
@@ -333,7 +313,7 @@ end
 
 
    protected 
-    #Inicialização variavel / combobox grupo
+
 
   def load_alunos
 
@@ -353,12 +333,6 @@ end
         @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =? AND aluno_status is null',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     end
-    #@pessoas_mae =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "MÃE"'],:order => "pessoa_nome")
-    #@pessoas_pai =  Pessoa.find(:all, :conditions=> ['pessoa_tipo = "PAI"'],:order => "pessoa_nome")
-    #@pessoas_aluno =  Pessoa.find(:all, :joins => "inner join alunos on pessoas.id = alunos.pessoa_id", :conditions=> ['pessoa_tipo = "ALUNO" and unidade_id=?', current_user.unidade_id],:order => "pessoa_nome")
-    #@pessoas_responsavel =  Pessoa.find(:all, :joins => "inner join alunos on pessoas.id = alunos.pessoa_id", :conditions=> ['pessoa_tipo = "AVÔ" or pessoa_tipo = "AVÓ" or pessoa_tipo = "ENTEADO(A)" or pessoa_tipo = "OUTROS" or pessoa_tipo = "RESPONSÁVEL" and alunos.unidade_id=?', current_user.unidade_id],:order => "pessoa_nome")
-    #@pessoas_responsavel =  Pessoa.find(:all, :conditions=> ['(pessoa_tipo = "AVÔ" or pessoa_tipo = "AVÓ" or pessoa_tipo = "ENTEADO(A)" or pessoa_tipo = "OUTROS" or pessoa_tipo = "RESPONSÁVEL") and unidade_id=?', current_user.unidade_id],:order => "pessoa_nome")
-    #@pessoas_responsavel =  Pessoa.find(:all,, :conditions=> ['alunos.unidade_id=?', current_user.unidade_id],:order => "pessoa_nome")
   end
 
 
