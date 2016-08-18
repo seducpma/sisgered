@@ -1,4 +1,9 @@
-
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTO DE NOTAS</strong></font><br/>
+ </div>
+  <div class="tabs1">
 <%if @classe.present?%>
   <fieldset>
     <table width="100%">
@@ -29,6 +34,7 @@
                   <td align="left" width="50%"> <%=h atrib.professor.nome%></td>
                   <td align="left"width="10%"><b> Disciplina:</b></td>
                   <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                  <td align="LEFT"><b><%= button_to 'Fechar', home_path, {:method => "get"}  %></b></td>
                   <% session[:disciplina] = atrib.disciplina.disciplina %>
                   <% session[:professor] = atrib.professor.nome %>
                   <% session[:professor_id] = atrib.professor.id %>
@@ -52,22 +58,23 @@
         <td colspan="2" align="center"><b>3ºBim</b></td>
         <td colspan="2" align="center"><b>4ºBim</b></td>
         <td colspan="2" align="center"><b>Final</b></td>
+        <td colspan="2" align="center"><b</td>
       </tr>
       <tr bgcolor="#F5F5F5">
         <td width ="5%"align="center"><b>Nº</b></td>
-        <td width ="20%">&nbsp&nbsp<b>RA</b></td>
-        <td width ="60%">&nbsp&nbsp<b>NOME</b></td>
-        <td width ="5%" align="center"><font size="1"><b>Nota</b></font></td>
-        <td width ="5%%"align="center"><font size="1"><b>Faltas</font></b></td>
-        <td width ="6%" align="center"><font size="1"><b>&nbspNota&nbsp</font></b></td>
-        <td width ="5%"align="center"><font size="1"><b>Faltas</font></b></td>
-        <td width ="6%" align="center"><font size="1"><b>&nbspNota&nbsp</font></b></td>
-        <td width ="5%"align="center"><font size="1"><b>Faltas</font></b></td>
-        <td width ="6%" align="center"><font size="1"><b>&nbspNota&nbsp</font></b></td>
-        <td width ="5%"align="center"><b><font size="1">Faltas</font></b></td>
-        <td width ="6%" align="center"><font size="1"><b>&nbspNota&nbsp</font></b></td>
-        <td width ="5%"align="center"><b><font size="1">Faltas</font></b></td>
-        <td width ="9%"align="center">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+        <td width ="15%">&nbsp&nbsp<b>RA</b></td>
+        <td width ="48%">&nbsp&nbsp<b>NOME</b></td>
+        <td width ="4%" align="center"><font size="1"><b>Nota</b></font></td>
+        <td width ="4%%"align="center"><font size="1"><b>Faltas</font></b></td>
+        <td width ="4%" align="center"><font size="1"><b>Nota</font></b></td>
+        <td width ="4%"align="center"><font size="1"><b>Faltas</font></b></td>
+        <td width ="4%" align="center"><font size="1"><b>Nota</font></b></td>
+        <td width ="4%"align="center"><font size="1"><b>Faltas</font></b></td>
+        <td width ="4%" align="center"><font size="1"><b>Nota</font></b></td>
+        <td width ="4%"align="center"><b><font size="1">Faltas</font></b></td>
+        <td width ="4%" align="center"><font size="1"><b>Nota</font></b></td>
+        <td width ="4%"align="center"><b><font size="1">Faltas</font></b></td>
+        <td width ="4%"align="center">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
       </tr>
       <tr bgcolor="#F5F5F5">
         <td colspan="14"> <div id="notas_aluno">
@@ -76,16 +83,16 @@
                 <tr>
                   <td width ="4%" align="center"><%= nota.matricula.classe_num  %> </td>
                   <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
-                  <td width ="40%" align="left"><%= nota.matricula.aluno.aluno_nome %> </td>
+                  <td width ="46%" align="left"><%= nota.matricula.aluno.aluno_nome %> </td>
                   <td width ="4%" align="center"><%if  !nota.nota1.nil? %>
                                                      <%= nota.nota1 %>
                                                  <%else%>
                                                       ---
                                                  <%end%>
                   </td>
-                  <td width ="5%" align="center"><%if  nota.faltas1? %>
+                  <td width ="4%" align="center"><%if  nota.faltas1? %>
                                                      <%= nota.faltas1 %>
-                                                 <%else%>
+                                                 <%else%>   
                                                       --
                                                   <%end%>
                   </td>
@@ -125,10 +132,10 @@
                   <td width ="4%" align="center"><%if  nota.faltas4? %>
                                                      <%= nota.faltas4 %>
                                                  <%else%>
-                                                      --
+                                                     --
                                                   <%end%>
                   </td>
-                  <td width ="4%" align="center"><%if  !nota.nota5.nil? %>
+                  <td width ="3%" align="center"><%if  !nota.nota5.nil? %>
                                                      <%= nota.nota5 %>
                                                  <%else%>
                                                       ---
@@ -141,7 +148,7 @@
                                                      --
                                                   <%end%>
                   </td>
-                  <td width ="5%" align="center">
+                  <td width ="7%" align="center">
                         <%if !nota.matricula.status.nil? and  nota.matricula.status == 'TRANSFERIDO' %>
                             <font color ="red"> (Transf.)
                         <%else%>
@@ -165,6 +172,13 @@
       </tr>
     </table>
   <%end%>
+   <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
 
 
+    </tr>
+  </table>
 
+
+</div>

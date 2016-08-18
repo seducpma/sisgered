@@ -3,7 +3,7 @@
   <div class ="tabs">
 
 
-  <fieldset><legend><font size=4>LANÇAMENTOS</font></legend>
+  <fieldset><legend><font size=4>LANÇAMENTOS NOTAS/FALTAS HISTÓRICO</font></legend>
     <table width="100%">
        <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>RA:</b></td>
@@ -37,16 +37,11 @@
              <b>Turma:</b>&nbsp&nbsp<%= @nota.classe %> º Ano
          </td>
       </tr>
-       <tr bgcolor="#F5F5F5">
-         <td width =" 12%" valign="top"><b>Observação:</b></td>
-         <td colspan="4"><%= @nota.obs1 %>
-         </td>
-      </tr>
     </table>
   </fieldset>
   <table width="100%" >
          <tr>
-            <td width="6%"align="left" ><%= button_to 'Alterar' ,lancamentos_notas_notas_path, :title => "Alterar" %></td>
+            
             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
 
          </tr>

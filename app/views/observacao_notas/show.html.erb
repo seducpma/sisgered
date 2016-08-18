@@ -1,0 +1,18 @@
+<p>
+  <b>Nota:</b>
+  <%=h @observacao_nota.nota %>
+</p>
+
+<p>
+  <b>Observacao:</b>
+  <%=h @observacao_nota.observacao %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%=h @observacao_nota.data %>
+</p>
+
+
+<%= link_to 'Edit', edit_observacao_nota_path(@observacao_nota) %> |
+<%= link_to 'Back', observacao_notas_path %>

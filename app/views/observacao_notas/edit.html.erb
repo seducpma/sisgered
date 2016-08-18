@@ -1,0 +1,24 @@
+<h1>Editing observacao_nota</h1>
+
+<% form_for(@observacao_nota) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nota %><br />
+    <%= f.text_field :nota %>
+  </p>
+  <p>
+    <%= f.label :observacao %><br />
+    <%= f.text_field :observacao %>
+  </p>
+  <p>
+    <%= f.label :data %><br />
+    <%= f.date_select :data %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @observacao_nota %> |
+<%= link_to 'Back', observacao_notas_path %>

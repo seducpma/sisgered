@@ -1,4 +1,4 @@
-</div><div id="interno3">
+</div><div id="interno4">
 <% title "NOTAS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -12,11 +12,20 @@
               <tr bgcolor="#F5F5F5">
                  <td colspan="4"><font  size="3"color="red"><u> <b>ATENÇÃO:</b></u></font></td>
               </tr>
-            <tr bgcolor="#F5F5F5">
-                <td colspan="6"><font size ="2" color="red"><b>1) O LANÇAMENTO DE NOTAS E FALTAS  PODERÁ SER EXECUTA SOMENTE  <br/> &nbsp&nbsp&nbsp UMA ÚNICA VEZ. OBSERVAÇÔES PODEM SER LANÇADAS DIVERSAS <br/> &nbsp&nbsp&nbsp VEZES, PARA LANÇAR CLIQUE NO LINK  <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></font>.</b></td>
+             <tr bgcolor="#F5F5F5">
+                <td colspan="6"><font size ="2" color="red"><b>1) O LANÇAMENTO DE NOTAS E FALTAS  PODERÁ SER EXECUTA SOMENTE UMA ÚNICA <br/> &nbsp&nbsp&nbsp&nbsp VEZ PELO PROFESSOR.</b></font></td>
             </tr>
             <tr bgcolor="#F5F5F5">
-                <td colspan="6"><font size ="2" color="red"><b>2) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR <br/> &nbsp&nbsp&nbsp LANÇAMENTO JÁ EXECUTADO.</b></td>
+                <td colspan="6"><font size ="2" color="red"><b>2) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR  LANÇAMENTO JÁ <br/> &nbsp&nbsp&nbsp&nbsp EXECUTADO PELO PROFESSOR.</b></font></b></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td colspan="6"><font size ="2" color="red"><b>3) LANÇAR NOTAS COM NÚMERO PONTO ZERO - Exemplo.  7.0   <br/> &nbsp&nbsp&nbsp&nbsp E AS FALTAS COM NUMEROS INTEIROS - Exemplo. 2</b></font></td>
+            </tr>
+             <tr bgcolor="#F5F5F5">
+                <td colspan="6"><font size ="2" color="red"><b>4) No campo <b> Nº Aulas </b>  LANÇAR O NÚMERO DE  AULAS DADAS NO BIMESTRE.</b></font></td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+                <td colspan="6"><font size ="2" color="red"><b>5) OBSERVAÇÕES PODEM SER LANÇADAS DIVERSAS  VEZES, PARA LANÇAR CLIQUE NO <br/> &nbsp&nbsp&nbsp&nbsp LINK  <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></td>
             </tr>
 
 
@@ -39,58 +48,127 @@
                            <td align="center" width ="6%"><b>2º Bimestre</b></td>
                            <td align="center" width ="6%"><b>3º Bimestre</b></td>
                            <td align="center" width ="6%"><b>4º Bimestre</b></td>
+                           <td align="center" width ="6%"><b>Final</b></td>
                       </tr>
                       <tr  bgcolor="#F5F5F5">
                          <td></td>
-                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
-                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
-                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
-                         <td width ="6%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                         <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                         <td width ="6%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                         <td width ="6%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
                       </tr>
                       <tr bgcolor="#F5F5F5">
                          <td></td>
                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
-                           <td width ="3%"> <%= f.text_field :nota1 , :size => '3'%>&nbsp&nbsp&nbsp
+                           <td width ="3%"> <%= f.text_field :nota1 , :size => '3'%>&nbsp
                                             <%= f.text_field :faltas1 , :size => '3'%>
-                                            
                            </td>
-
                          <%else%>
                              <td width ="3%"> <%if @nota.nota1.present?%>
                                                  &nbsp&nbsp&nbsp<%= @nota.nota1%>
                                               <%else%>
                                                  <%= f.text_field :nota1 , :size => '3'%>
                                               <%end%>
-                                                &nbsp&nbsp&nbsp
-                                              <%if @nota.faltas1.present?%>
-                                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas1%>
+                                              <%if @nota.faltas1 != 0%>
+                                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas1%>
                                               <%else%>
                                                   <%= f.text_field :faltas1 , :size => '3'%>
                                               <%end%>
                              </td>
                          <%end%>
                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
-                           <td width ="3%"> <%= f.text_field :nota2 , :size => '3'%>&nbsp&nbsp&nbsp
+                           <td width ="3%"> <%= f.text_field :nota2 , :size => '3'%>&nbsp
                                             <%= f.text_field :faltas2 , :size => '3'%>
 
                            </td>
-
                          <%else%>
                              <td width ="3%"> <%if @nota.nota2.present?%>
                                                  &nbsp&nbsp&nbsp<%= @nota.nota2%>
                                               <%else%>
                                                  <%= f.text_field :nota2 , :size => '3'%>
                                               <%end%>
-                                                &nbsp&nbsp&nbsp
-                                              <%if @nota.faltas2.present?%>
-                                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas2%>
+                                              <%if @nota.faltas2 != 0%>
+                                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas2%>
                                               <%else%>
                                                   <%= f.text_field :faltas2 , :size => '3'%>
                                               <%end%>
                              </td>
                          <%end%>
-                         <td width ="3%"><!--<%= f.text_field :nota3 , :size => '3'%>--> &nbsp&nbsp&nbsp&nbsp --- <!--<%= f.text_field :faltas3 , :size => '3'%>--> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp --- </td>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                           <td width ="3%"> <%= f.text_field :nota3 , :size => '3'%>&nbsp
+                                            <%= f.text_field :faltas3 , :size => '3'%>
+                           </td>
+                         <%else%>
+                             <td width ="3%"> <%if @nota.nota3.present?%>
+                                                 &nbsp&nbsp&nbsp<%= @nota.nota3%>
+                                              <%else%>
+                                                 <%= f.text_field :nota3 , :size => '3'%>
+                                              <%end%>
+                                              <%if @nota.faltas3 !=0 %>
+                                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas3%>
+                                              <%else%>
+                                                  <%= f.text_field :faltas3 , :size => '3'%>
+                                              <%end%>
+                             </td>
+                         <%end%>
+
                          <td width ="3%"><!--<%= f.text_field :nota4 , :size => '3'%>--> &nbsp&nbsp&nbsp&nbsp --- <!--<%= f.text_field :faltas4 , :size => '3'%>--> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp --- </td>
+
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                           <td width ="3%"> <%= f.text_field :nota5 , :size => '3'%>&nbsp
+                                                &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas5%>
+                           </td>
+                         <%else%>
+                             <td width ="3%"> <%if @nota.nota5.present?%>
+                                                 &nbsp&nbsp&nbsp<%= @nota.nota5%>
+                                              <%else%>
+                                                 <%= f.text_field :nota5 , :size => '3'%>
+                                              <%end%>
+                                              
+                                                 &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas5%>
+                                              
+                             </td>
+                         <%end%>
+                      </tr>
+                      <tr bgcolor="#F5F5F5">
+                        <td><font color ="red"> Favor ==> Preencher </font></td>
+                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                             <td width ="3%"> <b>NºAulas:</b><%= f.text_field :aulas1 , :size => '2'%></td>
+                          <%else%>
+                            <td align="center"> <b>Nº Aulas:</b>   <%if @nota.aulas1 != 0%>
+                                                                      &nbsp&nbsp&nbsp<%= @nota.aulas1%>
+                                                                    <%else%>
+                                                                        <%= f.text_field :aulas1 , :size => '3'%>
+                                                                    <%end%>
+                           </td>
+                         <%end%>
+                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                             <td width ="3%"> <b>NºAulas:</b><%= f.text_field :aulas2 , :size => '2'%></td>
+                          <%else%>
+                            <td align="center"><b>Nº Aulas:</b> <%if @nota.aulas2 != 0%>
+                                                                    &nbsp&nbsp&nbsp<%= @nota.aulas2%>
+                                                                <%else%>
+                                                                    <%= f.text_field :aulas2 , :size => '3'%>
+                                                                <%end%>
+                            </td>
+                          <%end%>
+                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                             <td width ="3%"> <b>NºAulas:</b><%= f.text_field :aulas3 , :size => '2'%></td>
+                          <%else%>
+                              <td align="center"><b>Nº Aulas:</b><%if @nota.aulas3 != 0%>
+                                                                    &nbsp&nbsp&nbsp<%= @nota.aulas3%>
+                                                                <%else%>
+                                                                    <%= f.text_field :aulas3 , :size => '3'%>
+                                                                <%end%>
+                             </td>
+                         <%end%>
+                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                             <td width ="3%"> <b>NºAulas:</b><%= f.text_field :aulas4 , :size => '2'%></td>
+                          <%else%>
+                              <td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ----------- </td>
+                          <%end%>
+                              <td width ="3%" align="center"> <b>NºAulas:</b> <%= @nota.aulas5%></td>
 
                       </tr>
                    </table>
