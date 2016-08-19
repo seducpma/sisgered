@@ -37620,3 +37620,2305 @@ compile error
   [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
 Rendered atribuicaos/_notas_historico (538.6ms)
 Completed in 1162ms (View: 147, DB: 658) | 200 OK [http://localhost/atribuicaos/historico_aluno?authenticity_token=beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k%3D&aluno%5Baluno_id%5D=2411&authenticity_token=beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k%3D&_=1471549905420]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#lancar_notas (for 127.0.0.1 at 2016-08-18 16:58:54) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.4ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;35;1mProfessor Load (0.5ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =43)) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=43 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+Rendering template within layouts/application
+Rendering notas/lancar_notas
+  [4;35;1mProfessor Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mClasse Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mDisciplina Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 19:58:55' AND ends_at >= '2016-08-18 19:58:55') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 236ms (View: 39, DB: 12) | 200 OK [http://localhost/notas/lancar_notas]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 16:58:55) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#new (for 127.0.0.1 at 2016-08-18 16:58:59) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.3ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =43)) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (1.4ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id=43 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;36;1mNota Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+Rendering template within layouts/application
+Rendering notas/new
+  [4;35;1mAluno Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mDisciplina Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mInformativo Load (0.7ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 19:59:00' AND ends_at >= '2016-08-18 19:59:00') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 219ms (View: 51, DB: 9) | 200 OK [http://localhost/notas/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 16:59:00) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#create (for 127.0.0.1 at 2016-08-18 16:59:19) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k=", "nota"=>{"faltas5"=>"5", "nota5"=>"12", "disciplina_id"=>"16", "aluno_id"=>"4220", "ano_letivo"=>"2010", "classe"=>"1"}, "commit"=>"Salvar"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =43)) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=43 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;35;1mNota Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mNota Create (0.5ms)[0m   [0mINSERT INTO `notas` (`professor_id`, `faltas1`, `aulas1`, `faltas2`, `aulas2`, `faltas3`, `aulas3`, `faltas4`, `aulas4`, `faltas5`, `aulas5`, `atribuicao_id`, `nota1`, `nota2`, `nota3`, `nota4`, `nota5`, `created_at`, `aluno_id`, `unidade_id`, `disciplina_id`, `matricula_id`, `ano_letivo`, `freq1`, `freq2`, `freq3`, `freq4`, `freq5`, `classe`, `obs1`, `ativo`, `updated_at`, `bimestre`) VALUES(NULL, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, NULL, NULL, NULL, NULL, NULL, '12', '2016-08-18 19:59:19', 4220, 43, 16, NULL, 2010, 100, 100, 100, 100, 100, 1, NULL, NULL, '2016-08-18 19:59:19', NULL)[0m
+  [4;36;1mSQL (40.9ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/notas/118892509
+Completed in 211ms (DB: 47) | 302 Found [http://localhost/notas]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#show (for 127.0.0.1 at 2016-08-18 16:59:19) [GET]
+  Parameters: {"id"=>"118892509"}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mClasse Load (0.3ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =43)) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (1.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id=43 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;36;1mNota Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.3ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 118892509) [0m
+Rendering template within layouts/application
+Rendering notas/show
+  [4;36;1mAluno Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 4220) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 19:59:20' AND ends_at >= '2016-08-18 19:59:20') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+Completed in 208ms (View: 33, DB: 8) | 200 OK [http://localhost/notas/118892509]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 16:59:20) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#show (for 127.0.0.1 at 2016-08-18 17:00:08) [GET]
+  Parameters: {"id"=>"118892509"}
+  [4;36;1mUser Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =43)) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=43 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;35;1mNota Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (`notas`.`id` = 118892509) [0m
+Rendering template within layouts/application
+Rendering notas/show
+  [4;35;1mAluno Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 4220) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mUnidade Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 20:00:09' AND ends_at >= '2016-08-18 20:00:09') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+Completed in 308ms (View: 38, DB: 9) | 200 OK [http://localhost/notas/118892509]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 17:00:09) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-18 17:00:18) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.7ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 20:00:18' AND ends_at >= '2016-08-18 20:00:18') [0m
+  [4;36;1mroles_users Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 50ms (View: 32, DB: 5) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 17:00:19) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#historico (for 127.0.0.1 at 2016-08-18 17:00:22) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 960 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (0.4ms)[0m   [0mSELECT * FROM `professors` WHERE ((unidade_id = 43 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mNota Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mNota Load (0.5ms)[0m   [0;1mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+Rendering template within layouts/application
+Rendering atribuicaos/historico
+  [4;35;1mAluno Columns (2.5ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 20:00:22' AND ends_at >= '2016-08-18 20:00:22') [0m
+  [4;35;1mroles_users Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 434ms (View: 140, DB: 13) | 200 OK [http://localhost/atribuicaos/historico]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 17:00:23) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#historico_aluno (for 127.0.0.1 at 2016-08-18 17:00:26) [GET]
+  Parameters: {"aluno"=>{"aluno_id"=>"4220"}, "authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k=", "_"=>"1471550425954"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 960 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.1ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (0.8ms)[0m   [0;1mSELECT * FROM `professors` WHERE ((unidade_id = 43 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (1.4ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.3ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;36;1mNota Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.3ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id ='4220') [0m
+  [4;35;1mAluno Columns (2.5ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id =43) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id < 22) ORDER BY ordem ASC[0m
+  [4;36;1mMatricula Load (0.3ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (aluno_id = 4220 AND unidade_id = 43) ORDER BY matriculas.id DESC LIMIT 1[0m
+  [4;35;1mNota Load (26.2ms)[0m   [0mSELECT * FROM `notas` WHERE (aluno_id =4220) ORDER BY ano_letivo ASC LIMIT 1[0m
+  [4;36;1mNota Load (74.8ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =4220 AND disciplinas.curriculo = 'B' and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mNota Load (77.5ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =4220 AND disciplinas.curriculo = 'D'and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (76.4ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (disciplinas.id=1 AND notas.aluno_id =4220 AND disciplinas.curriculo = 'B' and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mUnidade Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mDisciplina Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mNota Load (21.5ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=1 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.6ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=2 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (19.4ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=3 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (19.6ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=21 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (19.6ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=4 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (19.4ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=6 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (19.6ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=7 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.3ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=8 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (20.6ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=9 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (19.8ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=12 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (19.3ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=13 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (19.5ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=14 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (19.6ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=15 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (19.5ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=16 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (19.5ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=17 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (19.6ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=18 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (19.5ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=20 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (19.4ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=5 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (19.7ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=11 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (19.6ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=10 AND aluno_id=4220) ORDER BY ano_letivo ASC[0m
+  [4;36;1mMatricula Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 4220) [0m
+  [4;35;1mAtribuicao Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 176) [0m
+  [4;35;1mClasse Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 74) [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atribuicaos/_notas_historico (437.8ms)
+Completed in 1110ms (View: 45, DB: 670) | 200 OK [http://localhost/atribuicaos/historico_aluno?authenticity_token=beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k%3D&aluno%5Baluno_id%5D=4220&authenticity_token=beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k%3D&_=1471550425954]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#historico_aluno (for 127.0.0.1 at 2016-08-18 17:01:05) [GET]
+  Parameters: {"aluno"=>{"aluno_id"=>"2411"}, "authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k=", "_"=>"1471550465399"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 960 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.2ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE ((unidade_id = 43 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (1.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Load (0.3ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.5ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;36;1mNota Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.3ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id ='2411') [0m
+  [4;35;1mAluno Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id =43) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id < 22) ORDER BY ordem ASC[0m
+  [4;36;1mMatricula Load (0.3ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (aluno_id = 2411 AND unidade_id = 43) ORDER BY matriculas.id DESC LIMIT 1[0m
+  [4;35;1mNota Load (26.1ms)[0m   [0mSELECT * FROM `notas` WHERE (aluno_id =2411) ORDER BY ano_letivo ASC LIMIT 1[0m
+  [4;36;1mNota Load (76.8ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =2411 AND disciplinas.curriculo = 'B' and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mNota Load (75.1ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =2411 AND disciplinas.curriculo = 'D'and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (76.3ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (disciplinas.id=1 AND notas.aluno_id =2411 AND disciplinas.curriculo = 'B' and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mDisciplina Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mNota Load (24.6ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=1 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.6ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=2 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (21.3ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=3 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=21 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (22.3ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=4 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.8ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=6 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (22.3ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=7 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.0ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=8 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (22.2ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=9 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.2ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=12 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (22.2ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=13 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.3ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=14 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (21.2ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=15 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.2ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=16 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (21.8ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=17 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (21.9ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=18 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (22.2ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=20 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.3ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=5 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (22.2ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=11 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (22.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=10 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mMatricula Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2411) [0m
+  [4;35;1mAtribuicao Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.3ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 921) [0m
+  [4;35;1mClasse Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 56) [0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atribuicaos/_notas_historico (612.5ms)
+Completed in 1224ms (View: 173, DB: 716) | 200 OK [http://localhost/atribuicaos/historico_aluno?authenticity_token=beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k%3D&aluno%5Baluno_id%5D=2411&authenticity_token=beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k%3D&_=1471550465399]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#impressao_historico (for 127.0.0.1 at 2016-08-18 17:01:23) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 960 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.3ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (0.4ms)[0m   [0;1mSELECT * FROM `professors` WHERE ((unidade_id = 43 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (1.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;36;1mNota Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.0ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id =2411) [0m
+  [4;35;1mAluno Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mClasse Load (1.8ms)[0m   [0;1mSELECT `classes`.* FROM `classes` inner join matriculas on classes.id = matriculas.classe_id WHERE (matriculas.aluno_id =2411 AND ano_letivo=2016) [0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =2411 AND disciplinas.curriculo = 'B' and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =2411 AND disciplinas.curriculo = 'D'and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (disciplinas.id=1 AND notas.aluno_id =2411 AND disciplinas.curriculo = 'B' and unidade_id =43 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (0.0ms)[0m   [0;1mSELECT * FROM `notas` WHERE (aluno_id =2411) ORDER BY ano_letivo ASC LIMIT 1[0m
+Rendering template within layouts/impressao
+Rendering atribuicaos/impressao_historico
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mAtribuicao Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 921) [0m
+  [4;35;1mClasse Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 56) [0m
+  [4;35;1mDisciplina Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=1 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=2 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=3 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.2ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=4 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=6 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=7 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=8 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=21 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=5 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=9 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=10 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=11 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=12 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=13 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=14 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=15 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=16 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=17 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=18 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=20 AND aluno_id=2411) ORDER BY ano_letivo ASC[0m
+  [4;36;1mMatricula Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mMatricula Load (0.4ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 4372) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2411) [0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 416ms (View: 60, DB: 18) | 200 OK [http://localhost/impressao_historico]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#historico (for 127.0.0.1 at 2016-08-18 17:02:49) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 960 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.5ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE ((unidade_id = 43 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =43) ORDER BY aluno_nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 43 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mNota Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mNota Load (0.3ms)[0m   [0;1mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+Rendering template within layouts/application
+Rendering atribuicaos/historico
+  [4;35;1mAluno Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 20:02:50' AND ends_at >= '2016-08-18 20:02:50') [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 551ms (View: 175, DB: 11) | 200 OK [http://localhost/atribuicaos/historico]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 17:02:51) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#new (for 127.0.0.1 at 2016-08-18 17:02:53) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (4.3ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+
+ActionView::MissingTemplate (Missing template informativos/new.erb in view path app/views):
+  app/controllers/informativos_controller.rb:24:in `new'
+
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#new (for 127.0.0.1 at 2016-08-18 17:05:02) [GET]
+  [4;35;1mUser Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+Rendering template within layouts/application
+Rendering informativos/new
+Rendered informativos/_form (98.9ms)
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 20:05:02' AND ends_at >= '2016-08-18 20:05:02') [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 161ms (View: 136, DB: 6) | 200 OK [http://localhost/informativos/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 17:05:03) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#create (for 127.0.0.1 at 2016-08-18 17:05:09) [POST]
+  Parameters: {"informativo"=>{"starts_at(1i)"=>"2016", "starts_at(2i)"=>"8", "ends_at(1i)"=>"2016", "ends_at(2i)"=>"8", "ends_at(3i)"=>"18", "starts_at(5i)"=>"05", "starts_at(4i)"=>"17", "starts_at(3i)"=>"18", "ends_at(5i)"=>"05", "ends_at(4i)"=>"17", "mensagem"=>"teste"}, "authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k=", "commit"=>"Salvar"}
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mBEGIN[0m
+  [4;36;1mInformativo Create (2.9ms)[0m   [0;1mINSERT INTO `informativos` (`created_at`, `ends_at`, `mensagem`, `updated_at`, `starts_at`) VALUES('2016-08-18 20:05:09', '2016-08-18 20:05:00', 'teste', '2016-08-18 20:05:09', '2016-08-18 20:05:00')[0m
+  [4;35;1mSQL (47.5ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/informativos/7
+Completed in 74ms (DB: 54) | 302 Found [http://localhost/informativos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-18 17:05:09) [GET]
+  Parameters: {"id"=>"7"}
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 7) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.3ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-18 20:05:09' AND ends_at >= '2016-08-18 20:05:09') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 142ms (View: 39, DB: 9) | 200 OK [http://localhost/informativos/7]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-18 17:05:09) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:08:35) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:08:36' AND ends_at >= '2016-08-19 11:08:36') [0m
+  [4;35;1mroles_users Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.6ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.8ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 307ms (View: 233, DB: 9) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:08:36) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#new (for 127.0.0.1 at 2016-08-19 08:08:48) [GET]
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+Rendering template within layouts/application
+Rendering informativos/new
+Rendered informativos/_form (14.2ms)
+  [4;35;1mInformativo Load (0.7ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:08:48' AND ends_at >= '2016-08-19 11:08:48') [0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.3ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 159ms (View: 139, DB: 7) | 200 OK [http://localhost/informativos/new]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:08:48) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#create (for 127.0.0.1 at 2016-08-19 08:09:28) [POST]
+  Parameters: {"informativo"=>{"starts_at(1i)"=>"2016", "starts_at(2i)"=>"8", "starts_at(3i)"=>"19", "starts_at(5i)"=>"08", "starts_at(4i)"=>"08", "ends_at(1i)"=>"2016", "ends_at(2i)"=>"8", "mensagem"=>"testetesteteste testetesteteste testetestetesteteste testetesteteste testetestetesteteste testetesteteste\r\n", "ends_at(5i)"=>"30", "ends_at(4i)"=>"08", "ends_at(3i)"=>"19"}, "commit"=>"Salvar", "authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mInformativo Create (0.3ms)[0m   [0mINSERT INTO `informativos` (`starts_at`, `created_at`, `mensagem`, `ends_at`, `updated_at`) VALUES('2016-08-19 11:08:00', '2016-08-19 11:09:28', 'testetesteteste testetesteteste testetestetesteteste testetesteteste testetestetesteteste testetesteteste\r\n', '2016-08-19 11:30:00', '2016-08-19 11:09:28')[0m
+  [4;36;1mSQL (49.0ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/informativos/8
+Completed in 145ms (DB: 51) | 302 Found [http://localhost/informativos]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:09:28) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:09:28' AND ends_at >= '2016-08-19 11:09:28') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 152ms (View: 133, DB: 6) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:09:29) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:10:34) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (7.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:10:34' AND ends_at >= '2016-08-19 11:10:34') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 202ms (View: 175, DB: 13) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:10:34) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:10:59) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:10:59' AND ends_at >= '2016-08-19 11:10:59') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 138ms (View: 39, DB: 5) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:10:59) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:12:14) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:12:14' AND ends_at >= '2016-08-19 11:12:14') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 63ms (View: 42, DB: 6) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:12:14) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:12:50) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:12:50' AND ends_at >= '2016-08-19 11:12:50') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 140ms (View: 122, DB: 5) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:12:50) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:13:04) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:13:04' AND ends_at >= '2016-08-19 11:13:04') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 153ms (View: 42, DB: 4) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:13:05) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:13:21) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.3ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:13:21' AND ends_at >= '2016-08-19 11:13:21') [0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 70ms (View: 44, DB: 9) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:13:21) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:13:32) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:13:32' AND ends_at >= '2016-08-19 11:13:32') [0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 145ms (View: 126, DB: 5) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:13:33) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:13:43) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.8ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:13:43' AND ends_at >= '2016-08-19 11:13:43') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 161ms (View: 133, DB: 7) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:13:43) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:14:15) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.2ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.8ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:14:15' AND ends_at >= '2016-08-19 11:14:15') [0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 75ms (View: 50, DB: 7) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:14:15) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:15:17) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:15:17' AND ends_at >= '2016-08-19 11:15:17') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 135ms (View: 117, DB: 5) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:15:17) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:15:24) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:15:24' AND ends_at >= '2016-08-19 11:15:24') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 149ms (View: 130, DB: 5) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:15:24) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:16:36) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:16:36' AND ends_at >= '2016-08-19 11:16:36') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 139ms (View: 40, DB: 4) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:16:37) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:17:06) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:17:06' AND ends_at >= '2016-08-19 11:17:06') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 67ms (View: 47, DB: 5) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:06) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:18) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:21) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:23) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:24) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:24) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:32) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:33) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:33) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:33) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:17:46) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:17:46' AND ends_at >= '2016-08-19 11:17:46') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 138ms (View: 119, DB: 5) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.3ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:47) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:48) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:50) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:50) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:51) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:51) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:51) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:51) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:52) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:52) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:52) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:17:53) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:39:16) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;35;1mroles_users Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:39:16' AND ends_at >= '2016-08-19 11:39:16') [0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 131ms (View: 109, DB: 9) | 200 OK [http://localhost/informativos/8]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:39:17) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#edit (for 127.0.0.1 at 2016-08-19 08:39:24) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/edit
+Rendered informativos/_form (15.4ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:39:24' AND ends_at >= '2016-08-19 11:39:24') [0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 139ms (View: 42, DB: 5) | 200 OK [http://localhost/informativos/8/edit]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:39:24) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#update (for 127.0.0.1 at 2016-08-19 08:39:32) [PUT]
+  Parameters: {"informativo"=>{"starts_at(1i)"=>"2016", "starts_at(2i)"=>"8", "starts_at(3i)"=>"19", "starts_at(5i)"=>"08", "starts_at(4i)"=>"08", "ends_at(1i)"=>"2016", "ends_at(2i)"=>"8", "mensagem"=>"testetesteteste testetesteteste testetestetesteteste testetesteteste testetestetesteteste testetesteteste\r\n", "ends_at(5i)"=>"46", "ends_at(4i)"=>"08", "ends_at(3i)"=>"19"}, "commit"=>"Salvar", "authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k=", "id"=>"8"}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mInformativo Load (0.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mInformativo Update (20.4ms)[0m   [0;1mUPDATE `informativos` SET `ends_at` = '2016-08-19 11:46:00', `updated_at` = '2016-08-19 11:39:32' WHERE `id` = 8[0m
+  [4;35;1mSQL (37.1ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/informativos/8
+Completed in 171ms (DB: 60) | 302 Found [http://localhost/informativos/8]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:39:32) [GET]
+  Parameters: {"id"=>"8"}
+  [4;36;1mUser Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:39:32' AND ends_at >= '2016-08-19 11:39:32') [0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 129ms (View: 109, DB: 7) | 200 OK [http://localhost/informativos/8]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:39:32) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:40:01) [GET]
+  Parameters: {"id"=>"8"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.1ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:40:02' AND ends_at >= '2016-08-19 11:40:02') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 136ms (View: 118, DB: 5) | 200 OK [http://localhost/informativos/8]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:40:02) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:40:15) [GET]
+  Parameters: {"id"=>"8"}
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.2ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.3ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:40:15' AND ends_at >= '2016-08-19 11:40:15') [0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 151ms (View: 49, DB: 9) | 200 OK [http://localhost/informativos/8]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:40:15) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:40:37) [GET]
+  Parameters: {"id"=>"8"}
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.2ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:40:37' AND ends_at >= '2016-08-19 11:40:37') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 47ms (View: 26, DB: 6) | 200 OK [http://localhost/informativos/8]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:40:38) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:41:23) [GET]
+  Parameters: {"id"=>"8"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.1ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:41:23' AND ends_at >= '2016-08-19 11:41:23') [0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 135ms (View: 116, DB: 6) | 200 OK [http://localhost/informativos/8]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:41:23) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:41:30) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:41:32) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:41:38) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:41:38' AND ends_at >= '2016-08-19 11:41:38') [0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mroles_users Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 61ms (View: 42, DB: 6) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:41:38) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:41:40) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:41:41) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:16) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:42:17) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:42:17' AND ends_at >= '2016-08-19 11:42:17') [0m
+  [4;36;1mInformativo Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 127ms (View: 113, DB: 4) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:18) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:19) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:20) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:21) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:21) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:21) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:22) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:22) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:42:22) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+
+ActionController::RoutingError (No route matches "/javascripts/hide_announcement" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:42:59) [GET]
+  [4;36;1mUser Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2016-08-19 11:42:59' AND ends_at >= '2016-08-19 11:42:59') [0m
+  [4;35;1mInformativo Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 327ms (View: 186, DB: 4) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:43:00) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing JavascriptsController#hide_announcement (for 127.0.0.1 at 2016-08-19 08:43:02) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+
+ActionView::MissingTemplate (Missing template javascripts/hide_announcement.erb in view path app/views):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:45:37) [GET]
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:43:19') AND (starts_at <= '2016-08-19 11:45:37' AND ends_at >= '2016-08-19 11:45:37') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:43:19') AND (starts_at <= '2016-08-19 11:45:37' AND ends_at >= '2016-08-19 11:45:37') [0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 200ms (View: 139, DB: 6) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:45:37) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#index (for 127.0.0.1 at 2016-08-19 08:45:44) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` [0m
+Rendering template within layouts/application
+Rendering informativos/index
+  [4;36;1mInformativo Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:43:19') AND (starts_at <= '2016-08-19 11:45:44' AND ends_at >= '2016-08-19 11:45:44') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:43:19') AND (starts_at <= '2016-08-19 11:45:44' AND ends_at >= '2016-08-19 11:45:44') [0m
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 170ms (View: 149, DB: 8) | 200 OK [http://localhost/informativos]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:45:45) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#new (for 127.0.0.1 at 2016-08-19 08:45:52) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+Rendering template within layouts/application
+Rendering informativos/new
+Rendered informativos/_form (15.2ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:43:19') AND (starts_at <= '2016-08-19 11:45:52' AND ends_at >= '2016-08-19 11:45:52') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:43:19') AND (starts_at <= '2016-08-19 11:45:52' AND ends_at >= '2016-08-19 11:45:52') [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (3.9ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 146ms (View: 125, DB: 8) | 200 OK [http://localhost/informativos/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:45:52) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#create (for 127.0.0.1 at 2016-08-19 08:46:03) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k=", "informativo"=>{"mensagem"=>"dfasdfsadf asdf sd fdsa fdsa fdsa dsa fsaf sfd sdf fds", "starts_at(1i)"=>"2016", "ends_at(1i)"=>"2016", "ends_at(2i)"=>"8", "starts_at(5i)"=>"45", "starts_at(4i)"=>"08", "starts_at(2i)"=>"8", "starts_at(3i)"=>"19", "ends_at(5i)"=>"59", "ends_at(4i)"=>"08", "ends_at(3i)"=>"19"}, "commit"=>"Salvar"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mInformativo Create (0.3ms)[0m   [0;1mINSERT INTO `informativos` (`starts_at`, `updated_at`, `created_at`, `ends_at`, `mensagem`) VALUES('2016-08-19 11:45:00', '2016-08-19 11:46:03', '2016-08-19 11:46:03', '2016-08-19 11:59:00', 'dfasdfsadf asdf sd fdsa fdsa fdsa dsa fsaf sfd sdf fds')[0m
+  [4;35;1mSQL (55.5ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/informativos/9
+Completed in 78ms (DB: 58) | 302 Found [http://localhost/informativos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:46:03) [GET]
+  Parameters: {"id"=>"9"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 9) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.8ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:43:19') AND (starts_at <= '2016-08-19 11:46:03' AND ends_at >= '2016-08-19 11:46:03') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:43:19') AND (starts_at <= '2016-08-19 11:46:03' AND ends_at >= '2016-08-19 11:46:03') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 146ms (View: 123, DB: 8) | 200 OK [http://localhost/informativos/9]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:46:04) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing JavascriptsController#hide_announcement (for 127.0.0.1 at 2016-08-19 08:46:06) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+
+ActionView::MissingTemplate (Missing template javascripts/hide_announcement.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing JavascriptsController#hide_announcement (for 127.0.0.1 at 2016-08-19 08:46:08) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+
+ActionView::MissingTemplate (Missing template javascripts/hide_announcement.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing JavascriptsController#hide_announcement (for 127.0.0.1 at 2016-08-19 08:46:08) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+
+ActionView::MissingTemplate (Missing template javascripts/hide_announcement.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing JavascriptsController#hide_announcement (for 127.0.0.1 at 2016-08-19 08:46:09) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+
+ActionView::MissingTemplate (Missing template javascripts/hide_announcement.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:47:49) [GET]
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:46:09') AND (starts_at <= '2016-08-19 11:47:49' AND ends_at >= '2016-08-19 11:47:49') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:46:09') AND (starts_at <= '2016-08-19 11:47:49' AND ends_at >= '2016-08-19 11:47:49') [0m
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 135ms (View: 119, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:47:49) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing JavascriptsController#hide_announcement (for 127.0.0.1 at 2016-08-19 08:47:56) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering javascripts/hide_announcement
+Completed in 19ms (View: 6, DB: 1) | 200 OK [http://localhost/javascripts/hide_announcement]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:48:03) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:47:56') AND (starts_at <= '2016-08-19 11:48:03' AND ends_at >= '2016-08-19 11:48:03') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:47:56') AND (starts_at <= '2016-08-19 11:48:03' AND ends_at >= '2016-08-19 11:48:03') [0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 43ms (View: 27, DB: 3) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:48:03) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:48:47) [GET]
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:47:56') AND (starts_at <= '2016-08-19 11:48:47' AND ends_at >= '2016-08-19 11:48:47') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:47:56') AND (starts_at <= '2016-08-19 11:48:47' AND ends_at >= '2016-08-19 11:48:47') [0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 75ms (View: 54, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:48:48) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#new (for 127.0.0.1 at 2016-08-19 08:48:56) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+Rendering template within layouts/application
+Rendering informativos/new
+Rendered informativos/_form (16.3ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:47:56') AND (starts_at <= '2016-08-19 11:48:56' AND ends_at >= '2016-08-19 11:48:56') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:47:56') AND (starts_at <= '2016-08-19 11:48:56' AND ends_at >= '2016-08-19 11:48:56') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 144ms (View: 44, DB: 5) | 200 OK [http://localhost/informativos/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:48:56) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#create (for 127.0.0.1 at 2016-08-19 08:49:09) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k=", "informativo"=>{"mensagem"=>"ffdsafdsas as df sdafa d fsadf dsf", "starts_at(1i)"=>"2016", "ends_at(1i)"=>"2016", "ends_at(2i)"=>"8", "starts_at(5i)"=>"48", "starts_at(4i)"=>"08", "starts_at(2i)"=>"8", "starts_at(3i)"=>"19", "ends_at(5i)"=>"59", "ends_at(4i)"=>"08", "ends_at(3i)"=>"19"}, "commit"=>"Salvar"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mBEGIN[0m
+  [4;36;1mInformativo Create (0.4ms)[0m   [0;1mINSERT INTO `informativos` (`starts_at`, `updated_at`, `created_at`, `ends_at`, `mensagem`) VALUES('2016-08-19 11:48:00', '2016-08-19 11:49:09', '2016-08-19 11:49:09', '2016-08-19 11:59:00', 'ffdsafdsas as df sdafa d fsadf dsf')[0m
+  [4;35;1mSQL (54.3ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/informativos/10
+Completed in 154ms (DB: 57) | 302 Found [http://localhost/informativos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:49:09) [GET]
+  Parameters: {"id"=>"10"}
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 10) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (6.2ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:47:56') AND (starts_at <= '2016-08-19 11:49:09' AND ends_at >= '2016-08-19 11:49:09') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:47:56') AND (starts_at <= '2016-08-19 11:49:09' AND ends_at >= '2016-08-19 11:49:09') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 136ms (View: 111, DB: 13) | 200 OK [http://localhost/informativos/10]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:49:10) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing JavascriptsController#hide_announcement (for 127.0.0.1 at 2016-08-19 08:49:17) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering javascripts/hide_announcement
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/javascripts/hide_announcement]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:49:26) [GET]
+  [4;35;1mUser Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:49:26' AND ends_at >= '2016-08-19 11:49:26') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:49:26' AND ends_at >= '2016-08-19 11:49:26') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 48ms (View: 31, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:49:27) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#new (for 127.0.0.1 at 2016-08-19 08:50:13) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+Rendering template within layouts/application
+Rendering informativos/new
+Rendered informativos/_form (15.2ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:50:13' AND ends_at >= '2016-08-19 11:50:13') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:50:13' AND ends_at >= '2016-08-19 11:50:13') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;35;1mUnidade Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 63ms (View: 42, DB: 6) | 200 OK [http://localhost/informativos/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:50:13) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#create (for 127.0.0.1 at 2016-08-19 08:50:25) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k=", "informativo"=>{"mensagem"=>"fdasdfasfsad sf sdf adsfds fdsa fdsa", "starts_at(1i)"=>"2016", "ends_at(1i)"=>"2016", "ends_at(2i)"=>"8", "starts_at(5i)"=>"50", "starts_at(4i)"=>"08", "starts_at(2i)"=>"8", "starts_at(3i)"=>"19", "ends_at(5i)"=>"50", "ends_at(4i)"=>"09", "ends_at(3i)"=>"19"}, "commit"=>"Salvar"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mInformativo Create (0.4ms)[0m   [0;1mINSERT INTO `informativos` (`starts_at`, `updated_at`, `created_at`, `ends_at`, `mensagem`) VALUES('2016-08-19 11:50:00', '2016-08-19 11:50:25', '2016-08-19 11:50:25', '2016-08-19 12:50:00', 'fdasdfasfsad sf sdf adsfds fdsa fdsa')[0m
+  [4;35;1mSQL (47.5ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/informativos/11
+Completed in 70ms (DB: 50) | 302 Found [http://localhost/informativos]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing InformativosController#show (for 127.0.0.1 at 2016-08-19 08:50:25) [GET]
+  Parameters: {"id"=>"11"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mInformativo Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `informativos`[0m
+  [4;35;1mInformativo Load (0.2ms)[0m   [0mSELECT * FROM `informativos` WHERE (`informativos`.`id` = 11) [0m
+Rendering template within layouts/application
+Rendering informativos/show
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:50:25' AND ends_at >= '2016-08-19 11:50:25') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:50:25' AND ends_at >= '2016-08-19 11:50:25') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 55ms (View: 33, DB: 5) | 200 OK [http://localhost/informativos/11]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:50:26) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:50:39) [GET]
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:50:39' AND ends_at >= '2016-08-19 11:50:39') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:50:39' AND ends_at >= '2016-08-19 11:50:39') [0m
+  [4;35;1mInformativo Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mroles_users Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.3ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 187ms (View: 43, DB: 7) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:50:39) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-08-19 08:50:47) [GET]
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:50:47' AND ends_at >= '2016-08-19 11:50:47') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-08-19 11:49:17') AND (starts_at <= '2016-08-19 11:50:47' AND ends_at >= '2016-08-19 11:50:47') [0m
+  [4;35;1mInformativo Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mroles_users Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 182ms (View: 159, DB: 5) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-08-19 08:50:47) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/controls.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing JavascriptsController#hide_announcement (for 127.0.0.1 at 2016-08-19 08:50:53) [POST]
+  Parameters: {"authenticity_token"=>"beJnPHxg5kxFpWHButvD501BWN340vPHWev47fZ9N3k="}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering javascripts/hide_announcement
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/javascripts/hide_announcement]

@@ -1,0 +1,71 @@
+
+<div id="interno2">
+<% title "INFORMATIVO" %>
+<div class ="tabs">
+
+
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> INFORMATIVO</b></font></legend>
+         <table width="100%">
+            <tr >
+               <td colspan="2">
+                 <table width="100%">
+                    <tr bgcolor="#DCDCDC">
+                      <td width="50%">
+                        <br/>
+                        <fieldset>
+                          <legend><font size="4">Período de exibição</font></legend>
+                            <table width="100%">
+                              <tr bgcolor="#DCDCDC">
+                                <td><font size="2"><b>De:</b></font></td>
+                                <td align="left"><font size="2"><%=h @informativo.starts_at.strftime("%d/%m/%Y %H:%m") %></font></td>
+                                <td><font size="2"><b>Até:</b></font></td>
+                                <td align="left"><font size="2"><% t = @informativo.ends_at %>
+                                     <%=h @informativo.ends_at.strftime("%d/%m/%Y %H:%m") %></font>
+                                </td>
+                              </tr>
+
+                            </table>
+                        </fieldset>
+                      </td>
+                      <td>
+                        <br/>
+                        <fieldset>
+                          <legend><font size="4">Mensagem</font></legend>
+                           <table width="100%">
+                              <tr bgcolor="#DCDCDC">
+                                <td align="left"><font size="2"> <%=h @informativo.mensagem %></font></td>
+                              </tr>
+                           </table>
+                        </fieldset>
+                      </td>
+                    </tr>
+                  </table>
+
+              </td>
+            </tr>
+      </table>
+     </fieldset>
+   </td>
+  </tr>
+ </table>
+     <table>
+         <tr>
+
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@informativo}, :method => "get", :title => "Editar"%></td>
+                 <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy", :id =>@informativo}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+
+            <%else%>
+                 <td align="left"></td>
+             <%end%>
+
+                <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+    </table>
+
+</div>
+<br/>
+</div>

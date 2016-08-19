@@ -1,0 +1,44 @@
+<% form_for (@informativo) do |f| %>
+ <%= f.error_messages %>
+  <fieldset><legend><font size=4>Informativo</font></legend>
+      <table width="100%">
+         <tr bgcolor="#F5F5F5">
+             <td valign="top">
+                <fieldset><legend><font  size=4>Período de exibição</font></legend>
+                  <table width="100%" >
+                      <tr bgcolor="#F5F5F5">
+                        <td><%= f.label :starts_at,"De:" %></td>
+                        <td><%= f.datetime_select :starts_at %></td>
+                      </tr>
+                      <tr>
+                        <td><%= f.label :ends_at,"Até" %></td>
+                        <td><%= f.datetime_select :ends_at %></td>
+                       </tr>
+                       <tr bgcolor="#F5F5F5"></tr>
+                      <tr bgcolor="#F5F5F5"></tr>
+                     </table>
+                </fieldset>
+              </td>
+          </tr>
+          <tr bgcolor="#F5F5F5">
+           <td valign="top">
+               <fieldset><legend><font  size=4>Informação a ser repassada</font></legend>
+                  <%= f.text_area :mensagem, :rows => 4, :cols => 100  %>
+                </fieldset>
+              </td>
+            </tr>
+        </table>
+
+  </fieldset>
+ <br/>
+       <table width="100%" >
+         <tr>
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+<%end%>
+            <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+         </tr>
+       </table>
+
+  </font>
+

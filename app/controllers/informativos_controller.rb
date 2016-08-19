@@ -1,5 +1,6 @@
 class InformativosController < ApplicationController
-
+  # GET /informativos
+  # GET /informativos.xml
   def index
     @informativos = Informativo.all
 
@@ -9,7 +10,8 @@ class InformativosController < ApplicationController
     end
   end
 
-
+  # GET /informativos/1
+  # GET /informativos/1.xml
   def show
     @informativo = Informativo.find(params[:id])
 
@@ -19,24 +21,30 @@ class InformativosController < ApplicationController
     end
   end
 
+  # GET /informativos/new
+  # GET /informativos/new.xml
   def new
     @informativo = Informativo.new
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @informativo }
     end
   end
 
-   def edit
+  # GET /informativos/1/edit
+  def edit
     @informativo = Informativo.find(params[:id])
   end
 
-   def create
+  # POST /informativos
+  # POST /informativos.xml
+  def create
     @informativo = Informativo.new(params[:informativo])
 
     respond_to do |format|
       if @informativo.save
-        flash[:notice] = 'CADASTRADO COM SUCESSO.'
+        flash[:notice] = 'Informativo was successfully created.'
         format.html { redirect_to(@informativo) }
         format.xml  { render :xml => @informativo, :status => :created, :location => @informativo }
       else
@@ -46,12 +54,14 @@ class InformativosController < ApplicationController
     end
   end
 
+  # PUT /informativos/1
+  # PUT /informativos/1.xml
   def update
     @informativo = Informativo.find(params[:id])
 
     respond_to do |format|
       if @informativo.update_attributes(params[:informativo])
-        flash[:notice] = 'CADASTRADO COM SUCESSO.'
+        flash[:notice] = 'Informativo was successfully updated.'
         format.html { redirect_to(@informativo) }
         format.xml  { head :ok }
       else
@@ -61,6 +71,8 @@ class InformativosController < ApplicationController
     end
   end
 
+  # DELETE /informativos/1
+  # DELETE /informativos/1.xml
   def destroy
     @informativo = Informativo.find(params[:id])
     @informativo.destroy
