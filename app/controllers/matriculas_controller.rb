@@ -57,10 +57,23 @@ class MatriculasController < ApplicationController
     @matricula.ano_letivo = Time.now.year
     @matricula.unidade_id= current_user.unidade_id
     session[:classe_id]= @matricula.classe_id
+    @matricula_anterior = Matricula.find(:all, :conditions => ['aluno_id =?', @matricula.aluno_id])
+
+
+
+    t=0
+
+
+
     respond_to do |format|
       if @matricula.save
+        @matricula_anterior[0].status = "REMANEJADO"
+        t1=@matricula_anterior[0].status
+        @matricula_anterior[0].save
+        t=0
        if (@matricula.status != '*REMANEJADO') and (@matricula.status != 'TRANSFERENCIA')
         @atribuicaos = Atribuicao.find(:all, :conditions=> ['classe_id =?',session[:classe_id]])
+
         for atrib in @atribuicaos
                session[:classe]= atrib.classe_id
                session[:atribuicao]= atrib.id
