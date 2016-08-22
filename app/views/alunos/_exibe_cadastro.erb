@@ -33,39 +33,7 @@
                             &nbsp&nbsp&nbsp&nbsp&nbsp <b>Para:&nbsp&nbsp</b><%=h matricula.para %>
                         <%end%>
 <!--TRANSFERIDO PARA.nil?  ESCOLAS-->
-                        <%if !matricula.transf_unidade_id.nil?%>
-                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Para:&nbsp&nbsp</b>
-                                <%if matricula.transf_unidade_id == 42 %>
-                                   CIEP ZANAGA (PROFA. ONIVA DE MOURA BRIZOLA)
-                                <%else if matricula.transf_unidade_id == 43 %>
-                                      CIEP S.JERONIMO (PROF. ANISIO SPINOLA TEIXEIRA)
-                                      <%else if matricula.transf_unidade_id == 44 %>
-                                           CIEP C.JARDIM (PROF. OCTAVIO CESAR BORGHI)
-                                            <%else if matricula.transf_unidade_id == 45 %>
-                                                CIEP S.VITO (PROFA. PHILOMENA MAGALY MALUF ROSSETTI)
-                                                  <%else if matricula.transf_unidade_id == 46 %>
-                                                      CIEP JAGUARI (PROF. MARIA NILDE MASCELANI)
-                                                        <%else if matricula.transf_unidade_id == 47 %>
-                                                            CIEP PRAIA AZUL (PROF. MILTON SANTOS )
-                                                              <%else if matricula.transf_unidade_id == 48 %>
-                                                                  CAIC (PROF. SYLVINO CHINELATTO )
-                                                                   <%else if matricula.transf_unidade_id == 49 %>
-                                                                       EMEF PAULO FREIRE
-                                                                        <%else if matricula.transf_unidade_id == 50 %>
-                                                                           EMEF FLORESTAN FERNANDES
-                                                                              <%else if matricula.transf_unidade_id == 51 %>
-                                                                                 EMEF 	DARCY RIBEIRO
-                                                                                 <%end%>
-                                                                           <%end%>
-                                                                        <%end%>
-                                                                    <%end%>
-                                                              <%end%>
-                                                        <%end%>
-                                                  <%end%>
-                                            <%end%>
-                                      <%end%>
-                                <%end%>
-                     <%end%>
+  
 <!--TRASNFERIDO ESCOLAS-->
                 <%end%>
                     <%if matricula.status == 'TRANSFERENCIA'%>
@@ -86,8 +54,8 @@
 
        <%end%>
     </table>
-<font color ="red"><b>OBS:</b> Para que o cadastro do aluno fique desponivel para sua unidade é ncessário clicar no botão CONFIRMAR, e na próxima tela, após confirmar <br/>
-                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp os dados do aluno clicar no botão SALVAR     </font>
+<font color ="red"><b>OBS:</b> Para que o cadastro do aluno fique disponivel para transferência ou matricula na sua unidade é necessário clicar no botão CONFIRMAR,<br/>
+                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp e na próxima tela, após confirmar os dados do aluno clicar no botão SALVAR     </font>
 
 
 
