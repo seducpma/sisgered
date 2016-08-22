@@ -355,14 +355,6 @@ def transferencia_aluno
 end
 
 def impressao_transferencia_aluno
-#       @aluno = Aluno.find(:all, :conditions => ['id =?', session[:aluno_id]])
-#     for aluno in @aluno
-#       session[:unidade_id]= aluno.unidade_id
-#       session[:aluno_id]= aluno.id
-#     end
-#     @classe = Classe.find(:all, :joins => "inner join matriculas on classes.id = matriculas.classe_id", :conditions =>['matriculas.aluno_id =? AND ano_letivo=?' , session[:aluno_id], Time.now.year])
-#Ss     @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =? ", session[:aluno_id]],:order =>'disciplinas.ordem ASC ')
-
 
      @aluno = Aluno.find(:all, :conditions => ['id =?', session[:aluno_id]])
      for aluno in @aluno
@@ -374,8 +366,6 @@ def impressao_transferencia_aluno
      @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], current_user.unidade_id,Time.now.year],:order =>'disciplinas.ordem ASC ')
      @notas_ano = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], current_user.unidade_id,Time.now.year],:order =>'disciplinas.ordem ASC ')
      @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-
-t=0
 
      render :layout => "impressao"
 end
@@ -479,19 +469,19 @@ end
 
       if current_user.professor_id.nil?
           if current_user.unidade_id < 42 or current_user.unidade_id > 53
-              @disciplinas = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+              @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"])
               @nota=Nota.find(62)
           else
-              @disciplinas = Disciplina.find(:all, :conditions => ["id < 26 or id > 27"])
+              @disciplinas = Disciplina.find(:all, :conditions => ["curriculo != 'I'"])
               @nota=Nota.find(62)
           end
 
       else
           if current_user.unidade_id < 42 or current_user.unidade_id > 53
-              @disciplinas = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+              @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"])
               @nota=Nota.find(62)
           else
-            @disciplinas = Disciplina.find(:all, :conditions => ["id != 27 and id !=26"])
+            @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I'"])
             @nota=Nota.find(62)
           end
       end

@@ -2,9 +2,9 @@
  <%= f.error_messages %>
   <font  size="2">
     <br/>
-    <table width="70%" align="center"  bgcolor="#F5F5F5" >
+    <table width="100%" align="center"  bgcolor="#F5F5F5" >
         <tr>
-          <td colspan="4"><b><font size="4">ATRIBUIÇÃO DE CLASSES</b></td>
+          <td colspan="4"><b><font size="3">CLASSE</b></td>
         </tr>
         <tr>
           <td colspan="4"><hr></td>
@@ -21,33 +21,9 @@
           <td colspan="4"><b>Descrição: </b><%= f.text_field :classe_descricao, :size => 65 %></td>
         </tr>
 
-         
-         <tr>
-            <td colspan="4"><b><%= "Lista de Alunos
-                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-                         Alunos na Classe" %></b>
- <table>
-   <tr>
-    <td id="test"><%= select_tag("todos", options_for_select(@alunos.collect { |ff| [ff.aluno_nome, ff.id] }, @classe.alunos.collect { |fs| fs.id }), {:multiple=>true, :id => "todos", :size => 4, :class => "lista_alunos"}) %></td>
-    <td valign="topo" >
-      <a class="botao" href="#" id="add">&gt;&gt;</a>
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    </td>
-
-    <%if @alunos_selecionados.present?%>
-    
-     <td colspan="2"><%= select_tag("classe[aluno_ids][]", options_for_select(@alunos_selecionados.collect { |ff| [truncate(ff.aluno_nome, :length => 100, :omission => "..."), ff.id] }, @classe.alunos.collect { |fs| fs.id }), {:multiple=>true, :id => "classe_aluno_ids", :size => 4, :class => "lista_alunos"}) %></td>
-     <%else%>
-     <td colspan="2"><select multiple="multiple" name="classe[aluno_ids][]" id="classe_aluno_ids" class="lista_alunos"></select></td>
-    <%end%>
-  </tr>
-  </table>
-            </td>
-         </tr>
-          
       </table>
       <br/>
-    <table width="70%"  align="center">
+    <table width="100%"  align="center">
       <tr>
             <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
 <%end%>

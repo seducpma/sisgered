@@ -73,54 +73,58 @@ end
 
   
   def update
+    
+    t1=params[:id]
     @nota = Nota.find(params[:id])
      if @nota.update_attributes(params[:nota])
-        @nota = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =? AND ano_letivo =? ", session[:id], session[:aluno_id], Time.now.year])
+        t2= session[:id]
+        t3= session[:aluno]
+        #@nota = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =? AND ano_letivo =? ", session[:id], session[:aluno], Time.now.year])
         session[:nota_id] = @nota.id
         @disci = Disciplina.find(:all, :conditions => ["id =?",session[:disc_id]])
         @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',  session[:classe_id],session[:professor_id], session[:disc_id]])
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
         @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=? ",  session[:classe_id],session[:professor_id], session[:disc_id], Time.now.year],:order => 'matriculas.classe_num ASC')
-        if (session[:faltas1] == 0)
-           @nota[0].freq1= 100
+        if (@nota[:faltas1] == 0)
+           @nota.freq1= 100
         else
-           session[:aulas1]= @nota[0].aulas1.to_f
-           session[:faltas1]= @nota[0].faltas1.to_f
-           @nota[0].freq1= 100 -((session[:faltas1] / session[:aulas1])*100)
+           session[:aulas1]= @nota.aulas1.to_f
+           session[:faltas1]= @nota.faltas1.to_f
+           @nota.freq1= 100 -((session[:faltas1] / session[:aulas1])*100)
          end
-        if (session[:faltas2] == 0)
-           @nota[0].freq2= 100
+        if (@nota[:faltas2] == 0)
+           @nota.freq2= 100
         else
-           session[:aulas2]= @nota[0].aulas2.to_f
-           session[:faltas2]= @nota[0].faltas2.to_f
-           @nota[0].freq2= 100 -((session[:faltas2] / session[:aulas2])*100)
+           session[:aulas2]= @nota.aulas2.to_f
+           session[:faltas2]= @nota.faltas2.to_f
+           @nota.freq2= 100 -((session[:faltas2] / session[:aulas2])*100)
          end
-        if (session[:faltas3] == 0)
-           @nota[0].freq3= 100
+        if (@nota[:faltas3] == 0)
+           @nota.freq3= 100
         else
-           session[:aulas3]= @nota[0].aulas3.to_f
-           session[:faltas3]= @nota[0].faltas3.to_f
-           @nota[0].freq3= 100 -((session[:faltas3] / session[:aulas3])*100)
+           session[:aulas3]= @nota.aulas3.to_f
+           session[:faltas3]= @nota.faltas3.to_f
+           @nota.freq3= 100 -((session[:faltas3] / session[:aulas3])*100)
          end
-        if (session[:faltas4] == 0)
-           @nota[0].freq4= 100
+        if (@nota[:faltas4] == 0)
+           @nota.freq4= 100
         else
-           session[:aulas4]= @nota[0].aulas4.to_f
-           session[:faltas4]= @nota[0].faltas4.to_f
-           @nota[0].freq4= 100 -((session[:faltas4] / session[:aulas4])*100)
+           session[:aulas4]= @nota.aulas4.to_f
+           session[:faltas4]= @nota.faltas4.to_f
+           @nota.freq4= 100 -((session[:faltas4] / session[:aulas4])*100)
          end
-         @nota[0].aulas5 = @nota[0].aulas1 + @nota[0].aulas2 + @nota[0].aulas3 + @nota[0].aulas4
-         @nota[0].faltas5 = @nota[0].faltas1 + @nota[0].faltas2 + @nota[0].faltas3 + @nota[0].faltas4
-        if (session[:faltas5] == 0)
-           @nota[0].freq5= 100
+         @nota.aulas5 = @nota.aulas1 + @nota.aulas2 + @nota.aulas3 + @nota.aulas4
+         @nota.faltas5 = @nota.faltas1 + @nota.faltas2 + @nota.faltas3 + @nota.faltas4
+        if (@nota[:faltas5] == 0)
+           @nota.freq5= 100
         else
-           session[:aulas5]= (@nota[0].aulas5.to_f)
-           session[:faltas5]= (@nota[0].faltas5.to_f)
-           @nota[0].freq5= 100 -((session[:faltas5] / session[:aulas5])*100)
+           session[:aulas5]= (@nota.aulas5.to_f)
+           session[:faltas5]= (@nota.faltas5.to_f)
+           @nota.freq5= 100 -((session[:faltas5] / session[:aulas5])*100)
          end
-        @nota[0].save
+        @nota.save
         if current_user.has_role?('professor')
-               render :partial => 'notas_lancamentos', :layout => "layouts/alunos"
+               render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
         else 
                render lancamentos_notas_notas_path , :layout => "layouts/application"
         end

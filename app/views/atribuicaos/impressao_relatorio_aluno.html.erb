@@ -84,47 +84,47 @@
       <%if nota.nota1.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota1 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas1 %></th>
-           <th></th>
+           <th style="font-size: 8px" align="center"><%= nota.freq1 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
       <%if nota.nota2.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota2 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas2 %></th>
-           <th></th>
+           <th style="font-size: 8px" align="center"><%= nota.freq2 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
       <%if nota.nota3.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota3 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas3 %></th>
-           <th></th>
+           <th style="font-size: 8px" align="center"><%= nota.freq3 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
       <%if nota.nota4.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota4 %></th>
            <th  style="font-size: 8px"align="center"><%= nota.faltas4 %></th>
-           <th></th>
+           <th style="font-size: 8px" align="center"><%= nota.freq4 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
       <%if nota.nota5.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota5 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas5 %></th>
-           <th></th>
+           <th style="font-size: 8px" align="center"><%= nota.freq5 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
    </tr>
     <%end%>
@@ -143,47 +143,48 @@
       <%if nota.nota1.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota1 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas1 %></th>
-           <th></th>
+                      <th style="font-size: 8px" align="center"><%= nota.freq1 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
            <th></th>
       <%end%>
       <%if nota.nota2.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota2 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas2 %></th>
-           <th></th>
+                      <th style="font-size: 8px" align="center"><%= nota.freq2 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
       <%if nota.nota3.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota3 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas3 %></th>
-           <th></th>
+           <           <th style="font-size: 8px" align="center"><%= nota.freq3 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
       <%if nota.nota4.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota4 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas4 %></th>
-           <th></th>
+                      <th style="font-size: 8px" align="center"><%= nota.freq4 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
       <%if nota.nota5.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota5 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas5 %></th>
-           <th></th>
+                      <th style="font-size: 8px" align="center"><%= nota.freq5 %>%</th>
       <%else%>
-           <th align="center"></th>
-           <th align="center"></th>
-           <th></th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
+           <th style="font-size: 8px" align="center">--</th>
       <%end%>
    </tr>
     <%end%>

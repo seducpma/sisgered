@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :socioeconomicos
   map.resources :saudes
   map.resources :pessoas
-  map.resources :alunos, :collection => {:consulta_ficha => :get , :editar_ficha=>:get}
+  map.resources :alunos, :collection => {:consulta_ficha => :get ,  :consulta_cadastro => :get, :editar_ficha=>:get}
   map.resources :logs
   map.resources :roles_users
   map.resources :users
@@ -100,6 +100,10 @@ ActionController::Routing::Routes.draw do |map|
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
   map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'
   map.lancar_notas_alunos_atribuicaos '/lancar_notas_alunos_atribuicaos', :controller => 'atribuicaos', :action => 'lancar_notas_alunos_atribuicao'
+  map.consulta_cadastro_aluno '/consulta_cadastro_aluno', :controller => 'alunos', :action => 'consulta_cadastro_aluno'
+
+
+
 
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
   map.matriculas_saidas '/matriculas_saidas', :controller => 'matriculas', :action => 'matriculas_saidas'

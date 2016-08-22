@@ -64,7 +64,7 @@ end
   def update
     
     @aluno = Aluno.find(params[:id])
-
+    @aluno.unidade_id = current_user.unidade_id
     respond_to do |format|
       if @aluno.update_attributes(params[:aluno])
         flash[:notice] = 'CADASTRADO COM SUCESSO.'
@@ -184,19 +184,6 @@ end
        @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
         @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', params[:aluno_aluno_id]])
         @aluno.each do |aluno|
-           session[:trans]= aluno.trans_in
-           if aluno.transferido.nil?
-                session[:trans_data] = '-- /--/--'
-           else
-              session[:trans_data] =aluno.transferido.strftime("%d/%m/%Y")
-           end
-           alunoid = aluno.unidade_anterior
-            if (aluno.trans_in == 1)
-               
-               @unidade=  Unidade.find(alunoid)
-                session[:trans_unidade]= @unidade.nome
-
-            end
 
         end
             
@@ -312,11 +299,31 @@ end
   end
 
 
+
+
+def cunsulta_cadastro
+
+end
+
+def consulta_cadastro_aluno
+      @socioeconomico = Socioeconomico.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
+      @saude = Saude.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
+      @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
+      @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', params[:aluno][:aluno_id]])
+       render :update do |page|
+          page.replace_html 'cadastro', :partial => 'exibe_cadastro'
+       end
+  
+end
+
+
+
    protected 
 
 
-  def load_alunos
 
+  def load_alunos
+       @alunos_todos =  Aluno.find(:all,:order => "aluno_nome")
 
     if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
 
