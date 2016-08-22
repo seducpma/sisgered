@@ -61,7 +61,7 @@
                         <%else%>
                           <%=h @matricula.status%> &nbsp&nbsp&nbsp&nbsp
                        <%end%>
-                          <b> Alterar para: <%= f.collection_select :status , @status_saida, :status, :status, :include_blank => '' %> </b> </td>
+                          <b> Alterar para: <%= f.collection_select :status , @status_saida, :status, :status %> </b> </td>
                  </tr>                  
                 <tr>
                        <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
