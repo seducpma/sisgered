@@ -113,7 +113,7 @@ end
            session[:faltas4]= @nota.faltas4.to_f
            @nota.freq4= 100 -((session[:faltas4] / session[:aulas4])*100)
          end
-         @nota.aulas5 = @nota.aulas1 + @nota.aulas2 + @nota.aulas3 + @nota.aulas4
+         #@nota.aulas5 = @nota.aulas1 + @nota.aulas2 + @nota.aulas3 + @nota.aulas4
          @nota.faltas5 = @nota.faltas1 + @nota.faltas2 + @nota.faltas3 + @nota.faltas4
         if (@nota[:faltas5] == 0)
            @nota.freq5= 100
