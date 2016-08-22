@@ -248,7 +248,7 @@ def matriculas_saidas
        session[:aluno_id]=params[:aluno][:id]
        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ?', params[:aluno][:id]], :order => 'classe_num ASC')
         render :update do |page|
-          page.replace_html 'aluno', :partial => 'alunos_classe'
+          page.replace_html 'aluno', :partial => 'alunos_saida'
        end
 
 

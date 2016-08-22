@@ -1,0 +1,47 @@
+<table width="100%">
+     <tr>
+       <td align="center"width ="5%"><b>Nº</b></td>
+       <td align="center"width ="5%"><b>RM</b></td>
+       <td width ="5%"><b>RA</b></td>
+       <td width ="60%"><b>NOME</b></td>
+       <td width ="5%"><b>SITUAÇÃO</b></td>
+       <td> </td>
+       <td> </td>
+        
+     </tr>
+   <% for matricula in @matriculas %>
+     <tr>
+
+     </tr>
+      <tr bgcolor="#F5F5F5">
+        <td align="center"> <%="#{ matricula.classe_num}"%> </td>
+        <td align="center"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
+        <td align="center"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
+        <td align="left"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+        <td align="left">  <%  if  matricula.status.nil?%>
+                            Matriculado
+                          <%end%>
+                          <%  if  matricula.status =="TRANSFERIDO"%>
+                              <font color ="red"> Transferido </font>
+                          <%end%>
+                          <%  if  matricula.status =="TRANSFERENCIA"%>
+                              <font color ="blue"> Transferência </font>
+                          <%end%>
+                          <%  if  matricula.status =="REMANEJADO"%>
+                              <font color ="green"> Remanejado </font>
+                          <%end%>
+                          <%  if  matricula.status =="*REMANEJADO"%>
+                              <font color ="green"> *Remanejado </font>
+                          <%end%>
+
+        </td>
+         <td align="left"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Confirmar Saida'), {:controller =>"matriculas", :action => "edit_saida", :id =>matricula}, :method => "get", :title => "Editar"%></td>
+         
+      </tr>
+  <%end%>
+</table>
+<br/>
+        &nbsp<b> OBS:</b>  &nbsp&nbsp<font color ="red"><u> Transferido</u></font> => Aluno enviado 
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="Blue"><u>Transferência</u></font> => Aluno recebido
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="green"><u>Remanejado</u></font> => Entre classes
+         
