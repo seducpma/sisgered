@@ -206,7 +206,7 @@ display: none;
                        <ul>
                            <li><%= link_to "Unidade",consulta_ficha_alunos_path %></li>
                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
-                               <li><%= link_to "Cadastro SEDUC",consulta_cadastro_alunos_path %></li>                           
+                               <li><%= link_to "SEDUC",consulta_cadastro_alunos_path %></li>                           
                            <%end%>
                        </ul>
                      
