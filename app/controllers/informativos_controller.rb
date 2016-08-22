@@ -44,7 +44,7 @@ class InformativosController < ApplicationController
 
     respond_to do |format|
       if @informativo.save
-        flash[:notice] = 'Informativo was successfully created.'
+        flash[:notice] = 'SALVO COM SUCESSO.'
         format.html { redirect_to(@informativo) }
         format.xml  { render :xml => @informativo, :status => :created, :location => @informativo }
       else
@@ -61,7 +61,7 @@ class InformativosController < ApplicationController
 
     respond_to do |format|
       if @informativo.update_attributes(params[:informativo])
-        flash[:notice] = 'Informativo was successfully updated.'
+        flash[:notice] = 'SALVO COM SUCESSO.'
         format.html { redirect_to(@informativo) }
         format.xml  { head :ok }
       else

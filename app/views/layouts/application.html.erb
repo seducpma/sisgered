@@ -155,7 +155,7 @@ display: none;
                               <ul>
                                 <li><%= link_to "Dados Pessoais", new_aluno_path%> </li>
                                 <li><%= link_to "Saude", new_saude_path%></li>
-                                <li><%= link_to "Socioeconomico", new_socioeconomico_path%></li>
+                                <li><%= link_to "Socioeconômico", new_socioeconomico_path%></li>
                                  <% if current_user.has_role?('admin') %>
                                       <li><%= link_to "Cadastrar",new_unidade_path %></li>
                                  <%end%>
@@ -188,16 +188,11 @@ display: none;
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo')or current_user.has_role?('infantil'))%>
                          <li><%= link_to "Matricula", new_matricula_path %></li>
                       <%end%>
-
-
-
-
-
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
-                           <li><a class="item-primary" href="#;">Transferências</a>
+                           <li><a class="item-primary" href="#;">Transferência</a>
                               <ul>
-                                <li><%= link_to "Entradas", transferencia_matriculas_path%></li>
-                                <li><%= link_to "Saidas", saidas_matriculas_path%></li>
+                                <li><%= link_to "Entrada", transferencia_matriculas_path%></li>
+                                <li><%= link_to "Saida", saidas_matriculas_path%></li>
                               </ul>
                          </li>
                        <%end%>
@@ -207,11 +202,11 @@ display: none;
               <li><a class="item-primary" href="#;">CONSULTAR</a>
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('professor')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
                  <ul style="width:108px;">
-                   <li><%= link_to "Aluno",consulta_ficha_alunos_path %></li>
+                   <li><%= link_to "Aluno - Unidade",consulta_ficha_alunos_path %></li>
                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
                           <li><%= link_to "Bolsa Família",consulta_bolsa_familia_path %></li>
-                          <li><%= link_to "Cadastro",consulta_cadastro_alunos_path %></li>
+                          <li><%= link_to "Cadastro SEDUC",consulta_cadastro_alunos_path %></li>
                        <%end%>
                      <%end%>
                        <li><%= link_to "Classe",consulta_classe_path %></li>
