@@ -202,11 +202,18 @@ display: none;
               <li><a class="item-primary" href="#;">CONSULTAR</a>
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('professor')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
                  <ul style="width:108px;">
-                   <li><%= link_to "Aluno - Unidade",consulta_ficha_alunos_path %></li>
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
+                   <li><a class="item-primary" href="#;">Aluno</a>
+                       <ul>
+                           <li><%= link_to "Unidade",consulta_ficha_alunos_path %></li>
+                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
+                               <li><%= link_to "Cadastro SEDUC",consulta_cadastro_alunos_path %></li>                           
+                           <%end%>
+                       </ul>
+                     
+                   </li>
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
                           <li><%= link_to "Bolsa Família",consulta_bolsa_familia_path %></li>
-                          <li><%= link_to "Cadastro SEDUC",consulta_cadastro_alunos_path %></li>
                        <%end%>
                      <%end%>
                        <li><%= link_to "Classe",consulta_classe_path %></li>
