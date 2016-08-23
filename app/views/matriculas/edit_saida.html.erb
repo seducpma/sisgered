@@ -67,7 +67,7 @@
                         <%else%>
                           <%=h @matricula.status%> &nbsp&nbsp&nbsp&nbsp
                        <%end%>
-                          <b> Alterar para: </b> <%= f.text_field :status, :size=>"15" , :value =>"TRANSFERIDO" %></td>
+                          <b> Alterar para: </b> <%= f.text_field :status, :size=>"15", :readonly => "readonly" , :value =>"TRANSFERIDO" %></td>
                  </tr>                  
                 <tr>
                        <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
