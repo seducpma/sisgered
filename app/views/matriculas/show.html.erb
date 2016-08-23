@@ -98,11 +98,18 @@
               <td align="left" width ="15%"><b> Aluno:</b></td>
               <td align="left"> <%=h @matricula.aluno.aluno_nome%>  &nbsp&nbsp&nbsp&nbsp <b> Nº:</b> <%=h @matricula.classe_num%></td>
            </tr>
-             <tr bgcolor="#F5F5F5"  width="100%">
-                <td align="left" width ="15%"><b> Destino:</b></td>
-                <td align="left"> <%=h @matricula.para%></td>
-                                <% t=0 %>
-             </tr>
+           <% if  !@matricula.para.nil?  %>
+               <tr bgcolor="#F5F5F5"  width="100%">
+                   <td align="left" width ="15%"><b> Destino:</b></td>
+                   <td align="left"> <%=h @matricula.para%></td>
+               </tr>
+           <%else%>
+               <tr bgcolor="#F5F5F5"  width="100%">
+                   <td align="left" width ="15%"><b> Classe:</b></td>
+                   <td align="left"> <%=h @matricula.classe.classe_classe%> &nbsp&nbsp&nbsp&nbsp <b> Período:</b> <%=h @matricula.classe.horario%></td>
+               </tr>
+
+           <%end%>
            <tr bgcolor="#F5F5F5"  width="100%">
               <td align="left" width ="15%"><b> Status:</b></td>
               <td align="left"> <%=h @matricula.status%></td>
