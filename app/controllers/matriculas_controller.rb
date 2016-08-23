@@ -60,9 +60,11 @@ class MatriculasController < ApplicationController
     @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
     respond_to do |format|
       if @matricula.save
-        @matricula_anterior.status = "REMANEJADO"
-        @matricula_anterior.status
-        @matricula_anterior.save
+        if  !@matricula_anterior.nil?
+            @matricula_anterior.status = "REMANEJADO"
+            @matricula_anterior.status
+            @matricula_anterior.save
+        end
        if (@matricula.status != '*REMANEJADO') and (@matricula.status != 'TRANSFERENCIA')
         @atribuicaos = Atribuicao.find(:all, :conditions=> ['classe_id =?',session[:classe_id]])
 
@@ -75,6 +77,8 @@ class MatriculasController < ApplicationController
                     @nota = Nota.new(params[:nota])
                     @nota.aluno_id = @matricula.aluno_id
                     @nota.atribuicao_id= session[:atribuicao]
+                    t1=@nota.matricula_id= @matricula.id
+                    t=0
                     @nota.professor_id= session[:professor]
                     @nota.unidade_id= current_user.unidade_id
                     @nota.disciplina_id = session[:disciplina]
