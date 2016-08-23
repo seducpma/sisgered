@@ -3,7 +3,8 @@
        <td align="center"width ="5%"><b>Nº</b></td>
        <td align="center"width ="5%"><b>RM</b></td>
        <td width ="5%"><b>RA</b></td>
-       <td width ="60%"><b>NOME</b></td>
+       <td width ="50%"><b>NOME</b></td>
+       <td width ="10%"><b>CLASSE</b></td>
        <td width ="5%"><b>SITUAÇÃO</b></td>
        <td> </td>
        <td> </td>
@@ -18,6 +19,7 @@
         <td align="center"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
         <td align="center"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
         <td align="left"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+        <td align="center"> <%="#{ matricula.classe.classe_classe}"%> </td>
         <td align="left"> <%  if  matricula.status =="TRANSFERIDO"%>
                               <font color ="red"> Transferido </font>
                           <%end%>
@@ -39,7 +41,8 @@
   <%end%>
 </table>
 <br/>
-        &nbsp<b> OBS:</b>  &nbsp&nbsp<font color ="red"><u> Transferido</u></font> => Aluno enviado 
-         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="Blue"><u>Transferência</u></font> => Aluno recebido
-         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="green"><u>Remanejado</u></font> => Entre classes
+        <b> OBS:</b>  &nbsp&nbsp<font color ="red"><u> Transferido</u></font> => Aluno enviado 
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="Blue"><u>Transferência</u></font> => Aluno recebido <br/>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="green"><u>Remanejado</u></font> => Entre classes (Saida)
+        &nbsp&nbsp&nbsp&nbsp&nbsp<font color ="green"><u>*Remanejado</u></font> => Entre classes (Entrada)
          
