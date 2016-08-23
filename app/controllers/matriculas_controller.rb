@@ -83,15 +83,20 @@ class MatriculasController < ApplicationController
                     @nota.disciplina_id = session[:disciplina]
                     @nota.ano_letivo =  Time.now.year
                     @nota.nota1 = nil
-                    @nota.faltas1 = nil
+                    @nota.faltas1 = 0
+                    @nota.aulas1 = 0
                     @nota.nota2 = nil
-                    @nota.faltas2 = nil
+                    @nota.faltas2 = 0
+                    @nota.aulas2 = 0
                     @nota.nota3 = nil
-                    @nota.faltas3 = nil
+                    @nota.faltas3 = 0
+                    @nota.aulas3 = 0
                     @nota.nota4 = nil
-                    @nota.faltas4 = nil
+                    @nota.faltas4 = 0
+                    @nota.aulas4 = 0
                     @nota.nota5 = nil
-                    @nota.faltas5= nil
+                    @nota.faltas5 = 0
+                    @nota.aulas5 = 0
                       if @nota.save
                          flash[:notice] = 'DADOS SALVOS COM SUCESSO!'
                       end
