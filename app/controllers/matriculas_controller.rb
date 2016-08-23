@@ -77,8 +77,7 @@ class MatriculasController < ApplicationController
                     @nota = Nota.new(params[:nota])
                     @nota.aluno_id = @matricula.aluno_id
                     @nota.atribuicao_id= session[:atribuicao]
-                    t1=@nota.matricula_id= @matricula.id
-                    t=0
+                    @nota.matricula_id= @matricula.id
                     @nota.professor_id= session[:professor]
                     @nota.unidade_id= current_user.unidade_id
                     @nota.disciplina_id = session[:disciplina]
