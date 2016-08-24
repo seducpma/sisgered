@@ -257,6 +257,16 @@ def alteracao_matricula
        end
 end
 
+
+def consultar_matricula
+       session[:aluno_id]=params[:aluno][:id]
+       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ?', params[:aluno][:id]], :order => 'classe_num ASC')
+       render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_classe_consulta'
+       end
+
+end
+
 def matriculas_saidas
        session[:aluno_id]=params[:aluno][:id]
 

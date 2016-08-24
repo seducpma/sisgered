@@ -218,6 +218,7 @@ display: none;
                        <%end%>
                      <%end%>
                        <li><%= link_to "Classe",consulta_classe_path %></li>
+                       <li><%= link_to "Matricula",consultar_matriculas_path %></li>
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil'))%>
                            <li><%= link_to "Professor",consulta_professor_nome_path %></li>
                            <li><%= link_to "Professor/Classe",consulta_classe_professors_path %></li>
