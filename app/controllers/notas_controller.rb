@@ -29,6 +29,7 @@ before_filter :load_classes
   end
 
   def edit
+    @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
     @nota = Nota.find(params[:id])
     session[:id_nota] = params[:id]
   end
@@ -77,7 +78,9 @@ end
     t1=params[:id]
     @nota = Nota.find(params[:id])
      if @nota.update_attributes(params[:nota])
-        t2= session[:id]
+
+
+         t2= session[:id]
         t3= session[:aluno]
         #@nota = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =? AND ano_letivo =? ", session[:id], session[:aluno], Time.now.year])
         session[:nota_id] = @nota.id
@@ -85,6 +88,12 @@ end
         @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',  session[:classe_id],session[:professor_id], session[:disc_id]])
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
         @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=? ",  session[:classe_id],session[:professor_id], session[:disc_id], Time.now.year],:order => 'matriculas.classe_num ASC')
+        for atrib in  @atribuicao_classe
+          @nota.aulas1 = atrib.aulas1
+          @nota.aulas2 = atrib.aulas2
+          @nota.aulas3 = atrib.aulas3
+          @nota.aulas4 = atrib.aulas4
+        end
         if (@nota[:faltas1] == 0)
            @nota.freq1= 100
         else
@@ -123,11 +132,15 @@ end
            @nota.freq5= 100 -((session[:faltas5] / session[:aulas5])*100)
          end
         @nota.save
+
         if current_user.has_role?('professor')
                render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
         else 
                render lancamentos_notas_notas_path , :layout => "layouts/application"
         end
+
+
+
     end
   end
 
@@ -148,6 +161,28 @@ def consulta_nota_aluno
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
 end
+
+
+def voltar_lancamento_notas
+        @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+        for dis in @disci
+            session[:disc_id] = dis.id
+        end
+       @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', session[:classe_id], session[:professor_id], session[:disc_id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
+       for atrib in @atribuicao_classe
+            session[:atrib_id] = atrib.id
+       end
+      @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?" , session[:classe_id], session[:professor_id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
+      @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
+         if current_user.has_role?('professor')
+               render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
+        else
+               #render lancamentos_notas_notas_path , :layout => "layouts/application"
+               render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
+        end
+end
+
 
 def consulta_classe_nota
   t=params[:classe][:id]
@@ -262,7 +297,7 @@ if ( params[:disciplina].present?)
       @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",  params[:classe][:id], params[:professor][:id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
       
        render :update do |page|
-          page.replace_html 'notas', :partial => 'notas'
+          page.replace_html 'notas', :partial => 'aulas'
        end
   end
  end

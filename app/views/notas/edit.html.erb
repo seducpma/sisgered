@@ -131,46 +131,16 @@
                              </td>
                          <%end%>
                       </tr>
+                      <% for atrib in @atribuicao %>
                       <tr bgcolor="#F5F5F5">
-                        <td><font color ="red"> Favor ==> Preencher </font></td>
-                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
-                             <td width ="3%"> <b>NºAulas:</b><%= f.text_field :aulas1 , :size => '2'%></td>
-                          <%else%>
-                            <td align="center"> <b>Nº Aulas:</b>   <%if @nota.aulas1 != 0%>
-                                                                      &nbsp&nbsp&nbsp<%= @nota.aulas1%>
-                                                                    <%else%>
-                                                                        <%= f.text_field :aulas1 , :size => '3'%>
-                                                                    <%end%>
-                           </td>
-                         <%end%>
-                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
-                             <td width ="3%"> <b>NºAulas:</b><%= f.text_field :aulas2 , :size => '2'%></td>
-                          <%else%>
-                            <td align="center"><b>Nº Aulas:</b> <%if @nota.aulas2 != 0%>
-                                                                    &nbsp&nbsp&nbsp<%= @nota.aulas2%>
-                                                                <%else%>
-                                                                    <%= f.text_field :aulas2 , :size => '3'%>
-                                                                <%end%>
-                            </td>
-                          <%end%>
-                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
-                             <td width ="3%"> <b>NºAulas:</b><%= f.text_field :aulas3 , :size => '2'%></td>
-                          <%else%>
-                              <td align="center"><b>Nº Aulas:</b><%if @nota.aulas3 != 0%>
-                                                                    &nbsp&nbsp&nbsp<%= @nota.aulas3%>
-                                                                <%else%>
-                                                                    <%= f.text_field :aulas3 , :size => '3'%>
-                                                                <%end%>
-                             </td>
-                         <%end%>
-                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
-                             <td width ="3%"> <b>NºAulas:</b><%= f.text_field :aulas4 , :size => '2'%></td>
-                          <%else%>
-                              <td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ----------- </td>
-                          <%end%>
-                              <td width ="3%" align="center"> <b>NºAulas:</b> <%= @nota.aulas5%></td>
-
+                          <td></td>
+                          <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas1%>  </td>
+                          <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas2%>  </td>
+                          <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas3%>  </td>
+                          <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas4%>  </td>
+                          <td align="center"> <b>Nº Aulas:</b> <%= @nota.faltas5%>  </td>
                       </tr>
+                      <%end%>
                    </table>
                 </td>
               </tr>
