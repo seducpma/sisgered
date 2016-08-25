@@ -9,7 +9,7 @@ class Aluno < ActiveRecord::Base
   before_save  :maiusculo
   before_save  :atribui_dados
  
-
+  validates_presence_of :aluno_nome
 
   def atribui_dados
     

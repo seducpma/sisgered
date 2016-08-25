@@ -5,6 +5,10 @@ class Atribuicao < ActiveRecord::Base
   has_many :notas
   before_save :atribui
 
+    validates_presence_of :classe_id
+    validates_presence_of :professor_id
+    validates_presence_of :disciplina_id
+
   HORARIO = %w(--Selecionar-- MATUTINO VESPERTINO NOTURNO INTEGRAL)
 
 

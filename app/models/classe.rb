@@ -9,6 +9,8 @@ class Classe < ActiveRecord::Base
   before_save :caps_look
   before_save :atribui_unidade
 
+  validates_presence_of :classe_classe
+
   HORARIO = %w(--Selecionar-- MATUTINO VESPERTINO NOTURNO INTEGRAL)
 
 
