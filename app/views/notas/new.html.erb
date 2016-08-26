@@ -28,6 +28,10 @@
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                        <b>Série:</b>&nbsp&nbsp<%= f.select :classe, (TURMA).sort %> º Ano
                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td width =" 12%"><b>Escola:</b></td>
+                   <td><%= f.text_field :escola , :size => '65', :value => '    Favor digitar o Nome da Escola - Cidade - Estado'%> </td>
+                 </tr>
 
                </table>
             </fieldset>

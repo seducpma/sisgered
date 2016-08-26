@@ -39,10 +39,11 @@
       </tr>
     </table>
   </fieldset>
-  <table width="100%" >
+    <table width="100%" >
          <tr>
             
-            <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td width ="6%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td align="left"><%= button_to 'Lancar',{:action => "new", :controller => :notas}, :method => "get", :title => "Editar" %></td>
 
          </tr>
        </table>

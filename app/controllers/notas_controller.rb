@@ -38,6 +38,9 @@ before_filter :load_classes
  def create
     @nota = Nota.new(params[:nota])
     @nota.unidade_id =  current_user.unidade_id
+    if @nota.escola =='    Favor digitar o Nome da Escola - Cidade - Estado'
+       t1=@nota.escola = ' '
+    end
    respond_to do |format|
       if @nota.save
         flash[:notice] = 'SALVO COM SUCESSO.'
