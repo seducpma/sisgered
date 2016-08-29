@@ -31,11 +31,19 @@
                                    <td>Professor U.E.</td>
                                    <td>Professor de Unidade Escolar</td>
                                  <%else if  Role.find(role_user.role_id).name == 'pedagogo' then%>
-                                       <td>Pedagogor U.E.</td>
-                                       <td>Pedagogo de Unidade Escolar</td>%>
-                                       <%else%>
-                                           <td>Usuário</td>
-                                           <td>Sem acesso ao sistema.</td>
+                                       <td>Pedagogo U.E.</td>
+                                       <td>Pedagogo de Unidade Escolar</td>
+                                       <%else  if  Role.find(role_user.role_id).name == 'infantil' then%>
+                                               <td>Secretaria U.E.</td>
+                                               <td>Secretáriade Unidade Escolar</td>
+                                               <%else if  Role.find(role_user.role_id).name == 'direcao_infantil' then%>
+                                                     <td>Direção U.E.</td>
+                                                     <td>Direção de Unidade Escolar - Infantil</td>
+                                                     <%else%>
+                                                         <td>Usuário</td>
+                                                         <td>Sem acesso ao sistema.</td>
+                                                     <%end%>
+                                               <%end%>
                                        <%end%>
                                  <%end%>
                            <%end%>
@@ -46,7 +54,7 @@
 
 
                                      
-            <td align="center"><td align="center" ><%= button_to 'Visualizar',{:action => "show", :id =>role_user}, :method => "get", :title => "Visualizar"%></td></td>
+            <td align="center"><%= button_to 'Visualizar',{:action => "show", :id =>role_user}, :method => "get", :title => "Visualizar"%></td>
             <% if current_user.has_role?('admin')or  current_user.has_role?('direcao') %>
                 <td align="center" ><%= button_to 'Editar',{:action => "edit", :id =>role_user}, :method => "get", :title => "Editar"%></td>
             <%else%>
