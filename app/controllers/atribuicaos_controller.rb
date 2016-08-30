@@ -331,10 +331,10 @@ def historico_aluno
   @report.add_column(20)
 
      @report.add_column(18).add_column(12).add_column(40).add_column(30)
-     @report.add_row(["PREFEITURA MUNICIPAL DE AMERICANA"], 30).join_last_row_heading(0..3)
-     @report.add_row(["SECRETARIA DE EDUCAÇÃO"], 30).join_last_row_heading(0..3)
-     @report.add_row(["Unidade de Ensino Fundamental"], 20).join_last_row_heading(0..3)
-     @report.add_row(["HISTÓRICO ESCOLAR"], 20).join_last_row_heading(0..3)
+     @report.add_row(["PREFEITURA MUNICIPAL DE AMERICANA"], 30).join_last_row_heading(0..6)
+     @report.add_row(["SECRETARIA DE EDUCAÇÃO"], 30).join_last_row_heading(0..6)
+     @report.add_row(["Unidade de Ensino Fundamental"], 20).join_last_row_heading(0..6)
+     @report.add_row(["HISTÓRICO ESCOLAR"], 20).join_last_row_heading(0..6)
      
      @aluno.each do |aluno|
         session[:aluno] = aluno.aluno_nome
@@ -342,7 +342,7 @@ def historico_aluno
         @report.add_row(["Endereço:", aluno.unidade.endereco, aluno.unidade.num, "-", aluno.unidade.bairro, "CEP", aluno.unidade.CEP, "(19)",aluno.unidade.fone])
         @report.add_row(["Autorização:", aluno.unidade.autorizacao])
      end
-     @report.save_to_file("public/saidas/#{current_user.unidade.nome}_#{session[:aluno_nome]}_#{Date.today.strftime("%d_%m_%Y")}.xls")
+     @report.save_to_file("public/saidas/#{current_user.unidade.nome}_#{session[:aluno_nome]}_#{Date.today.strftime("%Y_%m_%d")}.xls")
 
 
   render :update do |page|
@@ -387,15 +387,8 @@ def impressao_historico
 end
 
 
-def download_historicoxxx
-  t1=session[:aluno_nome]
-  t2=current_user.unidade.nome
-  t=0
-
-     # send_file("#{RAILS_ROOT}/public/saidas/#{current_user.unidade.nome}_#{session[:aluno_nome]}_#{Date.today.strftime("%d_%m_%Y")}.xls")
-
-
-  #{ params[:id]}  :type =>  "application/vnd.ms-excel"
+def download_historico
+     send_file("#{RAILS_ROOT}/public/saidas/#{current_user.unidade.nome}_#{session[:aluno_nome]}_#{Date.today.strftime("%Y_%m_%d")}.xls")
 end
 
 
