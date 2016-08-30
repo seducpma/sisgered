@@ -70,6 +70,9 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_historico'impressao_historico', :controller => 'atribuicaos', :action => 'impressao_historico'
   map.impressao_historico_aluno'impressao_historico_aluno', :controller => 'atribuicaos', :action => 'impressao_historico_aluno'
 
+  map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'arquivo_historico'
+  #map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'download_historico'
+
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
   map.alteracao_matricula '/alteracao_matricula', :controller => 'matriculas', :action => 'alteracao_matricula'
   map.editar_ficha_cadastral '/editar_ficha_cadastral', :controller => 'alunos', :action => 'editar_ficha_cadastral'

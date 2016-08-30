@@ -22,6 +22,10 @@ class HomeController < ApplicationController
     render :nothing => true
   end
 
+def download_classificacao
+    send_file("#{RAILS_ROOT}/public/documentos/classificacao.doc" , :type=>"text/msword")
+  end
+
 protected
 
 
