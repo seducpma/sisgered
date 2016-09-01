@@ -514,6 +514,7 @@ end
         @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
         @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @alunos_boletim = @alunos1
     else
         @professors1 = Professor.find(:all, :conditions => ['id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
         @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
