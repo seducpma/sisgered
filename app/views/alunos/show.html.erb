@@ -8,28 +8,51 @@
      <td>
        <fieldset><legend><font  size=3><b> Dados Pessoais</b></font></legend>
          <table width="100%">
-                       <tr bgcolor="#F5F5F5">
-              <td width =" 22%"><b>Nº RA:</b></td>
-              <td width ="15%">   <%=h @aluno.aluno_ra %></td>
-              <td width =" 12%"><b>Nº RM:</b></td>
-              <td>   <%=h @aluno.aluno_rm %></td>
-              <td width =" 20%"><b>Nº INEP:</b></td>
-              <td>   <%=h @aluno.aluno_inep %></td>
-              <td width =" 12%"><b>Nº NIS:</b></td>
-              <td>   <%=h @aluno.aluno_nis %></td>
-           </tr>
-            <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Nome:</b></td>
-               <td colspan="4" align="left"> <%=h @aluno.aluno_nome %></td>
-               <td align="right"><b>Sexo:</b></td>
-               <td colspan="2" align="left"><%=h @aluno.aluno_sexo %></td>
-            </tr>
            <tr bgcolor="#F5F5F5">
-               <td align="left"><b>Nascimento:</b></td>
-               <td align="left">  <%=h @aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
-               <td align="left"><b>Nº Certidão:</b></td>
-               <td colspan="5"align="left"><%=h @aluno.aluno_certidao_nascimento %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Livro:</b><%=h @aluno.aluno_livro %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Folha:</b> <%=h @aluno.aluno_folha %></td>
-            </tr>
+             <td align="center" valign="top">
+                    <%= image_tag @aluno.photo.url(:thumb) %>
+             </td>
+             <td colspan="6"valign="top">
+                <table>
+                  <tr bgcolor="#FFFfff">
+                    <td width =" 10%"><b>Nº RA:</b></td>
+                    <td width ="15%">   <%=h @aluno.aluno_ra %></td>
+                    <td width =" 12%"><b>Nº RM:</b></td>
+                    <td>   <%=h @aluno.aluno_rm %></td>
+                    <td width =" 20%"><b>Nº INEP:</b></td>
+                    <td>   <%=h @aluno.aluno_inep %></td>
+                    <td width =" 12%"><b>Nº NIS:</b></td>
+                    <td colspan="4">   <%=h @aluno.aluno_nis %></td>
+                  </tr>
+                  <tr bgcolor="#F5F5F5">
+                     <td align="left" width="4%"><b>Nome:</b></td>
+                     <td colspan="4" align="left"> <%=h @aluno.aluno_nome %></td>
+                     <td align="right"><b>Sexo:</b></td>
+                     <td colspan="2" align="left"><%=h @aluno.aluno_sexo %></td>
+                  </tr>
+                   <tr bgcolor="#F5F5F5">
+                       <td align="left"><b>Nascimento:</b></td>
+                       <td align="left">  <%=h @aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
+                       <td align="left"><b>Nº Certidão:</b></td>
+                       <td colspan="5"align="left"><%=h @aluno.aluno_certidao_nascimento %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Livro:</b><%=h @aluno.aluno_livro %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Folha:</b> <%=h @aluno.aluno_folha %></td>
+                    </tr>
+                   <tr bgcolor="#F5F5F5">
+                       <td align="left"><b>RG:</b></td>
+                       <td align="left">  <%=h @aluno.aluno_RG%></td>
+                       <td align="left"><b>Emissão:</b></td>
+                       <td colspan="5"align="left"><%=h @aluno.aluno_emissaoRG %></td>
+                    </tr>
+                   <tr bgcolor="#F5F5F5">
+                       <td align="left"><b>CPF:</b></td>
+                       <td align="left">  <%=h @aluno.aluno_CPF%></td>
+                       <td align="left"><b>Emissão:</b></td>
+                       <td colspan="5"align="left"><%=h @aluno.aluno_emissaoCPF %></td>
+                   </tr>
+
+              </table>
+             </td>
+           </tr>
+
            <tr bgcolor="#F5F5F5">
                <td align="left"><b>Naturalidade:</b></td>
                <td colspan="3"align="left"><%=h @aluno.aluno_naturalidade %></td>
@@ -59,18 +82,6 @@
             <%end%>
 
             </tr>
-           <tr bgcolor="#F5F5F5">
-               <td align="left"><b>RG:</b></td>
-               <td align="left">  <%=h @aluno.aluno_RG%></td>
-               <td align="left"><b>Emissão:</b></td>
-               <td colspan="5"align="left"><%=h @aluno.aluno_emissaoRG %></td>
-            </tr>
-           <tr bgcolor="#F5F5F5">
-               <td align="left"><b>CPF:</b></td>
-               <td align="left">  <%=h @aluno.aluno_CPF%></td>
-               <td align="left"><b>Emissão:</b></td>
-               <td colspan="5"align="left"><%=h @aluno.aluno_emissaoCPF %></td>
-           </tr>
            <tr bgcolor="#F5F5F5">
              <td width =" 12%"><b>Reside com:</b></td>
              <td colspan="7">  <%=h @aluno.aluno_reside_com %></td>

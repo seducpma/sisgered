@@ -1,4 +1,4 @@
-<% form_for (@aluno) do |f| %>
+<% form_for @aluno, :html => { :multipart => true } do |f| %>
  <%= f.error_messages %>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -21,7 +21,9 @@
                :url => { :action => 'mesmo_nome' } %>
           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <b>Sexo:</b>&nbsp&nbsp
-          <%= f.select :aluno_sexo,(SEXO).sort, :include_blank => '-- Selecionar --' %></td>
+          <%= f.select :aluno_sexo,(SEXO).sort, :include_blank => '-- Selecionar --' %><br/>
+          <b>Foto: </b> <%= f.file_field :photo%>
+         </td>
        </tr>
        <tr>
          <td></td>

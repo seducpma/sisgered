@@ -5,6 +5,7 @@ class Aluno < ActiveRecord::Base
   has_many :socioeconomicos
   has_and_belongs_to_many :classes
   has_many :notas
+  has_attached_file :photo, :styles => {:thumb=> "100x100#", :medium => "200x200>", :small  => "180x180>" }
 
   before_save  :maiusculo
   before_save  :atribui_dados
