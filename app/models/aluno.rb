@@ -6,8 +6,8 @@ class Aluno < ActiveRecord::Base
   has_and_belongs_to_many :classes
   has_many :notas
   has_attached_file :photo, :styles => {:thumb=> "100x100#", :small  => "180x180>" },
-                    :url => "/photos/:class/:attachment/:id/:style/:basename.:extension",
-                    :path => ":rails_root/public/photos/:class/:attachment/:id/:style/:basename.:extension"
+                    :url => ":rails_root/photos/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/photos/:id/:style/:basename.:extension"
 
 
 
