@@ -31,27 +31,7 @@
                  </tr>
 
                 
-                  <% cont1=1 %>
-                 
-                <tr bgcolor="#F5F5F5">
-                  <td valign="top"><b> Alunos:</b> </td>
-                  <td colspan="3" >   <% @classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
-                                        
-                           <table>
-                              <tr>
-                                <td width="80%"> &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %> </td>
-                                <% if (current_user.has_role?('admin'))%>
-                                    <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_aluno", :id =>aluno}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
-                                <%else%>
-                                    <td></td>
-                                 <%end%>
-                              </tr>
-                            </table>
-                           <%cont1 = cont1+1%>
-                        <%end%>
-                  </td>
-                    
-                </tr>
+
                  
                </table>
            </td>

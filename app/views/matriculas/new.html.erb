@@ -1,4 +1,4 @@
-<div id="interno4">
+<div id="interno3">
 <% title "MATRICULAS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -16,6 +16,11 @@
            <tr>
               <td><b>Aluno: </b></td>
               <td><%= f.collection_select :aluno_id , @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+           </tr>
+           <tr>
+             <td colspan="2"><b>Nº do aluno na classe: </b>&nbsp&nbsp
+                <%= f.text_field :classe_num, :size => '2' %> </td>
+                <% session[:flagnum] = 1 %>
            </tr>
          </table>
          </fieldset>

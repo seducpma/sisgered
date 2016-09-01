@@ -52,11 +52,16 @@ class MatriculasController < ApplicationController
  end
 
   def create
+  
+   if session[:flagnum] == 1
+      @matricula = Matricula.new(params[:matricula])
 
-    @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
-    session[:numero]=@matricula_num.classe_num
-    @matricula = Matricula.new(params[:matricula])
-    @matricula.classe_num = session[:numero]+1
+   else
+       @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
+       session[:numero]=@matricula_num.classe_num
+       @matricula = Matricula.new(params[:matricula])
+       @matricula.classe_num = session[:numero]+1
+   end
     @matricula.ano_letivo = Time.now.year
     @matricula.unidade_id= current_user.unidade_id
     session[:classe_id]= @matricula.classe_id

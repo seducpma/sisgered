@@ -4,11 +4,11 @@
     <td rowspan="2"><br/><center> <%= image_tag aluno.photo.url(:small) %>   </center></td>
     <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
         <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
-        <% @aluno.each do |aluno| %>
+        
              <center><font size="1">Unidade Escolar:  <%=h aluno.unidade.nome %>  </font></center>
              <center><font size="1"><%=h aluno.unidade.endereco%><%=h aluno.unidade.num%> - Americana - SP  </font>
              <font size="1"><%=h aluno.unidade.CEP%> - <%=h aluno.unidade.fone%>  </font></center>
-        <%end%>
+        
     </td>
   </tr>
   <tr>
