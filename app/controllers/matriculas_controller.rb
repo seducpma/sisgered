@@ -47,6 +47,9 @@ class MatriculasController < ApplicationController
     @matricula = Matricula.find(params[:id])
  end
 
+  def edit_saida_seduc
+    @matricula = Matricula.find(params[:id])
+ end
 
   def create
 
@@ -287,7 +290,15 @@ def matriculas_saidas
 
        @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status is null OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
         render :update do |page|
-          page.replace_html 'aluno', :partial => 'alunos_saida'
+          page.replace_html 'aluno2', :partial => 'alunos_saida'
+       end
+end
+
+def matriculas_saidas_seduc
+       session[:aluno_id]=params[:aluno][:id]
+       @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status is null OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
+        render :update do |page|
+          page.replace_html 'aluno1', :partial => 'alunos_saida_seduc'
        end
 
 

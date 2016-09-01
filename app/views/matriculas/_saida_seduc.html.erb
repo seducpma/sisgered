@@ -1,0 +1,53 @@
+    <table width="100%" align="center" bgcolor="#F5F5F5">
+        <tr> <td></td> </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <font color="blue"><b><u> SAÍDA DE ALUNOS PARA OUTRAS UNIDADES DA SEDUC</u></b> <br/><br/>
+          </td>
+       </tr>
+
+        <tr >
+          <td colspan="2">
+                <% form_remote_tag :url => matriculas_saidas_seduc_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+                  <fieldset>
+                   <table width="100%" align="center" bgcolor="#DCDCDC" >
+                      <tr>
+                        <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
+                           &nbsp&nbsp&nbsp
+                            <%= collection_select :aluno, :id, @alunos3, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+
+                           <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+                      </td>
+                    </tr>
+                   </table>
+                   </fieldset>
+                  <fieldset>
+                    <table border="1" cellspacing="0" cellpadding="1" width="100%">
+                      <tr>
+                        <td>
+                            <div id="aluno1"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+                          <br/>
+                        </td>
+                      </tr>
+                   </table>
+                      <% end %>
+
+                  </fieldset>
+
+                   <br/>
+          </td>
+        </tr>
+          
+    
+  </table>
+ 
+<br/>
+
+
+
+
+
+
+
+
+
