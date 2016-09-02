@@ -66,21 +66,28 @@ class MatriculasController < ApplicationController
     @matricula.unidade_id= current_user.unidade_id
     session[:classe_id]= @matricula.classe_id
     #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["atribuicaos.classe_id =? ",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
+
      @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
+
      if !@matricula_anterior.nil?
          session[:status_anterior] =  @matricula_anterior.status
      end
 
     respond_to do |format|
       if @matricula.save
-        if  @matricula.status == "*REMANEJADO"
-            @matricula_anterior.status = "REMANEJADO"
-            @matricula_anterior.save
-        end
-        if  @matricula.status == "TRANSFERENCIA"
-            @matricula_anterior.status = "TRANSFERIDO"
-            @matricula_anterior.save
-        end
+       @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
+       @aluno[0].unidade_id =  current_user.unidade_id
+       @aluno[0].save
+       if !@matricula_anterior.nil?
+          if  @matricula.status == "*REMANEJADO"
+              @matricula_anterior.status = "REMANEJADO"
+              @matricula_anterior.save
+          end
+          if  @matricula.status == "TRANSFERENCIA"
+              @matricula_anterior.status = "TRANSFERIDO"
+              @matricula_anterior.save
+          end
+       end
        if (@matricula.status != '*REMANEJADO') and (@matricula.status != 'TRANSFERENCIA')
         @atribuicaos = Atribuicao.find(:all, :conditions=> ['classe_id =?',session[:classe_id]])
 
