@@ -157,6 +157,7 @@ def consulta_classe_aluno
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
+
         render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
