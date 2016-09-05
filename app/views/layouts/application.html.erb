@@ -151,7 +151,7 @@ display: none;
               <li><a class="item-primary" href="#">SISGERED</a>
                 <ul style="width:108px;">
                   <li><%= link_to 'Inicio', root_path %></li>
-                  <li><%= link_to 'Manual on-line', href= "https://docs.google.com/document/d/1KORwNkxV7ogNpc7EUyMxQHA4MMSSju_eOouI5cNABFE/edit?usp=sharing" %></li>
+                  <li><%= link_to 'Manual on-line', href= "https://docs.google.com/document/d/1KORwNkxV7ogNpc7EUyMxQHA4MMSSju_eOouI5cNABFE/edit?usp=sharing", :target => '_blank' %></li>
                   <li><%= link_to 'Sair', logout_path,:confirm => "Tem certeza que deseja fazer logout?" %></li>
                 </ul>
               </li>
