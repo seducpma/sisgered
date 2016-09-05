@@ -78,13 +78,19 @@ class MatriculasController < ApplicationController
        @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
        @aluno[0].unidade_id =  current_user.unidade_id
        @aluno[0].save
+       
        if !@matricula_anterior.nil?
+
           if  @matricula.status == "*REMANEJADO"
-              @matricula_anterior.status = "REMANEJADO"
+              w=@matricula_anterior.status = "REMANEJADO"
+              @matricula_anterior.data_transferencia= Time.now
+              @matricula_anterior.rem_classe_id = @matricula.classe_id
               @matricula_anterior.save
           end
           if  @matricula.status == "TRANSFERENCIA"
               @matricula_anterior.status = "TRANSFERIDO"
+              @matricula_anterior.data_transferencia= Time.now
+              @matricula_anterior.transf_unidade_id = @matricula.classe_id
               @matricula_anterior.save
           end
        end
