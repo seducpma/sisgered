@@ -81,7 +81,7 @@
             <table border="1" cellspacing="0" cellpadding="1" width="100%">
               <%@notas.each do |nota|%>
                 <tr>
-                  <td width ="4%" align="center"><%= nota.matricula.classe_num  %> - <%= nota.matricula.id%> </td>
+                  <td width ="4%" align="center"><%= nota.matricula.classe_num  %>  </td>
                   <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
                   <td width ="46%" align="left"><%= nota.matricula.aluno.aluno_nome %> - <%= nota.matricula.aluno_id%> </td>
                   <td width ="4%" align="center"><%if  !nota.nota1.nil? %>

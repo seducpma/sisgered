@@ -82,7 +82,7 @@ class MatriculasController < ApplicationController
        if !@matricula_anterior.nil?
 
           if  @matricula.status == "*REMANEJADO"
-              w=@matricula_anterior.status = "REMANEJADO"
+              @matricula_anterior.status = "REMANEJADO"
               @matricula_anterior.data_transferencia= Time.now
               @matricula_anterior.rem_classe_id = @matricula.classe_id
               @matricula_anterior.save
@@ -146,8 +146,8 @@ class MatriculasController < ApplicationController
 
         @classe_ant= Classe.find(:all, :joins => "INNER JOIN  matriculas  ON  classes.id=matriculas.classe_id  INNER JOIN alunos ON alunos.id=matriculas.aluno_id", :conditions =>['aluno_id = ?',@matricula.aluno_id])
         for classe_ant in @classe_ant
-           w=session[:classe_ant]= classe_ant.id
-           w1=session[:unidade_ant_id]= classe_ant.unidade_id
+           session[:classe_ant]= classe_ant.id
+           session[:unidade_ant_id]= classe_ant.unidade_id
 
         end
         @atribuicaos_ant = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_ant]])
@@ -208,6 +208,9 @@ class MatriculasController < ApplicationController
                         else
                           @nota.faltas4 = nil
                          end
+                      notas_ant.ativo=1
+                      notas_ant.save
+
                      end
                    end
                    @nota.nota5 = nil
