@@ -78,10 +78,10 @@
                   <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
                   <td width ="40%" align="left"><%= nota.matricula.aluno.aluno_nome %>
                                                   <%if !nota.matricula.status.nil? and  nota.matricula.status == 'TRANSFERIDO' %>
-                                                      <font color ="red"> (Transf.)
+                                                      <font color ="red"> (Transferido)
                                                   <%end%>
                                                   <%if nota.matricula.status == 'REMANEJADO' %>
-                                                      <font color ="green"> (Rem.)</font>
+                                                      <font color ="green"> (Remanejado)</font>
                                                   <%end%>
                   </td>
                   <td width ="4%" align="center"><%if  !nota.nota1.nil? %>
