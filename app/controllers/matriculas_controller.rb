@@ -221,7 +221,7 @@ class MatriculasController < ApplicationController
                  end
               end
         end
-        flash[:notice] = 'MATRICULA SALVA COM'
+        flash[:notice] = 'SALVO COM SUCESSO'
 
            format.html { redirect_to(@matricula) }
            format.xml  { render :xml => @matricula, :status => :created, :location => @matricula }
@@ -236,9 +236,15 @@ class MatriculasController < ApplicationController
   def update
     @matricula = Matricula.find(params[:id])
 
+
     respond_to do |format|
       if @matricula.update_attributes(params[:matricula])
-        flash[:notice] = 'Matricula was successfully updated.'
+
+       if @matricula.data_transferencia.today?
+          @matricula.data_transferencia = nil
+          @matricula.save
+       end
+        flash[:notice] = 'SALVO COM SUCESSO'
         format.html { redirect_to(@matricula) }
         format.xml  { head :ok }
       else

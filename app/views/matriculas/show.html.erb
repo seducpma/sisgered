@@ -50,7 +50,9 @@
            <%else%>
            <tr bgcolor="#F5F5F5"  width="100%">
               <td align="left" width ="15%"><b> Data:</b></td>
-              <td align="left"><%=h @matricula.data_transferencia.strftime("%d/%m/%Y ") %> 
+              <td align="left"><% if !@matricula.data_transferencia.nil? %>
+                                     <%=h @matricula.data_transferencia.strftime("%d/%m/%Y ") %>
+                               <%end%>
              </td>
            <%end%>
            </tr>
