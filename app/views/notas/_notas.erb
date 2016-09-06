@@ -76,7 +76,14 @@
                 <tr>
                   <td width ="4%" align="center"><%= nota.matricula.classe_num  %> </td>
                   <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
-                  <td width ="40%" align="left"><%= nota.matricula.aluno.aluno_nome %> </td>
+                  <td width ="40%" align="left"><%= nota.matricula.aluno.aluno_nome %>
+                                                  <%if !nota.matricula.status.nil? and  nota.matricula.status == 'TRANSFERIDO' %>
+                                                      <font color ="red"> (Transf.)
+                                                  <%end%>
+                                                  <%if nota.matricula.status == 'REMANEJADO' %>
+                                                      <font color ="green"> (Rem.)</font>
+                                                  <%end%>
+                  </td>
                   <td width ="4%" align="center"><%if  !nota.nota1.nil? %>
                                                      <%= nota.nota1 %>
                                                  <%else%>
@@ -142,11 +149,9 @@
                                                   <%end%>
                   </td>
                   <td width ="5%" align="center">
-                        <%if !nota.matricula.status.nil? and  nota.matricula.status == 'TRANSFERIDO' %>
-                            <font color ="red"> (Transf.)
-                        <%else%>
+
                            <%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :id =>nota}, :method => "get", :title => "Editar" %>
-                       <%end%>
+
 
 
                   </td>
