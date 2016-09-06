@@ -1,6 +1,10 @@
-
+<table width="100%">
+  <tr>
+  <b><font size="3"> <center>LANÇAMENTO DE AULAS MINISTRADAS PARA CÁLCULO DA FREQÜÊNCIA DO ALUNOS </center><br/></font></b>
+  </tr>
+</table>
 <%if @classe.present?%>
-  <fieldset>
+<fieldset>
     <table width="100%">
       <% for classe in @classe %>
         <tr bgcolor="#F5F5F5" >
@@ -37,17 +41,22 @@
                   <% session[:periodo] = atrib.classe.horario %>
                   <% session[:id] = atrib.id %>
                 </tr>
-                <tr>
-                  <td colspan="5" align="right"><%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :controller => :atribuicaos, :id =>atrib}, :method => "get", :title => "Editar" %>
 
-                  </td>
-                </tr>
               </table>
+
               <% cont= cont+1 %>
             <%end%>
           </td>
         </tr>
       </table>
+  </fieldset>
+<table   width="100%">
+               <tr>
+                    <td colspan="5" align="right"><br/><%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :controller => :atribuicaos, :id =>atrib}, :method => "get", :title => "Editar" %>&nbsp&nbsp&nbsp
+                  </td>
+                </tr>
+
+            </table>
     <%end%>
 
   <%else%>
