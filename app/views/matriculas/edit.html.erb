@@ -76,9 +76,6 @@
                                 <td ><b>Destino</b> (se unidade SEDUC)<b>: </b></td>
                                   <td valign="top"> <%= f.collection_select :transf_unidade_id, @unidade_procedencia1, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
                               </tr>
-                                 <tr>
-                                    <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
-                                </tr>
                           </table>
                         </fieldset>
                     </td>
@@ -91,13 +88,22 @@
                                   <td ><b>Classe Destino: </b> </td>
                                   <td><%= f.collection_select :rem_classe_id 	, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
                                </tr>
-                                  <tr>
-                                    <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
-                                  </tr>
                           </table>
                         </fieldset>
                     </td>
                   </tr>
+                  <tr>
+                    <td colspan="2">
+
+                          <table>
+                                  <tr>
+                                    <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
+                                  </tr>
+                          </table>
+
+                    </td>
+                  </tr>
+
 
                 
            </table>
