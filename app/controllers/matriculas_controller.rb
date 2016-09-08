@@ -356,7 +356,7 @@ end
        end
 
        @alunos = Aluno.find(:all, :conditions => ['aluno_status is null'],:order => 'aluno_nome')
-       @alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_idx= "+unidade.to_s+" AND`id` NOT IN
+       @alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+unidade.to_s+" AND`id` NOT IN
                        (SELECT matriculas.aluno_id FROM matriculas WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDOS' AND unidade_id = "+unidade.to_s+")
                         ORDER BY aluno_nome ASC")
     t=0
