@@ -11,7 +11,7 @@
               <br/>
               <table width="100%" align="center" bgcolor="#F5F5F5">
                   <tr> <td></td> </tr>
-                  <%if (@matricula.status.nil?) %>
+                  <%if (@matricula.status =="MATRICULADO") %>
                     <tr>
                       <td><b>Aluno: </b></td>
                       <td> <%=h @matricula.aluno.aluno_nome%> &nbsp&nbsp (<font color="blue"><b>regularmente</b></font> matriculado)</td>
@@ -52,12 +52,12 @@
                   </tr>
                   <tr>
                     <td ><b>Status: </b></td>
-                    <td><% if @matricula.status.nil? %>
+                    <td><% if @matricula.status =="MATRICULADO" %>
                             Matriculado
                          <%else%>
                            <%= h@matricula.status%>
                           <%end%> 
-                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: <%= f.collection_select :status , @status, :status, :status, :include_blank => '' %> </b> </td>
+                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: <%= f.collection_select :status , @status, :status, :status, :include_blank => 'MATRICULADO' %> </b> </td>
                     </td>
                   </tr>
                   <tr>

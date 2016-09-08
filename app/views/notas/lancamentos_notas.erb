@@ -100,7 +100,7 @@
                                       <td width ="4%" align="center"><%= nota.matricula.classe_num  %></td>
                                       <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
                                       <td width ="42%" align="left"><%= nota.aluno.aluno_nome %>
-                                                  <%if !nota.matricula.status.nil? and  nota.matricula.status == 'TRANSFERIDO' %>
+                                                  <%if !nota.matricula.status =="MATRICULADO" and  nota.matricula.status == 'TRANSFERIDO' %>
                                                       <font color ="red"> (Transferido)
                                                   <%end%>
                                                   <%if nota.matricula.status == 'REMANEJADO' %>
@@ -189,7 +189,7 @@
                                          Data:  <%  if !obs.data.nil?  %>
                                         <%=  obs.data.strftime("%d/%m/%Y")%><br/>
                                      </td>
-                                     <td  style="border-color: #F5F5F5" width ="5%" align="center"><%if (!nota.matricula.status.nil? and  nota.matricula.status == 'TRANSFERIDO' )%>
+                                     <td  style="border-color: #F5F5F5" width ="5%" align="center"><%if (!nota.matricula.status =="MATRICULADO" and  nota.matricula.status == 'TRANSFERIDO' )%>
                                                                       <font color ="red"> -----
                                                                   <%else%>
                                                                        <%= link_to  image_tag('/stylesheets/images/excluir.png', :title => 'Excluir'), {:controller =>"observacao_notas", :action => "destroy", :id =>obs}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%>

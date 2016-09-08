@@ -23,7 +23,7 @@
             <tr bgcolor="#F5F5F5" >
               <td></td>
                <td align="left"><b>Status:</b></td>
-               <% if  matricula.status.nil? %>
+               <% if  matricula.status =="MATRICULADO" %>
                    <td align="left" colspan="3"> Matriculado</td>
                <%else%>
                   <td align="left" colspan="3"> <%=h matricula.status %>
