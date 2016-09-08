@@ -3,8 +3,9 @@
        <td align="center"width ="5%"><b>Nº</b></td>
        <td align="center"width ="5%"><b>RM</b></td>
        <td width ="5%"><b>RA</b></td>
-       <td width ="50%"><b>NOME</b></td>
+       <td width ="40%"><b>NOME</b></td>
        <td width ="10%"><b>CLASSE</b></td>
+       <td width ="20%"><b>UNIDADE</b></td>
        <td width ="5%"><b>SITUAÇÃO</b></td>
        <td> </td>
        <td> </td>
@@ -33,7 +34,12 @@
                               <font color ="green"> *Remanejado </font>
                           <%end%>
         </td>
-         <td align="left"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:controller =>"matriculas", :action => "edit", :id =>matricula}, :method => "get", :title => "Editarxxxx"%></td>
+        <td align="center"> <%="#{ matricula.unidade.nome}"%> </td>
+         <% if current_user.unidade_id ==  matricula.unidade_id%>
+              <td align="left"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:controller =>"matriculas", :action => "edit", :id =>matricula}, :method => "get", :title => "Editar"%></td>
+            <%else%>
+              <td align="center"> ---</td>
+            <%end%>
          <% if (current_user.has_role?('admin'))%>
              <td align="left" ><%= link_to  image_tag('/stylesheets/images/excluir.png', :title => 'Excluir'), {:controller =>"matriculas", :action => "show_destroy", :id =>matricula}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
          <%end%>
