@@ -245,8 +245,18 @@ class MatriculasController < ApplicationController
           @matricula.save
        end
         flash[:notice] = 'SALVO COM SUCESSO'
-        format.html { redirect_to(@matricula) }
-        format.xml  { head :ok }
+        w1 = session[:alterar_direcionamento_editar]
+        if session[:alterar_direcionamento_editar] == 0
+           format.html { redirect_to(@matricula) }
+           format.xml  { head :ok }
+          session[:alterar_direcionamento_editar]= 1
+        else
+          format.html { render editar_classe_classes_path, :layout => "application"}
+          format.xml  { head :ok }
+          session[:alterar_direcionamento_editar]= 0
+        end
+
+
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @matricula.errors, :status => :unprocessable_entity }

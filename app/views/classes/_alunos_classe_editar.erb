@@ -67,7 +67,7 @@
                               <font color ="green"> *Remanejado </font>
                           <%end%>
         </td>
-          <td align="left"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:controller =>"matriculas", :action => "edit_saida", :id =>matricula}, :method => "get", :title => "Editar"%></td>
+          <td align="left"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:controller =>"matriculas", :action => "edit", :id =>matricula}, :method => "get", :title => "Editar"%></td>
           <% if (current_user.has_role?('admin'))%>
              <td align="left" ><%= link_to  image_tag('/stylesheets/images/excluir.png', :title => 'Excluir'), {:controller =>"matriculas", :action => "show_destroy", :id =>matricula}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
            <%else%>
@@ -78,5 +78,5 @@
 
          </tr>
     <%end%>
-
+<%  session[:alterar_direcionamento_editar]= 1%>
 </table>
