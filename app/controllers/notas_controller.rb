@@ -81,10 +81,8 @@ end
     t1=params[:id]
     @nota = Nota.find(params[:id])
      if @nota.update_attributes(params[:nota])
-
-
-         t2= session[:id]
-        t3= session[:aluno]
+         session[:id]
+        session[:aluno]
         #@nota = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =? AND ano_letivo =? ", session[:id], session[:aluno], Time.now.year])
         session[:nota_id] = @nota.id
         @disci = Disciplina.find(:all, :conditions => ["id =?",session[:disc_id]])

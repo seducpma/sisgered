@@ -351,7 +351,8 @@ end
          @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id > 41 AND id <52'], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all,:conditions =>['id = ?', current_user.unidade_id], :order => 'nome ASC')
        else
-         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id < 41 AND id > 52'], :order => 'nome ASC')
+         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id < 40  OR id >51'], :order => 'nome ASC')
+         t=0
           @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
        end
 
