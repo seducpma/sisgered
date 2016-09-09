@@ -138,7 +138,7 @@ def create_notas
 
 
     def relatorio_aluno_nome
-       @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', params[:aluno_aluno_id]])
+       @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status = "MATRICULADO"', params[:aluno_aluno_id]])
        session[:aluno] =params[:aluno_aluno_id]
        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],Time.now.year ])
        @matriculas.each do |matricula|

@@ -174,8 +174,10 @@ end
 
        session[:de_para]= 0
        @classe = Classe.find(:all, :joins => "inner join matriculas on classes.id = matriculas.classe_id", :conditions =>['matriculas.aluno_id =?', params[:aluno_aluno_id]])
+
        if @classe.empty?
-         @classe = Classe.find(:all, :joins => "inner join transferencias on classes.id = transferencias.classe_id", :conditions =>['transferencias.aluno_id =?', params[:aluno_aluno_id]])  
+         @classe = Classe.find(:all, :joins => "inner join matriculas on classes.id = matriculas.classe_id", :conditions =>['matriculas.aluno_id =?', params[:aluno_aluno_id]])
+
          session[:de_para]=1
        end
 
@@ -334,10 +336,10 @@ end
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     else
 
-        @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_nome")
-        @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_ra")
-        @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_rm")
-        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =? AND aluno_status is null',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status = "MATRICULADO"', current_user.unidade_id],:order => "aluno_nome")
+        @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status = "MATRICULADO"', current_user.unidade_id],:order => "aluno_ra")
+        @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status = "MATRICULADO"', current_user.unidade_id],:order => "aluno_rm")
+        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =? AND aluno_status = "MATRICULADO"',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     end
   end

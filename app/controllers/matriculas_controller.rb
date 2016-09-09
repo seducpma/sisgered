@@ -290,7 +290,7 @@ class MatriculasController < ApplicationController
   def unidade_transferencia
 
    session[:unidade_ant_id] = Unidade.find_by_nome(params[:matricula_procedencia])
-   @alunos = Aluno.find(:all, :conditions =>['unidade_id =? AND aluno_status is null',  session[:unidade_ant_id]], :order => 'aluno_nome')
+   @alunos = Aluno.find(:all, :conditions =>['unidade_id =? AND aluno_status = "MATRICULADO"',  session[:unidade_ant_id]], :order => 'aluno_nome')
    @unidade_para = Unidade.find(:all, :conditions => ['id =?', current_user.unidade_id], :order => 'nome ASC')
    @classes = Classe.find(:all, :conditions =>['unidade_id =?',  current_user.unidade_id], :order => 'classe_classe')
    render :partial => 'selecao_alunos'
@@ -325,7 +325,7 @@ end
 def matriculas_saidas
        session[:aluno_id]=params[:aluno][:id]
 
-       @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status is null OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
+       @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
         render :update do |page|
           page.replace_html 'aluno2', :partial => 'alunos_saida'
        end
@@ -333,7 +333,7 @@ end
 
 def matriculas_saidas_seduc
        session[:aluno_id]=params[:aluno][:id]
-       @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status is null OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
+       @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
         render :update do |page|
           page.replace_html 'aluno1', :partial => 'alunos_saida_seduc'
        end
@@ -355,12 +355,12 @@ end
          @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
        end
 
-       @alunos = Aluno.find(:all, :conditions => ['aluno_status is null'],:order => 'aluno_nome')
+       @alunos = Aluno.find(:all, :conditions => ['aluno_status = "MATRICULADO"'],:order => 'aluno_nome')
        @alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+unidade.to_s+" AND`id` NOT IN
                        (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+unidade.to_s+")
                         ORDER BY aluno_nome ASC")
 
-       @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
+       @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status = "MATRICULADO"', current_user.unidade_id],:order => 'aluno_nome')
        @alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA")  ', current_user.unidade_id],:order => 'alunos.aluno_nome')
 
       @classes = Classe.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'classe_classe')
