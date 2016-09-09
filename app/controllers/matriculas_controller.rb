@@ -83,13 +83,13 @@ class MatriculasController < ApplicationController
 
           if  @matricula.status == "*REMANEJADO"
               @matricula_anterior.status = "REMANEJADO"
-              @matricula_anterior.data_transferencia= Time.now
+              @matricula_anterior.data_transferencia= @matricula.data_transferencia
               @matricula_anterior.rem_classe_id = @matricula.classe_id
               @matricula_anterior.save
           end
           if  @matricula.status == "TRANSFERENCIA"
               @matricula_anterior.status = "TRANSFERIDO"
-              @matricula_anterior.data_transferencia= Time.now
+              @matricula_anterior.data_transferencia= @matricula.data_transferencia
               @matricula_anterior.transf_unidade_id = @matricula.classe_id
               @matricula_anterior.save
           end

@@ -165,7 +165,11 @@
         <%end%>
 
                      <td width="4%"align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-                     <td><%= button_to 'Voltar',lancar_notas_notas_path, :method => :get %></td>
+                     <%if current_user.has_role?('professor') %>
+                         <td><%= button_to 'Voltar',lancar_notas_notas_path, :method => :get %></td>
+                     <%else%>
+                         <td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %></td>
+                     <%end%>
                  </tr>
                </table>
           </font>
