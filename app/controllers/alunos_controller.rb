@@ -336,10 +336,10 @@ end
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     else
 
-        @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status = "MATRICULADO"', current_user.unidade_id],:order => "aluno_nome")
-        @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status = "MATRICULADO"', current_user.unidade_id],:order => "aluno_ra")
-        @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status = "MATRICULADO"', current_user.unidade_id],:order => "aluno_rm")
-        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =? AND aluno_status = "MATRICULADO"',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_nome")
+        @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_ra")
+        @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_rm")
+        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =? AND aluno_status is null',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     end
   end
