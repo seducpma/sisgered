@@ -51,7 +51,7 @@
                                                  <td align="left" width="50%"> <%=h atrib.professor.nome%></td>
                                                  <td align="left"width="10%"><b> Disciplina:</b></td>
                                                  <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
-                                                 <td align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
                                                    <% session[:disciplina] = atrib.disciplina.disciplina %>
                                                    <% session[:professor] = atrib.professor.nome %>
                                                    <% session[:professor_id] = atrib.professor.id %>
@@ -65,6 +65,13 @@
                                            <%end%>
                </td>
             </tr>
+            <tr>
+              <td>
+
+              </td>
+                <td align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            </tr>
+
          </table>
      <%end%>
         <table  border="1" frame="box" rules="all" width="100%">
@@ -131,7 +138,7 @@
                                                                      <%else%>
                                                                           --
                                                                       <%end%>
-                                      </td><%end%>
+                                      </td>
                                       <td width ="4%" align="center"><%if  !nota.nota3.nil? %>
                                                                          <%= nota.nota3 %>
                                                                      <%else%>
