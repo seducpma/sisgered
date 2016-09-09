@@ -66,7 +66,7 @@ class ClassesController < ApplicationController
        for aluno in @aluno
           session[:id_aluno]= aluno.id
           session[:classe]= @classe.id
-          @atribuicao= Atribuicao.find(:all, :conditions=>['classe_id=?', @classe.id ])
+          @atribuicao= Atribuicao.find(:all, :conditions=>['classe_id=? AND ativo=?', @classe.id, 0 ])
           for atrib in @atribuicao
            session[:classe]= atrib.classe_id
            session[:atribuicao]= atrib.id
@@ -155,7 +155,7 @@ def consulta_classe_aluno
 
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0])
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
 
         render :update do |page|
@@ -176,7 +176,7 @@ end
 def editar_classe_aluno
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0])
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe_editar'
@@ -198,7 +198,7 @@ end
 
 def impressao_classe
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
-       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id], 0])
        t1=session[:classe_id]
 
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',  session[:classe_id]], :order => 'classe_num ASC')
