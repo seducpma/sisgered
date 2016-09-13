@@ -82,18 +82,17 @@ end
     respond_to do |format|
       if @atribuicao.update_attributes(params[:atribuicao])
         flash[:notice] = 'SALVO COM SUCESSO!'
-        if current_user.has_role?('professor')
-               render :partial => 'notas_lancamentos' , :controllers => 'notas', :layout => "layouts/aalunos"
-        else
+
             format.html { redirect_to(@atribuicao) }
             format.xml  { head :ok }
-        end
+
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
       end
     end
   end
+
 
   
   def destroy
