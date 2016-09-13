@@ -17,7 +17,7 @@
    <% @aluno.each do |aluno| %>
      <tr>
         <td width =" 15%"><b>Unidade de Ensino:</b></td>
-        <td><b><%=h aluno.unidade.nome %></b></td>
+        <td><b><%=h aluno.unidade.nome %></b>  <%session[:historico_aluno_id]=aluno.id %></td>
      </tr>
      <tr>
          <td><b>Endereço:</b></td>
@@ -225,7 +225,18 @@
  </tr>
 </table>
 <br/>
+<table border="1">
+    <tr>
+      <td width="12%" align="right"valign="top"><font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></font>
+              <br/><font size ="1"color ="red"><b>Para lançar clique em observações</b></font>
+         </td>
+        <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div>asdasdads</td>
+     </tr>
 
+</table>
+<tr>
+
+</tr>
 
 
 <br/>
@@ -305,4 +316,4 @@
         </table>
 
 
-
+      <%= render "form_observacao" %>

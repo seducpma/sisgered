@@ -1,0 +1,40 @@
+<div id="interno3">
+<% title "RELATORIO" %>
+<div class ="tabs">
+   <fieldset><legend><font  size=3><b> Relatorio</b></font></legend>
+    <table width="100%">
+       <tr bgcolor="#F5F5F5">
+         <td width=20%" align="left"><b>Aluno:</b></td>
+         <td><%=h @relatorio.aluno.aluno_nome %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td align="left"><b>Classe:</b></td>
+         <td><%=h @relatorio.atribuicao.classe.classe_classe %>&nbsp&nbsp&nbsp&nbsp <b>Disciplina:</b> <%=h @relatorio.atribuicao.disciplina.disciplina%>  </td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width=20%" align="left"><b>Unidade:</b></td>
+         <td><%=h @relatorio.atribuicao.classe.unidade.nome %>&nbsp&nbsp&nbsp&nbsp <b>Ano Letivo:</b> <%=h @relatorio.ano_letivo %></td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width=20%" align="left"><b>Relatório:</b></td>
+         <td colspan="3"><%=h @relatorio.observacao %></td>
+      </tr>
+
+  </table>
+</fieldset>
+ <table width="100%" >
+         <tr>
+            <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+         </tr><br/>
+  </table>
+<br/>
+
+
+</div>
+<br/>
+</div>
+
+
+
+<%= link_to 'Edit', edit_relatorio_path(@relatorio) %> |
+<%= link_to 'Back', relatorios_path %>

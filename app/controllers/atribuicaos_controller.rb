@@ -1,7 +1,7 @@
 class AtribuicaosController < ApplicationController
 
  before_filter :load_professors
-  before_filter :load_classes
+ before_filter :load_classes
     before_filter :load_disciplinas
 
 
@@ -52,6 +52,29 @@ class AtribuicaosController < ApplicationController
       end
     end
   end
+
+
+ def create_observacao_historico
+
+   t=params[:observacao_historico]
+    @observacao_historico = ObservacaoHistorico.new(params[:observacao_historico])
+      t1=params[:observacao_historico]
+t=0
+      @historico_aluno  = Aluno.find(session[:historico_aluno_id])
+      w=@observacao_historico.aluno_id = @aluno.id
+t=0
+      @observacao_historico.data = Time.now
+
+      if @observacao_historico.save
+
+        render :update do |page|
+          page.replace_html 'dados', :partial => "observacoes"
+          page.replace_html 'edit'
+        end
+       end
+
+end
+
   
   def update
     @atribuicao = Atribuicao.find(params[:id])
@@ -309,9 +332,9 @@ def historico_aluno
      for aluno in @aluno
        session[:unidade_id]= aluno.unidade_id
        session[:aluno_id]= aluno.id
-       t5=session[:aluno_nome] = aluno.aluno_nome
-       t=0
+       session[:aluno_nome] = aluno.aluno_nome
      end
+     @historico_aluno = Aluno.find(session[:aluno_id])
      @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
      @disciplinas = Disciplina.find(:all, :conditions =>['id < 22'],:order => 'ordem ASC' )
      @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )

@@ -1,0 +1,24 @@
+<h1>Editing observacao_historico</h1>
+
+<% form_for(@observacao_historico) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :aluno_id %><br />
+    <%= f.text_field :aluno_id %>
+  </p>
+  <p>
+    <%= f.label :observacao %><br />
+    <%= f.text_field :observacao %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @observacao_historico %> |
+<%= link_to 'Back', observacao_historicos_path %>

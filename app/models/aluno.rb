@@ -3,6 +3,8 @@ class Aluno < ActiveRecord::Base
   has_many:matriculas
   has_many :saudes
   has_many :socioeconomicos
+  has_many :observacao_historicos
+  has_many :relatorios
   has_and_belongs_to_many :classes
   has_many :notas
   has_attached_file :photo, :styles => {:thumb=> "180x180>" },

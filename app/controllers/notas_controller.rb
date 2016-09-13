@@ -177,10 +177,10 @@ def voltar_lancamento_notas
       @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?" , session[:classe_id], session[:professor_id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
       @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
          if current_user.has_role?('professor')
-           t=0
+
                render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
         else
-          t=0
+
                #render lancamentos_notas_notas_path , :layout => "layouts/application"
                render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
         end

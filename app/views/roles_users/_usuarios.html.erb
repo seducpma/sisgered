@@ -55,7 +55,7 @@
 
                                      
             <td align="center"><%= button_to 'Visualizar',{:action => "show", :id =>role_user}, :method => "get", :title => "Visualizar"%></td>
-            <% if current_user.has_role?('admin')or  current_user.has_role?('direcao') %>
+            <% if current_user.has_role?('admin') or current_user.has_role?('direcao') or current_user.has_role?('direcao_infantil')%>
                 <td align="center" ><%= button_to 'Editar',{:action => "edit", :id =>role_user}, :method => "get", :title => "Editar"%></td>
             <%else%>
                 <td align="center" > -- </td>

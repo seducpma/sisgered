@@ -1,0 +1,32 @@
+<h1>Editing relatorio</h1>
+
+<% form_for(@relatorio) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :aluno_id %><br />
+    <%= f.text_field :aluno_id %>
+  </p>
+  <p>
+    <%= f.label :professor_id %><br />
+    <%= f.text_field :professor_id %>
+  </p>
+  <p>
+    <%= f.label :atribuicao_id %><br />
+    <%= f.text_field :atribuicao_id %>
+  </p>
+  <p>
+    <%= f.label :observacao %><br />
+    <%= f.text_field :observacao %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @relatorio %> |
+<%= link_to 'Back', relatorios_path %>

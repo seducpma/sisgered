@@ -1,0 +1,62 @@
+<% form_for (@relatorio) do |f| %>
+ <%= f.error_messages %>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+  <fieldset>
+   <legend><font size=4>Relatório</font></legend>
+   <table width="100%">
+      <tr bgcolor="#F5F5F5">
+         <td width =" 5%"><b>Professor:</b></td>
+         <td width =" 25%"><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+            <%= observe_field 'relatorio_professor_id',
+               :update => "classe",
+               :url    => { :action => 'professor' },
+               :with   => 'relatorio_professor_id' %>
+         <td colspan="2"> <div id="dados_prof"><font color=" red"><b>Após selecionar o professor aguarde o sistema retornar a atribuicao</b></font></div></td>
+      </tr>
+
+       <tr bgcolor="#F5F5F5">
+          <td align="left"><b>Nome:</b></td>
+          <td align="left"><%= f.collection_select :aluno_id, @alunos2, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
+             <%= observe_field 'relatorio_aluno_id',
+               :update => "dados",
+               :url    => { :action => 'dados' },
+               :with   => 'relatorio_aluno_id' %>
+          <td colspan="2"> <div id="dados_aluno"><font color=" red"><b>Após selecionar o aluno aguarde o sistema retornar a classe </b></font></div></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td valign="top"><b>Relatório:</b></td>
+        <td colspan="5"><%= f.text_area(:observacao, :cols=> "80", :rows=>"10") %> </td>
+      </tr>
+    </table>
+  </fieldset>
+
+ <br/>
+
+
+
+
+       <table width="100%" >
+         <tr>
+           <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+<%end%>
+           
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+         </tr>
+       </table>
+
+
+  </font>
+
+
+
+
+
+
+
+

@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :relatorios,:collection => { :relatorio=>:get}
+
+  map.resources :observacao_historicos
+
   map.resources :situacao_alunos
   map.resources :matriculas,:collection => { :transferencia=>:get, :alterar=>:get, :saidas=>:get, :consultar => :get}
   map.resources :transferencias,:collection => { :editar_transferencia=>:get}
@@ -100,6 +104,8 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_transferencia_classe '/consulta_transferencia_classe', :controller => 'transferencias', :action => 'consulta_transferencia_classe'
   map.consulta_classe_nota '/consulta_classe_nota', :controller => 'atribuicaos', :action => 'consulta_classe_nota'
   map.consultar_matricula '/consultar_matricula', :controller => 'matriculas', :action => 'consultar_matricula'
+  map.consultar_relatorio '/consultar_relatorio', :controller => 'relatorio', :action => 'consulta_relatorio'
+
 
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
   map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'

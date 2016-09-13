@@ -1,0 +1,24 @@
+<h1>Listing observacao_historicos</h1>
+
+<table>
+  <tr>
+    <th>Aluno</th>
+    <th>Observacao</th>
+    <th>Ano letivo</th>
+  </tr>
+
+<% @observacao_historicos.each do |observacao_historico| %>
+  <tr>
+    <td><%=h observacao_historico.aluno_id %></td>
+    <td><%=h observacao_historico.observacao %></td>
+    <td><%=h observacao_historico.ano_letivo %></td>
+    <td><%= link_to 'Show', observacao_historico %></td>
+    <td><%= link_to 'Edit', edit_observacao_historico_path(observacao_historico) %></td>
+    <td><%= link_to 'Destroy', observacao_historico, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New observacao_historico', new_observacao_historico_path %>

@@ -1,0 +1,18 @@
+<p>
+  <b>Aluno:</b>
+  <%=h @observacao_historico.aluno_id %>
+</p>
+
+<p>
+  <b>Observacao:</b>
+  <%=h @observacao_historico.observacao %>
+</p>
+
+<p>
+  <b>Ano letivo:</b>
+  <%=h @observacao_historico.ano_letivo %>
+</p>
+
+
+<%= link_to 'Edit', edit_observacao_historico_path(@observacao_historico) %> |
+<%= link_to 'Back', observacao_historicos_path %>

@@ -23,19 +23,20 @@
            <td align="left"><b>Disciplina:</b></td>
            <td colspan="3"align="left"><%=h @atribuicao.disciplina.disciplina%></td>
        </tr>
-       <tr bgcolor="#F5F5F5">
-           <td align="left"witdh ="5%"><b>Aulas 1º Bim:</b></td>
-           <td align="left"><%=h @atribuicao.aulas1%>
-           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Aulas 2º Bim:</b>
-           &nbsp&nbsp&nbsp <%=h @atribuicao.aulas2%></td>
-       </tr>
-       <tr bgcolor="#F5F5F5">
-           <td align="left"><b>Aulas 3º Bim:</b></td>
-           <td align="left" ><%=h @atribuicao.aulas3%>
-           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Aulas 4º Bim:</b>
-           &nbsp&nbsp&nbsp <%=h @atribuicao.aulas4%></td>
-       </tr>
-
+       <%if current_user.unidade_id > 40  and  current_user.unidade_id < 52 %>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"witdh ="5%"><b>Aulas 1º Bim:</b></td>
+               <td align="left"><%=h @atribuicao.aulas1%>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Aulas 2º Bim:</b>
+               &nbsp&nbsp&nbsp <%=h @atribuicao.aulas2%></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+               <td align="left"><b>Aulas 3º Bim:</b></td>
+               <td align="left" ><%=h @atribuicao.aulas3%>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Aulas 4º Bim:</b>
+               &nbsp&nbsp&nbsp <%=h @atribuicao.aulas4%></td>
+           </tr>
+       <%end%>
   </table>
 </fieldset>
 
