@@ -163,7 +163,7 @@ display: none;
                   
                          <li><a class="item-primary" href="#;">Aluno</a>
                               <ul>
-                                <li><%= link_to "Dados Pessoais", new_aluno_path%> </li>
+                                <li><%= link_to "Dados Pessoais", certeza_alunos_path%> </li>
                                 <li><%= link_to "Saude", new_saude_path%></li>
                                 <li><%= link_to "Socioeconômico", new_socioeconomico_path%></li>
                                  <% if current_user.has_role?('admin') %>

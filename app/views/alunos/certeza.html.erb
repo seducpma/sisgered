@@ -1,0 +1,42 @@
+<div id="interno2">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>SISTEMA DE GERENCIAMENTO ESCOLAR</strong></font><br/>
+ </div>
+      <div class="tabs">
+        <fieldset>
+          <table width="100%">
+             <tr bgcolor="#F5F5F5">
+               <td align="center">
+                 <br/>
+                <font size="5"color="red" ><b><u>ATENÇÃO</b></u></font><br/><br/><br/>
+                <font size="3"color="red">
+                   EVITE DUPLICIDADE DE CADASTROS (QUE PODE CAUSAR ALGUMAS INCONSISTÊNCIAS NO SISTEMA), <br/><br/>
+                   SE VOCÊ TEM CERTEZA QUE O ALUNO AINDA NÃO FOI CADASTRADO CLIQUE NO BOTÃO <u><b>CADASTRAR</b></u>, <br/><br/>
+                   SE NÃO TEM CERTEZA CLIQUE NO BOTÃO <u><b>CONSULTAR.</b></u> </center></font><br/><br/>
+               </td>
+             </tr>
+          </table>
+        </fieldset>
+        <table>
+
+        </table>
+        <table width="100%">
+              <tr>
+               <td width="6%"align="left" ><%= button_to '    Fechar    ', home_path, {:method => "get"}  %></td>
+               <td width="6%"align="left"><%= button_to '    Cadastrar    ', new_aluno_path, :title => "Cadastrar" %></td>
+               <td align="left"><%= button_to '    Consultar    ', consulta_cadastro_alunos_path, :title => "Consultar" %></td>
+
+              </tr>
+        </table>
+
+
+
+      
+
+
+    </div>
+</div>
+<br/>
+</div>

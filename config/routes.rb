@@ -19,7 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :socioeconomicos
   map.resources :saudes
   map.resources :pessoas
-  map.resources :alunos, :collection => {:consulta_ficha => :get ,  :consulta_cadastro => :get, :editar_ficha=>:get}
+  map.resources :alunos, :collection => {:consulta_ficha => :get ,  :consulta_cadastro => :get, :editar_ficha=>:get, :certeza =>:get}
   map.resources :logs
   map.resources :roles_users
   map.resources :users
