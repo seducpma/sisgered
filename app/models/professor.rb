@@ -3,6 +3,7 @@ class Professor < ActiveRecord::Base
   belongs_to :unidade
   has_many :atribuicaos
   has_many :notas
+  has_many :users
   has_many :relatorios
   
   #has_one :tempo_servico, :dependent => :delete

@@ -80,10 +80,10 @@
                        <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
 
             <%end%>
-                        <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consultas_criancas_path, :title => "Nova Consulta" %></td>
+                        
                          
                      <%if current_user.has_role?('professor') %>
-                         <td><%= button_to 'Voltar', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>
+                         <td><%= button_to 'Lançar Notas', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>
                      <%else%>
                          <td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %></td>
                      <%end%>

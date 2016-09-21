@@ -236,38 +236,44 @@
     <font  size=3><b> Responsávels</b></font></legend>
        <table border="1" cellspacing="0" cellpadding="1" width="100%"style="border-color: white">
            <tr>
+             <td ><b>Nome:</b></td>
+             <td> <%= aluno.aluno_nome_responsavel%></td>
+             <td><b>Parentesco: </b></td><td><%=  aluno.aluno_parente_responsavel %></td>
+           </tr>
+           <tr>
                <td ><b>Profissão:</b></td>
-               <td colspan="3"> <%= aluno.aluno_profissao_responsavel%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-               <b>Condição Profissional: </b>
+               <td > <%= aluno.aluno_profissao_responsavel%></td>
+               <td  colspan="2"><b>Condição Profissional: </b>&nbsp&nbsp
                  <%= aluno.aluno_condicao_profissao_responsavel %></td>
            </tr>
            <tr>
-               <td colspan="4"> <b>Local Trabalho: </b><%= aluno.aluno_local_trabalho_responsavel %>
-                 &nbsp&nbsp&nbsp&nbsp
-                <b>Fone: </b>&nbsp&nbsp
-                <%= aluno.aluno_fone_trabalho_responsavel%></td>
+             <td colspan="2"> <b>Local Trabalho: </b><%= aluno.aluno_local_trabalho_responsavel %></td>
+             <td><b>Fone(s): </b></td><td><%= aluno.aluno_fone_trabalho_responsavel%></td>
            </tr>
            <tr>
-               <td><b>Contato:</b></td>
+              <td colspan="4" ><b>Outras pessoas que possam ser contatadas em caso de necessidade ou urgência:</b></td>
+           </tr>
+           <tr>
+               <td><b>Nome:</b></td>
                <td> <%= aluno.aluno_contato1%>&nbsp&nbsp
                  <b>Fone:</b><%= aluno.aluno_contato1_fone%></td>
-                <td><b>Contato:</b></td>
+                <td><b>Nome:</b></td>
                <td> <%= aluno.aluno_contato2%>&nbsp&nbsp
                  <b>Fone:</b><%= aluno.aluno_contato2_fone%></td>
            </tr>
            <tr>
-               <td><b>Contato:</b></td>
+               <td><b>Nome:</b></td>
                <td> <%= aluno.aluno_contato3%>&nbsp&nbsp
                  <b>Fone:</b><%= aluno.aluno_contato3_fone%></td>
-                <td><b>Contato:</b></td>
+                <td><b>Nome:</b></td>
                <td> <%= aluno.aluno_contato4%>&nbsp&nbsp
                  <b>Fone:</b><%= aluno.aluno_contato4_fone%></td>
            </tr>
            <tr>
-               <td><b>Contato:</b></td>
+               <td><b>Nome:</b></td>
                <td> <%= aluno.aluno_contato5%>&nbsp&nbsp
                  <b>Fone:</b><%= aluno.aluno_contato5_fone%></td>
-                <td><b>Contato:</b></td>
+                <td><b>Nome:</b></td>
                <td> <%= aluno.aluno_contato6%>&nbsp&nbsp
                  <b>Fone:</b><%= aluno.aluno_contato6_fone%></td>
            </tr>

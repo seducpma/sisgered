@@ -1,7 +1,9 @@
+
 require 'digest/sha1'
 
+ 
 class User < ActiveRecord::Base
-  
+  belongs_to :professor
   
   has_one :roles_user, :dependent => :delete
   # ---------------------------------------

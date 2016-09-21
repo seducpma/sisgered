@@ -230,6 +230,13 @@
  <fieldset><legend><font size=4>Responsável pelo Aluno</font></legend>
    <table width="100%" >
        <tr bgcolor="#F5F5F5">
+         <td ><b>Nome:</b></td>
+         <td colspan="3"> <%= f.text_field :aluno_nome_responsavel, :size=>"64"%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         <b>Parentesco: </b><%=  f.select :aluno_parente_responsavel,(PARENTE).sort, :include_blank => '-- Selecionar --' %></td>
+           
+       </tr>
+
+       <tr bgcolor="#F5F5F5">
          <td ><b>Profissão:</b></td>
          <td colspan="3"> <%= f.text_field :aluno_profissao_responsavel, :size=>"51"%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
          <b>Condição Profissional: </b>
@@ -238,30 +245,33 @@
        <tr bgcolor="#F5F5F5">
          <td colspan="4"> <b>Local Trabalho: </b><%= f.text_field :aluno_local_trabalho_responsavel, :size=> '65' %>
            &nbsp&nbsp&nbsp&nbsp
-          <b>Fone: </b>&nbsp&nbsp
-          <%= f.text_field :aluno_fone_trabalho_responsavel, :size=>"14"%></td>
+          <b>Fones: </b>&nbsp&nbsp
+          <%= f.text_field :aluno_fone_trabalho_responsavel, :size=>"20"%></td>
       </tr>
        <tr bgcolor="#F5F5F5">
-         <td><b>Contato:</b></td>
+         <td colspan="4" ><b>Outras pessoas que possam ser contatadas em caso de necessidade ou urgência:</b></td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td><b>Nome:</b></td>
          <td> <%= f.text_field :aluno_contato1, :size=>"23"%>&nbsp&nbsp
            <b>Fone:</b><%= f.text_field :aluno_contato1_fone, :size=>"10"%></td>
-          <td><b>Contato:</b></td>
+          <td><b>Nome:</b></td>
          <td> <%= f.text_field :aluno_contato2, :size=>"23"%>&nbsp&nbsp
            <b>Fone:</b><%= f.text_field :aluno_contato2_fone, :size=>"10"%></td>
        </tr>
        <tr bgcolor="#F5F5F5">
-         <td><b>Contato:</b></td>
+         <td><b>Nome:</b></td>
          <td> <%= f.text_field :aluno_contato3, :size=>"23"%>&nbsp&nbsp
            <b>Fone:</b><%= f.text_field :aluno_contato3_fone, :size=>"10"%></td>
-          <td><b>Contato:</b></td>
+          <td><b>Nome:</b></td>
          <td> <%= f.text_field :aluno_contato4, :size=>"23"%>&nbsp&nbsp
            <b>Fone:</b><%= f.text_field :aluno_contato4_fone, :size=>"10"%></td>
        </tr>
        <tr bgcolor="#F5F5F5">
-         <td><b>Contato:</b></td>
+         <td><b>Nome:</b></td>
          <td> <%= f.text_field :aluno_contato5, :size=>"23"%>&nbsp&nbsp
            <b>Fone:</b><%= f.text_field :aluno_contato5_fone, :size=>"10"%></td>
-          <td><b>Contato:</b></td>
+          <td><b>Nome:</b></td>
          <td> <%= f.text_field :aluno_contato6, :size=>"23"%>&nbsp&nbsp
            <b>Fone:</b><%= f.text_field :aluno_contato6_fone, :size=>"10"%></td>
        </tr>
