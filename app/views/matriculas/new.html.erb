@@ -9,6 +9,10 @@
          <%= f.error_messages %>
         <fieldset><legend><font size=4>Matrícula Aluno</font></legend>
         <table>
+            <tr>
+              <td colspan="2"><font color ="red" size ="3"><b><u>ATENÇÃO:</u> Antes de matricular os alunos na classe, certifique-se que os TODOS os professores já foram atribuidos às classes.</b>        <font></td>
+
+            </tr>
            <tr>
              <td><b>Classe: </b></td>
              <td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>

@@ -131,7 +131,7 @@ class MatriculasController < ApplicationController
                       end
                end
         end
-        flash[:notice] = 'MATRICULA SALVA COM'
+        flash[:notice] = 'MATRICULA SALVA COM SUCESSO'
         if @matricula.status =="MATRICULADO"
           @matriculas = Matricula.find(:all, :conditions => ['classe_id =?', session[:classe_id]])
           format.html { render :action => "show_classe" }
