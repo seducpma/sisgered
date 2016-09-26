@@ -29,6 +29,15 @@ class MatriculasController < ApplicationController
     end
   end
 
+  def new1
+    @matricula = Matricula.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @matricula }
+    end
+  end
+
   def transferencia
   @matricula = Matricula.new
 
@@ -55,7 +64,7 @@ class MatriculasController < ApplicationController
   
    if session[:flagnum] == 1
       @matricula = Matricula.new(params[:matricula])
-
+      session[:flagnum] = 0
    else
        @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
        session[:numero]=@matricula_num.classe_num
@@ -66,12 +75,18 @@ class MatriculasController < ApplicationController
     @matricula.unidade_id= current_user.unidade_id
     session[:classe_id]= @matricula.classe_id
     #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["atribuicaos.classe_id =? ",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
-
      @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
-
      if !@matricula_anterior.nil?
          session[:status_anterior] =  @matricula_anterior.status
      end
+     @matricula_anterior_num_aluno = Matricula.find(:last, :conditions => ['classe_id =?', @matricula.classe_id])
+     if @matricula_anterior_num_aluno.nil?
+        @matricula.classe_num=1
+     else
+        @matricula.classe_num= (@matricula_anterior_num_aluno.classe_num) +1
+     end
+
+
 
     respond_to do |format|
       if @matricula.save
@@ -134,10 +149,13 @@ class MatriculasController < ApplicationController
         flash[:notice] = 'MATRICULA SALVA COM SUCESSO'
         if @matricula.status =="MATRICULADO"
           @matriculas = Matricula.find(:all, :conditions => ['classe_id =?', session[:classe_id]])
+          session[:classe_new1]= @matriculas.last.classe.id
           format.html { render :action => "show_classe" }
+
         else
            format.html { redirect_to(@matricula) }
            format.xml  { render :xml => @matricula, :status => :created, :location => @matricula }
+
         end
      end
      if (@matricula.status == '*REMANEJADO') or (@matricula.status == 'TRANSFERENCIA')
@@ -283,7 +301,11 @@ class MatriculasController < ApplicationController
 
 
   def show_classe
-    @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', session[:aluno_id]], :order => 'classe_num')
+
+    @matriculas = Matricula.find(:all, :conditions => ['classe_id =?', session[:classe_id]], :order => 'classe_num')
+    
+    t=0
+
   end
 
 

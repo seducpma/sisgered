@@ -53,7 +53,8 @@
                      <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@atribuicao}, :method => "get", :title => "Editar"%></td>
                 <%end%>
 
-                <td><td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %></td></td>
+                <td width="6%"><%= button_to 'Cadastrar Atribuição',new_atribuicao_path, :method => :get %></td></td>
+                <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
             <%end%>
          </tr><br/>
        </table>

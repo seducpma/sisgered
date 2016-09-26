@@ -28,7 +28,16 @@ class RolesUsersController < ApplicationController
   end
 
   def load_role
-    @roles = Role.find(:all)
+    if current_user.has_role?('admin')
+        @roles = Role.find(:all)
+    else if current_user.has_role?('direcao_infantil')
+          @roles = Role.find(:all, :conditions => ['id > 8'])
+         else if current_user.has_role?('direcao')
+                @roles = Role.find(:all, :conditions => ['id > 3 and id < 9'])
+               else
+              end
+         end
+    end
     @role_users = RolesUser.find(:all)
   end
 

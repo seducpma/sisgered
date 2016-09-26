@@ -83,7 +83,7 @@ display: none;
               <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
            <%else%>
               <% if current_user.has_role?('supervisao') %>
-                  <td>Acesso Supervisão SEDUC |
+                  <td>Acesso Supervisã {:selecteo SEDUC |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
                            <font size="1">  <%= uni %></font></td>
@@ -116,8 +116,8 @@ display: none;
                                  <font size="1">  <%= uni %></font>
                             </td>
                              <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
-                               <%else if current_user.has_role?('infantil') %>
-                                     <td>Acesso Infantil |
+                               <%else if current_user.has_role?('secretaria_infantil') %>
+                                     <td>Acesso Secretaria Infantil |
                                          <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                                          <% uni = @unidade.first.nome  %>
                                          <font size="1">  <%= uni %></font>
@@ -167,7 +167,7 @@ display: none;
               </li>
               
               <li><span class="divider divider-vert" ></span></li>
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil') or current_user.has_role?('direcao_infantil'))%>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil'))%>
               <li><a class="item-primary" href="#;">CADASTRAR</a>
                  <ul style="width:108px;">
                   
@@ -183,7 +183,7 @@ display: none;
                          </li>
 
 
-                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                        <% if current_user.unidade_id == 43 or (current_user.unidade_id == 50) or (current_user.unidade_id == 51) %>
 
                        <%else%>
@@ -200,19 +200,19 @@ display: none;
                            <li><%= link_to "Disciplina",new_disciplina_path %></li>
                       <%end%>
 -->
-<!--                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo')  or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>   -->
+<!--                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo')  or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>   -->
 
                           <li><%= link_to "Atribuição",new_atribuicao_path %></li>
 
 <!--                   <%end%>   -->
-                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo')or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                                 <% if (current_user.unidade_id == 44)or (current_user.unidade_id == 46)or (current_user.unidade_id == 47) or(current_user.unidade_id == 52) or (current_user.unidade.tipo_id == 2)or (current_user.unidade.tipo_id == 3)or (current_user.unidade.tipo_id == 5)or (current_user.unidade.tipo_id== 8)or current_user.has_role?('admin') %>
                                     <li><%= link_to "Matricula", new_matricula_path %></li>
                                 <%end%>
 
 
                       <%end%>
-                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                            <li><a class="item-primary" href="#;">Transferência</a>
                               <ul>
                                 <li><%= link_to "Entrada", transferencia_matriculas_path%></li>
@@ -220,40 +220,40 @@ display: none;
                               </ul>
                          </li>
                        <%end%>
-                     <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('infantil')%>
-                           <li><%= link_to "Relatorio", new_relatorio_path %></li>
+                     <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('secretaria_infantil')%>
+                           <li><%= link_to "FAPEA", new_relatorio_path %></li>
                      <%end%>
 
                  </ul>
               </li>
      <%end%>
               <li><a class="item-primary" href="#;">CONSULTAR</a>
-               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('professor')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('professor')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                  <ul style="width:108px;">
                    <li><a class="item-primary" href="#;">Aluno</a>
                        <ul>
                            <li><%= link_to "Unidade",consulta_ficha_alunos_path %></li>
-                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                                <li><%= link_to "SEDUC",consulta_cadastro_alunos_path %></li>                           
                            <%end%>
                        </ul>
                      
                    </li>
-                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
-                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                           <li><%= link_to "Bolsa Família",consulta_bolsa_familia_path %></li>
                        <%end%>
                      <%end%>
                        <li><%= link_to "Classe",consulta_classe_path %></li>
                        <li><%= link_to "Matricula",consultar_matriculas_path %></li>
-                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                            <li><%= link_to "Professor",consulta_professor_nome_path %></li>
                            <li><%= link_to "Professor/Classe",consulta_classe_professors_path %></li>
                            <li><%= link_to "Responsável",consulta_reponsavel_path %></li>
                            <!--<li><%= link_to "Transferência",consulta_transferencia_path %></li>-->
                      <%end%>
                         <li><%= link_to "Unidade",consultas_unidades_path %></li>
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                          <li><%= link_to "Relatório",relatorio_relatorios_path %></li>
                      <%end%>
                   </ul>
@@ -261,7 +261,7 @@ display: none;
               </li>
               <li><span class="divider divider-vert" ></span></li>
 
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('infantil')or current_user.has_role?('direcao_infantil'))%>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                 <li><a class="item-primary" href="#;">EDITAR</a>
                 <ul style="width:108px;">
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>

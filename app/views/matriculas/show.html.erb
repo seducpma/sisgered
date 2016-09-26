@@ -12,6 +12,7 @@
               <td align="left" width ="15%"><b> Aluno:</b></td>
               <td align="left"> <%=h @matricula.aluno.aluno_nome%>  &nbsp&nbsp&nbsp&nbsp <b> Nº:</b> <%=h @matricula.classe_num%></td>
            </tr>
+           <% session[:aluno_id]= @matricula.aluno_id  %>
            <%if @matricula.procedencia.nil? or !@matricula.procedencia.present?%>
            <%else%>
            <tr bgcolor="#F5F5F5"  width="100%">
@@ -73,7 +74,8 @@
     <table>
          <tr>
 
-            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
+                
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@matricula}, :method => "get", :title => "Editar"%></td>
                  <% if (current_user.has_role?('admin'))%>
                      <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@matricula}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
@@ -81,6 +83,8 @@
             <%else%>
                 <td align="center"></td>
              <%end%>
+
+             <td width="6%"><%= button_to 'Visualizar Classe', {:action => "show_classe" }  %></td>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
     </table>
@@ -138,7 +142,8 @@
     <table>
          <tr>
 
-            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
+                
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit_saida", :id =>@matricula}, :method => "get", :title => "Editar"%></td>
                 <% if (current_user.has_role?('admin'))%>
                     <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@matricula}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
@@ -146,6 +151,7 @@
             <%else%>
                 <td align="center"></td>
              <%end%>
+             <td width="6%"><%= button_to 'Visualizar Classe', {:action => "show_classe" }  %></td>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
     </table>

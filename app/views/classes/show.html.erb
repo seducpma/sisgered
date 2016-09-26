@@ -26,13 +26,9 @@
                    <td align="left"> <%=h @classe.horario %></td>
                  </tr>
                  <tr bgcolor="#F5F5F5" >
-                   <td align="left"><b>Descrição:</b></td>
+                   <td align="left"><b>GDAE:</b></td>
                    <td colspan="3"align="left"> <%=h @classe.classe_descricao %></td>
                  </tr>
-
-                
-
-                 
                </table>
            </td>
         </tr>
@@ -52,7 +48,7 @@
             <%else%>
                 <td align="center"></td>
              <%end%>
-           <td width="4%"align="left"><%= button_to 'Nova Consulta' ,consulta_classe_path, :title => "Nova Consulta" %></td>
+           <td width="4%"align="left"><%= button_to 'Cadastrar Classe' ,new_class_path, :title => "Cadastar  " %></td>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
     </table>
