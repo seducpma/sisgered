@@ -82,4 +82,11 @@ module ApplicationHelper
       end
     end
    end
+
+def character_count(field_id, update_id, options = {})
+function = "$('#{update_id}').innerHTML = $F('#{field_id}').length;"
+out = javascript_tag(function) # set current length
+options = {:frequency => 0.1, :function => function}.merge(options) # default options
+out += observe_field(field_id, options) # and observe it
+end
 end

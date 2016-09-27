@@ -94,10 +94,7 @@ class RelatoriosController < ApplicationController
   def professor
     session[:professor_id]=params[:relatorio_professor_id]
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =?", session[:professor_id] ])
-       render :update do |page|
-          page.replace_html 'dados_prof', :partial => 'classe'
-       end
-
+       render :partial => 'aluno_classe'
   end
 
 
@@ -123,8 +120,12 @@ class RelatoriosController < ApplicationController
 
   def dados
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =?", session[:professor_id] ])
+
+    @aluno = Aluno.find(:all, :conditions => ["id=?", params[:relatorio_aluno_id]])
+
     render :update do |page|
           page.replace_html 'dados_aluno', :partial => 'dados'
+          page.replace_html 'dados_aluno1', :partial => 'dados_pais'
        end
   end
 

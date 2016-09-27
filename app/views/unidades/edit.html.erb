@@ -39,8 +39,12 @@
                     <td> <%= f.text_field :coordenador, :size =>"38" %></td>
                     <td><b>Superisão: </b></td>
                     <td> <%= f.text_field :supervisao, :size =>"39" %></td>
-
+                
                 </tr>
+                 <tr >
+                    <td valign="top"><b>Observações:</b></td>
+                    <td colspan="3"valign="top"><%= f.text_area(:obs, :cols =>"96", :rows => "5") %></td>
+                 </tr>
 
              </table>
            </fieldset>
