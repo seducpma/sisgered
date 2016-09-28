@@ -292,7 +292,7 @@ end
 
 def lancar_notas_alunos
 if ( params[:disciplina].present?)
-  w=params[:disciplina]
+  params[:disciplina]
       @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
         for dis in @disci
             session[:disc_id] = dis.id
@@ -308,8 +308,7 @@ if ( params[:disciplina].present?)
        end
       @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?" ,  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
       @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",  params[:classe][:id], params[:professor][:id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-      w=session[:aluno_id]= @notas[0].aluno_id
-
+      session[:aluno_id]= @notas[0].aluno_id
        render :update do |page|
           page.replace_html 'notas', :partial => 'aulas'
        end

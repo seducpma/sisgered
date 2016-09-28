@@ -37,11 +37,11 @@ class AtribuicaosController < ApplicationController
   def edit
     t=0
     @atribuicao = Atribuicao.find(params[:id])
-    w1=session[:atrib_id]
-    w2=session[:aluno_id]
+    session[:atrib_id]
+    session[:aluno_id]
     @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
-    w=@notas[0].aulas1
-    t=0
+    @notas[0].aulas3
+
   end
 
  def create
