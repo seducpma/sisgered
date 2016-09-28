@@ -254,7 +254,7 @@ display: none;
                      <%end%>
                         <li><%= link_to "Unidade",consultas_unidades_path %></li>
                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                         <li><%= link_to "Relatório",relatorio_relatorios_path %></li>
+                         <li><%= link_to "FAPEA",relatorio_relatorios_path %></li>
                      <%end%>
                   </ul>
                <%end%>
