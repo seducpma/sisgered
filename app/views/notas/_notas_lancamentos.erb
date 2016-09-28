@@ -86,9 +86,12 @@
                   <td width ="46%" align="left"><%= nota.matricula.aluno.aluno_nome %>
                                                   <%if !nota.matricula.status =="MATRICULADO" or  nota.matricula.status == 'TRANSFERIDO' %>
                                                       <font color ="red"> (Transferido)</font>
-                                                  <%end%>
-                                                  <%if nota.matricula.status == 'REMANEJADO' %>
-                                                      <font color ="green"> (Remanejado)</font>
+                                                  <%else if nota.matricula.status == 'REMANEJADO' %>
+                                                            <font color ="green"> (Remanejado)</font>
+                                                            <%else if nota.matricula.status == 'TRANSFERENCIA' %>
+                                                                    <font color ="blue"> (Transferência)</font>
+                                                              <%end%>
+                                                          <%end%>
                                                   <%end%>
                                                   - (<%= nota.matricula.aluno_id%>) </td>
 
