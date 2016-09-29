@@ -88,6 +88,7 @@ end
         @disci = Disciplina.find(:all, :conditions => ["id =?",session[:disc_id]])
         @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',  session[:classe_id],session[:professor_id], session[:disc_id]])
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
+
         @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=? ",  session[:classe_id],session[:professor_id], session[:disc_id], Time.now.year],:order => 'matriculas.classe_num ASC')
         for atrib in  @atribuicao_classe
           @nota.aulas1 = atrib.aulas1

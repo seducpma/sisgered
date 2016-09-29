@@ -62,13 +62,13 @@ class AtribuicaosController < ApplicationController
 
  def create_observacao_historico
 
-   t=params[:observacao_historico]
+     params[:observacao_historico]
     @observacao_historico = ObservacaoHistorico.new(params[:observacao_historico])
-      t1=params[:observacao_historico]
-t=0
+      params[:observacao_historico]
+
       @historico_aluno  = Aluno.find(session[:historico_aluno_id])
-      w=@observacao_historico.aluno_id = @aluno.id
-t=0
+      @observacao_historico.aluno_id = @aluno.id
+
       @observacao_historico.data = Time.now
 
       if @observacao_historico.save
@@ -87,6 +87,19 @@ end
 
     respond_to do |format|
       if @atribuicao.update_attributes(params[:atribuicao])
+
+     @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", @atribuicao.id,Time.now.year ])
+
+      for nota in @notas
+         nota = Nota.find(nota.id)
+         nota.aulas1=@atribuicao.aulas1
+         nota.aulas2=@atribuicao.aulas2
+         nota.aulas3=@atribuicao.aulas3
+         nota.aulas4=@atribuicao.aulas4
+         nota.save
+      end
+
+t=0
         flash[:notice] = 'SALVO COM SUCESSO!'
 
             format.html { redirect_to(@atribuicao) }
