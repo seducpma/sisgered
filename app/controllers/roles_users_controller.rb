@@ -33,7 +33,7 @@ class RolesUsersController < ApplicationController
     else if current_user.has_role?('direcao_infantil')
           @roles = Role.find(:all, :conditions => ['id > 8'])
          else if current_user.has_role?('direcao')
-                @roles = Role.find(:all, :conditions => ['id > 3 and id < 9'])
+                @roles = Role.find(:all, :conditions => ['id > 4 and id < 9'])
                else
               end
          end

@@ -36,10 +36,6 @@
                   <td align="left"> <b>Email:</b></td>
                   <td> <%= f.text_field :email %></td>
                 </tr>
-                 <tr>
-                     <td align="left"><b>Unidade:</b></td>
-                     <td colspan="2" align="left"><%= f.collection_select :unidade_id,Unidade.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %></td>
-                 </tr>
          </table>
        </font>
      </fieldset>
