@@ -73,6 +73,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_transferencia_aluno'impressao_transferencia_aluno', :controller => 'atribuicaos', :action => 'impressao_transferencia_aluno'
   map.impressao_historico'impressao_historico', :controller => 'atribuicaos', :action => 'impressao_historico'
   map.impressao_historico_aluno'impressao_historico_aluno', :controller => 'atribuicaos', :action => 'impressao_historico_aluno'
+  map.impressao_fapea '/impressao_fapea', :controller => 'relatorios', :action => 'impressao_fapea'
 
   #map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'arquivo_historico'
   map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'download_historico'

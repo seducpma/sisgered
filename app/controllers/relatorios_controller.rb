@@ -2,7 +2,7 @@ class RelatoriosController < ApplicationController
   # GET /relatorios
   # GET /relatorios.xml
    before_filter :load_dados_iniciais
-
+   before_filter :load_consulta_ano
 
   def index
     @relatorios = Relatorio.all
@@ -109,13 +109,26 @@ class RelatoriosController < ApplicationController
 
   def relatorio
      if ( params[:aluno].present?)
-      @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno]])
+       w1=session[:aluno_imp]= params[:aluno]
+       w2=session[:ano_imp]=params[:ano_letivo]
+      @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno], params[:ano_letivo]])
+
         respond_to do |format|
           format.html # index.html.erb
           format.xml  { render :xml => @relatorios }
         end
     end
   end
+
+
+  def impressao_fapea
+
+      @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]])
+      render :layout => "impressao"
+  end
+  
+
+
 
 
   def dados
@@ -151,5 +164,8 @@ class RelatoriosController < ApplicationController
 
   end
 
+  def load_consulta_ano
+    @ano =   Relatorio.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
 
+  end
 end

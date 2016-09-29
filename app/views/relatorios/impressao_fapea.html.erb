@@ -1,0 +1,82 @@
+<table class ="invisible_to_print ">
+  <tr>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+</table>
+            <% for relatorio in @relatorios %>
+              <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                <tr  style="border-color: white">
+                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                      <center><font size="2"> Unidade Escolar: <%=h relatorio.atribuicao.classe.unidade.nome %> </i></b><br/></center>
+                      <center><font size="2"><b><u>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</u></b></font></center>
+
+                  </td>
+                </tr>
+               </table>
+                <table cellspacing="0" cellpadding="0" width="100%" style="border-color: white">
+                 <tr >
+                   <td width=5%" align="left"><b>Aluno:</b></td>
+                   <td><%=h relatorio.aluno.aluno_nome %></td>
+                   <td width=10%" align="left"><b>Nascimento:</b></td>
+                   <td><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+
+                 </tr>
+                 <tr >
+                   <td align="left"><b>Unidade:</b></td>
+                   <td><%=h relatorio.atribuicao.classe.unidade.nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                   <b>Disciplina:</b> <%=h relatorio.atribuicao.disciplina.disciplina%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                   <b>Classe:</b>
+                                   <%=h relatorio.atribuicao.classe.classe_classe %>
+                   <td><b>Ano Letivo:</b></td>
+                   <td><%=h relatorio.ano_letivo %>
+                     <% bimestre = relatorio.created_at.strftime("%M").to_i %>
+
+
+
+                   <% if  ( bimestre < 8 ) %>
+                     - 1º Bimetre
+                   <% else %>
+                     - 2º Bimestre
+                   <%end%>
+
+
+                   </td>
+                </tr>
+                 <tr>
+                   <td align="left"><b>Mãe / Pai:</b></td>
+                   <td colspan="3"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
+                </tr>
+                 <tr >
+                   <td align="left" valign="top"><b>Professor:</b></td>
+                   <td colspan="3"><%=h relatorio.professor.nome %></td>
+                </tr>
+                 <tr>
+                   <td align="left" valign="top"><b>Relatório:</b></td>
+                   <td colspan="3"><%=h relatorio.observacao %></td>
+                </tr>
+                <tr>
+                  <td colspan="5">
+                    <br/><br/><br/>
+                  </td>
+                </tr>
+
+                 <tr  style="border-color: white">
+                   <td colspan="5">
+                    <br/><br/><br/><br/><br/><br/>
+                       &nbsp&nbsp&nbsp&nbsp________________________________________ &nbsp&nbsp&nbsp&nbsp&nbsp ______________________________________<br/>
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Professor       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Responsável p/ Aluno    <br/>
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
+                       <br/><br/><br/><br/><br/><br/>
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b>
+                    <br/><br/><br/><br/><br/><br/>
+                  </td>
+                </tr>
+              </table>
+<br/><br/><br/><hr/><br/>
+<div style="page-break-after: always"></div>
+
+<%end%>
+
+
