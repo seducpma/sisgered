@@ -109,8 +109,8 @@ class RelatoriosController < ApplicationController
 
   def relatorio
      if ( params[:aluno].present?)
-       w1=session[:aluno_imp]= params[:aluno]
-       w2=session[:ano_imp]=params[:ano_letivo]
+       session[:aluno_imp]= params[:aluno]
+       session[:ano_imp]=params[:ano_letivo]
       @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno], params[:ano_letivo]])
 
         respond_to do |format|
