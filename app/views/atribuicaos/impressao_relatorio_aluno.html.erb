@@ -84,13 +84,15 @@
       <%if nota.nota1.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota1 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas1 %></th>
-           <th style="font-size: 8px" align="center"><%if !nota.aulas1.nil?%>
+           <th style="font-size: 8px" align="center"><%if nota.aulas1 !=0 %>
+                                                      <%if !nota.aulas1.nil?%>
                                                          <% frequencia1 =  (100-(nota.faltas1.to_f / nota.aulas1.to_f)*100).to_i %>
                                                          <%if frequencia1 < 75 %>
                                                               <font color ="red"> <%= frequencia1%> % </font>
                                                          <%else%>
                                                                  <%= frequencia1%> %
                                                          <%end%>
+                                                      <%end%>
                                                      <%end%>
           </th>
       <%else%>
@@ -101,13 +103,15 @@
       <%if nota.nota2.present?%>
            <th style="font-size: 8px" align="center"><%= nota.nota2 %></th>
            <th style="font-size: 8px" align="center"><%= nota.faltas2 %></th>
-           <th style="font-size: 8px" align="center"><%if !nota.aulas2.nil?%>
+           <th style="font-size: 8px" align="center"><%if nota.aulas1 !=0 %>
+                                                      <%if !nota.aulas2.nil?%>
                                                          <% frequencia2 =  (100-(nota.faltas2.to_f / nota.aulas2.to_f)*100).to_i %>
                                                          <%if frequencia2 < 75 %>
                                                               <font color ="red"> <%= frequencia2%> % </font>
                                                          <%else%>
                                                                  <%= frequencia2%> %
                                                          <%end%>
+                                                      <%end%>
                                                      <%end%>
           </th>
       <%else%>
