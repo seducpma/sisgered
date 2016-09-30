@@ -36,7 +36,7 @@
                   <td align="left"> <b>Email:</b></td>
                   <td> <%= f.text_field :email %></td>
                 </tr>
-                <% if current_user.id == 1 or current_user.id == 401  or current_user.id == 2  %>
+                <% if current_user.id == 1 or current_user.id == 401  or current_user.id == 2   or current_user.id == 524 %>
                    <tr>
                        <td align="left"><b>Unidade:</b></td>
                        <td colspan="2" align="left"><%= f.collection_select :unidade_id,Unidade.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %></td>
