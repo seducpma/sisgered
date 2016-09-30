@@ -90,6 +90,7 @@
                            <td align="center"><%= nota.nota1 %></td>
                            <td align="center"><%= nota.faltas1 %></td>
                            <td align="center"><%if !nota.aulas1.nil?%>
+                                <%if nota.aulas1 !=0 %>
                                   <%if nota.faltas1 == 0 %>
                                       100 %
                                   <%else%>
@@ -100,7 +101,7 @@
                                            <%= frequencia1%> %
                                       <%end%>
                                    <%end%>
-
+                                 <%end%>
                               <%end%>
                            </td>
                       <%else%>
@@ -112,6 +113,7 @@
                            <td align="center"><%= nota.nota2 %></td>
                            <td align="center"><%= nota.faltas2 %></td>
                           <td align="center"><%if !nota.aulas2.nil?%>
+                              <%if nota.aulas2 !=0 %>
                                   <%if nota.faltas2 == 0 %>
                                       100 %
                                   <%else%>
@@ -122,6 +124,7 @@
                                            <%= frequencia2%> %
                                       <%end%>
                                    <%end%>
+                                <%end%>
                               <%end%>
                            </td>
                       <%else%>
@@ -133,6 +136,7 @@
                            <td align="center"><%= nota.nota3 %></td>
                            <td align="center"><%= nota.faltas3 %></td>
                            <td align="center"><%if !nota.aulas3.nil?%>
+                               <%if nota.aulas3 !=0 %>
                                   <%if nota.faltas3 == 0 %>
                                       100 %
                                   <%else%>
@@ -143,7 +147,8 @@
                                            <%= frequencia3%> %
                                       <%end%>
                                    <%end%>
-                              <%end%>
+                               <%end%>
+                             <%end%>
                            </td>
                       <%else%>
                            <td align="center">--</td>
@@ -154,6 +159,7 @@
                            <td align="center"><%= nota.nota4 %></td>
                            <td align="center"><%= nota.faltas4 %></td>
                            <td align="center"><%if !nota.aulas4.nil?%>
+                                <%if nota.aulas4 !=0 %>
                                   <%if nota.faltas4 == 0 %>
                                       100 %
                                   <%else%>
@@ -164,6 +170,7 @@
                                            <%= frequencia4%> %
                                       <%end%>
                                    <%end%>
+                                 <%end%>
                               <%end%>
                            </td>
 
@@ -179,6 +186,7 @@
                           <%end%>
                             <td align="center"><%= nota.faltas5 %></td>
                             <td align="center"><%if !nota.aulas5.nil?%>
+                                <%if nota.aulas5 !=0 %>
                                   <%if nota.faltas5 == 0 %>
                                       100 %
                                   <%else%>
@@ -189,6 +197,7 @@
                                            <%= frequencia5%> %
                                       <%end%>
                                    <%end%>
+                                 <%end%>
                               <%end%>
                            </td>
 
@@ -225,6 +234,7 @@
                            <td align="center"><%= nota.nota1 %></td>
                            <td align="center"><%= nota.faltas1 %></td>
                            <td align="center"><%if !nota.aulas1.nil?%>
+                                <%if nota.aulas1 !=0 %>
                                   <%if nota.faltas1 == 0 %>
                                       100 %
                                   <%else%>
@@ -235,8 +245,10 @@
                                            <%= frequencia1%> %
                                       <%end%>
                                    <%end%>
+                                <%end%>
                               <%end%>
-                           </td>                      <%else%>
+                           </td>
+                        <%else%>
                            <td align="center">--</td>
                            <td align="center">--</td>
                            <td></td>
@@ -245,6 +257,7 @@
                            <td align="center"><%= nota.nota2 %></td>
                            <td align="center"><%= nota.faltas2 %></td>
                            <td align="center"><%if !nota.aulas2.nil?%>
+                                <%if nota.aulas2 !=0 %>
                                   <%if nota.faltas2 == 0 %>
                                       100 %
                                   <%else%>
@@ -255,6 +268,7 @@
                                            <%= frequencia2%> %
                                       <%end%>
                                    <%end%>
+                                <%end%>
                               <%end%>
                            </td>
                       <%else%>
@@ -266,6 +280,7 @@
                            <td align="center"><%= nota.nota3 %></td>
                            <td align="center"><%= nota.faltas3 %></td>
                            <td align="center"><%if !nota.aulas3.nil?%>
+                               <%if nota.aulas3 !=0 %>
                                   <%if nota.faltas3 == 0 %>
                                       100 %
                                   <%else%>
@@ -276,6 +291,7 @@
                                            <%= frequencia3%> %
                                       <%end%>
                                    <%end%>
+                                <%end%>
                               <%end%>
                            </td>
                       <%else%>
@@ -287,6 +303,7 @@
                            <td align="center"><%= nota.nota4 %></td>
                            <td align="center"><%= nota.faltas4 %></td>
                            <td align="center"><%if !nota.aulas4.nil?%>
+                                <%if nota.aulas4 !=0 %>
                                   <%if nota.faltas4 == 0 %>
                                       100 %
                                   <%else%>
@@ -297,6 +314,7 @@
                                            <%= frequencia4%> %
                                       <%end%>
                                    <%end%>
+                                <%end%>
                               <%end%>
                            </td>
                       <%else%>
@@ -311,6 +329,7 @@
                           <%end%>
                             <td align="center"><%= nota.faltas5 %></td>
                            <td align="center"><%if !nota.aulas5.nil?%>
+                                <%if nota.aulas5 !=0 %>
                                   <%if nota.faltas5 == 0 %>
                                       100 %
                                   <%else%>
@@ -321,6 +340,7 @@
                                            <%= frequencia5%> %
                                       <%end%>
                                    <%end%>
+                                <%end%>
                               <%end%>
                            </td>
              </tr>
