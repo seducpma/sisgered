@@ -40,7 +40,7 @@ class AtribuicaosController < ApplicationController
     session[:atrib_id]
     session[:aluno_id]
     @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
-    
+
 
   end
 

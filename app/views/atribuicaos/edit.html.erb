@@ -26,8 +26,8 @@
                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
                              <td width ="3%" align="center"> <b>1º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas1 , :size => '2'%></td>
                           <%else%>
-                            <td align="center"> <b>1º Bimestre <br/>Nº Aulas:</b>   <%if @notas[0].aulas1 != 0%>
-                                                                      <br/>&nbsp&nbsp&nbsp<%= @notas[0].aulas1%>
+                            <td align="center"> <b>1º Bimestre <br/>Nº Aulas:</b>   <%if @atribuicao.aulas1 != 0%>
+                                                                      <br/>&nbsp&nbsp&nbsp<%= @atribuicao.aulas1%>
                                                                     <%else%>
                                                                         <%= f.text_field :aulas1 , :size => '3'%>
                                                                     <%end%>
@@ -36,8 +36,8 @@
                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
                              <td width ="3%" align="center"> <b>2º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas2 , :size => '2'%></td>
                           <%else%>
-                            <td align="center"><b>2º Bimestre <br/>Nº Aulas:</b> <%if @notas[0].aulas2 != 0%>
-                                                                    <br/>&nbsp&nbsp&nbsp<%= @notas[0].aulas2%>
+                            <td align="center"><b>2º Bimestre <br/>Nº Aulas:</b> <%if @atribuicao.aulas2 != 0%>
+                                                                    <br/>&nbsp&nbsp&nbsp<%= @atribuicao.aulas2%>
                                                                 <%else%>
                                                                     <%= f.text_field :aulas2 , :size => '3'%>
                                                                 <%end%>
@@ -47,8 +47,8 @@
                              <td width ="3%" align="center"> <b>3º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas3 , :size => '2'%></td>
                              <%t=0%>
                           <%else%>
-                              <td align="center"><b>3º Bimestre <br/>Nº Aulas:</b><%if @notas[0].aulas3 != 0%>
-                                                                    <br/>&nbsp&nbsp&nbsp<%= @notas[0].aulas3%>
+                              <td align="center"><b>3º Bimestre <br/>Nº Aulas:</b><%if @atribuicao.aulas3 != 0%>
+                                                                    <br/>&nbsp&nbsp&nbsp<%= @atribuicao.aulas3%>
                                                                                                <%t=0%>
                                                                 <%else%>
                                                                     <%= f.text_field :aulas3 , :size => '3'%>
@@ -60,8 +60,8 @@
                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
                              <td width ="3%" align="center"> <b>4º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas4 , :size => '2'%></td>
                           <%else%>
-                              <td align="center"><b>4º Bimestre <br/>Nº Aulas:</b><%if @notas[0].aulas4 != 0%>
-                                                                    <br/>&nbsp&nbsp&nbsp<%= @notas[0].aulas4%>
+                              <td align="center"><b>4º Bimestre <br/>Nº Aulas:</b><%if @atribuicao.aulas4 != 0%>
+                                                                    <br/>&nbsp&nbsp&nbsp<%= @atribuicao.aulas4%>
                                                                 <%else%>
                                                                     <%= f.text_field :aulas4 , :size => '3'%>
                                                                 <%end%>
