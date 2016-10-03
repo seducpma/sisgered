@@ -57,7 +57,7 @@
                          <%else%>
                            <%= h@matricula.status%>
                           <%end%> 
-                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: <%= f.collection_select :status , @status, :status, :status, :include_blank => 'MATRICULADO' %> </b> </td>
+                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: <%= f.collection_select :status , @status, :status, :status %> </b> </td>
                     </td>
                   </tr>
                   <tr>
