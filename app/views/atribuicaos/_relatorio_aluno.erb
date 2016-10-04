@@ -312,10 +312,13 @@
            <td align="center">---</td>
            <td align=" ">---</td>
       <%end%>
-      <%if nota.nota5.present?%>
-           <td align="center"><%= nota.nota5 %></td>
-           <td align="center"><%= nota.faltas5 %></td>
-           <td align="center"><%if !nota.aulas5.nil?%>
+          <%if nota.nota5.present? %>
+              <td align="center"><%= nota.nota5 %> </td>
+          <%else%>
+               <td align="center">--</td>
+          <%end%>
+            <td align="center"><%= nota.faltas5 %></td>
+            <td align="center"><%if !nota.aulas5.nil?%>
                                 <%if nota.aulas5 !=0 %>
                                   <%if nota.faltas5 == 0 %>
                                       100 %
@@ -327,14 +330,9 @@
                                            <%= frequencia5%> %
                                       <%end%>
                                    <%end%>
-                               <%end%>
+                                <%end%>
                               <%end%>
            </td>
-      <%else%>
-           <td align="center">---</td>
-           <td align="center">---</td>
-           <td align=" ">---</td>
-      <%end%>
    </tr>
     <%end%>
 

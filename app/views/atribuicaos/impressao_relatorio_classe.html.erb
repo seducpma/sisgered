@@ -158,24 +158,26 @@
                          <th align="center" style="font-size: 7px">--</th>
                     <%end%>
                     <%if nota.nota5.present? %>
-                         <th style="font-size: 7px" align="center"><%= nota.nota5 %> </th>
-                         <th style="font-size: 7px" align="center"><%= nota.faltas5%></th>
-                         <th style="font-size: 8px" align="center"><%if nota.aulas5 !=0 %>
-                                                                    <%if !nota.aulas5.nil?%>
-                                                                       <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
-                                                                       <%if frequencia5 < 75 %>
-                                                                            <font color ="red"> <%= frequencia5%> % </font>
-                                                                       <%else%>
-                                                                               <%= frequencia5%> %
-                                                                       <%end%>
-                                                                    <%end%>
-                                                                   <%end%>
-                        </th>
-                    <%else%>
-                         <th align="center" style="font-size: 7px">--</th>
-                         <th align="center" style="font-size: 7px">--</th>
-                         <th align="center" style="font-size: 7px">--</th>
-                    <%end%>
+                              <th style="font-size: 7px" align="center"><%= nota.nota5 %> </th>
+                          <%else%>
+                               <th style="font-size: 7px" align="center">>--</th>
+                          <%end%>
+                            <th style="font-size: 7px" align="center"><%= nota.faltas5 %></th>
+                            <th style="font-size: 7px" align="center"><%if !nota.aulas5.nil?%>
+                                <%if nota.aulas5 !=0 %>
+                                  <%if nota.faltas5 == 0 %>
+                                      100 %
+                                  <%else%>
+                                      <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
+                                      <%if frequencia5 < 75 %>
+                                           <font color ="red"> <%= frequencia5%> % </font>
+                                      <%else%>
+                                           <%= frequencia5%> %
+                                      <%end%>
+                                   <%end%>
+                                 <%end%>
+                              <%end%>
+                           </th>
                  </tr>
               <%end%>
           <%end%>
@@ -271,26 +273,27 @@
                            <th style="font-size: 7px" align="center">--</th>
                            <th style="font-size: 7px" align="center">--</th>
                       <%end%>
-                      <%if nota.nota5.present?%>
-                           <th style="font-size: 7px" align="center"><%= nota.nota5 %></th>
-                           <th style="font-size: 7px" align="center"><%= nota.faltas5 %></th>
-                         <th style="font-size: 8px" align="center"><%if nota.aulas5 !=0 %>
-                                                                    <%if !nota.aulas5.nil?%>
-                                                                       <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
-                                                                       <%if frequencia5 < 75 %>
-                                                                            <font color ="red"> <%= frequencia5%> % </font>
-                                                                       <%else%>
-                                                                               <%= frequencia5%> %
-                                                                       <%end%>
-                                                                     <%end%>
-                                                                   <%end%>
-                        </th>
-
-                      <%else%>
-                           <th style="font-size: 7px" align="center">--</th>
-                           <th style="font-size: 7px" align="center">--</th>
-                           <th style="font-size: 7px" align="center">--</th>
-                      <%end%>
+                      <%if nota.nota5.present? %>
+                                <th style="font-size: 7px" align="center"><%= nota.nota5 %> </th>
+                            <%else%>
+                                 <th style="font-size: 7px" align="center">>--</th>
+                            <%end%>
+                              <th style="font-size: 7px" align="center"><%= nota.faltas5 %></th>
+                              <th style="font-size: 7px" align="center"><%if !nota.aulas5.nil?%>
+                                  <%if nota.aulas5 !=0 %>
+                                    <%if nota.faltas5 == 0 %>
+                                        100 %
+                                    <%else%>
+                                        <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
+                                        <%if frequencia5 < 75 %>
+                                             <font color ="red"> <%= frequencia5%> % </font>
+                                        <%else%>
+                                             <%= frequencia5%> %
+                                        <%end%>
+                                     <%end%>
+                                   <%end%>
+                                <%end%>
+                             </th>
                  </tr>
               <%end%>
           <%end%>
