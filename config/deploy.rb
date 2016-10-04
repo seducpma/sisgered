@@ -13,10 +13,10 @@ server application, :app, :web, :db, :primary => true
    task :stop do ; end
    task :restart, :roles => :app, :except => { :no_release => true } do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-   end
+     run "ln -s /home/servidor/photos/sisgered photos"
+  end
 
    task :custom_symlinks do
-     run "ln -s /home/servidor/photos/sisgered photos"
      run "rm -rf #{release_path}/config/database.yml"
      run "ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
      run "ln -s #{shared_path}/503.html #{release_path}/public/503.html"
