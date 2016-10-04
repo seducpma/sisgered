@@ -9,7 +9,7 @@ class Aluno < ActiveRecord::Base
   has_many :notas
   has_attached_file :photo, :styles => {:original=> "180x180" },
                     :url => "/photos/:class/:id/:style/:basename.:extension",
-                    :path => ":rails_root/public/photos/:class/:id/:style/:basename.:extension"
+                    :path => ":rails_root/public/photos/:class/:id_:style_:basename.:extension"
 
 
   before_save  :maiusculo
