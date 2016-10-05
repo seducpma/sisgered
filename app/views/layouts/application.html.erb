@@ -32,19 +32,6 @@ display: none;
           <tr>
                <td>
                 <p><h2 align="center"><u>Quadro de Avisos</u></h2></p>
-
-                <% if  !current_user.professor.funcao.nil?%>
-
-                <p><%  if current_user.professor.funcao == 'PEB1 - ENSINO FUNDAMENTAL' %>
-                  <b>Professores "PEB1 - ENSINO FUNDAMENTAL" é obrigatório o lançamento <u>NOTAS</u> e <u>FALTAS</u> para todas as disciplinas (Português,
-                  Matemática, Geografia, Ciencias e História/Filosofia) e não somente na disciplina de português</b>
-                    
-                  <%end%>
-
-                </p>
-                <%end%>
-
-
                 <div id="color"  align="center">
                   <%for informativo in informativos_corrente %>
                     <p><%= informativo.mensagem %></p>
