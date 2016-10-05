@@ -22,9 +22,8 @@
           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <b>Sexo:</b>&nbsp&nbsp
           <%= f.select :aluno_sexo,(SEXO).sort, :include_blank => '-- Selecionar --' %><br/>
-        <% if current_user.has_role?('admin') %>
-            <b>Foto: </b> <%= f.file_field :photo%>
-        <%end%>
+              <b>Foto: </b> <%= f.file_field :photo%>
+        
          </td>
        </tr>
        <tr>
