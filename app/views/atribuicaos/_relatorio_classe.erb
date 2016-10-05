@@ -186,10 +186,14 @@
                           <%end%>
                             <td align="center"><%= nota.faltas5 %></td>
                             <td align="center"><%if !nota.aulas5.nil?%>
+                              <%t=0%>
                                 <%if nota.aulas5 !=0 %>
-                                  <%if nota.faltas5 == 0 %>
+
+                                  <%if (nota.faltas5 == 0) or (nota.faltas5 == 0)%>
+                           <%t=0%>
                                       100 %
                                   <%else%>
+                           <%t=0%>
                                       <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
                                       <%if frequencia5 < 75 %>
                                            <font color ="red"> <%= frequencia5%> % </font>
