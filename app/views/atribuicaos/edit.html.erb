@@ -86,8 +86,14 @@
             <%end%>
                         
                          
-                     <%if current_user.has_role?('professor') %>
+                     <%if current_user.has_role?('professor') or current_user.has_role?('admin') %>
+                       <%if current_user.has_role?('admin') %>
                          <td><%= button_to 'Lançar Notas', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>
+                       <%else%>
+                         <td width="2%"><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %></td>
+                         <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                        <%end%>
+
                      <%else%>
                          <td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %></td>
                      <%end%>
