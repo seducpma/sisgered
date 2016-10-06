@@ -86,7 +86,7 @@
                <%@notasB.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
                     <td><%= nota.atribuicao.disciplina.disciplina %></td>
-                      <%if nota.nota1.present?%>
+                      <%if nota.nota1.present? or nota.faltas1 != 0%>
                            <td align="center"><%= nota.nota1 %></td>
                            <td align="center"><%= nota.faltas1 %></td>
                            <td align="center"><%if !nota.aulas1.nil?%>
@@ -109,7 +109,7 @@
                            <td align="center">--</td>
                            <td align="center">--</td>
                       <%end%>
-                      <%if nota.nota2.present?%>
+                      <%if nota.nota2.present? or nota.faltas2 != 0%>
                            <td align="center"><%= nota.nota2 %></td>
                            <td align="center"><%= nota.faltas2 %></td>
                           <td align="center"><%if !nota.aulas2.nil?%>
@@ -132,7 +132,7 @@
                            <td align="center">--</td>
                            <td align="center">--</td>
                       <%end%>
-                      <%if nota.nota3.present?%>
+                      <%if nota.nota3.present?  or nota.faltas3 != 0%>
                            <td align="center"><%= nota.nota3 %></td>
                            <td align="center"><%= nota.faltas3 %></td>
                            <td align="center"><%if !nota.aulas3.nil?%>
@@ -155,7 +155,7 @@
                            <td align="center">--</td>
                            <td align="center">--</td>
                       <%end%>
-                      <%if nota.nota4.present?%>
+                      <%if nota.nota4.present?  or nota.faltas4 != 0%>
                            <td align="center"><%= nota.nota4 %></td>
                            <td align="center"><%= nota.faltas4 %></td>
                            <td align="center"><%if !nota.aulas4.nil?%>
@@ -234,7 +234,7 @@
                <%@notasD.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
                     <td><%= nota.atribuicao.disciplina.disciplina %></td>
-                      <%if nota.nota1.present?%>
+                      <%if nota.nota1.present?  or nota.faltas1 != 0%>
                            <td align="center"><%= nota.nota1 %></td>
                            <td align="center"><%= nota.faltas1 %></td>
                            <td align="center"><%if !nota.aulas1.nil?%>
@@ -257,7 +257,7 @@
                            <td align="center">--</td>
                            <td></td>
                       <%end%>
-                      <%if nota.nota2.present?%>
+                      <%if nota.nota2.present? or nota.faltas2 != 0%>
                            <td align="center"><%= nota.nota2 %></td>
                            <td align="center"><%= nota.faltas2 %></td>
                            <td align="center"><%if !nota.aulas2.nil?%>
@@ -280,7 +280,7 @@
                            <td align="center">--</td>
                            <td align="center">--</td>
                       <%end%>
-                      <%if nota.nota3.present?%>
+                      <%if nota.nota3.present?  or nota.faltas3 != 0%>
                            <td align="center"><%= nota.nota3 %></td>
                            <td align="center"><%= nota.faltas3 %></td>
                            <td align="center"><%if !nota.aulas3.nil?%>
@@ -303,7 +303,7 @@
                            <td align="center">--</td>
                            <td align="center">--</td>
                       <%end%>
-                      <%if nota.nota4.present?%>
+                      <%if nota.nota4.present?  or nota.faltas4 != 0%>
                            <td align="center"><%= nota.nota4 %></td>
                            <td align="center"><%= nota.faltas4 %></td>
                            <td align="center"><%if !nota.aulas4.nil?%>
