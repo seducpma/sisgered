@@ -22,33 +22,56 @@
  </table>
 <legend><font  size=3><b> Dados Pessoais</b></font></legend>
 <% @aluno.each do |aluno| %>
-         <table border="1" cellspacing="0" cellpadding="1"style="border-color: white">
+         <table border="1" cellspacing="0" cellpadding="1" width="100%">
            <tr>
-             <td align="center" rowspan=4"> <%= image_tag @aluno.photo.url(:original) %></td>
+             <td rowspan="8"> <center><img src="<%=h  aluno.photo.url(:original)  %>" style ="width:140px; height: 150px;"></center></td>
+
+          </tr>
+          <tr>
+
+              <td width =" 10%"><b>Nº RA:</b></td>
+              <td width ="15%">   <%=h aluno.aluno_ra %></td>
+              <td width =" 12%"><b>Nº RM:</b></td>
+              <td>   <%=h aluno.aluno_rm %></td>
+              <td><b>Nº INEP:</b></td>
+              <td>   <%=h aluno.aluno_inep %></td>
+              <td><b>Nº NIS:</b></td>
+              <td width =" 12%">   <%=h aluno.aluno_nis %></td>
+           </tr>
+
+           <tr>
                <td align="left" width="4%"><b>Nome:</b></td>
                <td colspan="4" align="left"> <%=h aluno.aluno_nome %></td>
                <td align="right"><b>Sexo:</b></td>
                <td colspan="2" align="left"><%=h aluno.aluno_sexo %></td>
             </tr>
-            <tr>
-              <td ><b>Nº RM:</b></td>
-              <td>  <%=h aluno.aluno_rm %></td>
-              <td ><b>Nº RA:</b></td>
-              <td colspan="5">   <%=h aluno.aluno_ra %></td>
-           </tr>
-
            <tr>
                <td align="left"><b>Nascimento:</b></td>
                <td colspan="2"align="left">  <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
-               <td align="right"><b>Naturalidade:&nbsp&nbsp</b></td>
-               <td colspan="4"align="left"><%=h aluno.aluno_naturalidade %></td>
+               <td align="right"><b>NºCertidão:&nbsp&nbsp</b></td>
+               <td colspan="4" aslign="left"><%=h aluno.aluno_certidao_nascimento %>&nbsp&nbsp&nbsp&nbsp<b>Livro:</b><%=h aluno.aluno_livro%>&nbsp&nbsp&nbsp&nbsp<b>Folha:</b><%=h aluno.aluno_folha%>
+               </td>
+           </tr>
+           <tr>
+               <td align="left"><b>RG:</b></td>
+               <td align="left">  <%=h aluno.aluno_RG%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td colspan="5"align="left"><%=h aluno.aluno_emissaoRG %></td>
             </tr>
-           <tr >
+           <tr>
+               <td align="left"><b>CPF:</b></td>
+               <td align="left">  <%=h aluno.aluno_CPF%></td>
+               <td align="left"><b>Emissão:</b></td>
+               <td colspan="5"align="left"><%=h aluno.aluno_emissaoCPF %></td>
+           </tr>
+
+           <tr>
+              <td align="left"><b>Naturalidade:&nbsp&nbsp</b></td>
+              <td colspan="2"align="left"><%=h aluno.aluno_naturalidade %></td>
                <td align="left"><b>Nacionalidade:</b></td>
-               <%if aluno.aluno_nacionalidade == 'BRASILEIRO'%>
-               <td  colspan="7"align="left"><%=h aluno.aluno_nacionalidade %></td>
-               <%else%>
-                <td colspan="4"><b>Se estangeiro: &nbsp&nbsp Chegada Brasil:&nbsp&nbsp</b>
+               <td align="left" colspan="4"><%=h aluno.aluno_nacionalidade %>
+               <%if aluno.aluno_nacionalidade != 'BRASILEIRO'%>
+                <b> &nbsp&nbsp Chegada Brasil:&nbsp&nbsp</b>
                        <%if !aluno.aluno_chegada_brasil.nil?%>
                            <%=h aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%>
                        <%end%>
@@ -64,127 +87,122 @@
                                        <%=h aluno.aluno_validade_estrangeiro.strftime("%d/%m/%Y")%>
                                      <%end%>
              </td>
-
-
-
             </tr>
-
             <%end%>
            <tr>
-               <td align="left"><b>RG:</b></td>
-               <td align="left">  <%=h aluno.aluno_RG%></td>
-               <td align="left"><b>Emissão:</b></td>
-               <td colspan="5"align="left"><%=h aluno.aluno_emissaoRG %></td>
-            </tr>
-           <tr>
-               <td align="left"><b>CPF:</b></td>
-               <td align="left">  <%=h aluno.aluno_CPF%></td>
-               <td align="left"><b>Emissão:</b></td>
-               <td colspan="5"align="left"><%=h aluno.aluno_emissaoCPF %></td>
-           </tr>
-             <tr>
-             <td width =" 12%"><b>Reside com:</b></td>
-             <td colspan="7">  <%=h aluno.aluno_reside_com %></td>
+             <td><b>Reside com:</b></td>
+             <td colspan="9">  <%=h aluno.aluno_reside_com %></td>
            </tr>
             <%  if aluno.aluno_reside_com == 'PAI'%>
                <tr>
                   <td align="left" width="4%"><b>Pai:</b></td>
-                  <td colspan="7" align="left"><%=h aluno.aluno_pai %></td>
+                  <td colspan="9" align="left"><%=h aluno.aluno_pai %></td>
                </tr>
-               <tr>
+               <tr style="line-height: 9px">
                   <td align="left" width="4%"><b>Mãe:</b></td>
-                  <td colspan="7" align="left"><%=h aluno.aluno_mae %></td>
+                  <td colspan="9" align="left"><%=h aluno.aluno_mae %></td>
                </tr>
                <tr>
                    <td align="left"><b>Endereço(mae):</b></td>
                    <td align="left" colspan="4"><%=h aluno.aluno_endereco_mae %></td></td>
                    <td align="left"><b>Cidade(mãe):</b></td>
-                   <td colspan="2" align="left"><%=h aluno.aluno_cidade_mae%></td>
+                   <td colspan="7" align="left"><%=h aluno.aluno_cidade_mae%></td>
                 </tr>
                 <tr>
                    <td align="left"><b>Fone(s):</b></td>
                    <td align="left" colspan="2"><%=h aluno.aluno_fone_mae %></td>
                    <td align="left"><b>E-mail(mãe):</b></td>
-                   <td colspan="4" align="left"><%=h aluno.aluno_email_mae%></td>
+                   <td colspan="7" align="left"><%=h aluno.aluno_email_mae%></td>
                 </tr>
            <%end%>
             <%  if aluno.aluno_reside_com == 'MAE'%>
                <tr>
                   <td align="left" width="4%"><b>Pai:</b></td>
-                  <td colspan="7" align="left"><%=h aluno.aluno_pai %></td>
+                  <td colspan="9" align="left"><%=h aluno.aluno_pai %></td>
                </tr>
                 <tr>
                    <td align="left"><b>Endereço(pai):</b></td>
                    <td align="left"colspan="4"><%=h aluno.aluno_endereco_pai %></td></td>
                    <td align="left"><b>Cidade(pai):</b></td>
-                   <td colspan="2" align="left"><%=h aluno.aluno_cidade_pai%></td>
+                   <td colspan="7" align="left"><%=h aluno.aluno_cidade_pai%></td>
                 </tr>
                 <tr>
                    <td align="left"><b>Fone(s):</b></td>
                    <td align="left" colspan="2"><%=h aluno.aluno_fone_pai %></td></td>
                    <td align="left"><b>E-mail(pai):</b></td>
-                   <td colspan="4" align="left"><%=h aluno.aluno_email_pai%></td>
+                   <td colspan="7" align="left"><%=h aluno.aluno_email_pai%></td>
                 </tr>
                 <tr>
                   <td align="left" width="4%"><b>Mãe:</b></td>
-                  <td colspan="7" align="left"><%=h aluno.aluno_mae %></td>
+                  <td colspan="9" align="left"><%=h aluno.aluno_mae %></td>
                </tr>
            <%end%>
            <%  if aluno.aluno_reside_com == 'RESPONSAVEL'%>
                <tr>
                   <td align="left" width="4%"><b>Pai:</b></td>
-                  <td colspan="7" align="left"><%=h aluno.aluno_pai %></td>
+                  <td colspan="9" align="left"><%=h aluno.aluno_pai %></td>
                </tr>
                 <tr>
                    <td align="left"><b>Endereço(pai):</b></td>
                    <td align="left" colspan="4" ><%=h aluno.aluno_endereco_pai %></td></td>
-                   <td align="left"  colspan="2"><b>Cidade(pai):</b> <%=h aluno.aluno_cidade_pai%></td>
+                   <td align="left"  colspan="5"><b>Cidade(pai):</b> <%=h aluno.aluno_cidade_pai%></td>
                 </tr>
                 <tr>
                    <td align="left"><b>Fone(s):</b></td>
                    <td align="left" colspan="3"><%=h aluno.aluno_fone_pai %></td></td>
-                   <td align="left" colspan="4"><b>E-mail(pai):</b><%=h aluno.aluno_email_pai%></td>
+                   <td align="left" colspan="6"><b>E-mail(pai):</b><%=h aluno.aluno_email_pai%></td>
                 </tr>
                 <tr>
                   <td align="left" width="4%"><b>Mãe:</b></td>
-                  <td colspan="7" align="left"><%=h aluno.aluno_mae %></td>
+                  <td colspan="9" align="left"><%=h aluno.aluno_mae %></td>
                </tr>
                <tr>
                    <td align="left"><b>Endereço(mãe):</b></td>
                    <td align="left"colspan="3"><%=h aluno.aluno_endereco_mae %></td></td>
-                   <td align="left"colspan="4"><b>Cidade(mae):</b> <%=h aluno.aluno_cidade_mae%></td>
+                   <td align="left"colspan="6"><b>Cidade(mae):</b> <%=h aluno.aluno_cidade_mae%></td>
                 </tr>
                 <tr>
                    <td align="left"><b>Fone(s):</b></td>
                    <td align="left" colspan="3"><%=h aluno.aluno_fone_mae %></td></td>
-                   <td align="left" colspan="4"><b>E-mailmãe):</b><%=h aluno.aluno_email_mae%></td>
+                   <td align="left" colspan="6"><b>E-mailmãe):</b><%=h aluno.aluno_email_mae%></td>
                 </tr>
                 <tr>
                   <td align="left" width="4%"><b>Responsável:</b></td>
                   <td colspan="4 align="left"><%=h aluno.aluno_responsavel %></td>
-                  <td align="left"colspan="4"><b>Parentesco:</b> <%=h aluno.aluno_parente %></td>
+                  <td align="left"colspan="5"><b>Parentesco:</b> <%=h aluno.aluno_parente %></td>
                </tr>
                <tr>
                    <td align="left"><b>Endereço:</b></td>
                    <td align="left" colspan="3"><%=h aluno.aluno_endereco_responsavel %></td></td>
-                   <td align="left" colspan="4" ><b>Cidade:</b><%=h aluno.aluno_cidade_responsavel%></td>
+                   <td align="left" colspan="5" ><b>Cidade:</b><%=h aluno.aluno_cidade_responsavel%></td>
                 </tr>
                 <tr>
                    <td align="left"><b>Fone(s):</b></td>
                    <td align="left" colspan="3"><%=h aluno.aluno_fone_responsavel %></td></td>
-                   <td align="left" colspan="4"><b>E-mail:</b><%=h aluno.aluno_email_responsavel%></td>
+                   <td align="left" colspan="5"><b>E-mail:</b><%=h aluno.aluno_email_responsavel%></td>
                 </tr>
               <%end%>
+           <%  if aluno.aluno_reside_com == 'PAIS'%>
+                <tr>
+                  <td align="left" width="4%"><b>Pai:</b></td>
+                  <td colspan="9" align="left"><%=h aluno.aluno_pai %></td>
+               </tr>
+                 <tr>
+                  <td align="left" width="4%"><b>Mãe:</b></td>
+                  <td colspan="9" align="left"><%=h aluno.aluno_mae %></td>
+               </tr>
+              <%end%>
+
               <tr>
-             <td colspan="5 "><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
-             <td colspan="3 "><%=h aluno.aluno_restricao %></td>
+             <td colspan="5"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
+             <td colspan="5"><%=h aluno.aluno_restricao %></td>
 
            </tr>
            <tr>
                <td align="left" width="4%"><b>Endereço:</b></td>
                <td colspan="3" align="left"><%=h aluno.aluno_endereco %> - <%=h aluno.aluno_num %></td>
                <td align="left" width="4%"><b>Complemento:</b></td>
-               <td colspan="4" align="left"><%=h aluno.aluno_complemento %></td>
+               <td colspan="5" align="left"><%=h aluno.aluno_complemento %></td>
             </tr>
             <tr>
                <td align="left" width="4%"><b>Bairro:</b></td>
@@ -192,7 +210,7 @@
                <td align="left" width="4%"><b>CEP:</b></td>
                <td  align="left"><%=h aluno.aluno_cep %></td>
                <td align="left" width="4%"><b>Cidade:</b></td>
-               <td colspan="3" align="left"><%=h aluno.aluno_cidade %></td>
+               <td colspan="5" align="left"><%=h aluno.aluno_cidade %></td>
             </tr>
             <tr>
                <td align="left" width="4%"><b>Telefone:</b></td>
@@ -200,42 +218,31 @@
                <td align="left"><b>Celular:</b></td>
                <td align="left"><%=h aluno.aluno_fone_cel %></td></td>
                <td align="left"><b>E-mail:</b></td>
-               <td colspan="3"align="left"><%=h aluno.aluno_email%></td></td>
+               <td colspan="5"align="left"><%=h aluno.aluno_email%></td></td>
             </tr>
-            <tr>
-              <td ><b>Nº INEP:</b></td>
-              <td >   <%=h aluno.aluno_inep %></td>
-              <td ><b>Nº RM:</b></td>
-              <td>  <%=h aluno.aluno_rm %></td>
-              <td ><b>Nº RA:</b></td>
-              <td>   <%=h aluno.aluno_ra %></td>
-              <td ><b>Nº NIS:</b></td>
-              <td>   <%=h aluno.aluno_nis %></td>
-           </tr>
-          <tr>
+           <tr>
              <td colspan="5"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
-             <td colspan="3"><%=h aluno.aluno_restricao %></td>
+             <td colspan="5"><%=h aluno.aluno_restricao %></td>
 
            </tr>
            <tr>
               <td width ="17%"><b>Bolsa Família:</b></td>
               <td><%=h aluno.aluno_bolsa_familia %></td>
               <td colspan="2" width =" 15%"><b>Nome Beneficiário:</b></td>
-              <td colspan="4"> <%=h aluno.aluno_nome_beneficiario %></td>
+              <td colspan="9  "> <%=h aluno.aluno_nome_beneficiario %></td>
            </tr>
            <tr>
              <td colspan="2" ><b> Possui necessidade(s) especial(s):</b> </td>
-             <td colspan="6"><%=h aluno.aluno_especial %></td>
+             <td colspan="8"><%=h aluno.aluno_especial %></td>
            </tr>
            <tr>
                <td align="left"><b>Observação::</b></td>
-               <td colspan="7" align="left"><%=h aluno.aluno_obs %></td>
+               <td colspan="9" align="left"><%=h aluno.aluno_obs %></td>
             </tr>
-        </table>
 
-<br/>
+        </table>
     <font  size=3><b> Responsávels</b></font></legend>
-       <table border="1" cellspacing="0" cellpadding="1" width="100%"style="border-color: white">
+     <table border="1" cellspacing="0" cellpadding="1" width="100%">
            <tr>
              <td ><b>Nome:</b></td>
              <td> <%= aluno.aluno_nome_responsavel%></td>
@@ -279,6 +286,7 @@
                  <b>Fone:</b><%= aluno.aluno_contato6_fone%></td>
            </tr>
          </table>
+
 <%end%>
  <br/><br/><br/><br/>
  <table style="border-color: white" width="100%">
