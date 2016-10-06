@@ -25,7 +25,18 @@
 <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
   <tr>
     <% @aluno.each do |aluno| %>
-    <th colspan="16" align="left" style="font-size: 8px"><b>Nº</b> <%= session[:num] %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <th colspan="16" align="left" style="font-size: 8px"><b>Nº</b> <%= session[:num] %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp
+                        <%  @matricula = Matricula.find(:all,:conditions =>['aluno_id = ?', aluno.id]) %>
+                        <%  if  @matricula[0].status =="TRANSFERIDO"%>
+                              <font color ="red"> (Transferido) </font>
+                         <%else if  @matricula[0].status =="REMANEJADO"%>
+                             <font color ="red"> (Remanejado) </font>
+                               <%else if  @matricula[0].status =="ABANDONO"%>
+                                 <font color ="red"> (Abandono)</font>
+                             <%end%>
+                         <%end%>
+                    <%end%>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></th>
       <% session[:aluno] = aluno.id %>
     <%end%>

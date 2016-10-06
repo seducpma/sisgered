@@ -34,7 +34,20 @@
       </table>
      <table border="1" cellspacing="0" cellpadding="1" width="100%">
         <tr>
-            <td><b>Nº</b> <%= matricula.classe_num %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <td><b>Nº</b> <%= matricula.classe_num %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_nome %> &nbsp&nbsp
+                 <%  if  matricula.status =="TRANSFERIDO"%>
+                              <font color ="red"> (Transferido) </font>
+                   <%else if  matricula.status =="REMANEJADO"%>
+                             <font color ="red"> (Remanejado) </font>
+                         <%else if  matricula.status =="ABANDONO"%>
+                                 <font color ="red"> (Abandono)</font>
+                             <%end%>
+                         <%end%>
+                    <%end%>
+
+
+
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <b>RA:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_ra %></td>
             <% session[:aluno] = matricula.aluno.id %>
         </tr>

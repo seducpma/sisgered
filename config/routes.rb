@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :relatorios,:collection => { :relatorio=>:get}
+  map.resources :relatorios,:collection => { :relatorio=>:get, :relatorios_observacoes=>:get }
 
   map.resources :observacao_historicos
 
