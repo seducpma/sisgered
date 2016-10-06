@@ -89,7 +89,7 @@
                       <%if nota.nota1.present? or nota.faltas1 != 0%>
                            <td align="center"><%= nota.nota1 %></td>
                            <td align="center"><%= nota.faltas1 %></td>
-                           <td align="center"><%if !nota.aulas1.nil?%>
+                           <td align="center">
                                 <%if nota.aulas1 !=0 %>
                                   <%if nota.faltas1 == 0 %>
                                       100 %
@@ -101,8 +101,10 @@
                                            <%= frequencia1%> %
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font>
                                  <%end%>
-                              <%end%>
+
                            </td>
                       <%else%>
                            <td align="center">--</td>
@@ -112,7 +114,7 @@
                       <%if nota.nota2.present? or nota.faltas2 != 0%>
                            <td align="center"><%= nota.nota2 %></td>
                            <td align="center"><%= nota.faltas2 %></td>
-                          <td align="center"><%if !nota.aulas2.nil?%>
+                          <td align="center">
                               <%if nota.aulas2 !=0 %>
                                   <%if nota.faltas2 == 0 %>
                                       100 %
@@ -124,8 +126,10 @@
                                            <%= frequencia2%> %
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font>
                                 <%end%>
-                              <%end%>
+
                            </td>
                       <%else%>
                            <td align="center">--</td>
@@ -135,7 +139,7 @@
                       <%if nota.nota3.present?  or nota.faltas3 != 0%>
                            <td align="center"><%= nota.nota3 %></td>
                            <td align="center"><%= nota.faltas3 %></td>
-                           <td align="center"><%if !nota.aulas3.nil?%>
+                           <td align="center">
                                <%if nota.aulas3 !=0 %>
                                   <%if nota.faltas3 == 0 %>
                                       100 %
@@ -147,7 +151,9 @@
                                            <%= frequencia3%> %
                                       <%end%>
                                    <%end%>
-                               <%end%>
+
+                                <%else%>
+                                   <font color ="red"> ERRO* </font>
                              <%end%>
                            </td>
                       <%else%>
@@ -158,7 +164,7 @@
                       <%if nota.nota4.present?  or nota.faltas4 != 0%>
                            <td align="center"><%= nota.nota4 %></td>
                            <td align="center"><%= nota.faltas4 %></td>
-                           <td align="center"><%if !nota.aulas4.nil?%>
+                           <td align="center">
                                 <%if nota.aulas4 !=0 %>
                                   <%if nota.faltas4 == 0 %>
                                       100 %
@@ -170,8 +176,10 @@
                                            <%= frequencia4%> %
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font>
                                  <%end%>
-                              <%end%>
+
                            </td>
 
                       <%else%>
@@ -185,15 +193,11 @@
                                <td align="center">--</td>
                           <%end%>
                             <td align="center"><%= nota.faltas5 %></td>
-                            <td align="center"><%if !nota.aulas5.nil?%>
-                              <%t=0%>
+                            <td align="center">
                                 <%if nota.aulas5 !=0 %>
-
                                   <%if (nota.faltas5 == 0) or (nota.faltas5 == 0)%>
-                           <%t=0%>
                                       100 %
                                   <%else%>
-                           <%t=0%>
                                       <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
                                       <%if frequencia5 < 75 %>
                                            <font color ="red"> <%= frequencia5%> % </font>
@@ -201,7 +205,7 @@
                                            <%= frequencia5%> %
                                       <%end%>
                                    <%end%>
-                                 <%end%>
+
                               <%end%>
                            </td>
 
@@ -211,16 +215,16 @@
    <%flag1=0%>
    <%@notas.each do |nota|%>
      <% if flag1 == 0%>
-        <%if nota.aulas5.nil?%>
+
           <%flag1=1%>
             <tr>
             <td colspan="20">
-              <center><font color ="red"><b>  PROFESSORES QUE NÃO LANÇARAM AS AULAS DADAS NO BIMESTRE, O SISTEMA NÂO CALCULA A FREQUÊNCIA,  <br/>
+              <center><font color ="red"><b>  *PROFESSORES QUE NÃO LANÇARAM AS AULAS DADAS NO BIMESTRE, O SISTEMA NÂO CALCULA A FREQUÊNCIA,  <br/>
                     PARA QUE O BOLETIM FIQUE CORRETO, FAVOR SOLICITAR QUE O PROFESSOR LANCE A QUANTIDADE DE AULAS DADAS E AS FALTAS.</b> </center>
             </td>
           </tr>
        <%end%>
-    <%end%>
+
    <%end%>
              <tr>
                <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
@@ -237,7 +241,7 @@
                       <%if nota.nota1.present?  or nota.faltas1 != 0%>
                            <td align="center"><%= nota.nota1 %></td>
                            <td align="center"><%= nota.faltas1 %></td>
-                           <td align="center"><%if !nota.aulas1.nil?%>
+                           <td align="center">
                                 <%if nota.aulas1 !=0 %>
                                   <%if nota.faltas1 == 0 %>
                                       100 %
@@ -249,8 +253,10 @@
                                            <%= frequencia1%> %
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font>
                                 <%end%>
-                              <%end%>
+                              
                            </td>
                         <%else%>
                            <td align="center">--</td>
@@ -260,7 +266,7 @@
                       <%if nota.nota2.present? or nota.faltas2 != 0%>
                            <td align="center"><%= nota.nota2 %></td>
                            <td align="center"><%= nota.faltas2 %></td>
-                           <td align="center"><%if !nota.aulas2.nil?%>
+                           <td align="center">
                                 <%if nota.aulas2 !=0 %>
                                   <%if nota.faltas2 == 0 %>
                                       100 %
@@ -272,8 +278,10 @@
                                            <%= frequencia2%> %
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font>
                                 <%end%>
-                              <%end%>
+
                            </td>
                       <%else%>
                            <td align="center">--</td>
@@ -281,10 +289,11 @@
                            <td align="center">--</td>
                       <%end%>
                       <%if nota.nota3.present?  or nota.faltas3 != 0%>
+
                            <td align="center"><%= nota.nota3 %></td>
                            <td align="center"><%= nota.faltas3 %></td>
-                           <td align="center"><%if !nota.aulas3.nil?%>
-                               <%if nota.aulas3 !=0 %>
+                           <td align="center">
+                                <%if nota.aulas3 !=0 %>
                                   <%if nota.faltas3 == 0 %>
                                       100 %
                                   <%else%>
@@ -295,8 +304,10 @@
                                            <%= frequencia3%> %
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font>
                                 <%end%>
-                              <%end%>
+
                            </td>
                       <%else%>
                            <td align="center">--</td>
@@ -306,7 +317,7 @@
                       <%if nota.nota4.present?  or nota.faltas4 != 0%>
                            <td align="center"><%= nota.nota4 %></td>
                            <td align="center"><%= nota.faltas4 %></td>
-                           <td align="center"><%if !nota.aulas4.nil?%>
+                           <td align="center">
                                 <%if nota.aulas4 !=0 %>
                                   <%if nota.faltas4 == 0 %>
                                       100 %
@@ -318,8 +329,10 @@
                                            <%= frequencia4%> %
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font>
                                 <%end%>
-                              <%end%>
+
                            </td>
                       <%else%>
                            <td align="center">--</td>
@@ -332,7 +345,7 @@
                                <td align="center">--</td>
                           <%end%>
                             <td align="center"><%= nota.faltas5 %></td>
-                           <td align="center"><%if !nota.aulas5.nil?%>
+                           <td align="center">
                                 <%if nota.aulas5 !=0 %>
                                   <%if nota.faltas5 == 0 %>
                                       100 %
@@ -344,7 +357,7 @@
                                            <%= frequencia5%> %
                                       <%end%>
                                    <%end%>
-                                <%end%>
+
                               <%end%>
                            </td>
              </tr>
