@@ -332,14 +332,24 @@ end
         @alunos =  Aluno.find(:all,:order => "aluno_nome")
         @alunosRA =  Aluno.find(:all,:order => "aluno_ra")
         @alunosRM =  Aluno.find(:all,:order => "aluno_rm")
-        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        if current_user.has_role?('admin')
+            @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
+        else
+            @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        end
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     else
 
         @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_nome")
         @alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_ra")
         @alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_rm")
-        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =? AND aluno_status is null',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        if current_user.has_role?('admin')
+            @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
+        else
+            @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        end
+        @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
+
         @disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
     end
   end
