@@ -296,12 +296,6 @@ def impressao_lancamentos
 end
 
 def relatorios_observacoes
-       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe_id]], :order =>'classe_num')
-       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe_id]])
-       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe_id]])
-       @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =?   AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?", params[:classe_id], current_user.unidade_id, Time.now.year],:order =>'disciplinas.ordem ASC ')
-       @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =?   AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?", params[:classe_id], current_user.unidade_id, Time.now.year],:order =>'disciplinas.ordem ASC ')
-       @notas = @notasB+@notasD
 
 
 end
