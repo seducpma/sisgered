@@ -105,7 +105,36 @@ class RelatoriosController < ApplicationController
 
   end
 
+def consulta_relatorios
+    if params[:type_of].to_i == 3
 
+          @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
+      render :update do |page|
+         page.replace_html 'professores', :partial => "professores"
+      end
+    else if params[:type_of].to_i == 1
+                 if ( params[:aluno].present?)
+                  session[:aluno_imp]= params[:aluno]
+                  session[:ano_imp]=params[:ano_letivo]
+                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno], params[:ano_letivo]])
+                  render :update do |page|
+                     page.replace_html 'relatorio', :partial => "fapea"
+                   end
+                end
+        else  if params[:type_of].to_i == 2
+                 if ( params[:aluno].present?)
+                  session[:aluno_imp]= params[:aluno]
+                  session[:ano_imp]=params[:ano_letivo]
+                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno], params[:ano_letivo]])
+                  render :update do |page|
+                     page.replace_html 'relatorio', :partial => "fapea"
+                   end
+                end
+             end
+        end
+    end
+  
+end
 
   def relatorio
      if ( params[:aluno].present?)
@@ -147,9 +176,11 @@ class RelatoriosController < ApplicationController
        if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
          @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id > 41 AND id <52'], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all,:conditions =>['id = ?', current_user.unidade_id], :order => 'nome ASC')
+         @disciplinas= Disciplina.find(:all, :conditions =>['curriculo != "I" and ano_letivo =? ', (Time.now.year)], :order =>'disciplina'  )
        else
          @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id < 40  OR id >51'], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
+         @disciplinas= Disciplina.find(:all, :conditions =>['curriculo =? and ano_letivo =? ', 'I', (Time.now.year)], :order =>'disciplina'  )
        end
 
        @alunos = Aluno.find(:all, :conditions => ['aluno_status is null'],:order => 'aluno_nome')
