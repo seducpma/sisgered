@@ -390,7 +390,7 @@
                  <td align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</td>
                   <td colspan="15">  <% c=0 %>
 
-                                           <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+                                           <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=? and ano_letivo=?",nota, Time.now.year])%>
                                                <% @obs.each do |obs|%>
                                                      <b><%= c=c+1%>.</b><%=obs.observacao %>  -
                                                          <b>Data: </b> <%  if !obs.data.nil?  %>

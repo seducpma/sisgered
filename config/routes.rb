@@ -1,13 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :relatorios,:collection => { :relatorio=>:get}
-
   map.resources :observacao_historicos
-
   map.resources :situacao_alunos
   map.resources :matriculas,:collection => { :transferencia=>:get, :alterar=>:get, :saidas=>:get, :consultar => :get, :new1 => :get}
   map.resources :transferencias,:collection => { :editar_transferencia=>:get}
   map.resources :disciplinas
-  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get, :consulta_professor_classe=>:get, :historico_aluno=>:get, :historico => :get, :transferencia_aluno => :get, :transferenciaA=> :get,  :reserva_vaga=> :get,  :reserva_vagas=> :get}
+  map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get, :consulta_professor_classe=>:get, :historico_aluno=>:get, :historico => :get, :transferencia_aluno => :get, :transferenciaA=> :get,  :reserva_vaga=> :get,  :reserva_vagas=> :get,  :relatorio_observacoes=> :get}
   map.resources :classes_professors
   map.resources :notas_alunos
   map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get }
@@ -106,6 +104,9 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_classe_nota '/consulta_classe_nota', :controller => 'atribuicaos', :action => 'consulta_classe_nota'
   map.consultar_matricula '/consultar_matricula', :controller => 'matriculas', :action => 'consultar_matricula'
   map.consultar_relatorio '/consultar_relatorio', :controller => 'relatorio', :action => 'consulta_relatorio'
+  #map.consulta_observacoes '/consulta_observacoes', :controller => 'atribuicaos', :action => 'consulta_observacoes'
+
+
 
 
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
