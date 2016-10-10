@@ -190,7 +190,10 @@ def create_notas
        @matriculas.each do |matricula|
          session[:classe]=matricula.classe_id
          session[:num]=matricula.classe_num
+         session[:status]=matricula.status
        end
+        w=session[:num]
+        w1=session[:status]
       @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
       @classe.each do |classe|
          session[:unidade]=classe.unidade_id

@@ -35,15 +35,21 @@
      <table border="1" cellspacing="0" cellpadding="1" width="100%">
         <tr>
             <td><b>Nº</b> <%= matricula.classe_num %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_nome %> &nbsp&nbsp
-                 <%  if  matricula.status =="TRANSFERIDO"%>
+                        <%  if matricula.status =="TRANSFERIDO"%>
                               <font color ="red"> (Transferido) </font>
-                   <%else if  matricula.status =="REMANEJADO"%>
+                         <%else if matricula.status =="REMANEJADO"%>
                              <font color ="red"> (Remanejado) </font>
-                         <%else if  matricula.status =="ABANDONO"%>
-                                 <font color ="red"> (Abandono)</font>
-                             <%end%>
+                               <%else if  matricula.status =="ABANDONO"%>
+                                      <font color ="red"> (Abandono)</font>
+                                     <%else if  matricula.status =="TRANSFERENCIA"%>
+                                             <font color ="blue"> (Transferência)</font>
+                                            <%else  if  matricula.status =="*REMANEJADO"%>
+                                                   <font color ="blue"> (*Remanejado)</font>
+                                                 <%end%>
+                                           <%end%>
+                                    <%end%>
+                              <%end%>
                          <%end%>
-                    <%end%>
 
 
 

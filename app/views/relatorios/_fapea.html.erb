@@ -1,6 +1,17 @@
-       <%if @relatorios.present?%>
-        <fieldset><legend><font  size=3><b> FEPEA - <%=h  @relatorios[0].ano_letivo %></b></font></legend>
-             <% for relatorio in @relatorios %>
+    <%if @relatorios.present?%>
+      <% for relatorio in @relatorios %>
+        <fieldset><legend><font  size=3><b> FEPEA -
+                
+                
+                    <% bimestre = relatorio.created_at.strftime("%m").to_i %>
+                   <% if  ( bimestre < 8 ) %>
+                     1º Bimetre
+                   <% else %>
+                     2º Bimestre
+                   <%end%>
+                   /<%=h  relatorio.ano_letivo %> 
+
+              </b></font></legend>
               <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                 <tr bgcolor="#F5F5F5" style="border-color: white">
                   <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
@@ -17,7 +28,7 @@
                    <td width=5%" align="left"><b>Aluno:</b></td>
                    <td><%=h relatorio.aluno.aluno_nome %></td>
                    <td width=10%" align="left"><b>Nascimento:</b></td>
-                   <td><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+                   <td><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %>   </td>
 
                  </tr>
                  <tr bgcolor="#F5F5F5">
@@ -28,10 +39,7 @@
                                    <%=h relatorio.atribuicao.classe.classe_classe %>
                    <td><b>Ano Letivo:</b></td>
                    <td><%=h relatorio.ano_letivo %>
-                     <% bimestre = relatorio.created_at.strftime("%M").to_i %>
-
-
-
+                    <% bimestre = relatorio.created_at.strftime("%m").to_i %>
                    <% if  ( bimestre < 8 ) %>
                      - 1º Bimetre
                    <% else %>
@@ -60,6 +68,9 @@
 
                   <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
 
+               </tr>
+               <tr>
+                 <td colspan="5"> <hr/><hr/></td>
                </tr>
              </table>
            <%end%>
