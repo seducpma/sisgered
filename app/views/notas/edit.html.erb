@@ -69,10 +69,10 @@
                                                  <%= f.select :nota1 , options_for_select(Nota::NOTASB)  %>
                                               <%end%>
                                               <%if @nota.faltas1 != 0%>
-                                                  &nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas1%>
+                                                  <!--&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas1%>-->
+                                                  <%= f.text_field :faltas1 , :size => '2'%>
                                               <%else%>
-                                                  <!--<%= f.text_field :faltas1 , :size => '2'%>-->
-                                                  &nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas1%>
+                                                  <%= f.text_field :faltas1 , :size => '2'%>
                                               <%end%>
                              </td>
                          <%end%>
@@ -89,9 +89,9 @@
                                                  <%= f.select :nota2 , options_for_select(Nota::NOTASB) %>
                                               <%end%>
                                               <%if @nota.faltas2 != 0%>
-                                                  &nbsp&nbsp&nbsp&nbsp <%= @nota.faltas2%>
+                                                  <!--nbsp&nbsp&nbsp&nbsp <%= @nota.faltas2%>-->
+                                                  <%= f.text_field :faltas2 , :size => '2'%>
                                               <%else%>
-                                                  <!--<%= f.text_field :faltas2 , :size => '2'%>-->
                                                   <%= f.text_field :faltas2 , :size => '2'%>
                                               <%end%>
                              </td>
@@ -108,9 +108,9 @@
                                                  <%= f.select :nota3 , options_for_select(Nota::NOTASB) %>
                                               <%end%>
                                               <%if @nota.faltas3 !=0 %>
-                                                  &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas3%>
+                                                  <!--&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas3%>-->
+                                                  <%= f.text_field :faltas3 , :size => '2   '%>
                                               <%else%>
-                                                  <!--<%= f.text_field :faltas3 , :size => '2   '%>-->
                                                   <%= f.text_field :faltas3 , :size => '2   '%>
                                               <%end%>
                              </td>
