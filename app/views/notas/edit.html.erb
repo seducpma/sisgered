@@ -82,7 +82,7 @@
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota2.present?%>
-                                                 <%= f.select :nota2 , options_for_select(Nota::NOTASB.insert(0, @nota.nota1)) %>
+                                                 <%= f.select :nota2 , options_for_select(Nota::NOTASB.insert(0, @nota.nota2)) %>
                                                  <!-- &nbsp&nbsp&nbsp <%= @nota.nota2%>&nbsp&nbsp&nbsp -->
                                               <%else%>
                                                  <%= f.select :nota2 , options_for_select(Nota::NOTASB) %>
@@ -100,7 +100,7 @@
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota3.present?%>
-                                                 <%= f.select :nota3 , options_for_select(Nota::NOTASB.insert(0, @nota.nota1)) %>
+                                                 <%= f.select :nota3 , options_for_select(Nota::NOTASB.insert(0, @nota.nota3)) %>
                                                  <!-- &nbsp&nbsp&nbsp<%= @nota.nota3%>&nbsp&nbsp&nbsp-->
                                               <%else%>
                                                  <%= f.select :nota3 , options_for_select(Nota::NOTASB) %>
@@ -119,7 +119,7 @@
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota4.present?%>
-                                                 <%= f.select :nota1 , options_for_select(Nota::NOTASB.insert(0, @nota.nota1)) %>
+                                                 <%= f.select :nota4 , options_for_select(Nota::NOTASB.insert(0, @nota.nota4)) %>
                                                  <!-- &nbsp&nbsp&nbsp<%= @nota.nota4%>&nbsp&nbsp&nbsp -->
                                               <%else%>
                                                  <!-- <%= f.select :nota4 , options_for_select(Nota::NOTASB) %> -->

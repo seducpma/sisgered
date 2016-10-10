@@ -107,10 +107,14 @@ class RelatoriosController < ApplicationController
 
 def consulta_relatorios
     if params[:type_of].to_i == 3
-
-          @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
-      render :update do |page|
-         page.replace_html 'professores', :partial => "professores"
+        if ( params[:aluno].present?)
+            session[:aluno_imp]= params[:aluno]
+            session[:ano_imp]=params[:ano_letivo]
+            session[:impressao]= 1 
+            @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno]])
+            render :update do |page|
+               page.replace_html 'relatorio', :partial => "fapea"
+           end
       end
     else if params[:type_of].to_i == 1
                  if ( params[:aluno].present?)

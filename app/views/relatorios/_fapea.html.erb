@@ -63,18 +63,19 @@
                 </tr>
 
                 <tr><td colspan="4"> <hr/></td></tr>
+                <%if session[:impressao]==1%>
                 <tr>
                  <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
 
-                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> ></td>
 
                </tr>
-               <tr>
-                 <td colspan="5"> <hr/><hr/></td>
-               </tr>
+               <%  session[:impressao]=0 %>
+               <%end %>
              </table>
-           <%end%>
            </fieldset>
+          <%end%>
+
          <%else%>
               <br/>
               <table  width="100%">
