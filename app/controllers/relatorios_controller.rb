@@ -110,17 +110,19 @@ def consulta_relatorios
         if ( params[:aluno].present?)
             session[:aluno_imp]= params[:aluno]
             session[:ano_imp]=params[:ano_letivo]
-            session[:impressao]= 1 
+            session[:impressao]= 0
             @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno]])
             render :update do |page|
                page.replace_html 'relatorio', :partial => "fapea"
            end
       end
     else if params[:type_of].to_i == 1
+
                  if ( params[:aluno].present?)
-                  session[:aluno_imp]= params[:aluno]
+                  session[:aluno_imp]= params[:aluno1]
                   session[:ano_imp]=params[:ano_letivo]
-                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno], params[:ano_letivo]])
+                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno1], params[:ano_letivo]])
+                  session[:impressao]= 1
                   render :update do |page|
                      page.replace_html 'relatorio', :partial => "fapea"
                    end
@@ -137,6 +139,10 @@ def consulta_relatorios
              end
         end
     end
+  
+end
+
+def consulta_observacoes
   
 end
 
@@ -207,6 +213,7 @@ end
 
   def load_consulta_ano
     @ano =   Relatorio.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
+    @disciplina=  Disciplina.find(:all,:select => 'distinct(disciplina) as disciplina', :conditions => ['ano_letivo =? and tipo_un =?', Time.now.year, 3] ,:order => 'ano_letivo DESC')
 
   end
 end

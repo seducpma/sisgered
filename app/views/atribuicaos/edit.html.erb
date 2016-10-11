@@ -27,7 +27,7 @@
                              <td width ="3%" align="center"> <b>1º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas1 , :size => '2'%></td>
                           <%else%>
                             <td align="center"> <b>1º Bimestre <br/>Nº Aulas:</b>   <%if @atribuicao.aulas1 != 0%>
-                                                                      <br/>&nbsp&nbsp&nbsp<%= @atribuicao.aulas1%>
+                                                                      <br/><!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas1%>--><%= f.text_field :aulas1 , :size => '3'%>
                                                                     <%else%>
                                                                         <%= f.text_field :aulas1 , :size => '3'%>
                                                                     <%end%>
@@ -37,7 +37,7 @@
                              <td width ="3%" align="center"> <b>2º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas2 , :size => '2'%></td>
                           <%else%>
                             <td align="center"><b>2º Bimestre <br/>Nº Aulas:</b> <%if @atribuicao.aulas2 != 0%>
-                                                                    <br/>&nbsp&nbsp&nbsp<%= @atribuicao.aulas2%>
+                                                                    <br/><!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas2%>--><%= f.text_field :aulas2 , :size => '3'%>
                                                                 <%else%>
                                                                     <%= f.text_field :aulas2 , :size => '3'%>
                                                                 <%end%>
@@ -48,11 +48,11 @@
                              <%t=0%>
                           <%else%>
                               <td align="center"><b>3º Bimestre <br/>Nº Aulas:</b><%if @atribuicao.aulas3 != 0%>
-                                                                    <br/>&nbsp&nbsp&nbsp<%= @atribuicao.aulas3%>
-                                                                                               <%t=0%>
+                                                                    <br/><!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas3%>--><%= f.text_field :aulas3 , :size => '3'%>
+                                                                                               
                                                                 <%else%>
                                                                     <%= f.text_field :aulas3 , :size => '3'%>
-                                                                                               <%t=0%>
+                                                                                               
                                                                 <%end%>
                              </td>
 

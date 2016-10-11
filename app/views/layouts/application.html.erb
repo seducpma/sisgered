@@ -255,6 +255,7 @@ display: none;
                         <li><%= link_to "Observações", relatorio_observacoes_atribuicaos_path %></li>
                      <%end%>
                      <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria') or current_user.has_role?('professor')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil'))%>
+                         <li><%= link_to "Observaçoes",consultas_observacao_relatorios_path %></li>
                          <li><%= link_to "FAPEA",consultas_relatorios_path %></li>
                      <%end%>
 

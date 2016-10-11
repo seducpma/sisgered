@@ -1,7 +1,7 @@
 <table width="100%">
    <tr>
      <td align="right"><font size="2"><b class="label_busca">Nome Aluno:</b></font>
-               &nbsp&nbsp&nbsp<%= select_tag :aluno, options_for_select(@alunos2.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
+               &nbsp&nbsp&nbsp<%= select_tag :aluno1, options_for_select(@alunos2.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
      </td>
      <td align="center">
                <font size="2"><b class="label_busca3">Ano Letivo:</b></font>
