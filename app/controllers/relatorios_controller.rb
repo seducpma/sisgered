@@ -119,8 +119,8 @@ def consulta_relatorios
     else if params[:type_of].to_i == 1
 
                  if ( params[:aluno].present?)
-                  session[:aluno_imp]= params[:aluno1]
-                  session[:ano_imp]=params[:ano_letivo]
+                  w=session[:aluno_imp]= params[:aluno1]
+                  w1=session[:ano_imp]=params[:ano_letivo]
                   @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno1], params[:ano_letivo]])
                   session[:impressao]= 1
                   render :update do |page|
@@ -143,7 +143,73 @@ def consulta_relatorios
 end
 
 def consulta_observacoes
-  
+    if params[:type_of].to_i == 1
+       if ( params[:aluno].present?)
+            session[:aluno_imp]= params[:aluno2]
+            session[:ano_imp]=params[:ano_letivo]
+            @notas = Nota.find(:all,  :conditions => ["aluno_id =?   AND ano_letivo =?", session[:aluno_imp], session[:ano_imp]])
+            @matriculas = Matricula.find(:all, :conditions => ["aluno_id =?   AND ano_letivo =?",session[:aluno_imp], session[:ano_imp]])
+            @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', session[:aluno_imp]])
+            @matriculas.each do |matricula|
+               session[:classe]=matricula.classe_id
+               session[:num]=matricula.classe_num
+             end
+            @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
+            @classe.each do |classe|
+               session[:unidade]=classe.unidade_id
+             end
+            session[:impressao]= 0
+
+            render :update do |page|
+               page.replace_html 'relatorio', :partial => "observacoes"
+           end
+       end
+    else if params[:type_of].to_i == 2
+
+                 if ( params[:aluno1].present?)
+                    w1=session[:aluno_imp]= params[:aluno1]
+                    w=session[:disciplina]=params[:disciplina2]
+
+                    @notas = Nota.find(:all,  :conditions => ["aluno_id =? and disciplina_id=?", session[:aluno_imp], session[:disciplina]])
+                    @matriculas = Matricula.find(:all, :conditions => ["aluno_id =?  ",session[:aluno_imp],])
+                    @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', session[:aluno_imp]])
+                    @matriculas.each do |matricula|
+                        session[:classe]=matricula.classe_id
+                     end
+
+                     @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
+                     @classe.each do |classe|
+                     session[:unidade]=classe.unidade_id
+                end
+                   session[:impressao]= 0
+
+                  render :update do |page|
+                     page.replace_html 'relatorio', :partial => "observacoes3"
+                   end
+                end
+        else  if params[:type_of].to_i == 3
+                   if ( params[:aluno].present?)
+                        session[:aluno_imp]= params[:aluno]
+                        @notas = Nota.find(:all,  :conditions => ["aluno_id =?", session[:aluno_imp]])
+                        @matriculas = Matricula.find(:all, :conditions => ["aluno_id =?  ",session[:aluno_imp],])
+                        @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', session[:aluno_imp]])
+
+                       @matriculas.each do |matricula|
+                           session[:classe]=matricula.classe_id
+                         end
+                        @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
+                        @classe.each do |classe|
+                           session[:unidade]=classe.unidade_id
+                         end
+                        session[:impressao]= 0
+
+                        render :update do |page|
+                           page.replace_html 'relatorio', :partial => "observacoes3"
+                       end
+                   end
+             end
+        end
+    end
 end
 
   def relatorio
@@ -213,6 +279,7 @@ end
 
   def load_consulta_ano
     @ano =   Relatorio.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
+    @ano1 =   Nota.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
     @disciplina=  Disciplina.find(:all,:select => 'distinct(disciplina) as disciplina', :conditions => ['ano_letivo =? and tipo_un =?', Time.now.year, 3] ,:order => 'ano_letivo DESC')
 
   end

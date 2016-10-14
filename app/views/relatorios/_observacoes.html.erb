@@ -1,0 +1,90 @@
+    <%if @matriculas.present?%>
+     <fieldset><legend><font  size=3><b> OBSERVAÇÕES - <%=h session[:ano_imp] %></b></font></legend>
+      <table width ="100%" >
+          <% for matricula in @matriculas %>
+           <tr bgcolor="#F5F5F5" >
+             <td align="left" width="10%"><b>Nome:</b></td>
+             <td align="left">  <%=h matricula.aluno.aluno_nome%></td>
+             <td align="left" width="15%"><b> Data Nascimento:</b></td>
+             <td align="left"> <%=h matricula.aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+           </tr>
+
+           <tr bgcolor="#F5F5F5" >
+             <td align="left" width="10%"><b>Unidade:</b></td>
+             <td align="left">  <%=h matricula.unidade.nome%></td>
+             <td align="left"><b> Ano Letivo:</b></td>
+             <td align="left"> <%=h matricula.ano_letivo %><%  session[:classe]=  matricula.classe.id%></td>
+           </tr>
+           <tr bgcolor="#F5F5F5">
+
+             <td align="left"><b>Classe:</b></td>
+               <td align="left">  <%=h matricula.classe.classe_classe%></td>
+               <td align="left"><b>Horário:</b></td>
+               <td align="left">  <%=h matricula.classe.horario %></td>
+            </tr>
+            <tr bgcolor="#F5F5F5" >
+               <td align="left"><b>Status:</b></td>
+               <% if  matricula.status =="MATRICULADO" %>
+                   <td align="left" colspan="3"> Matriculado</td>
+               <%else%>
+                  <td align="left" colspan="3"> <%=h matricula.status %>
+                    <%if matricula.status == 'TRANSFERIDO'%>
+                        <%if !matricula.para.nil?%>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Para:&nbsp&nbsp</b><%=h matricula.para %>
+                        <%end%>
+
+                        <%if !matricula.transf_unidade_id.nil?%>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Para:&nbsp&nbsp</b>
+                                <%=h matricula.unidade.nome %>
+                     <%end%>
+
+                <%end%>
+                    <%if matricula.status == 'TRANSFERENCIA'%>
+                        <%if !matricula.procedencia.nil?%>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Procedencia:&nbsp&nbsp</b><%=h matricula.procedencia %>
+                        <%end%>
+                    <%end%>
+               </td>
+              <%end%>
+            </tr>
+          <%end%>
+      </table>
+     <table width="100%" >
+      <tr>
+        <td>
+            <%@notas.each do |nota|%>
+                <%if nota.aluno_id == session[:aluno_imp].to_i%>
+                   <% if nota.observacao_notas.present? %>
+                          <table width="100%">
+                              <tr bgcolor="#F5F5F5">
+                                  <td  valign="top"><b><u><%= nota.disciplina.disciplina %>:</b></u> &nbsp&nbsp</td>
+                                  <td>  <% c=0 %>
+
+                                           <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+                                               <% @obs.each do |obs|%>
+                                                     <b><%= c=c+1%>.</b><%=obs.observacao %>  -
+                                                         <b>Data: </b> <%  if !obs.data.nil?  %>
+                                                              <%=  obs.data.strftime("%d/%m/%Y")%><br/>
+                                                   <%end%>
+                                               <%end%>
+                                   </td>
+                              </tr>
+                          </table>
+                   <%end%>
+               <%end%>
+
+           <%end%>
+     
+        </td>
+      </tr>
+     </table>
+   </fieldset>
+    <%else%>
+       <br/>
+         <table  width="100%">
+            <tr>
+                <td align="center"><font size="3" color="red"><b> RELATÓRIO NÃO ENCONTRADO </b> </td>
+            </tr>
+       </table>
+    <%end%>
+
