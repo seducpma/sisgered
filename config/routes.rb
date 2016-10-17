@@ -65,6 +65,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_relatorio_mapa2 '/impressao_relatorio_mapa2', :controller => 'atribuicaos', :action => 'impressao_lencol2'
   map.impressao_relatorio_mapa3 '/impressao_relatorio_mapa3', :controller => 'atribuicaos', :action => 'impressao_lencol3'
   map.impressao_relatorio_mapa4 '/impressao_relatorio_mapa4', :controller => 'atribuicaos', :action => 'impressao_lencol4'
+  map.impressao_relatorio_mapa5 '/impressao_relatorio_mapa5', :controller => 'atribuicaos', :action => 'impressao_lencol5'
   map.impressao_lancamentos '/impressao_lancamentos', :controller => 'atribuicaos', :action => 'impressao_lancamentos'
   map.impressao_alteracao_lancamentos '/impressao_alteracao_lancamentos', :controller => 'notas', :action => 'impressao_alteracao_lancamentos'
   map.impressao_lancamentos_notas '/impressao_lancamentos_notas', :controller => 'notas', :action => 'impressao_lancamentos_notas'
