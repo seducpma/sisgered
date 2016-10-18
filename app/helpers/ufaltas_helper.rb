@@ -1,0 +1,2 @@
+module UfaltasHelper
+end

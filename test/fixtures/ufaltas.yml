@@ -1,0 +1,43 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  data: 2016-10-17
+  unidade: 
+  funcao: MyString
+  locados: 1
+  trabalhando: 1
+  greve: 1
+  atestado_dia: 1
+  atestado_horas: 1
+  atestado_periodo: 1
+  atestado_acompanhante: 1
+  quem: MyString
+  total_trab: 1
+  total_lhando: 1
+  total_greve: 1
+  total_atestado_dia: 1
+  total_atestado_hora: 1
+  total_atestado_periodo: 1
+  total_atestado_acompanhante: 1
+  obs: MyString
+
+two:
+  data: 2016-10-17
+  unidade: 
+  funcao: MyString
+  locados: 1
+  trabalhando: 1
+  greve: 1
+  atestado_dia: 1
+  atestado_horas: 1
+  atestado_periodo: 1
+  atestado_acompanhante: 1
+  quem: MyString
+  total_trab: 1
+  total_lhando: 1
+  total_greve: 1
+  total_atestado_dia: 1
+  total_atestado_hora: 1
+  total_atestado_periodo: 1
+  total_atestado_acompanhante: 1
+  obs: MyString

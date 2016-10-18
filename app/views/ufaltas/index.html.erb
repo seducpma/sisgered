@@ -1,0 +1,56 @@
+<h1>Listing ufaltas</h1>
+
+<table>
+  <tr>
+    <th>Data</th>
+    <th>Unidade</th>
+    <th>Funcao</th>
+    <th>Locados</th>
+    <th>Trabalhando</th>
+    <th>Greve</th>
+    <th>Atestado dia</th>
+    <th>Atestado horas</th>
+    <th>Atestado periodo</th>
+    <th>Atestado acompanhante</th>
+    <th>Quem</th>
+    <th>Total trab</th>
+    <th>Total lhando</th>
+    <th>Total greve</th>
+    <th>Total atestado dia</th>
+    <th>Total atestado hora</th>
+    <th>Total atestado periodo</th>
+    <th>Total atestado acompanhante</th>
+    <th>Obs</th>
+  </tr>
+
+<% @ufaltas.each do |ufalta| %>
+  <tr>
+    <td><%=h ufalta.data %></td>
+    <td><%=h ufalta.unidade %></td>
+    <td><%=h ufalta.funcao %></td>
+    <td><%=h ufalta.locados %></td>
+    <td><%=h ufalta.trabalhando %></td>
+    <td><%=h ufalta.greve %></td>
+    <td><%=h ufalta.atestado_dia %></td>
+    <td><%=h ufalta.atestado_horas %></td>
+    <td><%=h ufalta.atestado_periodo %></td>
+    <td><%=h ufalta.atestado_acompanhante %></td>
+    <td><%=h ufalta.quem %></td>
+    <td><%=h ufalta.total_trab %></td>
+    <td><%=h ufalta.total_lhando %></td>
+    <td><%=h ufalta.total_greve %></td>
+    <td><%=h ufalta.total_atestado_dia %></td>
+    <td><%=h ufalta.total_atestado_hora %></td>
+    <td><%=h ufalta.total_atestado_periodo %></td>
+    <td><%=h ufalta.total_atestado_acompanhante %></td>
+    <td><%=h ufalta.obs %></td>
+    <td><%= link_to 'Show', ufalta %></td>
+    <td><%= link_to 'Edit', edit_ufalta_path(ufalta) %></td>
+    <td><%= link_to 'Destroy', ufalta, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New ufalta', new_ufalta_path %>

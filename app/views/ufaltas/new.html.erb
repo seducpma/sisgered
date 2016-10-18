@@ -1,0 +1,309 @@
+div id="interno2">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CONTROLE DE FREQÜÊNCIA</strong></font><br/>
+ </div>
+      <div class="tabs">
+        <% form_for (@ufalta), :html => { :multipart => true } do |f| %>
+           <%= f.error_messages %>
+             <font color ="red"  size="4"align="left"><b> INFORMAR DIARIAMENTE ATÉ AS 15:00 HORAS </b></font>
+              <fieldset><legend><font size=4>Dados alunos</font></legend>
+                 <table width="100%">
+                    <tr bgcolor="#F5F5F5">
+                       <td colspan="4"><b>Unidade:</b> <%=h current_user.unidade.nome %>
+
+
+
+                                 </tr>
+                                 <tr bgcolor="#F5F5F5">
+                                   <td width =" 12%" valign="top"><b>Nome:</b></td>
+                                   <td colspan="3"><%= f.text_field :aluno_nome, :size=>"64" %>
+                                       <%= observe_field :aluno_aluno_nome,
+                                         :with => :aluno_aluno_nome,
+                                         :url => { :action => 'mesmo_nome' } %>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    <b>Sexo:</b>&nbsp&nbsp
+                                    <%= f.select :aluno_sexo,(SEXO).sort, :include_blank => '-- Selecionar --' %><br/>
+                                        <b>Foto: </b> <%= f.file_field :photo%>
+
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                   <td></td>
+                                   <td><b><font color ="red" size="4"><div id='nome_aviso' ></div></b></font></td>
+
+
+                                 </tr>
+                                 <tr bgcolor="#F5F5F5">
+                                   <td><b><%= f.label :aluno_nascimento, 'Nascimento' %></b></td>
+                                   <td colspan="3">    <%= f.date_select(:aluno_nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
+                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                     <b>Nº Certidão:</b>&nbsp&nbsp
+                                      <%= f.text_field :aluno_certidao_nascimento, :size=>'20'%>&nbsp&nbsp&nbsp
+                                      <b>Livro:</b>&nbsp&nbsp
+                                      <%= f.text_field :aluno_livro, :size=>'4'%>&nbsp&nbsp&nbsp
+                                      <b>Folha:</b>&nbsp&nbsp
+                                      <%= f.text_field :aluno_folha, :size=>'4'%>&nbsp&nbsp&nbsp
+
+                                   </td>
+                                 </tr>
+                                 <tr  bgcolor="#F5F5F5">
+                                   <td colspan="4" ><b>Naturalidade (Cidade-Estado)</b>:&nbsp&nbsp&nbsp
+                                   <%= f.text_field :aluno_naturalidade, :size=>'77'%> </td>
+                                 </tr>
+                                 <tr bgcolor="#F5F5F5">
+                                   <td><b>Nacionalidade:</b></td>
+                                   <td><%= f.text_field :aluno_nacionalidade, :size=>'12', :value => "BRASILEIRO"%>
+                                      &nbsp&nbsp&nbsp&nbsp
+                                      <b>Se estrangeiro: &nbsp&nbsp Chegada Brasil:</b>&nbsp&nbsp
+                                      <%= f.date_select(:aluno_chegada_brasil, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year-50)) %>
+                                       &nbsp&nbsp&nbsp&nbsp<b>RNE:</b>&nbsp&nbsp<%= f.text_field :aluno_RNE, :size=>'12'%>
+                                   </td>
+                                 </tr>
+                                 <tr bgcolor="#F5F5F5">
+                                   <td></td>
+                                   <td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                     <b>Classificação:</b>&nbsp&nbsp<%= f.text_field :aluno_classificacao, :size=>'12'%>
+                                      &nbsp&nbsp<b>Validade:</b>&nbsp&nbsp
+                                      <%= f.date_select(:aluno_validade_estrangeiro, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year + 25)) %></td>
+
+                                 </tr>
+
+                                 <tr bgcolor="#F5F5F5">
+                                    <td><b>RG:</b></td>
+                                    <td colspan="3"><%= f.text_field :aluno_RG, :size=>'12'%>
+                                      &nbsp&nbsp
+                                       <b>Expedição:</b>&nbsp&nbsp
+                                       <%= f.text_field :aluno_emissaoRG, :size=>'12' %>
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>CPF:</b>
+                                       <%= f.text_field :aluno_CPF, :size=>'12'%>
+                                        &nbsp&nbsp
+                                        <b>Expedição:</b>&nbsp&nbsp
+                                       <%= f.text_field :aluno_emissaoCPF, :size=>'12'%> </td>
+                                 </tr>
+                                  <tr bgcolor="#F5F5F5">
+                                   <td width =" 12%"><b>Reside com:</b></td>
+                                   <td colspan="7"> <%= f.select :aluno_reside_com, (RESIDECOM).sort, :include_blank => '-- Selecionar --' %>
+                                              <%= observe_field 'aluno_aluno_reside_com',
+                                                          :with => :aluno_aluno_reside_com,
+                                                          :url => { :action => 'dados_pai' }%>
+
+                                   &nbsp&nbsp<b>Há restrições no caso de guarda da criança? </b>
+                                   &nbsp&nbsp<%= f.text_field :aluno_restricao, :value => "NÃO", :size=>"36"%></td>
+                                 </tr>
+                                 <tr bgcolor="#F5F5F5">
+                                   <td><b></font>Pai: </b></td>
+                                   <td colspan="3"><%= f.text_field :aluno_pai, :size=>"60"%></td>
+                                 </tr>
+                                  <tr>
+                                    <td></td>
+                                    <td colspan="3" align="left"> <div id="mostra_dados_pai">
+                                        <table>
+                                          <tr bgcolor="#F5F5F5">
+                                            <td><b></font>Endereço: </b></td>
+                                            <td colspan="2"><%= f.text_field :aluno_endereco_pai, :size=>"40"%></td>
+                                            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b></font>Cidade: </b></td>
+                                            <td><%= f.text_field :aluno_cidade_pai, :size=>"30"%></td>
+                                          </tr>
+                                           <tr bgcolor="#F5F5F5">
+                                             <td><b></font>Fone(s): </b></td>
+                                             <td colspan="5">
+                                              <%= f.text_field :aluno_fone_pai, :size=>"25"%>
+                                              &nbsp&nbsp&nbsp&nbsp
+                                              <b>E_mail: </b>&nbsp&nbsp
+                                              <%= f.text_field :aluno_email_pai, :size=>"45"%></td>
+                                          </tr>
+                                        </table>
+                                      </div></td>
+                                 </tr>
+                                 <tr bgcolor="#F5F5F5">
+                                   <td><b></font>Mãe: </b></td>
+                                   <td colspan="3"><%= f.text_field :aluno_mae, :size=>"60"%></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="3" align="left"> <div id="mostra_dados_mae">
+                                        <table>
+                                            <tr bgcolor="#F5F5F5">
+                                              <td><b></font>Endereço:  </b></td>
+                                              <td colspan="3"><%= f.text_field :aluno_endereco_mae, :size=>"40"%></td>
+                                              <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b></font>Cidade: </b></td>
+                                              <td><%= f.text_field :aluno_cidade_mae, :size=>"30"%></td>
+                                            </tr>
+                                             <tr bgcolor="#F5F5F5">
+                                               <td><b></font>Fone(s): </b></td>
+                                               <td colspan="5">
+                                                <%= f.text_field :aluno_fone_mae, :size=>"25"%>
+                                                &nbsp&nbsp&nbsp&nbsp
+                                                <b>E_mail: </b>&nbsp&nbsp
+                                                <%= f.text_field :aluno_email_mae, :size=>"45"%></td>
+                                            </tr>
+                                        </table>
+                                      </div></td>
+                                </tr>
+
+                           <fieldset><legend><font size=4>Autorizações</font></legend>
+                             <table width="100%" >
+                                 <tr bgcolor="#F5F5F5">
+                                   <td><b>1) Autorizo participar normalmente das atividades física, pois a criança não apresenta problemas de saúde que o impeça de paricipar.</b></td>
+                                    <td><%= f.select :aluno_autoriza_ativ_fisica, (OPCAO).sort %>  </td>
+                                 </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td><b>2) Autorizo participar de atividades extra calsse (passeios, excursões e outras ativades curriculares), na cidade de Americana, devidamente acompanhado pelos professores:</b></td>
+                                    <td><%= f.select :aluno_autoriza_ativ_extraclasse, (OPCAO).sort %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td><b>3) Autorizo a Secretaria de Educação a fazer uso da imagem da criança em trabalhos pedagógicos para fins de exibição  na escola ou lugares afins</b></td>
+                                    <td><%= f.select :aluno_autoriza_imagem, (OPCAO).sort %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td><b>4) Autorizo meu filho (a) ir embora sozinho</b></td>
+                                    <td> <%= f.select :aluno_vai_embora_so, (OPCAO).sort %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td><b>5) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros</b></br>
+                                        <b> Nome aluno(s) autorizadas: &nbsp <%= f.text_field :aluno_acompanhante, :size=>"70" %>      </td>
+                                    <td> <%= f.select :aluno_vai_embora, (OPCAO).sort %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td><b>6) Autorizo tratamento médico emergencial, em caso de enfermidade ou acidente na escola, ministrar primeiros socorros e providenciar deslocamento até hospital</td>
+                                    <td> <%= f.select :aluno_emergencial, (OPCAO).sort %>  </td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td><b>7) Autorizo tratamento odontologico, se disponibilizado pela Prefeitura Municipal de Americana</b></td>
+                                    <td> <%= f.select :aluno_odontologico, (OPCAO).sort %> </td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td><b>8) Autorizo a aplicação de fluor</b></td>
+                                    <td><%= f.select :aluno_fluor, (OPCAO).sort %>    </td>
+                                </tr>
+                             </table>
+
+                            </fieldset>
+
+                           <br/>
+
+
+
+
+                                 <table width="100%" >
+                                   <tr bgcolor="#F5F5F5">
+                                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+                          <%end%>
+                                      <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consultas_criancas_path, :title => "Nova Consulta" %></td>
+                                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+                                   </tr>
+                                 </table>
+
+
+                            </font>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+<br/>
+</div>
+
+
+
+<h1>New ufalta</h1>
+
+<% form_for(@ufalta) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :data %><br />
+    <%= f.date_select :data %>
+  </p>
+  <p>
+    <%= f.label :unidade %><br />
+    <%= f.text_field :unidade %>
+  </p>
+  <p>
+    <%= f.label :funcao %><br />
+    <%= f.text_field :funcao %>
+  </p>
+  <p>
+    <%= f.label :locados %><br />
+    <%= f.text_field :locados %>
+  </p>
+  <p>
+    <%= f.label :trabalhando %><br />
+    <%= f.text_field :trabalhando %>
+  </p>
+  <p>
+    <%= f.label :greve %><br />
+    <%= f.text_field :greve %>
+  </p>
+  <p>
+    <%= f.label :atestado_dia %><br />
+    <%= f.text_field :atestado_dia %>
+  </p>
+  <p>
+    <%= f.label :atestado_horas %><br />
+    <%= f.text_field :atestado_horas %>
+  </p>
+  <p>
+    <%= f.label :atestado_periodo %><br />
+    <%= f.text_field :atestado_periodo %>
+  </p>
+  <p>
+    <%= f.label :atestado_acompanhante %><br />
+    <%= f.text_field :atestado_acompanhante %>
+  </p>
+  <p>
+    <%= f.label :quem %><br />
+    <%= f.text_field :quem %>
+  </p>
+  <p>
+    <%= f.label :total_trab %><br />
+    <%= f.text_field :total_trab %>
+  </p>
+  <p>
+    <%= f.label :total_lhando %><br />
+    <%= f.text_field :total_lhando %>
+  </p>
+  <p>
+    <%= f.label :total_greve %><br />
+    <%= f.text_field :total_greve %>
+  </p>
+  <p>
+    <%= f.label :total_atestado_dia %><br />
+    <%= f.text_field :total_atestado_dia %>
+  </p>
+  <p>
+    <%= f.label :total_atestado_hora %><br />
+    <%= f.text_field :total_atestado_hora %>
+  </p>
+  <p>
+    <%= f.label :total_atestado_periodo %><br />
+    <%= f.text_field :total_atestado_periodo %>
+  </p>
+  <p>
+    <%= f.label :total_atestado_acompanhante %><br />
+    <%= f.text_field :total_atestado_acompanhante %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', ufaltas_path %>

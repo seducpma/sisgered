@@ -1,0 +1,88 @@
+<h1>Editing ufalta</h1>
+
+<% form_for(@ufalta) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :data %><br />
+    <%= f.date_select :data %>
+  </p>
+  <p>
+    <%= f.label :unidade %><br />
+    <%= f.text_field :unidade %>
+  </p>
+  <p>
+    <%= f.label :funcao %><br />
+    <%= f.text_field :funcao %>
+  </p>
+  <p>
+    <%= f.label :locados %><br />
+    <%= f.text_field :locados %>
+  </p>
+  <p>
+    <%= f.label :trabalhando %><br />
+    <%= f.text_field :trabalhando %>
+  </p>
+  <p>
+    <%= f.label :greve %><br />
+    <%= f.text_field :greve %>
+  </p>
+  <p>
+    <%= f.label :atestado_dia %><br />
+    <%= f.text_field :atestado_dia %>
+  </p>
+  <p>
+    <%= f.label :atestado_horas %><br />
+    <%= f.text_field :atestado_horas %>
+  </p>
+  <p>
+    <%= f.label :atestado_periodo %><br />
+    <%= f.text_field :atestado_periodo %>
+  </p>
+  <p>
+    <%= f.label :atestado_acompanhante %><br />
+    <%= f.text_field :atestado_acompanhante %>
+  </p>
+  <p>
+    <%= f.label :quem %><br />
+    <%= f.text_field :quem %>
+  </p>
+  <p>
+    <%= f.label :total_trab %><br />
+    <%= f.text_field :total_trab %>
+  </p>
+  <p>
+    <%= f.label :total_lhando %><br />
+    <%= f.text_field :total_lhando %>
+  </p>
+  <p>
+    <%= f.label :total_greve %><br />
+    <%= f.text_field :total_greve %>
+  </p>
+  <p>
+    <%= f.label :total_atestado_dia %><br />
+    <%= f.text_field :total_atestado_dia %>
+  </p>
+  <p>
+    <%= f.label :total_atestado_hora %><br />
+    <%= f.text_field :total_atestado_hora %>
+  </p>
+  <p>
+    <%= f.label :total_atestado_periodo %><br />
+    <%= f.text_field :total_atestado_periodo %>
+  </p>
+  <p>
+    <%= f.label :total_atestado_acompanhante %><br />
+    <%= f.text_field :total_atestado_acompanhante %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @ufalta %> |
+<%= link_to 'Back', ufaltas_path %>
