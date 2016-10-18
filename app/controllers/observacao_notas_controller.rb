@@ -78,7 +78,7 @@ class ObservacaoNotasController < ApplicationController
     @observacao_nota.destroy
 
  respond_to do |format|
-      format.html { redirect_to(lancar_notas_notas_path) }
+      format.html { redirect_to(voltar_lancamento_notas_path)}
       format.xml  { head :ok }
     end
 

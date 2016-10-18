@@ -41,7 +41,7 @@ class AtribuicaosController < ApplicationController
     session[:atrib_id]
     session[:aluno_id]
     @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
-
+    session[:flag_edit]=1
 
   end
 
@@ -88,9 +88,7 @@ end
 
     respond_to do |format|
       if @atribuicao.update_attributes(params[:atribuicao])
-
      @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", @atribuicao.id,Time.now.year ])
-
       for nota in @notas
          nota = Nota.find(nota.id)
          nota.aulas1=@atribuicao.aulas1
@@ -101,16 +99,22 @@ end
          nota.save
       end
 
-        flash[:notice] = 'SALVO COM SUCESSO!'
+        if  session[:flag_edit]== 1
+          flash[:notice] = 'SALVO COM SUCESSO!'
 
+             format.html { redirect_to(voltar_lancamento_notas_path)}
+
+        else
+          flash[:notice] = 'SALVO COM SUCESSO!'
             format.html { redirect_to(@atribuicao) }
             format.xml  { head :ok }
-
+         end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
       end
     end
+        session[:flag_edit]=0
   end
 
 

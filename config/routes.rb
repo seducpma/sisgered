@@ -48,7 +48,9 @@ ActionController::Routing::Routes.draw do |map|
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
-
+  map.voltar_lancamento_notas '/voltar_lancamento_notas', :controller => 'notas', :action => 'voltar_lancamento_notas'
+  map.notas_lancamentos '/notas_lancamentos', :controller => 'notas', :action => 'notas_lancamentos'
+  
 
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
   map.impressao_alunos '/impressao_alunos', :controller => 'alunos', :action => 'impressao_alunos'

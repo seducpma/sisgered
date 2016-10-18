@@ -66,11 +66,14 @@
                </td>
             </tr>
             <tr>
-              <td colspan="2" align="left"><%= link_to image_tag("/stylesheets/images/Lancamento.png"),{:action => "edit", :controller => :atribuicaos, :id =>atrib}, :method => "get", :title => "Editar" %> </td>
-              <td colspan="2" align="right"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+              <td colspan="2">
+                <a href="#" class="com_observacoes"><%= radio_button_tag(:type_of, "1", :checked => true) %></a><b>Visualisar Observações</b>
+                 <a href="#" class="sem_observacoes"><%= radio_button_tag(:type_of, "2") %></a><b>Não Visualisar Observações</b>
+              </td>
+              <td align="left"><%= link_to image_tag("/stylesheets/images/Lancamento.png"),{:action => "edit", :controller => :atribuicaos, :id =>atrib}, :method => "get", :title => "Editar" %> </td>
+              <td align="right"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
             </tr>
-
-         </table>
+       </table>
      <%end%>
         <table  border="1" frame="box" rules="all" width="100%">
           <tr bgcolor="#F5F5F5">
@@ -181,20 +184,20 @@
 
                    <% if nota.observacao_notas.present? %>
                         <%   t= session[:obs_id]= nota.observacao_notas.id   %>
-                        <tr bgcolor="#DCDCDC">
-                          <td bgcolor="#F5F5F5" ></td>
-                          <td align="right"valign="top" style="border-color: #F5F5F5"><u> Observações:</u></td>
-                          <td colspan="13" style="border-color: #F5F5F5">
+                        <tr bgcolor="#DCDCDC" class="visualiza">
+                          <td bgcolor="#F5F5F5" class="visualiza"></td>
+                          <td align="right"valign="top" style="border-color: #F5F5F5" class="visualiza"><u> Observações:</u></td>
+                          <td colspan="13" style="border-color: #F5F5F5" class="visualiza" >
                              <% c=0 %>
-                            <table cellspacing="0" cellpadding="1" width="100%" style="border-color: #F5F5F5">
+                            <table cellspacing="0" cellpadding="1" width="100%" style="border-color: #F5F5F5" class="visualiza">
                                <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
                                  <% @obs.each do |obs|%>
-                                   <tr style="border-color: #F5F5F5">
-                                     <td  style="border-color: white"colspan="3"><b><%= c=c+1%>. </b><%=obs.observacao %> -
+                                   <tr style="border-color: #F5F5F5" class="visualiza">
+                                     <td  style="border-color: white"colspan="3" class="visualiza"><b><%= c=c+1%>. </b><%=obs.observacao %> -
                                          Data:  <%  if !obs.data.nil?  %>
                                         <%=  obs.data.strftime("%d/%m/%Y")%><br/>
                                      </td>
-                                     <td  style="border-color: #F5F5F5" width ="5%" align="center"><%if (!nota.matricula.status =="MATRICULADO" and  nota.matricula.status == 'TRANSFERIDO' )%>
+                                     <td  style="border-color: #F5F5F5" width ="5%" align="center" class="visualiza"><%if (!nota.matricula.status =="MATRICULADO" and  nota.matricula.status == 'TRANSFERIDO' )%>
                                                                       <font color ="red"> -----
                                                                   <%else%>
                                                                        <%= link_to  image_tag('/stylesheets/images/excluir.png', :title => 'Excluir'), {:controller =>"observacao_notas", :action => "destroy", :id =>obs}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%>

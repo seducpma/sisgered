@@ -1,22 +1,32 @@
 <div style='display:none'>
-  <div id='inline_form_observacao' style='padding: 0; margin-right: .1em; background:#EEE9E9;'>
+  <div id='inline_form_observacao' style='margin-bottom:10px  height:900px  ' background:#EEE9E9;'>
+
     <% form_remote_for( :observacao_nota,:url => { :action => 'create_observacao_nota' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
-    <b><u>OBSERVAÇÕES - ALUNOS</u></b> <br/>
+<div id="interno2">
+<% title "CONSULTA_CLASSE".singularize %>
+  <div class="tabs">
+    <br/><font size="3"><b>&nbsp&nbsp&nbsp OBSERVAÇÕES - ALUNOS</b> <br/>
       <hr>
        <%= error_messages_for 'contact' %>
-       <table  width="100%" bgcolor="#F5F5F5">
-         <tr>
-           <td><b>Aluno: </b></td>
-           <td><%=h @nota.aluno.aluno_nome%></td>
+      <table  width="100%" >
+         <tr bgcolor="#F5F5F5">
+           <td><br/>&nbsp&nbsp&nbsp<b>Aluno: </b></td>
+           <td colspan="2"><br/><%=h @nota.aluno.aluno_nome%></td>
          </tr>
-         <tr>
+         <tr bgcolor="#F5F5F5">
             <td width="10%" valign="top"><b><font size="2"><%= f.label :observacao, 'Observações:' %></font></b></td>
-            <td><%= f.text_area :observacao, :cols=>'40', :rows=> '3' %></td>
+            <td colspan="2"><%= f.text_area :observacao, :cols=>'70', :rows=> '3' %></td>
         </tr>
         <tr>
-            <td align="left" colspan="2"><%= f.submit "Salvar" %></td>
+          <td colspan="3"><hr/></td>
+        </tr>
+        <tr>
+          <td  colspan="2" align="right" ><%= f.submit "Salvar" %></td>
+<%end%>
+            <td width="6%" align="RIGHT" ><%= button_to "Fechar",{:action => "edit", :id =>session[:id_nota]}, :method => "get" %></td>
         </tr>
        </table>
-      <%end%>
+     </div>
   </div>
 </div>
+  </div>

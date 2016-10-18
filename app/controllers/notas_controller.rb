@@ -32,6 +32,7 @@ before_filter :load_classes
     @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
     @nota = Nota.find(params[:id])
     session[:id_nota] = params[:id]
+    
   end
 
   
@@ -39,7 +40,7 @@ before_filter :load_classes
     @nota = Nota.new(params[:nota])
     @nota.unidade_id =  current_user.unidade_id
     if @nota.escola =='    Favor digitar o Nome da Escola - Cidade - Estado'
-       t1=@nota.escola = ' '
+       @nota.escola = ' '
     end
    respond_to do |format|
       if @nota.save
@@ -77,11 +78,9 @@ end
 
   
   def update
-    
-    t1=params[:id]
-    @nota = Nota.find(params[:id])
+     @nota = Nota.find(params[:id])
      if @nota.update_attributes(params[:nota])
-         session[:id]
+        session[:id]
         session[:aluno]
         #@nota = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =? AND ano_letivo =? ", session[:id], session[:aluno], Time.now.year])
         session[:nota_id] = @nota.id
@@ -133,17 +132,29 @@ end
            session[:faltas5]= (@nota.faltas5.to_f)
            @nota.freq5= 100 -((session[:faltas5] / session[:aulas5])*100)
          end
+
+       if @nota.nota1 == '---'
+         @nota.nota1= nil
+       end
+       if @nota.nota2 == '---'
+         @nota.nota2= nil
+       end
+       if @nota.nota3 == '---'
+         @nota.nota3= nil
+       end
+       if @nota.nota4 == '---'
+         @nota.nota4= nil
+       end
         @nota.save
 
         if current_user.has_role?('professor')
-               render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
+               render 'notas_lancamentos'
         else 
                render lancamentos_notas_notas_path , :layout => "layouts/application"
+
         end
-
-
-
     end
+   
   end
 
 def atribuicao_lancamentos_notas
@@ -187,11 +198,12 @@ def voltar_lancamento_notas
       @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
          if current_user.has_role?('professor')
 
-               render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
+               #render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
+               render "notas_lancamentos", :layout => "layouts/application"
         else
 
-               #render lancamentos_notas_notas_path , :layout => "layouts/application"
-               render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
+               render "notas_lancamentos", :layout => "layouts/application"
+               #render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
         end
 end
 
@@ -309,7 +321,6 @@ if ( params[:disciplina].present?)
        end
       @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?" ,  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
       @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",  params[:classe][:id], params[:professor][:id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-      t=0
       session[:aluno_id]= @notas[0].aluno_id
        render :update do |page|
           page.replace_html 'notas', :partial => 'aulas'
@@ -319,6 +330,10 @@ if ( params[:disciplina].present?)
 
 
   def load_classes
+        @NOTASB1 = ["SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
+        @NOTASB2 = ["SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
+        @NOTASB3 = ["SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
+        @NOTASB4 = ["SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
    if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52)
            @classes = Classe.find(:all, :order => 'classe_classe ASC')

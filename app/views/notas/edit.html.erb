@@ -63,10 +63,10 @@
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota1.present?%>
-                                                 <%= f.select :nota1 , options_for_select(Nota::NOTASB.insert(0, @nota.nota1)) %>
+                                                 <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1)) %>
                                                  <!--  &nbsp&nbsp&nbsp<%= @nota.nota1%>&nbsp&nbsp&nbsp-->
                                               <%else%>
-                                                 <%= f.select :nota1 , options_for_select(Nota::NOTASB)  %>
+                                                 <%= f.select :nota1 , options_for_select(@NOTASB1)  %>
                                               <%end%>
                                               <%if @nota.faltas1 != 0%>
                                                   <!--&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas1%>-->
@@ -83,10 +83,11 @@
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota2.present?%>
-                                                 <%= f.select :nota2 , options_for_select(Nota::NOTASB.insert(0, @nota.nota2)) %>
+                                                 <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %>
                                                  <!-- &nbsp&nbsp&nbsp <%= @nota.nota2%>&nbsp&nbsp&nbsp -->
                                               <%else%>
-                                                 <%= f.select :nota2 , options_for_select(Nota::NOTASB) %>
+                                                 <%= f.select :nota2 , options_for_select(@NOTASB2) %>
+
                                               <%end%>
                                               <%if @nota.faltas2 != 0%>
                                                   <!--nbsp&nbsp&nbsp&nbsp <%= @nota.faltas2%>-->
@@ -102,10 +103,10 @@
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota3.present?%>
-                                                 <%= f.select :nota3 , options_for_select(Nota::NOTASB.insert(0, @nota.nota3)) %>
+                                                 <%= f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3)) %>
                                                  <!-- &nbsp&nbsp&nbsp<%= @nota.nota3%>&nbsp&nbsp&nbsp-->
                                               <%else%>
-                                                 <%= f.select :nota3 , options_for_select(Nota::NOTASB) %>
+                                                 <%= f.select :nota3 , options_for_select(@NOTASB3.insert(0, '---')) %>
                                               <%end%>
                                               <%if @nota.faltas3 !=0 %>
                                                   <!--&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas3%>-->
@@ -122,10 +123,10 @@
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota4.present?%>
-                                                 <%= f.select :nota4 , options_for_select(Nota::NOTASB.insert(0, @nota.nota4)) %>
+                                                 <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, @nota.nota4)) %>
                                                  <!-- &nbsp&nbsp&nbsp<%= @nota.nota4%>&nbsp&nbsp&nbsp -->
                                               <%else%>
-                                                 <!-- <%= f.select :nota4 , options_for_select(Nota::NOTASB) %> -->
+                                                 <!-- <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, 'SN')) %> -->
                                                  [-------]
                                               <%end%>
                                               <%if @nota.faltas4 !=0 %>
@@ -145,7 +146,7 @@
                              <td width ="3%"> <%if @nota.nota5.present?%>
                                                  &nbsp&nbsp&nbsp<%= @nota.nota5%>&nbsp&nbsp&nbsp
                                               <%else%>
-                                                <!-- <%= f.select :nota5 , options_for_select(Nota::NOTASB) %> -->
+                                                <!-- <%= f.select :nota5 , options_for_select(Nota::NOTASB.insert(0, 'SN')) %> -->
                                                  [-------]
                                               <%end%>
                                               

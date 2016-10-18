@@ -45,16 +45,14 @@
          <tr>
             <% if current_user.has_role?('professor')%>
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                     <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@atribuicao}, :method => "get", :title => "Editar"%></td>
+                     <td width="6%"align="left" ><%= button_to 'Lançar Notas', {:action => "edit", :id =>@atribuicao}, :method => "get", :title => "Lançar"%></td>
                 <%end%>
                 <td><%= button_to 'Lançar Notas', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>
              <%else%>
-                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                     <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@atribuicao}, :method => "get", :title => "Editar"%></td>
-                <%end%>
-
-                <td width="6%"><%= button_to 'Cadastrar Atribuição',new_atribuicao_path, :method => :get %></td></td>
+                <td width="6%"><%= button_to 'Cadastrar Atribuição',new_atribuicao_path, :method => :get %></td>
+                <td width="6%"><%= button_to 'Lançar Notas', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>
                 <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                 
             <%end%>
          </tr><br/>
        </table>

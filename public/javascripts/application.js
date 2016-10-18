@@ -629,6 +629,22 @@ $(".sem_filtro").click(function ()
 
   // Fim Filtros
 
+
+$(".com_observacoes").click(function ()
+   {
+     $(".visualiza").show();
+
+   });
+$(".sem_observacoes").click(function ()
+   {
+     $(".visualiza").hide();
+
+   });
+
+
+
+
+
 $(".filtro_classe1").click(function ()
    {
      $(".consulta_classe1").show();
