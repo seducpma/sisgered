@@ -28,7 +28,7 @@ class RelatoriosController < ApplicationController
   # GET /relatorios/new.xml
   def new
     @relatorio = Relatorio.new
-
+    @maximum_length = Relatorio.validates_length_of :observacao, :in => 0..900
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @relatorio }

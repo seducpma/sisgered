@@ -15,7 +15,21 @@
          </tr>
          <tr bgcolor="#F5F5F5">
             <td width="10%" valign="top"><b><font size="2"><%= f.label :observacao, 'Observações:' %></font></b></td>
-            <td colspan="2"><%= f.text_area :observacao, :cols=>'70', :rows=> '3' %></td>
+            <td colspan="2"><%= f.text_area :observacao, :cols=>'70', :rows=> '3', :id=>"contador1" %><br/>
+              <script>
+                      $(document).on("keydown", "#contador1", function () {
+                          var caracteresRestantes = 800;
+                          var caracteresDigitados = parseInt($(this).val().length);
+                          var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+                          $(".caracteres").text(caracteresRestantes);
+
+                      });
+
+              </script>
+              <font size ="2"><b><span class="caracteres">800</span> Caracteres Restantes </b></font>
+
+            </td>
         </tr>
         <tr>
           <td colspan="3"><hr/></td>

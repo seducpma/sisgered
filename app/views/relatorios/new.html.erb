@@ -1,3 +1,5 @@
+
+
 <div id="interno1">
 <% title "ALUNOS".singularize %>
 <div class="tabs">
@@ -5,7 +7,75 @@
      <font size="3"><strong>FAPEA</strong></font><br/>
  </div>
       <div class="tabs">
-      <%= render :partial => 'form' %>
+
+          <% form_for (@relatorio) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4"><b>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</b></td>
+                  </tr>
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4" >
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Relato da observação dos itens:</b><br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 1.  Recursos de movimentos (habilidades motoras).<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 2. Conhecimentos relativos de seu ambiente social e natural ( movidos pelo interesse e pela curiosidade)<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 3. Aspectos afetivos e emocionais que dispõe.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 4. Linguagens: corporal e artística, oral e leitura de mundo.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 5. Linguagem matemática.<br/>
+                    </td>
+                  </tr>
+                <tr bgcolor="#F5F5F5">
+                   <td width =" 5%"><b>Professor:</b></td>
+                   <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                      <%= observe_field 'relatorio_professor_id',
+                         :update => "dados_aluno_classe",
+                         :url    => { :action => 'professor' },
+                         :with   => 'relatorio_professor_id' %>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="dados_aluno_classe"><font color=" red">  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp<b>Após selecionar o professor aguarde o sistema retornar os alunos</b></font></div></td>
+                </tr >
+                 <tr bgcolor="#F5F5F5">
+                   <td colspan="4"><div id="dados_aluno"></font></div></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Relatório:</b></td>
+                  <td colspan="5">
+
+                   
+
+  <%= f.text_area(:observacao, :cols=> "80", :rows=>"10", :id=>"contador") %><br/>
+<script>
+        $(document).on("keydown", "#contador", function () {
+            var caracteresRestantes = 1000;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+            $(".caracteres").text(caracteresRestantes);
+
+        });
+
+</script>
+  <b><span class="caracteres">1000</span> Caracteres Restantes </b>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+
     </div>
 </div>
 <br/>

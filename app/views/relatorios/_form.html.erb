@@ -1,3 +1,10 @@
+$(document).ready(function() {
+  $("#observacao").keyup(function() {
+   $("#counter").text(2000 - $(this).val().length);
+  });
+});
+
+
 <% form_for (@relatorio) do |f| %>
  <%= f.error_messages %>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -38,8 +45,8 @@
        </tr>
        <tr bgcolor="#F5F5F5">
          <td valign="top"><b>Relatório:</b></td>
-        <td colspan="5"><%= f.text_area(:observacao, :cols=> "80", :rows=>"10") %>
-
+        <td colspan="5"><%= f.text_area(:observacao, :cols=> "80", :rows=>"10") %><br/>
+            Caracteres restantes: <span id="counter"><%= maxcounter=2000 %></span>
         </td>
       </tr>
     </table>
@@ -60,8 +67,6 @@
 
          </tr>
        </table>
-
-
   </font>
 
 
