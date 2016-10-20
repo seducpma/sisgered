@@ -8053,3 +8053,1333 @@ ActionController::RoutingError (No route matches "/photos/original/missing.png" 
   
 
 Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-10-20 10:26:51) [GET]
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:26:51' AND ends_at >= '2016-10-20 12:26:51') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:26:51' AND ends_at >= '2016-10-20 12:26:51') [0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 160ms (View: 138, DB: 6) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#lancar_notas (for 127.0.0.1 at 2016-10-20 10:26:58) [GET]
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mClasse Load (0.8ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.8ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;35;1mProfessor Load (2.5ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =50)) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (34.9ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=50 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+Rendering template within layouts/application
+Rendering notas/lancar_notas
+  [4;35;1mProfessor Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mClasse Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mDisciplina Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:26:59' AND ends_at >= '2016-10-20 12:26:59') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:26:59' AND ends_at >= '2016-10-20 12:26:59') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 379ms (View: 45, DB: 45) | 200 OK [http://localhost/notas/lancar_notas]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#lancar_notas_alunos (for 127.0.0.1 at 2016-10-20 10:27:10) [GET]
+  Parameters: {"classe"=>{"id"=>"86"}, "professor"=>{"id"=>"307"}, "disciplina"=>"PORTUGUÊS", "authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA=", "_"=>"1476966430302"}
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =50)) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id=50 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;36;1mDisciplina Load (0.7ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (disciplina ='PORTUGUÊS') [0m
+  [4;35;1mDisciplina Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mClasse Load (1.1ms)[0m   [0;1mSELECT `classes`.* FROM `classes` inner join atribuicaos on classes.id = atribuicaos.classe_id WHERE (atribuicaos.classe_id = '86' and atribuicaos.professor_id = '307' and atribuicaos.disciplina_id =1) [0m
+  [4;35;1mAtribuicao Load (1.5ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (classe_id = '86' and professor_id ='307' and disciplina_id=1) [0m
+  [4;36;1mAtribuicao Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mNota Load (240.5ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN `atribuicaos` ON `atribuicaos`.id = `notas`.atribuicao_id INNER JOIN `alunos` ON `alunos`.id = `notas`.aluno_id WHERE (atribuicaos.classe_id ='86' AND atribuicaos.professor_id ='307' AND atribuicaos.disciplina_id=1 AND notas.ano_letivo=2016) ORDER BY alunos.aluno_nome ASC[0m
+  [4;36;1mNota Load (158.4ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN `atribuicaos` ON `atribuicaos`.id = `notas`.atribuicao_id INNER JOIN `matriculas` ON `matriculas`.id = `notas`.matricula_id WHERE (atribuicaos.classe_id ='86' AND atribuicaos.professor_id ='307' AND atribuicaos.disciplina_id=1 AND notas.ano_letivo=2016) ORDER BY matriculas.classe_num ASC[0m
+  [4;35;1mNota Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mClasse Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mUnidade Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+  [4;35;1mProfessor Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 307) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mClasse Load (0.3ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 86) [0m
+Rendered notas/_aulas (29.5ms)
+Completed in 825ms (View: 30, DB: 414) | 200 OK [http://localhost/lancar_notas_alunos?authenticity_token=%2F8zEmHmkcyBhFdSjIqftqcD%2F2r3eEZ6mb2Wdafuy%2BRA%3D&professor%5Bid%5D=307&classe%5Bid%5D=86&disciplina=PORTUGU%C3%8AS&authenticity_token=%2F8zEmHmkcyBhFdSjIqftqcD%2F2r3eEZ6mb2Wdafuy%2BRA%3D&_=1476966430302]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#edit (for 127.0.0.1 at 2016-10-20 10:27:12) [GET]
+  Parameters: {"authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA=", "id"=>"1226"}
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 698 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (0.4ms)[0m   [0mSELECT * FROM `professors` WHERE ((unidade_id = 50 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =50) ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =50) ORDER BY aluno_nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.3ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != 'I') [0m
+  [4;35;1mNota Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mNota Load (0.2ms)[0m   [0;1mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;35;1mObservacaoNota Load (0.2ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `observacao_notas` ORDER BY ano_letivo DESC[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAtribuicao Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1226) [0m
+  [4;35;1mNota Load (109.9ms)[0m   [0mSELECT * FROM `notas` WHERE (atribuicao_id = 1226 AND aluno_id = 1929 AND notas.ano_letivo=2016) [0m
+Rendering template within layouts/application
+Rendering atribuicaos/edit
+  [4;36;1mClasse Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 86) [0m
+  [4;36;1mProfessor Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 307) [0m
+  [4;36;1mDisciplina Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:27:13' AND ends_at >= '2016-10-20 12:27:13') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:27:13' AND ends_at >= '2016-10-20 12:27:13') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 933ms (View: 207, DB: 129) | 200 OK [http://localhost/atribuicaos/1226/edit]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#voltar_lancamento_notas (for 127.0.0.1 at 2016-10-20 10:27:16) [POST]
+  Parameters: {"method"=>"get", "authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA="}
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =50)) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=50 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.4ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (disciplina =NULL) [0m
+  [4;36;1mClasse Load (1.8ms)[0m   [0;1mSELECT `classes`.* FROM `classes` inner join atribuicaos on classes.id = atribuicaos.classe_id WHERE (atribuicaos.classe_id = '86' and atribuicaos.professor_id = 307 and atribuicaos.disciplina_id =1) [0m
+  [4;35;1mAtribuicao Load (2.4ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (classe_id = '86' and professor_id =307 and disciplina_id=1) [0m
+  [4;36;1mAtribuicao Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mNota Load (245.2ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN `atribuicaos` ON `atribuicaos`.id = `notas`.atribuicao_id INNER JOIN `alunos` ON `alunos`.id = `notas`.aluno_id WHERE (atribuicaos.classe_id ='86' AND atribuicaos.professor_id =307 AND atribuicaos.disciplina_id=1 AND notas.ano_letivo=2016) ORDER BY alunos.aluno_nome ASC[0m
+  [4;36;1mNota Load (159.8ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN `atribuicaos` ON `atribuicaos`.id = `notas`.atribuicao_id INNER JOIN `matriculas` ON `matriculas`.id = `notas`.matricula_id WHERE (atribuicaos.classe_id ='86' AND atribuicaos.professor_id =307 AND atribuicaos.disciplina_id=1 AND notas.ano_letivo=2016) ORDER BY matriculas.classe_num ASC[0m
+Rendering template within layouts/application
+Rendering notas/notas_lancamentos
+  [4;35;1mClasse Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+  [4;36;1mProfessor Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 307) [0m
+  [4;36;1mDisciplina Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 86) [0m
+  [4;35;1mNota Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mMatricula Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mMatricula Load (0.3ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 816) [0m
+  [4;36;1mAluno Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.5ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1929) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1929) [0m
+  [4;35;1mObservacaoNota Load (0.2ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29799) [0m
+  [4;36;1mObservacaoNota Load (3.7ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (nota_id=29799) [0m
+  [4;35;1mObservacaoNota Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `observacao_notas`[0m
+  [4;36;1mMatricula Load (0.5ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 817) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1934) [0m
+  [4;35;1mObservacaoNota Load (3.8ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29800) [0m
+  [4;36;1mObservacaoNota Load (3.6ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (nota_id=29800) [0m
+  [4;35;1mMatricula Load (0.5ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 818) [0m
+  [4;36;1mAluno Load (0.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1936) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1936) [0m
+  [4;36;1mObservacaoNota Load (4.3ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29801) [0m
+  [4;35;1mMatricula Load (0.5ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 819) [0m
+  [4;36;1mAluno Load (0.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1939) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1939) [0m
+  [4;36;1mObservacaoNota Load (4.7ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29802) [0m
+  [4;35;1mMatricula Load (0.5ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 820) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1940) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1940) [0m
+  [4;36;1mObservacaoNota Load (4.8ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29803) [0m
+  [4;35;1mMatricula Load (0.4ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 821) [0m
+  [4;36;1mAluno Load (0.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1945) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1945) [0m
+  [4;36;1mObservacaoNota Load (3.7ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29804) [0m
+  [4;35;1mMatricula Load (0.2ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 822) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1946) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1946) [0m
+  [4;36;1mObservacaoNota Load (3.8ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29805) [0m
+  [4;35;1mMatricula Load (0.4ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 823) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1949) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1949) [0m
+  [4;36;1mObservacaoNota Load (5.4ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29806) [0m
+  [4;35;1mObservacaoNota Load (6.6ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (nota_id=29806) [0m
+  [4;36;1mMatricula Load (0.4ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 824) [0m
+  [4;35;1mAluno Load (0.4ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1950) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1950) [0m
+  [4;35;1mObservacaoNota Load (3.8ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29807) [0m
+  [4;36;1mMatricula Load (0.3ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 825) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1953) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1953) [0m
+  [4;35;1mObservacaoNota Load (3.6ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29808) [0m
+  [4;36;1mMatricula Load (0.4ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 826) [0m
+  [4;35;1mAluno Load (0.5ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1955) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1955) [0m
+  [4;35;1mObservacaoNota Load (7.0ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29809) [0m
+  [4;36;1mObservacaoNota Load (5.6ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (nota_id=29809) [0m
+  [4;35;1mMatricula Load (0.5ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 827) [0m
+  [4;36;1mAluno Load (0.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1956) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1956) [0m
+  [4;36;1mObservacaoNota Load (5.6ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29810) [0m
+  [4;35;1mMatricula Load (0.3ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 828) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1973) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1973) [0m
+  [4;36;1mObservacaoNota Load (6.8ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29811) [0m
+  [4;35;1mMatricula Load (0.3ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 829) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1976) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1976) [0m
+  [4;36;1mObservacaoNota Load (5.8ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29812) [0m
+  [4;35;1mMatricula Load (0.3ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 830) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1979) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1979) [0m
+  [4;36;1mObservacaoNota Load (3.8ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29813) [0m
+  [4;35;1mMatricula Load (0.4ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 831) [0m
+  [4;36;1mAluno Load (0.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1982) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1982) [0m
+  [4;36;1mObservacaoNota Load (6.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29814) [0m
+  [4;35;1mObservacaoNota Load (6.3ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (nota_id=29814) [0m
+  [4;36;1mMatricula Load (0.4ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 5073) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1984) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1984) [0m
+  [4;35;1mObservacaoNota Load (5.2ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29828) [0m
+  [4;36;1mMatricula Load (0.5ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 832) [0m
+  [4;35;1mAluno Load (0.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1985) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1985) [0m
+  [4;35;1mObservacaoNota Load (5.3ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29815) [0m
+  [4;36;1mMatricula Load (0.4ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 2825) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 4081) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 4081) [0m
+  [4;35;1mObservacaoNota Load (4.9ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29827) [0m
+  [4;36;1mMatricula Load (0.3ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 833) [0m
+  [4;35;1mAluno Load (0.5ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1986) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1986) [0m
+  [4;35;1mObservacaoNota Load (4.7ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29816) [0m
+  [4;36;1mObservacaoNota Load (7.0ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (nota_id=29816) [0m
+  [4;35;1mMatricula Load (0.6ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 834) [0m
+  [4;36;1mAluno Load (0.8ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1989) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1989) [0m
+  [4;36;1mObservacaoNota Load (4.3ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29817) [0m
+  [4;35;1mMatricula Load (0.4ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 835) [0m
+  [4;36;1mAluno Load (0.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1991) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1991) [0m
+  [4;36;1mObservacaoNota Load (3.8ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29818) [0m
+  [4;35;1mMatricula Load (0.4ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 836) [0m
+  [4;36;1mAluno Load (0.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1994) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1994) [0m
+  [4;36;1mObservacaoNota Load (6.2ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29819) [0m
+  [4;35;1mMatricula Load (0.3ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 837) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1997) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1997) [0m
+  [4;36;1mObservacaoNota Load (9.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29820) [0m
+  [4;35;1mObservacaoNota Load (6.4ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (nota_id=29820) [0m
+  [4;36;1mMatricula Load (0.5ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 838) [0m
+  [4;35;1mAluno Load (0.4ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2001) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2001) [0m
+  [4;35;1mObservacaoNota Load (9.3ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29821) [0m
+  [4;36;1mMatricula Load (0.3ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 839) [0m
+  [4;35;1mAluno Load (0.5ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2006) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2006) [0m
+  [4;35;1mObservacaoNota Load (5.2ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29822) [0m
+  [4;36;1mMatricula Load (0.4ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 840) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2008) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2008) [0m
+  [4;35;1mObservacaoNota Load (7.4ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29823) [0m
+  [4;36;1mObservacaoNota Load (4.9ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (nota_id=29823) [0m
+  [4;35;1mMatricula Load (0.5ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 841) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2010) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2010) [0m
+  [4;36;1mObservacaoNota Load (4.0ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29824) [0m
+  [4;35;1mMatricula Load (0.2ms)[0m   [0mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 842) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2012) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2012) [0m
+  [4;36;1mObservacaoNota Load (3.8ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29825) [0m
+  [4;35;1mObservacaoNota Load (3.5ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (nota_id=29825) [0m
+  [4;36;1mMatricula Load (0.3ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 843) [0m
+  [4;35;1mAluno Load (0.8ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2014) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 2014) [0m
+  [4;35;1mObservacaoNota Load (5.5ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29826) [0m
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:27:17' AND ends_at >= '2016-10-20 12:27:17') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:27:17' AND ends_at >= '2016-10-20 12:27:17') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 1762ms (View: 613, DB: 651) | 200 OK [http://localhost/notas/voltar_lancamento_notas?method=get]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing NotasController#edit (for 127.0.0.1 at 2016-10-20 10:27:20) [GET]
+  Parameters: {"authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA=", "id"=>"29799"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2016 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mDisciplina Load (5.5ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != "I" ) ORDER BY ordem ASC[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (diversas_unidades =1 OR unidade_id =50)) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.8ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=50 AND aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;35;1mAtribuicao Load (0.2ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (classe_id = '86' and professor_id =307 and disciplina_id=1) [0m
+  [4;36;1mNota Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.3ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 29799) [0m
+Rendering template within layouts/application
+Rendering notas/edit
+  [4;36;1mAluno Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1929) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mAtribuicao Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mObservacaoNota Load (0.2ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 29799) [0m
+  [4;36;1mObservacaoNota Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `observacao_notas`[0m
+Rendered notas/_observacoes (7.4ms)
+Rendered notas/_form_observacao (5.6ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:27:21' AND ends_at >= '2016-10-20 12:27:21') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 12:27:21' AND ends_at >= '2016-10-20 12:27:21') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 555ms (View: 71, DB: 16) | 200 OK [http://localhost/notas/29799/edit]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-10-20 10:27:21) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/images/observa%C3%A7%C3%B5es:.jpeg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-10-20 11:46:29) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 13:46:29' AND ends_at >= '2016-10-20 13:46:29') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 13:46:29' AND ends_at >= '2016-10-20 13:46:29') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 50ms (View: 32, DB: 4) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#transferenciaA (for 127.0.0.1 at 2016-10-20 11:46:39) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 698 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.3ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (0.4ms)[0m   [0;1mSELECT * FROM `professors` WHERE ((unidade_id = 50 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (2.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =50) ORDER BY aluno_nome ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =50) ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo != 'I') [0m
+  [4;36;1mNota Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.2ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;36;1mObservacaoNota Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `observacao_notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mAluno Load (1.6ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id=50 AND aluno_status is null) ORDER BY aluno_nome[0m
+Rendering template within layouts/application
+Rendering atribuicaos/transferenciaA
+  [4;36;1mAluno Columns (2.8ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 13:46:40' AND ends_at >= '2016-10-20 13:46:40') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 13:46:40' AND ends_at >= '2016-10-20 13:46:40') [0m
+  [4;35;1mroles_users Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 763ms (View: 207, DB: 16) | 200 OK [http://localhost/atribuicaos/transferenciaA]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#transferencia_aluno (for 127.0.0.1 at 2016-10-20 11:46:43) [GET]
+  Parameters: {"aluno"=>{"aluno_id"=>"1387"}, "authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA=", "_"=>"1476971203840"}
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 698 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (0.4ms)[0m   [0mSELECT * FROM `professors` WHERE ((unidade_id = 50 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.8ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =50) ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =50) ORDER BY aluno_nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != 'I') [0m
+  [4;35;1mNota Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mNota Load (0.2ms)[0m   [0;1mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;35;1mObservacaoNota Load (0.1ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `observacao_notas` ORDER BY ano_letivo DESC[0m
+  [4;36;1mAluno Load (1.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (0.9ms)[0m   [0mSELECT * FROM `alunos` WHERE (id ='1387') [0m
+  [4;36;1mAluno Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mClasse Load (2.7ms)[0m   [0mSELECT `classes`.* FROM `classes` inner join matriculas on classes.id = matriculas.classe_id WHERE (matriculas.aluno_id ='1387' AND ano_letivo=2016) [0m
+  [4;36;1mNota Load (107.9ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id ='1387' AND disciplinas.curriculo = 'B' and unidade_id =50 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mNota Load (103.0ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id ='1387' AND disciplinas.curriculo = 'D'and unidade_id =50 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (101.5ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (disciplinas.id=1 AND notas.aluno_id ='1387' AND disciplinas.curriculo = 'B' and unidade_id =50 AND notas.ano_letivo =2016) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mNota Load (24.1ms)[0m   [0mSELECT * FROM `notas` WHERE (aluno_id ='1387') ORDER BY ano_letivo ASC LIMIT 1[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+  [4;36;1mAtribuicao Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1417) [0m
+  [4;36;1mClasse Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 79) [0m
+  [4;36;1mDisciplina Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mNota Load (24.4ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=1 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (24.6ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=2 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (24.7ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=3 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (24.9ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=4 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (24.2ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=6 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (25.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=7 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (24.8ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=8 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (24.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=21 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (24.4ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=5 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (24.2ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=9 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (24.6ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=10 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (24.3ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=11 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (23.9ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=12 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (24.7ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=13 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (24.0ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=14 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (25.3ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=15 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (23.8ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=16 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (24.4ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=17 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mNota Load (24.1ms)[0m   [0mSELECT * FROM `notas` WHERE (disciplina_id=18 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;36;1mNota Load (24.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (disciplina_id=20 AND aluno_id=1387) ORDER BY ano_letivo ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1417) [0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mAtribuicao Load (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1419) [0m
+  [4;36;1mDisciplina Load (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 2) [0m
+  [4;35;1mAtribuicao Load (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1421) [0m
+  [4;36;1mDisciplina Load (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 3) [0m
+  [4;35;1mAtribuicao Load (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1420) [0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 21) [0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1418) [0m
+  [4;36;1mDisciplina Load (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 115) [0m
+  [4;36;1mDisciplina Load (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 114) [0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 7) [0m
+  [4;35;1mMatricula Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+  [4;36;1mMatricula Load (0.2ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (`matriculas`.`id` = 702) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 1387) [0m
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atribuicaos/_transferencia (760.1ms)
+Completed in 1876ms (View: 282, DB: 846) | 200 OK [http://localhost/atribuicaos/transferencia_aluno?authenticity_token=%2F8zEmHmkcyBhFdSjIqftqcD%2F2r3eEZ6mb2Wdafuy%2BRA%3D&aluno%5Baluno_id%5D=1387&authenticity_token=%2F8zEmHmkcyBhFdSjIqftqcD%2F2r3eEZ6mb2Wdafuy%2BRA%3D&_=1476971203840]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-10-20 13:56:09) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 15:56:09' AND ends_at >= '2016-10-20 15:56:09') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 15:56:09' AND ends_at >= '2016-10-20 15:56:09') [0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 61ms (View: 40, DB: 6) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#certeza (for 127.0.0.1 at 2016-10-20 13:56:12) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (345.7ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (39.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (35.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;35;1mAluno Load (36.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mAluno Load (344.6ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+Rendering template within layouts/application
+Rendering alunos/certeza
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 15:56:23' AND ends_at >= '2016-10-20 15:56:23') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 15:56:23' AND ends_at >= '2016-10-20 15:56:23') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 11130ms (View: 628, DB: 806) | 200 OK [http://localhost/alunos/certeza]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#new (for 127.0.0.1 at 2016-10-20 13:56:27) [POST]
+  Parameters: {"authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA="}
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (349.4ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (2.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (2.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (2.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (340.9ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mAluno Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Rendering template within layouts/application
+Rendering alunos/new
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Rendered alunos/_form (1097.7ms)
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 15:56:47' AND ends_at >= '2016-10-20 15:56:47') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 15:56:47' AND ends_at >= '2016-10-20 15:56:47') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 20169ms (View: 1136, DB: 706) | 200 OK [http://localhost/alunos/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#mesmo_nome (for 127.0.0.1 at 2016-10-20 13:56:59) [POST]
+  Parameters: {"aluno_aluno_nome"=>"testetesteteste", "authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA="}
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (344.5ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.8ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (1.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (353.6ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mAluno Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (55.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`aluno_nome` = 'testetesteteste') LIMIT 1[0m
+Completed in 18468ms (View: 1, DB: 764) | 200 OK [http://localhost/alunos/mesmo_nome]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#dados_pai (for 127.0.0.1 at 2016-10-20 13:57:28) [POST]
+  Parameters: {"authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA=", "aluno_aluno_reside_com"=>"PAIS"}
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (336.9ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.8ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (344.9ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+Rendered alunos/_em_branco (0.6ms)
+Rendered alunos/_em_branco (0.1ms)
+Rendered alunos/_em_branco (0.1ms)
+Completed in 20425ms (View: 5, DB: 690) | 200 OK [http://localhost/alunos/dados_pai]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#create (for 127.0.0.1 at 2016-10-20 13:58:09) [POST]
+  Parameters: {"aluno"=>{"aluno_reside_com"=>"PAIS", "aluno_nascimento(3i)"=>"20", "aluno_chegada_brasil(3i)"=>"20", "aluno_emissaoRG"=>"teste", "aluno_chegada_brasil(1i)"=>"2016", "aluno_bairro"=>"teste", "aluno_contato1_fone"=>"teste", "aluno_contato4"=>"", "aluno_nome"=>"testetesteteste", "aluno_especial"=>"NÃO", "aluno_mae"=>"teste", "aluno_sexo"=>"FEMININO", "aluno_nascimento(2i)"=>"10", "aluno_classificacao"=>"", "aluno_chegada_brasil(2i)"=>"10", "aluno_restricao"=>"NÃO", "aluno_validade_estrangeiro(3i)"=>"20", "aluno_nascimento(1i)"=>"2016", "aluno_validade_estrangeiro(2i)"=>"10", "aluno_emissaoCPF"=>"teste", "aluno_contato1"=>"teste", "aluno_validade_estrangeiro(1i)"=>"2016", "aluno_certidao_nascimento"=>"teste", "aluno_renda_cidada"=>"NÃO", "photo"=>#<File:/tmp/RackMultipart20161020-3886-vmq7q1-0>, "aluno_acompanhante"=>"teste", "aluno_bolsa_familia"=>"NÃO", "aluno_contato4_fone"=>"", "aluno_ra"=>"teste", "aluno_contato3_fone"=>"", "aluno_contato6"=>"", "aluno_RG"=>"teste", "aluno_condicao_profissao_responsavel"=>"APOSENTADO", "aluno_cep"=>"teste", "aluno_endereco"=>"teste", "aluno_naturalidade"=>"teste", "aluno_contato3"=>"", "aluno_nacionalidade"=>"BRASILEIRO", "aluno_autoriza_imagem"=>"NÃO", "aluno_pai"=>"teste", "aluno_fone_trabalho_responsavel"=>"teste", "aluno_contato2_fone"=>"teste", "aluno_emergencial"=>"NÃO", "aluno_nome_responsavel"=>"teste", "aluno_autoriza_ativ_fisica"=>"NÃO", "aluno_contato5"=>"", "aluno_local_trabalho_responsavel"=>"teste", "aluno_parente_responsavel"=>"AVÓ", "aluno_contato6_fone"=>"", "aluno_fone_fixo"=>"", "aluno_CPF"=>"teste", "aluno_livro"=>"teste", "aluno_profissao_responsavel"=>"teste", "aluno_contato2"=>"teste", "aluno_inep"=>"teste", "aluno_RNE"=>"", "aluno_cidade"=>"", "aluno_complemento"=>"teste", "aluno_rm"=>"teste", "aluno_vai_embora_so"=>"NÃO", "aluno_autoriza_ativ_extraclasse"=>"NÃO", "aluno_fone_cel"=>"", "aluno_fluor"=>"NÃO", "aluno_email"=>"", "aluno_odontologico"=>"NÃO", "aluno_vai_embora"=>"NÃO", "aluno_folha"=>"teste", "aluno_num"=>"teste", "aluno_nome_beneficiario"=>"", "aluno_contato5_fone"=>"", "aluno_obs"=>"", "aluno_nis"=>"teste"}, "authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA=", "commit"=>"Salvar"}
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (351.2ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (338.2ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mAluno Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`aluno_nome` = 'testetesteteste') LIMIT 1[0m
+  [4;35;1mAluno Load (60.6ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`aluno_nascimento` = '2016-10-20') LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAluno Create (1.2ms)[0m   [0mINSERT INTO `alunos` (`aluno_parente`, `aluno_endereco_responsavel`, `aluno_reside_com`, `aluno_emissaoRG`, `aluno_bairro`, `aluno_contato1_fone`, `aluno_contato4`, `aluno_nome`, `aluno_especial`, `aluno_mae`, `aluno_sexo`, `aluno_classificacao`, `aluno_restricao`, `aluno_emissaoCPF`, `aluno_contato1`, `aluno_autoriza_passeio`, `aluno_email_pai`, `aluno_renda_cidada`, `aluno_certidao_nascimento`, `aluno_brasil_carinhoso`, `trans_in`, `aluno_acompanhante`, `aluno_contato4_fone`, `aluno_bolsa_familia`, `aluno_ra`, `aluno_fone_pai`, `aluno_contato6`, `aluno_cidade_mae`, `aluno_contato3_fone`, `aluno_status`, `aluno_RG`, `aluno_condicao_profissao_responsavel`, `aluno_fone_responsavel`, `aluno_cep`, `aluno_endereco`, `aluno_endereco_trabalho_responsavel`, `aluno_naturalidade`, `aluno_validade_estrangeiro`, `aluno_contato3`, `aluno_nacionalidade`, `aluno_responsavel`, `mesma_unidade`, `unidade_id`, `created_at`, `aluno_autoriza_imagem`, `aluno_cidade_responsavel`, `aluno_endereco_mae`, `aluno_pai`, `unidade_anterior`, `aluno_fone_trabalho_responsavel`, `photo_file_name`, `aluno_contato2_fone`, `aluno_emergencial`, `aluno_autoriza_ativ_fisica`, `aluno_nome_responsavel`, `aluno_contato5`, `photo_content_type`, `aluno_email_mae`, `aluno_local_trabalho_responsavel`, `aluno_cidade_pai`, `transferido`, `photo_file_size`, `aluno_contato6_fone`, `aluno_parente_responsavel`, `aluno_fone_fixo`, `aluno_CPF`, `aluno_email_responsavel`, `aluno_cidade`, `aluno_inep`, `aluno_RNE`, `aluno_contato2`, `aluno_profissao_responsavel`, `aluno_livro`, `aluno_nascimento`, `aluno_fone_mae`, `aluno_rm`, `aluno_complemento`, `aluno_vai_embora_so`, `aluno_autoriza_ativ_extraclasse`, `aluno_email`, `aluno_fone_cel`, `aluno_odontologico`, `aluno_fluor`, `aluno_nis`, `aluno_nome_beneficiario`, `aluno_endereco_pai`, `aluno_num`, `aluno_chegada_brasil`, `aluno_folha`, `aluno_contato5_fone`, `aluno_vai_embora`, `aluno_obs`, ` updated_at`) VALUES(NULL, NULL, 'PAIS', 'TESTE', 'TESTE', 'teste', '', 'TESTETESTETESTE', 'NÃO', 'TESTE', 'FEMININO', '', 'NÃO', 'TESTE', 'teste', NULL, NULL, 'NÃO', 'teste', NULL, 0, 'TESTE', '', 'NÃO', 'teste', NULL, '', NULL, '', NULL, 'teste', 'APOSENTADO', NULL, 'teste', 'TESTE', NULL, 'TESTE', NULL, '', 'BRASILEIRO', NULL, 0, 50, '2016-10-20 15:58:32', 'NÃO', NULL, NULL, 'TESTE', NULL, 'teste', 'logo_americana_bandeira.jpg', 'teste', 'NÃO', 'NÃO', 'teste', '', 'image/jpeg', NULL, 'TESTE', NULL, NULL, 9070, '', 'AVÓ', '', 'teste', NULL, '', 0, '', 'teste', 'TESTE', 'teste', '2016-10-20', NULL, 'teste', 'TESTE', 'NÃO', 'NÃO', '', '', 'NÃO', 'NÃO', 0, '', NULL, 'teste', NULL, 'teste', '', 'NÃO', '', NULL)[0m
+[paperclip] Saving attachments.
+[paperclip] saving /home/seduc/sisgered/public/photos/alunos/11228_logo_americana_bandeira.jpg
+  [4;36;1mSQL (50.7ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/alunos/11228
+Completed in 22155ms (DB: 812) | 302 Found [http://localhost/alunos]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 13:58:32) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;35;1mUser Columns (7.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (348.4ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (46.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (41.9ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (43.9ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (342.3ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mAluno Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 15:58:57' AND ends_at >= '2016-10-20 15:58:57') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 15:58:57' AND ends_at >= '2016-10-20 15:58:57') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 24806ms (View: 51, DB: 839) | 200 OK [http://localhost/alunos/11228]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 14:00:04) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (350.3ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;35;1mAluno Load (2.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;36;1mroles_users Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mAluno Load (345.9ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mAluno Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:00:28' AND ends_at >= '2016-10-20 16:00:28') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:00:28' AND ends_at >= '2016-10-20 16:00:28') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 23772ms (View: 47, DB: 712) | 200 OK [http://localhost/alunos/11228]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 14:01:17) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (349.1ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (1.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (344.7ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mAluno Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:01:29' AND ends_at >= '2016-10-20 16:01:29') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:01:29' AND ends_at >= '2016-10-20 16:01:29') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 12213ms (View: 43, DB: 704) | 200 OK [http://localhost/alunos/11228]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 14:02:19) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (346.2ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.6ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (2.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mAluno Load (342.9ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mAluno Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:02:36' AND ends_at >= '2016-10-20 16:02:36') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:02:36' AND ends_at >= '2016-10-20 16:02:36') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 18752ms (View: 990, DB: 701) | 200 OK [http://localhost/alunos/11228]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 14:02:44) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (345.0ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.6ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (345.7ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mAluno Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:03:04' AND ends_at >= '2016-10-20 16:03:04') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:03:04' AND ends_at >= '2016-10-20 16:03:04') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 19866ms (View: 44, DB: 701) | 200 OK [http://localhost/alunos/11228]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#impressao_alunos (for 127.0.0.1 at 2016-10-20 14:03:06) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (339.9ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (2.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;35;1mAluno Load (1.9ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mAluno Load (345.3ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;36;1mDisciplina Load (0.8ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = 11228) [0m
+Rendering template within layouts/impressao
+Rendering alunos/impressao_alunos
+  [4;35;1mAluno Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mUnidade Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Completed in 22332ms (View: 1148, DB: 698) | 200 OK [http://localhost/impressao_alunos]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 14:04:41) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (337.9ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.8ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;35;1mAluno Load (1.9ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mAluno Load (347.6ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mAluno Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:05:04' AND ends_at >= '2016-10-20 16:05:04') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:05:04' AND ends_at >= '2016-10-20 16:05:04') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 22454ms (View: 44, DB: 697) | 200 OK [http://localhost/alunos/11228]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 14:05:43) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (337.9ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (340.5ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mAluno Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:05:55' AND ends_at >= '2016-10-20 16:05:55') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:05:55' AND ends_at >= '2016-10-20 16:05:55') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 12207ms (View: 682, DB: 689) | 200 OK [http://localhost/alunos/11228]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 14:06:29) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (344.6ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.6ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;35;1mAluno Load (1.6ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mAluno Load (344.1ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mAluno Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:06:46' AND ends_at >= '2016-10-20 16:06:46') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:06:46' AND ends_at >= '2016-10-20 16:06:46') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 17728ms (View: 45, DB: 700) | 200 OK [http://localhost/alunos/11228]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2016-10-20 14:08:29) [GET]
+  Parameters: {"id"=>"11228"}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Load (342.4ms)[0m   [0mSELECT * FROM `alunos` ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (1.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_ra[0m
+  [4;36;1mAluno Load (1.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id = 50 AND aluno_status is null) ORDER BY aluno_rm[0m
+  [4;35;1mroles_users Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Load (354.1ms)[0m   [0;1mSELECT * FROM `alunos` ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` ORDER BY ordem ASC[0m
+  [4;35;1mAluno Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11228) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:08:42' AND ends_at >= '2016-10-20 16:08:42') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:08:42' AND ends_at >= '2016-10-20 16:08:42') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 12195ms (View: 46, DB: 711) | 200 OK [http://localhost/alunos/11228]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-10-20 14:36:18) [GET]
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:36:18' AND ends_at >= '2016-10-20 16:36:18') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:36:18' AND ends_at >= '2016-10-20 16:36:18') [0m
+  [4;36;1mroles_users Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+Completed in 426ms (View: 405, DB: 6) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-10-20 14:36:48) [GET]
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:36:48' AND ends_at >= '2016-10-20 16:36:48') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:36:48' AND ends_at >= '2016-10-20 16:36:48') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.3ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.5ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=42) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+Completed in 687ms (View: 668, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#relatorios_classe (for 127.0.0.1 at 2016-10-20 14:36:54) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 698 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.6ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (6.5ms)[0m   [0;1mSELECT * FROM `professors` WHERE ((unidade_id = 42 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (34.4ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =42) ORDER BY aluno_nome ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =42) ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Load (0.7ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo != 'I') [0m
+  [4;36;1mNota Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;36;1mObservacaoNota Load (0.1ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `observacao_notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mAluno Load (25.8ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id=42 AND aluno_status is null) ORDER BY aluno_nome[0m
+Rendering template within layouts/application
+Rendering atribuicaos/relatorios_classe
+  [4;36;1mAluno Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Rendered atribuicaos/_consulta_nome (18.1ms)
+  [4;35;1mClasse Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered atribuicaos/_consulta_classe (3.4ms)
+  [4;36;1mProfessor Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Rendered atribuicaos/_consulta_professor (241.9ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:36:55' AND ends_at >= '2016-10-20 16:36:55') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-10-17 10:27:19') AND (starts_at <= '2016-10-20 16:36:55' AND ends_at >= '2016-10-20 16:36:55') [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=42) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+Completed in 955ms (View: 291, DB: 78) | 200 OK [http://localhost/atribuicaos/relatorios_classe]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#relatorio_aluno_nome (for 127.0.0.1 at 2016-10-20 14:37:01) [POST]
+  Parameters: {"authenticity_token"=>"/8zEmHmkcyBhFdSjIqftqcD/2r3eEZ6mb2Wdafuy+RA=", "aluno_aluno_id"=>"5005"}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 698 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE ((unidade_id = 42 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (1.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =42) ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =42) ORDER BY aluno_nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;36;1mDisciplina Load (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo != 'I') [0m
+  [4;35;1mNota Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `notas`[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;35;1mObservacaoNota Load (0.1ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `observacao_notas` ORDER BY ano_letivo DESC[0m
+  [4;36;1mAluno Load (1.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id=42 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;35;1mAluno Load (0.8ms)[0m   [0mSELECT * FROM `alunos` WHERE (id = '5005' AND aluno_status is null) [0m
+  [4;36;1mMatricula Load (7.5ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (aluno_id = '5005' and ano_letivo=2016) [0m
+  [4;35;1mMatricula Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+  [4;36;1mClasse Load (0.4ms)[0m   [0;1mSELECT * FROM `classes` WHERE (id = 228) [0m
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mNota Load (104.7ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id ='5005' AND disciplinas.curriculo = 'B' and unidade_id =42 AND notas.ano_letivo =2016 AND notas.ativo is NULL ) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mNota Load (102.1ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id ='5005' AND disciplinas.curriculo = 'D'and unidade_id =42 AND notas.ano_letivo =2016 AND notas.ativo is NULL ) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mObservacaoNota Load (3.7ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (aluno_id ='5005' AND ano_letivo =2016 AND nota_id is NULL) [0m
+  [4;35;1mAluno Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mUnidade Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+  [4;36;1mAtribuicao Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mAtribuicao Load (0.2ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 805) [0m
+  [4;36;1mDisciplina Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mAtribuicao Load (0.4ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 807) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 2) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 809) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 3) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 810) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 21) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 806) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2077) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 812) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2627) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 7) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 811) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 9) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 817) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 13) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1101) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 15) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 816) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 15) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2691) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 18) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2691) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 18) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1088) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 20) [0m
+  [4;36;1mObservacaoNota Load (3.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65541) [0m
+  [4;35;1mObservacaoNota Load (3.5ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65543) [0m
+  [4;36;1mObservacaoNota Load (3.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65544) [0m
+  [4;35;1mObservacaoNota Load (3.5ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65545) [0m
+  [4;36;1mObservacaoNota Load (3.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65542) [0m
+  [4;35;1mObservacaoNota Load (3.5ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65553) [0m
+  [4;36;1mObservacaoNota Load (3.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65547) [0m
+  [4;35;1mObservacaoNota Load (3.5ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65550) [0m
+  [4;36;1mObservacaoNota Load (3.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65546) [0m
+  [4;35;1mObservacaoNota Load (3.4ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65549) [0m
+  [4;36;1mObservacaoNota Load (3.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65552) [0m
+  [4;35;1mObservacaoNota Load (3.4ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65548) [0m
+  [4;36;1mObservacaoNota Load (3.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 75701) [0m
+  [4;35;1mObservacaoNota Load (3.5ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 75715) [0m
+  [4;36;1mObservacaoNota Load (3.5ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 65551) [0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atribuicaos/_relatorio_aluno (362.9ms)
+Completed in 1252ms (View: 303, DB: 289) | 200 OK [http://localhost/atribuicaos/relatorio_aluno_nome]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2016-10-20 14:37:02) [GET]
+
+ActionController::RoutingError (No route matches "/photos/original/missing.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#impressao_relatorio_aluno (for 127.0.0.1 at 2016-10-20 14:37:04) [GET]
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 698 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.2ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE ((unidade_id = 42 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (1.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =42) ORDER BY aluno_nome ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =42) ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo != 'I') [0m
+  [4;36;1mNota Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;36;1mObservacaoNota Load (0.1ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `observacao_notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mAluno Load (1.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id=42 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (0.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = 5005) [0m
+  [4;35;1mMatricula Load (5.9ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id = 5005 and ano_letivo=2016) [0m
+  [4;36;1mMatricula Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (id = 228) [0m
+  [4;36;1mClasse Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mNota Load (110.3ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =5005 AND disciplinas.curriculo = 'B'and unidade_id =42 AND notas.ano_letivo =2016 AND notas.ativo is NULL) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (103.3ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =5005 AND disciplinas.curriculo = 'D'and unidade_id =42 AND notas.ano_letivo =2016 AND notas.ativo is NULL) ORDER BY disciplinas.ordem ASC [0m
+Rendering template within layouts/impressao
+Rendering atribuicaos/impressao_relatorio_aluno
+  [4;35;1mAluno Columns (2.8ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mAtribuicao Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 805) [0m
+  [4;36;1mDisciplina Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 807) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 2) [0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 809) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 3) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 810) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 21) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 806) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2077) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 812) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2627) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 7) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 811) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 9) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 817) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 13) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1101) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 15) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 816) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 15) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2691) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 18) [0m
+
+ActionView::TemplateError (undefined method `faltas41' for #<Nota:0x7f7b42ded090>) on line #204 of app/views/atribuicaos/impressao_relatorio_aluno.html.erb:
+201:      <%@notasD.each do |nota|%>
+202: 
+203:       <th style="font-size: 8px" width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></th>
+204:       <%if nota.nota1.present? or nota.faltas41!= 0%>
+205:            <th style="font-size: 8px" align="center"><%= nota.nota1 %></th>
+206:            <th style="font-size: 8px" align="center"><%= nota.faltas1 %></th>
+207:            <th style="font-size: 8px" align="center"><%if nota.aulas1 !=0 %>
+
+    app/views/atribuicaos/impressao_relatorio_aluno.html.erb:204
+    app/views/atribuicaos/impressao_relatorio_aluno.html.erb:201:in `each'
+    app/views/atribuicaos/impressao_relatorio_aluno.html.erb:201
+    app/views/atribuicaos/impressao_relatorio_aluno.html.erb:61:in `each'
+    app/views/atribuicaos/impressao_relatorio_aluno.html.erb:61
+    app/controllers/atribuicaos_controller.rb:245:in `impressao_relatorio_aluno'
+
+Rendered rescues/_trace (25.9ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#impressao_relatorio_aluno (for 127.0.0.1 at 2016-10-20 14:38:28) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 698 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.1ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE ((unidade_id = 42 or unidade_id = 52 or unidade_id = 54) AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (1.4ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id =42) ORDER BY aluno_nome ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (unidade_id =42) ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2016) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.5ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (id != 27 and id !=26) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo != 'I') [0m
+  [4;36;1mNota Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mNota Load (0.1ms)[0m   [0mSELECT * FROM `notas` WHERE (`notas`.`id` = 62) [0m
+  [4;36;1mObservacaoNota Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `observacao_notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mAluno Load (1.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (unidade_id=42 AND aluno_status is null) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = 5005) [0m
+  [4;35;1mMatricula Load (0.2ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id = 5005 and ano_letivo=2016) [0m
+  [4;36;1mMatricula Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (id = 228) [0m
+  [4;36;1mClasse Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mNota Load (0.2ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =5005 AND disciplinas.curriculo = 'B'and unidade_id =42 AND notas.ano_letivo =2016 AND notas.ativo is NULL) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id =5005 AND disciplinas.curriculo = 'D'and unidade_id =42 AND notas.ano_letivo =2016 AND notas.ativo is NULL) ORDER BY disciplinas.ordem ASC [0m
+Rendering template within layouts/impressao
+Rendering atribuicaos/impressao_relatorio_aluno
+  [4;35;1mAluno Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mUnidade Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mAtribuicao Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 805) [0m
+  [4;36;1mDisciplina Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 807) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 2) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 809) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 3) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 810) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 21) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 806) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2077) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 812) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2627) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 7) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 811) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 9) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 817) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 13) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1101) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 15) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 816) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 15) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2691) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 18) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 2691) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 18) [0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 1088) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 20) [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Completed in 969ms (View: 302, DB: 17) | 200 OK [http://localhost/impressao_relatorio_aluno]

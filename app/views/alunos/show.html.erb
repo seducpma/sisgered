@@ -12,7 +12,7 @@
              <td align="center" valign="top">
                     <%= image_tag @aluno.photo.url(:original) %>
              </td>
-             <td colspan="6"valign="top">
+             <td colspan="7"valign="top">
                  <table bgcolor="#DCDCDC" width="100%">
                   <tr bgcolor="#F5F5F5">
                      <td colspan="10"align="center" width="4%"><b>FICHA CADASTRAL DE ALUNO</b></td>
@@ -42,9 +42,6 @@
                        <td align="left"><b>Emissão:</b></td>
                        <td colspan="5"align="left"><%=h @aluno.aluno_emissaoCPF %></td>
                    </tr>
-              </table>
-             </td>
-           </tr>
                   <tr bgcolor="#FFFfff">
                     <td width =" 10%"><b>Nº RA:</b></td>
                     <td width ="15%">   <%=h @aluno.aluno_ra %></td>
@@ -55,6 +52,10 @@
                     <td width =" 12%"><b>Nº NIS:</b></td>
                     <td colspan="4">   <%=h @aluno.aluno_nis %></td>
                   </tr>
+
+              </table>
+             </td>
+           </tr>
 
            <tr bgcolor="#F5F5F5">
                <td align="left"><b>Naturalidade:</b></td>
@@ -223,8 +224,7 @@
               <td colspan="2" width =" 15%"><b>Nome Beneficiário:</b></td>
               <td colspan="4"> <%=h @aluno.aluno_nome_beneficiario %></td>
            </tr>
-           <tr bgcolor="#F5F5F5">                  <tr bgcolor="#FFFfff">
-
+           <tr bgcolor="#F5F5F5">
              <td colspan="2" ><b> Possui necessidade(s) especial(s):</b> </td>
              <td colspan="6"><%=h @aluno.aluno_especial %></td>
            </tr>
