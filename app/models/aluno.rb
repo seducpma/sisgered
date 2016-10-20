@@ -4,6 +4,7 @@ class Aluno < ActiveRecord::Base
   has_many :saudes
   has_many :socioeconomicos
   has_many :observacao_historicos
+  has_many :observacao_notas
   has_many :relatorios
   has_and_belongs_to_many :classes
   has_many :notas

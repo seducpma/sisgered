@@ -1,4 +1,7 @@
 class ObservacaoNotasController < ApplicationController
+
+  before_filter :load_iniciais
+
   # GET /observacao_notas
   # GET /observacao_notas.xml
   def index
@@ -41,7 +44,7 @@ class ObservacaoNotasController < ApplicationController
   # POST /observacao_notas.xml
   def create
     @observacao_nota = ObservacaoNota.new(params[:observacao_nota])
-
+    @observacao_nota.ano_letivo =  Time.now.year
     respond_to do |format|
       if @observacao_nota.save
         flash[:notice] = 'ObservacaoNota was successfully created.'
@@ -84,6 +87,25 @@ class ObservacaoNotasController < ApplicationController
 
   end
 
+  def aluno_classe
+    session[:aluno]= params[:observacao_nota_aluno_id]
+    @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo = ?",params[:observacao_nota_aluno_id], Time.now.year ])
+    for matricula in @matricula
+     session[:classe]= matricula.classe.classe_classe
+     session[:periodo] = matricula.classe.horario
+    end
+t=0
+    render :partial => 'aluno_classe'
+
+
+
+  end
+
+
+  def load_iniciais
+    @quem = ["CONSELHO","DIREÇÂO","PEDAGOGO",]
+    @alunos = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
+  end
 
   
 

@@ -36,7 +36,6 @@ class AtribuicaosController < ApplicationController
 
 
   def edit
-    t=0
     @atribuicao = Atribuicao.find(params[:id])
     session[:atrib_id]
     session[:aluno_id]
@@ -196,8 +195,6 @@ def create_notas
          session[:num]=matricula.classe_num
          session[:status]=matricula.status
        end
-        w=session[:num]
-        w1=session[:status]
       @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
       @classe.each do |classe|
          session[:unidade]=classe.unidade_id
@@ -205,6 +202,7 @@ def create_notas
       @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL ", params[:aluno_aluno_id], current_user.unidade_id, Time.now.year],:order =>'disciplinas.ordem ASC ')
       @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL ", params[:aluno_aluno_id], current_user.unidade_id, Time.now.year   ],:order =>'disciplinas.ordem ASC ')
       @notas = @notasB+@notasD
+      @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], Time.now.year,nil ] )
       render :partial => 'relatorio_aluno'
 
 end

@@ -373,6 +373,18 @@
      </tr>
     <%end%>
    <%end%>
+   
+   <%@observacao2.each do |observacao| %>
+    <tr>
+       <td align="right" valign="top"><%= observacao.quem %>&nbsp&nbsp</td>
+       <td colspan="15"><%= observacao.observacao %> -
+                         <b>Data: </b> <%  if !observacao.data.nil?  %>
+                                          <%=  observacao.data.strftime("%d/%m/%Y")%>
+                                       <%end%>
+       </td>
+    </tr>
+    <%end%>
+
 
  </table>
 

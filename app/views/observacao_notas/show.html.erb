@@ -1,18 +1,57 @@
-<p>
-  <b>Nota:</b>
-  <%=h @observacao_nota.nota %>
-</p>
-
-<p>
-  <b>Observacao:</b>
-  <%=h @observacao_nota.observacao %>
-</p>
-
-<p>
-  <b>Data:</b>
-  <%=h @observacao_nota.data %>
-</p>
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>OBSERVAÇÕES ALUNO</strong></font><br/>
+ </div>
+      <div class="tabs">
 
 
-<%= link_to 'Edit', edit_observacao_nota_path(@observacao_nota) %> |
-<%= link_to 'Back', observacao_notas_path %>
+           
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4>Observações</font></legend>
+             <table width="100%">
+                <tr bgcolor="#F5F5F5">
+                   <td width =" 5%"><b>Aluno:</b></td>
+                   <td> <%=h @observacao_nota.aluno.aluno_nome %></td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td></td>
+                  <td><b>Classe:</b><%=h session[:classe]%> &nbsp&nbsp&nbsp&nbsp&nbsp <b>Período:</b> <%=h session[:periodo]%> </td>
+                </tr >
+                 <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Relatório:</b></td>
+                   <td>  <%=h @observacao_nota.observacao%></td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td><b>Data:</b></td>
+                  <td> <%= @observacao_nota.data.strftime("%d/%m/%Y")%>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <b>Observação feita pelo(a):</b> <%=h @observacao_nota.quem %></td>
+                </tr>
+
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                     <td><%= button_to "Boletim Escolar",relatorios_classe_atribuicaos_path %>    </td>
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+</div>
+
+
+
+
+
+
+

@@ -1,23 +1,73 @@
-<h1>New observacao_nota</h1>
 
-<% form_for(@observacao_nota) do |f| %>
-  <%= f.error_messages %>
 
-  <p>
-    <%= f.label :nota %><br />
-    <%= f.text_field :nota %>
-  </p>
-  <p>
-    <%= f.label :observacao %><br />
-    <%= f.text_field :observacao %>
-  </p>
-  <p>
-    <%= f.label :data %><br />
-    <%= f.date_select :data %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>OBSERVAÇÕES ALUNO</strong></font><br/>
+ </div>
+      <div class="tabs">
 
-<%= link_to 'Back', observacao_notas_path %>
+          <% form_for (@observacao_nota) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="2"><b>OBSERVAÇÃO DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</b></td>
+                  </tr>
+                <tr bgcolor="#F5F5F5">
+                   <td width =" 5%"><b>Aluno:</b></td>
+                   <td><%= f.collection_select :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
+                      <%= observe_field 'observacao_nota_aluno_id',
+                         :update => "aluno_classe",
+                         :url    => { :action => 'aluno_classe' },
+                         :with   => 'observacao_nota_aluno_id' %>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="aluno_classe"></div></td>
+                </tr >
+                 <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Relatório:</b></td>
+                   <td>  <%= f.text_area(:observacao, :cols=> "80", :rows=>"10", :id=>"contador2") %><br/>
+                        <script>
+                                $(document).on("keydown", "#contador2", function () {
+                                    var caracteresRestantes = 800;
+                                    var caracteresDigitados = parseInt($(this).val().length);
+                                    var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+                                    $(".caracteres").text(caracteresRestantes);
+
+                                });
+
+                        </script>
+                          <b><span class="caracteres">800</span> Caracteres Restantes </b>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Data:</b></td>
+                  <td> <%= f.date_select(:data, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-1)%>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <b>Observação feita pelo(a):</b> <%= f.select :quem , options_for_select(@quem) %></td>
+                </tr>
+
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+</div>
+

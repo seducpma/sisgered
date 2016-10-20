@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :relatorios,:collection => { :relatorio=>:get, :consultas=>:get, :consultas_observacao =>:get}
   map.resources :observacao_historicos
+  map.resources :observacao_notas
   map.resources :situacao_alunos
   map.resources :matriculas,:collection => { :transferencia=>:get, :alterar=>:get, :saidas=>:get, :consultar => :get, :new1 => :get}
   map.resources :transferencias,:collection => { :editar_transferencia=>:get}
