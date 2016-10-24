@@ -285,6 +285,7 @@
        <%end%>
     <%end%>
    <%end%>
+  <%if !@notasD.empty?%>
    <tr>
      <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
      <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
@@ -293,6 +294,7 @@
      <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
      <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
    </tr>
+  <%end%>
    <tr>
      <%@notasD.each do |nota|%>
 
@@ -431,22 +433,20 @@
                </td>
              </tr>
           </table>
-
+    <%end%>
+      <%end%><br/>
 
      <br/>
 
-     <br/>
-
+    </table>
           <table  width="100% ">
               <tr>
                <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+               <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_transferencia_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
 
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
-                      <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_transferencia_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-              <%end%>
               </tr>
             </table>
-    <%end%>
-    </table>
- <%end%>
+
+
+
 
