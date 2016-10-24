@@ -1,0 +1,86 @@
+
+<div id="interno4">
+<% title "TRANSFERENCIA".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>REMANJEMENTO</strong></font><br/>
+ </div>
+    <div class="tabs">
+     <% form_for (@matricula) do |f| %>
+       <%= f.error_messages %>
+        <font  size="2">
+          <br/>
+          <table width="100%" align="center" bgcolor="#F5F5F5">
+              <tr> <td></td> </tr>
+              <tr> <td></td> </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <font color="blue"><b><u> TRANSFERÊNCIA DE ALUNOS ENTRE CLASSES DA MESMA UNIDADE</u></b> <br/><br/>
+                </td>
+             </tr>
+              <tr>
+                <td colspan="2">
+                    <table>
+                      <tr>
+                        <td><b>Aluno: </b></td><td><%= f.collection_select :aluno_id , @alunos3, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+
+                           <%= observe_field 'matricula_aluno_id',
+                                :with => 'aluno_id',
+                                :url => { :action => 'matricula_aluno_classe' },
+                                :update => "classe_aluno" %>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><div id="classe_aluno"> </div></td>
+                      </tr>
+                      <tr>
+                         <td><b>Classe: </b></td>
+                         <td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
+                      </tr>
+                      <tr>
+                         <td width ="23%"><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%></td>
+                      </tr>
+                      <tr>
+                        <td><b>Status: </b></td>
+                        <td> <%= f.text_field :status, :size=>"15", :readonly => "readonly" , :value =>"*REMANEJADO"  %></td>
+                      </tr>
+
+                    </table>
+
+                </td>
+              </tr>
+              <tr> <td></td> </tr>
+            </table>
+             <table width="100%" >
+               <tr> <td><br/></td> </tr>
+               <tr>
+                  <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+         <%end%>
+                  <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                  <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_ficha_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+          <%end%>
+               </tr>
+             </table>
+
+        </font>
+
+
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
+
+
+
+
+
+
+
+
+
+

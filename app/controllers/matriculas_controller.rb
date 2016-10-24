@@ -48,6 +48,18 @@ class MatriculasController < ApplicationController
 
   end
 
+
+
+  def remanejamento
+  @matricula = Matricula.new
+
+  respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @matricula }
+    end
+
+  end
+
   def edit
     @matricula = Matricula.find(params[:id])
   end

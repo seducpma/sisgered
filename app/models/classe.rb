@@ -1,6 +1,6 @@
 class Classe < ActiveRecord::Base
 
-  
+ has_many :matriculas
   belongs_to :unidade
   has_and_belongs_to_many :alunos
   has_many :atribuicaos

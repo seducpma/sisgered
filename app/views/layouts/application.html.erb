@@ -73,7 +73,7 @@ display: none;
               <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
            <%else%>
               <% if current_user.has_role?('supervisao') %>
-                  <td>Acesso Supervisã {:selecteo SEDUC |
+                  <td>Acesso Supervisão |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
                            <font size="1">  <%= uni %></font></td>
@@ -211,7 +211,8 @@ display: none;
 
                       <%end%>
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                           <li><a class="item-primary" href="#;">Transferência</a>
+                          <li><%= link_to "Remanejamento", remanejamento_matriculas_path%></li>
+                          <li><a class="item-primary" href="#;">Transferência</a>
                               <ul>
                                 <li><%= link_to "Entrada", transferencia_matriculas_path%></li>
                                 <li><%= link_to "Saida", saidas_matriculas_path%></li>
