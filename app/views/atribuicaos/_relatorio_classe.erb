@@ -99,9 +99,8 @@
                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
-               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+               <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><% obs=0 %>
              </tr>
-
              <tr>
                <%@notasB.each do |nota|%>
                   <%if nota.aluno_id == session[:aluno]%>
@@ -122,7 +121,7 @@
                                       <%end%>
                                    <%end%>
                                 <%else%>
-                                   <font color ="red"> ERRO* </font>
+                                   <font color ="red"> ERRO* </font><% obs=1 %>
                                  <%end%>
 
                            </td>
@@ -147,7 +146,7 @@
                                       <%end%>
                                    <%end%>
                                 <%else%>
-                                   <font color ="red"> ERRO* </font>
+                                   <font color ="red"> ERRO* </font><% obs=1 %>
                                 <%end%>
 
                            </td>
@@ -173,7 +172,7 @@
                                    <%end%>
 
                                 <%else%>
-                                   <font color ="red"> ERRO* </font>
+                                   <font color ="red"> ERRO* </font><% obs=1 %>
                              <%end%>
                            </td>
                       <%else%>
@@ -197,7 +196,7 @@
                                       <%end%>
                                    <%end%>
                                 <%else%>
-                                   <font color ="red"> ERRO* </font>
+                                   <font color ="red"> ERRO* </font><% obs=1 %>
                                  <%end%>
 
                            </td>
@@ -232,19 +231,13 @@
              </tr>
               <%end%>
           <%end%>
-   <%flag1=0%>
-   <%@notas.each do |nota|%>
-     <% if flag1 == 0%>
-
-          <%flag1=1%>
-            <tr>
+     <% if obs==1 %>
+        <tr>
             <td colspan="20">
               <center><font color ="red"><b>  *PROFESSORES QUE NÃO LANÇARAM AS AULAS DADAS NO BIMESTRE, O SISTEMA NÂO CALCULA A FREQUÊNCIA,  <br/>
                     PARA QUE O BOLETIM FIQUE CORRETO, FAVOR SOLICITAR QUE O PROFESSOR LANCE A QUANTIDADE DE AULAS DADAS E AS FALTAS.</b> </center>
             </td>
           </tr>
-       <%end%>
-
    <%end%>
              <tr>
                <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>

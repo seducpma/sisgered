@@ -109,6 +109,8 @@
 
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% session[:obs]=1 %>
                                  <%end%>
            </td>
       <%else%>
@@ -131,7 +133,9 @@
                                            <%= frequencia2%> %
                                       <%end%>
                                    <%end%>
-                                <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% session[:obs]=1 %>
+                                 <%end%>
 
            </td>
       <%else%>
@@ -154,7 +158,9 @@
                                            <%= frequencia3%> %
                                       <%end%>
                                    <%end%>
-                               <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% session[:obs]=1 %>
+                                 <%end%>
            </td>
       <%else%>
            <td align="center">--</td>
@@ -176,7 +182,9 @@
                                            <%= frequencia4%> %
                                       <%end%>
                                    <%end%>
-                               <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% session[:obs]=1 %>
+                                 <%end%>
            </td>
 
       <%else%>
@@ -207,19 +215,13 @@
 
    </tr>
     <%end%>
-   <%flag1=0%>
-   <%@notas.each do |nota|%>
-     <% if flag1 == 0%>
-        <%if nota.aulas5.nil?%>
-          <%flag1=1%>
-            <tr>
+     <% if session[:obs] ==1 %>
+        <tr>
             <td colspan="20">
-              <center><font color ="red"><b>  PROFESSORES QUE NÃO LANÇARAM AS AULAS DADAS NO BIMESTRE OU AS FALTAS DO ALUNO, O SISTEMA NÂO CALCULA A FREQUÊNCIA, <br/>
-                  PARA QUE O BOLETIM FIQUE CORRETO, FAVOR SOLICITAR QUE O PROFESSOR LANCE AS FALTAS E A QUANTIDADE DE AULAS DADAS.</b> </center>
+              <center><font color ="red"><b>  *PROFESSORES QUE NÃO LANÇARAM AS AULAS DADAS NO BIMESTRE, O SISTEMA NÂO CALCULA A FREQUÊNCIA,  <br/>
+                    PARA QUE O BOLETIM FIQUE CORRETO, FAVOR SOLICITAR QUE O PROFESSOR LANCE A QUANTIDADE DE AULAS DADAS E AS FALTAS.</b> </center>
             </td>
           </tr>
-       <%end%>
-    <%end%>   
    <%end%>
    <tr>
      <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
@@ -248,6 +250,8 @@
                                            <%= frequencia1%> %
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% obs=1 %>
                                  <%end%>
 
            </td>
@@ -271,7 +275,9 @@
                                            <%= frequencia2%> %
                                       <%end%>
                                    <%end%>
-                                <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% obs=1 %>
+                                 <%end%>
 
            </td>
       <%else%>
@@ -294,7 +300,9 @@
                                            <%= frequencia3%> %
                                       <%end%>
                                    <%end%>
-                                <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% obs=1 %>
+                                 <%end%>
            </td>
       <%else%>
            <td align="center">---</td>
@@ -316,7 +324,9 @@
                                            <%= frequencia4%> %
                                       <%end%>
                                    <%end%>
-                                <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% obs=1 %>
+                                 <%end%>
            </td>
 
       <%else%>

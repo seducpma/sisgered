@@ -71,7 +71,16 @@
                             <%end%>
                      <%end%>
                <%end%>
-               , e nesta data solicitou sua transferência para outra unidade de ensino, estando apto(a) a frequentar
+
+               , e nesta data solicitou sua transferência para outra unidade de Ensino
+               <%if (current_user.unidade.tipo_id == 1) or (current_user.unidade.tipo_id == 4) or (current_user.unidade.tipo_id == 7) or (current_user.unidade.tipo_id == 9)%>
+                    Fundamental
+              <%else%>
+                    Infantil
+              <%end%>
+
+
+               , estando apto(a) a frequentar:
                <% if  session[:classe]== "EJA" %>               
                    <b> EJA </b> - Ensino de Jovens e Adultos
                <%else%>
@@ -79,17 +88,17 @@
                           <b><%=  session[:classe][0,1] %>º ano </b> do Ensino Fundamental de 9 anos.
                      <%else%>
                            <%if  session[:classe][0,3] == 'BI '%>
-                             <b> Berçario I. </b> - <% session[:classe][0,3]%>
+                             <b> Berçario I </b> do Ensino Infantil.
                            <%else if  session[:classe][0,3] == 'BII'%>
-                                      <b> Berçario II. </b>
+                                      <b> Berçario II </b> do Ensino Infantil.
                                   <% else if session[:classe][0,3] == 'MI '%>
-                                        <b> Maternal I. </b>
+                                        <b> Maternal I </b> do Ensino Infantil.
                                       <% else if session[:classe][0,3] == 'MII'%>
-                                             <b> Maternal II. </b>
+                                             <b> Maternal II </b>do Ensino Infantil
                                              <% else if session[:classe][0,3] == 'NI '%>
-                                                 <b> Nivel I. </b>
+                                                 <b> Nivel I </b> do Ensino Infantil.
                                                 <% else if session[:classe][0,3] == 'NII'%>
-                                                     <b> Nível II. </b>
+                                                     <b> Nível II </b>do Ensino Infantil.
                                                      <%end%>
                                                  <%end%>
                                              <%end%>
