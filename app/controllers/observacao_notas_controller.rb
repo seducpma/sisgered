@@ -94,7 +94,7 @@ class ObservacaoNotasController < ApplicationController
      session[:classe]= matricula.classe.classe_classe
      session[:periodo] = matricula.classe.horario
     end
-t=0
+
     render :partial => 'aluno_classe'
 
 

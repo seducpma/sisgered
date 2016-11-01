@@ -15,7 +15,7 @@
               <tr> <td></td> </tr>
               <tr>
                 <td colspan="2" align="center">
-                  <font color="blue"><b><u> TRANSFERÊNCIA DE ALUNOS ENTRE CLASSES DA MESMA UNIDADE</u></b> <br/><br/>
+                  <font color="blue"><b><u> REMANEJAMENTO DE ALUNOS ENTRE CLASSES DA MESMA UNIDADE</u></b> <br/><br/>
                 </td>
              </tr>
               <tr>
@@ -55,7 +55,7 @@
                <tr>
                   <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
          <%end%>
-                  <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                  <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
                   <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_ficha_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
           <%end%>
