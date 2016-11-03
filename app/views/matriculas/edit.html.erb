@@ -1,4 +1,4 @@
-<div id="interno1">
+<div id="interno3">
 <% title "TRANSFERENCIA".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -43,10 +43,10 @@
                   <%end%>
                   <tr> <td></td> </tr>
                   <tr>
-                    <td width ="10%"><b>Aluno Nº: </b></td>
+                    <td width ="14%"><b>Aluno Nº: </b></td>
                     <td><%= f.text_field :classe_num, :size => '2'%>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Classe: </b>
-                        &nbsp&nbsp&nbsp&nbsp <%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
+                        &nbsp <%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
 
                     </td>
                   </tr>
@@ -57,8 +57,12 @@
                          <%else%>
                            <%= h@matricula.status%>
                           <%end%> 
-                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: <%= f.collection_select :status , @status, :status, :status %> </b> </td>
+                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: &nbsp <%= f.collection_select :status , @status, :status, :status %> </b>
                     </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                     <b>Data: </b> &nbsp <%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
                   </tr>
                   <tr>
                     <td colspan="2">
@@ -80,33 +84,7 @@
                         </fieldset>
                     </td>
                   </tr>
-                  <tr>
-                    <td colspan="2">
-                      <fieldset><legend><b>SE REMANEJAMENTO</b></legend>
-                          <table>
-                              <tr>
-                                  <td ><b>Classe Destino: </b> </td>
-                                  <td><%= f.collection_select :rem_classe_id 	, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
-                               </tr>
-                          </table>
-                        </fieldset>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-
-                          <table>
-                                  <tr>
-                                    <td><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
-                                  </tr>
-                          </table>
-
-                    </td>
-                  </tr>
-
-
-                
-           </table>
+            </table>
             <table width="100%" >
                 <tr> <td><br/></td> </tr>
                    <tr>
