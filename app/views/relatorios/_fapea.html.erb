@@ -1,13 +1,13 @@
     <%if @relatorios.present?%>
       <% for relatorio in @relatorios %>
-        <fieldset><legend><font  size=3><b> FEPEA -
+        <fieldset><legend><font  size=3><b> FAPEA -
                 
                 
                     <% bimestre = relatorio.created_at.strftime("%m").to_i %>
                    <% if  ( bimestre < 8 ) %>
-                     1º Bimetre
+                     1º Semestre
                    <% else %>
-                     2º Bimestre
+                     2º Semestre
                    <%end%>
                    /<%=h  relatorio.ano_letivo %> 
 
@@ -41,9 +41,9 @@
                    <td><%=h relatorio.ano_letivo %>
                     <% bimestre = relatorio.created_at.strftime("%m").to_i %>
                    <% if  ( bimestre < 8 ) %>
-                     - 1º Bimetre
+                     - 1º Semestre
                    <% else %>
-                     - 2º Bimestre
+                     - 2º Semestre
                    <%end%>
 
 

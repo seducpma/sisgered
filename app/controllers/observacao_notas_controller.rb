@@ -103,7 +103,7 @@ class ObservacaoNotasController < ApplicationController
 
 
   def load_iniciais
-    @quem = ["CONSELHO","DIREÇÂO","PEDAGOGO",]
+    @quem = ["CONSELHO","DIREÇÂO","PEDAGOGO"]
     @alunos = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
   end
 
