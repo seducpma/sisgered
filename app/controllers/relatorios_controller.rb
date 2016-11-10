@@ -85,7 +85,7 @@ class RelatoriosController < ApplicationController
     @relatorio.destroy
 
     respond_to do |format|
-      format.html { redirect_to(relatorios_url) }
+      format.html { redirect_to(home_path) }
       format.xml  { head :ok }
     end
   end
@@ -110,8 +110,9 @@ def consulta_relatorios
         if ( params[:aluno].present?)
             session[:aluno_imp]= params[:aluno]
             session[:ano_imp]=params[:ano_letivo]
-            session[:impressao]= 0
+            session[:impressao]= 1
             @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno]])
+            session[:poraluno]=1
             render :update do |page|
                page.replace_html 'relatorio', :partial => "fapea"
            end
@@ -202,7 +203,7 @@ def consulta_observacoes
                            session[:unidade]=classe.unidade_id
                          end
                         session[:impressao]= 0
-
+                        
                         render :update do |page|
                            page.replace_html 'relatorio', :partial => "observacoes3"
                        end
@@ -227,13 +228,16 @@ end
 
 
   def impressao_fapea
-
-      @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]])
-      render :layout => "impressao"
+      if session[:poraluno]==1
+            @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", session[:aluno_imp]])
+            #@relatorio = Relatorio.find(params[:id])
+          session[:poraluno]=0
+      else
+         @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]])
+      end
+     render :layout => "impressao"
   end
   
-
-
 
 
   def dados

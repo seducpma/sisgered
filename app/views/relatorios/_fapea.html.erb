@@ -23,12 +23,13 @@
                   </td>
                 </tr>
                </table>
-                <table width="100%">
+          <table width="100%" >
                  <tr bgcolor="#F5F5F5">
                    <td width=5%" align="left"><b>Aluno:</b></td>
-                   <td><%=h relatorio.aluno.aluno_nome %></td>
+                   <td><%=h relatorio.aluno.aluno_nome %> <%  session[:relatorio_id]= relatorio.id%> </td>
                    <td width=10%" align="left"><b>Nascimento:</b></td>
-                   <td><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %>   </td>
+                   <td colspan="2"><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %>   </td>
+
 
                  </tr>
                  <tr bgcolor="#F5F5F5">
@@ -37,8 +38,9 @@
                                    <b>Disciplina:</b> <%=h relatorio.atribuicao.disciplina.disciplina%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                    <b>Classe:</b>
                                    <%=h relatorio.atribuicao.classe.classe_classe %>
+                   </td>
                    <td><b>Ano Letivo:</b></td>
-                   <td><%=h relatorio.ano_letivo %>
+                   <td colspan="2"><%=h relatorio.ano_letivo %>
                     <% bimestre = relatorio.created_at.strftime("%m").to_i %>
                    <% if  ( bimestre < 8 ) %>
                      - 1º Semestre
@@ -51,23 +53,25 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Mãe / Pai:</b></td>
-                   <td colspan="3"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
+                   <td colspan="4"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left" valign="top"><b>Professor:</b></td>
-                   <td colspan="3"><%=h relatorio.professor.nome %></td>
+                   <td colspan="4"><%=h relatorio.professor.nome %></td>
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left" valign="top"><b>Relatório:</b></td>
-                   <td colspan="3"><%=h relatorio.observacao %></td>
+                   <td colspan="4"><%=h relatorio.observacao %></td>
                 </tr>
 
-                <tr><td colspan="4"> <hr/></td></tr>
+                <tr><td colspan="5"> <hr/></td></tr>
                 <%if session[:impressao]==1%>
                 <tr>
-                 <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-
-                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
+                 
+                  <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil')%>
+                    <td  colspan="4" align="right" ><%= button_to 'Excluir', relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir" %></a></td>
+                  <%end%>
+                  <td width ="5%" align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
 
                </tr>
                

@@ -10,12 +10,14 @@
           <tr>
             <td>
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Por Ano
-              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Todos
+              <!--<a href="#" class="filtro_fapea"><%= radio_button_tag(:type_of, "2") %></a>Por FAPEA-->
+              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Por Aluno
             </td>
          </tr>
          <tr>
            <td><div class="consulta" style="display:none"> <%= render "consulta" %> </div>
-               <div class="consulta_unidade" style="display:none"> <%= render "consulta_nome" %> </div>
+             <div class="consulta_fapea" style="display:none"> <%= render "consulta_fapea" %> </div>
+             <div class="consulta_unidade" style="display:none"> <%= render "consulta_nome" %> </div>
            </td>
          </tr>
         </table>
