@@ -63,7 +63,8 @@ display: none;
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
                            <font size="1">  <%= uni %></font><font size="1">
-         <td align="right"></font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font>
+         </td>
+         <td align="right"></font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
         <%else%>
            <% if current_user.has_role?('SEDUC') %>
               <td>Acesso SEDUC |
