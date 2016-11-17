@@ -22,15 +22,15 @@
                       <td width="25%">RH/SEDUC.</td>
                       <td>Acesso exclusivo - Secretaria da Educação</td>
                   <%else%>
-                     <%if  Role.find(@roles_user.role_id).name == 'direcao' then%>
+                     <%if  Role.find(@roles_user.role_id).name == 'direcao_fudamental' then%>
                        <td width="25%">Direção U.E</td>
                        <td>Acesso exclusivo - Diretor de Unidade Escolar</td>
                      <%else%>
-                           <%if  Role.find(@roles_user.role_id).name == 'secretaria' then%>
+                           <%if  Role.find(@roles_user.role_id).name == 'secretaria_fudamental' then%>
                              <td width="25%">Secretaria U.E.</td>
                              <td>Acesso exclusivo - Funcinário de Unidade Escolar</td>
                             <%else%>
-                                <%if  Role.find(@roles_user.role_id).name == 'professor' then%>
+                                <%if  Role.find(@roles_user.role_id).name == 'professor_fudamental' then%>
                                  <td width="25%">Professor U.E.</td>
                                  <td>Acesso exclusivo - Professor Escolar</td>
                                 <%else if  Role.find(@roles_user.role_id).name == 'pedagogo' then%>
@@ -43,7 +43,7 @@
                                                  <td width="25%">Direção U.E.</td>
                                                  <td>Acesso exclusivo - Diretoria Infantil</td>
                                                 <%else if  Role.find(@roles_user.role_id).name == 'professor_infantil' then%>
-                                                       <td width="25%">Pedagogo U.E.</td>
+                                                       <td width="25%">Professor U.E.</td>
                                                        <td>Acesso exclusivo - Professor Infantil</td>
                                                       <%else%>
                                                         <td width="25%">Usuário</td>

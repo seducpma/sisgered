@@ -23,7 +23,7 @@
                   </tr>
                       <tr bgcolor="#F5F5F5">
                         <td align="center"><b><font color="red"> Lançar aulas dadas </font></b></td>
-                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                              <td width ="3%" align="center"> <b>1º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas1 , :size => '2'%></td>
                           <%else%>
                             <td align="center"> <b>1º Bimestre <br/>Nº Aulas:</b>   <%if @atribuicao.aulas1 != 0%>
@@ -33,7 +33,7 @@
                                                                     <%end%>
                            </td>
                          <%end%>
-                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                              <td width ="3%" align="center"> <b>2º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas2 , :size => '2'%></td>
                           <%else%>
                             <td align="center"><b>2º Bimestre <br/>Nº Aulas:</b> <%if @atribuicao.aulas2 != 0%>
@@ -43,7 +43,7 @@
                                                                 <%end%>
                             </td>
                           <%end%>
-                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                              <td width ="3%" align="center"> <b>3º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas3 , :size => '2'%></td>
                              <%t=0%>
                           <%else%>
@@ -57,7 +57,7 @@
                              </td>
 
                          <%end%>
-                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                              <td width ="3%" align="center"> <b>4º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas4 , :size => '2'%></td>
                           <%else%>
                               <td align="center"><b>4º Bimestre <br/>Nº Aulas:</b><%if @atribuicao.aulas4 != 0%>

@@ -310,7 +310,7 @@
                        <td align="left"><b>Observação::</b></td>
                        <td colspan="7" align="left"><%=h aluno.aluno_obs %></td>
                     </tr>
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fudamental'))%>
                      <tr>
                        <td align="LEFT" ><%= button_to '', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get"%></td>
                        <td colspan="7"align="RIGHT"><%= button_to 'Editar', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get", :title => "Editar"%></td>
@@ -433,7 +433,7 @@
                        <td valign="top"><b>Observação:</b></td>
                       <td colspan="5"><%=h saude.saude_obs%> </td>
                      </tr>
-             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fudamental'))%>
                <tr>
                  <td colspan="7"align="RIGHT"><%= button_to 'Editar', {:controller => "saudes", :action => "edit" , :id =>saude}, :method => "get", :title => "Editar"%></td>
                </tr>
@@ -506,7 +506,7 @@
                        <td valign="top"><b>Observação:</b></td>
                       <td colspan="5"><%=h socioeconomico.economico_obs %> </td>
                     </tr>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fudamental'))%>
                      <tr>
                        <td colspan="7"align="RIGHT"><%= button_to 'Editar', {:controller => "socioeconomicos", :action => "edit" , :id =>socioeconomico}, :method => "get", :title => "Editar"%></td>
                      </tr>

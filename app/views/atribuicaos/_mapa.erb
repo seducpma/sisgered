@@ -78,7 +78,7 @@
               </tr>
                <tr>
                  <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fudamental'))%>
                   <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa1_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
                       <%end%>
                </tr>
@@ -170,7 +170,7 @@
               </tr>
                <tr>
                  <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fudamental'))%>
                   <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa2_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
                       <%end%>
                </tr>
@@ -260,7 +260,7 @@
               </tr>
                <tr>
                  <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fudamental'))%>
                   <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa3_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
                       <%end%>
                </tr>
@@ -350,7 +350,7 @@
               </tr>
                <tr>
                  <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fudamental'))%>
                   <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa4_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
                       <%end%>
                </tr>
@@ -440,7 +440,7 @@
               </tr>
                <tr>
                  <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fudamental'))%>
                   <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa5_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
                       <%end%>
                </tr>

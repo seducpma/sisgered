@@ -52,7 +52,7 @@
                       </tr>
                       <tr bgcolor="#F5F5F5">
                          <td></td>
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                            <td width ="3%"> <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1)) %>
                                             <%= f.text_field :faltas1 , :size => '1'%>
                            </td>
@@ -71,7 +71,7 @@
                                               <%end%>
                              </td>
                          <%end%>
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                            <td width ="3%"> <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %>
                                             <%= f.text_field :faltas2 , :size => '1'%>
 
@@ -92,7 +92,7 @@
                                               <%end%>
                              </td>
                          <%end%>
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                            <td width ="3%"> <%= f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3)) %>
                                             <%= f.text_field :faltas3 , :size => '1'%>
                            </td>
@@ -112,7 +112,7 @@
                              </td>
                          <%end%>
 
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                            <td width ="3%"><%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, @nota.nota4)) %>&nbsp
                                             <%= f.text_field :faltas4 , :size => '1'%>
                            </td>
@@ -133,7 +133,7 @@
                          <%end%>
 
 
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))%>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                            <td width ="3%"> <%= f.text_field :nota5 , :size => '1'%>&nbsp
                                                 &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas5%>
                            </td>
