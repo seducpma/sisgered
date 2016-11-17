@@ -93,7 +93,7 @@ display: none;
                            <% uni = @unidade.first.nome  %>
                            <font size="1">  <%= uni %></font></td>
                       <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
-                   <%else if current_user.has_role?('professor') %>
+                   <%else if current_user.has_role?('professor_fudamental') %>
                        <td>Acesso Professor |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
@@ -166,7 +166,7 @@ display: none;
               </li>
               
               <li><span class="divider divider-vert" ></span></li>
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil') )%>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil') or current_user.has_role?('direcao')  )%>
               <li><a class="item-primary" href="#;">CADASTRAR</a>
                  <ul style="width:108px;">
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil'))%>
@@ -228,7 +228,7 @@ display: none;
               </li>
      <%end%>
               <li><a class="item-primary" href="#;">CONSULTAR</a>
-               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('professor')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil'))%>
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('professor_fudamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil'))%>
                  <ul style="width:108px;">
                    <li><a class="item-primary" href="#;">Aluno</a>
                        <ul>
@@ -253,10 +253,10 @@ display: none;
                            <!--<li><%= link_to "Transferência",consulta_transferencia_path %></li>-->
                      <%end%>
                         <li><%= link_to "Unidade",consultas_unidades_path %></li>
-                     <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor')or current_user.has_role?('pedagogo'))%>
+                     <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fudamental')or current_user.has_role?('pedagogo'))%>
                          <li><%= link_to "Observaçoes",consultas_observacao_relatorios_path %></li>
                      <%end%>
-                     <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil'))%>
+                     <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fudamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil'))%>
                          <li><%= link_to "FAPEA",consultas_relatorios_path %></li>
                      <%end%>
 
@@ -277,14 +277,14 @@ display: none;
               </li>
              <%end%>
               
-                <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('professor')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
+                <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('professor_fudamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
                  <li><a class="item-primary" href="#;">DOCUMENTOS</a>
                    <ul style="width:108px;">
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                         <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
                       <%end%>
                       <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
-                      <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor')or current_user.has_role?('pedagogo')%>
+                      <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fudamental')or current_user.has_role?('pedagogo')%>
                         <li><%= link_to "Boletim Escolar",relatorios_classe_atribuicaos_path %></li>
                       <%end%>
                            <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')%>
@@ -313,16 +313,16 @@ display: none;
 
               </li>
  
-           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor')or current_user.has_role?('pedagogo'))%>
+           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fudamental')or current_user.has_role?('pedagogo'))%>
             <li><span class="divider divider-vert" ></span></li>
 
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo'))%>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fudamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo'))%>
                 <li><a class="item-primary" href="#;">LANÇAMENTOS</a>
                 <ul style="width:108px;">
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                      <li><%= link_to "Alterações",lancamentos_notas_notas_path %></li>
                   <%end%>
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
+                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fudamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
                      <li><%= link_to "Notas/Faltas",lancar_notas_notas_path %></li>
                   <%end%>
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
