@@ -121,9 +121,8 @@
                                                  <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, @nota.nota4)) %>
                                                  <!-- &nbsp&nbsp&nbsp<%= @nota.nota4%>&nbsp&nbsp&nbsp -->
                                               <%else%>
-                                                 <!-- <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, 'SN')) %> -->
-                                                 [-------]
-                                              <%end%>
+                                                 <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, 'SN')) %> 
+                                                <%end%>
                                               <%if @nota.faltas4 !=0 %>
                                                   &nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas4%>
                                               <%else%>
@@ -141,8 +140,8 @@
                              <td width ="3%"> <%if @nota.nota5.present?%>
                                                  &nbsp&nbsp&nbsp<%= @nota.nota5%>&nbsp&nbsp&nbsp
                                               <%else%>
-                                                <!-- <%= f.select :nota5 , options_for_select(Nota::NOTASB.insert(0, 'SN')) %> -->
-                                                 [-------]
+                                                <%= f.select :nota5 , options_for_select(Nota::NOTASB.insert(0, 'SN')) %> 
+                                                 
                                               <%end%>
                                               
                                                  &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas5%>
