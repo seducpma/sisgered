@@ -26,11 +26,11 @@
                        <td width="25%">Direção U.E</td>
                        <td>Acesso exclusivo - Diretor de Unidade Escolar</td>
                      <%else%>
-                           <%if  Role.find(@roles_user.role_id).name == 'secretaria_fudamental' then%>
+                           <%if  Role.find(@roles_user.role_id).name == 'secretaria_fundamental' then%>
                              <td width="25%">Secretaria U.E.</td>
                              <td>Acesso exclusivo - Funcinário de Unidade Escolar</td>
                             <%else%>
-                                <%if  Role.find(@roles_user.role_id).name == 'professor_fudamental' then%>
+                                <%if  Role.find(@roles_user.role_id).name == 'professor_fundamental' then%>
                                  <td width="25%">Professor U.E.</td>
                                  <td>Acesso exclusivo - Professor Escolar</td>
                                 <%else if  Role.find(@roles_user.role_id).name == 'pedagogo' then%>
