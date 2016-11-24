@@ -8,6 +8,10 @@
  </table>
 <% cont=1 %>
 <% @matriculas.each do |matricula| %>
+<% session[:matricula_id]=matricula.id %>
+      <% @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =?   AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?  AND matricula_id=?", session[:classe_id], current_user.unidade_id, Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')%>
+      <%@notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =?   AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?  AND matricula_id=?", session[:classe_id], current_user.unidade_id, Time.now.year,session[:matricula_id] ],:order =>'disciplinas.ordem ASC ')%>
+      <%  @notas = @notasB+@notasD %>
 <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
   <tr style="border-color: white">
     <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
