@@ -334,7 +334,7 @@ if ( params[:disciplina].present?)
         @NOTASB2 = ["SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
         @NOTASB3 = ["SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
         @NOTASB4 = ["SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
-   if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('pedagogo'))
+   if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52)
            @classes = Classe.find(:all, :order => 'classe_classe ASC')
          else
