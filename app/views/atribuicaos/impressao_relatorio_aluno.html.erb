@@ -150,7 +150,7 @@
       <%if nota.nota4.present? or nota.faltas4 != 0%>
            <th style="font-size: 8px" align="center"><%= nota.nota4 %></th>
            <th  style="font-size: 8px"align="center"><%= nota.faltas4 %></th>
-           <th style="font-size: 8px" align="center"><%if nota.aulas1 !=0 %>
+           <th style="font-size: 8px" align="center"><%if nota.aulas4 !=0 %>
 
                                                          <% frequencia4 =  (100-(nota.faltas4.to_f / nota.aulas4.to_f)*100).to_i %>
                                                          <%if frequencia4 < 75 %>
@@ -315,6 +315,16 @@
                  </tr>
               <%end%>
            <%end%>
+          <%@observacao2.each do |observacao| %>
+              <tr>
+                   <th style="font-size: 8px" align="right" valign="top"><%= observacao.quem %>&nbsp&nbsp</th>
+                   <th style="font-size: 8px" align="left" colspan="15"><%= observacao.observacao %> -
+                                   <b>Data: </b> <%  if !observacao.data.nil?  %>
+                                                    <%=  observacao.data.strftime("%d/%m/%Y")%>
+                                                 <%end%>
+                 </th>
+              </tr>
+            <%end%>
    <%end%>
 
  </table>

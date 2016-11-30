@@ -39,6 +39,7 @@
      <table border="1" cellspacing="0" cellpadding="1" width="100%">
         <tr>
             <td><b>Nº</b> <%= matricula.classe_num %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_nome %> &nbsp&nbsp
+                          <%session[:aluno_id] = matricula.aluno_id%>
                         <%  if matricula.status =="TRANSFERIDO"%>
                               <font color ="red"> (Transferido) </font>
                          <%else if matricula.status =="REMANEJADO"%>
@@ -405,7 +406,17 @@
              <%end%>
             <%end%>
            <%end%>
-
+           <%  @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno_id], Time.now.year,nil ] )%>
+           <%@observacao2.each do |observacao| %>
+            <tr>
+               <td align="right" valign="top"><%= observacao.quem %>&nbsp&nbsp</td>
+               <td colspan="15"><%= observacao.observacao %> -
+                                 <b>Data: </b> <%  if !observacao.data.nil?  %>
+                                                  <%=  observacao.data.strftime("%d/%m/%Y")%>
+                                               <%end%>
+               </td>
+            </tr>
+            <%end%>
          </table>
       </table>
 

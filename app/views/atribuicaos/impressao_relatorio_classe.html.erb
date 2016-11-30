@@ -33,6 +33,7 @@
       <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
         <tr>
           <th align="left"style="font-size: 7px"><b>Nº</b> <%= matricula.classe_num %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp  <%=h matricula.aluno.aluno_nome %> &nbsp&nbsp
+                        <%session[:aluno_id] = matricula.aluno_id%>
                         <%  if matricula.status =="TRANSFERIDO"%>
                               <font color ="red"> (Transferido) </font>
                          <%else if matricula.status =="REMANEJADO"%>
@@ -300,6 +301,24 @@
                  </tr>
               <%end%>
           <%end%>
+         <tr>
+           <th colspan="23" bgcolor="#DCDCD0"><hr></th>
+         </tr>
+
+         <tr>
+           <th style="font-size: 7px"colspan="23" align="left"><b>Observações:</b></th>
+         </tr>
+          <%@observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ? AND (quem = "CONSELHO" OR quem = "DIREÇÂO" OR quem = "PEDAGOGO")  ', session[:aluno_id], Time.now.year,nil ] )%>
+          <%@observacao2.each do |observacao| %>
+              <tr>
+                   <th style="font-size: 7px" align="right" valign="top"><%= observacao.quem %>&nbsp&nbsp</th>
+                   <th style="font-size: 7px" align="left" colspan="15"><%= observacao.observacao %> -
+                                   <b>Data: </b> <%  if !observacao.data.nil?  %>
+                                                    <%=  observacao.data.strftime("%d/%m/%Y")%>
+                                                 <%end%>
+                 </th>
+              </tr>
+            <%end%>
 
          
 
