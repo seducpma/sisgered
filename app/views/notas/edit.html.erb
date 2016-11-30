@@ -133,14 +133,14 @@
 
 
                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
-                           <td width ="3%"> <%= f.text_field :nota5 , :size => '1'%>&nbsp
-                                                &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas5%>
+                           <td width ="3%"><%= f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota5)) %>&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas5%>
                            </td>
                          <%else%>
-                             <td width ="3%"> <%if @nota.nota5.present?%>
+                           <td width ="3%"> <%if @nota.nota5.present?%>
                                                  &nbsp&nbsp&nbsp<%= @nota.nota5%>&nbsp&nbsp&nbsp
                                               <%else%>
-                                                <%= f.select :nota5 , options_for_select(Nota::NOTASB.insert(0, 'SN')) %> 
+                                                <%= f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota4)) %>
                                                  
                                               <%end%>
                                               
