@@ -114,8 +114,8 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_relatorios '/consulta_relatorios', :controller => 'relatorios', :action => 'consulta_relatorios'
   map.consulta_observacoes '/consulta_observacoes', :controller => 'relatorios', :action => 'consulta_observacoes'
 
-
-
+  map.historico'/historico', :controller => 'historicos', :action => 'historico'
+  map.historico_aluno'/historico_aluno', :controller => 'historicos', :action => 'historico_aluno'
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
   map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'
   map.lancar_notas_alunos_atribuicaos '/lancar_notas_alunos_atribuicaos', :controller => 'atribuicaos', :action => 'lancar_notas_alunos_atribuicao'

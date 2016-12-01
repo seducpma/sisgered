@@ -145,9 +145,14 @@ end
        if @nota.nota4 == '---'
          @nota.nota4= nil
        end
+
+       session[:classe_id]= @nota.atribuicao.classe_id
+       session[:professor_id]=@nota.professor_id
+       session[:disc_id]=@nota.atribuicao.disciplina_id
         @nota.save
 
-        if current_user.has_role?('professor')
+        if current_user.has_role?('professor_fundamental')
+               @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
                render 'notas_lancamentos'
         else 
                render lancamentos_notas_notas_path , :layout => "layouts/application"
@@ -196,7 +201,7 @@ def voltar_lancamento_notas
        end
       @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?" , session[:classe_id], session[:professor_id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
       @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-         if current_user.has_role?('professor')
+         if current_user.has_role?('professor_fundamental')
 
                #render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
                render "notas_lancamentos", :layout => "layouts/application"

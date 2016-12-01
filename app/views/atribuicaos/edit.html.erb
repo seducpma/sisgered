@@ -86,7 +86,7 @@
             <%end%>
                         
                          
-                     <%if current_user.has_role?('professor') or current_user.has_role?('admin') %>
+                     <%if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') %>
                        <%if current_user.has_role?('admin') %>
                          <td><%= button_to 'Lançar Notas', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>
                        <%else%>
