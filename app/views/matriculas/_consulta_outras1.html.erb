@@ -48,7 +48,7 @@
             <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
    <%end%>
             <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fundamental'))%>
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
             <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_ficha_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
     <%end%>
          </tr>

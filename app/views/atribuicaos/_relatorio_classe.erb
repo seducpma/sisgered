@@ -195,7 +195,7 @@
                                   <%else%>
                                       <% frequencia4 =  (100-(nota.faltas4.to_f / nota.aulas4.to_f)*100).to_i %>
                                       <%if frequencia4 < 75 %>
-                                           <font color ="red"> <%= frequencia5%> % </font>
+                                           <font color ="red"> <%= frequencia4%> % </font>
                                       <%else%>
                                            <%= frequencia4%> %
                                       <%end%>
@@ -432,7 +432,7 @@
 <table  width="100% "bgcolor="#DCDCDC" >
    <tr>
       <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fudamental')or current_user.has_role?('secretaria_fundamental'))%>
+        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
              <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
           <%end%>
    </tr>
