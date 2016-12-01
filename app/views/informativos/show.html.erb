@@ -54,7 +54,7 @@
      <table>
          <tr>
 
-            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('supervisao')%>
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@informativo}, :method => "get", :title => "Editar"%></td>
                  <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy", :id =>@informativo}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
 

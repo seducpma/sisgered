@@ -43,8 +43,8 @@
 
   <table width="100%" >
          <tr>
-            <% if current_user.has_role?('professor')%>
-                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao')or current_user.has_role?('secretaria'))%>
+            <% if current_user.has_role?('professor_fundamental')%>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria'))%>
                      <td width="6%"align="left" ><%= button_to 'Lançar Notas', {:action => "edit", :id =>@atribuicao}, :method => "get", :title => "Lançar"%></td>
                 <%end%>
                 <td><%= button_to 'Lançar Notas', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>
