@@ -27,7 +27,7 @@
                              <td>Secretaria U.E.</td>
                              <td>Acesso exclusivo - Funcinário de Unidade Escolar</td>
                            <%else%>
-                                  <%if  Role.find(role_user.role_id).name == 'professo_fudamentalr' then%>
+                                  <%if  Role.find(role_user.role_id).name == 'professor_fundamental' then%>
                                    <td>Professor U.E.</td>
                                    <td>Professor de Unidade Escolar</td>
                                  <%else if  Role.find(role_user.role_id).name == 'pedagogo' then%>
