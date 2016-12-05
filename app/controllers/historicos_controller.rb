@@ -61,20 +61,22 @@ end
 
 
 def historico
-  t=0
-  @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
-  if params[:aluno][:aluno_id].present?
-  t=0
-     
+
+ if  (params[:aluno_id].present?)
+   params[:aluno_id]
+
+  @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_id]])
      for aluno in @aluno
-       session[:unidade_id]= aluno.unidade_id
-       session[:aluno_id]= aluno.id
-       session[:aluno_nome] = aluno.aluno_nome
+       w=session[:unidade_id]= aluno.unidade_id
+       w1=session[:aluno_id]= aluno.id
+       w2=session[:aluno_nome] = aluno.aluno_nome
      end
+
      @historico_aluno = Aluno.find(session[:aluno_id])
      @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
      @disciplinas = Disciplina.find(:all, :conditions =>['id < 22'],:order => 'ordem ASC' )
      @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
+
      @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
      @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
      @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id],Time.now.year],:order =>'disciplinas.ordem ASC ')
