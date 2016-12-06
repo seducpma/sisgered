@@ -45,6 +45,7 @@ class ObservacaoNotasController < ApplicationController
   def create
     @observacao_nota = ObservacaoNota.new(params[:observacao_nota])
     @observacao_nota.ano_letivo =  Time.now.year
+    t=0
     respond_to do |format|
       if @observacao_nota.save
         flash[:notice] = 'ObservacaoNota was successfully created.'

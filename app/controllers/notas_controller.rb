@@ -65,6 +65,7 @@ before_filter :load_classes
       @nota = Nota.find(session[:id_nota])
       @observacao_nota.nota_id =@nota.id
       @observacao_nota.data = Time.now
+      @observacao_nota.ano_letivo =  Time.now.year
 
       if @observacao_nota.save
 
