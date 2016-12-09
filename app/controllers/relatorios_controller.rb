@@ -48,7 +48,8 @@ class RelatoriosController < ApplicationController
     @relatorio.professor_id = session[:professor_id]
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =?", session[:professor_id] ])
     @relatorio.atribuicao_id= @atribuicao[0].id
-
+    session[:poraluno] = 1
+    session[:aluno_imp]= @relatorio.aluno_id
     respond_to do |format|
       if @relatorio.save
         flash[:notice] = 'RELATORIO SALVO COM SUCESSO'
@@ -112,7 +113,9 @@ def consulta_relatorios
             session[:ano_imp]=params[:ano_letivo]
             session[:impressao]= 1
             @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno]])
-            session[:poraluno]=1
+
+            session[:poraluno] = 1
+
             render :update do |page|
                page.replace_html 'relatorio', :partial => "fapea"
            end
@@ -124,6 +127,7 @@ def consulta_relatorios
                   w1=session[:ano_imp]=params[:ano_letivo]
                   @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno1], params[:ano_letivo]])
                   session[:impressao]= 1
+                  session[:poraluno] = 0
                   render :update do |page|
                      page.replace_html 'relatorio', :partial => "fapea"
                    end
@@ -228,9 +232,13 @@ end
 
 
   def impressao_fapea
+      w= session[:poraluno]
       if session[:poraluno]==1
+
+            w1=session[:aluno_imp]
             @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", session[:aluno_imp]])
-            #@relatorio = Relatorio.find(params[:id])
+            #@relatorio = Relatorio.find(params[:id]
+            t=0
           session[:poraluno]=0
       else
          @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]])
