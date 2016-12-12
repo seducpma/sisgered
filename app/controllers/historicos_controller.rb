@@ -10,18 +10,13 @@ def historico
 end
 
  def create_observacao_historico
-
-     params[:observacao_historico]
+  
     @observacao_historico = ObservacaoHistorico.new(params[:observacao_historico])
-      params[:observacao_historico]
-
-      @historico_aluno  = Aluno.find(session[:historico_aluno_id])
-      @observacao_historico.aluno_id = @aluno.id
-
+      @observacao_historico.aluno_id = session[:aluno_id]
+      @observacao_historico.ano_letivo = Time.now.year
       @observacao_historico.data = Time.now
-
       if @observacao_historico.save
-
+         @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
         render :update do |page|
           page.replace_html 'dados', :partial => "observacoes"
           page.replace_html 'edit'
@@ -29,6 +24,29 @@ end
        end
 
 end
+
+
+
+
+  def create_observacao_crianca
+   t=params[:observacao_crianca]
+    @observacao_crianca = ObservacaoCrianca.new(params[:observacao_crianca])
+      t1=params[:observacao_crianca]
+      @crianca = Crianca.find(session[:id_crianca])
+      @observacao_crianca.crianca_id =@crianca.id
+      @observacao_crianca.data = Time.now
+      @observacao_crianca.funcionario = @observacao_crianca.funcionario + '('+ current_user.unidade.nome + ')'
+
+      if @observacao_crianca.save
+        render :update do |page|
+          page.replace_html 'dados', :partial => "observacoes"
+          page.replace_html 'edit'
+        end
+       end
+
+end
+
+
 
 def relatorio_observacoes
 
@@ -63,16 +81,14 @@ end
 def historico
 
  if  (params[:aluno_id].present?)
-   params[:aluno_id]
-
   @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_id]])
      for aluno in @aluno
-       w=session[:unidade_id]= aluno.unidade_id
-       w1=session[:aluno_id]= aluno.id
+       session[:unidade_id]= aluno.unidade_id
+       session[:aluno_id]= aluno.id
        w2=session[:aluno_nome] = aluno.aluno_nome
      end
 
-     @historico_aluno = Aluno.find(session[:aluno_id])
+     @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
      @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
      @disciplinas = Disciplina.find(:all, :conditions =>['id < 22'],:order => 'ordem ASC' )
      @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
@@ -81,11 +97,6 @@ def historico
      @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
      @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id],Time.now.year],:order =>'disciplinas.ordem ASC ')
      @notas_ano = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
-
-
-
-
-  
   end
 end
 

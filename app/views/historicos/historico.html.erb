@@ -104,22 +104,12 @@
          </table>
           <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
               <tr>
-                <td width="12%" align="CENTER"valign="top"><font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></font>
+                <td width="12%" align="CENTER"valign="top"><font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg"), "#inline_observacao", :class =>"inline" %></u></b></font>
                         <br/><font size ="1"color ="red"><b>Para lançar clique em observações</b></font>
                    </td>
-                  <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div>asdasdads</td>
+                  <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
                </tr>
-
           </table>
-
-
-
-
-
-
-
-
-
      </fieldset>
     <%end%>
    <%end%>
@@ -145,7 +135,7 @@
 
 
 
-
+      <%= render "form_observacao" %>
 
 
 
