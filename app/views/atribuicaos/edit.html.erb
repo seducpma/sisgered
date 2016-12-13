@@ -61,7 +61,7 @@
                              <td width ="3%" align="center"> <b>4º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas4 , :size => '2'%></td>
                           <%else%>
                               <td align="center"><b>4º Bimestre <br/>Nº Aulas:</b><%if @atribuicao.aulas4 != 0%>
-                                                                    <br/>&nbsp&nbsp&nbsp<%= @atribuicao.aulas4%>
+                                                                    <br/><!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas4%>--><%= f.text_field :aulas4 , :size => '3'%>
                                                                 <%else%>
                                                                     <%= f.text_field :aulas4 , :size => '3'%>
                                                                 <%end%>
