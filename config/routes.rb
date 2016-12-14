@@ -81,6 +81,8 @@ ActionController::Routing::Routes.draw do |map|
 
   #map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'arquivo_historico'
   map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'download_historico'
+  map.resultado_final '/resultado_final', :controller => 'historicos', :action => 'resultado_final'
+  map.final_resultado '/final_resultado', :controller => 'historicos', :action => 'final_resultado'
 
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
   map.alteracao_matricula '/alteracao_matricula', :controller => 'matriculas', :action => 'alteracao_matricula'

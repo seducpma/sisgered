@@ -235,11 +235,8 @@ end
  def load_classes
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @classe = Classe.find(:all, :order => 'classe_classe ASC')
-
     else
         @classe = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
-
-
     end
  end
 

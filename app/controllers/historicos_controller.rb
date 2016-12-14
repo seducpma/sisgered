@@ -7,7 +7,29 @@ class HistoricosController < ApplicationController
 
 
 def historico
+
 end
+
+
+
+def resultado_final
+
+end
+
+def final_resultado
+  params[:classe][:id]
+     session[:classe_id]=params[:classe][:id]
+     @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+     @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0])
+     @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
+     @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
+     @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe][:id]],:order =>' matriculas.classe_num')
+       render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_classe'
+      end
+
+end
+
 
  def create_observacao_historico
   
@@ -244,6 +266,12 @@ end
   def load_iniciais
     @ano =   ObservacaoNota.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
     @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
+    if current_user.unidade_id == 53 or current_user.unidade_id == 52
+        @classe = Classe.find(:all, :order => 'classe_classe ASC')
+    else
+        @classe = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
+    end
+
   end
 
 end
