@@ -18,13 +18,20 @@ end
 
 def final_resultado
   params[:classe][:id]
+
      session[:classe_id]=params[:classe][:id]
      @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
      @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0])
      @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
      @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
      @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe][:id]],:order =>' matriculas.classe_num')
-       render :update do |page|
+     l=0
+     c=0
+
+
+
+
+      render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
       end
 
