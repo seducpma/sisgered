@@ -327,6 +327,26 @@
             <%end%>
    <%end%>
 
+     <% if (current_user.has_role?('secretaria_fundamental'))%>
+         <tr>
+           <th style="font-size: 8px"colspan="23" align="left"><b>Observações:</b></th>
+         </tr>
+          <%@observacao2.each do |observacao| %>
+              <tr>
+                   <th style="font-size: 8px" align="right" valign="top"><%= observacao.quem %>&nbsp&nbsp</th>
+                   <th style="font-size: 8px" align="left" colspan="15"><%= observacao.observacao %> -
+                                   <b>Data: </b> <%  if !observacao.data.nil?  %>
+                                                    <%=  observacao.data.strftime("%d/%m/%Y")%>
+                                                 <%end%>
+                 </th>
+              </tr>
+            <%end%>
+   <%end%>
+
+
+
+
+
  </table>
 
 <%end%>
