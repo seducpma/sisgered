@@ -181,15 +181,13 @@ display: none;
                               </ul>
                          </li>
                  <%end%>
-
-                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                       <% if current_user.unidade_id == 43 or (current_user.unidade_id == 50) or (current_user.unidade_id == 51) %>
-
-                       <%else%>
-                           <li><%= link_to "Classe",new_class_path %></li>
-                        <%end%>
-                      <%end%>
 <!--
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                       
+                           <li><%= link_to "Classe",new_class_path %></li>
+                       
+                      <%end%>
+
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil'))%>
                           <li><%= link_to "Professor",new_professor_path %></li>
 
@@ -198,12 +196,11 @@ display: none;
                       <% if current_user.has_role?('admin')%>
                            <li><%= link_to "Disciplina",new_disciplina_path %></li>
                       <%end%>
--->
-<!--                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')  or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>   -->
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')  or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>   
 
                           <li><%= link_to "Atribuição",new_atribuicao_path %></li>
 
-<!--                   <%end%>   -->
+                   <%end%>   
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                                 <% if (current_user.unidade_id == 44)or (current_user.unidade_id == 46)or (current_user.unidade_id == 47) or(current_user.unidade_id == 52) or (current_user.unidade.tipo_id == 2)or (current_user.unidade.tipo_id == 3)or (current_user.unidade.tipo_id == 5)or (current_user.unidade.tipo_id== 8)or current_user.has_role?('admin') %>
                                     <li><%= link_to "Matricula", new_matricula_path %></li>
@@ -220,6 +217,7 @@ display: none;
                               </ul>
                          </li>
                        <%end%>
+-->
                      <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('professor_infantil')%>
                            <li><%= link_to "FAPEA", new_relatorio_path %></li>
                      <%end%>
