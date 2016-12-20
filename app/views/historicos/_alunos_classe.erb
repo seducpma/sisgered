@@ -71,8 +71,11 @@
                                                 <b>LEITURA E EXPRESSÃO</b>
                                               <% else if  atrib.disciplina.disciplina ==  'OFICINA DE EXPRESSÃO CORPORAL'%>
                                                     <b>EXPRESSÃO CORPORAL</b>
-                                                     <%else %>
-                                                       <b><%= atrib.disciplina.disciplina %></b><br/>
+                                                     <%else if  atrib.disciplina.disciplina ==  'OFICINA DE MUSICALIZAÇÃO'%>
+                                                          <b>OFICINA DE MÚSICA</b>
+                                                           <%else%>
+                                                              <b><%= atrib.disciplina.disciplina %></b><br/>
+                                                           <%end%>
                                                      <%end%>
                                               <%end%>
                                             <%end%>
