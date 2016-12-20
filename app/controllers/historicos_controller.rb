@@ -17,7 +17,7 @@ def resultado_final
 end
 
 def final_resultado
-  params[:classe][:id]
+     params[:classe][:id]
 
      session[:classe_id]=params[:classe][:id]
      @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
