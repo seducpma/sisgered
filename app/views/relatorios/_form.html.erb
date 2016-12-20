@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $("#observacao").keyup(function() {
-   $("#counter").text(4000 - $(this).val().length);
+   $("#counter").text(900 - $(this).val().length);
   });
 });
 
@@ -46,7 +46,7 @@ $(document).ready(function() {
        <tr bgcolor="#F5F5F5">
          <td valign="top"><b>Relatório:</b></td>
         <td colspan="5"><%= f.text_area(:observacao, :cols=> "80", :rows=>"10") %><br/>
-            Caracteres restantes: <span id="counter"><%= maxcounter=4000 %></span>
+            Caracteres restantes: <span id="counter"><%= maxcounter=900 %></span>
         </td>
       </tr>
     </table>
