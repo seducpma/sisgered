@@ -43,8 +43,14 @@
                                        <%  cont =cont+1%>
 
                                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                                          <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 22,:omission => "...") %></b></font> </td>
-
+                                          <%if @atribuicao_classe.length >13 %>
+                                              <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 9,:omission => "...") %></b></font> </td>
+                                          <% else if @atribuicao_classe.length < 7%>
+                                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 30,:omission => "...") %></b></font> </td>
+                                                 <%else%>
+                                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 22,:omission => "...") %></b></font> </td>
+                                                 <%end%>
+                                          <%end%>
 
                                     </tr>
 
