@@ -288,6 +288,8 @@ end
 
 #     BOLETIM ESCOLAR   BOLETIM ESCOLAR   BOLETIM ESCOLAR
 def relatorio_aluno_classe
+
+
        session[:classe_id] = params[:classe_id]
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status = "MATRICULADO" or status = "TRANSFERENCIA" or status = "*REMANEJADO")', params[:classe_id]], :order =>'classe_num')
 
