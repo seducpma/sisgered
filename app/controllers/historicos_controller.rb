@@ -28,10 +28,7 @@ def final_resultado
      t=0
      @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe][:id]],:order =>' matriculas.classe_num')
      @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
-     @atribuicao_classe.length
-
-
-
+   
 
       render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
@@ -150,6 +147,22 @@ def arquivo_historico
       format.xls
  end
 end
+
+
+
+def impressao_nota_final
+
+     @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
+     @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?',session[:classe_id],0])
+     @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+     @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null", session[:classe_id]],:order =>'disciplinas.ordem ASC')
+     @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
+     @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
+     t=0
+     render :layout => "impressao"
+
+end
+
 
 
 def impressao_historico
