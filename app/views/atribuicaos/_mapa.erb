@@ -49,7 +49,7 @@
                                 <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id) and (nota.matricula.id == nota.matricula_id)%>
                                     <tr>
 
-                                          <% if ((nota.matricula.classe_num - cont)<3) and ((nota.matricula.classe_num - cont)>-3) %>
+                                          <% if ((nota.matricula.classe_num - cont)<2) and ((nota.matricula.classe_num - cont)>-1) %>
                                             <%  cont =cont+1%>
                                               <td align="center"width ="33%" ><b><%= nota.matricula.classe_num %></b></font> </td>
                                                <td align="center"width ="33%"><% if  nota.nota1.nil? %>
@@ -146,7 +146,7 @@
                              <%@notas.each do |nota|%>
                                 <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id) and (nota.matricula.id == nota.matricula_id)%>
                                     <tr>
-                                          <% if ((nota.matricula.classe_num - cont)<3) and ((nota.matricula.classe_num - cont)>-3) %>
+                                          <% if ((nota.matricula.classe_num - cont)<2) and ((nota.matricula.classe_num - cont)>-1) %>
                                             <%  cont =cont+1%>
                                               <td align="center"width ="33%" ><b><%= nota.matricula.classe_num %></b></font> </td>
                                                <td align="center"width ="33%"><% if  nota.nota2.nil? %>
@@ -241,7 +241,7 @@
                              <%@notas.each do |nota|%>
                                 <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id) and (nota.matricula.id == nota.matricula_id)%>
                                     <tr>
-                                          <% if ((nota.matricula.classe_num - cont)<3) and ((nota.matricula.classe_num - cont)>-3) %>
+                                          <% if ((nota.matricula.classe_num - cont)<2) and ((nota.matricula.classe_num - cont)>-1) %>
                                             <%  cont =cont+1%>
                                              <td align="center"width ="33%" ><b><%= nota.matricula.classe_num %></b></font> </td>
                                                <td align="center"width ="33%"><% if  nota.nota3.nil? %>
@@ -336,7 +336,7 @@
                              <%@notas.each do |nota|%>
                                 <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id) and (nota.matricula.id == nota.matricula_id)%>
                                     <tr>
-                                          <% if ((nota.matricula.classe_num - cont)<3) and ((nota.matricula.classe_num - cont)>-3) %>
+                                          <% if ((nota.matricula.classe_num - cont)<2) and ((nota.matricula.classe_num - cont)>-1) %>
                                             <%  cont =cont+1%>
                                               <td align="center"width ="33%" ><b><%= nota.matricula.classe_num %></b></font> </td>
                                                <td align="center"width ="33%"><% if  nota.nota4.nil? %>
@@ -431,7 +431,7 @@
                              <%@notas.each do |nota|%>
                                 <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id) and (nota.matricula.id == nota.matricula_id)%>
                                     <tr>
-                                          <% if ((nota.matricula.classe_num - cont)<3) and ((nota.matricula.classe_num - cont)>-3) %>
+                                          <% if ((nota.matricula.classe_num - cont)<2) and ((nota.matricula.classe_num - cont)>-1) %>
                                             <%  cont =cont+1%>
                                               <td align="center"width ="33%" ><b><%= nota.matricula.classe_num %></b></font> </td>
                                                <td align="center"width ="33%"><% if  nota.nota5.nil? %>
