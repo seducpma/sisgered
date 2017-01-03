@@ -1,11 +1,11 @@
-
+   <% for matricula in @matriculas %>
     <table width ="100%" >
         <tr>
           <td colspan="5">
-            <font size="3"> <b><u>Matrícula em <%= Time.now.year %>:</u></b>
+            <font size="3"> <b><u>Matrícula em <%=h matricula.ano_letivo %>:</u></b>
           </td>
         </tr>
-          <% for matricula in @matriculas %>
+
            <tr bgcolor="#F5F5F5" >
              <td width="5%"></td>
              <td align="left" width="10%"><b>Unidade:</b></td>

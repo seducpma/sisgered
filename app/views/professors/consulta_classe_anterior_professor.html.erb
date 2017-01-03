@@ -1,0 +1,68 @@
+<div id="interno1">
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CONSULTA PROFESSOR/CLASSE - ANOS LETIVOS ANTERIORES</strong></font><br/>
+ </div>
+    <div class="tabs">
+    <% form_remote_tag :url => consulta_classe_anterior_professor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <fieldset>
+                 <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="filtro_classe1"><%= radio_button_tag(:type_of, "1") %></a>Classe
+              <a href="#" class="filtro_disciplina"><%= radio_button_tag(:type_of, "4") %></a>Disciplina
+              <a href="#" class="filtro_periodo"><%= radio_button_tag(:type_of, "2") %></a>Periodo
+              <a href="#" class="filtro_professor_nome1"><%= radio_button_tag(:type_of, "3") %></a>Professor
+              
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta_classe1" style="display:none"> <%= render "classe_anterior" %> </div>
+               <div class="consulta_periodo" style="display:none"> <%= render "periodo_anterior" %> </div>
+               <div class="consulta_professor_nome1" style="display:none"> <%= render "professor_nome1" %> </div>
+               <div class="consulta_disciplina" style="display:none"> <%= render "disciplina_anterior" %> </div>
+           </td>
+         </tr>
+        </table>
+
+
+       </fieldset>
+      <fieldset>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+          <tr>
+            <td>
+                <div id="classe_professors"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+              <br/>
+            </td>
+          </tr>
+       </table>
+          <% end %>
+
+      </fieldset>
+
+       <br/>
+       <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Nova Consulta', consulta_classe_anterior_professor_path, :title => "Nova Consulta" %></td>
+
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
+
+
+
+
+
+
+
+

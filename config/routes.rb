@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get, :relatorio_classe => :get }
   map.resources :classes_alunos
   map.resources :classes,:collection => { :editar_classe=>:get}
-  map.resources :professors,:collection => { :consulta_classe=>:get}
+  map.resources :professors,:collection => { :consulta_classe=>:get,  :consulta_classe_anterior=>:get }
   map.resources :tipos
   map.resources :unidades,  :collection => {:consultas => :get}
   map.resources :socioeconomicos
@@ -29,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :logs
   map.resources :fichas
   map.resource :session
-  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :impressao_geral => :get, :status => :get, :update => :put}
+  
   map.resources :grupos
   map.resources :regiaos
   map.resources :regiaos
@@ -100,6 +100,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_classe_piloto'/consulta_classe_piloto', :controller => 'classes', :action => 'consulta_classe_piloto'
   map.consulta_piloto'/consulta_piloto', :controller => 'classes', :action => 'consulta_piloto'
   map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
+  map.consulta_classe_anteriores '/consulta_classe_anteriores', :controller => 'classes', :action => 'consulta_classe_anteriores'
   map.consulta_lista_classe '/consulta_lista_classe', :controller => 'classes', :action => 'consulta_lista_classe'
   map.consulta_lista '/consulta_lista', :controller => 'classes', :action => 'consulta_lista'
   map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
@@ -107,6 +108,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_reponsavel '/consulta_reponsavel', :controller => 'alunos', :action => 'consulta_reponsavel'
   map.consulta_bolsa_familia '/consulta_bolsa_familia', :controller => 'alunos', :action => 'consulta_bolsa_familia'
   map.consulta_classe_professor '/consulta_classe_professor', :controller => 'professors', :action => 'consulta_classe_professor'
+  map.consulta_classe_anterior_professor '/consulta_classe_anterior_professor', :controller => 'professors', :action => 'consulta_classe_anterior_professor'
   map.consulta_classe_nota1 '/consulta_classe_nota1', :controller => 'atribuicaos', :action => 'consulta_classe_nota1'
   map.consulta_transferencia '/consulta_transferencia', :controller => 'transferencias', :action => 'consulta_transferencia'
   map.consulta_transferencia_classe '/consulta_transferencia_classe', :controller => 'transferencias', :action => 'consulta_transferencia_classe'

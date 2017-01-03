@@ -654,8 +654,25 @@ $(".filtro_classe1").click(function ()
      $(".consulta_professor_nome1").hide();
      $(".txt_busca4").hide()
      $(".label_busca4").hide();
+     $(".consulta_disciplina").hide();
 
    });
+
+   $(".filtro_disciplina").click(function ()
+   {
+     $(".consulta_disciplina").show();
+     $(".txt_busca5").show()
+     $(".label_busca5").show();
+     $(".consulta_periodo").hide();
+     $(".consulta_professor_nome1").hide();
+     $(".txt_busca4").hide()
+     $(".label_busca4").hide();
+     $(".consulta_professor_nome1").hide();
+     $(".consulta_periodo").hide();
+     $(".consulta_classe1").hide();
+   });
+
+
 
    $(".filtro_periodo").click(function ()
    {
@@ -663,6 +680,7 @@ $(".filtro_classe1").click(function ()
      $(".txt_busca4").show()
      $(".label_busca4").show();
      $(".consulta_professor_nome1").hide();
+      $(".consulta_disciplina").hide();
      $(".consulta_classe1").hide();
      $(".txt_busca3").hide()
      $(".label_busca3").hide();
@@ -676,6 +694,7 @@ $(".filtro_classe1").click(function ()
      $(".consulta_periodo").hide();
      $(".txt_busca3").hide()
      $(".label_busca3").hide();
+     $(".consulta_disciplina").hide();
 
 
    });

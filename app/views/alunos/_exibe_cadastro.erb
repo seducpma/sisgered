@@ -7,7 +7,7 @@
       </tr>
       <% @aluno.each do |aluno| %>
         <tr  bgcolor="#F5F5F5" >
-            <td align="left"> <%=h aluno.aluno_nome %></td>
+            <td align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=h aluno.aluno_nome %></td>
             <td align="left"><%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
             <td align="left">  <%=h aluno.aluno_RG%></td>
             <td align="left"><%=h aluno.aluno_mae %></td>
@@ -21,7 +21,7 @@
         </tr>
           <% for matricula in @matriculas %>
            <tr bgcolor="#F5F5F5" >
-             <td align="left">  <%=h matricula.unidade.nome%></td>
+             <td align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <%=h matricula.unidade.nome%></td>
              <td align="left"> <%=h matricula.ano_letivo %><%  session[:classe]=  matricula.classe.id%></td>
              <td align="left">  <%=h matricula.classe.classe_classe%> - <%=h matricula.classe.horario %></td>
                <% if  matricula.status =="MATRICULADO" %>
