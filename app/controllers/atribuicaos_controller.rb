@@ -187,9 +187,10 @@ def create_notas
 
 
     def relatorio_aluno_nome
+      session[:ano_nota]= Time.now.year
        @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', params[:aluno_aluno_id]])
-       w1=session[:aluno] =params[:aluno_aluno_id]
-       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],Time.now.year ])
+       session[:aluno] =params[:aluno_aluno_id]
+       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno], session[:ano_nota] ])
        @matriculas.each do |matricula|
          session[:classe]=matricula.classe_id
          session[:num]=matricula.classe_num
@@ -218,8 +219,6 @@ def create_notas
              end
 
         end
-       w1=session[:matricula_id]
-       t=0
       @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", params[:aluno_aluno_id], current_user.unidade_id, Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
       @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", params[:aluno_aluno_id], current_user.unidade_id, Time.now.year , session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
       @notas = @notasB+@notasD
@@ -229,8 +228,69 @@ def create_notas
 
 end
 
+def relatorios_anterior_classe
+if params[:type_of].to_i == 1
+       session[:aluno] = params[:aluno][:id]
+       session[:ano_nota] = params[:ano_letivo1]
+       @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', session[:aluno]])
+       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],session[:ano_nota] ])
+       @matriculas.each do |matricula|
+         session[:classe]=matricula.classe_id
+         session[:num]=matricula.classe_num
+         session[:status]=matricula.status
+         session[:matricula_id]= matricula.id
+       end
+      @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
+      @classe.each do |classe|
+         session[:unidade]=classe.unidade_id
+         session[:classe_id] = classe.id
+       end
+        @matricula = Matricula.find(:all,:conditions =>['classe_id = ? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
+        quantidade = @matricula.count
+        if quantidade == 1
+          session[:matricula_id]= @matricula[0].id
+        else if quantidade == 2
+                session[:matricula_id]= @matricula[1].id
+             else if quantidade == 3
+                    session[:matricula_id]= @matricula[2].id
+                  else if quantidade == 4
+                         session[:matricula_id]= @matricula[3].id
+                       end
+                  end
+             end
+        end
+      @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+      @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota] , session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+      @notas = @notasB+@notasD
+      @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], session[:ano_nota],nil ] )
+       render :update do |page|
+          page.replace_html 'relatorio', :partial => 'relatorio_aluno'
+       end
+else if params[:type_of].to_i == 2
+       session[:classe_id] = params[:classe][:id]
+       session[:ano_nota] = params[:ano_letivo]
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status = "MATRICULADO" or status = "TRANSFERENCIA" or status = "*REMANEJADO")', params[:classe][:id]], :order =>'classe_num')
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
+
+       render :update do |page|
+            page.replace_html 'relatorio', :partial => 'relatorio_classe'
+       end
+    end
+end
+
+
+
+
+
+
+  end
+
+
+
 
 def relatorio_classe
+t=0
 if ( params[:disciplina].present?)
 
       @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
@@ -279,26 +339,21 @@ def impressao_relatorio_aluno
                   end
              end
         end
-       @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
-       @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+       @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+       @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
        @notas = @notasB+@notasD
-      @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], Time.now.year,nil ] )
+      @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], session[:ano_nota],nil ] )
       render :layout => "impressao"
 end
 
 #     BOLETIM ESCOLAR   BOLETIM ESCOLAR   BOLETIM ESCOLAR
 def relatorio_aluno_classe
-
-
        session[:classe_id] = params[:classe_id]
+       session[:ano_nota] = Time.now.year
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status = "MATRICULADO" or status = "TRANSFERENCIA" or status = "*REMANEJADO")', params[:classe_id]], :order =>'classe_num')
-
-
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe_id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe_id]])
-       
-
-    render :partial => 'relatorio_classe'
+       render :partial => 'relatorio_classe'
 
 end
 
@@ -371,6 +426,20 @@ end
 
 def mapa_de_classe
        session[:classe_id] = params[:classe][:id]
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  params[:classe][:id]], :order => 'nome')
+       @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', params[:classe][:id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  params[:classe][:id]],:order =>'matriculas.id ASC')
+       @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe][:id]],:order =>' matriculas.classe_num')
+       @disciplinas= Disciplina.find(:all)
+              render :update do |page|
+              page.replace_html 'mapa', :partial => 'mapa'
+           end
+end
+
+def mapa_de_classe_anterior
+       session[:classe_id] = params[:classe][:id]
+       session[:ano] = Time.now.year
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  params[:classe][:id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', params[:classe][:id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
@@ -532,12 +601,11 @@ end
 
 def transferencia_aluno
 
-     @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
-     c=params[:aluno][:aluno_id]
+     @aluno = Aluno.find(:all,:select =>('id , unidade_id'), :conditions => ['id =?', params[:aluno][:aluno_id]])
      for aluno in @aluno
        session[:unidade_id]= aluno.unidade_id
        session[:aluno_id]= aluno.id
-     end
+       end
      @matricula= Matricula.find(:all, :conditions =>["aluno_id=? AND ano_letivo=? AND unidade_id=?",params[:aluno][:aluno_id], Time.now.year,  current_user.unidade_id])
       for matricula in @matricula
         session[:classe]= matricula.classe.classe_classe
@@ -635,7 +703,8 @@ end
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
 
         @classes = Classe.find(:all, :conditions => ['classe_ano_letivo = ?', Time.now.year], :order => 'classe_classe ASC')
-              if current_user.professor_id.nil?
+        @classes_boletim_anterior = Classe.find(:all, :order => 'classe_classe ASC')
+       if current_user.professor_id.nil?
           if current_user.unidade_id < 42 or current_user.unidade_id > 53
              @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
           else
@@ -651,6 +720,7 @@ end
        end
     else
        @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ?', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
+        @classes_boletim_anterior = Classe.find(:all, :conditions => ['unidade_id = ?', current_user.unidade_id ], :order => 'classe_ano_letivo ASC, classe_classe ASC')
       if current_user.professor_id.nil?
           if current_user.unidade_id < 42 or current_user.unidade_id > 53
              @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
@@ -716,6 +786,7 @@ end
 
   def load_iniciais
     @ano =   ObservacaoNota.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
+    @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')
     @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
   end
 

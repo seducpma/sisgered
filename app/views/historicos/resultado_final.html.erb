@@ -9,14 +9,18 @@
       <fieldset>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Classe:</b></font>
-               &nbsp&nbsp&nbsp
-                <%= collection_select :classe, :id, @classe, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
+            <td align="right"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
+             <%= select_tag :ano_letivo, options_for_select(@ano_boletim.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
+            </td>
+            <td width="40%" align="right"><font size="2"> <b class="label_busca3">Classe:</b></font>
+
+               <%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
                <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
           </td>
         </tr>
        </table>
        </fieldset>
+
       <fieldset>
         <table border="1" cellspacing="0" cellpadding="1" width="100%">
           <tr  bgcolor="#F5F5F5">

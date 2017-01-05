@@ -188,6 +188,7 @@
               </th>
    </tr>
     <%end%>
+   <%if @notasD.present?%>
    <tr>
      <th style="font-size: 8px" bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></th>
      <th style="font-size: 8px" bgcolor="#DCDCDC"></th><th style="font-size: 8px" bgcolor="#DCDCDC"></th><th style="font-size: 8px" bgcolor="#DCDCDC"></th>
@@ -196,6 +197,7 @@
      <th style="font-size: 8px" bgcolor="#DCDCDC"></th><th style="font-size: 8px" bgcolor="#DCDCDC"></th><th style="font-size: 8px" bgcolor="#DCDCDC"></th>
      <th style="font-size: 8px" bgcolor="#DCDCDC"></th><th style="font-size: 8px" bgcolor="#DCDCDC"></th><th style="font-size: 8px" bgcolor="#DCDCDC"></th>
    </tr>
+   <%end%>
    <tr>
      <%@notasD.each do |nota|%>
 

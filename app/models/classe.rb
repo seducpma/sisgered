@@ -18,7 +18,10 @@ class Classe < ActiveRecord::Base
     if !self.classe_descricao.nil?
       self.classe_descricao.upcase!
     end
-    self.classe_classe.upcase!
+    if  !self.classe_classe.nil?
+          self.classe_classe.upcase!
+    end
+
   end
 
 

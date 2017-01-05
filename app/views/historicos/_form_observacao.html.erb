@@ -4,10 +4,10 @@
 
 
 
-    <b><u>OBSERVAÇÕES - ALUNOS</u></b> <br/>
+    <b><u>OBSERVAÇÕES HISTÓRICO ALUNOS</u></b> <br/>
       <hr>
        <%= error_messages_for 'contact' %>
-       <table  width="100%" bgcolor="#F5F5F5">
+      <table  width="100%" bgcolor="#F5F5F5">
          <tr>
            <td colspan="2"><font size="2"><b>Aluno: </b> <%= session[:aluno_nome] %></font></td>
            
@@ -35,9 +35,11 @@
            <td colspan="2"><font size="2"><b>Quem fez  a Observação: </b> <%=  f.text_field :quem , :size=> "10" %></font></td>
          </tr>
         <tr>
-            <td align="right" colspan="2"><%= f.submit "Salvar" %></td>
+            <td  align="right" ><%= f.submit "Salvar" %></td>
+<%end%>
+            <td  align="right" ><%= button_to "Fechar",{:action => "historico"}, :method => "get" %></td>
         </tr>
        </table>
-      <%end%>
+      
   </div>
 </div>

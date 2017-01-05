@@ -96,20 +96,27 @@
               </tr>
          </table>
 
-          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
-               <tr>
-                 <td align="CENTER"><br/><br/><br/> NOTAS / FALTAS    / NOTAS / FALTAS    /NOTAS / FALTAS    /NOTAS / FALTAS    / <br/> <br/><br/><br/><br/><br/><br/>
-                </td>
-              </tr>
-         </table>
+         <div id="dados_historico"> <%= render :partial => 'notas_historico'  %>     </div>
+
           <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
               <tr>
-                <td width="12%" align="CENTER"valign="top"><font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg"), "#inline_observacao", :class =>"inline" %></u></b></font>
-                        <br/><font size ="1"color ="red"><b>Para lançar clique em observações</b></font>
-                   </td>
+                <td width="12%" align="CENTER"valign="top"><b>Observação:</b></td>
                   <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
                </tr>
           </table>
+         <!--
+        <fieldset><legend><font size=3>Cadastrar</font></legend>
+          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+              <tr>
+                
+                <td width="6%" align="left"><%= link_to image_tag("/stylesheets/images/disciplina.png"), "#inline_disciplina", :class =>"inline" %>
+                <%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
+                <%= link_to image_tag("/stylesheets/images/nota.png"), "#inline_nota", :class =>"inline" %>
+                </td>
+               </tr>
+          </table>
+        </fieldset>
+         -->
      </fieldset>
     <%end%>
    <%end%>
@@ -118,7 +125,7 @@
        <table>
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <td align="left"><%= button_to 'Nova Consulta???', relatorios_classe_atribuicaos_path, :title => "Nova Consulta" %>
+     <!--<td align="left"><%= button_to 'Nova Consulta???', relatorios_classe_atribuicaos_path, :title => "Nova Consulta" %>-->
      
      </td>
 
@@ -133,9 +140,9 @@
 <br/>
 </div>
 
-
-
-      <%= render "form_observacao" %>
+   <%= render "form_observacao" %>
+      <%= render "form_disciplina" %>
+      <%= render "form_nota" %>
 
 
 

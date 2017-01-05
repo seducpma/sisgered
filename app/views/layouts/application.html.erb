@@ -295,10 +295,21 @@ display: none;
                       <%end%>
                       <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
                       <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo')%>
-                        <li><%= link_to "Boletim Escolar",relatorios_classe_atribuicaos_path %></li>
+                        <li><a class="item-primary" href="#;">Boletim Escolar</a>
+                           <ul>
+                              <li><%= link_to "Ano Letivo Atual",relatorios_classe_atribuicaos_path %></li>
+                              <li><%= link_to "Anos Anteriores",relatorios_anterior_classe_atribuicaos_path %></li>
+                          </ul>
+                       </li>
+                       
                       <%end%>
                            <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')%>
-                              <li><%= link_to "Lençol de Notas",mapa_classe_atribuicaos_path %></li>
+                                <li><a class="item-primary" href="#;">Lençol Notas</a>
+                                   <ul>
+                                      <li><%= link_to "Ano Letivo Atual",mapa_classe_atribuicaos_path %></li>
+                                      <li><%= link_to "Anos Anteriores",mapa_classe_anterior_atribuicaos_path %></li>
+                                  </ul>
+                               </li>
                            <%end%>
                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                               <li><%= link_to "Lista Presença",consulta_lista_path %></li>
@@ -308,7 +319,8 @@ display: none;
                               <%end%>
                              <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')%>
                                  <li><%= link_to "Histórico Escolar",historico_path  %></li>
-                                  <li><%= link_to "Resultado Final",resultado_final_path  %></li>
+                                 
+                                 <li><%= link_to "Resultado Final",resultado_final_path  %></li>
                       <!--        <li><%= link_to "Reverva Vagas", reserva_vagas_atribuicaos_path %></li>-->
                              <%end%>
                               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
