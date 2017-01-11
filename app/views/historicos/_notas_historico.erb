@@ -18,96 +18,56 @@
         <td width ="5%" align="center" ><b>8º</b></td>
         <td width ="5%" align="center" ><b>9º</b></td>
     </tr>
-
       <% ano = @ano_inicial.ano_letivo %>
       <%if @ano_inicial.classe.nil?%>
-            <% classe= @ano_inicial.matricula.classe.classe_classe %>
-            <% var_classe = classe[0,1].to_i%>
-      <%else%>
-           <% var_classe= @ano_inicial.classe%>
+            <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
       <%end%>
-      <%  contador_ano = 1%>
-      <%  contador_ano_letivo = 1%>
-      <%  cont2 = 0%>
-
-     <tr>
-         <%for i in 1..9 %>
-            <%  cont2 = cont2 + 1%>
-             <%if contador_ano == var_classe %>
-                 <td width ="5%" align="center" ><b><%= @ano_inicial.ano_letivo%></b></td>
-             <% else %>
-                 <td align="center"> <%if contador_ano > var_classe %>
-                                          <b><%= @ano_inicial.ano_letivo + contador_ano_letivo %></b>
-                                          <% contador_ano_letivo = 1 + contador_ano_letivo%>
-                                     <%else%>
-                                          <b><%= @ano_inicial.ano_letivo - cont2  %></b>
-                                    <%end%>
-                </td>
-            <%end%>
-            <%contador_ano = contador_ano + 1%>
-            <% ano = ano + 1 %>
-        <%end%>
-     </tr>
-
-
-     <%@disciplinasB.each do |disciplina|%>
+      <% anoinicial = ano.to_i - (classe.to_i + 1)  %>
+    <tr>
+      <%for i in 0..8 %>
+      <td width ="5%" align="center" ><b> <%=  anoinicial+i %></b></td>
+      <%end%>
+    </tr>
+    <%@disciplinasB.each do |disciplina|%>
          <tr>
-              <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
-                 <%var1=1%>
+             <td align="left"><%= disciplina.disciplina %></td>
+             <%for i in 0..8 %>
+                 <% anoletivo = anoinicial+ i %>
+                <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', disciplina, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+                   <% if @notas.empty? or @nota.nil?  %>
+                      <td align="center"> --- </td>
+                   <%else%>
                      <%for nota in @notas%>
-                       <%if nota.disciplina_id == disciplina.id and var1==1%>
-                          <td align="left"><%= disciplina.disciplina %></td>
-                           <%for classe in 1..9 %>
-                                   <%if (!nota.matricula_id.nil?) %>
-                                      <%if classe == nota.matricula.classe.classe_classe[0,1].to_i %>
-                     <%for nota in @notas%>
-                                              <%if (nota.nota5.present?)  %>
-                                                    <td align="center"><b> <%= nota.nota5%></b></td>
-
-                                               <%else%>
-                                                    <td>---</td>
-                                                 <%end%>
+                        <%if nota.ano_letivo == anoletivo %>
+                           <td align="center"> <%= nota.nota5%> </td>
+                        <%else%>
+                           <td align="center"> --- </td>
+                        <%end%>
                      <%end%>
-                                        <%else%>
-                                                <td align="center"> ---</td>
-                                        <%end%>
+                  <%end%>
+             <%end%>
+        </tr>
 
-                                   <%else%>
-                                       <%if classe == nota.classe %>
-                                          <%if (nota.nota5.present?)  %>
-                                                <td align="center"><b> <%= nota.nota5%></b></td>
-                                           <%else%>
-                                                <td>---</td>
-                                             <%end%>
-                                        <%else%>
-                                                <td align="center">??</td>
-                                        <%end%>
-                                  <%end%>
-                           <%end%>
-                        <%var1=0%>
-                      <%end%>
-                   <%end%>
-             </tr>
-       <%end%>
- 
-</tr>
+    <%end%>
     <tr bgcolor =" #DCDCDC">
       <td><b> Carga Horária</b></td>
-          <% ano = @ano_inicial.ano_letivo %>
-          <%  contador_ano = 1%>
-          <%  contador_ano_letivo = 1%>
-          <%for i in 0..8 %>
-               <%if contador_ano == var_classe %>
-                   <td width ="5%" align="center" ><b>1000</b></td>
-               <% else %>
-                   <td align="center"> --- </td>
-               <%end%>
-               <%contador_ano = contador_ano + 1%>
-               <% ano = ano + 1 %>
-          <%end%>
+             <%for i in 0..8 %>
+                 <% anoletivo = anoinicial+ i %>
+                <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+                   <% if @notas.empty? or @nota.nil?  %>
+                      <td align="center"> --- </td>
+                   <%else%>
+                     <%for nota in @notas%>
+                        <%if nota.ano_letivo == anoletivo %>
+                           <td align="center"> <%= 1000 %> </td>
+                        <%else%>
+                           <td align="center"> --- </td>
+                        <%end%>
+                     <%end%>
+                  <%end%>
+             <%end%>
     </tr>
 </table>
-
 
   <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
     <tr >
@@ -122,81 +82,54 @@
         <td width ="5%" align="center" ><b>8º</b></td>
         <td width ="5%" align="center" ><b>9º</b></td>
     </tr>
-    <tr>
       <% ano = @ano_inicial.ano_letivo %>
-     <%if @ano_inicial.classe.nil?%>
-            <% classe= @ano_inicial.matricula.classe.classe_classe %>
-            <% var_classe = classe[0,1].to_i%>
-      <%else%>
-           <% var_classe= @ano_inicial.classe%>
+      <%if @ano_inicial.classe.nil?%>
+            <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
       <%end%>
-     
-      <%  contador_ano = 1%>
-      <%  contador_ano_letivo = 1%>
-      <%  cont2 = 0%>
-         <%for i in 0..8 %>
-         <%  cont2 = cont2 +1%>
-             <%if contador_ano == var_classe %>
-                 <td width ="5%" align="center" ><b><%= @ano_inicial.ano_letivo%></b></td>
-             <% else %>
-                 <td align="center"> <%if contador_ano > var_classe %>
-                                          <b><%= @ano_inicial.ano_letivo + contador_ano_letivo %></b>
-                                          <% contador_ano_letivo = 1 + contador_ano_letivo%>
-                                     <%else%>
-                                          <b><%= @ano_inicial.ano_letivo - cont2  %></b>
-                                    <%end%>
-                </td>
-            <%end%>
-            <%contador_ano = contador_ano + 1%>
-            <% ano = ano + 1 %>
-        <%end%>
-        <%@disciplinas.each do |disciplina|%>
-           <%if disciplina.curriculo == 'D'%>
-              <tr>
-                  <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
-                     <%for nota in @notas%>
-                       <%if nota.disciplina_id == disciplina.id %>
-                          <td align="left"><%= disciplina.disciplina %></td>
-                            <%  contador_ano = 1%>
-                            <%  contador_ano_letivo = 1%>
-                            <%for i in 0..8 %>
-                               <%if contador_ano == var_classe%>
-                                   <td width ="5%" align="center" ><b><% for nota in @notas %>
-                                                                            <%if (nota.nota5.present?)  %>
-                                                                               <%= nota.nota5%>
-                                                                            <%else%>
-                                                                                ---
-                                                                           <%end%>
-                                                                      <%end%>
-                                      </b></td>
-                               <% else %>
-                                   <td align="center">
-                                           ---
-                                   </td>
-                               <%end%>
-                               <%contador_ano = contador_ano + 1%>
-                               <% ano = ano + 1 %>
-                           <%end%>
-                       <%end%>
-                     <%end%>
-              </tr>
-            <%end%>
-         <%end%>
+      <% anoinicial = ano.to_i - (classe.to_i + 1)  %>
+    <tr>
+      <%for i in 0..8 %>
+      <td width ="5%" align="center" ><b> <%=  anoinicial+i %></b></td>
+      <%end%>
     </tr>
+    <%@disciplinasD.each do |disciplina|%>
+         <tr>
+             <td align="left"><%= disciplina.disciplina %></td>
+             <%for i in 0..8 %>
+                 <% anoletivo = anoinicial+ i %>
+                <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', disciplina, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+                   <% if @notas.empty? or @nota.nil?  %>
+                      <td align="center"> --- </td>
+                   <%else%>
+                     <%for nota in @notas%>
+                        <%if nota.ano_letivo == anoletivo %>
+                           <td align="center"> <%= nota.nota5%> </td>
+                        <%else%>
+                           <td align="center"> --- </td>
+                        <%end%>
+                     <%end%>
+                  <%end%>
+             <%end%>
+        </tr>
+
+    <%end%>
     <tr bgcolor =" #DCDCDC">
       <td><b> Carga Horária</b></td>
-          <% ano = @ano_inicial.ano_letivo %>
-          <%  contador_ano = 1%>
-          <%  contador_ano_letivo = 1%>
-          <%for i in 0..8 %>
-               <%if contador_ano == var_classe %>
-                   <td width ="5%" align="center" ><b>480</b></td>
-               <% else %>
-                   <td align="center"> --- </td>
-               <%end%>
-               <%contador_ano = contador_ano + 1%>
-               <% ano = ano + 1 %>
-          <%end%>
+             <%for i in 0..8 %>
+                 <% anoletivo = anoinicial+ i %>
+                <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+                   <% if @notas.empty? or @nota.nil?  %>
+                      <td align="center"> --- </td>
+                   <%else%>
+                     <%for nota in @notas%>
+                        <%if nota.ano_letivo == anoletivo %>
+                           <td align="center"> <%= 480 %> </td>
+                        <%else%>
+                           <td align="center"> --- </td>
+                        <%end%>
+                     <%end%>
+                  <%end%>
+             <%end%>
     </tr>
-</table>
+  </table>
 

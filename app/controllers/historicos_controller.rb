@@ -72,8 +72,6 @@ end
      for aluno in @aluno
        unidade_id=aluno.unidade_id
      end
-w=unidade_id
-t=0
      @nota.unidade_id = unidade_id
       if @nota.save
 
@@ -88,7 +86,7 @@ t=0
          @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
      @disciplinas = Disciplina.find(:all, :conditions =>['curriculo != "I"'],:order => 'ordem ASC' )
      @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
-
+     @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
 
 
          @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
@@ -159,184 +157,20 @@ def historico
      for aluno in @aluno
        session[:unidade_id]= aluno.unidade_id
        session[:aluno_id]= aluno.id
-       w2=session[:aluno_nome] = aluno.aluno_nome
+       session[:aluno_nome] = aluno.aluno_nome
      end
 
      @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
      @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
-     @disciplinas = Disciplina.find(:all, :conditions =>['curriculo != "I"'],:order => 'ordem ASC' )
      @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
+     @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
      @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
-
      @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-     @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
-     @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id],Time.now.year],:order =>'disciplinas.ordem ASC ')
-     @notas_ano = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
-
-     @report = DailyOrdersXlsFactory.new("simple report")
-
-     @report.add_column(40)
-
-     @report.add_column(18).add_column(12).add_column(40).add_column(30)
-
-     @report.add_row(["PREFEITURA MUNICIPAL DE AMERICANA"], 30).join_last_row_heading(0..6)
-     @report.add_row(["SECRETARIA DE EDUCAÇÃO"], 30).join_last_row_heading(0..6)
-     @report.add_row(["Unidade de Ensino Fundamental"], 20).join_last_row_heading(0..6)
-     @report.add_row(["HISTÓRICO ESCOLAR"], 20).join_last_row_heading(0..6)
-
-     @aluno.each do |aluno|
-        session[:aluno] = aluno.aluno_nome
-        @report.add_row(["Unidade de Ensino:", aluno.unidade.nome ])
-        @report.add_row(["Endereço:", aluno.unidade.endereco, aluno.unidade.num, "-", aluno.unidade.bairro, "CEP", aluno.unidade.CEP, "(19)",aluno.unidade.fone])
-        @report.add_row(["Autorização:", aluno.unidade.autorizacao])
-     end
-     ano = @ano_inicial.ano_letivo
-     if @ano_inicial.classe.nil?
-           var_classe= @ano_inicial.matricula.classe.classe_classe
-      else
-           var_classe= @ano_inicial.classe
-      end
-
-      ano = @ano_inicial.ano_letivo
-      if @ano_inicial.classe.nil?
-             classe= @ano_inicial.matricula.classe.classe_classe
-             var_classe = classe[0,1].to_i
-      else
-            var_classe= @ano_inicial.classe
-      end
-        contador_ano = 1
-        contador_ano_letivo = 1
-        cont2 = 0
-      @report.add_row(["",
-        for i in 1..9
-             cont2 = cont2 + 1
-             if contador_ano == var_classe
-                @ano_inicial.ano_letivo
-              else
-                 if contador_ano > var_classe
-                   @ano_inicial.ano_letivo + contador_ano_letivo
-                   contador_ano_letivo = 1 + contador_ano_letivo
-                 else
-                  @ano_inicial.ano_letivo - cont2
-                end
-
-            end
-            contador_ano = contador_ano + 1
-             ano = ano + 1
-        end
-       ])
-
-
-
-      @disciplinasB.each do |disciplina|
-      @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC')
-      var1=1
-      for nota in @notas
-        if nota.disciplina_id == disciplina.id and var1==1
-          @report.add_row([disciplina.disciplina, for classe in 1..9
-                                                     if (!nota.matricula_id.nil?)
-                                                       if classe == nota.matricula.classe.classe_classe[0,1].to_i
-                                                           if (nota.nota5.present?)
-                                                              nota.nota5
-                                                          else
-                                                             "--"
-                                                          end
-                                                      else
-                                                              "---"
-                                                      end
-                                                     else
-                                       if classe == nota.classe
-                                          if (nota.nota5.present?)
-                                                nota.nota5
-                                           else
-                                                "--"
-                                          end
-                                        else
-                                            nota.classe
-                                        end
-                                  end
-
-
-                        end
-                        ])
-                      end
-                     var1=0
-                   end
-      end
-
-
-
-
-
-     @disciplinas.each do |disciplina|
-       if disciplina.curriculo == 'B'
-         @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC')
-           for nota in @notas
-              if nota.disciplina_id == disciplina.id
-                 @report.add_row([disciplina.disciplina ])
-
-
-            
-                            
-
-             end
-           end
-      end
-     end
-
-
-
-     @report.save_to_file("public/saidas/#{current_user.unidade.nome}_#{session[:aluno_nome]}_#{Date.today.strftime("%Y_%m_%d")}.xls")
-
-
 
   end
 
 end
 
-def teste
-if  (params[:aluno_id].present?)
-   session[:aluno_id] = params[:aluno_id]
-    @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_id]])
-     for aluno in @aluno
-       session[:unidade_id]= aluno.unidade_id
-       session[:aluno_id]= aluno.id
-       w2=session[:aluno_nome] = aluno.aluno_nome
-     end
-end
-
-
-
-  
-
-
-
-          respond_to do |format|
-          format.html # index.html.erb
-          format.csv
-        end
-end
-
-def arquivo_historico
-  t=0
-
-#  mostando em formato xls o que era em html
-  @aluno = Aluno.find(:all, :conditions => ['id =?',session[:aluno_id]])
-     for aluno in @aluno
-       session[:unidade_id]= aluno.unidade_id
-       session[:aluno_id]= aluno.id
-     end
-     @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
-     @disciplinas = Disciplina.find(:all, :conditions =>['id < 22'],:order => 'ordem ASC' )
-     @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
-     @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-     @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
-     @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id],Time.now.year],:order =>'disciplinas.ordem ASC ')
-     @notas_ano = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
- respond_to do |format|
-      format.xls
- end
-end
 
 
 
