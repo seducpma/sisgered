@@ -82,6 +82,7 @@ ActionController::Routing::Routes.draw do |map|
 
   #map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'arquivo_historico'
   map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'download_historico'
+  map.download_historico '/download_historico', :controller => 'historicos', :action => 'arquivo_historico'
   map.resultado_final '/resultado_final', :controller => 'historicos', :action => 'resultado_final'
   map.final_resultado '/final_resultado', :controller => 'historicos', :action => 'final_resultado'
 
@@ -120,6 +121,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_observacoes '/consulta_observacoes', :controller => 'relatorios', :action => 'consulta_observacoes'
 
   map.historico'/historico', :controller => 'historicos', :action => 'historico'
+  map.historicoatri'/historicoatri', :controller => 'atribuicaos', :action => 'historico_aluno'
   map.historico_aluno'/historico_aluno', :controller => 'historicos', :action => 'historico_aluno'
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
   map.mapa_de_classe_anterior'/mapa_de_classe_anterior', :controller => 'atribuicaos', :action => 'mapa_de_classe_anterior'

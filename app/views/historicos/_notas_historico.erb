@@ -18,18 +18,25 @@
         <td width ="5%" align="center" ><b>8º</b></td>
         <td width ="5%" align="center" ><b>9º</b></td>
     </tr>
-    <tr>
+
       <% ano = @ano_inicial.ano_letivo %>
-      <% classe= @ano_inicial.matricula.classe.classe_classe %>
+      <%if @ano_inicial.classe.nil?%>
+            <% classe= @ano_inicial.matricula.classe.classe_classe %>
+            <% var_classe = classe[0,1].to_i%>
+      <%else%>
+           <% var_classe= @ano_inicial.classe%>
+      <%end%>
       <%  contador_ano = 1%>
       <%  contador_ano_letivo = 1%>
       <%  cont2 = 0%>
-         <%for i in 0..8 %>
+
+     <tr>
+         <%for i in 1..9 %>
             <%  cont2 = cont2 + 1%>
-             <%if contador_ano == classe[0,1].to_i %>
+             <%if contador_ano == var_classe %>
                  <td width ="5%" align="center" ><b><%= @ano_inicial.ano_letivo%></b></td>
              <% else %>
-                 <td align="center"> <%if contador_ano > classe[0,1].to_i %>
+                 <td align="center"> <%if contador_ano > var_classe %>
                                           <b><%= @ano_inicial.ano_letivo + contador_ano_letivo %></b>
                                           <% contador_ano_letivo = 1 + contador_ano_letivo%>
                                      <%else%>
@@ -40,46 +47,57 @@
             <%contador_ano = contador_ano + 1%>
             <% ano = ano + 1 %>
         <%end%>
-        <%@disciplinas.each do |disciplina|%>
-           <%if disciplina.curriculo == 'B'%>
-              <tr>
-                  <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+     </tr>
+
+
+     <%@disciplinasB.each do |disciplina|%>
+         <tr>
+              <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+                 <%var1=1%>
                      <%for nota in @notas%>
-                       <%if nota.disciplina_id == disciplina.id %>
+                       <%if nota.disciplina_id == disciplina.id and var1==1%>
                           <td align="left"><%= disciplina.disciplina %></td>
-                            <%  contador_ano = 1%>
-                            <%  contador_ano_letivo = 1%>
-                            <%for i in 0..8 %>
-                               <%if contador_ano == classe[0,1].to_i %>
-                                   <td width ="5%" align="center" ><b><% for nota in @notas %>
-                                                                            <%if (nota.nota5.present?)  %>
-                                                                               <%= nota.nota5%>
-                                                                            <%else%>
-                                                                                ---
-                                                                           <%end%>
-                                                                      <%end%>
-                                      </b></td>
-                               <% else %>
-                                   <td align="center">
-                                           ---
-                                   </td>
-                               <%end%>
-                               <%contador_ano = contador_ano + 1%>
-                               <% ano = ano + 1 %>
-                           <%end%>
-                       <%end%>
+                           <%for classe in 1..9 %>
+                                   <%if (!nota.matricula_id.nil?) %>
+                                      <%if classe == nota.matricula.classe.classe_classe[0,1].to_i %>
+                     <%for nota in @notas%>
+                                              <%if (nota.nota5.present?)  %>
+                                                    <td align="center"><b> <%= nota.nota5%></b></td>
+
+                                               <%else%>
+                                                    <td>---</td>
+                                                 <%end%>
                      <%end%>
-              </tr>
-            <%end%>
-         <%end%>
-    </tr>
+                                        <%else%>
+                                                <td align="center"> ---</td>
+                                        <%end%>
+
+                                   <%else%>
+                                       <%if classe == nota.classe %>
+                                          <%if (nota.nota5.present?)  %>
+                                                <td align="center"><b> <%= nota.nota5%></b></td>
+                                           <%else%>
+                                                <td>---</td>
+                                             <%end%>
+                                        <%else%>
+                                                <td align="center">??</td>
+                                        <%end%>
+                                  <%end%>
+                           <%end%>
+                        <%var1=0%>
+                      <%end%>
+                   <%end%>
+             </tr>
+       <%end%>
+ 
+</tr>
     <tr bgcolor =" #DCDCDC">
       <td><b> Carga Horária</b></td>
           <% ano = @ano_inicial.ano_letivo %>
           <%  contador_ano = 1%>
           <%  contador_ano_letivo = 1%>
           <%for i in 0..8 %>
-               <%if contador_ano == classe[0,1].to_i %>
+               <%if contador_ano == var_classe %>
                    <td width ="5%" align="center" ><b>1000</b></td>
                <% else %>
                    <td align="center"> --- </td>
@@ -89,6 +107,8 @@
           <%end%>
     </tr>
 </table>
+
+
   <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
     <tr >
         <td width ="30%"rowspan="2"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
@@ -104,16 +124,22 @@
     </tr>
     <tr>
       <% ano = @ano_inicial.ano_letivo %>
-      <% classe= @ano_inicial.matricula.classe.classe_classe %>
+     <%if @ano_inicial.classe.nil?%>
+            <% classe= @ano_inicial.matricula.classe.classe_classe %>
+            <% var_classe = classe[0,1].to_i%>
+      <%else%>
+           <% var_classe= @ano_inicial.classe%>
+      <%end%>
+     
       <%  contador_ano = 1%>
       <%  contador_ano_letivo = 1%>
       <%  cont2 = 0%>
          <%for i in 0..8 %>
          <%  cont2 = cont2 +1%>
-             <%if contador_ano == classe[0,1].to_i %>
+             <%if contador_ano == var_classe %>
                  <td width ="5%" align="center" ><b><%= @ano_inicial.ano_letivo%></b></td>
              <% else %>
-                 <td align="center"> <%if contador_ano > classe[0,1].to_i %>
+                 <td align="center"> <%if contador_ano > var_classe %>
                                           <b><%= @ano_inicial.ano_letivo + contador_ano_letivo %></b>
                                           <% contador_ano_letivo = 1 + contador_ano_letivo%>
                                      <%else%>
@@ -134,7 +160,7 @@
                             <%  contador_ano = 1%>
                             <%  contador_ano_letivo = 1%>
                             <%for i in 0..8 %>
-                               <%if contador_ano == classe[0,1].to_i %>
+                               <%if contador_ano == var_classe%>
                                    <td width ="5%" align="center" ><b><% for nota in @notas %>
                                                                             <%if (nota.nota5.present?)  %>
                                                                                <%= nota.nota5%>
@@ -163,7 +189,7 @@
           <%  contador_ano = 1%>
           <%  contador_ano_letivo = 1%>
           <%for i in 0..8 %>
-               <%if contador_ano == classe[0,1].to_i %>
+               <%if contador_ano == var_classe %>
                    <td width ="5%" align="center" ><b>480</b></td>
                <% else %>
                    <td align="center"> --- </td>

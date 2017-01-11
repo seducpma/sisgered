@@ -504,6 +504,7 @@ end
 
 
 def historico_aluno
+
      @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
      for aluno in @aluno
        session[:unidade_id]= aluno.unidade_id
@@ -531,7 +532,7 @@ def historico_aluno
 
      @report = DailyOrdersXlsFactory.new("simple report")
 
-  @report.add_column(20)
+     @report.add_column(20)
 
      @report.add_column(18).add_column(12).add_column(40).add_column(30)
      @report.add_row(["PREFEITURA MUNICIPAL DE AMERICANA"], 30).join_last_row_heading(0..6)

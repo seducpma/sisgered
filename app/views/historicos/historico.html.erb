@@ -110,8 +110,8 @@
               <tr>
                 
                 <td width="6%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
-              <!--   <%= link_to image_tag("/stylesheets/images/disciplina.png"), "#inline_disciplina", :class =>"inline" %>
-                <%= link_to image_tag("/stylesheets/images/nota.png"), "#inline_nota", :class =>"inline" %>         -->
+                        
+
                 </td>
                </tr>
           </table>
@@ -122,12 +122,11 @@
    <%end%>
 <%end%>
        <br/>
-       <table>
+       <table >
     <tr>
-     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <!--<td align="left"><%= button_to 'Nova Consulta???', relatorios_classe_atribuicaos_path, :title => "Nova Consulta" %>-->
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %> </td>
+     <td align="left"><%= button_to 'Nova Consulta', historico_path, :title => "Nova Consulta" %></td>
      
-     </td>
 
     </tr>
   </table>

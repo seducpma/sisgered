@@ -319,7 +319,7 @@ display: none;
                               <%end%>
                              <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')%>
                                  <li><%= link_to "Histórico Escolar",historico_path  %></li>
-                                 
+                         <!--          <li><%= link_to "Histórico EscolarII",historicoatri_path  %></li> -->
                                  <li><%= link_to "Resultado Final",resultado_final_path  %></li>
                       <!--        <li><%= link_to "Reverva Vagas", reserva_vagas_atribuicaos_path %></li>-->
                              <%end%>
