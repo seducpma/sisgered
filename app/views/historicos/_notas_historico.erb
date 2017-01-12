@@ -157,7 +157,7 @@
       <td align="center"><%= i + 1%>º Ano </td>
          <td width ="5%" align="center" > <%=  anoletivo %></td>
 
-                  <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', disciplina, session[:aluno_id], anoletivo] )%>
+                  <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
 
 
 
