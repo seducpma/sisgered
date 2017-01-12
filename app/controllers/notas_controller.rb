@@ -165,7 +165,7 @@ end
   end
 
 def atribuicao_lancamentos_notas
-  t=0
+  
     render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
   
 end

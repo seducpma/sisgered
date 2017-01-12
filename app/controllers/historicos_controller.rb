@@ -36,7 +36,14 @@ end
 
 
  def create_cadastra_disciplina
+      @disc=Disciplina.find(:all)
+      for disc in @disc
+        n_ordem= disc.ordem
+      end
       @disciplina = Disciplina.new(params[:disciplina])
+      @disciplina.curriculo = 'B'
+     @disciplina.ordem = n_ordem +1
+
       if @disciplina.save
 
          @aluno = Aluno.find(:all, :conditions => ['id =?', session[:aluno_id]])
@@ -48,14 +55,10 @@ end
 
          @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
          @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
-     @disciplinas = Disciplina.find(:all, :conditions =>['curriculo != "I"'],:order => 'ordem ASC' )
-     @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
+         @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
+         @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
          @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
-
          @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-         @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
-         @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id],Time.now.year],:order =>'disciplinas.ordem ASC ')
-         @notas_ano = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
         render :update do |page|
           page.replace_html 'dados_historico', :partial => "notas_historico"
         end
@@ -84,17 +87,11 @@ end
 
          @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
          @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
-     @disciplinas = Disciplina.find(:all, :conditions =>['curriculo != "I"'],:order => 'ordem ASC' )
-     @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
-     @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
-
-
+         @disciplinas = Disciplina.find(:all, :conditions =>['curriculo != "I"'],:order => 'ordem ASC' )
+         @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
+         @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
          @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
-
          @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-         @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
-         @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id],Time.now.year],:order =>'disciplinas.ordem ASC ')
-         @notas_ano = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  session[:aluno_id], session[:unidade_id], Time.now.year],:order =>'disciplinas.ordem ASC ')
         render :update do |page|
           page.replace_html 'dados_historico', :partial => "notas_historico"
         end
@@ -164,6 +161,8 @@ def historico
      @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
      @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
      @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
+     @disciplinas = @disciplinasD + @disciplinasB
+     @notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
      @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
      @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
 

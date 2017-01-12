@@ -15,20 +15,31 @@
          <tr>
             <td width="5%" valign="top"><b><font size="2">Disciplina: </font></b></td>
             <td><%= collection_select  :nota, :disciplina_id, @disciplinasB, :id, :disciplina, :include_blank => ' --- Selecione opção ---'  %></td>
+            <td width="5%" valign="top"><b><font size="2">Classe </font></b></td>
+            <td><%= f.select :classe , options_for_select(Historico::CLASSES) %> º Ano</td>
+         </tr>
+         <tr>
+
+            <td width="8%" valign="top"><b><font size="2">Ano Letivo: </font></b></td>
+            <td><%= f.text_field :ano_letivo, :size=>10 %><br/></td>
             <td width="5%" valign="top"><b><font size="2">Nota: </font></b></td>
             <td><%= f.text_field :nota5,  :size=> 5 %><br/></td>
-
-        </tr>
-         <tr>
-            <td width="5%" valign="top"><b><font size="2">Classe </font></b></td>
-            <td><%= f.text_field :classe, :size=> 5 %></td>
-            <td width="5%" valign="top"><b><font size="2">Ano Letivo: </font></b></td>
-            <td><%= f.text_field :ano_letivo, :size=>10 %><br/></td>
         </tr>
         <tr>
-            <td align="right" ><%= f.submit "Salvar" %></td>
+          <td width ="8%"><b><font size="2">Escola: </font></b></td>
+          <td><%= f.text_field :escola , :size => '13'%> </td>
+          <td width ="8%"><b><font size="2">Cidade/Estado: </font></b></td>
+          <td><%= f.text_field :cidade , :size => '13', :value => ' Cidade - Estado'%> </td>
+        </tr>
+        <tr>
+          <td colspan="4"><br/><font color ="red"> <b>ANTEÇÃO:</b> Este processo pode demorar. AGUARDE até o sistema retornar!<br/>
+              <b>=========> CLIQUE NO BOTÃO SALVAR <u>SOMENTE</u> UM VEZ !!!</b> </font></td>
+        </tr>
+
+        <tr>
+            <td align="right" ><%= f.submit "Salvar" %> </td>
       <%end%>
-            <td  align="right" ><%= button_to "Fechar",{:action => "historico"}, :method => "get" %></td>
+            <td  align="right" colspan="3" ><%= button_to "Fechar",{:action => "historico"}, :method => "get" %></td>
         </tr>
        </table>
 
