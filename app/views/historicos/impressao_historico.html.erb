@@ -5,6 +5,301 @@
 </table>
 
 
+<% @aluno.each do |aluno| %>
+    <table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
+       <tr style="border-color: white">
+          <td style="border-color: white"  align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+          <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                 <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                  <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center>
+                  <center><font size="2"><b><u>HISTÓRICO ESCOLAR</u> &nbsp&nbsp&nbsp&nbsp</b></font></center>
+
+         </td>
+      </tr>
+       <tr style="line-height: 2px; border-color: white" >
+           <td style="font-size: 8px; border-color: white" width =" 20%"><b>Unidade de Ensino:</b></td>
+           <td style="font-size: 8px; border-color: white"><b><%=h aluno.unidade.nome %></b></td>
+       </tr>
+       <tr style="line-height: 2px; border-color: white">
+           <td style="font-size: 8px; border-color: white"><b>Endereço:</b></td>
+           <td style="font-size: 8px; border-color: white"><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
+      </tr>
+      <tr style="line-height: 2px; border-color: white">
+          <td style="font-size: 8px; border-color: white"><b>Autorização:</b></td>
+          <td style="font-size: 8px; border-color: white"><%=h aluno.unidade.autorizacao%></td>
+      </tr>
+      <tr style="line-height: 3px; border-color: white">
+          <td style="font-size: 8px; border-color: white" colspan="2" align="center"><br/><b><u>DADOS DO ALUNOS</u></b></td>
+      </tr>
+      <tr style="line-height: 2px; border-color: white">
+        <td style="font-size: 8px; border-color: white" colspan="3"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
+                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %>
+                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+      </tr>
+      <% if (aluno.aluno_certidao_nascimento.present?)  %>
+         <tr style="line-height: 2px; border-color: white">
+             <td style="font-size: 8px; border-color: white" colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                     <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                     <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
+             </td>
+         </tr>
+     <%end%>
+        <tr style="line-height: 2px; border-color: white">
+          <td style="font-size: 8px; border-color: white" colspan="3"><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
+            <% if !(aluno.aluno_nacionalidade == 'BRASILEIRO')   %>
+                <td style="font-size: 8px; border-color: white"><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
+            <%else%>
+                <td  style="font-size: 8px; border-color: white" colspan="2"></td>
+            <%end%>
+        </tr>
+        <% if (aluno.aluno_RG.present?)  %>
+             <tr style="line-height: 2px; border-color: white">
+                <td style="font-size: 8px; border-color: white"><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
+                <td style="font-size: 8px; border-color: white''"><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %></td>
+                <td style="font-size: 8px; border-color: white"><b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
+             </tr>
+       <%end%>
+
+     <tr style="line-height: 11px; border-color: white">
+       <td style="font-size: 8px; border-color: white" colspan="4"><br/><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b><br/>
+              <b> Lei Federal 9294/96 Art. 26, 32, 33, 34 - Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
+         </td>
+     </tr>
+   </table>
+
+  
+
+   <table cellspacing="0" cellpadding="4" width="100%">
+     <tr style="line-height: 2px">
+         <th style="font-size: 8px" width=" 40%" align="center"><b>ÁREAS DE CONHECIMENTO </b></th>
+         <th style="font-size: 8px"width=" 60%" colspan="9" align="center"><b>MENÇÔES OU NOTAS</b></th>
+      </tr>
+     <tr style="line-height: 2px">
+          <th style="font-size: 8px" width ="30%"rowspan="2"> <b><center>CURRÍCULO BÁSICO   </center> </b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>1º</b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>2º</b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>3º</b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>4º</b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>5º</b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>6º</b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>7º</b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>8º</b></th>
+          <th style="font-size: 8px" width ="5%" align="center" ><b>9º</b></th>
+      </tr>
+        <% ano = @ano_inicial.ano_letivo %>
+        <%if @ano_inicial.classe.nil?%>
+              <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
+        <%end%>
+        <% anoinicial = ano.to_i - (classe.to_i + 1)  %>
+      <tr style="line-height: 2px">
+        <%for i in 0..8 %>
+           <th style="font-size: 8px" align="center" ><b> <%=  anoinicial+i %></b></th>
+        <%end%>
+      </tr>
+      <%@disciplinasB.each do |disciplina|%>
+        <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+         <% if !@notas.empty? %>
+             <tr>
+                 <td align="left"><%= disciplina.disciplina %></td>
+                 <%for i in 0..8 %>
+                     <% anoletivo = anoinicial+ i %>
+                    <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', disciplina, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+                          <% if @notas.empty? or @nota.nil?  %>
+                          <td align="center"> --- </td>
+                       <%else%>
+                         <%for nota in @notas%>
+                            <%if nota.ano_letivo == anoletivo %>
+                               <td align="center"> <%= nota.nota5%>  </td>
+                            <%else%>
+                               <td align="center"> --- </td>
+                            <%end%>
+                         <%end%>
+                      <%end%>
+                 <%end%>
+            </tr>
+        <%end%>
+      <%end%>
+      <tr bgcolor =" #DCDCDC">
+        <td><b> Carga Horária</b></td>
+               <%for i in 0..8 %>
+                   <% anoletivo = anoinicial+ i %>
+                  <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+                     <% if @notas.empty? or @nota.nil?  %>
+                        <td align="center"> --- </td>
+                     <%else%>
+                       <%for nota in @notas%>
+                          <%if nota.ano_letivo == anoletivo %>
+                             <td align="center"> <%= 1000 %> </td>
+                          <%else%>
+                             <td align="center"> --- </td>
+                          <%end%>
+                       <%end%>
+                    <%end%>
+               <%end%>
+      </tr>
+  </table>
+  <% if @notasD.present? %>
+    <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+      <tr >
+          <td width ="30%"rowspan="2"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
+          <td width ="5%" align="center" ><b>1º</b></td>
+          <td width ="5%" align="center" ><b>2º</b></td>
+          <td width ="5%" align="center" ><b>3º</b></td>
+          <td width ="5%" align="center" ><b>4º</b></td>
+          <td width ="5%" align="center" ><b>5º</b></td>
+          <td width ="5%" align="center" ><b>6º</b></td>
+          <td width ="5%" align="center" ><b>7º</b></td>
+          <td width ="5%" align="center" ><b>8º</b></td>
+          <td width ="5%" align="center" ><b>9º</b></td>
+      </tr>
+        <% ano = @ano_inicial.ano_letivo %>
+        <%if @ano_inicial.classe.nil?%>
+              <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
+        <%end%>
+        <% anoinicial = ano.to_i - (classe.to_i + 1)  %>
+      <tr>
+        <%for i in 0..8 %>
+        <td width ="5%" align="center" ><b> <%=  anoinicial+i %></b></td>
+        <%end%>
+      </tr>
+      <%@disciplinasD.each do |disciplina|%>
+        <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+         <% if !@notas.empty? %>
+           <tr>
+               <td align="left"><%= disciplina.disciplina %></td>
+               <%for i in 0..8 %>
+                   <% anoletivo = anoinicial+ i %>
+                   <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', disciplina, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+                         <% if @notas.empty? or @nota.nil?  %>
+                            <td align="center"> --- </td>
+                         <%else%>
+                           <%for nota in @notas%>
+                              <%if nota.ano_letivo == anoletivo %>
+                                 <td align="center"> <%= nota.nota5%> </td>
+                              <%else%>
+                                 <td align="center"> --- </td>
+                              <%end%>
+                           <%end%>
+                        <%end%>
+               <%end%>
+          </tr>
+        <%end%>
+
+      <%end%>
+      <tr bgcolor =" #DCDCDC">
+        <td><b> Carga Horária</b></td>
+               <%for i in 0..8 %>
+                   <% anoletivo = anoinicial+ i %>
+                   <% @notasD1= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+                     <% if @notasD1.empty?%>
+                        <td align="center"> --- </td>
+                     <%else%>
+                       <%for nota in @notasD1%>
+                          <%if nota.ano_letivo == anoletivo %>
+                             <td align="center"> <%= 480 %> </td>
+                          <%else%>
+                             <td align="center"> --- </td>
+                          <%end%>
+                       <%end%>
+                    <%end%>
+               <%end%>
+      </tr>
+
+    </table>
+
+  <%end%>
+
+    <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+      <tr>
+        <td colspan="4"><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <b>ESTUDOS REALIZADOS</b><br/><br/></td>
+      </tr>
+
+      <tr cellspacing="2" cellpadding="2" bgcolor =" #DCDCDC">
+         <td width=" 8%" align="center"><b>Período </b></td>
+         <td width=" 10%" align="center"><b>Ano Letivo </b></td>
+         <td width=" 60%" align="center"><b>Unidade de Ensino</b></td>
+         <td width=" 22%" align="center"><b>Municipio/Estado</b></td>
+     </tr>
+     <%for i in 0..8 %>
+     <% anoletivo = anoinicial+ i %>
+     <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+      <tr bgcolor="#F5F5F5">
+        <td align="center"><%= i + 1%>º Ano </td>
+           <td width ="5%" align="center" > <%=  anoletivo %></td>
+
+                    <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
+
+
+
+                <%  for unidade in @unidade %>
+                     <%  session[:unidade]= unidade.nome  %>
+                     <%  session[:cidade]= unidade.cidade  %>
+                <%  end %>
+           <td><%if !@unidade.empty? %>
+                   <%=  session[:unidade]  %>
+              <%end%>
+           </td>
+           <td><%if !@unidade.empty? %>
+                <%=  session[:cidade]  %>
+               <%end%>
+           </td>
+           <td></td>
+
+      </tr>
+    <%end%>
+    </table>
+
+
+
+
+
+          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+            <tr>
+              <td colspan="2"></td>
+            </tr>
+              <tr>
+                <td width="12%" align="CENTER"valign="top"><b>Observação:</b></td>
+                  <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
+               </tr>
+          </table>
+
+        <fieldset><legend><font size=3>Cadastrar</font></legend>
+          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+              <tr>
+
+                <td width="6%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
+                <%= link_to image_tag("/stylesheets/images/disciplina.png"), "#inline_disciplina", :class =>"inline" %>
+                <%= link_to image_tag("/stylesheets/images/nota.png"), "#inline_nota", :class =>"inline" %>
+
+                </td>
+               </tr>
+          </table>
+        </fieldset>
+
+     
+    <%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
   <tr style="border-color: white">
     <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>

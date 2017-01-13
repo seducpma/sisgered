@@ -76,7 +76,8 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_alteracao_lancamentos '/impressao_alteracao_lancamentos', :controller => 'notas', :action => 'impressao_alteracao_lancamentos'
   map.impressao_lancamentos_notas '/impressao_lancamentos_notas', :controller => 'notas', :action => 'impressao_lancamentos_notas'
   map.impressao_transferencia_aluno'impressao_transferencia_aluno', :controller => 'atribuicaos', :action => 'impressao_transferencia_aluno'
-  map.impressao_historico'impressao_historico', :controller => 'atribuicaos', :action => 'impressao_historico'
+  #map.impressao_historico'impressao_historico', :controller => 'atribuicaos', :action => 'impressao_historico'
+  map.impressao_historico'impressao_historico', :controller => 'historicos', :action => 'impressao_historico'
   map.impressao_historico_aluno'impressao_historico_aluno', :controller => 'atribuicaos', :action => 'impressao_historico_aluno'
   map.impressao_fapea '/impressao_fapea', :controller => 'relatorios', :action => 'impressao_fapea'
 
