@@ -163,6 +163,8 @@ def historico
      @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
      @disciplinas = @disciplinasD + @disciplinasB
      @notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
+     @notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=?', session[:aluno_id]], :order => 'ano_letivo ASC')
+     t=0
      @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
      @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
 

@@ -56,8 +56,8 @@
         <% if (aluno.aluno_RG.present?)  %>
              <tr style="line-height: 2px; border-color: white">
                 <td style="font-size: 8px; border-color: white"><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
-                <td style="font-size: 8px; border-color: white''"><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %></td>
-                <td style="font-size: 8px; border-color: white"><b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
+                <td style="font-size: 8px; border-color: white" colspan="2"><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
              </tr>
        <%end%>
 
@@ -219,27 +219,36 @@
         <tr style="line-height: 2px; border-color: black ">
            <td style="font-size: 8px; border-color: black" align="center"><%= i + 1%>º Ano </td>
            <td style="font-size: 8px; border-color: black" width ="5%" align="center" > <%=  anoletivo %></td>
-                    <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
+           <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
                 <%  for unidade in @unidade %>
-                     <%  session[:unidade]= unidade.nome  %>
-                     <%  session[:cidade]= unidade.cidade  %>
+                        <%  session[:unidade]= unidade.nome  %>
+                         <%  session[:cidade]= unidade.cidade  %>
                 <%  end %>
-           <td style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
-                   <%=  session[:unidade]  %>
-               <%end%>
-           </td>
-           <td style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
-                   <%=  session[:cidade]  %>
-               <%end%>
-           </td>
-           
+            <td  style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
+                       <%=  session[:unidade]  %>
+                    <%else%>
+                       <%for nota in @notas %>
+                            <%=  session[:unidade1] = nota.escola  %>
+                            <%=  session[:cidade1] = nota.cidade  %>
+                      <%end%>
+                      <% if nota.ano_letivo == anoletivo%>
+                          <%= session[:unidade1] %>
+                      <%end%>
+                    <%end%>
+             </td>
+             <td  style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
+                       <%=  session[:cidade]  %>
+                    <%else%>
+                      <% if nota.ano_letivo == anoletivo%>
+                          <%= session[:cidade1] %>
+                      <%end%>
+                    <%end%>
+             </td>
       </tr>
     <%end%>
-  </table>
-  <table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
-     <tr style="line-height: 2px; border-color: black ">
-        <td style="font-size: 8px; border-color: black" width="12%" align="CENTER"valign="top"><b>Observação:</b></td>
-        <td style="font-size: 8px; border-color: black"  colspan="4" valign="top">
+    <tr style="line-height: 2px; border-color: black ">
+        <td style="font-size: 8px; border-color: black"  align="CENTER"valign="top"><b>Observação:</b></td>
+        <td style="font-size: 8px; border-color: black"  colspan="3" valign="top">
              <%  if  (@historico_aluno.present?) %>
                 <% c=0 %>
                 <% @historico_aluno.each do |obs|%>

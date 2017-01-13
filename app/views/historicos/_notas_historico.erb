@@ -158,26 +158,32 @@
    <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
     <tr bgcolor="#F5F5F5">
       <td align="center"><%= i + 1%>º Ano </td>
-         <td width ="5%" align="center" > <%=  anoletivo %></td>
-
-                  <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
-
-
-
+      <td width ="5%" align="center" > <%=  anoletivo %></td>
+       <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
               <%  for unidade in @unidade %>
                    <%  session[:unidade]= unidade.nome  %>
                    <%  session[:cidade]= unidade.cidade  %>
               <%  end %>
-         <td><%if !@unidade.empty? %>
+      <td><%if !@unidade.empty? %>
                  <%=  session[:unidade]  %>
-            <%end%>
-         </td>
-         <td><%if !@unidade.empty? %>
-              <%=  session[:cidade]  %>
-             <%end%>
-         </td>
-         <td></td>
- 
+              <%else%>
+                 <%for nota in @notas %>
+                      <%=  session[:unidade1] = nota.escola  %>
+                      <%=  session[:cidade1] = nota.cidade  %>
+                <%end%>
+                <% if nota.ano_letivo == anoletivo%>
+                    <%= session[:unidade1] %>
+                <%end%>
+              <%end%>
+       </td>
+       <td><%if !@unidade.empty? %>
+                 <%=  session[:cidade]  %>
+              <%else%>
+                <% if nota.ano_letivo == anoletivo%>
+                    <%= session[:cidade1] %>
+                <%end%>
+              <%end%>
+       </td>
     </tr>
   <%end%>
   </table>
