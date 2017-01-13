@@ -14,8 +14,13 @@
                    <%= select_tag :aluno_id, options_for_select(@alunos1.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
               </td>
               <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
-             </tr>
 
+             </tr>
+             <tr>
+               <td colspan="2">
+
+               </td>
+             </tr>
        </table>
      </fieldset>
      <% if @aluno.present? %>
@@ -127,7 +132,12 @@
 
      </fieldset>
     <%end%>
+
+    <%else%>
+      <br/>
+      <font color="red"> <center><b><u>ATENÇÃO:</u></b> ESTE PROCESSO PODE DEMORAR .... FAVOR AGUARDAR, APÓS CLICAR NO BOTÃO VISUALIZAR !</center></font>
    <%end%>
+      
 <%end%>
        <br/>
        <table>

@@ -2,8 +2,8 @@
 
 <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
   <tr style="border-color: white" style="height: 8px" >
-    <td style="border-color: white" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-    <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+    <th style="border-color: white" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></th>
+    <th style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
         <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
                 <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
                 <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
@@ -11,13 +11,13 @@
                 <%  session[:classe]=  classe.id%>
 
 
-    </td>
+    </th>
   </tr>
   <tr  style="height: 6px">
 
-    <td style="border-color: white" width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
-   <td style="border-color: white"style="font-size: 7px" colspan="2" align="center"><font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font></td>
+    <th style="border-color: white" width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></th>
+    <th style="border-color: white"style="font-size: 7px" colspan="2" align="center"><font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+           REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font></th>
   </tr>
 
  </table>
