@@ -769,7 +769,7 @@ end
               @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"])
               @nota=Nota.find(62)
           else
-              @disciplinas = Disciplina.find(:all, :conditions => ["curriculo != 'I'"])
+              @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I'AND ano_letivo = 2017"],:order => 'ordem ASC')
               @nota=Nota.find(62)
           end
 
@@ -778,7 +778,7 @@ end
               @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"])
               @nota=Nota.find(62)
           else
-            @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I'"])
+            @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I'AND ano_letivo = 2017"],:order => 'ordem ASC')
             @nota=Nota.find(62)
           end
       end
