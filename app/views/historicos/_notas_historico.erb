@@ -21,8 +21,10 @@
       <% ano = @ano_inicial.ano_letivo %>
       <%if @ano_inicial.classe.nil?%>
             <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
+      <%else%>
+            <% classe= @ano_inicial.classe %>
       <%end%>
-      <% anoinicial = ano.to_i - classe  +1  %>
+      <% anoinicial = ano.to_i - classe +1  %>
     <tr>
       <%for i in 0..8 %>
       <td width ="5%" align="center" ><b> <%=  anoinicial+i %></b></td>
@@ -87,7 +89,10 @@
       <% ano = @ano_inicial.ano_letivo %>
       <%if @ano_inicial.classe.nil?%>
             <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
+      <%else%>
+            <% classe= @ano_inicial.classe %>
       <%end%>
+      
       <% anoinicial = ano.to_i - classe + 1  %>
     <tr>
       <%for i in 0..8 %>
@@ -167,10 +172,10 @@
       <td><%if !@unidade.empty? %>
                  <%=  session[:unidade]  %>
               <%else%>
-                 <%for nota in @notas %>
-                      <%=  session[:unidade1] = nota.escola  %>
-                      <%=  session[:cidade1] = nota.cidade  %>
-                <%end%>
+
+                      <%=  session[:unidade1] = @notas[0].escola  %>
+                      <%=  session[:cidade1] = @notas[0].cidade  %>
+
                 <% if nota.ano_letivo == anoletivo%>
                     <%= session[:unidade1] %>
                 <%end%>
