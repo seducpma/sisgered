@@ -160,7 +160,7 @@
    </tr>
    <%for i in 0..8 %>
    <% anoletivo = anoinicial+ i %>
-   <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+   <% @notas= Nota.find(:all, :conditions=> ['aluno_id=? AND ano_letivo=?',  session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
     <tr bgcolor="#F5F5F5">
       <td align="center"><%= i + 1%>º Ano </td>
       <td width ="5%" align="center" > <%=  anoletivo %></td>
@@ -172,9 +172,9 @@
       <td><%if !@unidade.empty? %>
                  <%=  session[:unidade]  %>
               <%else%>
-
-                      <%=  session[:unidade1] = @notas[0].escola  %>
-                      <%=  session[:cidade1] = @notas[0].cidade  %>
+                  <% if !@notas[0].nil? %>
+                    <%=  session[:unidade1] = @notas[0].escola  %>
+                  <%end%>
 
                 <% if nota.ano_letivo == anoletivo%>
                     <%= session[:unidade1] %>
@@ -184,8 +184,8 @@
        <td><%if !@unidade.empty? %>
                  <%=  session[:cidade]  %>
               <%else%>
-                <% if nota.ano_letivo == anoletivo%>
-                    <%= session[:cidade1] %>
+                <% if !@notas[0].nil? %>
+                    <%=  session[:cidade] = @notas[0].cidade  %>
                 <%end%>
               <%end%>
        </td>

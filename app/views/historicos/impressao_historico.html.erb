@@ -84,11 +84,13 @@
           <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>8º</b></td>
           <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>9º</b></td>
       </tr>
-        <% ano = @ano_inicial.ano_letivo %>
-        <%if @ano_inicial.classe.nil?%>
-              <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
-        <%end%>
-        <% anoinicial = ano.to_i - (classe.to_i + 1)  %>
+      <% ano = @ano_inicial.ano_letivo %>
+      <%if @ano_inicial.classe.nil?%>
+            <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
+      <%else%>
+            <% classe= @ano_inicial.classe %>
+      <%end%>
+      <% anoinicial = ano.to_i - classe +1  %>
       <tr style="line-height: 2px; border-color: black ">
         <%for i in 0..8 %>
            <td style="font-size: 8px; border-color: black " align="center" ><b> <%=  anoinicial+i %></b></td>
@@ -148,11 +150,13 @@
               <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>8º</b></td>
               <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>9º</b></td>
           </tr>
-            <% ano = @ano_inicial.ano_letivo %>
-            <%if @ano_inicial.classe.nil?%>
-                  <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
-            <%end%>
-            <% anoinicial = ano.to_i - (classe.to_i + 1)  %>
+          <% ano = @ano_inicial.ano_letivo %>
+          <%if @ano_inicial.classe.nil?%>
+                <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
+          <%else%>
+                <% classe= @ano_inicial.classe %>
+          <%end%>
+          <% anoinicial = ano.to_i - classe +1  %>
           <tr style="line-height: 2px; border-color: black ">
             <%for i in 0..8 %>
                <td style="font-size: 8px; border-color: black " align="center" ><b> <%=  anoinicial+i %></b></td>
@@ -215,7 +219,7 @@
      </tr>
      <%for i in 0..8 %>
        <% anoletivo = anoinicial+ i %>
-       <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+       <% @notas= Nota.find(:all, :conditions=> ['aluno_id=? AND ano_letivo=?', session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
         <tr style="line-height: 2px; border-color: black ">
            <td style="font-size: 8px; border-color: black" align="center"><%= i + 1%>º Ano </td>
            <td style="font-size: 8px; border-color: black" width ="5%" align="center" > <%=  anoletivo %></td>
@@ -227,9 +231,8 @@
             <td  style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
                        <%=  session[:unidade]  %>
                     <%else%>
-                       <%for nota in @notas %>
-                            <%=  session[:unidade1] = nota.escola  %>
-                            <%=  session[:cidade1] = nota.cidade  %>
+                      <% if !@notas[0].nil? %>
+                        <%=  session[:unidade1] = @notas[0].escola  %>
                       <%end%>
                       <% if nota.ano_letivo == anoletivo%>
                           <%= session[:unidade1] %>
@@ -239,9 +242,9 @@
              <td  style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
                        <%=  session[:cidade]  %>
                     <%else%>
-                      <% if nota.ano_letivo == anoletivo%>
-                          <%= session[:cidade1] %>
-                      <%end%>
+                    <% if !@notas[0].nil? %>
+                        <%=  session[:cidade] = @notas[0].cidade  %>
+                    <%end%>
                     <%end%>
              </td>
       </tr>
