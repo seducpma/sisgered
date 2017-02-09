@@ -289,13 +289,14 @@
     <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
         <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
         <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center>
-        <center><font size="2"><b><u>HISTÓRICO ESCOLAR</u> &nbsp&nbsp&nbsp&nbsp</b></font></center>
+        
 
     </td>
   </tr>
  </table>
 
- <br/>
+ <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+ 
  <center><font size="3"><b>C E R T I F I C A D O</b></font><br/></center>
 <% for nota in @notas_ano  %>
  <table style="border-color: white">
@@ -305,63 +306,23 @@
      <% var1 = 0 %>
     <font size="2"><br/>
      O sr(a) diretor(a) <b><%=h nota.matricula.unidade.nome%></b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
-     certfica que o aluno(a) <%=h nota.matricula.aluno.aluno_nome %> </b> conclui</b> o
+     certfica que o aluno(a) <%=h nota.matricula.aluno.aluno_nome %> </b> concluiu</b> o
 
-             <% if nota.atribuicao.classe.classe_classe == 'EJA' %>
-                 <b>EJA - </b>
-              <%end%>
-             <%if (nota.nota1.present?) and (!nota.nota2.present?)%>
-                <b>  1º Ano </b>
-                <% var = 1 %>
-                <% var1 = 2%>
-             <%else if (nota.nota2.present?) and (!nota.nota3.present?)%>
-                   <b> 2º Ano </b>
-                   <% var = 2 %>
-                   <% var1 = 3%>
-                  <%else if (nota.nota3.present?) and (!nota.nota4.present?)%>
-                        <b> 3º Ano </b>
-                        <% var = 3 %>
-                        <% var1 = 4%>
-                        <%else if (nota.nota4.present?) and (!nota.nota5.present?)%>
-                              <b> 4º Ano </b>
-                              <% var = 4 %>
-                              <% var1 = 5%>
-                              <%else if (nota.nota5.present?) %>
-                                    <b> 5º Ano </b>
-                                    <% var = 5 %>
-                                    <% var1 = 6%>
-                                    <%else if (nota.nota6.present?) and (!nota.nota7.present?)%>
-                                          <b> 6º Ano </b>
-                                          <% var = 6 %>
-                                          <% var1 = 7%>
-                                          <%else if (nota.nota7.present?) and (!nota.nota8.present?)%>
-                                                <b> 7º Ano </b>
-                                                <% var = 7 %>
-                                                <% var1 = 8%>
-                                                <%else if (nota.nota8.present?) and (!nota.nota9.present?)%>
-                                                    <b> 8º Ano </b>
-                                                    <% var = 8 %>
-                                                    <% var1 = 9%>
-                                                    <%else if (nota.nota9.present?) %>
-                                                       <b> 9º Ano </b>
-                                                       <% var = 9 %>
-                                                          <%else if (!nota.nota1.present?)and (!nota.nota2.present?) %>
-                                                                 <b> --- </b>
-                                                                <%end%>
-                                                          <%end%>
-                                                    <%end%>
-                                                <%end%>
-                                          <%end%>
-                                    <%end%>
-                              <%end%>
-                        <%end%>
-                  <%end%>
-             <%end%>
+              <%if @ano_final.classe.nil?%>
+                 <% if @ano_final.matricula.classe.classe_classe == 'EJA' %>
+                     <b>EJA - </b>
+                 <%else%>
+                   <% session[:classe]= @ano_final.matricula.classe.classe_classe[0,1].to_i %>
+                   <b><%= session[:classe] %>º ano</b>
+                 <%end%>
+             <%else%>
+                <b>9º ano</b>
+            <%end%>
 
          do Ensino Fundamental de 9 anos, no <b> ano letivo de <%= nota.matricula.ano_letivo%></b>
          
-         <% if var < 9 %>
-              , estando apto(a) ao proseguimento os estudos no <b><%= var1%>º ano </b> do ENSINO FUNDAMENTAL.
+         <% if session[:classe] < 9 %>
+              , estando apto(a) ao proseguimento os estudos no <b><%= session[:classe] + 1%>º ano </b> do ENSINO FUNDAMENTAL.
          <%else%>
               .
          <%end%>
@@ -396,11 +357,7 @@
           </tr>
         </table>
 <%end%>
-  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
- <table style="border-color: white" width="100%">
-    <tr style="border-color: white">
-      <th colspan="10"align="right"  style="border-color: white"><font size="1px"> Pg.2</font></th>
-   </tr>
-</table>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
 </table>
 

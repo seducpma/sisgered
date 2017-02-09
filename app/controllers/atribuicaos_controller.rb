@@ -603,6 +603,7 @@ end
 def transferencia_aluno
 
      @aluno = Aluno.find(:all,:select =>('id , unidade_id'), :conditions => ['id =?', params[:aluno][:aluno_id]])
+     t=0
      for aluno in @aluno
        session[:unidade_id]= aluno.unidade_id
        session[:aluno_id]= aluno.id
@@ -617,6 +618,7 @@ def transferencia_aluno
      @notas = @notasD + @notasB
      @notas_ano = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =?",  params[:aluno][:aluno_id], current_user.unidade_id,Time.now.year],:order =>'disciplinas.ordem ASC ')
      @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',params[:aluno][:aluno_id]], :order => 'ano_letivo ASC')
+     t=0
        render :update do |page|
           page.replace_html 'transferencia', :partial => 'transferencia'
        end
