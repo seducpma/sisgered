@@ -230,7 +230,9 @@ def consulta_lista_classe
 end
 
   def classes_ano
-    @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =?', params[:ano_letivo]]    )
+
+        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+
    
    render :partial => 'selecao_classe'
   end
