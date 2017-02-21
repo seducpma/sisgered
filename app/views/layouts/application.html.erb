@@ -203,9 +203,9 @@ display: none;
 
                    <%end%>   
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                                <% if (current_user.unidade_id == 44)or (current_user.unidade_id == 46)or (current_user.unidade_id == 47) or(current_user.unidade_id == 52) or (current_user.unidade.tipo_id == 2)or (current_user.unidade.tipo_id == 3)or (current_user.unidade.tipo_id == 5)or (current_user.unidade.tipo_id== 8)or current_user.has_role?('admin') %>
+                                
                                     <li><%= link_to "Matricula", new_matricula_path %></li>
-                                <%end%>
+                                
 
 
                       <%end%>

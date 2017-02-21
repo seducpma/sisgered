@@ -245,4 +245,10 @@ end
     end
 end
 
+  def classes_ano
+    @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =?', params[:ano_letivo]]    )
+
+   render :partial => 'selecao_classe'
+  end
+
 end

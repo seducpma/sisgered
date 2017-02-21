@@ -51,7 +51,7 @@ ActionController::Routing::Routes.draw do |map|
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
   map.voltar_lancamento_notas '/voltar_lancamento_notas', :controller => 'notas', :action => 'voltar_lancamento_notas'
   map.notas_lancamentos '/notas_lancamentos', :controller => 'notas', :action => 'notas_lancamentos'
-  
+  map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :impressao_geral => :get, :status => :get, :update => :put}
 
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
   map.impressao_alunos '/impressao_alunos', :controller => 'alunos', :action => 'impressao_alunos'

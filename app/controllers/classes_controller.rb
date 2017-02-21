@@ -229,6 +229,13 @@ def consulta_lista_classe
        end
 end
 
+  def classes_ano
+    @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =?', params[:ano_letivo]]    )
+   
+   render :partial => 'selecao_classe'
+  end
+
+
 
  def load_classes
   @ano =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')
