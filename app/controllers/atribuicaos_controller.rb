@@ -229,6 +229,8 @@ def create_notas
 end
 
 def relatorios_anterior_classe
+
+
 if params[:type_of].to_i == 1
        session[:aluno] = params[:aluno][:id]
        session[:ano_nota] = params[:ano_letivo1]
@@ -267,12 +269,14 @@ if params[:type_of].to_i == 1
           page.replace_html 'relatorio', :partial => 'relatorio_aluno'
        end
 else if params[:type_of].to_i == 2
+
+
        session[:classe_id] = params[:classe][:id]
        session[:ano_nota] = params[:ano_letivo]
+
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status = "MATRICULADO" or status = "TRANSFERENCIA" or status = "*REMANEJADO")', params[:classe][:id]], :order =>'classe_num')
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
-
        render :update do |page|
             page.replace_html 'relatorio', :partial => 'relatorio_classe'
        end
@@ -438,14 +442,16 @@ def mapa_de_classe
 end
 
 def mapa_de_classe_anterior
-       session[:classe_id] = params[:classe][:id]
-       session[:ano] = Time.now.year
-       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  params[:classe][:id]], :order => 'nome')
-       @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', params[:classe][:id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
-       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  params[:classe][:id]],:order =>'matriculas.id ASC')
-       @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe][:id]],:order =>' matriculas.classe_num')
+       w=session[:classe_id] = params[:classe_mapa][:id]
+       w1=session[:ano] =  params[:ano_letivo_mapa]
+
+       @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
+       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
+       @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  session[:classe_id]],:order =>'matriculas.id ASC')
+       @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
        @disciplinas= Disciplina.find(:all)
+              
               render :update do |page|
               page.replace_html 'mapa', :partial => 'mapa'
            end
@@ -701,6 +707,16 @@ end
     end
   end
 
+  def classes_ano
+        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+   render :partial => 'selecao_classe'
+  end
+
+  def mapa_classe_ano
+        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+   render :partial => 'selecao_mapa'
+  end
+  
 
    def load_classes
    if current_user.unidade_id == 53 or current_user.unidade_id == 52

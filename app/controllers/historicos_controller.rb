@@ -15,18 +15,17 @@ def resultado_final
 end
 
 def final_resultado
-     params[:classe][:id]
+     w=session[:classe_id]=params[:classe_resultado_final][:id]
+t=0
+     @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe_resultado_final][:id]])
+     @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', params[:classe_resultado_final][:id],0])
 
-     session[:classe_id]=params[:classe][:id]
-     @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-     @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0])
+     @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe_resultado_final][:id]], :order => 'classe_num ASC')
+     @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null",  params[:classe_resultado_final][:id]],:order =>'disciplinas.ordem ASC')
 
-     @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
-     @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
-
-     @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe][:id]],:order =>' matriculas.classe_num')
+     @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe_resultado_final][:id]],:order =>' matriculas.classe_num')
      @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
-   
+   t=0
 
       render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
@@ -164,26 +163,19 @@ def historico
      @disciplinas = @disciplinasD + @disciplinasB
      @notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
      @notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=?', session[:aluno_id]], :order => 'ano_letivo ASC')
-
      @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
-
-
-    @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-
-    @ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-
-
-
-
-    
-
+     @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
+     @ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
 
   end
 
 end
 
 
-
+  def classes_ano
+        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+   render :partial => 'selecao_classe'
+  end
 
 def impressao_nota_final
 
