@@ -17871,3 +17871,382 @@ Rendered classes/_form (5.8ms)
   [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=4) [0m
   [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
 Completed in 181ms (View: 38, DB: 7) | 200 OK [http://localhost/classes/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2017-02-22 11:23:02) [GET]
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-02-22 14:23:02' AND ends_at >= '2017-02-22 14:23:02') [0m
+  [4;36;1mroles_users Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=4) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 158ms (View: 140, DB: 5) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClassesController#new (for 127.0.0.1 at 2017-02-22 11:23:05) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (unidade_id = 4 or unidade_id = 54)) ORDER BY matricula ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classe_ano_letivo) as ano FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 4 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 4 ) ORDER BY classe_ano_letivo ASC, classe_classe ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classe_ano_letivo) FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;36;1mAluno Load (0.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE `unidade_id`= 4 AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = 2017)ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendering template within layouts/application
+Rendering classes/new
+Rendered classes/_form (5.0ms)
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2017-02-22 14:23:05' AND ends_at >= '2017-02-22 14:23:05') [0m
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=4) [0m
+  [4;35;1mUnidade Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 290ms (View: 126, DB: 9) | 200 OK [http://localhost/classes/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClassesController#create (for 127.0.0.1 at 2017-02-22 11:23:24) [POST]
+  Parameters: {"classe"=>{"horario"=>"MATUTINO", "sala"=>"2", "classe_ano_letivo"=>"2017", "classe_descricao"=>"asdasdada", "classe_classe"=>"teste"}, "authenticity_token"=>"5EzsFnyFp7zy/CyS5yiiyn+sg5a1bT1bJWdy6SY3pg0=", "commit"=>"Salvar"}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0 AND (unidade_id = 4 or unidade_id = 54)) ORDER BY matricula ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT distinct(classe_ano_letivo) as ano FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;36;1mClasse Load (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 4 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mClasse Load (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 4 ) ORDER BY classe_ano_letivo ASC, classe_classe ASC[0m
+  [4;36;1mClasse Load (0.0ms)[0m   [0;1mSELECT distinct(classe_ano_letivo) FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;35;1mAluno Load (0.6ms)[0m   [0mSELECT * FROM `alunos` WHERE `unidade_id`= 4 AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = 2017)ORDER BY aluno_nome ASC[0m
+  [4;36;1mClasse Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mClasse Create (0.4ms)[0m   [0;1mINSERT INTO `classes` (`horario`, `updated_at`, `sala`, `unidade_id`, `classe_ano_letivo`, `classe_descricao`, `classe_classe`, `created_at`) VALUES('MATUTINO', '2017-02-22 14:23:24', '2', 4, 2017, 'ASDASDADA', 'TESTE', '2017-02-22 14:23:24')[0m
+  [4;35;1mSQL (39.0ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/classes/574
+Completed in 206ms (DB: 42) | 302 Found [http://localhost/classes]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClassesController#show (for 127.0.0.1 at 2017-02-22 11:23:25) [GET]
+  Parameters: {"id"=>"574"}
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0 AND (unidade_id = 4 or unidade_id = 54)) ORDER BY matricula ASC[0m
+  [4;35;1mClasse Load (0.7ms)[0m   [0mSELECT distinct(classe_ano_letivo) as ano FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;36;1mClasse Load (0.8ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 4 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mClasse Load (0.5ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 4 ) ORDER BY classe_ano_letivo ASC, classe_classe ASC[0m
+  [4;36;1mClasse Load (0.4ms)[0m   [0;1mSELECT distinct(classe_ano_letivo) FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;35;1mAluno Load (521.1ms)[0m   [0mSELECT * FROM `alunos` WHERE `unidade_id`= 4 AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = 2017)ORDER BY aluno_nome ASC[0m
+  [4;36;1mClasse Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.8ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 574) [0m
+Rendering template within layouts/application
+Rendering classes/show
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.5ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 4) [0m
+  [4;36;1mroles_users Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-02-22 14:23:25' AND ends_at >= '2017-02-22 14:23:25') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=4) [0m
+Completed in 723ms (View: 135, DB: 532) | 200 OK [http://localhost/classes/574]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClassesController#new (for 127.0.0.1 at 2017-02-22 11:25:05) [GET]
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (unidade_id = 4 or unidade_id = 54)) ORDER BY matricula ASC[0m
+  [4;36;1mClasse Load (0.7ms)[0m   [0;1mSELECT distinct(classe_ano_letivo) as ano FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;35;1mClasse Load (0.5ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 4 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mClasse Load (0.5ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 4 ) ORDER BY classe_ano_letivo ASC, classe_classe ASC[0m
+  [4;35;1mClasse Load (0.4ms)[0m   [0mSELECT distinct(classe_ano_letivo) FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;36;1mAluno Load (536.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE `unidade_id`= 4 AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = 2017)ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendering template within layouts/application
+Rendering classes/new
+ERROR: compiling _run_erb_app47views47classes47_form46html46erb_locals_form_object RAISED compile error
+/home/seduc/sisgered/app/views/classes/_form.html.erb:38: unknown regexp options - tr
+/home/seduc/sisgered/app/views/classes/_form.html.erb:40: syntax error, unexpected '<'
+      </table>
+       ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:42: syntax error, unexpected '<'
+    <table width="100%"  align="center">
+     ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:42: syntax error, unexpected tIDENTIFIER, expecting ')'
+    <table width="100%"  align="center">
+                              ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:43: syntax error, unexpected '<'
+      <tr>
+       ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:44: syntax error, unexpected tIDENTIFIER, expecting ')'
+...           <td width="4%"align="left"><%= f.submit 'Salvar' ...
+                              ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:44: syntax error, unexpected '<'
+...  <td width="4%"align="left"><%= f.submit 'Salvar' ).to_s); ...
+                              ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:46: syntax error, unexpected '}', expecting ')'
+... home_path, {:method => "get"}  ).to_s); @output_buffer.conc...
+                              ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:61: syntax error, unexpected kENSURE, expecting kEND
+/home/seduc/sisgered/app/views/classes/_form.html.erb:63: syntax error, unexpected $end, expecting kEND
+Function body:           def _run_erb_app47views47classes47_form46html46erb_locals_form_object(local_assigns)
+            old_output_buffer = output_buffer;object = local_assigns[:object];form = local_assigns[:form];;@output_buffer = '';  __in_erb_template=true ;  form_for @classe, :html => { :multipart => true } do |f| ; @output_buffer.concat "\n "
+; @output_buffer.concat(( f.error_messages ).to_s); @output_buffer.concat "\n  <font  size=\"2\">\n    <br/>\n    <table width=\"100%\" align=\"center\"  bgcolor=\"#F5F5F5\" >\n        <tr>\n          <td colspan=\"4\"><b><font size=\"3\">CLASSE</b></td>\n        </tr>\n        <tr>\n          <td colspan=\"4\"><hr></td>\n        </tr>\n\n        <tr>\n          <td ><b>Classe: </b>"
+
+
+
+
+
+
+
+
+
+
+
+; @output_buffer.concat(( f.text_field :classe_classe, :size => 5 ).to_s); @output_buffer.concat "</td>\n          <td > <b>Per\303\255odo: </b>"
+; @output_buffer.concat(( f.select :horario, Classe::HORARIO ).to_s); @output_buffer.concat "</td>\n          <td ><b>Ano Letivo: </b>"
+; @output_buffer.concat(( f.text_field :classe_ano_letivo, :size =>5, :value =>"2017" ).to_s); @output_buffer.concat "\n             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b>"
+; @output_buffer.concat(( f.text_field :sala, :size =>2 ).to_s); @output_buffer.concat "</td>\n\n        </tr>\n        \n        "
+
+
+
+;  if (current_user.unidade_id < 42) or (current_user.unidade_id > 51) or (current_user.unidade_id != 62)  ; @output_buffer.concat "\n            <tr>\n              <td colspan=\"4\">\n                 <font color=\"gray\"> <u><b>EXEMPLO:</u> CLASSE: NI  ou  NII  ou BI  ou BII ou BIII ou MI ou MII   ....  </font> </b>\n              </td>\n            </tr>\n        "
+
+
+
+
+
+; else; @output_buffer.concat "\n            <tr>\n              <td colspan=\"4\">\n                 <font color=\"gray\"><u><b>EXEMPLO:</u> CLASSE: 1 A  ou  1 B  ou 2 A  ou 2 B ou 3 A ou 3 B ....  </font> </b>\n              </td>\n            </tr>\n\n\n        "
+
+
+
+
+
+
+
+; end; @output_buffer.concat "\n        <tr>\n          <td colspan=\"4\"><b>Identifica\303\247\303\243o N\302\272 no GDAE: </b>"
+
+; @output_buffer.concat(( f.text_field :classe_descricao, :size => 60</td>
+        </tr>
+
+      </table>
+      <br/>
+    <table width="100%"  align="center">
+      <tr>
+            <td width="4%"align="left"><%= f.submit 'Salvar' ).to_s); @output_buffer.concat "</td>\n"
+; end; @output_buffer.concat "\n            <td>"
+; @output_buffer.concat(( button_to 'Fechar', home_path, {:method => "get"}  ).to_s); @output_buffer.concat "</td>\n    \n  \n\n         </tr>\n       </table>\n    \n    \n  </font>\n\n\n\n\n\n"
+
+
+
+
+
+
+
+
+
+
+
+
+
+; @output_buffer
+          ensure
+            self.output_buffer = old_output_buffer
+          end
+Backtrace: /home/seduc/sisgered/app/views/classes/_form.html.erb:63:in `compile!'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:61:in `compile'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:28:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable_partial.rb:20:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable_partial.rb:19:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/template.rb:205:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable_partial.rb:44:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/partials.rb:184:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:267:in `render'
+/home/seduc/sisgered/app/views/classes/new.html.erb:9:in `_run_erb_app47views47classes47new46html46erb'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:34:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:34:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:306:in `with_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:30:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/template.rb:205:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:265:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:348:in `_render_with_layout'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:262:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1250:in `render_for_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:951:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/mime_responds.rb:135:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/mime_responds.rb:135:in `custom'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/mime_responds.rb:179:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/mime_responds.rb:179:in `respond'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/mime_responds.rb:173:in `each'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/mime_responds.rb:173:in `respond'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/mime_responds.rb:107:in `respond_to'
+/home/seduc/sisgered/app/controllers/classes_controller.rb:30:in `new'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1331:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1331:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:617:in `call_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/flash.rb:146:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:606:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:391:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:386:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/routing/route_set.rb:437:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:87:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:121:in `_call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:29:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:29:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:9:in `cache'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:28:in `call'
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/string_coercion.rb:25:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/head.rb:9:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/methodoverride.rb:24:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/params_parser.rb:15:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/session/cookie_store.rb:93:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/failsafe.rb:26:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `synchronize'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:114:in `call'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/reloader.rb:34:in `run'
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:108:in `call'
+/usr/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/rails/rack/static.rb:31:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:46:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:40:in `each'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:40:in `call'
+/usr/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/rails/rack/log_tailer.rb:17:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/content_length.rb:13:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/chunked.rb:15:in `call'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/handler/mongrel.rb:64:in `process'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+/usr/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/handler/mongrel.rb:34:in `run'
+/usr/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/commands/server.rb:111
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+script/server:3
+
+ActionView::TemplateError (compile error
+/home/seduc/sisgered/app/views/classes/_form.html.erb:38: unknown regexp options - tr
+/home/seduc/sisgered/app/views/classes/_form.html.erb:40: syntax error, unexpected '<'
+      </table>
+       ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:42: syntax error, unexpected '<'
+    <table width="100%"  align="center">
+     ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:42: syntax error, unexpected tIDENTIFIER, expecting ')'
+    <table width="100%"  align="center">
+                              ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:43: syntax error, unexpected '<'
+      <tr>
+       ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:44: syntax error, unexpected tIDENTIFIER, expecting ')'
+...           <td width="4%"align="left"><%= f.submit 'Salvar' ...
+                              ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:44: syntax error, unexpected '<'
+...  <td width="4%"align="left"><%= f.submit 'Salvar' ).to_s); ...
+                              ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:46: syntax error, unexpected '}', expecting ')'
+... home_path, {:method => "get"}  ).to_s); @output_buffer.conc...
+                              ^
+/home/seduc/sisgered/app/views/classes/_form.html.erb:61: syntax error, unexpected kENSURE, expecting kEND
+/home/seduc/sisgered/app/views/classes/_form.html.erb:63: syntax error, unexpected $end, expecting kEND) on line #38 of app/views/classes/_form.html.erb:
+35:         <%end%>
+36:         <tr>
+37:           <td colspan="4"><b>Identificação Nº no GDAE: </b><%= f.text_field :classe_descricao, :size => 60</td>
+38:         </tr>
+39: 
+40:       </table>
+41:       <br/>
+
+    app/views/classes/_form.html.erb:63:in `compile!'
+    app/views/classes/new.html.erb:9
+    app/controllers/classes_controller.rb:30:in `new'
+
+Rendered rescues/_trace (127.0ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClassesController#new (for 127.0.0.1 at 2017-02-22 11:25:47) [GET]
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0 AND (unidade_id = 4 or unidade_id = 54)) ORDER BY matricula ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classe_ano_letivo) as ano FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 4 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 4 ) ORDER BY classe_ano_letivo ASC, classe_classe ASC[0m
+  [4;36;1mClasse Load (0.0ms)[0m   [0;1mSELECT distinct(classe_ano_letivo) FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;35;1mAluno Load (0.6ms)[0m   [0mSELECT * FROM `alunos` WHERE `unidade_id`= 4 AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = 2017)ORDER BY aluno_nome ASC[0m
+  [4;36;1mClasse Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+Rendering template within layouts/application
+Rendering classes/new
+Rendered classes/_form (8.2ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-02-22 14:25:48' AND ends_at >= '2017-02-22 14:25:48') [0m
+  [4;36;1mroles_users Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=4) [0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 320ms (View: 137, DB: 7) | 200 OK [http://localhost/classes/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ClassesController#new (for 127.0.0.1 at 2017-02-22 11:25:56) [GET]
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.4ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0 AND (unidade_id = 4 or unidade_id = 54)) ORDER BY matricula ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classe_ano_letivo) as ano FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 4 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mClasse Load (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 4 ) ORDER BY classe_ano_letivo ASC, classe_classe ASC[0m
+  [4;35;1mClasse Load (0.0ms)[0m   [0mSELECT distinct(classe_ano_letivo) FROM `classes` ORDER BY classe_ano_letivo ASC[0m
+  [4;36;1mAluno Load (0.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE `unidade_id`= 4 AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = 2017)ORDER BY aluno_nome ASC[0m
+  [4;35;1mClasse Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendering template within layouts/application
+Rendering classes/new
+Rendered classes/_form (106.8ms)
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2017-02-22 14:25:56' AND ends_at >= '2017-02-22 14:25:56') [0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=4) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 208ms (View: 139, DB: 6) | 200 OK [http://localhost/classes/new]

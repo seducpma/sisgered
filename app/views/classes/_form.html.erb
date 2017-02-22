@@ -13,7 +13,7 @@
         <tr>
           <td ><b>Classe: </b><%= f.text_field :classe_classe, :size => 5 %></td>
           <td > <b>Período: </b><%= f.select :horario, Classe::HORARIO %></td>
-          <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5 %>
+          <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>"2017" %>
              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size =>2 %></td>
 
         </tr>
@@ -34,7 +34,7 @@
 
         <%end%>
         <tr>
-          <td colspan="4"><b>Identificação GDAE: </b><%= f.text_field :classe_descricao, :size => 60, :value =>"Número que consta no sistema do Estado"%></td>
+          <td colspan="4"><b>Identificação Nº no GDAE (Sistema do Estado SP): </b><%= f.text_field :classe_descricao, :size => 40%></td>
         </tr>
 
       </table>
