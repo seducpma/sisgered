@@ -17,8 +17,24 @@
              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size =>2 %></td>
 
         </tr>
+        
+        <% if (current_user.unidade_id < 42) or (current_user.unidade_id > 51) or (current_user.unidade_id != 62)  %>
+            <tr>
+              <td colspan="4">
+                 <font color="gray"> <u><b>EXEMPLO:</u> CLASSE: NI  ou  NII  ou BI  ou BII ou BIII ou MI ou MII   ....  </font> </b>
+              </td>
+            </tr>
+        <%else%>
+            <tr>
+              <td colspan="4">
+                 <font color="gray"><u><b>EXEMPLO:</u> CLASSE: 1 A  ou  1 B  ou 2 A  ou 2 B ou 3 A ou 3 B ....  </font> </b>
+              </td>
+            </tr>
+
+
+        <%end%>
         <tr>
-          <td colspan="4"><b>Identificação GDAE: </b><%= f.text_field :classe_descricao, :size => 60 %></td>
+          <td colspan="4"><b>Identificação GDAE: </b><%= f.text_field :classe_descricao, :size => 60, :value =>"Número que consta no sistema do Estado"%></td>
         </tr>
 
       </table>
