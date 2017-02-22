@@ -18,21 +18,18 @@
 
         </tr>
         
-        <% if (current_user.unidade_id < 42) or (current_user.unidade_id > 51) or (current_user.unidade_id != 62)  %>
+
             <tr>
               <td colspan="4">
-                 <font color="gray"> <u><b>EXEMPLO:</u> CLASSE: NI  ou  NII  ou BI  ou BII ou BIII ou MI ou MII   ....  </font> </b>
+                 <font color="gray"> <u><b>Ex.(Infantil):</u> CLASSE: NI A ou  NI B  ou NII A ou NII B ou BI A ou BI B ou MI A ou MII B   ....  <br/>
+                                     <u><b>Ex.(Fundamental):</u> CLASSE: 1 A  ou  1 B  ou 2 A  ou 2 B ou 3 A ou 3 B ....
+                 </font> </b>
               </td>
             </tr>
-        <%else%>
-            <tr>
-              <td colspan="4">
-                 <font color="gray"><u><b>EXEMPLO:</u> CLASSE: 1 A  ou  1 B  ou 2 A  ou 2 B ou 3 A ou 3 B ....  </font> </b>
-              </td>
-            </tr>
+        
 
 
-        <%end%>
+
         <tr>
           <td colspan="4"><b>Identificação Nº no GDAE (Sistema do Estado SP): </b><%= f.text_field :classe_descricao, :size => 40%></td>
         </tr>
