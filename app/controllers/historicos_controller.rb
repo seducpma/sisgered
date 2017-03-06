@@ -15,8 +15,8 @@ def resultado_final
 end
 
 def final_resultado
-     w=session[:classe_id]=params[:classe_resultado_final][:id]
-t=0
+     session[:classe_id]=params[:classe_resultado_final][:id]
+
      @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe_resultado_final][:id]])
      @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', params[:classe_resultado_final][:id],0])
 
@@ -25,7 +25,6 @@ t=0
 
      @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe_resultado_final][:id]],:order =>' matriculas.classe_num')
      @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
-   t=0
 
       render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
