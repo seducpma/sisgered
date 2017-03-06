@@ -1,3 +1,11 @@
+<style type="text/css">
+  .textovertical {
+	-webkit-transform:rotate(270deg);
+	-moz-transform:rotate(270deg);
+	-o-transform: rotate(270deg);
+}
+</style>
+
 <% @classe.each do |classe| %>
 
 <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
@@ -13,7 +21,7 @@
 
     </td>
   </tr>
-  <tr  style="height: 6px" , >
+  <tr  style="height: 6px" >
 
     <td style="border-color: white" width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
     <td style="border-color: white" colspan="2" align="center"><font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -35,30 +43,38 @@
             </tr>
             <%session[:mostra_nome]=1%>
             <table border="1" cellspacing="0" cellpadding="1" width="100%">
+               <tr  style="font-size: 6px">
+                 <td align="right"><font size ="2"><center><b>NOTA FINAL</b></center></font><br/>
+                      <font size =1"><b> Classe:</b> <%=h classe.classe_classe%></font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/>
+                      <font size ="1"><b> Período:</b> <%=h classe.horario %> &nbsp</font> <br/>
+                      <font size ="1"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font> &nbsp&nbsp&nbsp&nbsp&nbsp
+                      <br/><br/>
+                  </td>
+                 <% @atribuicao_classe.each do |atrib| %>
+
+
+                     <td align="center"width ="5%"> <div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
+
+
+                 <%end%>
+                </tr>
               <tr style="font-size: 6px">
                  <% @atribuicao_classe.each do |atrib| %>
                <% if session[:mostra_nome]==1%>
                 <td style="width: 30px">
                      <table border="1" cellspacing="0" cellpadding="0" width="100%">
                           <%cont = 0%>
-                       <tr style="font-size: 6px"><br/>
-
-                                  <td  align="center"><b><br/> Nº: </b> </td>
-                                  <td align="center"><br/><b> Nome: </b> </td>
+                       <tr style="font-size: 6px">
+                            <td  align="center"><b>Nº: </b> </td>
+                            <td align="center"><b> Nome: </b> </td>
                        </tr>
                          <% @matriculas_classe.each do |matriculas_classe| %>
                                     <tr style="font-size: 6px">
                                        <%  cont =cont+1%>
 
                                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                                          <%if @atribuicao_classe.length >12 %>
-                                              <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 12,:omission => "...") %></b></font> </td>
-                                          <% else if @atribuicao_classe.length < 7%>
-                                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b></font> </td>
-                                                 <%else%>
-                                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 11,:omission => "...") %></b></font> </td>
-                                                 <%end%>
-                                          <%end%>
+                                          <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 10,:omission => "...") %></b></font> </td>
+                                          
 
                                     </tr>
 
@@ -68,45 +84,8 @@
                                      <%session[:mostra_nome]=0%>
                 </td>
               <%end%>
-
-
-                  <% if (atrib.disciplina.disciplina).size > 11%>
-                       <% if (atrib.disciplina.disciplina).size < 20 %>
-                               <td align="center"width ="5%"  valign="top"><b> <%= atrib.disciplina.disciplina %></b><br/>
-                       <%else%>
-                           <td align="center"width ="5%"  valign="top">
-                             <% if  atrib.disciplina.disciplina ==  'OFICINA DE EDUCAÇÃO MATEMÁTICA'%>
-                                 <b>EDUCAÇÃO MATEMÁTICA</b>
-                                <% else if  atrib.disciplina.disciplina ==  'OFICINA DE EDUCAÇÃO AMBIENTAL'%>
-                                        <b>EDUCAÇÃO AMBIENTAL</b>
-                                       <% else if  atrib.disciplina.disciplina ==  'OFICINA DE JOGOS PEDAGÓGICOS'%>
-                                              <b>JOGOS PEDAGÓGICOS</b>
-                                           <% else if  atrib.disciplina.disciplina ==  'OFICINA DE LEITURA E EXPRESSÃO'%>
-                                                <b>LEITURA E EXPRESSÃO</b>
-                                              <% else if  atrib.disciplina.disciplina ==  'OFICINA DE EXPRESSÃO CORPORAL'%>
-                                                    <b>EXPRESSÃO CORPORAL</b>
-                                                     <%else if  atrib.disciplina.disciplina ==  'OFICINA DE MUSICALIZAÇÃO'%>
-                                                          <b>OFICINA DE MÚSICA</b>
-                                                           <%else%>
-                                                              <b><%= atrib.disciplina.disciplina %></b><br/>
-                                                           <%end%>
-                                                     <%end%>
-                                              <%end%>
-                                            <%end%>
-                                      <%end%>
-                                  <%end%>
-                           <% end %>
-                  <%else%>
-                      <td align="center"width ="5%"  valign="top">&nbsp<br/><b><%= atrib.disciplina.disciplina %> </b><br/>
-                   <%end%>
-
-
-
-
-
-
-
-                   <table border="1" cellspacing="0" cellpadding="0" width="100%">
+              <td align="center"width ="5%"  valign="top">
+                 <table border="1" cellspacing="0" cellpadding="0" width="100%">
                           <%cont = 0%>
                        <tr style="font-size: 6px">
                             <td align="center" width ="1%" ><b>Nota</b></td>
