@@ -31,7 +31,7 @@ class RolesUsersController < ApplicationController
     if current_user.has_role?('admin')
         @roles = Role.find(:all)
     else if current_user.has_role?('direcao_infantil')
-          @roles = Role.find(:all, :conditions => ['id > 8'])
+          @roles = Role.find(:all, :conditions => ['id = 10 or id = 12 or id = 6'])
          else if current_user.has_role?('direcao_fundamental')
                 @roles = Role.find(:all, :conditions => ['id > 4 and id < 9'])
                else
@@ -119,6 +119,7 @@ class RolesUsersController < ApplicationController
     end
   end
   def role_id
+    t=0
     $new_role_id = params[:roles_user_role_id]
     render :text => ''
   end
