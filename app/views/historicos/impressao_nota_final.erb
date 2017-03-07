@@ -7,136 +7,129 @@
 </style>
 
 <% @classe.each do |classe| %>
-
-<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
-  <tr style="border-color: white" style="height: 8px" >
-    <td style="border-color: white" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-    <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
-        <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+    <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+         <tr style="border-color: white" style="height: 8px">
+            <td style="border-color: white"rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+             <td style="border-color: white"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
                 <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
                 <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
                 <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
                 <%  session[:classe]=  classe.id%>
+             </td>
+          </tr>
+          <tr  style="height: 6px" >
 
+            <td style="border-color: white" width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+            <td style="border-color: white" colspan="2" align="center"><font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp
+                   <b>REGISTRO E CONTROLE DE RESULTADO FINAL DO RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
 
-    </td>
-  </tr>
-  <tr  style="height: 6px" >
+          </tr>
 
-    <td style="border-color: white" width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
-    <td style="border-color: white" colspan="2" align="center"><font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp
-           <b>REGISTRO E CONTROLE DE RESULTADO FINAL DO RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+          <%session[:mostra_nome]=1%>
+          <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
 
-  </tr>
-
-
- </table>
- <table border="0" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
-    <tr style="height: 7px" >
-       <td colspan="12"><b> Classe:</b> <%=h classe.classe_classe%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  <b> NOTA FINAL</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  <b> Período:</b> <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  <b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  <b> Curso:</b> Ensino Fundamental
-              </td>
-            </tr>
-            <%session[:mostra_nome]=1%>
-            
-               <tr  style="font-size: 6px">
-                 <td align="right"><font size ="2"><center><b>NOTA FINAL</b></center></font><br/>
-                      <font size =1"><b> Classe:</b> <%=h classe.classe_classe%></font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/>
+             <tr  style="font-size: 7px">
+                 <td colspan="2" align="right"><font size ="2"><center><b>NOTA FINAL</b></center></font><br/>
+                       <font size =1"><b> Classe:</b> <%=h classe.classe_classe%></font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/>
                       <font size ="1"><b> Período:</b> <%=h classe.horario %> &nbsp</font> <br/>
                       <font size ="1"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font> &nbsp&nbsp&nbsp&nbsp&nbsp
-                      <br/><br/>
                   </td>
+                 <%pv=0%>
                  <% @atribuicao_classe.each do |atrib| %>
-
-
-                     <td align="center"width ="5%"> <div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
-
-
+                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
                  <%end%>
                 </tr>
-              <tr style="font-size: 6px">
-                 <% @atribuicao_classe.each do |atrib| %>
-               <% if session[:mostra_nome]==1%>
-                <td style="width: 30px">
-                     <table border="1" cellspacing="0" cellpadding="0" width="100%"  style="border-color: white">
-                          <%cont = 0%>
+
+                <tr style="font-size: 6px">
+
+                    <% if session[:mostra_nome]==1%>
                        <tr style="font-size: 6px">
-                            <td  align="center"><b>Nº: </b> </td>
-                            <td align="center"><b> Nome: </b> </td>
-                       </tr>
-                         <% @matriculas_classe.each do |matriculas_classe| %>
-                                    <tr style="font-size: 6px">
-                                       <%  cont =cont+1%>
-
-                                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                                          <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 10,:omission => "...") %></b></font> </td>
-                                          
-
-                                    </tr>
-
-                         <%end%>
-
-                  </table>
-                                     <%session[:mostra_nome]=0%>
-                </td>
-              <%end%>
-              <td align="center"width ="5%"  valign="top">
-                 <table border="1" cellspacing="0" cellpadding="0" width="100%"  style="border-color: white">
-                          <%cont = 0%>
-                       <tr style="font-size: 6px">
-                            <td align="center" width ="1%" ><b>Nota</b></td>
-                            <td align="center" width =1%"><b>Falta</b></td>
-                       </tr>
-                         <% @alunos.each do |aluno| %>
-                             <%@notas.each do |nota|%>
-                                <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                    <tr style="font-size: 6px">
-                                       <%  cont =cont+1%>
-                                       <td align="center"><% if  nota.nota5.nil? %>
-                                                                                          ---
-                                                                                       <%else%>
-                                                                                          <%= nota.nota5 %>
-                                                                                       <%end %>
-                                         </font> </td>
-                                       <td align="center" ><%= nota.faltas5%></td>
-                                    </tr>
-
+                          <td  align="center"><b>Nº: </b> </td>
+                          <td align="center"><b> Nome: </b> </td>
+                          <% session[:disc] = 0 %>
+                          <% if pv == 0 %>
+                             <% @atribuicao_classe.each do |atrib| %>
+                                <td align="center" width ="1%" ><b>Nota</b></td>
+                                <td align="center" width =1%"><b>Falta</b></td>
+                                <% session[:disc] = session[:disc] + 1 %>
                               <%end%>
-                            <%end%>
-                         <%end%>
+                            <%pv=1%>
+                          <%end%>
+                       </tr>
+                    <%end%>
 
-                  </table>
-                 </td>
-                <%end%>
-              </tr>
-             
+                   <% @matriculas_classe.each do |matriculas_classe| %>
+                       <tr style="font-size: 6px">
+                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
+                              <% if session[:disc] < 10 %>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 30,:omission => "...") %></b></font> </td>
+                              <%else%>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 12,:omission => "...") %></b></font> </td>
+                             <%end%>
+                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                             <% @atribuicao_classe.each do |atrib| %>
+                                <%if @notas_alu.empty?%>
+                                      <%if matriculas_classe.status != "MATRICULADO"%>
+                                          <td align="center"><font color="red">TR</font></td>
+                                          <td align="center"> -- </td>
+                                      <%else%>
+                                       <td align="center"><font color="red">S/N</font></td>
+                                       <td align="center"> -- </td>
+                                      <%end%>
+                                <%else%>
+                                    <%@notas_alu.each do |nota|%>
+                                       <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                          <td align="center">
+                                              <% if  nota.nota5.nil? %>
+                                                     ---
+                                              <%else%>
+                                                  <%if (nota.nota5.to_i < 5.0)  %>
+                                                        <% if nota.nota5 =="F" %>
+                                                             <%= nota.nota5 %>
+                                                        <%else%>
+                                                             <font color ="red"> <%= nota.nota5 %> </font>
+                                                        <%end%>
+                                                 <%else%>
+                                                       <%= nota.nota5 %>
+                                                <%end%>
+                                               <%end %>
+                                         </td>
+                                         <td align="center" ><%= nota.faltas5%></td>
+                                      <%end%>
+                                   <%end%>
+                               <%end%>
 
+                   <%end%>
+                 </tr>
+                 <%session[:mostra_nome]=0%>
+           </tr>
+         <%cont = 0%>
+        <%end%>
 
-
-
-
-
-            </table>
-       <br/>
-       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Carimbo da U.E
-       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
-
-        <b>Americana</b>, <%= Time.now.strftime("%d de %B de %Y") %>
-        <br/>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
-        ________________________________ <br/>
-
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Secretário(a) U.E
+      </table>
+    </table>
 <%end%>
+<table  width="100%"style="border-color: white" >
+     <tr style="font-size: 6px"style="border-color: white">
+         <td align="left"   style="border-color: white"> <br/>
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Carimbo da U.E
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
 
+              <b>Americana</b>, <%= Time.now.strftime("%d de %B de %Y") %>
+              <br/>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+              ________________________________ <br/>
+
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Secretário(a) U.E
+              <br/>
+           </td>
+       </tr>
+  </table>

@@ -30,80 +30,83 @@
           <%session[:mostra_nome]=1%>
           <table border="1" cellspacing="0" cellpadding="1" width="100%">
                <tr  style="font-size: 8px">
-                 <td align="right"><font size ="2"><center><b>NOTA FINAL</b></center></font><br/>
+                 <td colspan="2" align="right"><font size ="2"><center><b>NOTA FINAL</b></center></font><br/>
                        <font size =1"><b> Classe:</b> <%=h classe.classe_classe%></font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/>
                       <font size ="1"><b> Período:</b> <%=h classe.horario %> &nbsp</font> <br/>
                       <font size ="1"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font> &nbsp&nbsp&nbsp&nbsp&nbsp
                   </td>
+                 <%pv=0%>
                  <% @atribuicao_classe.each do |atrib| %>
-                  
-                  
-                  <td align="center"width ="5%"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
-                  
+                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
                  <%end%>
                 </tr>
-              <tr style="font-size: 8px">
-               <% @atribuicao_classe.each do |atrib| %>
-               <% if session[:mostra_nome]==1%>
-                <td style="width: 30px">
-                 <table border="1" cellspacing="0" cellpadding="0" width="100%"  style="border-color: white">
-                          <%cont = 0%>
+
+                <tr style="font-size: 8px">
+                  
+                    <% if session[:mostra_nome]==1%>
                        <tr style="font-size: 9px">
-
-                                  <td  align="center"><b>Nº: </b> </td>
-                                  <td align="center"><b> Nome: </b> </td>
-                       </tr>
-                         <% @matriculas_classe.each do |matriculas_classe| %>
-                                    <tr style="font-size: 9px">
-                                       <%  cont =cont+1%>
-                                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                                          <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 10,:omission => "...") %></b></font> </td>
-                                    </tr>
-                         <%end%>
-                   <%session[:mostra_nome]=0%>
-                  </table>
-                </td>
-              <%end%>
-              <td align="center"width ="5%"  valign="top">
-                   <table border="1" cellspacing="0" cellpadding="0" width="100%"  style="border-color: white">
-                          <%cont = 0%>
-                       <tr style="font-size: 9px">
-                            <td align="center" width ="1%" ><b>Nota</b></td>
-                            <td align="center" width =1%"><b>Falta</b></td>
-                       </tr>
-                         <% @alunos.each do |aluno| %>
-                             <%@notas.each do |nota|%>
-                                <%if (nota.aluno_id == aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                    <tr style="font-size: 9px">
-                                       <%  cont =cont+1%>
-                                       <td align="center"><% if  nota.nota5.nil? %>
-                                                                                          ---
-                                                                                       <%else%>
-
-                                                                                          <%if (nota.nota5.to_i < 5.0)  %>
-                                                                                            <% if nota.nota5 =="F" %>
-                                                                                                 <%= nota.nota5 %>
-                                                                                            <%else%>
-                                                                                               <font color ="red"> <%= nota.nota5 %> </font>
-                                                                                            <%end%>
-                                                                                          <%else%>
-                                                                                                 <%= nota.nota5 %>
-                                                                                          <%end%>
-
-
-                                                                                       <%end %>
-                                         </font> </td>
-                                       <td align="center" ><%= nota.faltas5%></td>
-                                    </tr>
-
+                          <td  align="center"><b>Nº: </b> </td>
+                          <td align="center"><b> Nome: </b> </td>
+                          <% session[:disc] = 0 %>
+                          <% if pv == 0 %>
+                              <% @atribuicao_classe.each do |atrib| %>
+                                <td align="center" width ="1%" ><b>Nota</b></td>
+                                <td align="center" width =1%"><b>Falta</b></td>
+                                <% session[:disc] = session[:disc] + 1 %>
                               <%end%>
-                            <%end%>
-                         <%end%>
+                            <%pv=1%>
+                          <%end%>
+                       </tr>
+                    <%end%>
+                  
+                   <% @matriculas_classe.each do |matriculas_classe| %>
+                       <tr style="font-size: 9px">
+                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
+                              <% if session[:disc] < 10 %>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 30,:omission => "...") %></b></font> </td>
+                              <%else%>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 12,:omission => "...") %></b></font> </td>
+                             <%end%>
+                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                             <% @atribuicao_classe.each do |atrib| %>
+                                <%if @notas_alu.empty?%>
+                                      <%if matriculas_classe.status != "MATRICULADO"%>
+                                          <td align="center"><font color="red">TR</font></td>
+                                          <td align="center"> -- </td>
+                                      <%else%>
+                                       <td align="center"><font color="red">S/N</font></td>
+                                       <td align="center"> -- </td>
+                                      <%end%>
+                                <%else%>
+                                    <%@notas_alu.each do |nota|%>
+                                       <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                          <td align="center">
+                                              <% if  nota.nota5.nil? %>
+                                                     ---
+                                              <%else%>
+                                                  <%if (nota.nota5.to_i < 5.0)  %>
+                                                        <% if nota.nota5 =="F" %>
+                                                             <%= nota.nota5 %>
+                                                        <%else%>
+                                                             <font color ="red"> <%= nota.nota5 %> </font>
+                                                        <%end%>
+                                                 <%else%>
+                                                       <%= nota.nota5 %>
+                                                <%end%>
+                                               <%end %>
+                                         </td>
+                                         <td align="center" ><%= nota.faltas5%></td>
+                                      <%end%>
+                                   <%end%>
+                               <%end%>
 
-                   </table>
-              </td>
-           <%end%>
-        </tr>
+                   <%end%>
+                </tr>
+              <%session[:mostra_nome]=0%>
+           </tr>
+         <%cont = 0%>
+        <%end%>
+
       </table>
             <table  width="100%">
                <tr>
