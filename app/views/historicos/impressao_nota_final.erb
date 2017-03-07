@@ -63,9 +63,9 @@
                        <tr style="font-size: 6px">
                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
                               <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 30,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 16,:omission => "...") %></b></font> </td>
                               <%else%>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 12,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 14,:omission => "...") %></b></font> </td>
                              <%end%>
                              <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
                              <% @atribuicao_classe.each do |atrib| %>

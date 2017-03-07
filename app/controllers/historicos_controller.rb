@@ -179,9 +179,10 @@ end
 def impressao_nota_final
 
      @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
-     @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?',session[:classe_id],0])
+     #@atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?',session[:classe_id],0])
+     @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0],:order =>'disciplinas.ordem ASC' )
      @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
-     @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null", session[:classe_id]],:order =>'disciplinas.ordem ASC')
+     #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null", session[:classe_id]],:order =>'disciplinas.ordem ASC')
      @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
      @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
      
