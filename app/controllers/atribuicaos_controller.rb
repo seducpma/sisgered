@@ -433,6 +433,7 @@ def mapa_de_classe
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  params[:classe][:id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', params[:classe][:id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
+       @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
        @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  params[:classe][:id]],:order =>'matriculas.id ASC')
        @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe][:id]],:order =>' matriculas.classe_num')
        @disciplinas= Disciplina.find(:all)
@@ -442,12 +443,12 @@ def mapa_de_classe
 end
 
 def mapa_de_classe_anterior
-       w=session[:classe_id] = params[:classe_mapa][:id]
-       w1=session[:ano] =  params[:ano_letivo_mapa]
-
+       session[:classe_id] = params[:classe_mapa][:id]
+       session[:ano] =  params[:ano_letivo_mapa]
        @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
        @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
+       @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
        @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  session[:classe_id]],:order =>'matriculas.id ASC')
        @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
        @disciplinas= Disciplina.find(:all)
@@ -458,50 +459,55 @@ def mapa_de_classe_anterior
 end
 
 def impressao_lencol1
-       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id] ])
-       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id] ], :order => 'nome')
+       @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
+       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
-       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? ",  session[:classe_id] ],:order =>'disciplinas.ordem ASC')
-       @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', session[:classe_id]],:order =>' matriculas.classe_num')
+       @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  session[:classe_id]],:order =>'matriculas.id ASC')
+       @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
        @disciplinas= Disciplina.find(:all)
   render :layout => "impressao"
 end
 
 def impressao_lencol2
-       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id] ])
-       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id] ], :order => 'nome')
+       @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
+       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
-       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? ",  session[:classe_id] ],:order =>'disciplinas.ordem ASC')
-       @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', session[:classe_id]],:order =>'matriculas.classe_num')
+       @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  session[:classe_id]],:order =>'matriculas.id ASC')
+       @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
        @disciplinas= Disciplina.find(:all)
   render :layout => "impressao"
 end
 
 def impressao_lencol3
-       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id] ])
-       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id] ], :order => 'nome')
+       @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
+       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
-       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? ",  session[:classe_id] ],:order =>'disciplinas.ordem ASC')
-       @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', session[:classe_id]],:order =>'matriculas.classe_num')
+       @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  session[:classe_id]],:order =>'matriculas.id ASC')
+       @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
        @disciplinas= Disciplina.find(:all)
   render :layout => "impressao"
 end
 
 def impressao_lencol4
-       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id] ])
-       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id] ], :order => 'nome')
+       @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
+       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
-       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? ",  session[:classe_id] ],:order =>'disciplinas.ordem ASC')
-       @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', session[:classe_id]],:order =>'matriculas.classe_num')
+       @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  session[:classe_id]],:order =>'matriculas.id ASC')
+       @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
        @disciplinas= Disciplina.find(:all)
   render :layout => "impressao"
 end
 def impressao_lencol5
-       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id] ])
-       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id] ], :order => 'nome')
+       @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
+       @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
-       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["atribuicaos.classe_id =? ",  session[:classe_id] ],:order =>'disciplinas.ordem ASC')
-       @alunos = Aluno.find(:all, :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', session[:classe_id]],:order =>'matriculas.classe_num')
+       @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
+       @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  session[:classe_id]],:order =>'matriculas.id ASC')
+       @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
        @disciplinas= Disciplina.find(:all)
   render :layout => "impressao"
 end
