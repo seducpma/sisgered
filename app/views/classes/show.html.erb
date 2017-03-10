@@ -14,10 +14,10 @@
              <td valign="top">
                <table  bgcolor="#DCDCDC" width="100%">
                  <tr bgcolor="#F5F5F5">
-                  <td align="left" width="12%"><b> Ano Letivo:</b></td>
-                  <td align="left" width="12%"> <%=h @classe.classe_ano_letivo %><% session[:classe_id] = @classe.id%></td>
-                   <td align="left" width="12%"><b>Unidade:</b></td>
-                   <td align="left" width="70%"> <%=h @classe.unidade.nome%> </td>
+                  <td align="left" width="16%"><b> Ano Letivo:</b></td>
+                  <td align="left" width="16%"> <%=h @classe.classe_ano_letivo %><% session[:classe_id] = @classe.id%></td>
+                   <td align="left" width="16%"><b>Unidade:</b></td>
+                   <td align="left"> <%=h @classe.unidade.nome%> </td>
                 </tr>
                 <tr bgcolor="#F5F5F5" >
                    <td align="left"><b>Classe:</b></td>
@@ -26,7 +26,7 @@
                    <td align="left"> <%=h @classe.horario %></td>
                  </tr>
                  <tr bgcolor="#F5F5F5" >
-                   <td align="left"><b>GDAE:</b></td>
+                   <td align="left"><b>GDAE / PRODESP:</b></td>
                    <td colspan="3"align="left"> <%=h @classe.classe_descricao %></td>
                  </tr>
                </table>
