@@ -57,7 +57,7 @@
                          <%else%>
                            <%= h@matricula.status%>
                           <%end%> 
-                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: &nbsp <%= f.collection_select :status , @status, :status, :status %> </b>
+                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: &nbsp <%= f.collection_select :status , @status_transf, :status, :status %> </b>
                     </td>
                   </tr>
                   <tr>
@@ -82,6 +82,11 @@
                               </tr>
                           </table>
                         </fieldset>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                        <font color ="red"><u><b> OBS:</b></u> Para remanejar aluno utilize a opção do menu CADASTRAR / REMANEJAMENTO </font>
                     </td>
                   </tr>
             </table>

@@ -388,6 +388,7 @@ end
   def load_dados_iniciais
        unidade=  current_user.unidade_id
        @status= SituacaoAluno.find(:all)
+       @status_transf = SituacaoAluno.find(:all,:conditions =>['id != 3 AND id != 4'])
        @status_saida= SituacaoAluno.find(:all,:conditions =>['id = 2'])
        if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
          @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id > 41 AND id <52'], :order => 'nome ASC')
