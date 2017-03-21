@@ -332,7 +332,7 @@ class MatriculasController < ApplicationController
   def unidade_transferencia
 
    session[:unidade_ant_id] = Unidade.find_by_nome(params[:matricula_procedencia])
-   @alunos = Aluno.find(:all, :conditions =>['unidade_id =? AND aluno_status is null',  session[:unidade_ant_id]], :order => 'aluno_nome')
+   @alunos = Aluno.find(:all, :joins =>"inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id =? AND alunos.aluno_status is null AND matriculas.ano_letivo =?',  session[:unidade_ant_id], Time.now.year], :order => 'aluno_nome' )
    @unidade_para = Unidade.find(:all, :conditions => ['id =?', current_user.unidade_id], :order => 'nome ASC')
    @classes = Classe.find(:all, :conditions =>['unidade_id =?',  current_user.unidade_id], :order => 'classe_classe')
    render :partial => 'selecao_alunos'
@@ -403,15 +403,18 @@ end
                         ORDER BY aluno_nome ASC")
 
        @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
-       @alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA")  ', current_user.unidade_id],:order => 'alunos.aluno_nome')
+       @alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND  matriculas.ano_letivo =?', current_user.unidade_id, Time.now.year],:order => 'alunos.aluno_nome')
 
       @classes = Classe.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'classe_classe')
+      @classes_transf = Classe.find(:all, :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')
       @classes_atual = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')
 
        if current_user.unidade_id == 53 or current_user.unidade_id == 52
-            @classe = Classe.find(:all, :order => 'classe_classe ASC')
+            @classe = Classe.find(:all, :conditions => ['classe_ano_letivo = ? ',  Time.now.year  ], :order => 'classe_classe ASC')
+
         else
             @classe = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
+
         end
   end
 end
