@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                    <td><b>Classe: </b></td>
-                   <td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
+                   <td><%= f.collection_select :classe_id, @classes_transf, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
                 </tr>
                 <tr>
                    <td width ="23%"><b>Data Transferência: </b></td><td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%></td>

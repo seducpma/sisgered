@@ -112,9 +112,15 @@ class MatriculasController < ApplicationController
       if @matricula.save
        @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
        @aluno[0].unidade_id =  current_user.unidade_id
+
+          if session[:saida] == 1
+               t=0
+               @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
+               @aluno[0].aluno_status =  nil
+               session[:saida] = nil
+          end
        @aluno[0].save
-       
-       if !@matricula_anterior.nil?
+        if !@matricula_anterior.nil?
 
           if  @matricula.status == "*REMANEJADO"
               @matricula_anterior.status = "REMANEJADO"
@@ -281,6 +287,15 @@ class MatriculasController < ApplicationController
        if @matricula.data_transferencia.today?
           @matricula.data_transferencia = nil
           @matricula.save
+          t=0
+          if session[:saida] == 1
+               t=0
+               @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
+               @aluno[0].aluno_status =  'TRANSFERIDO'
+               @aluno[0].save
+               session[:saida] = nil
+          end
+
        end
         flash[:notice] = 'SALVO COM SUCESSO'
         w1 = session[:alterar_direcionamento_editar]

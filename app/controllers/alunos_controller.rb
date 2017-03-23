@@ -65,6 +65,7 @@ end
     
     @aluno = Aluno.find(params[:id])
     @aluno.unidade_id = current_user.unidade_id
+    @aluno.aluno_status = nil
     respond_to do |format|
       if @aluno.update_attributes(params[:aluno])
         flash[:notice] = 'CADASTRADO COM SUCESSO.'

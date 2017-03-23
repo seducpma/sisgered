@@ -11,7 +11,7 @@
           <tr>
             <td>
               <a href="#" class="SEDUC_filtro"><%= radio_button_tag(:type_of, "1") %></a>Para Unidades SEDUC
-              <a href="#" class="OUTRAS_filtro"><%= radio_button_tag(:type_of, "2") %></a>Para OUTRAS Unidades
+              <a href="#" class="OUTRAS_filtro"><%= radio_button_tag(:type_of, "2", session[:saida] = 1) %></a>Para OUTRAS Unidades
             </td>
          </tr>
 
