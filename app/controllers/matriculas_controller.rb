@@ -112,15 +112,9 @@ class MatriculasController < ApplicationController
       if @matricula.save
        @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
        @aluno[0].unidade_id =  current_user.unidade_id
-
-          if session[:saida] == 1
-               t=0
-               @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
-               @aluno[0].aluno_status =  nil
-               session[:saida] = nil
-          end
        @aluno[0].save
-        if !@matricula_anterior.nil?
+       
+       if !@matricula_anterior.nil?
 
           if  @matricula.status == "*REMANEJADO"
               @matricula_anterior.status = "REMANEJADO"
@@ -287,7 +281,7 @@ class MatriculasController < ApplicationController
        if @matricula.data_transferencia.today?
           @matricula.data_transferencia = nil
           @matricula.save
-          t=0
+
           if session[:saida] == 1
                t=0
                @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
@@ -298,7 +292,6 @@ class MatriculasController < ApplicationController
 
        end
         flash[:notice] = 'SALVO COM SUCESSO'
-        w1 = session[:alterar_direcionamento_editar]
         if session[:alterar_direcionamento_editar] == 0
            format.html { redirect_to(@matricula) }
            format.xml  { head :ok }
@@ -415,7 +408,7 @@ end
 
        @alunos = Aluno.find(:all, :conditions => ['aluno_status is null'],:order => 'aluno_nome')
        @alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+unidade.to_s+" AND`id` NOT IN
-                       (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+unidade.to_s+")
+                       (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+unidade.to_s+") AND aluno_status  is null
                         ORDER BY aluno_nome ASC")
 
        @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
