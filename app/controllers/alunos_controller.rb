@@ -312,7 +312,10 @@ def consulta_cadastro_aluno
       @socioeconomico = Socioeconomico.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
       @saude = Saude.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
       @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
+      
       @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', params[:aluno][:aluno_id]])
+
+  
        render :update do |page|
           page.replace_html 'cadastro', :partial => 'exibe_cadastro'
        end

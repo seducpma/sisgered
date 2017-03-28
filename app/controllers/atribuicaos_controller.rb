@@ -234,8 +234,9 @@ def relatorios_anterior_classe
 if params[:type_of].to_i == 1
        session[:aluno] = params[:aluno][:id]
        session[:ano_nota] = params[:ano_letivo1]
-       @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', session[:aluno]])
+       @aluno = Aluno.find(:all,:conditions =>['id = ? ', session[:aluno]])
        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],session[:ano_nota] ])
+       t=0
        @matriculas.each do |matricula|
          session[:classe]=matricula.classe_id
          session[:num]=matricula.classe_num
@@ -265,6 +266,7 @@ if params[:type_of].to_i == 1
       @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota] , session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
       @notas = @notasB+@notasD
       @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], session[:ano_nota],nil ] )
+      t=0
        render :update do |page|
           page.replace_html 'relatorio', :partial => 'relatorio_aluno'
        end
