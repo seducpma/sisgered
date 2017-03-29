@@ -5,6 +5,7 @@
      <font size="3"><strong>CADASTRO DE ALUNO DA SECRETARIA EDUCAÇÃO DE AMERICANA</strong></font><br/>
  </div>
     <div class="tabs">
+      <%  @alunos_todos =  Aluno.find(:all,:order => "aluno_nome") %>
       <% form_remote_tag :url => consulta_cadastro_aluno_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
           <fieldset>
             <table width="100%" align="center" bgcolor="#DCDCDC" >

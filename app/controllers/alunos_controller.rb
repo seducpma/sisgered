@@ -329,7 +329,6 @@ end
 
 
   def load_alunos
-       @alunos_todos =  Aluno.find(:all,:order => "aluno_nome")
 
     if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
 
