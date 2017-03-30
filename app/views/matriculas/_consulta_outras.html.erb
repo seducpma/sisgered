@@ -3,6 +3,11 @@
   <font  size="2">
     <br/>
     <table width="100%" align="center" bgcolor="#F5F5F5" >
+
+                <%  @alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+(current_user.unidade_id).to_s+" AND`id` NOT IN
+                       (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+(current_user.unidade_id).to_s+") AND aluno_status  is null
+                        ORDER BY aluno_nome ASC") %>
+                <%@classes_transf = Classe.find(:all, :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')%>
         <tr> <td ></td> </tr>
         <tr>
           <td colspan="2" align="center">

@@ -3,17 +3,20 @@
   <font  size="2">
     <br/>
     <table width="100%" align="center" bgcolor="#F5F5F5">
+        <%@classes_transf = Classe.find(:all, :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')%>
+        
         <tr> <td></td> </tr>
         <tr> <td></td> </tr>
         <tr>
           <td colspan="2" align="center">
-            <font color="blue"><b><u> TRANSFERÊNCIA DE ALUNOS ENTRE CLASSES DA MESMA UNIDADE</u></b> <br/><br/>
+            <font color="blue"><b><u> REMANEJAMENTO DE ALUNOS ENTRE CLASSES DA MESMA UNIDADE</u></b> <br/><br/>
           </td>
        </tr>
         <tr>
           <td colspan="2">
               <table>
                 <tr>
+                  
                   <td><b>Aluno: </b></td><td><%= f.collection_select :aluno_id , @alunos3, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
 
                      <%= observe_field 'matricula_aluno_id',

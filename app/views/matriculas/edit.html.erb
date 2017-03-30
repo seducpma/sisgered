@@ -10,6 +10,7 @@
             <font  size="2">
               <br/>
               <table width="100%" align="center" bgcolor="#F5F5F5">
+                  <%  @classes = Classe.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'classe_classe') %>               
                   <tr> <td></td> </tr>
                   <%if (@matricula.status =="MATRICULADO") %>
                     <tr>

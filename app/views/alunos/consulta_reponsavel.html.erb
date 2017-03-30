@@ -8,6 +8,7 @@
     <% form_remote_tag :url => consulta_responsaveis_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
+         <%  @alunos =  Aluno.find(:all,:select => "id, aluno_nome",:order => "aluno_nome")%>
           <tr>
             <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
                &nbsp&nbsp&nbsp

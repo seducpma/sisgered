@@ -1,4 +1,9 @@
        <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <%  if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then %>>
+               <%@alunosRA =  Aluno.find(:all, :select => 'id, aluno_nome, aluno_ra',:order => "aluno_ra")%>
+          <%  else %>
+                <%@alunosRA =  Aluno.find(:all, :select => 'id, aluno_nome, aluno_ra, unidade_id',:conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_ra")%>
+          <% end %>
           <tr>
             <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno  RA:</b></font>
                &nbsp&nbsp&nbsp

@@ -1,4 +1,17 @@
   <table width="100%"  >
+    <%  if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then %>
+        <% if current_user.has_role?('admin') %>
+            <% @alunos1 = Aluno.find(:all,:select => "id, aluno_nome", :order => 'aluno_nome ASC' ) %>
+        <%  else %>
+            <% @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' ) %>
+        <%  end %>
+    <%  else %>
+        <% if current_user.has_role?('admin') %>
+            <% @alunos1 = Aluno.find(:all,:select => "id, aluno_nome", :order => 'aluno_nome ASC' ) %>
+        <%  else %>
+            <% @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' ) %>
+        <%  end %>
+    <% end %>
    <tr>
      <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
         <%= collection_select :aluno, :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>

@@ -8,6 +8,10 @@
         <% form_for @matricula do |f| %>
          <%= f.error_messages %>
         <fieldset><legend><font size=4>Matrícula Aluno</font></legend>
+                <%  @alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+(current_user.unidade_id).to_s+" AND`id` NOT IN
+                       (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+(current_user.unidade_id).to_s+") AND aluno_status  is null
+                        ORDER BY aluno_nome ASC") %>
+          <% @classes_atual = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe') %>
         <table>
             <tr>
               <td colspan="2"><font color ="red" size ="3"><b><u>ATENÇÃO:</u> Antes de matricular os alunos na classe, certifique-se que os TODOS os professores já foram atribuidos às classes.</b>        <font></td>

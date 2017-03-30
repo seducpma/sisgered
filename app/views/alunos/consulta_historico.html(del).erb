@@ -4,12 +4,13 @@
 <% title "CONSULTA_HISTORICO".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>HISTORICO ESCOLAR</strong></font><br/>
+     <font size="3"><strong>HISTORICO ESCOLARssss</strong></font><br/>
  </div>
     <div class="tabs">
        <% form_tag historico_escolar_path, :method => 'get' do %>
       <fieldset>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
+         <%  @alunos =  Aluno.find(:all,:select => "id, aluno_nome",:order => "aluno_nome")%>
           <tr>
             <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
                &nbsp&nbsp&nbsp<%= collection_select :aluno, :id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>

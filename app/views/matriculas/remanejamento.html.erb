@@ -11,6 +11,7 @@
         <font  size="2">
           <br/>
           <table width="100%" align="center" bgcolor="#F5F5F5">
+              <%@classes_transf = Classe.find(:all, :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')%>
               <tr> <td></td> </tr>
               <tr> <td></td> </tr>
               <tr>
