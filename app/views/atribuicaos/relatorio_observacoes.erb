@@ -8,7 +8,7 @@
       <% form_tag relatorio_observacoes_atribuicaos_path, :method => 'get' do %>
       <fieldset>
         <table width="100%" align="center" bgcolor="#DCDCDC" >
-
+           <% @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome') %>
           <tr>
             <td align="left"><b>Aluno:</b></font>
                &nbsp&nbsp&nbsp<%= select_tag :aluno, options_for_select(@alunos2.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %></td>
