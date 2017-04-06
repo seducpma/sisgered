@@ -1,8 +1,8 @@
 class ClassesController < ApplicationController
 
-  before_filter :load_professors
+  # before_filter :load_professors
   before_filter :load_classes
-  before_filter :load_alunos
+  # before_filter :load_alunos
   
 
 
@@ -142,13 +142,13 @@ end
   end
 
 
-  def load_professors
-    if current_user.unidade_id == 53 or current_user.unidade_id == 52
-        @professors = Professor.find(:all,:conditions =>'desligado = 0', :order => 'nome ASC')
-    else
-        @professors = Professor.find(:all, :conditions => ['desligado = 0 AND (unidade_id = ? or unidade_id = 54)', current_user.unidade_id  ],:order => 'matricula ASC')
-    end
-  end
+#  def load_professors
+#    if current_user.unidade_id == 53 or current_user.unidade_id == 52
+#        @professors = Professor.find(:all,:conditions =>'desligado = 0', :order => 'nome ASC')
+#    else
+#        @professors = Professor.find(:all, :conditions => ['desligado = 0 AND (unidade_id = ? or unidade_id = 54)', current_user.unidade_id  ],:order => 'matricula ASC')
+#    end
+#  end
 
 
 def consulta_classe_aluno
@@ -238,25 +238,25 @@ end
 
 
  def load_classes
-  @ano =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')
+   @ano =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @classe = Classe.find(:all, :order => 'classe_classe ASC')
-        @classe_todas =  Classe.find(:all, :order => 'classe_classe ASC')
+        #@classe_todas =  Classe.find(:all, :order => 'classe_classe ASC')
     else
         @classe = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
-        @classe_todas =  Classe.find(:all, :conditions => ['unidade_id = ? ', current_user.unidade_id  ], :order => 'classe_ano_letivo ASC, classe_classe ASC')
+        #@classe_todas =  Classe.find(:all, :conditions => ['unidade_id = ? ', current_user.unidade_id  ], :order => 'classe_ano_letivo ASC, classe_classe ASC')
         @classe_td =  Classe.find(:all,:select => 'distinct(classe_ano_letivo)',:order => 'classe_ano_letivo ASC')
 
     end
  end
 
 
-  def load_alunos
-   if current_user.unidade_id == 53 or current_user.unidade_id == 52
-        @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+") ORDER BY aluno_nome ASC")
-    else
-        @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+(current_user.unidade_id).to_s+" AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")ORDER BY aluno_nome ASC")
-    end
+#  def load_alunos
+#   if current_user.unidade_id == 53 or current_user.unidade_id == 52
+#        @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+") ORDER BY aluno_nome ASC")
+#    else
+#        @alunos = Aluno.find_by_sql("SELECT * FROM `alunos` WHERE `unidade_id`= "+(current_user.unidade_id).to_s+" AND`id`not in (SELECT matriculas.aluno_id FROM classes INNER JOIN matriculas ON classes.id = matriculas.classe_id where classes.classe_ano_letivo = "+(Time.now.year).to_s+")ORDER BY aluno_nome ASC")
+#    end
 
- end
+# end
 end
