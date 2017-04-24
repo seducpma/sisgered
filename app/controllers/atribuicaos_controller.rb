@@ -730,14 +730,16 @@ end
         @classes = Classe.find(:all, :conditions => ['classe_ano_letivo = ?', Time.now.year], :order => 'classe_classe ASC')
         #@classes_boletim_anterior = Classe.find(:all, :order => 'classe_classe ASC')
        if current_user.professor_id.nil?
-          if current_user.unidade_id < 42 or current_user.unidade_id > 53
-             @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+          if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
+# Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
+            @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
           else
             @disciplinas1 = Disciplina.find(:all, :conditions => ["id < 26 or id > 27"])
           end
 
       else
-          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+          if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
+# Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
               @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
           else
             @disciplinas1 = Disciplina.find(:all, :conditions => ["id != 27 and id !=26"])
@@ -747,14 +749,16 @@ end
        @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ?', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
        #@classes_boletim_anterior = Classe.find(:all, :conditions => ['unidade_id = ?', current_user.unidade_id ], :order => 'classe_ano_letivo ASC, classe_classe ASC')
       if current_user.professor_id.nil?
-          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+          if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
+# Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
              @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
           else
             @disciplinas1 = Disciplina.find(:all, :conditions => ["id < 26 or id > 27"])
           end
 
       else
-          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+          if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
+# Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
               @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
           else
             @disciplinas1 = Disciplina.find(:all, :conditions => ["id != 27 and id !=26"])
@@ -769,7 +773,8 @@ end
 
    def load_professors
     if current_user.unidade_id == 53 or current_user.unidade_id == 52
-        @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
+
+       @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         @professors1 = Professor.find(:all, :select => "id, nome", :conditions => 'desligado = 0',:order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
@@ -789,7 +794,8 @@ end
    def load_disciplinas
       
       if current_user.professor_id.nil?
-          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+          if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
+# Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
               @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"])
               @nota=Nota.find(62)
           else
@@ -798,7 +804,8 @@ end
           end
 
       else
-          if current_user.unidade_id < 42 or current_user.unidade_id > 53
+          if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
+# Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
               @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"])
               @nota=Nota.find(62)
           else
