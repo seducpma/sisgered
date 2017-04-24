@@ -35,7 +35,8 @@
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
      
-     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('secretaria_infantil'))%>
+<!-- # Acrescentei na linha acima o perfil de "secretaria_infantil" que não estava conseguindo imprimir a Lista Piloto 24/04/2017 ###Alex -->
          <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_classe_path, :title => "Nova Consulta" %></td>
          <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_piloto_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
     <%else%>
