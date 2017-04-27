@@ -46,8 +46,12 @@
                   <tr>
                     <td width ="14%"><b>Aluno Nº: </b></td>
                     <td><%= f.text_field :classe_num, :size => '2'%>
+<!-- Comentei as linhas abaixo pois foi disponibilizada a opção de alterar a classe alterando somente a matricula, quando na verdade tem que
+alterar também todas as atribuições das notas além de verificar se tem que excluir ou adicionar alguma atribuição que a nova classe possua
+em relação a antiga! 27/04/2017 18:52 ###ALEX
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Classe: </b>
                         &nbsp <%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
+-->
 
                     </td>
                   </tr>
