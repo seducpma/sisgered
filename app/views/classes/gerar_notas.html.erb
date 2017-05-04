@@ -1,0 +1,44 @@
+<div id="interno3">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>GERAR NOTAS</strong></font><br/>
+ </div>
+      <div class="tabs">
+        <%  session[:saida] = 1 %>
+
+        <fieldset><legend><font size=4>Notas Aluno</font></legend>
+        <table>
+            <tr>
+              <td ><b> Foram geradas notas para os alunos na classe:
+                  <% for classe in @classe %> -
+                     <%=h classe.classe_classe%> - Ano letivo: <%=h classe.classe_ano_letivo %>
+                  <%end%>
+                </b></td>
+            </tr>
+             <%for matricula in @matriculas%>
+                <% @notas = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=?',matricula.aluno_id,Time.now.year]) %>
+                <% for notas in @notas %>
+                    <tr>
+                      <td>
+                        &nbsp&nbsp&nbsp&nbsp<b> > </b><%=h notas.aluno.aluno_nome %> - <%=h notas.disciplina.disciplina %>
+                      </td>
+                    </tr>
+                <%  end %>
+             <%end%>
+
+         </table>
+         </fieldset>
+        <table width="100%">
+           <tr>
+              
+
+             
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
+
+    </div>
+</div>
+<br/>
+</div>

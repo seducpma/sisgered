@@ -184,6 +184,56 @@ def editar_classe_aluno
        end
 end
 
+def gerar_notas
+       session[:classe_id]
+       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0])
+       for matricula in @matriculas
+          session[:matricula_aluno_id] = matricula.aluno_id
+          @notas_atribuicao_classe = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=?', matricula.aluno_id,Time.now.year])
+          if @notas_atribuicao_classe.empty?
+              for  atribuicao in @atribuicao_classe
+                 session[:classe]= atribuicao.classe_id
+                 session[:atribuicao]= atribuicao.id
+                 session[:professor]= atribuicao.professor_id
+                 session[:disciplina]= atribuicao.disciplina_id
+                           if (current_user.unidade_id > 41  and  current_user.unidade_id < 52) or (current_user.unidade_id == 62)
+                                @nota = Nota.new(params[:nota])
+                                @nota.aluno_id = matricula.aluno_id
+                                @nota.atribuicao_id= session[:atribuicao]
+                                @nota.matricula_id= matricula.id
+                                @nota.professor_id= session[:professor]
+                                @nota.unidade_id= current_user.unidade_id
+                                @nota.disciplina_id = session[:disciplina]
+                                @nota.ano_letivo =  Time.now.year
+                                @nota.nota1 = nil
+                                @nota.faltas1 = 0
+                                @nota.aulas1 = 0
+                                @nota.nota2 = nil
+                                @nota.faltas2 = 0
+                                @nota.aulas2 = 0
+                                @nota.nota3 = nil
+                                @nota.faltas3 = 0
+                                @nota.aulas3 = 0
+                                @nota.nota4 = nil
+                                @nota.faltas4 = 0
+                                @nota.aulas4 = 0
+                                @nota.nota5 = nil
+                                @nota.faltas5 = 0
+                                @nota.aulas5 = 0
+                                  if @nota.save
+                                     flash[:notice] = 'NOTAS CRIADAS COM SUCESSO!'
+                                  end
+                           end
+              end
+          end
+       end
+  end
+
+
+
+
 
  def destroy_professor
    t=(params[:id])
