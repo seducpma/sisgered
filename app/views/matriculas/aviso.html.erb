@@ -11,7 +11,7 @@
         <table>
             <tr>
               <td ><font color ="red" size ="4"><b><u>ATENÇÃO:</u> Antes de matricular os alunos na classe, certifique-se que os TODOS os professores já foram atribuidos às classes.
-                    <br/> NÃO MATRICULAR OS ALUNOS SE OS PROFESSORES NÃO ESTIVEREM ATRIBUIDOS ÀS CLASSES.</b>        <font></td>
+                    <br/> NÃO MATRICULAR OS ALUNOS ANTES QUE TODOS OS PROFESSORES NÃO ESTIVEREM ATRIBUIDOS ÀS CLASSES.</b>        <font></td>
             </tr>
 
          </table>
@@ -20,7 +20,8 @@
            <tr>
               
 
-             <td width =" 10%"><%= button_to 'MATRICULAR', new_matricula_path %> </td> <td><font color ="blue" size ="3"> <b> <= Clique aqui para continuar .... </b>        <font></td>
+             <td width =" 10%"><%= button_to 'MATRICULAR', new_matricula_path %> </td> 
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
         </table>
 

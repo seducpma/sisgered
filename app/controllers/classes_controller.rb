@@ -153,8 +153,8 @@ end
 
 def consulta_classe_aluno
 
-       w=session[:classe_id]=params[:classe][:id]
-       t=0
+       session[:classe_id]=params[:classe][:id]
+       
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0])
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')

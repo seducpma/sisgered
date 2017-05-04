@@ -77,14 +77,12 @@ class MatriculasController < ApplicationController
    if session[:flagnum] == 1
       @matricula = Matricula.new(params[:matricula])
       session[:flagnum] = 0
-      t=0
    else
      w=params[:matricula][:classe_id]
         @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
        if  @matricula_num.nil?
          @matricula = Matricula.new(params[:matricula])
          @matricula.classe_num = 1
-
        else
          session[:numero]=@matricula_num.classe_num
          @matricula = Matricula.new(params[:matricula])
@@ -105,9 +103,6 @@ class MatriculasController < ApplicationController
      else
         @matricula.classe_num= (@matricula_anterior_num_aluno.classe_num) +1
      end
-
-
-
     respond_to do |format|
       if @matricula.save
        @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
@@ -137,7 +132,7 @@ class MatriculasController < ApplicationController
                session[:atribuicao]= atrib.id
                session[:professor]= atrib.professor_id
                session[:disciplina]= atrib.disciplina_id
-               if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
+               if (current_user.unidade_id > 41  and  current_user.unidade_id < 52) or (current_user.unidade_id == 62)
                     @nota = Nota.new(params[:nota])
                     @nota.aluno_id = @matricula.aluno_id
                     @nota.atribuicao_id= session[:atribuicao]

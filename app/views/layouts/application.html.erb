@@ -187,12 +187,12 @@ display: none;
                            <li><%= link_to "Classe",new_class_path %></li>
                        
                       <%end%>
-<!--
-                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil'))%>
+
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>
                           <li><%= link_to "Professor",new_professor_path %></li>
 
                       <%end%>
-
+<!--
                       <% if current_user.has_role?('admin')%>
                            <li><%= link_to "Disciplina",new_disciplina_path %></li>
                       <%end%>
