@@ -10,18 +10,27 @@
         <fieldset><legend><font size=4>Notas Aluno</font></legend>
         <table>
             <tr>
-              <td ><b> Foram geradas notas para os alunos na classe:
+
+              <td ><b> Notas para os alunos na classe:
                   <% for classe in @classe %> -
                      <%=h classe.classe_classe%> - Ano letivo: <%=h classe.classe_ano_letivo %>
                   <%end%>
                 </b></td>
             </tr>
+             <% mat_id_ant = 0 %>
+             <% numA = 0 %>
              <%for matricula in @matriculas%>
+                <% num = 0 %>
                 <% @notas = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=?',matricula.aluno_id,Time.now.year]) %>
                 <% for notas in @notas %>
                     <tr>
                       <td>
-                        &nbsp&nbsp&nbsp&nbsp<b> > </b><%=h notas.aluno.aluno_nome %> - <%=h notas.disciplina.disciplina %>
+                        <% if notas.matricula_id != mat_id_ant %>
+                            <% numA = numA +1 %>
+                            <% mat_id_ant = notas.matricula_id %>
+                        <%end%>
+
+                        &nbsp&nbsp&nbsp&nbsp<b> <%=h numA %>.<%=h num = num +1 %>) </b><%=h notas.aluno.aluno_nome %> - <%=h notas.disciplina.disciplina %>
                       </td>
                     </tr>
                 <%  end %>
