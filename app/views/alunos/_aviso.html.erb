@@ -1,0 +1,31 @@
+
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+
+      <div class="tabs">
+        <%  session[:saida] = 1 %>
+
+        <fieldset><legend><font size=4>Matrícula Aluno</font></legend>
+<% @aluno.each do |aluno| %>
+        <table>
+            <tr>
+              <td ><font color ="red" size ="4"><b><u>ATENÇÃO:</u><br/>
+                    1) O aluno <%=h aluno.aluno_nome %> já possui matricula este ano letivo de <%= Time.now.year %> na unidade <%= aluno.unidade.nome %>.
+                    <br/> 2) CASO QUEIRA MATRICULAR ESTE ALUNO NA SUA UNIDADE ESCOLAR UTILIZE A OPÇÃO </b> CADASTRAR / TRANSFERÊNCIA <b><font></td>
+            </tr>
+
+         </table>
+<%end%>
+         </fieldset>
+        <table width="100%">
+           <tr>
+              
+
+             <td width =" 10%"><%= button_to 'CONTINUAR', continuar_path %> </td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
+
+    </div>
+</div>
+<br/>

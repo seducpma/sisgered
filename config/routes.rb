@@ -131,7 +131,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_cadastro_aluno '/consulta_cadastro_aluno', :controller => 'alunos', :action => 'consulta_cadastro_aluno'
   map.atribuicao_lancamentos_notas'/atribuicao_lancamentos_notas', :controller => 'notas', :action => 'atribuicao_lancamentos_notas'
   map.relatorios_observacoes'/relatorios_observacoes', :controller => 'atribucaos', :action => 'relatorios_observacoes'
-
+  map.continuar'/continuar', :controller => 'alunos', :action => 'continuar'
 
 
 

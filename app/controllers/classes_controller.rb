@@ -182,11 +182,10 @@ def gerar_notas
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0])
        for matricula in @matriculas
           session[:matricula_aluno_id] = matricula.aluno_id
-          for atribuicao_classe in @atribuicao_classe
-               @notas_atribuicao_classe = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=? AND disciplina_id=?', matricula.aluno_id,Time.now.year, atribuicao_classe.disciplina_id])
+          for atribuicao in @atribuicao_classe
+               @notas_atribuicao_classe = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=? AND disciplina_id=?', matricula.aluno_id,Time.now.year, atribuicao.disciplina_id])
                 if @notas_atribuicao_classe.empty?
-                    for  atribuicao in @atribuicao_classe
-                       session[:classe]= atribuicao.classe_id
+                      session[:classe]= atribuicao.classe_id
                        session[:atribuicao]= atribuicao.id
                        session[:professor]= atribuicao.professor_id
                        session[:disciplina]= atribuicao.disciplina_id
@@ -218,8 +217,8 @@ def gerar_notas
                                            flash[:notice] = 'NOTAS CRIADAS COM SUCESSO!'
                                         end
                                  end
-                    end
-                end
+                
+               end
           end
        end
   end
