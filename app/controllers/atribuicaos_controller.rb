@@ -615,9 +615,10 @@ end
 
 def transferencia_aluno
 
-     @aluno = Aluno.find(:all,:select =>('id , unidade_id'), :conditions => ['id =?', params[:aluno][:aluno_id]])
+     @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
      t=0
      for aluno in @aluno
+       
        session[:unidade_id]= aluno.unidade_id
        session[:aluno_id]= aluno.id
        end

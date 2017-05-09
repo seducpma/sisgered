@@ -43,9 +43,9 @@
   <% @aluno.each do |aluno| %>
      <tr>
        <td colspan="3" align="justify">
-               <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%= aluno.aluno_nome %></b>  R.A.: <b><%=h aluno%></b>,
+               <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%=h aluno.aluno_nome %></b>  R.A.: <b><%=h aluno.aluno_ra%></b>,
                <% if (aluno.present?)  %>
-                  e RG: <b><%=h aluno %></b> emitido em <b><%=h aluno %></b> ,
+                  e RG: <b><%=h aluno.aluno_RG %></b> emitido em <b><%=h aluno.aluno_emissaoRG %></b> ,
                <%end%>
                
                , encontra-se devidamente matriculado nesta unidade escolar na <b>classe</b>
