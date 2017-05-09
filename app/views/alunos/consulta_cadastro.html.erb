@@ -5,9 +5,10 @@
      <font size="3"><strong>CADASTRO DE ALUNO DA SECRETARIA EDUCAÇÃO DE AMERICANA</strong></font><br/>
  </div>
     <div class="tabs">
-      <%  @alunos_todos =  Aluno.find(:all,:order => "aluno_nome") %>
+      <%  @alunos_todos =  Aluno.find(:all, :conditions => "aluno_status != 'EGRESSO'",:order => "aluno_nome") %>
       <% form_remote_tag :url => consulta_cadastro_aluno_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
           <fieldset>
+            <% @disciplina = Disciplina.find(:all) %>
             <table width="100%" align="center" bgcolor="#DCDCDC" >
                <tr>
                  <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>

@@ -310,6 +310,7 @@ end
 
 def consulta_cadastro_aluno
       session[:aluno_id]=params[:aluno][:aluno_id]
+
       @socioeconomico = Socioeconomico.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
       @saude = Saude.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
       @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
