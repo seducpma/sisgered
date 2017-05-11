@@ -180,16 +180,6 @@ def gerar_notas
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0])
-#       for matricula in @matriculas
-#         if matriculas_classe.status == "REMANEJADO" or matriculas_classe.status == "TRANSFERIDO"
-#              w=matricula.id
-#              t=0
-#         end
-#       end
-       
-
-t=0
-
        for matricula in @matriculas
           session[:matricula_aluno_id] = matricula.aluno_id
           for atribuicao in @atribuicao_classe
