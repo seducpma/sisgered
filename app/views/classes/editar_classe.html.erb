@@ -38,7 +38,7 @@
          <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
     <%end%>
      <% if (current_user.has_role?('admin'))%>
-         <td align="right" ><%= button_to 'Gerar NOTAS', gerar_notas_classes_path, :title => "GerarNotas" %> </td>
+         <td align="right" ><%= button_to 'GERAR NOTAS', gerar_notas_classes_path, :title => "GerarNotas" %> </td>
     <%end%>
 
     </tr>

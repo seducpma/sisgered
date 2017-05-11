@@ -180,12 +180,22 @@ def gerar_notas
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0])
+#       for matricula in @matriculas
+#         if matriculas_classe.status == "REMANEJADO" or matriculas_classe.status == "TRANSFERIDO"
+#              w=matricula.id
+#              t=0
+#         end
+#       end
+       
+
+t=0
+
        for matricula in @matriculas
           session[:matricula_aluno_id] = matricula.aluno_id
           for atribuicao in @atribuicao_classe
                @notas_atribuicao_classe = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=? AND disciplina_id=?', matricula.aluno_id,Time.now.year, atribuicao.disciplina_id])
                 if @notas_atribuicao_classe.empty?
-                      session[:classe]= atribuicao.classe_id
+                       session[:classe]= atribuicao.classe_id
                        session[:atribuicao]= atribuicao.id
                        session[:professor]= atribuicao.professor_id
                        session[:disciplina]= atribuicao.disciplina_id
@@ -198,29 +208,53 @@ def gerar_notas
                                       @nota.unidade_id= current_user.unidade_id
                                       @nota.disciplina_id = session[:disciplina]
                                       @nota.ano_letivo =  Time.now.year
-                                      @nota.nota1 = nil
+                                      if (matricula.status == 'TRANSFERIDO')
+                                         @nota.nota1 = 'TR'
+                                      else
+                                         @nota.nota1 = nil
+                                      end
                                       @nota.faltas1 = 0
                                       @nota.aulas1 = 0
-                                      @nota.nota2 = nil
+                                      if (matricula.status == 'TRANSFERIDO')
+                                         @nota.nota2 = 'TR'
+                                      else 
+                                         @nota.nota2 = nil
+                                      end
                                       @nota.faltas2 = 0
                                       @nota.aulas2 = 0
-                                      @nota.nota3 = nil
+                                      if (matricula.status == 'TRANSFERIDO')
+                                         @nota.nota3 = 'TR'
+                                      else 
+                                         @nota.nota3 = nil
+                                      end
                                       @nota.faltas3 = 0
                                       @nota.aulas3 = 0
-                                      @nota.nota4 = nil
+                                      if (matricula.status == 'TRANSFERIDO')
+                                         @nota.nota4 = 'TR'
+                                      else
+                                         @nota.nota4 = nil
+                                      end
                                       @nota.faltas4 = 0
                                       @nota.aulas4 = 0
-                                      @nota.nota5 = nil
+                                      if (matricula.status == 'TRANSFERIDO')
+                                         @nota.nota5 = 'TR'
+                                      else
+                                         @nota.nota5 = nil
+                                      end
                                       @nota.faltas5 = 0
                                       @nota.aulas5 = 0
                                         if @nota.save
                                            flash[:notice] = 'NOTAS CRIADAS COM SUCESSO!'
                                         end
                                  end
-                
+                   
                end
           end
        end
+
+
+
+
   end
 
 

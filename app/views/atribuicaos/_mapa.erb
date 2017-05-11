@@ -66,15 +66,19 @@
                              <%end%>
                              <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
                              <% @atribuicao_classe.each do |atrib| %>
-                                <%if @notas_alu.empty?%>
+                             <% @notas_ant = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=?', matriculas_classe.aluno_id,Time.now.year]) %>
+                             <%t=0%>
+                                <%if @notas_alu.empty?  %>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
                                           <td align="center"><font color="red">TR</font></td>
                                           <td align="center"> -- </td>
+
                                       <%else%>
                                        <td align="center"><font color="red">S/N</font></td>
                                        <td align="center"> -- </td>
                                       <%end%>
                                 <%else%>
+                                    
                                     <%@notas_alu.each do |nota|%>
                                        <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                           <td align="center">

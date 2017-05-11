@@ -81,7 +81,6 @@ class MatriculasController < ApplicationController
    @atribuicao= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', params[:matricula][:classe_id], Time.now.year])
      if @matricula_anterior.empty?
          if !@atribuicao.empty?
-
                      if session[:flagnum] == 1
                         @matricula = Matricula.new(params[:matricula])
                         session[:flagnum] = 0
