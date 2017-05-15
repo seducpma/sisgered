@@ -181,6 +181,7 @@ def gerar_notas
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0])
        for matricula in @matriculas
+         @notas_inicial = Nota.find(:all, :conditions=>['aluno_id =? and ano_letivo =?', matricula.aluno_id,  Time.now.year])
           session[:matricula_aluno_id] = matricula.aluno_id
           for atribuicao in @atribuicao_classe
                @notas_atribuicao_classe = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=? AND disciplina_id=?', matricula.aluno_id,Time.now.year, atribuicao.disciplina_id])
@@ -205,32 +206,32 @@ def gerar_notas
                                       end
                                       @nota.faltas1 = 0
                                       @nota.aulas1 = 0
-                                      if (matricula.status == 'TRANSFERIDO')
-                                         @nota.nota2 = 'TR'
-                                      else 
+#                                      if (matricula.status == 'TRANSFERIDO')
+#                                         @nota.nota2 = 'TR'
+#                                      else
                                          @nota.nota2 = nil
-                                      end
+#                                      end
                                       @nota.faltas2 = 0
                                       @nota.aulas2 = 0
-                                      if (matricula.status == 'TRANSFERIDO')
-                                         @nota.nota3 = 'TR'
-                                      else 
+#                                      if (matricula.status == 'TRANSFERIDO')
+#                                         @nota.nota3 = 'TR'
+#                                      else
                                          @nota.nota3 = nil
-                                      end
+#                                      end
                                       @nota.faltas3 = 0
                                       @nota.aulas3 = 0
-                                      if (matricula.status == 'TRANSFERIDO')
-                                         @nota.nota4 = 'TR'
-                                      else
+ #                                     if (matricula.status == 'TRANSFERIDO')
+ #                                        @nota.nota4 = 'TR'
+ #                                     else
                                          @nota.nota4 = nil
-                                      end
+ #                                     end
                                       @nota.faltas4 = 0
                                       @nota.aulas4 = 0
-                                      if (matricula.status == 'TRANSFERIDO')
-                                         @nota.nota5 = 'TR'
-                                      else
+#                                      if (matricula.status == 'TRANSFERIDO')
+#                                         @nota.nota5 = 'TR'
+#                                      else
                                          @nota.nota5 = nil
-                                      end
+#                                      end
                                       @nota.faltas5 = 0
                                       @nota.aulas5 = 0
                                         if @nota.save
@@ -240,11 +241,89 @@ def gerar_notas
                    
                end
           end
+
+
+          if ((matricula.status == 'REMANEJADO' or matricula.status == 'TRANSFERIDO') and (!matricula.transf_unidade_id.nil?))
+             @notas_aluno = Nota.find(:all, :conditions=>['aluno_id =? and ano_letivo =?', matricula.aluno_id,  Time.now.year])
+             @notas_matricula = Nota.find(:all, :conditions=>['aluno_id =? and matricula_id =? and ano_letivo =?', matricula.aluno_id, matricula.id,  Time.now.year])
+
+ #            w= matricula.id
+ #            t=0
+             
+ #            t=0
+                 for notas in @notas_inicial
+#                   @notas_teste = Nota.find(:all, :conditions=>['aluno_id =? and matricula_id=? and disciplina_id=?', matricula.aluno_id, notas.matricula_id, notas.disciplina_id])
+                    @notas_matricula = Nota.find(:all, :conditions=>['aluno_id =? and matricula_id =? and ano_letivo =? and disciplina_id =?', matricula.aluno_id, matricula.id,  Time.now.year, notas.disciplina_id])
+ #                   if !@notas_matricula.empty?
+ #                      w=@notas_matricula[0].id
+ #                      w1= notas_matricula=@notas_matricula[0].id
+#
+  #                  end
+#                  if !@notas_teste[0].unidade_id == notas.unidade_id
+                       session[:professor]= notas.professor_id
+                       session[:disciplina]= notas.disciplina_id
+                       session[:disciplina]
+                       notas.aluno_id
+                       session[:classe_id]
+                       session[:nova_unidade]
+                       @atribuicao_1= Atribuicao.find(:all, :select=> 'id', :conditions => ['disciplina_id=? and ano_letivo=? and classe_id=?', session[:disciplina], Time.now.year, session[:classe_id]])
+                         session[:atribuicao]= @atribuicao_1[0].id
+                                 if (current_user.unidade_id > 41  and  current_user.unidade_id < 52) or (current_user.unidade_id == 62)
+                                      @nota = Nota.new(params[:nota])
+                                      @nota.aluno_id = matricula.aluno_id
+                                      @nota.atribuicao_id= session[:atribuicao]
+                                      @nota.matricula_id= matricula.id
+                                      @nota.professor_id= session[:professor]
+                                      @nota.unidade_id= current_user.unidade_id
+                                      @nota.disciplina_id = session[:disciplina]
+                                      @nota.ano_letivo =  Time.now.year
+                                       for matricula1 in @matriculas
+                                          if (matricula1.status == 'TRANSFERIDO' and !matricula.transf_unidade_id.nil?)
+                                             @nota.nota1 = 'TR'
+                                          else
+                                             @nota.nota1 = notas.nota1
+                                          end
+                                          @nota.faltas1 = notas.faltas1
+                                          @nota.aulas1 = notas.aulas1
+                                          if (matricula1.status == 'TRANSFERIDO' and !matricula.transf_unidade_id.nil?)
+                                             @nota.nota2 = 'TR'
+                                          else
+                                             @nota.nota2 = notas.nota2
+                                          end
+                                          @nota.faltas2 = notas.faltas2
+                                          @nota.aulas2 = notas.aulas2
+                                          if (matricula1.status == 'TRANSFERIDO' and !matricula.transf_unidade_id.nil?)
+                                             @nota.nota3 = 'TR'
+                                          else
+                                             @nota.nota3 = notas.nota3
+                                          end
+                                          @nota.faltas3 = notas.faltas3
+                                          @nota.aulas3 = notas.aulas3
+                                          if (matricula1.status == 'TRANSFERIDO' and !matricula.transf_unidade_id.nil?)
+                                             @nota.nota4 = 'TR'
+                                          else
+                                             @nota.nota4 = notas.nota4
+                                          end
+                                          @nota.faltas4 = notas.faltas4
+                                          @nota.aulas4 = notas.aulas4
+                                          if (matricula1.status == 'TRANSFERIDO' and !matricula.transf_unidade_id.nil?)
+                                             @nota.nota5 = 'TR'
+                                          else
+                                             @nota.nota5 = notas.nota5
+                                          end
+                                          @nota.faltas5 = notas.faltas5
+                                          @nota.aulas5 = notas.aulas5
+                                       end
+                                       if @nota.save
+                                          flash[:notice] = 'NOTAS CRIADAS COM SUCESSO!'
+                                      end
+                               end
+                   end
+
+
+          end
+
        end
-
-
-
-
   end
 
 
