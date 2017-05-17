@@ -77,10 +77,12 @@
                              <%t=0%>
                                 <%if @notas_alu.empty?  %>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
-
-                                          <td align="center"><font color="red">TR</font></td>
+                                          <%if matriculas_classe.status == "REMANEJADO"%>
+                                              <td align="center"><font color="red">RM</font></td>
+                                           <%else%>
+                                              <td align="center"><font color="red">TR</font></td>
+                                           <%end%>
                                           <td align="center"> -- </td>
-
                                       <%else%>
                                           <td align="center"><font color="red">S/N</font></td>
                                           <td align="center"> -- </td>
@@ -232,7 +234,11 @@
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <td align="center"><font color="red">TR</font></td>
+                                          <%if matriculas_classe.status == "REMANEJADO"%>
+                                              <td align="center"><font color="red">RM</font></td>
+                                           <%else%>
+                                              <td align="center"><font color="red">TR</font></td>
+                                           <%end%>
                                           <td align="center"> -- </td>
                                       <%else%>
                                        <td align="center"><font color="red">S/N</font></td>
@@ -381,7 +387,11 @@
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <td align="center"><font color="red">TR</font></td>
+                                          <%if matriculas_classe.status == "REMANEJADO"%>
+                                              <td align="center"><font color="red">RM</font></td>
+                                           <%else%>
+                                              <td align="center"><font color="red">TR</font></td>
+                                           <%end%>
                                           <td align="center"> -- </td>
                                       <%else%>
                                        <td align="center"><font color="red">S/N</font></td>
@@ -532,7 +542,11 @@
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <td align="center"><font color="red">TR</font></td>
+                                          <%if matriculas_classe.status == "REMANEJADO"%>
+                                              <td align="center"><font color="red">RM</font></td>
+                                           <%else%>
+                                              <td align="center"><font color="red">TR</font></td>
+                                           <%end%>
                                           <td align="center"> -- </td>
                                       <%else%>
                                        <td align="center"><font color="red">S/N</font></td>
@@ -682,7 +696,11 @@
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <td align="center"><font color="red">TR</font></td>
+                                          <%if matriculas_classe.status == "REMANEJADO"%>
+                                              <td align="center"><font color="red">RM</font></td>
+                                           <%else%>
+                                              <td align="center"><font color="red">TR</font></td>
+                                           <%end%>
                                           <td align="center"> -- </td>
                                       <%else%>
                                        <td align="center"><font color="red">S/N</font></td>
