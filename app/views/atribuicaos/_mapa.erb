@@ -227,7 +227,7 @@
 
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
-                                      <%if matriculas_classe.status != "MATRICULADO"  or matriculas_classe.status == "TRANSFERIDO"%>
+                                      <%if matriculas_classe.status != "MATRICULADO"%>
                                           <td align="center"><font color="red">TR</font></td>
                                           <td align="center"> -- </td>
                                       <%else%>
@@ -236,10 +236,6 @@
                                       <%end%>
                                 <%else%>
                                     <%@notas_alu.each do |nota|%>
-                                       <%if matriculas_classe.status == "TRANSFERIDO"%>
-                                          <td align="center"><font color="red">TR</font></td>
-                                          <td align="center"> -- </td>
-                                       <%end%>
                                        <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                           <td align="center">
                                               <% if  nota.nota2.nil? %>
