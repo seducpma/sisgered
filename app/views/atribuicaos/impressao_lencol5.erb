@@ -87,26 +87,31 @@
                                           <th align="center"> -- </th>
                                       <%end%>
                                 <%else%>
-                                    <%@notas_alu.each do |nota|%>
-                                       <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                          <th align="center">
-                                              <% if  nota.nota5.nil? %>
-                                                     ---
-                                              <%else%>
-                                                  <%if (nota.nota5.to_i < 5.0)  %>
-                                                        <% if nota.nota5 =="F" %>
+                                      <%if matriculas_classe.status == "TRANSFERIDO"%>
+                                          <th align="center"><font color="red">TR</font></th>
+                                          <th align="center"> -- </th>
+                                       <%else%>
+                                          <%@notas_alu.each do |nota|%>
+                                             <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                                <th align="center">
+                                                    <% if  nota.nota5.nil? %>
+                                                           ---
+                                                    <%else%>
+                                                        <%if (nota.nota5.to_i < 5.0)  %>
+                                                              <% if nota.nota5 =="F" %>
+                                                                   <%= nota.nota5 %>
+                                                              <%else%>
+                                                                   <font color ="red"> <%= nota.nota5 %> </font>
+                                                              <%end%>
+                                                       <%else%>
                                                              <%= nota.nota5 %>
-                                                        <%else%>
-                                                             <font color ="red"> <%= nota.nota5 %> </font>
-                                                        <%end%>
-                                                 <%else%>
-                                                       <%= nota.nota5 %>
-                                                <%end%>
-                                               <%end %>
-                                         </th>
-                                         <th align="center" ><%= nota.faltas5%></th>
-                                      <%end%>
-                                   <%end%>
+                                                      <%end%>
+                                                     <%end %>
+                                               </th>
+                                               <th align="center" ><%= nota.faltas5%></th>
+                                            <%end%>
+                                         <%end%>
+                                    <%end%>
                                <%end%>
 
                    <%end%>
@@ -128,7 +133,7 @@
         </tr>
          <tr style="font-size: 7px">
            <th> <b>Legenda Notas</b></th>
-           <th colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
+           <th colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
 
            </th>
          </tr>

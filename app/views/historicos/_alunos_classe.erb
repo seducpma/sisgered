@@ -84,28 +84,32 @@
                                        <td align="center"> -- </td>
                                       <%end%>
                                 <%else%>
-                                    <%@notas_alu.each do |nota|%>
-                                       <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                          <td align="center">
-                                              <% if  nota.nota5.nil? %>
-                                                     ---
-                                              <%else%>
-                                                  <%if (nota.nota5.to_i < 5.0)  %>
-                                                        <% if nota.nota5 =="F" %>
+                                      <%if matriculas_classe.status == "TRANSFERIDO"%>
+                                          <th align="center"><font color="red">TR</font></th>
+                                          <th align="center"> -- </th>
+                                       <%else%>
+                                          <%@notas_alu.each do |nota|%>
+                                             <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                                <td align="center">
+                                                    <% if  nota.nota5.nil? %>
+                                                           ---
+                                                    <%else%>
+                                                        <%if (nota.nota5.to_i < 5.0)  %>
+                                                              <% if nota.nota5 =="F" %>
+                                                                   <%= nota.nota5 %>
+                                                              <%else%>
+                                                                   <font color ="red"> <%= nota.nota5 %> </font>
+                                                              <%end%>
+                                                       <%else%>
                                                              <%= nota.nota5 %>
-                                                        <%else%>
-                                                             <font color ="red"> <%= nota.nota5 %> </font>
-                                                        <%end%>
-                                                 <%else%>
-                                                       <%= nota.nota5 %>
-                                                <%end%>
-                                               <%end %>
-                                         </td>
-                                         <td align="center" ><%= nota.faltas5%></td>
-                                      <%end%>
-                                   <%end%>
-                               <%end%>
-
+                                                      <%end%>
+                                                     <%end %>
+                                               </td>
+                                               <td align="center" ><%= nota.faltas5%></td>
+                                            <%end%>
+                                         <%end%>
+                                     <%end%>
+                                 <%end%>
                    <%end%>
                 </tr>
               <%session[:mostra_nome]=0%>
@@ -125,7 +129,7 @@
         </tr>
          <tr style="font-size: 9px">
            <td> <b>Legenda Notas</b></td>
-           <td colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
+           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
 
            </td>
          </tr>
