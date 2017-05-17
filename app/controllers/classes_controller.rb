@@ -246,7 +246,7 @@ def gerar_notas
           end
 
 
-          if ((matricula.status == 'REMANEJADO' or matricula.status == 'TRANSFERIDO') and (!matricula.transf_unidade_id.nil?) or matricula.status == 'TRANSFENCIA' or matricula.status == '*REMANEJADO')
+          if ((matricula.status == 'REMANEJADO' or matricula.status == 'TRANSFERIDO'or matricula.status == 'TRANSFENCIA' or matricula.status == '*REMANEJADO') and (!matricula.transf_unidade_id.nil?) )
              @notas_aluno = Nota.find(:all, :conditions=>['aluno_id =? and ano_letivo =?', matricula.aluno_id,  Time.now.year])
              @notas_matricula = Nota.find(:all, :conditions=>['aluno_id =? and matricula_id =? and ano_letivo =?', matricula.aluno_id, matricula.id,  Time.now.year])
 
