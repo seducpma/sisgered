@@ -25,7 +25,7 @@
             <td style="border-color: white" width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %>
 
             </td>
-            <td style="border-color: white"style="font-size: 7px" colspan="2" align="center"><font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <td style="border-color: white"style="font-size: 7px" colspan="2" align="center"><font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                    REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font></td>
           </tr>
 
@@ -65,10 +65,17 @@
                        <tr style="font-size: 7px">
                           <th align="center"><b><%= matriculas_classe.classe_num %></b></font> </th>
                               <% if session[:disc] < 10 %>
-                                   <th align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 16,:omission => "...") %></b></font> </th>
+                                   <th align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                                  <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                                    <%else%>
+                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                                  <%end%>
+                                   </font> </th>
                               <%else%>
-                                   <th align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 12,:omission => "...") %></b></font> </th>
-                             <%end%>
+                                   <th align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </th>
+                             <%end%>                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+
                              <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
@@ -108,8 +115,8 @@
            </tr>
          <%cont = 0%>
         <%end%>
-         <tr style="font-size: 7px">
-           <th  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b></font> </th>
+         <tr style="font-size:7px">
+           <th  colspan="2" align="right" valign="top"><b>Professor: </b></font> </th>
             <% session[:prof] = 0 %>
             <% if session[:prof] == 0 %>
                <% @atribuicao_classe.each do |atrib| %>
@@ -119,7 +126,12 @@
               <%pv=1%>
             <%end%>
         </tr>
+         <tr style="font-size: 6px">
+           <th> <b>Legenda Notas</b></th>
+           <th colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
 
+           </th>
+         </tr>
       </table>
     </table>
 <%end%>

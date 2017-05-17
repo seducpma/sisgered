@@ -46,7 +46,8 @@
                           <td align="center"><b> Nome: </b> </td>
                           <% session[:disc] = 0 %>
                           <% if pv == 0 %>
-                              <% @atribuicao_classe.each do |atrib| %>
+
+                               <% @atribuicao_classe.each do |atrib| %>
                                 <td align="center" width ="1%" ><b>Nota</b></td>
                                 <td align="center" width =1%"><b>Falta</b></td>
                                 <% session[:disc] = session[:disc] + 1 %>
@@ -60,7 +61,13 @@
                        <tr style="font-size: 10px">
                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
                               <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                                  <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                                    <%else%>
+                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                                  <%end%>
+                                   </font> </td>
                               <%else%>
                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
                              <%end%>
@@ -70,12 +77,13 @@
                              <%t=0%>
                                 <%if @notas_alu.empty?  %>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
+
                                           <td align="center"><font color="red">TR</font></td>
                                           <td align="center"> -- </td>
 
                                       <%else%>
-                                       <td align="center"><font color="red">S/N</font></td>
-                                       <td align="center"> -- </td>
+                                          <td align="center"><font color="red">S/N</font></td>
+                                          <td align="center"> -- </td>
                                       <%end%>
                                 <%else%>
                                     
@@ -119,6 +127,12 @@
               <%pv=1%>
             <%end%>
         </tr>
+         <tr>
+           <td> <b>Legenda Notas</b></td>
+           <td colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
+
+           </td>
+         </tr>
 
       </table>
             <table  width="100%">
@@ -199,11 +213,16 @@
                        <tr style="font-size: 10px">
                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
                               <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                                  <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                                    <%else%>
+                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                                  <%end%>
+                                   </font> </td>
                               <%else%>
                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
-                             <%end%>
-                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                             <%end%>                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
@@ -254,7 +273,12 @@
               <%pv=1%>
             <%end%>
         </tr>
+         <tr>
+           <td> <b>Legenda Notas</b></td>
+           <td colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
 
+           </td>
+         </tr>
       </table>
             <table  width="100%">
                <tr>
@@ -333,11 +357,16 @@
                        <tr style="font-size: 10px">
                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
                               <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                                  <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                                    <%else%>
+                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                                  <%end%>
+                                   </font> </td>
                               <%else%>
                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
-                             <%end%>
-                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                             <%end%>                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
@@ -388,6 +417,12 @@
               <%pv=1%>
             <%end%>
         </tr>
+         <tr>
+           <td> <b>Legenda Notas</b></td>
+           <td colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
+
+           </td>
+         </tr>
 
       </table>
             <table  width="100%">
@@ -468,11 +503,16 @@
                        <tr style="font-size: 10px">
                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
                               <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                                  <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                                    <%else%>
+                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                                  <%end%>
+                                   </font> </td>
                               <%else%>
                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
-                             <%end%>
-                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                             <%end%>                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
                              <% @atribuicao_classe.each do |atrib| %>
                                 <%if @notas_alu.empty?%>
                                       <%if matriculas_classe.status != "MATRICULADO"%>
@@ -523,7 +563,12 @@
               <%pv=1%>
             <%end%>
         </tr>
+         <tr>
+           <td> <b>Legenda Notas</b></td>
+           <td colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
 
+           </td>
+         </tr>
       </table>
             <table  width="100%">
                <tr>
@@ -602,7 +647,13 @@
                        <tr style="font-size: 10px">
                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
                               <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                                  <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                                    <%else%>
+                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                                  <%end%>
+                                   </font> </td>
                               <%else%>
                                    <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
                              <%end%>
@@ -657,7 +708,12 @@
               <%pv=1%>
             <%end%>
         </tr>
+         <tr style="font-size:8px">
+           <td> <b>Legenda Notas</b></td>
+           <td colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
 
+           </td>
+         </tr>
       </table>
             <table  width="100%">
                <tr>

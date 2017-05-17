@@ -178,13 +178,16 @@ end
 def gerar_notas
        session[:classe_id]
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+       w=@classe[0].id
+       t1=0
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0])
+       t=0
        for matricula in @matriculas
          @notas_inicial = Nota.find(:all, :conditions=>['aluno_id =? and ano_letivo =?', matricula.aluno_id,  Time.now.year])
           session[:matricula_aluno_id] = matricula.aluno_id
           for atribuicao in @atribuicao_classe
-               @notas_atribuicao_classe = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=? AND disciplina_id=?', matricula.aluno_id,Time.now.year, atribuicao.disciplina_id])
+               @notas_atribuicao_classe = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=? AND disciplina_id=? and atribuicao_id=?', matricula.aluno_id,Time.now.year, atribuicao.disciplina_id, atribuicao.id])
                 if @notas_atribuicao_classe.empty?
                        session[:classe]= atribuicao.classe_id
                        session[:atribuicao]= atribuicao.id
@@ -243,7 +246,7 @@ def gerar_notas
           end
 
 
-          if ((matricula.status == 'REMANEJADO' or matricula.status == 'TRANSFERIDO') and (!matricula.transf_unidade_id.nil?))
+          if ((matricula.status == 'REMANEJADO' or matricula.status == 'TRANSFERIDO') and (!matricula.transf_unidade_id.nil?) or matricula.status == 'TRANSFENCIA')
              @notas_aluno = Nota.find(:all, :conditions=>['aluno_id =? and ano_letivo =?', matricula.aluno_id,  Time.now.year])
              @notas_matricula = Nota.find(:all, :conditions=>['aluno_id =? and matricula_id =? and ano_letivo =?', matricula.aluno_id, matricula.id,  Time.now.year])
 

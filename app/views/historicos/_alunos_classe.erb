@@ -63,9 +63,15 @@
                        <tr style="font-size: 9px">
                           <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
                               <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 30,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                                  <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                                    <%else%>
+                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                                  <%end%>
+                                   </font> </td>
                               <%else%>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 12,:omission => "...") %></b></font> </td>
+                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
                              <%end%>
                              <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
                              <% @atribuicao_classe.each do |atrib| %>
@@ -106,7 +112,23 @@
            </tr>
          <%cont = 0%>
         <%end%>
-        
+          <tr style="font-size: 8px">
+           <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b> </font></td>
+            <% session[:prof] = 0 %>
+            <% if session[:prof] == 0 %>
+               <% @atribuicao_classe.each do |atrib| %>
+                  <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
+                  <% session[:prof] = session[:prof] + 1 %>
+              <%end%>
+              <%pv=1%>
+            <%end%>
+        </tr>
+         <tr style="font-size: 9px">
+           <td> <b>Legenda Notas</b></td>
+           <td colspan="15"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido (saida)&nbsp&nbsp <b>TR</b>= Transferencia (entrada) &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABanono &nbsp&nbsp
+
+           </td>
+         </tr>
       </table>
             <table  width="100%">
                <tr>
