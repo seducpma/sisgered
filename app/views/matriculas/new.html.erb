@@ -29,6 +29,7 @@
          </fieldset>
          <table>
            <tr>
+              <% session[:matricula_transferencia] = 0%>
               <td width="4%"> <%= f.submit "Salvar" %></td>
       <% end %>
              <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>

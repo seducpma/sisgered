@@ -79,7 +79,7 @@ class MatriculasController < ApplicationController
    
    @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=?',  params[:matricula][:classe_id], Time.now.year, @matricula_anterior.aluno_id])
    @atribuicao= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', params[:matricula][:classe_id], Time.now.year])
-     if @matricula_anterior.empty?
+     if (@matricula_anterior.empty?) or (session[:matricula_transferencia] == 1)
          if !@atribuicao.empty?
                      if session[:flagnum] == 1
                         @matricula = Matricula.new(params[:matricula])
@@ -285,9 +285,9 @@ class MatriculasController < ApplicationController
              format.xml  { head :ok }
           end
 
-     end
+   end
 
-  
+
 
   end
 
@@ -352,7 +352,7 @@ class MatriculasController < ApplicationController
 
     @matriculas = Matricula.find(:all, :conditions => ['classe_id =?', session[:classe_id]], :order => 'classe_num')
     
-    t=0
+
 
   end
 
@@ -360,7 +360,7 @@ class MatriculasController < ApplicationController
   def unidade_transferencia
 
    session[:unidade_ant_id] = Unidade.find_by_nome(params[:matricula_procedencia])
-   @alunos = Aluno.find(:all, :joins =>"inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id =? AND alunos.aluno_status is null AND matriculas.ano_letivo =?',  session[:unidade_ant_id], Time.now.year], :order => 'aluno_nome' )
+   @alunos = Aluno.find(:all, :joins =>"inner join matriculas on alunos.id = matriculas.aluno_id" , :conditions =>['alunos.unidade_id =? AND alunos.aluno_status is null AND matriculas.ano_letivo =?',  session[:unidade_ant_id], Time.now.year], :order => 'aluno_nome' )
    @unidade_para = Unidade.find(:all, :conditions => ['id =?', current_user.unidade_id], :order => 'nome ASC')
    @classes = Classe.find(:all, :conditions =>['unidade_id =?',  current_user.unidade_id], :order => 'classe_classe')
    render :partial => 'selecao_alunos'
