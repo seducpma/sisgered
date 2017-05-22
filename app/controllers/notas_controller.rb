@@ -21,7 +21,16 @@ before_filter :load_classes
 
   def new
     @nota = Nota.new
+    session[:flagx]=0
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @nota }
+    end
+  end
 
+ def new1
+    @nota = Nota.new
+    session[:flagx]=1
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @nota }
@@ -38,13 +47,28 @@ before_filter :load_classes
   
  def create
     @nota = Nota.new(params[:nota])
+    session[:disciplina] = @nota.disciplina.disciplina
     @nota.unidade_id =  current_user.unidade_id
+    if session[:flagx] == 1
+       @nota.classe = session[:classe]
+       @nota.escola = session[:escola]
+       @nota.ano_letivo = session[:ano_letivo]
+       @nota.escola = session[:escola]
+
+    end
     if @nota.escola =='    Favor digitar o Nome da Escola - Cidade - Estado'
        @nota.escola = ' '
     end
    respond_to do |format|
       if @nota.save
         flash[:notice] = 'SALVO COM SUCESSO.'
+        session[:classe]= @nota.classe
+        session[:nota_id]= @nota.id
+        session[:aluno_id]=@nota.aluno_id
+        session[:disciplina_id]= @nota.disciplina_id
+        session[:ano_letivo]= @nota.ano_letivo
+        session[:escola]= @nota.escola
+        t=0
         format.html { redirect_to(@nota) }
         format.xml  { render :xml => @nota, :status => :created, :location => @nota }
       else

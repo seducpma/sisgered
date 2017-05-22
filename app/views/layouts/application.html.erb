@@ -175,9 +175,7 @@ display: none;
                                 <li><%= link_to "Dados Pessoais", certeza_alunos_path%> </li>
                                 <li><%= link_to "Saude", new_saude_path%></li>
                                 <li><%= link_to "Socioeconômico", new_socioeconomico_path%></li>
-                                 <% if current_user.has_role?('admin') %>
-                                      <li><%= link_to "Cadastrar",new_unidade_path %></li>
-                                 <%end%>
+
                               </ul>
                          </li>
                  <%end%>
@@ -230,7 +228,9 @@ display: none;
                      <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('professor_infantil')%>
                            <li><%= link_to "FAPEA", new_relatorio_path %></li>
                      <%end%>
-
+                    <% if current_user.has_role?('admin') %>
+                         <li><%= link_to "Unidade",new_unidade_path %></li>
+                     <%end%>
                  </ul>
               </li>
      <%end%>
