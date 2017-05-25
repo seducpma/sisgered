@@ -39,7 +39,7 @@
                             <td  width ="20%" align="center"><b>2º Bimestre <br/>Nº Aulas:</b> <%if @atribuicao.aulas2 != 0%>
                                                                     <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas2%>    <%= f.text_field :aulas2 , :size => '3'%>  -->
                                                                 <%else%>
-                                                                    <!--<%= f.text_field :aulas2 , :size => '3'%> -->S
+                                                                    <!--<%= f.text_field :aulas2 , :size => '3'%> -->
                                                                 <%end%>
                             </td>
                           <%end%>
@@ -74,7 +74,8 @@
               </fieldset>
         <fieldset><legend><font size=4>IMPORTANTE</font></legend>
           <font color ="red"><b>1) Professores PB-I devem lançar dias de aulas ministradas</b></font><br/>
-                    <font color ="red">2) <b>Professores PB-II devem lançar aulas dadas por aula ministrada</b></font>
+                    <font color ="red">2) <b>Professores PB-II devem lançar aulas dadas por aula ministrada</b></font><br/>
+                    <font color ="red">3)  <b>APÓS CLICAR NO BOTÃO "SALVAR" - AGUARDE (Este processo pode demorar um pouco).</font></b>
 
         </fieldset>
              <br/>
@@ -95,7 +96,7 @@
                         <%end%>
 
                      <%else%>
-                         <td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %></td>
+                         <td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %>  </td>
                      <%end%>
 
 

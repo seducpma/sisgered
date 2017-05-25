@@ -18,6 +18,8 @@ class RelatoriosController < ApplicationController
   def show
     @relatorio = Relatorio.find(params[:id])
 
+    #@professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classes_id", :conditions => ['relatorios.atribuicao_id=?', @relatorio.id])
+t=0
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @relatorio }
@@ -28,7 +30,7 @@ class RelatoriosController < ApplicationController
   # GET /relatorios/new.xml
   def new
     @relatorio = Relatorio.new
-    @maximum_length = Relatorio.validates_length_of :observacao, :in => 0..900
+    @maximum_length = Relatorio.validates_length_of :observacao, :in => 0..12000
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @relatorio }
@@ -232,13 +234,9 @@ end
 
 
   def impressao_fapea
-      w= session[:poraluno]
       if session[:poraluno]==1
+           @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", session[:aluno_imp]])
 
-            w1=session[:aluno_imp]
-            @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", session[:aluno_imp]])
-            #@relatorio = Relatorio.find(params[:id]
-            t=0
           session[:poraluno]=0
       else
          @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]])
@@ -271,13 +269,13 @@ end
          @disciplinas= Disciplina.find(:all, :conditions =>['curriculo =? and ano_letivo =? ', 'I', (Time.now.year)], :order =>'disciplina'  )
        end
 
-       @alunos = Aluno.find(:all, :conditions => ['aluno_status is null'],:order => 'aluno_nome')
-       @alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+unidade.to_s+" AND`id` NOT IN
-                       (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+unidade.to_s+")
-                        ORDER BY aluno_nome ASC")
+       #@alunos = Aluno.find(:all, :conditions => ['aluno_status is null'],:order => 'aluno_nome')
+       #@alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+unidade.to_s+" AND`id` NOT IN
+       #                (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+unidade.to_s+")
+       #                 ORDER BY aluno_nome ASC")
 
-       @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
-       @alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA")  ', current_user.unidade_id],:order => 'alunos.aluno_nome')
+       @alunos2 = Aluno.find(:all, :select => 'id, aluno_nome',:conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
+       #@alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA")  ', current_user.unidade_id],:order => 'alunos.aluno_nome')
        if current_user.has_role?('admin')
           @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
        else if current_user.has_role?('professor_infantil')

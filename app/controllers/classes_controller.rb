@@ -330,7 +330,46 @@ def gerar_notas
   end
 
 
+def nucleo_basico
 
+       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+       @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0], :order => 'disciplina_id ASC')
+
+       for matricula in @matriculas
+          @nota_port = Nota.find(:all, :conditions =>['matricula_id =? AND disciplina_id = 1', matricula.id] )
+          @atribuicao_s_port=Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=? AND professor_id =? AND disciplina_id != 1', session[:classe_id],0,@nota_port[0].professor_id])
+          for atribuicao in @atribuicao_s_port
+              @nota = Nota.find(:all, :conditions => ['atribuicao_id =? AND matricula_id=?', atribuicao.id, matricula.id])
+              @acerto = Nota.find(@nota[0].id)
+              @acerto.faltas1=@nota_port[0].faltas1
+              @acerto.aulas1=@nota_port[0].aulas1
+              @acerto.freq1=@nota_port[0].freq1
+              @acerto.faltas2=@nota_port[0].faltas2
+              @acerto.aulas2=@nota_port[0].aulas2
+              @acerto.freq2=@nota_port[0].freq2
+              @acerto.faltas3=@nota_port[0].faltas3
+              @acerto.aulas3=@nota_port[0].aulas3
+              @acerto.freq3=@nota_port[0].freq3
+              @acerto.faltas4=@nota_port[0].faltas4
+              @acerto.aulas4=@nota_port[0].aulas4
+              @acerto.freq4=@nota_port[0].freq4
+              @acerto.faltas5=@nota_port[0].faltas5
+              @acerto.aulas5=@nota_port[0].aulas5
+              @acerto.freq5=@nota_port[0].freq5
+                if @acerto.save
+                  flash[:notice] = 'NOTAS ACERTADAS COM SUCESSO!'
+                end
+
+           end
+    
+    
+    
+       end
+
+
+
+end
 
 
  def destroy_professor

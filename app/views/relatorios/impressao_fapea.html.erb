@@ -54,7 +54,7 @@
                 </tr>
                  <tr  style="border-color: white">
                    <td align="left" valign="top"><b>Relatório:</b></td>
-                   <td colspan="3"><%=h relatorio.observacao %></td>
+                   <td colspan="3"><%= relatorio.observacao.gsub("\n","<br/>\n") %></td>
                 </tr>
                 <tr  style="border-color: white">
                    <td colspan="5">

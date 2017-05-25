@@ -1,0 +1,36 @@
+<div id="interno3">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>ACERTO DE LANÇAMENTO</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+
+        <fieldset><legend><font size=4>Lançamentos</font></legend>
+        <table>
+            <tr>
+
+              <td ><b> As FALTAS e FREQUÊNCIAS dos alunos da classe:
+                  <% for classe in @classe %> -
+                     <%=h classe.classe_classe%> - Ano letivo: <%=h classe.classe_ano_letivo %>
+                  <%end%>
+                  <br/> nas disiciplinas de nucle básico foram acertadas.
+                </b></td>
+            </tr>
+
+         </table>
+         </fieldset>
+        <table width="100%">
+           <tr>
+              
+
+             
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
+
+    </div>
+</div>
+<br/>
+</div>

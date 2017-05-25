@@ -33,7 +33,7 @@
       </tr>
        <tr bgcolor="#F5F5F5">
          <td  valign="top" align="left"><b>FAPEA:</b></td>
-         <td colspan="3"><%=h @relatorio.observacao %></td>
+         <td colspan="3"><%= @relatorio.observacao.gsub("\n","<br/>\n") %></td>
       </tr>
 
   </table>

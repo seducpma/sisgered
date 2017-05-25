@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :notas_alunos
   map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get, :relatorio_classe => :get ,  :new1 => :get, }
   map.resources :classes_alunos
-  map.resources :classes,:collection => { :editar_classe=>:get, :gerar_notas=>:get}
+  map.resources :classes,:collection => { :editar_classe=>:get, :gerar_notas=>:get, :nucleo_basico =>:get}
   map.resources :professors,:collection => { :consulta_classe=>:get,  :consulta_classe_anterior=>:get }
   map.resources :tipos
   map.resources :unidades,  :collection => {:consultas => :get}
