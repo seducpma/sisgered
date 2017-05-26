@@ -17,9 +17,11 @@ class RelatoriosController < ApplicationController
   # GET /relatorios/1.xml
   def show
     @relatorio = Relatorio.find(params[:id])
-
-    #@professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classes_id", :conditions => ['relatorios.atribuicao_id=?', @relatorio.id])
-t=0
+   # @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=?', @relatorio.atribuicao_id])
+   # w=@classe[0].classe_id
+  #  t=0
+  #  @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
+#t=0
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @relatorio }
