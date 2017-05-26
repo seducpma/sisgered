@@ -24,13 +24,14 @@
 
                  </tr>
                  <tr >
-                   <td align="left"><b>Unidade:</b></td>
-                   <td><%=h relatorio.atribuicao.classe.unidade.nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                   <b>Disciplina:</b> <%=h relatorio.atribuicao.disciplina.disciplina%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   <td valign="top"align="left"><b>Unidade:</b></td>
+                   <td><%=h relatorio.atribuicao.classe.unidade.nome %><br/>
+                                   <b>Disciplina:</b> <%=h relatorio.atribuicao.disciplina.disciplina%> - 
                                    <b>Classe:</b>
                                    <%=h relatorio.atribuicao.classe.classe_classe %>
-                   <td><b>Ano Letivo:</b></td>
-                   <td><%=h relatorio.ano_letivo %>
+                   </td>
+                   <td valign="top"><b>Ano Letivo:</b></td>
+                   <td valign="top"><%=h relatorio.ano_letivo %>
                      <% bimestre = relatorio.created_at.strftime("%M").to_i %>
 
 
@@ -49,12 +50,17 @@
                    <td colspan="3"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
                 </tr>
                  <tr  style="border-color: white">
-                   <td align="left" valign="top"><b>Professor:</b></td>
-                   <td colspan="3"><%=h relatorio.professor.nome %></td>
+                   <td align="left" valign="top"><b>Professor:</b> </td>
+                   <td colspan="3"><% for professor in @professors %>
+                                      <%= professor.nome %> <br/>
+                                   <%end%>
+                   </td>
                 </tr>
                  <tr  style="border-color: white">
-                   <td align="left" valign="top"><b>Relatório:</b></td>
-                   <td colspan="3"><%= relatorio.observacao.gsub("\n","<br/>\n") %></td>
+                   <th colspan="4"align="center" valign="top"><b>RELATORIO</b></th>
+                 </tr>
+                 <tr>
+                   <td colspan="4"><%= relatorio.observacao.gsub("\n","<br/>\n") %></td>
                 </tr>
                 <tr  style="border-color: white">
                    <td colspan="5">

@@ -1,32 +1,94 @@
-<h1>Editing relatorio</h1>
 
-<% form_for(@relatorio) do |f| %>
-  <%= f.error_messages %>
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>FAPEA</strong></font><br/>
+ </div>
+      <div class="tabs">
 
-  <p>
-    <%= f.label :aluno_id %><br />
-    <%= f.text_field :aluno_id %>
-  </p>
-  <p>
-    <%= f.label :professor_id %><br />
-    <%= f.text_field :professor_id %>
-  </p>
-  <p>
-    <%= f.label :atribuicao_id %><br />
-    <%= f.text_field :atribuicao_id %>
-  </p>
-  <p>
-    <%= f.label :observacao %><br />
-    <%= f.text_field :observacao %>
-  </p>
-  <p>
-    <%= f.label :ano_letivo %><br />
-    <%= f.text_field :ano_letivo %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+          <% form_for (@relatorio) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-<%= link_to 'Show', @relatorio %> |
-<%= link_to 'Back', relatorios_path %>
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4"><b>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</b></td>
+                  </tr>
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4" >
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Relato da observação dos itens:</b><br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 1.  Recursos de movimentos (habilidades motoras).<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 2. Conhecimentos relativos de seu ambiente social e natural ( movidos pelo interesse e pela curiosidade)<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 3. Aspectos afetivos e emocionais que dispõe.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 4. Linguagens: corporal e artística, oral e leitura de mundo.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp 5. Linguagem matemática.<br/>
+                    </td>
+                  </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td width =" 5%" valign="top"><b>Professor:</b></td>
+                   <td colspan="3"><% for professor in @professors %>
+                            <%= professor.nome %> <br/>
+                         <%end%>  </td>
+                </tr>
+                  <tr bgcolor="#F5F5F5">
+                   <td  align="left"><b>Aluno:</b></td>
+                   <td colspan="3"><%=h @relatorio.aluno.aluno_nome %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td align="left"><b>Mãe / Pai:</b></td>
+                   <td colspan="3"><%=h @relatorio.aluno.aluno_mae %> / <%=h @relatorio.aluno.aluno_pai %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td align="left"><b>Classe:</b></td>
+                   <td><%=h @relatorio.atribuicao.classe.classe_classe %></td>
+                   <td><b>Disciplina:</b></td>
+                   <td> <%=h @relatorio.atribuicao.disciplina.disciplina%>  </td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td  align="left"><b>Unidade:</b></td>
+                   <td><%=h @relatorio.atribuicao.classe.unidade.nome %></td>
+                   <td width ="15%"> <b>Ano Letivo:</b></td>
+                   <td><%=h @relatorio.ano_letivo %></td>
+                </tr>
+      
+                 <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Relatório:</b></td>
+                  <td colspan="5">
+
+
+
+  <%= f.text_area(:observacao, :cols=> "80", :rows=>"10", :id=>"contador") %><br/>
+<script>
+        $(document).on("keydown", "#contador", function () {
+            var caracteresRestantes = 12000  ;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+            $(".caracteres").text(caracteresRestantes);
+
+        });
+
+</script>
+  <b><span class="caracteres">12000</span> Caracteres Restantes </b>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+</div>

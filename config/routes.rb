@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :ufaltas
 
-  map.resources :relatorios,:collection => { :relatorio=>:get, :consultas=>:get, :consultas_observacao =>:get}
+  map.resources :relatorios,:collection => { :relatorio=>:get, :consultas=>:get, :consultas_observacao =>:get, :editar=>:get}
   map.resources :observacao_historicos
   map.resources :observacao_notas
   map.resources :situacao_alunos
@@ -119,6 +119,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consultar_relatorio '/consultar_relatorio', :controller => 'relatorio', :action => 'consulta_relatorio'
   #map.consulta_observacoes '/consulta_observacoes', :controller => 'atribuicaos', :action => 'consulta_observacoes'
   map.consulta_relatorios '/consulta_relatorios', :controller => 'relatorios', :action => 'consulta_relatorios'
+  map.editar_relatorio '/editar_relatorios', :controller => 'relatorios', :action => 'editar'
   map.consulta_observacoes '/consulta_observacoes', :controller => 'relatorios', :action => 'consulta_observacoes'
 
   map.historico'/historico', :controller => 'historicos', :action => 'historico'

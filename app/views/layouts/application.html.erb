@@ -179,27 +179,30 @@ display: none;
                               </ul>
                          </li>
                  <%end%>
-
-                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                       
-                           <li><%= link_to "Classe",new_class_path %></li>
-                       
-                      <%end%>
-
-                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>
-                          <li><%= link_to "Professor",new_professor_path %></li>
-
-                      <%end%>
-<!--
-                      <% if current_user.has_role?('admin')%>
-                           <li><%= link_to "Disciplina",new_disciplina_path %></li>
-                      <%end%>
--->
                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')  or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
 
                           <li><%= link_to "Atribuição",new_atribuicao_path %></li>
 
                    <%end%>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                       
+                           <li><%= link_to "Classe",new_class_path %></li>
+                       
+                      <%end%>
+                     <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('professor_infantil')%>
+                           <li><%= link_to "FAPEA", new_relatorio_path %></li>
+                     <%end%>
+
+<!--                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>
+                          <li><%= link_to "Professor",new_professor_path %></li>
+
+                      <%end%>
+
+                      <% if current_user.has_role?('admin')%>
+                           <li><%= link_to "Disciplina",new_disciplina_path %></li>
+                      <%end%>
+-->
+
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                                 
@@ -225,9 +228,7 @@ display: none;
                       <%end%>
 
 
-                     <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('professor_infantil')%>
-                           <li><%= link_to "FAPEA", new_relatorio_path %></li>
-                     <%end%>
+
                     <% if current_user.has_role?('admin') %>
                          <li><%= link_to "Unidade",new_unidade_path %></li>
                      <%end%>
@@ -257,6 +258,9 @@ display: none;
                               <li><%= link_to "Anos Anteriores",consulta_classe_anteriores_path %></li>
                           </ul>
                        </li>
+                     <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil'))%>
+                         <li><%= link_to "FAPEA",consultas_relatorios_path %></li>
+                     <%end%>
                        <li><%= link_to "Matricula",consultar_matriculas_path %></li>
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                            <li><%= link_to "Professor",consulta_professor_nome_path %></li>
@@ -273,20 +277,21 @@ display: none;
 <!--                     <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo'))%>
                          <li><%= link_to "Observaçoes",consultas_observacao_relatorios_path %></li>
                      <%end%> -->
-                     <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil'))%>
-                         <li><%= link_to "FAPEA",consultas_relatorios_path %></li>
-                     <%end%>
+
 
                   </ul>
                <%end%>
               </li>
               <li><span class="divider divider-vert" ></span></li>
 
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                <li><a class="item-primary" href="#;">EDITAR</a>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
+                               <li><a class="item-primary" href="#;">EDITAR</a>
                 <ul style="width:108px;">
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
                    <li><%= link_to "Classe",editar_classe_classes_path %></li>
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
+                       <li><%= link_to "FAPEA",editar_relatorios_path %></li>
+                   <%end%>
 <!-- Comentei a linha abaixo para desativar a opção pois está causando erros na consistência dos dados ao transferir o aluno
 para outra sala não altera as atribuições das disciplinas da sala anterior, também está adicionado o TRANSFERIDO no status do aluno sem ter
 de fato transferido! 26-04-2017 16:00 ###ALEX -->
