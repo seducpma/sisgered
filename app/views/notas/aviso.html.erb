@@ -1,0 +1,33 @@
+<div id="interno2">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTO DE NOTA / HISTÓRICO</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+
+        <fieldset><legend><font size=4>Nota Aluno</font></legend>
+        <table>
+            <tr>
+              <td ><font color ="red" size ="4"><b><u>ATENÇÃO:</u>
+                    O aluno <%= session[:aluno] %> já possui este lançamento em seu histórico escolar </b><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                      <b>Disciplina:</b> <%= session[:disciplina] %> <b>Ano Letivo:</b> <%= session[:ano] %> <b> Nota: </b><%= session[:nota] %> <b>Faltas:</b> <%= session[:faltas] %>
+                     </font>
+                  </td>
+            </tr>
+
+         </table>
+         </fieldset>
+        <table width="100%">
+           <tr>
+             <td width =" 10%"><%= button_to 'Lançar Histórico', new_nota_path %> </td>
+             <td width =" 10%"><%= button_to 'Histórico', historico_path %> </td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
+
+    </div>
+</div>
+<br/>
+</div>

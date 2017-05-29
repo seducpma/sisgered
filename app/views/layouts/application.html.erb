@@ -245,7 +245,6 @@ display: none;
                                <li><%= link_to "SEDUC",consulta_cadastro_alunos_path %></li>                           
                            <%end%>
                        </ul>
-                     
                    </li>
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
@@ -288,6 +287,12 @@ display: none;
                                <li><a class="item-primary" href="#;">EDITAR</a>
                 <ul style="width:108px;">
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+                        <li><%= link_to "Atribuição",consulta_atribuicao_path %></li>
+
+
+                   <%end%>
+
                    <li><%= link_to "Classe",editar_classe_classes_path %></li>
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
                        <li><%= link_to "FAPEA",editar_relatorios_path %></li>

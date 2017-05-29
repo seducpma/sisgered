@@ -37,8 +37,9 @@ class AtribuicaosController < ApplicationController
 
   def edit
     @atribuicao = Atribuicao.find(params[:id])
-    session[:atrib_id]
-    session[:aluno_id]
+   w1= session[:atrib_id]
+   w2= session[:aluno_id]
+   t=0
     @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
     session[:flag_edit]=1
 
@@ -682,6 +683,13 @@ def consulta_observacoes
   render  'relatorios_observacoes'
   
 end
+
+def consulta_atribuicao
+  
+@classe = Classe.find(:all, :select => 'distinct(classe_classe)', :joins => "INNER JOIN  matriculas  ON  classes.id = matriculas.classe_id" , :conditions =>['classes.unidade_id =? AND matriculas.ano_letivo=?' , current_user.unidade_id, Time.now.year],:order =>'classe_classe ASC ')
+
+end
+
 
 def observacoes_aluno
        @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', params[:aluno_aluno_id]])

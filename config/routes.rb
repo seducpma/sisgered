@@ -121,6 +121,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_relatorios '/consulta_relatorios', :controller => 'relatorios', :action => 'consulta_relatorios'
   map.editar_relatorio '/editar_relatorios', :controller => 'relatorios', :action => 'editar'
   map.consulta_observacoes '/consulta_observacoes', :controller => 'relatorios', :action => 'consulta_observacoes'
+  map.consulta_atribuicao '/consulta_atribuicao', :controller => 'atribuicaos', :action => 'consulta_atribuicao'
 
   map.historico'/historico', :controller => 'historicos', :action => 'historico'
   map.historicoatri'/historicoatri', :controller => 'atribuicaos', :action => 'historico_aluno'
@@ -135,7 +136,7 @@ ActionController::Routing::Routes.draw do |map|
   map.continuar'/continuar', :controller => 'alunos', :action => 'continuar'
 
 
-
+  map.historico_aviso '/historico_aviso', :controller => 'notas', :action => 'aviso'
 
 
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
