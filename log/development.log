@@ -12221,3 +12221,481 @@ Rendering home/index
   [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=37) [0m
   [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
 Completed in 137ms (View: 115, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2017-05-29 08:57:12) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 18ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2017-05-29 08:57:12) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 136ms (View: 35, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2017-05-29 08:57:17) [POST]
+  Parameters: {"login"=>"ngarcia", "authenticity_token"=>"zbyPdVFKN+s7rZPNeBjok/EOyuE42zzCFw0jos8hVZA=", "commit"=>"Entrar", "password"=>"musand12"}
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'ngarcia' and activated_at IS NOT NULL) LIMIT 1[0m
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Redirected to http://localhost:3000/
+Completed in 25ms (DB: 3) | 302 Found [http://localhost/session]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2017-05-29 08:57:17) [GET]
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 11:57:17' AND ends_at >= '2017-05-29 11:57:18') [0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.4ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.6ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=37) [0m
+  [4;35;1mUnidade Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 252ms (View: 125, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#transferencia (for 127.0.0.1 at 2017-05-29 08:57:21) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSituacaoAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mSituacaoAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;35;1mUnidade Load (2.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id < 41 OR id >51) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (1.9ms)[0m   [0;1mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (261.1ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=37 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mClasse Load (1.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 37 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mMatricula Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+Rendering template within layouts/application
+Rendering matriculas/transferencia
+  [4;36;1mClasse Load (0.9ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =37 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mClasse Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+Rendered matriculas/_consulta_seduc (20.3ms)
+  [4;35;1mAluno Load (1047.3ms)[0m   [0mSELECT * FROM alunos WHERE unidade_id= 37 AND`id` NOT IN
+ (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = 2017 AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = 37) AND aluno_status is null
+ ORDER BY aluno_nome ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =37 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;35;1mAluno Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Rendered matriculas/_consulta_outras (1172.7ms)
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =37 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+Rendered matriculas/_consulta_outras1 (12.7ms)
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 11:57:23' AND ends_at >= '2017-05-29 11:57:23') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=37) [0m
+Completed in 1651ms (View: 184, DB: 1323) | 200 OK [http://localhost/matriculas/transferencia]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2017-05-29 09:03:30) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 12:03:30' AND ends_at >= '2017-05-29 12:03:30') [0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=37) [0m
+  [4;35;1mUnidade Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 191ms (View: 40, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2017-05-29 09:15:13) [GET]
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mMysql::Error: Table 'sisgered_development.users' doesn't exist: SHOW FIELDS FROM `users`[0m
+
+ActiveRecord::StatementInvalid (Mysql::Error: Table 'sisgered_development.users' doesn't exist: SHOW FIELDS FROM `users`):
+  lib/authenticated_system.rb:108:in `login_from_session'
+  lib/authenticated_system.rb:12:in `current_user'
+  app/controllers/application_controller.rb:12:in `set_current_user'
+
+Rendered rescues/_trace (137.1ms)
+Rendered rescues/_request_and_response (1.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#transferencia (for 127.0.0.1 at 2017-05-29 09:17:53) [GET]
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.3ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.8ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (39.8ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (1.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mMatricula Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+Rendering template within layouts/application
+Rendering matriculas/transferencia
+  [4;35;1mClasse Load (1.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;36;1mUnidade Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mClasse Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered matriculas/_consulta_seduc (24.2ms)
+  [4;36;1mAluno Load (4864.1ms)[0m   [0;1mSELECT * FROM alunos WHERE unidade_id= 42 AND`id` NOT IN
+ (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = 2017 AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = 42) AND aluno_status is null
+ ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;36;1mAluno Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mroles_users Columns (6.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.6ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered matriculas/_consulta_outras (5030.4ms)
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+Rendered matriculas/_consulta_outras1 (19.3ms)
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 12:17:58' AND ends_at >= '2017-05-29 12:17:58') [0m
+  [4;36;1mUnidade Load (0.5ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=42) [0m
+Completed in 5280ms (View: 211, DB: 4924) | 200 OK [http://localhost/matriculas/transferencia]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#unidade_transferencia (for 127.0.0.1 at 2017-05-29 09:18:05) [POST]
+  Parameters: {"matricula_procedencia"=>"CIEP ZANAGA (PROFA. ONIVA DE MOURA BRIZOLA) ", "authenticity_token"=>"zbyPdVFKN+s7rZPNeBjok/EOyuE42zzCFw0jos8hVZA="}
+  [4;35;1mUser Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.2ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`nome` = 'CIEP ZANAGA (PROFA. ONIVA DE MOURA BRIZOLA) ') LIMIT 1[0m
+  [4;36;1mAluno Load (96.7ms)[0m   [0;1mSELECT `alunos`.* FROM `alunos` inner join matriculas on alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id =42 AND matriculas.ano_letivo =2017) ORDER BY aluno_nome[0m
+  [4;35;1mUnidade Load (0.5ms)[0m   [0mSELECT * FROM `unidades` WHERE (id =42) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.7ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =42) ORDER BY classe_classe[0m
+  [4;35;1mAluno Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Rendered matriculas/_selecao_alunos (21.1ms)
+Completed in 303ms (View: 23, DB: 103) | 200 OK [http://localhost/matriculas/unidade_transferencia]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#matricula_aluno_classe (for 127.0.0.1 at 2017-05-29 09:18:21) [POST]
+  Parameters: {"authenticity_token"=>"zbyPdVFKN+s7rZPNeBjok/EOyuE42zzCFw0jos8hVZA=", "aluno_id"=>""}
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSituacaoAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mSituacaoAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mMatricula Load (26.0ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id ='' AND ano_letivo = 2017) [0m
+Rendered matriculas/_classe_aluno (1.3ms)
+Completed in 181ms (View: 9, DB: 29) | 200 OK [http://localhost/matriculas/matricula_aluno_classe]
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#transferencia (for 127.0.0.1 at 2017-05-29 09:21:09) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (40.7ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mMatricula Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+Rendering template within layouts/application
+Rendering matriculas/transferencia
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mClasse Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered matriculas/_consulta_seduc (21.8ms)
+  [4;36;1mAluno Load (4780.0ms)[0m   [0;1mSELECT * FROM alunos WHERE unidade_id= 42 AND`id` NOT IN
+ (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = 2017 AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = 42) AND aluno_status is null
+ ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;36;1mAluno Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered matriculas/_consulta_outras (4926.3ms)
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+Rendered matriculas/_consulta_outras1 (14.6ms)
+  [4;35;1mInformativo Load (0.7ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 12:21:14' AND ends_at >= '2017-05-29 12:21:14') [0m
+  [4;36;1mUnidade Load (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=42) [0m
+Completed in 5211ms (View: 191, DB: 4831) | 200 OK [http://localhost/matriculas/transferencia]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#transferencia (for 127.0.0.1 at 2017-05-29 09:21:18) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.3ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mMatricula Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+Rendering template within layouts/application
+Rendering matriculas/transferencia
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered matriculas/_consulta_seduc (19.2ms)
+  [4;36;1mAluno Load (0.6ms)[0m   [0;1mSELECT * FROM alunos WHERE unidade_id= 42 AND`id` NOT IN
+ (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = 2017 AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = 42) AND aluno_status is null
+ ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;36;1mAluno Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered matriculas/_consulta_outras (43.3ms)
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+Rendered matriculas/_consulta_outras1 (16.6ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 12:21:18' AND ends_at >= '2017-05-29 12:21:18') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=42) [0m
+Completed in 247ms (View: 87, DB: 11) | 200 OK [http://localhost/matriculas/transferencia]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#unidade_transferencia (for 127.0.0.1 at 2017-05-29 09:21:24) [POST]
+  Parameters: {"matricula_procedencia"=>"CIEP ZANAGA (PROFA. ONIVA DE MOURA BRIZOLA) ", "authenticity_token"=>"zbyPdVFKN+s7rZPNeBjok/EOyuE42zzCFw0jos8hVZA="}
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.2ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mUnidade Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`nome` = 'CIEP ZANAGA (PROFA. ONIVA DE MOURA BRIZOLA) ') LIMIT 1[0m
+  [4;36;1mAluno Load (98.7ms)[0m   [0;1mSELECT `alunos`.* FROM `alunos` inner join matriculas on alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id =42 AND matriculas.ano_letivo =2017) ORDER BY aluno_nome[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id =42) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =42) ORDER BY classe_classe[0m
+  [4;35;1mAluno Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Rendered matriculas/_selecao_alunos (114.0ms)
+Completed in 439ms (View: 114, DB: 104) | 200 OK [http://localhost/matriculas/unidade_transferencia]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#matricula_aluno_classe (for 127.0.0.1 at 2017-05-29 09:21:30) [POST]
+  Parameters: {"authenticity_token"=>"zbyPdVFKN+s7rZPNeBjok/EOyuE42zzCFw0jos8hVZA=", "aluno_id"=>""}
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSituacaoAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mSituacaoAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mMatricula Load (21.6ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id ='' AND ano_letivo = 2017) [0m
+Rendered matriculas/_classe_aluno (0.3ms)
+Completed in 192ms (View: 2, DB: 24) | 200 OK [http://localhost/matriculas/matricula_aluno_classe]
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2017-05-29 09:21:38) [GET]
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 12:21:38' AND ends_at >= '2017-05-29 12:21:38') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=42) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 47ms (View: 23, DB: 3) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2017-05-29 09:22:26) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 12:22:26' AND ends_at >= '2017-05-29 12:22:26') [0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (9.4ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=42) [0m
+  [4;36;1mUnidade Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 146ms (View: 110, DB: 16) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#transferencia (for 127.0.0.1 at 2017-05-29 09:22:30) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.2ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (42.4ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mMatricula Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+Rendering template within layouts/application
+Rendering matriculas/transferencia
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered matriculas/_consulta_seduc (104.0ms)
+  [4;36;1mAluno Load (4972.8ms)[0m   [0;1mSELECT * FROM alunos WHERE unidade_id= 42 AND`id` NOT IN
+ (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = 2017 AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = 42) AND aluno_status is null
+ ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+  [4;36;1mAluno Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered matriculas/_consulta_outras (5017.7ms)
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =42 and classe_ano_letivo=2017) ORDER BY classe_classe[0m
+Rendered matriculas/_consulta_outras1 (13.7ms)
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 12:22:36' AND ends_at >= '2017-05-29 12:22:36') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=42) [0m
+Completed in 5245ms (View: 173, DB: 5023) | 200 OK [http://localhost/matriculas/transferencia]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#unidade_transferencia (for 127.0.0.1 at 2017-05-29 09:22:41) [POST]
+  Parameters: {"matricula_procedencia"=>"CIEP ZANAGA (PROFA. ONIVA DE MOURA BRIZOLA) ", "authenticity_token"=>"zbyPdVFKN+s7rZPNeBjok/EOyuE42zzCFw0jos8hVZA="}
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.2ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mUnidade Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`nome` = 'CIEP ZANAGA (PROFA. ONIVA DE MOURA BRIZOLA) ') LIMIT 1[0m
+  [4;36;1mAluno Load (111.0ms)[0m   [0;1mSELECT `alunos`.* FROM `alunos` inner join matriculas on alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id =42 AND matriculas.ano_letivo =2017) ORDER BY aluno_nome[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id =42) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =42) ORDER BY classe_classe[0m
+  [4;35;1mAluno Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Exception occurred during reader method compilation.
+Maybe  updated_at is not a valid Ruby identifier?
+compile error
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ':', expecting ')'
+              write_attribute(: updated_at, time)
+                               ^
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/attribute_methods.rb:216: syntax error, unexpected ')', expecting '='
+Rendered matriculas/_selecao_alunos (18.1ms)
+Completed in 319ms (View: 18, DB: 116) | 200 OK [http://localhost/matriculas/unidade_transferencia]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#matricula_aluno_classe (for 127.0.0.1 at 2017-05-29 09:22:55) [POST]
+  Parameters: {"authenticity_token"=>"zbyPdVFKN+s7rZPNeBjok/EOyuE42zzCFw0jos8hVZA=", "aluno_id"=>""}
+  [4;36;1mUser Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSituacaoAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mSituacaoAluno Load (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id > 41 AND id <52) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 42) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=42 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2017) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 42 and classe_ano_letivo = 2017 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mMatricula Load (21.3ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id ='' AND ano_letivo = 2017) [0m
+Rendered matriculas/_classe_aluno (0.4ms)
+Completed in 177ms (View: 3, DB: 23) | 200 OK [http://localhost/matriculas/matricula_aluno_classe]
+  [4;36;1mUnidade Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2017-05-29 09:22:55) [GET]
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2017-05-29 12:22:55' AND ends_at >= '2017-05-29 12:22:55') [0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=42) [0m
+  [4;36;1mUnidade Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 180ms (View: 26, DB: 3) | 200 OK [http://localhost/]
