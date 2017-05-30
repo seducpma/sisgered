@@ -25,6 +25,13 @@ class AtribuicaosController < ApplicationController
     end
   end
 
+   def show_editar
+
+    @atribuicao = Atribuicao.find(session[:atribuicao])
+
+  end
+
+
   def new
     @atribuicao = Atribuicao.new
 
@@ -36,14 +43,24 @@ class AtribuicaosController < ApplicationController
 
 
   def edit
-    @atribuicao = Atribuicao.find(params[:id])
-   w1= session[:atrib_id]
-   w2= session[:aluno_id]
-   t=0
-    @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
-    session[:flag_edit]=1
+    if session[:flag_edit_atribuicao] == 1
+      @atribuicao_anterior = Atribuicao.find(:all, :conditions=>['id =?', (params[:id])])
+      session[:disciplina_id]=  @atribuicao_anterior[0].disciplina_id
+      session[:disciplina_nome]=  @atribuicao_anterior[0].disciplina.disciplina
+      session[:professora_id]=  @atribuicao_anterior[0].professor_id
+      session[:professor_nome]=  @atribuicao_anterior[0].professor.nome
+      @atribuicao = Atribuicao.find(params[:id])
 
+    else
+        @atribuicao = Atribuicao.find(params[:id])
+        @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
+        session[:flag_edit]=1
+    end
   end
+
+
+
+
 
  def create
     @atribuicao = Atribuicao.new(params[:atribuicao])
@@ -69,7 +86,7 @@ class AtribuicaosController < ApplicationController
 
       @historico_aluno  = Aluno.find(session[:historico_aluno_id])
       @observacao_historico.aluno_id = @aluno.id
-
+params[:id]
       @observacao_historico.data = Time.now
 
       if @observacao_historico.save
@@ -85,41 +102,65 @@ end
 
 
    def update
-    @atribuicao = Atribuicao.find(params[:id])
-    @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
-    respond_to do |format|
-     if @atribuicao.update_attributes(params[:atribuicao])
-       for outras_atribuicaos in @outras_atribuicaos
-           outras_atribuicaos.aulas1= @atribuicao.aulas1
-           outras_atribuicaos.save
-           @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", outras_atribuicaos.id,Time.now.year ])
-            for nota in @notas
-               nota = Nota.find(nota.id)
-               nota.aulas1=@atribuicao.aulas1
-               nota.aulas2=@atribuicao.aulas2
-               nota.aulas3=@atribuicao.aulas3
-               nota.aulas4=@atribuicao.aulas4
-               nota.aulas5 = @atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
-               nota.save
-            end
-        end
-
-        if  session[:flag_edit]== 1
-          flash[:notice] = 'SALVO COM SUCESSO!'
-
-             format.html { redirect_to(voltar_lancamento_notas_path)}
-
-        else
-          flash[:notice] = 'SALVO COM SUCESSO!'
-            format.html { redirect_to(@atribuicao) }
+     
+    if session[:flag_edit_atribuicao] == 1
+       session[:atribuicao]=params[:id]
+       
+       @atribuicao = Atribuicao.find(params[:id])
+       respond_to do |format|
+          if @atribuicao.update_attributes(params[:atribuicao])
+           @notas = Nota.find(:all, :conditions=> ['atribuicao_id=? and disciplina_id=?', @atribuicao.id, session[:disciplina_id]])
+              for nota in @notas
+                 nota = Nota.find(nota.id)
+                 nota.disciplina_id=@atribuicao.disciplina_id
+                 nota.professor_id=@atribuicao.professor_id
+                 nota.save
+              end
+            flash[:notice] = 'Atribuição atualizada.'
+            format.html { redirect_to( show_editar_path ) }
             format.xml  { head :ok }
-         end
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
+          else
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
+          end
+
       end
+    else     
+            @atribuicao = Atribuicao.find(params[:id])
+            @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
+            respond_to do |format|
+             if @atribuicao.update_attributes(params[:atribuicao])
+               for outras_atribuicaos in @outras_atribuicaos
+                   outras_atribuicaos.aulas1= @atribuicao.aulas1
+                   outras_atribuicaos.save
+                   @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", outras_atribuicaos.id,Time.now.year ])
+                    for nota in @notas
+                       nota = Nota.find(nota.id)
+                       nota.aulas1=@atribuicao.aulas1
+                       nota.aulas2=@atribuicao.aulas2
+                       nota.aulas3=@atribuicao.aulas3
+                       nota.aulas4=@atribuicao.aulas4
+                       nota.aulas5 = @atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
+                       nota.save
+                    end
+                end
+                if  session[:flag_edit]== 1
+                  flash[:notice] = 'SALVO COM SUCESSO!'
+                     format.html { redirect_to(voltar_lancamento_notas_path)}
+                else
+                  flash[:notice] = 'SALVO COM SUCESSO!'
+                    format.html { redirect_to(@atribuicao) }
+                    format.xml  { head :ok }
+                 end
+              else
+                format.html { render :action => "edit" }
+                format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
+              end
+           end
+
     end
-        session[:flag_edit]=0
+   session[:flag_edit_atribuicao] =0
+   session[:flag_edit]=0
   end
 
 
@@ -211,7 +252,6 @@ def create_notas
          session[:unidade]=classe.unidade_id
          session[:classe_id] = classe.id
        end
-             t=0
         @matricula = Matricula.find(:all,:conditions =>['classe_id = ? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
         quantidade = @matricula.count
         if quantidade == 1
@@ -287,14 +327,8 @@ else if params[:type_of].to_i == 2
             page.replace_html 'relatorio', :partial => 'relatorio_classe'
        end
     end
-end
-
-
-
-
-
-
   end
+ end
 
 
 
@@ -685,10 +719,21 @@ def consulta_observacoes
 end
 
 def consulta_atribuicao
-  
+
 @classe = Classe.find(:all, :select => 'distinct(classe_classe)', :joins => "INNER JOIN  matriculas  ON  classes.id = matriculas.classe_id" , :conditions =>['classes.unidade_id =? AND matriculas.ano_letivo=?' , current_user.unidade_id, Time.now.year],:order =>'classe_classe ASC ')
 
 end
+def editar_atribuicao_classe
+       session[:classe_id]=params[:atribuicao][:classe_id]
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:atribuicao][:classe_id]])
+       @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', params[:atribuicao][:classe_id],0], :order =>'disciplinas.ordem ASC ' )
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:atribuicao][:classe_id]], :order => 'classe_num ASC')
+
+        render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_classe'
+       end
+end
+
 
 
 def observacoes_aluno
@@ -742,6 +787,8 @@ end
   
 
    def load_classes
+
+   @classe = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @classes = Classe.find(:all, :conditions => ['classe_ano_letivo = ?', Time.now.year], :order => 'classe_classe ASC')
         #@classes_boletim_anterior = Classe.find(:all, :order => 'classe_classe ASC')

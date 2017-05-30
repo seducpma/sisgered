@@ -1,0 +1,44 @@
+<div id="interno3">
+<% title "ATRIBUICAO" %>
+<div class ="tabs">
+   <fieldset><legend><font  size=3><b> Atribuição de Atribuição de Aula</b></font></legend>
+    <table width="100%">
+             <tr bgcolor="#F5F5F5">
+         <td align="left"><b>Unidade:</b></td>
+         <td  colspan="3"><%=h @atribuicao.classe.unidade.nome%></td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td  align="left"><b>Ano Letivo:</b></td>
+         <td><%=h @atribuicao.ano_letivo %></td>
+         <td align="left"><b>Classe:</b></td>
+         <td align="left" ><%=h @atribuicao.classe.classe_classe%></td>
+
+      </tr>
+       <tr bgcolor="#F5F5F5">
+           <td align="left"><b>do Professor:</b></td>
+           <td align="left"><%=  session[:professor_nome]%></td>
+           <td align="left"><b>para Professor:</b></td>
+           <td align="left"><%=h @atribuicao.professor.nome%></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+           <td align="left"><b>da Disciplina:</b></td>
+           <td align="left"><%=  session[:disciplina_nome]%></td>
+           <td align="left"><b>para Disciplina:</b></td>
+           <td align="left"><%=h @atribuicao.disciplina.disciplina%></td>
+       </tr>
+
+  </table>
+</fieldset>
+
+
+  <table width="100%" >
+         <tr>
+            <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+         </tr><br/>
+       </table>
+<br/>
+
+
+</div>
+<br/>
+</div>

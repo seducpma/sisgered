@@ -14,6 +14,7 @@
          <td colspan="3"><%= f.collection_select :disciplina_id, @disciplinas, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
 
       </tr>
+      <% if session[:flag_edit_atribuicao] != 1 %>
         <tr>
           <td colspan="4">
              <font color="gray"> <u><b>Obs:</u> Se o nome do professor NÃO constar na lista, favor entrar em contato com a Informática/SEDUC
@@ -21,7 +22,7 @@
              </font> </b>
            </td>
         </tr>
-
+      <%end%>
    </table>
   </fieldset>
  <br/>

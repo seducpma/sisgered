@@ -26,7 +26,6 @@
                                  <td align="left" width="50%">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
                                  <td align="left"width="10%"><b> Disciplina:</b></td>
                                  <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
-                                 
                                              <% if (current_user.has_role?('admin'))%>
                                                  <td  align="left" ><%= button_to'Excluir', { :action => "destroy_professor", :id =>atrib}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
                                              <%end%>
