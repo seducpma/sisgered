@@ -31,7 +31,12 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td width =" 12%"><b>Escola:</b></td>
-                   <td><%= f.text_field :escola , :size => '65', :value => '    Favor digitar o Nome da Escola - Cidade - Estado'%> </td>
+                   <td><%= f.text_field :escola , :size => '28'%>
+                   &nbsp&nbsp
+                   <b>Cidade: </b>
+                    <%= f.text_field :cidade , :size => '28', :value => 'digitar cidade/estado'%>
+
+                   </td>
                  </tr>
 
                </table>

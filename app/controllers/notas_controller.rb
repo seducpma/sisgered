@@ -53,8 +53,8 @@ before_filter :load_classes
 
     @nota = Nota.new(params[:nota])
     @existe= Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=?', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo])
-
-    if !@existe.nil?
+t=0
+    if !@existe.empty?
        respond_to do |format|
          
          session[:aluno]= @nota.aluno.aluno_nome

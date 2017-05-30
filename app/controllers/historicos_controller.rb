@@ -148,7 +148,7 @@ def historico
 
  if  (params[:aluno_id].present?)
    session[:aluno_id] = params[:aluno_id]
-    @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_id]])
+    @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', params[:aluno_id]])
      for aluno in @aluno
        session[:unidade_id]= aluno.unidade_id
        session[:aluno_id]= aluno.id
@@ -156,7 +156,7 @@ def historico
      end
 
      @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
-     @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
+     @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
      @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
      @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
      @disciplinas = @disciplinasD + @disciplinasB
@@ -245,7 +245,6 @@ end
 
    def load_classes
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
-
         @classes = Classe.find(:all, :conditions => ['classe_ano_letivo = ?', Time.now.year], :order => 'classe_classe ASC')
               if current_user.professor_id.nil?
           if current_user.unidade_id < 42 or current_user.unidade_id > 53
@@ -287,13 +286,13 @@ end
    def load_professors
     if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
-        @professors1 = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
+        #@professors1 = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
         @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @alunos_boletim = @alunos1
     else
-        @professors1 = Professor.find(:all, :conditions => ['id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
+        #@professors1 = Professor.find(:all, :conditions => ['id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
         @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54) AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
         @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
