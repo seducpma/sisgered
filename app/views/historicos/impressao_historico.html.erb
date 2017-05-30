@@ -298,36 +298,50 @@
  <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
  
  <center><font size="3"><b>C E R T I F I C A D O</b></font><br/></center>
-<% for nota in @notas_ano  %>
+
  <table style="border-color: white">
    <tr style="border-color: white">
      <td   style="border-color: white; font-size: 9px" colspan="3">
      <% var = 0 %>
      <% var1 = 0 %>
     <font size="2"><br/>
-     O sr(a) diretor(a) <b><%=h nota.matricula.unidade.nome%></b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
-     certfica que o aluno(a) <%=h nota.matricula.aluno.aluno_nome %> </b> concluiu</b> o
+     O sr(a) diretor(a) <b><%= @notas_ano.matricula.unidade.nome%></b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
+     certfica que o aluno(a) <%= @notas_ano.matricula.aluno.aluno_nome %> </b> concluiu</b> o
 
               <%if @ano_final.classe.nil?%>
                  <% if @ano_final.matricula.classe.classe_classe == 'EJA' %>
                      <b>EJA - </b>
                  <%else%>
-                   <% session[:classe]= @ano_final.matricula.classe.classe_classe[0,1].to_i %>
-                   <b><%= session[:classe] %>º ano</b>
+                     <% session[:classe]= @ano_final.matricula.classe.classe_classe[0,1].to_i %>
+                      <%if @notas_ano.nota5.nil?%>
+                         <b><%= (session[:classe]-1) %>º ano</b>
+                      <%else%>
+                           <b><%= session[:classe] %>º ano</b>
+                      <%end%>
                  <%end%>
              <%else%>
                 <b>9º ano</b>
             <%end%>
 
-         do Ensino Fundamental de 9 anos, no <b> ano letivo de <%= nota.matricula.ano_letivo%></b>
+         do Ensino Fundamental de 9 anos, no <b> ano letivo de
+
+
+
+  <%= @notas_ano.matricula.ano_letivo%></b>
          
          <% if session[:classe] < 9 %>
-              , estando apto(a) ao proseguimento os estudos no <b><%= session[:classe] + 1%>º ano </b> do ENSINO FUNDAMENTAL.
+              , estando apto(a) ao proseguimento os estudos no <b>
+                      <%if @notas_ano.nota5.nil?%>
+                         <b><%= (session[:classe]) %>º ano</b>
+                      <%else%>
+                           <b><%= session[:classe]+1 %>º ano</b>
+                      <%end%>
+                do ENSINO FUNDAMENTAL.
          <%else%>
               .
          <%end%>
 
-   <%end%>
+
      </td>
    </tr>
    <tr style="border-color: white">
