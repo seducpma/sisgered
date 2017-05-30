@@ -120,7 +120,7 @@ def relatorio_observacoes
        session[:aluno_imp]= params[:aluno]
        session[:ano_imp]=params[:ano_letivo]
 
-       @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', session[:aluno_imp]])
+       @aluno = Aluno.find(:all,:select=> 'id, aluno_nome' ,:conditions =>['id = ? AND aluno_status is null', session[:aluno_imp]])
         session[:aluno] =params[:aluno_aluno_id]
        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno_imp],params[:ano_letivo]])
        @matriculas.each do |matricula|
@@ -154,7 +154,6 @@ def historico
        session[:aluno_id]= aluno.id
        session[:aluno_nome] = aluno.aluno_nome
      end
-
      @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
      @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
      @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
@@ -202,7 +201,7 @@ def impressao_historico
      end
 
      @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
-     @unidade = Unidade.find(:all, :conditions => ['id =?', session[:unidade_id]])
+     @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
      @disciplinasB = Disciplina.find(:all, :conditions =>['curriculo = "B"'],:order => 'ordem ASC' )
      @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
      @disciplinas = @disciplinasD + @disciplinasB
@@ -288,15 +287,15 @@ end
         @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         #@professors1 = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
-        @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
-        @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @alunos1 = Aluno.find(:all, :select => 'id, aluno_nome',:order => 'aluno_nome ASC' )
+        #@alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @alunos_boletim = @alunos1
     else
         #@professors1 = Professor.find(:all, :conditions => ['id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
         @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54) AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
-        @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
-        @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        @alunos1 = Aluno.find(:all, :select => 'id, aluno_nome', :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        #@alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @alunos_boletim = @alunos1
      end
   end
@@ -329,7 +328,7 @@ end
     @disciplinasB = Disciplina.find(:all, :conditions=>['curriculo = "B"'])
     @ano =   ObservacaoNota.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
     @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')
-    @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
+    @alunos2 = Aluno.find(:all,:select => 'id, aluno_nome',  :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
     if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @classe = Classe.find(:all, :order => 'classe_classe ASC')
     else

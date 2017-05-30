@@ -5,7 +5,7 @@
           <b>Data: </b> <%  if obs.data.nil?  %>
                             -
                         <%else%>
-                            <%=  obs.data.strftime("%d/%m/%Y")%> -
+                            <%=  obs.data.strftime("%d/%m/%Y")%> - <%=  obs.quem %>
                         <%end%>
 
     <br/>
