@@ -182,9 +182,9 @@ def gerar_notas
 
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0])
-       t=0
+
        for matricula in @matriculas
-         @notas_inicial = Nota.find(:all, :conditions=>['aluno_id =? and ano_letivo =?', matricula.aluno_id,  Time.now.year])
+         @notas_inicial = Nota.find(:all, :conditions=>['aluno_id =? and ano_letivo =? and unidade_id =?', matricula.aluno_id, matricula.unidade_id, Time.now.year])
           session[:matricula_aluno_id] = matricula.aluno_id
           for atribuicao in @atribuicao_classe
                @notas_atribuicao_classe = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=? AND disciplina_id=? and atribuicao_id=?', matricula.aluno_id,Time.now.year, atribuicao.disciplina_id, atribuicao.id])
@@ -232,7 +232,13 @@ def gerar_notas
                                       @nota.aulas4 = 0
 #                                      if (matricula.status == 'TRANSFERIDO')
 #                                         @nota.nota5 = 'TR'
-#                                      else
+#                                      else #                   if !@notas_matricula.empty?
+ #                      w=@notas_matricula[0].id
+ #                      w1= notas_matricula=@notas_matricula[0].id
+#
+  #                  end
+#                  if !@notas_teste[0].unidade_id == notas.unidade_id
+
                                          @nota.nota5 = nil
 #                                      end
                                       @nota.faltas5 = 0
@@ -250,19 +256,9 @@ def gerar_notas
              @notas_aluno = Nota.find(:all, :conditions=>['aluno_id =? and ano_letivo =?', matricula.aluno_id,  Time.now.year])
              @notas_matricula = Nota.find(:all, :conditions=>['aluno_id =? and matricula_id =? and ano_letivo =?', matricula.aluno_id, matricula.id,  Time.now.year])
 
- #            w= matricula.id
- #            t=0
-             
- #            t=0
                  for notas in @notas_inicial
-#                   @notas_teste = Nota.find(:all, :conditions=>['aluno_id =? and matricula_id=? and disciplina_id=?', matricula.aluno_id, notas.matricula_id, notas.disciplina_id])
+
                     @notas_matricula = Nota.find(:all, :conditions=>['aluno_id =? and matricula_id =? and ano_letivo =? and disciplina_id =?', matricula.aluno_id, matricula.id,  Time.now.year, notas.disciplina_id])
- #                   if !@notas_matricula.empty?
- #                      w=@notas_matricula[0].id
- #                      w1= notas_matricula=@notas_matricula[0].id
-#
-  #                  end
-#                  if !@notas_teste[0].unidade_id == notas.unidade_id
                        session[:professor]= notas.professor_id
                        session[:disciplina]= notas.disciplina_id
                        session[:disciplina]
