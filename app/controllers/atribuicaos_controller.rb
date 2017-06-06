@@ -397,7 +397,7 @@ end
 def relatorio_aluno_classe
        session[:classe_id] = params[:classe_id]
        session[:ano_nota] = Time.now.year
-       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status = "MATRICULADO" or status = "TRANSFERENCIA" or status = "*REMANEJADO")', params[:classe_id]], :order =>'classe_num')
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? ', params[:classe_id]], :order =>'classe_num')
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe_id]])
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe_id]])
        render :partial => 'relatorio_classe'
