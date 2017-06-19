@@ -102,11 +102,12 @@ end
 
 
    def update
-     
+  @atribuicao = Atribuicao.find(params[:id])
     if session[:flag_edit_atribuicao] == 1
+    
        session[:atribuicao]=params[:id]
        
-       @atribuicao = Atribuicao.find(params[:id])
+       
        respond_to do |format|
           if @atribuicao.update_attributes(params[:atribuicao])
            @notas = Nota.find(:all, :conditions=> ['atribuicao_id=? and disciplina_id=?', @atribuicao.id, session[:disciplina_id]])
@@ -120,14 +121,21 @@ end
             format.html { redirect_to( show_editar_path ) }
             format.xml  { head :ok }
           else
+           
             format.html { render :action => "edit" }
             format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
           end
 
       end
-    else     
-            @atribuicao = Atribuicao.find(params[:id])
-            @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
+    else
+      if ((params[:atribuicao][:aulas2]).to_i < 1 ) or ((params[:atribuicao][:aulas1]).to_i < 1)
+        respond_to do |format|
+              #flash[:notice] = 'CADASTRADO COM SUCESSO.'
+             format.html { redirect_to(aviso_atribuicaos_path) }
+             format.xml  { head :ok }
+          end
+      else
+         @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
             respond_to do |format|
              if @atribuicao.update_attributes(params[:atribuicao])
                for outras_atribuicaos in @outras_atribuicaos
@@ -157,7 +165,7 @@ end
                 format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
               end
            end
-
+      end
     end
    session[:flag_edit_atribuicao] =0
    session[:flag_edit]=0
