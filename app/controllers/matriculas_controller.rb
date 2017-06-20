@@ -420,11 +420,11 @@ end
        #@status_transf = SituacaoAluno.find(:all,:conditions =>['id != 3 AND id != 4'])
        @status_transf = SituacaoAluno.find(:all)
        @status_saida= SituacaoAluno.find(:all,:conditions =>['id = 2'])
-       if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
-         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id > 41 AND id <52'], :order => 'nome ASC')
+       if ((current_user.unidade_id > 41  and  current_user.unidade_id < 52) or current_user.unidade_id == 62)
+         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['((id > 41 AND id <52) OR id = 62)'], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all,:conditions =>['id = ?', current_user.unidade_id], :order => 'nome ASC')
        else
-         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id < 41  OR id >51'], :order => 'nome ASC')
+         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['((id < 41 OR id >51) AND id <> 62)'], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
        end
 
