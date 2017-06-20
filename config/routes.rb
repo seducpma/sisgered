@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :notas_alunos
   map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get, :relatorio_classe => :get ,  :new1 => :get, }
   map.resources :classes_alunos
-  map.resources :classes,:collection => { :editar_classe=>:get, :gerar_notas=>:get, :nucleo_basico =>:get}
+  map.resources :classes,:collection => { :editar_classe=>:get, :gerar_notas=>:get, :nucleo_basico =>:get, :consulta_classe_fone =>:get}
   map.resources :professors,:collection => { :consulta_classe=>:get,  :consulta_classe_anterior=>:get }
   map.resources :tipos
   map.resources :unidades,  :collection => {:consultas => :get}
@@ -60,6 +60,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_ficha_completa '/impressao_ficha_completa', :controller => 'socioeconomicos', :action => 'impressao_ficha_completa'
   map.impressao_ficha '/impressao_ficha', :controller => 'alunos', :action => 'impressao_ficha'
   map.impressao_classe '/impressao_classe', :controller => 'classes', :action => 'impressao_classe'
+  map.impressao_classe_fone '/impressao_classe_fone', :controller => 'classes', :action => 'impressao_classe_fone'
   map.impressao_piloto '/impressao_piloto', :controller => 'classes', :action => 'impressao_piloto'
   map.impressao_lista '/impressao_lista', :controller => 'classes', :action => 'impressao_lista'
   map.impressao_bolsa_familia '/impressao_bolsa_familia', :controller => 'alunos', :action => 'impressao_bolsa_familia'
@@ -101,6 +102,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
   map.consulta_ficha_cadastral '/consulta_ficha_cadastral', :controller => 'alunos', :action => 'consulta_ficha_cadastral'
   map.consulta_classe_aluno '/consulta_classe_aluno', :controller => 'classes', :action => 'consulta_classe_aluno'
+  map.consulta_classe_fone1 '/consulta_classe_fone1', :controller => 'classes', :action => 'consulta_classe_fone1'
   map.consulta_classe_piloto'/consulta_classe_piloto', :controller => 'classes', :action => 'consulta_classe_piloto'
   map.consulta_piloto'/consulta_piloto', :controller => 'classes', :action => 'consulta_piloto'
   map.consulta_classe '/consulta_classe', :controller => 'classes', :action => 'consulta_classe'
