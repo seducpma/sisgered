@@ -63,7 +63,7 @@
                                               <%else%>
                                                  <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, '---')) %>
                                               <%end%>
-                                              <%if @nota.faltas1 != 0%>
+                                              <%if @nota.nota1.present?%>
                                                   <%= @nota.faltas1%>
                                                   <!--<%= f.text_field :faltas1 , :size => '2'%>-->
                                               <%else%>
@@ -78,19 +78,17 @@
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota2.present?%>
-                                                 <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %>
-                                                 <!-- &nbsp&nbsp&nbsp <%= @nota.nota2%>&nbsp&nbsp&nbsp -->
+                                                 <!-- <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %> -->
+                                                 &nbsp&nbsp&nbsp <%= @nota.nota2%>&nbsp&nbsp&nbsp
                                               <%else%>
-<!--                                                 <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, '---')) %>
-
+                                                 <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, '---')) %>
                                               <%end%>
-                                              <%if @nota.faltas2 != 0%>
-                                                  <!--nbsp&nbsp&nbsp&nbsp <%= @nota.faltas2%>-->
-                                                  <%= f.text_field :faltas2 , :size => '2'%>
+                                              <%if @nota.nota2.present?%>
+                                                  &nbsp&nbsp&nbsp&nbsp <%= @nota.faltas2%>
+                                                  <!-- <%= f.text_field :faltas2 , :size => '2'%> -->
                                               <%else%>
                                                   <%= f.text_field :faltas2 , :size => '2'%>
                                               <%end%>
--->
                              </td>
                          <%end%>
                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
