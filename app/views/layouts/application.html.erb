@@ -370,7 +370,7 @@ de fato transferido! 26-04-2017 16:00 ###ALEX -->
 <!-- Descomentei a linha acima para liberar o lançamento e alteração de notas - ###Alex 2017-04-17 11:39 -->
                   <%end%>
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
-                     <li><%= link_to "Notas/Faltas",lancar_notas_notas_path %></li>
+                     <!-- <li><%= link_to "Notas/Faltas",lancar_notas_notas_path %></li> -->
 <!-- Descomentei a linha acima para liberar o lançamento e alteração de notas - ###Alex 2017-04-17 11:39 -->
                   <%end%>
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
