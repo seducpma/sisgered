@@ -178,7 +178,7 @@ end
         else
            session[:aulas5]= (@nota.aulas5.to_f)
            session[:faltas5]= (@nota.faltas5.to_f)
-           @nota.freq5= 100 -((session[:faltas5] / session[:aulas5])*100)
+           @nota.freq5= 100 - ((session[:faltas5] / session[:aulas5])*100)
          end
 
        if @nota.nota1 == '---'
@@ -195,65 +195,65 @@ end
        end
      w=@atribuicao_classe[0].disciplina_id
 
-
 # outras atribuições do mesmo professor (nucleo comum)
-    if @atribuicao_classe[0].disciplina_id == 1
-        @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=?  and disciplina_id != 1" , session[:classe_id], session[:professor_id], Time.now.year])
-        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
-    
+#    if @atribuicao_classe[0].disciplina_id == 1
+#       @outras_atribuicaos = Atribuicao.find(:all,:conditions =>["classe_id = ? and professor_id = ? and ano_letivo    = ?  and disciplina_id != 1", session[:classe_id],    session[:professor_id], Time.now.year])
+#        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id = ? and disciplina_id = ?',session[:classe_id],     session[:professor_id], session[:disc_id]])
+#
+#
+#        for atrib in  @outras_atribuicaos
+#          @notas = Nota.find(:all, :conditions => ["atribuicao_id =? AND professor_id=? AND disciplina_id=? AND notas.ano_letivo=? ", atrib.id, atrib.professor_id, atrib.disciplina_id,  Time.now.year])
+#           for nota in @notas
+#             nota.faltas1 = @nota.faltas1
+#             nota.faltas2 = @nota.faltas2
+#             nota.faltas3 = @nota.faltas3
+#             nota.faltas4 = @nota.faltas4
+#
+#            if (@nota.faltas1 == 0)
+#               nota.freq1= 100
+#            else
+#               session[:aulas1]= @nota.aulas1.to_f
+#               session[:faltas1]= @nota.faltas1.to_f
+#               nota.freq1= 100 -((session[:faltas1] / session[:aulas1])*100)
+#            end
+#            if (@nota.faltas2 == 0)
+#               nota.freq2= 100
+#            else
+#               session[:aulas2]= @nota.aulas2.to_f
+#               session[:faltas2]= @nota.faltas2.to_f
+#               nota.freq2= 100 -((session[:faltas2] / session[:aulas2])*100)
+#
+#             end
+#            if (@nota.faltas3 == 0)
+#               nota.freq3= 100
+#            else
+#               session[:aulas3]= @nota.aulas3.to_f
+#               session[:faltas3]= @nota.faltas3.to_f
+#               nota.freq3= 100 -((session[:faltas3] / session[:aulas3])*100)
+#             end
+#            if (@nota.faltas4 == 0)
+#               nota.freq4= 100
+#            else
+#               session[:aulas4]= @nota.aulas4.to_f
+#               session[:faltas4]= @nota.faltas4.to_f
+#               nota.freq4= 100 -((session[:faltas4] / session[:aulas4])*100)
+#             end
+#             nota.aulas5 = nota.aulas1 + nota.aulas2 + nota.aulas3 + nota.aulas4
+#             nota.faltas5 = @nota.faltas1 + @nota.faltas2 + @nota.faltas3 + @nota.faltas4
+#            if (nota.faltas5 == 0)
+#              nota.freq5= 100
+#            else
+#               session[:aulas5] = (@nota.aulas5.to_f)
+#               session[:faltas5] = (@nota.faltas5.to_f)
+#               nota.freq5=100 - ((session[:faltas5] / session[:aulas5])*100)
+#             end
+#           nota.save
+#
+#        end
+#      end
+#    end
 
-        for atrib in  @outras_atribuicaos
-          @notas = Nota.find(:all, :conditions => ["atribuicao_id =? AND professor_id=? AND disciplina_id=? AND notas.ano_letivo=? ", atrib.id, atrib.professor_id, atrib.disciplina_id,  Time.now.year])
-           for nota in @notas
-             nota.faltas1 = @nota.faltas1
-             nota.faltas2 = @nota.faltas2
-             nota.faltas3 = @nota.faltas3
-             nota.faltas4 = @nota.faltas4
-
-            if (@nota.faltas1 == 0)
-               nota.freq1= 100
-            else
-               session[:aulas1]= @nota.aulas1.to_f
-               session[:faltas1]= @nota.faltas1.to_f
-               nota.freq1= 100 -((session[:faltas1] / session[:aulas1])*100)
-             end
-            if (@nota.faltas2 == 0)
-               nota.freq2= 100
-            else
-               session[:aulas2]= @nota.aulas2.to_f
-               session[:faltas2]= @nota.faltas2.to_f
-               nota.freq2= 100 -((session[:faltas2] / session[:aulas2])*100)
-
-             end
-            if (@nota.faltas3 == 0)
-               nota.freq3= 100
-            else
-               session[:aulas3]= @nota.aulas3.to_f
-               session[:faltas3]= @nota.faltas3.to_f
-               nota.freq3= 100 -((session[:faltas3] / session[:aulas3])*100)
-             end
-            if (@nota.faltas4 == 0)
-               nota.freq4= 100
-            else
-               session[:aulas4]= @nota.aulas4.to_f
-               session[:faltas4]= @nota.faltas4.to_f
-               nota.freq4= 100 -((session[:faltas4] / session[:aulas4])*100)
-             end
-             nota.aulas5 = nota.aulas1 + nota.aulas2 + nota.aulas3 + nota.aulas4
-             nota.faltas5 = @nota.faltas1 + @nota.faltas2 + @nota.faltas3 + @nota.faltas4
-            if (nota.faltas5 == 0)
-               nota.freq5= 100
-            else
-               session[:aulas5]= (@nota.aulas5.to_f)
-               session[:faltas5]= (@nota.faltas5.to_f)
-               nota.freq5= 100 -((session[:faltas5] / session[:aulas5])*100)
-             end
-           nota.save
-
-        end
-      end
-    end
-     @nota.save
+      @nota.save
    end
     if current_user.has_role?('professor_fundamental')
         @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
@@ -266,9 +266,7 @@ end
   end
 
 def atribuicao_lancamentos_notas
-  
     render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
-  
 end
 
 
