@@ -196,13 +196,15 @@ end
      w=@atribuicao_classe[0].disciplina_id
 
 # outras atribuições do mesmo professor (nucleo comum)
+#
+#
 #    if @atribuicao_classe[0].disciplina_id == 1
-#       @outras_atribuicaos = Atribuicao.find(:all,:conditions =>["classe_id = ? and professor_id = ? and ano_letivo    = ?  and disciplina_id != 1", session[:classe_id],    session[:professor_id], Time.now.year])
+#       @outras_atribuicaos = Atribuicao.find(:all,:conditions =>["classe_id = ? and professor_id = ? and ano_letivo    = ?  and (disciplina_id = 32 OR disciplina_id = 2 OR disciplina_id = 3 OR disciplina_id = 4 OR disciplina_id = 21 OR disciplina_id=34)", session[:classe_id],    session[:professor_id], Time.now.year])
 #        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id = ? and disciplina_id = ?',session[:classe_id],     session[:professor_id], session[:disc_id]])
 #
 #
 #        for atrib in  @outras_atribuicaos
-#          @notas = Nota.find(:all, :conditions => ["atribuicao_id =? AND professor_id=? AND disciplina_id=? AND notas.ano_letivo=? ", atrib.id, atrib.professor_id, atrib.disciplina_id,  Time.now.year])
+#          @notas = Nota.find(:all, :conditions => ["aluno_id=? AND atribuicao_id =? AND professor_id=? AND disciplina_id=? AND notas.ano_letivo=?", session[:aluno_nota], atrib.id, atrib.professor_id, atrib.disciplina_id,  Time.now.year])
 #           for nota in @notas
 #             nota.faltas1 = @nota.faltas1
 #             nota.faltas2 = @nota.faltas2
@@ -250,6 +252,7 @@ end
 #           nota.save
 #
 #        end
+#
 #      end
 #    end
 

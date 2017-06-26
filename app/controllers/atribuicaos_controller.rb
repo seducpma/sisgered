@@ -102,11 +102,11 @@ end
 
 
    def update
-  @atribuicao = Atribuicao.find(params[:id])
+    @atribuicao = Atribuicao.find(params[:id])
     if session[:flag_edit_atribuicao] == 1
     
        session[:atribuicao]=params[:id]
-       
+    
        
        respond_to do |format|
           if @atribuicao.update_attributes(params[:atribuicao])
@@ -128,12 +128,12 @@ end
 
       end
     else
-      if ((params[:atribuicao][:aulas2]).to_i < 1 ) or ((params[:atribuicao][:aulas1]).to_i < 1)
+      if ((params[:atribuicao][:aulas2]).to_i < 1 ) or ((params[:atribuicao][:aulas1]).to_i < 1) and (@atribuicao.disciplina_id != 32 and @atribuicao.disciplina_id != 2 and @atribuicao.disciplina_id != 3 and @atribuicao.disciplina_id != 4 and @atribuicao.disciplina_id != 21 and @atribuicao.disciplina_id != 34)
         respond_to do |format|
               #flash[:notice] = 'CADASTRADO COM SUCESSO.'
              format.html { redirect_to(aviso_atribuicaos_path) }
              format.xml  { head :ok }
-          end
+           end
       else
          @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
             respond_to do |format|
@@ -148,7 +148,7 @@ end
                        nota.aulas2=@atribuicao.aulas2
                        nota.aulas3=@atribuicao.aulas3
                        nota.aulas4=@atribuicao.aulas4
-                       nota.aulas5 = @atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
+                       nota.aulas5=@atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
                        nota.save
                     end
                 end
@@ -167,7 +167,7 @@ end
            end
       end
     end
-   session[:flag_edit_atribuicao] =0
+   session[:flag_edit_atribuicao]=0
    session[:flag_edit]=0
   end
 
@@ -731,6 +731,7 @@ def consulta_atribuicao
 @classe = Classe.find(:all, :select => 'distinct(classe_classe)', :joins => "INNER JOIN  matriculas  ON  classes.id = matriculas.classe_id" , :conditions =>['classes.unidade_id =? AND matriculas.ano_letivo=?' , current_user.unidade_id, Time.now.year],:order =>'classe_classe ASC ')
 
 end
+
 def editar_atribuicao_classe
        session[:classe_id]=params[:atribuicao][:classe_id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:atribuicao][:classe_id]])
@@ -741,8 +742,6 @@ def editar_atribuicao_classe
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
 end
-
-
 
 def observacoes_aluno
        @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', params[:aluno_aluno_id]])
