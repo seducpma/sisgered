@@ -52,9 +52,16 @@
                       </tr>
                       <tr bgcolor="#F5F5F5">
                          <td></td>
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
-                           <td width ="3%"> <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1)) %>
-                                            <%= f.text_field :faltas1 , :size => '1'%>
+           <!-- Acrescentei professor na linha abaixo para permitir alteração nas faltas ###Alex 03/07/2017 16:51 -->
+                         <%if (current_user.has_role?('professor_fundamental')) or (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                               <%if @nota.nota1.present? %>
+                                      <td width ="3%"> <%= @nota.faltas1%>
+                                                       <!-- <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1)) %>-->
+                                                       <%= f.text_field :faltas1 , :size => '1'%>
+                               <%else%>
+                                      <td width ="3%"> <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, '---')) %>
+                                                       <%= f.text_field :faltas1 , :size => '1'%>
+                               <%end%>
                            </td>
                          <%else%>
                            <td width ="3%" align="center"> <%if @nota.nota1.present?%>
@@ -64,8 +71,8 @@
                                                  <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, '---')) %>
                                               <%end%>
                                               <%if @nota.nota1.present?%>
-                                                  <%= @nota.faltas1%>
-                                                  <!--<%= f.text_field :faltas1 , :size => '2'%>-->
+                                                  <!--<%= @nota.faltas1%>-->
+                                                  <%= f.text_field :faltas1 , :size => '2'%>
                                               <%else%>
                                                   <%= f.text_field :faltas1 , :size => '2'%>
                                               <%end%>
@@ -73,16 +80,20 @@
                          <%end%>
            <!-- Acrescentei professor na linha abaixo para permitir alteração, queixa de Eliane - Florestan, muitas alterações ###Alex 26/06/2017 11:30 -->
                          <% if (current_user.has_role?('professor_fundamental')) or (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
-                           <td width ="3%"> <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %>
-                                            <%= f.text_field :faltas2 , :size => '1'%>
-
+                               <%if @nota.nota2.present? %>
+                                      <td width ="3%"> <%= f.select :nota2, options_for_select(@NOTASB2.insert(0, @nota.nota2)) %>
+                                                       <%= f.text_field :faltas2 , :size => '1'%>
+                               <%else%>
+                                      <td width ="3%"> <%= f.select :nota2, options_for_select(@NOTASB2.insert(0, '---')) %>
+                                                       <%= f.text_field :faltas2 , :size => '1'%>
+                               <%end%>
                            </td>
                          <%else%>
                              <td width ="3%"> <%if @nota.nota2.present?%>
                                                  <!-- <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %> -->
                                                  &nbsp&nbsp&nbsp <%= @nota.nota2%>&nbsp&nbsp&nbsp
                                               <%else%>
-                                                 <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, '---')) %>
+                                                 <%= f.select :nota2, options_for_select(@NOTASB2.insert(0, '---')) %>
                                               <%end%>
                                               <%if @nota.nota2.present?%>
                                                   &nbsp&nbsp&nbsp&nbsp <%= @nota.faltas2%>

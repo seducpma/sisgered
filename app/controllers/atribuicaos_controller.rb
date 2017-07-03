@@ -138,10 +138,10 @@ end
          @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
             respond_to do |format|
              if @atribuicao.update_attributes(params[:atribuicao])
-               for outras_atribuicaos in @outras_atribuicaos
-                   outras_atribuicaos.aulas1= @atribuicao.aulas1
-                   outras_atribuicaos.save
-                   @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", outras_atribuicaos.id,Time.now.year ])
+#               for outras_atribuicaos in @outras_atribuicaos
+#                   outras_atribuicaos.aulas1= @atribuicao.aulas1
+#                   outras_atribuicaos.save
+                    @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", @atribuicao.id,Time.now.year])
                     for nota in @notas
                        nota = Nota.find(nota.id)
                        nota.aulas1=@atribuicao.aulas1
@@ -151,7 +151,7 @@ end
                        nota.aulas5=@atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
                        nota.save
                     end
-                end
+#                end
                 if  session[:flag_edit]== 1
                   flash[:notice] = 'SALVO COM SUCESSO!'
                      format.html { redirect_to(voltar_lancamento_notas_path)}
