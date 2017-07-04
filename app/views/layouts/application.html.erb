@@ -295,12 +295,12 @@ display: none;
                    <%end%>
 
                    <li><%= link_to "Classe",editar_classe_classes_path %></li>
+<!--
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
                        <li><%= link_to "FAPEA",editar_relatorios_path %></li>
+-->
                    <%end%>
-<!-- Comentei a linha abaixo para desativar a opção pois está causando erros na consistência dos dados ao transferir o aluno
-para outra sala não altera as atribuições das disciplinas da sala anterior, também está adicionado o TRANSFERIDO no status do aluno sem ter
-de fato transferido! 26-04-2017 16:00 ###ALEX -->
+
                    <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
 
 
