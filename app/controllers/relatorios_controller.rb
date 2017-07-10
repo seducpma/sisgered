@@ -119,10 +119,11 @@ class RelatoriosController < ApplicationController
 def consulta_relatorios
     if params[:type_of].to_i == 3
         if ( params[:aluno].present?)
-            w1=session[:aluno_imp]= params[:aluno1]
-            w2=session[:ano_imp]=params[:ano_letivo]
-            w3=session[:impressao]= 1
-            w4=params[:aluno1]
+            session[:aluno_imp]= params[:aluno1]
+            session[:ano_imp]=params[:ano_letivo]
+            session[:impressao]= 1
+            params[:aluno1]
+
             @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? ", params[:aluno1]])
             @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
             @classe[0].classe_id
@@ -137,9 +138,10 @@ def consulta_relatorios
     else if params[:type_of].to_i == 1
 
                  if ( params[:aluno].present?)
-                  w=session[:aluno_imp]= params[:aluno1]
-                  w1=session[:ano_imp]=params[:ano_letivo]
-                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno1], params[:ano_letivo]])
+                 session[:aluno_imp]= params[:aluno3]
+                 session[:ano_imp]=params[:ano_letivo]
+
+                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno3], params[:ano_letivo]])
                   @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
                   @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])

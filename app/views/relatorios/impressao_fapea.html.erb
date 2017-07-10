@@ -32,10 +32,7 @@
                    </td>
                    <td valign="top"><b>Ano Letivo:</b></td>
                    <td valign="top"><%=h relatorio.ano_letivo %>
-                     <% bimestre = relatorio.created_at.strftime("%M").to_i %>
-
-
-
+                     <% bimestre = relatorio.created_at.strftime("%m").to_i %>
                    <% if  ( bimestre < 8 ) %>
                      - 1º Semestre
                    <% else %>
