@@ -1,8 +1,8 @@
 <table width="100%">
    <tr>
      <td align="right"><font size="2"><b class="label_busca">Nome  Aluno:</b></font>
-               
-     <%= select_tag :aluno3, options_for_select(@alunos2.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
+     <%  @alunosRel = Relatorio.find(:all, :select => 'alunos.id, alunos.aluno_nome', :joins => "INNER JOIN alunos ON alunos.id = relatorios.aluno_id INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id", :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND atribuicaos.professor_id =?', current_user.unidade_id, current_user.professor_id ],:order => 'alunos.aluno_nome') %>
+     <%= select_tag :aluno3, options_for_select(@alunosRel.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
      </td>
      <td align="center">
                <font size="2"><b class="label_busca3">Ano Letivo:</b></font>

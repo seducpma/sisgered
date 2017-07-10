@@ -354,7 +354,10 @@ end
        #                (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+unidade.to_s+")
        #                 ORDER BY aluno_nome ASC")
 
-       @alunos2 = Aluno.find(:all, :select => 'id, aluno_nome',:conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
+       #@alunos2 = Aluno.find(:all, :select => 'iid, aluno_nome',:conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
+        @alunos2 = Aluno.find(:all, :select => 'alunos.id, alunos.aluno_nome', :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id", :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND atribuicaos.professor_id =?', current_user.unidade_id, current_user.professor_id ],:order => 'alunos.aluno_nome')
+
+
        #@alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA")  ', current_user.unidade_id],:order => 'alunos.aluno_nome')
        if current_user.has_role?('admin')
           @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
