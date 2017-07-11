@@ -5,7 +5,8 @@
      <font size="3"><strong>CADASTRO DE ALUNO DA SECRETARIA EDUCAÇÃO DE AMERICANA</strong></font><br/>
  </div>
     <div class="tabs">
-        <%  @alunos_todos = Aluno.find_by_sql("SELECT a.id, a.aluno_nome FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null) AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+")) ORDER BY a.aluno_nome ASC") %>
+        <!--<% @alunos_todos = Aluno.find_by_sql("SELECT a.id, a.aluno_nome FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null) AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+")) ORDER BY a.aluno_nome ASC") %>-->
+      <% @alunos_todos = Aluno.find_by_sql("SELECT a.id, a.aluno_nome FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null) ORDER BY a.aluno_nome ASC") %>
        <% form_remote_tag :url => consulta_cadastro_aluno_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
           <fieldset>
             <% @disciplina = Disciplina.find(:all) %>

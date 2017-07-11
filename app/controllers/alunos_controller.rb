@@ -1,6 +1,6 @@
 class AlunosController < ApplicationController
 
-  before_filter :load_alunos
+ # before_filter :load_alunos
 
   def index
     @alunos = Aluno.all
@@ -330,7 +330,7 @@ end
 
 
 
-  def load_alunos
+#  def load_alunos
 #       @alunos_matriculas = Matricula.find(:all,:select => "aluno_id", :conditions => ['ano_letivo=?', Time.now.year])
 #       @alunos_todos =  Aluno.find(:all,  :conditions => ['(aluno_status != "EGRESSO" or aluno_status is null) and (alunos.id NOT IN (?))', @alunos_matriculas ],:order => "aluno_nome")
      #  @alunos_todos = Aluno.find_by_sql("SELECT a.id, a.aluno_nome FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null) AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+"))")
@@ -368,7 +368,7 @@ end
 
        
     #end
-  end
+#  end
 
 
 end
