@@ -295,10 +295,10 @@ display: none;
                    <%end%>
 
                    <li><%= link_to "Classe",editar_classe_classes_path %></li>
-<!--
+
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
                        <li><%= link_to "FAPEA",editar_relatorios_path %></li>
--->
+
                    <%end%>
 
                    <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
@@ -310,7 +310,7 @@ display: none;
               </li>
              <%end%>
               
-                <% if current_user.has_role?('admin')%>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil')  )%>
                  <li><a class="item-primary" href="#;">DOCUMENTOS</a>
                    <ul style="width:108px;">
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
@@ -355,10 +355,8 @@ display: none;
                     <% end %>
                     
                   </ul>
-               <%end%>
-
               </li>
- 
+           <%end%>
            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo'))%>
             <li><span class="divider divider-vert" ></span></li>
 
@@ -385,7 +383,7 @@ display: none;
 
                  </ul>
               </li>
-             <%end%>
+              <%end%>
             <%end%>
  
 

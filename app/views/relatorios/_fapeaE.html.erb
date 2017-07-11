@@ -65,7 +65,7 @@
                 <%if session[:impressao]==1%>
                 <tr>
                  
-                  <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil')%>
+                  <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')or current_user.has_role?('pedagogo')%>
                      <td  colspan="2" align="right" ><%= button_to 'Editar',  {:controller =>"relatorios", :action => "edit", :id =>relatorio}, :method => "get", :title => "Editar"%></a></td>
 
                      <td   width ="5%"align="center" ><%= button_to 'Excluir', relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir" %></a></td>
