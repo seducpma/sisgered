@@ -110,6 +110,7 @@ class ProfessorsController < ApplicationController
   end
 
   def consultaprofessor
+
     if params[:type_of].to_i == 3
 
           @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')

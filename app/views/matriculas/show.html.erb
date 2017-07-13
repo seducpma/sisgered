@@ -151,7 +151,10 @@
             <%else%>
                 <td align="center"></td>
              <%end%>
-             <td width="6%"><%= button_to 'Visualizar Classe', {:action => "show_classe" }  %></td>
+             <% if session[:botao_show]!= 0  %>
+                  <td width="6%"><%= button_to 'Visualizar Classe', {:action => "show_classe" }  %></td>
+                   <%  session[:botao_show]= 1 %>
+             <%end%>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
     </table>

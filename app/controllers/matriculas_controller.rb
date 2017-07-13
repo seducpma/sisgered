@@ -291,28 +291,23 @@ class MatriculasController < ApplicationController
 
   end
 
+
+
   def update
     @matricula = Matricula.find(params[:id])
-
-
     respond_to do |format|
       if @matricula.update_attributes(params[:matricula])
-
-       if @matricula.data_transferencia.today?
-          @matricula.data_transferencia = nil
           @matricula.save
-
-          if session[:saida] == 1
-               t=0
+          if session[:saidaT] == 2
                @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
                @aluno[0].aluno_status =  'TRANSFERIDO'
                @aluno[0].save
-               session[:saida] = nil
+               session[:saidaT] = 0
           end
 
-       end
         flash[:notice] = 'SALVO COM SUCESSO'
         if session[:alterar_direcionamento_editar] == 0
+           session[:botao_show] = 0
            format.html { redirect_to(@matricula) }
            format.xml  { head :ok }
           session[:alterar_direcionamento_editar]= 1
@@ -394,17 +389,34 @@ def consultar_matricula
 end
 
 def matriculas_saidas
-       session[:aluno_id]=params[:aluno][:id]
+     if params[:type_of].to_i == 1
+         session[:saidaT]= 1
+         session[:aluno_aluno_id]
+         @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
+         render :update do |page|
+            page.replace_html 'aluno1', :partial => 'alunos_saida_seduc'
+         end
+         @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
+    else if params[:type_of].to_i == 2
+           session[:saidaT] = 2
+            w=params[:aluno][:id]
+            @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
+           t=0
+           render :update do |page|
+              page.replace_html 'aluno1', :partial => 'alunos_saida'
+            end
+         end
 
-       @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
-        render :update do |page|
-          page.replace_html 'aluno2', :partial => 'alunos_saida'
        end
 end
 
+
+
 def matriculas_saidas_seduc
-       session[:aluno_id]=params[:aluno][:id]
-       @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
+      session[:saidaT]= 1
+      session[:aluno_id]=params[:aluno_id]
+
+       @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno_id]], :order => 'classe_num ASC')
         render :update do |page|
           page.replace_html 'aluno1', :partial => 'alunos_saida_seduc'
        end

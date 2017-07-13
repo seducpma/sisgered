@@ -26,7 +26,7 @@
            <tr>
               <td><b>Aluno: </b></td>
               <td><%= f.collection_select :aluno_id , @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
-              <% session[:flagnum] = 1 %>
+              <% session[:flagnum] = 1 %><%  session[:botao_show]= 1 %>
            </tr>
          </table>
          </fieldset>
