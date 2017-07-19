@@ -76,15 +76,15 @@ class ClassesController < ApplicationController
                 @nota.unidade_id= current_user.unidade_id
                 @nota.ano_letivo =  Time.now.year
                 @nota.nota1 = nil
-                @nota.faltas1 = nil
+                @nota.faltas1 = 0
                 @nota.nota2 = nil
-                @nota.faltas2 = nil
+                @nota.faltas2 = 0
                 @nota.nota3 = nil
-                @nota.faltas3 = nil
+                @nota.faltas3 = 0
                 @nota.nota4 = nil
-                @nota.faltas4 = nil
+                @nota.faltas4 = 0
                 @nota.nota5 = nil
-                @nota.faltas5= nil
+                @nota.faltas5= 0
                 @nota.save
               end
             end

@@ -216,7 +216,7 @@ class MatriculasController < ApplicationController
                                           if !notas_ant.faltas1.nil?
                                              @nota.faltas1 = notas_ant.faltas1
                                           else
-                                            @nota.faltas1 = nil
+                                            @nota.faltas1 = 0
                                           end
                                           if !notas_ant.nota2.nil?
                                              @nota.nota2 = notas_ant.nota2
@@ -226,7 +226,7 @@ class MatriculasController < ApplicationController
                                           if !notas_ant.faltas2.nil?
                                              @nota.faltas2 = notas_ant.faltas2
                                           else
-                                            @nota.faltas2 = nil
+                                            @nota.faltas2 = 0
                                           end
                                           if !notas_ant.nota3.nil?
                                              @nota.nota3 = notas_ant.nota3
@@ -236,7 +236,7 @@ class MatriculasController < ApplicationController
                                           if !notas_ant.faltas3.nil?
                                              @nota.faltas3 = notas_ant.faltas3
                                           else
-                                            @nota.faltas3 = nil
+                                            @nota.faltas3 = 0
                                           end
                                           if !notas_ant.nota4.nil?
                                              @nota.nota4 = notas_ant.nota4
@@ -246,7 +246,7 @@ class MatriculasController < ApplicationController
                                           if !notas_ant.faltas4.nil?
                                              @nota.faltas4 = notas_ant.faltas4
                                           else
-                                            @nota.faltas4 = nil
+                                            @nota.faltas4 = 0
                                            end
                                         notas_ant.ativo=1
                                         notas_ant.save
@@ -254,7 +254,7 @@ class MatriculasController < ApplicationController
                                        end
                                      end
                                      @nota.nota5 = nil
-                                     @nota.faltas5= nil
+                                     @nota.faltas5= 0
                                      if @nota.save
                                           flash[:notice] = 'DADOS SALVOS COM SUCESSO!'
                                      end
