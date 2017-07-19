@@ -675,15 +675,17 @@ def transferenciaA
 end
 
 def transferencia_aluno
-
-     @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
+     @aluno = Matricula.find(:all, :conditions => ['aluno_id =? and unidade_id =?', params[:aluno][:aluno_id],current_user.unidade_id])
+#    @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno][:aluno_id]])
      t=0
      for aluno in @aluno
        
-       session[:unidade_id]= aluno.unidade_id
-       session[:aluno_id]= aluno.id
+       w=session[:unidade_id]= aluno.unidade_id
+       w1=session[:aluno_id]= aluno.id
        end
+       t=0
      @matricula= Matricula.find(:all, :conditions =>["aluno_id=? AND ano_letivo=? AND unidade_id=?",params[:aluno][:aluno_id], Time.now.year,  current_user.unidade_id])
+     t=0
       for matricula in @matricula
         session[:classe]= matricula.classe.classe_classe
       end
@@ -859,6 +861,8 @@ end
         @professors1 = Professor.find(:all, :select => "id, nome", :conditions => 'desligado = 0',:order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
+#        @alunosT=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')
+#        t=0
         @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @alunos_boletim = @alunos1
     else
@@ -866,6 +870,9 @@ end
         @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54 or diversas_unidades = 1) AND desligado = 0   ', (current_user.unidade_id)],:order => 'nome ASC')
         @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+
+ #       @alunosT=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id, .unidade_id ",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')
+ #       t=0
         @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @alunos_boletim = @alunos1
      end

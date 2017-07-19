@@ -20,19 +20,19 @@
   </tr>
  </table>
 <table cellspacing="0" cellpadding="1" width="100%">
-   <% @aluno.each do |aluno| %>
+   <% @matricula.each do |alunoT| %>
      <tr>
         <td width =" 15%"><b>Unidade de Ensino:</b></td>
-        <td><b><%=h aluno.unidade.tipo.nome%> <%=h aluno.unidade.nome%></b></td>
+        <td><b><%=h alunoT.unidade.nome%></b></td>
      </tr>
      <tr>
          <td><b>Endereço:</b></td>
-         <td><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> FONE: (19)<%=h aluno.unidade.fone%></td>
+         <td><%=h alunoT.unidade.endereco %> - <%=h alunoT.unidade.num %> - <%=h alunoT.unidade.bairro %> CEP <%=h alunoT.unidade.CEP%> FONE: (19)<%=h alunoT.unidade.fone%></td>
      </tr>
      <%if (current_user.unidade.tipo_id == 1) or (current_user.unidade.tipo_id == 4) or (current_user.unidade.tipo_id == 7) or (current_user.unidade.tipo_id == 9)%>
          <tr>
             <td><b>Autorização:</b></td>
-            <td><%=h aluno.unidade.autorizacao%></td>
+            <td><%=h alunoT.unidade.autorizacao%></td>
          </tr>
      <%end%>
   <%end%>
@@ -40,12 +40,12 @@
  <br/>
  
 <table cellspacing="0" cellpadding="1" width="100%">
-  <% @aluno.each do |aluno| %>
+  <% @matricula.each do |aluno| %>
      <tr>
        <td colspan="3" align="justify">
-               <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%=h aluno.aluno_nome %></b>  R.A.: <b><%=h aluno.aluno_ra%></b>,
+               <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%=h aluno.aluno.aluno_nome %></b>  R.A.: <b><%=h aluno.aluno.aluno_ra%></b>,
                <% if (aluno.present?)  %>
-                  e RG: <b><%=h aluno.aluno_RG %></b> emitido em <b><%=h aluno.aluno_emissaoRG %></b> ,
+                  e RG: <b><%=h aluno.aluno.aluno_RG %></b> emitido em <b><%=h aluno.aluno.aluno_emissaoRG %></b> ,
                <%end%>
                
                , encontra-se devidamente matriculado nesta unidade escolar na <b>classe</b>
