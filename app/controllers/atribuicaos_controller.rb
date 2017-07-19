@@ -54,7 +54,6 @@ class AtribuicaosController < ApplicationController
 
     else
         @atribuicao = Atribuicao.find(params[:id])
-
         @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
         session[:flag_edit]=1
     end
@@ -132,7 +131,7 @@ end
       end
     else
 
-
+t=0
          @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
             respond_to do |format|
              if @atribuicao.update_attributes(params[:atribuicao])
@@ -152,23 +151,23 @@ end
             #    end
                 if  session[:flag_edit]== 1
 
-                    if ((@atribuicao.aulas2 < 1 ) or (@atribuicao.aulas1 < 1))
-
-                      respond_to do |format|
-                            #flash[:notice] = 'CADASTRADO COM SUCESSO.'
-                           format.html { redirect_to(aviso_atribuicaos_path) }
-                           format.xml  { head :ok }
-                         end
-                    else
-                      flash[:notice] = 'SALVO COM SUCESSO!'
-                         format.html { redirect_to(voltar_lancamento_notas_path)}
-                    end
-                else
-                  t=0
-                  @atribuicao.save
+          if ((@atribuicao.aulas2 < 1 ) or (@atribuicao.aulas1 < 1))
+                 format.html { redirect_to(aviso_atribuicaos_path) }
+                 format.xml  { head :ok }
+          else
                   flash[:notice] = 'SALVO COM SUCESSO!'
-                    format.html { redirect_to(@atribuicao) }
-                    format.xml  { head :ok }
+                     format.html { redirect_to(voltar_lancamento_notas_path)}
+            end
+                else
+                      if ((@atribuicao.aulas2 < 1 ) or (@atribuicao.aulas1 < 1))
+                             format.html { redirect_to(aviso_atribuicaos_path) }
+                             format.xml  { head :ok }
+                      else
+                       flash[:notice] = 'SALVO COM SUCESSO!'
+
+                          format.html { redirect_to(@atribuicao) }
+                          format.xml  { head :ok }
+                      end
                  end
               else
                 format.html { render :action => "edit" }
