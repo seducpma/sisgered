@@ -9,7 +9,7 @@
       <% for classe in @classe %>
         <tr bgcolor="#F5F5F5" >
           <td align="left" width="10%"><b>Unidade:</b></td>
-          <td align="left">  <%=h classe.unidade.nome%>    <%  session[:unidade]= classe.unidade.nome %></td>
+          <td align="left">  <%=h classe.unidade.nome%> <%  session[:unidade]= classe.unidade.nome %></td>
           <td align="left" width="10%"><b> Ano Letivo:</b></td>
           <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
         </tr>
@@ -51,9 +51,19 @@
       </table>
   </fieldset>
 <table   width="100%">
-               <tr>
-                    <td colspan="5" align="right"><br/><%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :controller => :atribuicaos, :id => session[:atrib]}, :method => "get", :title => "Editar" %>&nbsp&nbsp&nbsp
-                  </td>
+                <tr>
+                    <td colspan="5" align="right"><br/>
+                          <% if ((session[:num_classe] == 1 or session[:num_classe] == 2 or session[:num_classe] == 3 or session[:num_classe] == 4 or session[:num_classe] == 5)) %>
+                                <%if   (session[:disc]== 1)%>
+                                    <%= link_to image_tag("/stylesheets/images/lancar1.png"), voltar_lancamento_notas_path %>&nbsp&nbsp&nbsp
+                                <% else %>
+                                    <%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :controller => :atribuicaos, :id => session[:atrib]}, :method => "get", :title => "Editar" %>&nbsp&nbsp&nbsp
+                                <%end%>
+                           <% else %>
+                               <%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :controller => :atribuicaos, :id => session[:atrib]}, :method => "get", :title => "Editar" %>&nbsp&nbsp&nbsp
+                          <%end%>
+                    </td>
+
                 </tr>
 
             </table>

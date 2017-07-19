@@ -10,7 +10,8 @@
         <table width="100%" align="center" bgcolor="#DCDCDC" >
              <tr>
                <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
-                  <%= collection_select :aluno, :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+                 <%@alunosT=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')%>
+                  <%= collection_select :aluno, :aluno_id, @alunosT, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
               </td>
               <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
              </tr>

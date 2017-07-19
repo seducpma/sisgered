@@ -43,6 +43,7 @@ class AtribuicaosController < ApplicationController
 
 
   def edit
+
     if session[:flag_edit_atribuicao] == 1
       @atribuicao_anterior = Atribuicao.find(:all, :conditions=>['id =?', (params[:id])])
       session[:disciplina_id]=  @atribuicao_anterior[0].disciplina_id
@@ -53,6 +54,7 @@ class AtribuicaosController < ApplicationController
 
     else
         @atribuicao = Atribuicao.find(params[:id])
+
         @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
         session[:flag_edit]=1
     end
@@ -101,13 +103,14 @@ end
 
 
 
-   def update
+    def update
     @atribuicao = Atribuicao.find(params[:id])
+
     if session[:flag_edit_atribuicao] == 1
-    
+
        session[:atribuicao]=params[:id]
-    
-       
+
+
        respond_to do |format|
           if @atribuicao.update_attributes(params[:atribuicao])
            @notas = Nota.find(:all, :conditions=> ['atribuicao_id=? and disciplina_id=?', @atribuicao.id, session[:disciplina_id]])
@@ -121,27 +124,22 @@ end
             format.html { redirect_to( show_editar_path ) }
             format.xml  { head :ok }
           else
-           
+
             format.html { render :action => "edit" }
             format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
           end
 
       end
     else
-      if ((params[:atribuicao][:aulas2]).to_i < 1 ) or ((params[:atribuicao][:aulas1]).to_i < 1) and (@atribuicao.disciplina_id != 32 and @atribuicao.disciplina_id != 2 and @atribuicao.disciplina_id != 3 and @atribuicao.disciplina_id != 4 and @atribuicao.disciplina_id != 21 and @atribuicao.disciplina_id != 34)
-        respond_to do |format|
-              #flash[:notice] = 'CADASTRADO COM SUCESSO.'
-             format.html { redirect_to(aviso_atribuicaos_path) }
-             format.xml  { head :ok }
-           end
-      else
+
+
          @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
             respond_to do |format|
              if @atribuicao.update_attributes(params[:atribuicao])
-#               for outras_atribuicaos in @outras_atribuicaos
-#                   outras_atribuicaos.aulas1= @atribuicao.aulas1
-#                   outras_atribuicaos.save
-                    @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", @atribuicao.id,Time.now.year])
+               #for outras_atribuicaos in @outras_atribuicaos
+              #     outras_atribuicaos.aulas1= @atribuicao.aulas1
+              #     outras_atribuicaos.save
+                   @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", @atribuicao.id,Time.now.year ])
                     for nota in @notas
                        nota = Nota.find(nota.id)
                        nota.aulas1=@atribuicao.aulas1
@@ -151,11 +149,23 @@ end
                        nota.aulas5=@atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
                        nota.save
                     end
-#                end
+            #    end
                 if  session[:flag_edit]== 1
-                  flash[:notice] = 'SALVO COM SUCESSO!'
-                     format.html { redirect_to(voltar_lancamento_notas_path)}
+
+                    if ((@atribuicao.aulas2 < 1 ) or (@atribuicao.aulas1 < 1))
+
+                      respond_to do |format|
+                            #flash[:notice] = 'CADASTRADO COM SUCESSO.'
+                           format.html { redirect_to(aviso_atribuicaos_path) }
+                           format.xml  { head :ok }
+                         end
+                    else
+                      flash[:notice] = 'SALVO COM SUCESSO!'
+                         format.html { redirect_to(voltar_lancamento_notas_path)}
+                    end
                 else
+                  t=0
+                  @atribuicao.save
                   flash[:notice] = 'SALVO COM SUCESSO!'
                     format.html { redirect_to(@atribuicao) }
                     format.xml  { head :ok }
@@ -165,11 +175,13 @@ end
                 format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
               end
            end
-      end
+ #     end
     end
    session[:flag_edit_atribuicao]=0
    session[:flag_edit]=0
   end
+
+
 
 
   

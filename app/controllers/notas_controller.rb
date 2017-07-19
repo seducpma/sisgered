@@ -418,6 +418,7 @@ if ( params[:disciplina].present?)
       @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
         for dis in @disci
             session[:disc_id] = dis.id
+            session[:disc] = dis.nucleo_comum
         end
        session[:classe_id] = params[:classe][:id]
        session[:professor_id]= params[:professor][:id]
@@ -426,10 +427,12 @@ if ( params[:disciplina].present?)
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year])
        for atrib in @atribuicao_classe
             session[:atrib_id] = atrib.id
-
        end
       @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?" ,  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
       @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",  params[:classe][:id], params[:professor][:id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
+      for classe in @classe
+        session[:num_classe]= classe.classe_classe[0,1].to_i
+      end
       session[:aluno_id]= @notas[0].aluno_id
        render :update do |page|
           page.replace_html 'notas', :partial => 'aulas'
