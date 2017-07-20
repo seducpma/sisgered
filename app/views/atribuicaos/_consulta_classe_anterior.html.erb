@@ -1,4 +1,5 @@
        <table width="100%" align="center" bgcolor="#DCDCDC" >
+         <%  @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')%>
           <tr>
             <td align="right"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
              <%= select_tag :ano_letivo, options_for_select(@ano_boletim.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>

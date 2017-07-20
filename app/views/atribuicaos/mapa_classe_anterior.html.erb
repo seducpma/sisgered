@@ -7,6 +7,7 @@
     <div class="tabs">
     <% form_remote_tag :url => mapa_de_classe_anterior_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
+        <%  @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')%>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
             <td align="right"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>

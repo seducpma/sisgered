@@ -4,6 +4,8 @@
  <div id="caixa_titulo">
      <font size="3"><strong>OBSERVAÇÕES (Ensino Fundamental)</strong></font><br/>
  </div>
+  <%  @ano =   ObservacaoNota.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')%>
+
     <div class="tabs">
       <% form_tag relatorio_observacoes_atribuicaos_path, :method => 'get' do %>
       <fieldset>

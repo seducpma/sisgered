@@ -7,6 +7,11 @@
     <div class="tabs">
     <% form_remote_tag :url => historico_aluno_atribuicaos_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
+          <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+               <% @alunos1 = Aluno.find(:all,:select => "id, aluno_nome",:order => 'aluno_nome ASC' ) %>
+          <%  else %>>
+               <% @alunos1 = Aluno.find(:all, :select => "id, aluno_nome",:conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )%>
+         <%  end %>
         <table width="100%" align="center" bgcolor="#DCDCDC" >
              <tr>
                <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>

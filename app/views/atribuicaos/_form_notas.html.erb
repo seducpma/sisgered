@@ -1,6 +1,20 @@
 <div style='display:none'>
   <div id='inline_notas' style='padding:10px; background:#EEE9E9;'>
     <% form_remote_for(:nota,:url => { :action => 'edit_notas', :id =>:nota }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
+      <%  if current_user.professor_id.nil?%>>
+          <%  if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62%>
+              <%  @nota=Nota.find(62) %>
+          <%else%>
+              <%@nota=Nota.find(62)%>
+          <%end%>
+
+      <%else%>
+          <%if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62%>
+             <% @nota=Nota.find(62) %>
+          <%else%>
+            <% @nota=Nota.find(62)%>
+          <%end%>
+      <%end%>
   
     <b><u>LANÇAMENTOS/ Alunos</u></b> <br/>
       <hr>

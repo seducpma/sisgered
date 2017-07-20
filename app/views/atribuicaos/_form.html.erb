@@ -1,7 +1,28 @@
 <% form_for (@atribuicao) do |f| %>
  <%= f.error_messages %>
+     <% if current_user.professor_id.nil?  %>
+         <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
+           <%   @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"]) %>
+         <% else %>
+           <%   @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I'AND id !=2"],:order => 'ordem ASC') %>
+         <% end %>
+
+     <% else %>
+         <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
+            <%  @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"]) %>
+         <%  else %>
+             <%  @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I' AND id !=2"],:order => 'ordem ASC') %>
+         <%  end %>
+     <%  end %>
 
   <fieldset><legend><font size=4>Atribuição</font></legend>
+           <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+               <% @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC') %>
+          <%  else %>
+               <%  @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54 or diversas_unidades = 1) AND desligado = 0   ', (current_user.unidade_id)],:order => 'nome ASC')%>
+         <%  end %>
+
+
     <table width="100%">
        <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>Classe:</b></td>
