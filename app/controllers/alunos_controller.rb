@@ -304,16 +304,15 @@ end
 
 
 
-def cunsulta_cadastro
 
-end
 
 def consulta_cadastro_aluno
+  t=0
       session[:aluno_id]=params[:aluno][:aluno_id]
 
       #@socioeconomico = Socioeconomico.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
       #@saude = Saude.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
-      @aluno = Aluno.find(:all, :select=> "aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id ", :conditions => ['id =?', params[:aluno][:aluno_id]])
+      @aluno = Aluno.find(:all, :select=> "aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id ", :conditions => ['id =? ', params[:aluno][:aluno_id]])
       @matriculas = Matricula.find(:all,:conditions => ['aluno_id =?', params[:aluno][:aluno_id]])
       @matriculas_ano_atual = Matricula.find(:all, :select =>"unidade_id, classe_id, ano_letivo", :conditions => ['aluno_id =? and ano_letivo=?', params[:aluno][:aluno_id], Time.now.year])
            render :update do |page|
@@ -322,7 +321,7 @@ def consulta_cadastro_aluno
 end
 
 
-   protected 
+  
 
 
 
