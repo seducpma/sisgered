@@ -1,4 +1,4 @@
-  
+  <%@alunos_boletim=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')%>
 <table width="100%" align="center" bgcolor="#DCDCDC"  >
           <tr>
             <td align="right"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>

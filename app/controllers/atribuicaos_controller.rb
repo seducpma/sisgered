@@ -892,7 +892,7 @@ end
 #        @alunosT=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')
 #        t=0
         @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
-        @alunos_boletim = @alunos1
+#        @alunos_boletim = @alunos1
     else
         @professors1 = Professor.find(:all,:select => "id, nome", :conditions => ['id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
         @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
@@ -902,7 +902,7 @@ end
  #       @alunosT=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id, .unidade_id ",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')
  #       t=0
         @alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
-        @alunos_boletim = @alunos1
+#        @alunos_boletim = @alunos1
      end
   end
 
