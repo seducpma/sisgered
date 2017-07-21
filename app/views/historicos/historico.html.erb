@@ -5,13 +5,17 @@
      <font size="3"><strong>HISTÓRICO ESCOLAR</strong></font><br/>
  </div>
     <div class="tabs">
-    
+       <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+            <%@alunosH=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>[" matriculas.ano_letivo=?",Time.now.year],:order => 'alunos.aluno_nome ASC')%>
+       <% else %>
+           <%@alunosH=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')%>
+       <% end %>
      <% form_tag historico_path, :method => 'get' do %>
       <fieldset>
         <table width="100%" align="center" bgcolor="#DCDCDC" >
              <tr>
                <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
-                   <%= select_tag :aluno_id, options_for_select(@alunos1.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
+                   <%= select_tag :aluno_id, options_for_select(@alunosH.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
               </td>
               <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
 
@@ -123,7 +127,8 @@
                 
                 <td width="6%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
                 <%= link_to image_tag("/stylesheets/images/disciplina.png"), "#inline_disciplina", :class =>"inline" %>
-                <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path %>
+                <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, :target => '_blank' %>
+                
 
                 </td>
                </tr>

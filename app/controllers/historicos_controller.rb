@@ -289,14 +289,14 @@ end
         @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         #@professors1 = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
-        @alunos1 = Aluno.find(:all, :select => 'id, aluno_nome',:order => 'aluno_nome ASC' )
+        #@alunos1 = Aluno.find(:all, :select => 'id, aluno_nome',:order => 'aluno_nome ASC' )
         #@alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @alunos_boletim = @alunos1
     else
         #@professors1 = Professor.find(:all, :conditions => ['id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
         @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
         @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54) AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
-        @alunos1 = Aluno.find(:all, :select => 'id, aluno_nome', :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
+        #@alunos1 = Aluno.find(:all, :select => 'id, aluno_nome', :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         #@alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
         @alunos_boletim = @alunos1
      end

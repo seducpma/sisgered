@@ -168,7 +168,7 @@
        <%if nota.nota5.present? %>
              <th style="font-size: 7px" align="center"><%= nota.nota5 %> </th>
        <%else%>
-             <th style="font-size: 7px" align="center">>--</th>
+             <th style="font-size: 7px" align="center">--</th>
        <%end%>
               <th style="font-size: 7px" align="center"><%= nota.faltas5 %></th>
               <th style="font-size: 7px" align="center">
@@ -361,10 +361,10 @@
       <%end%>
       <%if nota.aulas5.present? != 0%>
 
-           <th style="font-size: 8px"align="center"><% if nota.aulas5 == 0 %>
+           <th style="font-size: 8px"align="center"><% if nota.nota5.nil?%>
                                     ---
                                  <%else%>
-                                     <%= nota.aulas5 %>
+                                     <%= nota.nota5 %>
                                  <%end%>
 
            </th>
