@@ -67,7 +67,11 @@
                    <%else%>
                      <%for nota in @notas%>
                         <%if nota.ano_letivo == anoletivo %>
-                           <td align="center"> <%= 1000 %> </td>
+                                 <%if nota.nota5.nil? %>
+                                      <td align="center"> --- </td>
+                                 <%else%>
+                                      <td align="center"> <%= 1000 %>  </td>
+                                 <%end%>
                         <%else%>
                            <td align="center"> --- </td>
                         <%end%>
@@ -76,7 +80,7 @@
              <%end%>
     </tr>
 </table>
-<% if @notasD.present? %>
+<% if @notasDisciplinasD.present? %>
   <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
     <tr >
         <td width ="30%"rowspan="2"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
@@ -104,7 +108,7 @@
       <%end%>
     </tr>
     <%@disciplinasD.each do |disciplina|%>
-      <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+      <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo <?', disciplina, session[:aluno_id],Time.now.year], :order => 'ano_letivo ASC') %>
        <% if !@notas.empty? %>
          <tr>
              <td align="left"><%= disciplina.disciplina %></td>
@@ -119,7 +123,7 @@
                                  <%if nota.nota5.nil? %>
                                       <td align="center"> --- <% session[:cidade_nota]=1 %></td>
                                  <%else%>
-                                      <td align="center"> <%= nota.nota5%>  </td>
+                                      <td align="center"> <%= nota.nota5%>  <% session[:notasD]=1 %></td>
                                  <%end%>
                             <%else%>
                                <td align="center"> --- </td>
@@ -141,7 +145,16 @@
                    <%else%>
                      <%for nota in @notasD1%>
                         <%if nota.ano_letivo == anoletivo %>
-                           <td align="center"> <%= 480 %> </td>
+                                 <%if nota.nota5.nil? %>
+                                      <td align="center"> --- </td>
+                                 <%else%>
+                                      <%if session[:notasD]==1%>
+                                          <td align="center"> <%= 480 %> <% session[:notasD]= 0%> </td>
+                                      <%else%>
+                                          <td align="center"> ---  </td>
+                                      <%end%>
+
+                                 <%end%>
                         <%else%>
                            <td align="center"> --- </td>
                         <%end%>
