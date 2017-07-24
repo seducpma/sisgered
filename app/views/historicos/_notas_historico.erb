@@ -173,7 +173,7 @@
        <%  @unidade= Unidade.find(:all, :select=>"unidades.id",:joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
       <td><%if !@unidade.empty? %>
                   <% if anoletivo != Time.now.year %>
-                      <%=  session[:unidade]  %>
+                      <%=  session[:unidade_nome]  %>
                   <%end%>
               <%else%>
                   <% if !@notas[0].nil? %>

@@ -163,6 +163,7 @@ def historico
        session[:unidade_id]= aluno.unidade_id
        session[:aluno_id]= aluno.id
        session[:aluno_nome] = aluno.aluno_nome
+       w=session[:unidade_nome]=aluno.unidade.nome
      end
      #@historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
      # @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
@@ -174,6 +175,7 @@ def historico
      #@matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
      @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
      @ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
+
 t=0
   end
 
