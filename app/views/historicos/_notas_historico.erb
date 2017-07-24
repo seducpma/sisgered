@@ -39,7 +39,7 @@
                    <% anoletivo = anoinicial+ i %>
                   <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=? AND unidade_id=?', disciplina, session[:aluno_id], anoletivo, current_user.unidade_id], :order => 'ano_letivo ASC') %>
                         <% if @notas.empty? or @nota.nil?  %>
-                        <td align="center"> --- </td>
+                            <td align="center"> --- </td>
                      <%else%>
                        <%for nota in @notas%>
                           <%if nota.ano_letivo == anoletivo %>
@@ -67,7 +67,7 @@
                         <%if nota.ano_letivo == anoletivo %>
                            <td align="center"> <%= 1000 %> </td>
                         <%else%>
-                           <td align="center"> --- </td>
+                           <td align="center"> ---  <%=anoletivo%></td>
                         <%end%>
                      <%end%>
                   <%end%>
