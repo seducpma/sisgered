@@ -125,12 +125,19 @@
           <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
               <tr>
                 
-                <td width="6%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
+                <td  align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
                 <%= link_to image_tag("/stylesheets/images/disciplina.png"), "#inline_disciplina", :class =>"inline" %>
                 <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, :target => '_blank' %>
                 
 
                 </td>
+               </tr>
+               <tr>
+                 <td >
+                   <font color="red" size="3"><b><u>ATENÇÃO:</u> No Histório Escolar somente aparece as disciplinas que tiverem notas lançadas, após incluir uma
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp nova disciplina é necessário atribuiir um nota para ela      </font></b>
+
+                 </td>
                </tr>
           </table>
         </fieldset>

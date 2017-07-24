@@ -1,4 +1,4 @@
- <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor =" #DCDCDC">
+  <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor =" #DCDCDC">
     <tr cellspacing="2" cellpadding="2" >
        <td width=" 40%" rowspan="3" align="center"><b>ÁREAS DE CONHECIMENTO </b></td>
        <td width=" 60%" colspan="9" align="center"><b>MENÇÔES OU NOTAS</b></td>
@@ -31,7 +31,7 @@
       <%end%>
     </tr>
     <%@disciplinasB.each do |disciplina|%>
-      <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+      <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? ', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
        <% if !@notas.empty? %>
            <tr>
                <td align="left"><%= disciplina.disciplina %></td>
@@ -47,8 +47,7 @@
                                     <td align="center"> --- </td>
                                 <%else%>
                                     <td align="center"> <%= nota.nota5%> </td>
-                                <%end%>
-                          <%else%>
+                                <%end%>                          <%else%>
                              <td align="center"> --- </td>
                           <%end%>
                        <%end%>
@@ -95,7 +94,7 @@
       <%else%>
             <% classe= @ano_inicial.classe %>
       <%end%>
-
+      
       <% anoinicial = ano.to_i - classe + 1  %>
     <tr>
       <%for i in 0..8 %>
@@ -109,11 +108,11 @@
              <td align="left"><%= disciplina.disciplina %></td>
              <%for i in 0..8 %>
                  <% anoletivo = anoinicial+ i %>
-                 <% @notasD= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=? AND unidade_id=?', disciplina, session[:aluno_id], anoletivo, current_user.unidade_id], :order => 'ano_letivo ASC') %>
-                       <% if @notasD.empty? or @nota.nil?  %>
+                 <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=? AND unidade_id=?', disciplina, session[:aluno_id], anoletivo, current_user.unidade_id], :order => 'ano_letivo ASC') %>
+                       <% if @notas.empty? or @nota.nil?  %>
                           <td align="center"> --- </td>
                        <%else%>
-                         <%for nota in @notasD%>
+                         <%for nota in @notas%>
                             <%if nota.ano_letivo == anoletivo %>
                                 <% if nota.nota5.nil? %>
                                     <td align="center"> --- </td>
@@ -134,11 +133,11 @@
       <td><b> Carga Horária</b></td>
              <%for i in 0..8 %>
                  <% anoletivo = anoinicial+ i %>
-                 
-                   <% if @notasD.empty?%>
+
+                   <% if @notas.empty?%>
                       <td align="center"> --- </td>
                    <%else%>
-                     <%for nota in @notasD%>
+                     <%for nota in @notasD1%>
                         <%if nota.ano_letivo == anoletivo %>
                            <td align="center"> <%= 480 %> </td>
                         <%else%>
@@ -167,17 +166,15 @@
    </tr>
    <%for i in 0..8 %>
    <% anoletivo = anoinicial+ i %>
-   <% @notas= Nota.find(:all, :conditions=> ['aluno_id=? AND ano_letivo=?',  session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
+   
     <tr bgcolor="#F5F5F5">
       <td align="center"><%= i + 1%>º Ano </td>
       <td width ="5%" align="center" > <%=  anoletivo %></td>
-       <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
-              <%  for unidade in @unidade %>
-                   <%  session[:unidade]= unidade.nome  %>
-                   <%  session[:cidade]= unidade.cidade  %>
-              <%  end %>
+       <%  @unidade= Unidade.find(:all, :select=>"unidades.id",:joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
       <td><%if !@unidade.empty? %>
-                 <%=  session[:unidade]  %>
+                  <% if anoletivo != Time.now.year %>
+                      <%=  session[:unidade]  %>
+                  <%end%>
               <%else%>
                   <% if !@notas[0].nil? %>
                     <%=  session[:unidade1] = @notas[0].escola  %>
@@ -189,7 +186,9 @@
               <%end%>
        </td>
        <td><%if !@unidade.empty? %>
-                 <%=  session[:cidade]  %>
+                  <% if anoletivo != Time.now.year %>
+                      <%=  session[:cidade]  %>
+                  <%end%>
               <%else%>
                 <% if !@notas[0].nil? %>
                     <%=  session[:cidade] = @notas[0].cidade  %>

@@ -8,6 +8,7 @@
           <% form_for (@nota) do |f| %>
            <%= f.error_messages %>
             <fieldset><legend><font size=4>Dados alunos</font></legend>
+              <% @disciplinasN = Disciplina.find(:all, :conditions => ["tipo_un = 3"], :order=>"disciplina ASC") %>
               <table width="100%">
                  <tr bgcolor="#F5F5F5">
                    <td width =" 12%"><b>Aluno:</b></td>
@@ -15,7 +16,7 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td width =" 12%"><b>Disciplina:</b></td>
-                   <td><%= f.collection_select :disciplina_id, @disciplinas, :id, :disciplina, :include_blank => ' -- Selecione -- ' %>
+                   <td><%= f.collection_select :disciplina_id, @disciplinasN, :id, :disciplina, :include_blank => ' -- Selecione -- ' %>
                    </td>
                 </tr>
                  <tr bgcolor="#F5F5F5">

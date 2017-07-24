@@ -433,10 +433,16 @@ if ( params[:disciplina].present?)
       for classe in @classe
         session[:num_classe]= classe.classe_classe[0,1].to_i
       end
-      session[:aluno_id]= @notas[0].aluno_id
-       render :update do |page|
-          page.replace_html 'notas', :partial => 'aulas'
-       end
+      if @notas[0].nil?
+            render :update do |page|
+            page.replace_html 'notas', :partial => 'aviso'
+         end
+      else
+           session[:aluno_id]= @notas[0].aluno_id
+           render :update do |page|
+              page.replace_html 'notas', :partial => 'aulas'
+           end
+      end
   end
  end
 
