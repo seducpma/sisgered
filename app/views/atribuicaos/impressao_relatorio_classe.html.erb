@@ -408,12 +408,12 @@
          <tr>
            <th style="font-size: 7px"colspan="23" align="left"><b>Observações:</b></th>
          </tr>
-  <%@notas.each do |nota|%>
+         <%@notas.each do |nota|%>
               <%if nota.aluno_id == session[:aluno]%>
                <% if nota.observacao_notas.present? %>
                <tr>
-                 <th style="font-size: 7px" align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</th>
-                  <th style="font-size: 7px" align="left" colspan="15"><% c=0 %>
+                 <th style="font-size: 8px" align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</th>
+                  <th style="font-size: 8px" align="left" colspan="15"><% c=0 %>
 
                                            <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=? and ano_letivo=?",nota, session[:ano_nota]])%>
                                                <% @obs.each do |obs|%>
@@ -431,8 +431,8 @@
                <% t=0  %>
            <%@observacao2.each do |observacao| %>
             <tr>
-               <th style="font-size: 7px" align="right" valign="top"><%= observacao.quem %>&nbsp&nbsp</th>
-               <th style="font-size: 7px" align="left" colspan="15"><%= observacao.observacao %> -
+               <th style="font-size: 8px" align="right" valign="top"><%= observacao.quem %>&nbsp&nbsp</th>
+               <th style="font-size: 8px" align="left" colspan="15"><%= observacao.observacao %> -
                                  <b>Data: </b> <%  if !observacao.data.nil?  %>
                                                   <%=  observacao.data.strftime("%d/%m/%Y")%>
                                                <%end%>
