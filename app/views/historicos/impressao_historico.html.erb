@@ -109,7 +109,11 @@
                        <%else%>
                          <%for nota in @notas%>
                             <%if nota.ano_letivo == anoletivo %>
-                               <td style="font-size: 8px; border-color: black "align="center"> <%= nota.nota5%>  </td>
+                                 <%if nota.nota5.nil? %>
+                                      <td style="font-size: 8px; border-color: black "align="center"> --- </td>
+                                 <%else%>
+                                      <td style="font-size: 8px; border-color: black "align="center"> <%= nota.nota5%>  </td>
+                                 <%end%>
                             <%else%>
                                <td style="font-size: 8px; border-color: black "align="center"> --- </td>
                             <%end%>
@@ -174,7 +178,11 @@
                            <%else%>
                              <%for nota in @notas%>
                                 <%if nota.ano_letivo == anoletivo %>
-                                   <td style="font-size: 8px; border-color: black" align="center"> <%= nota.nota5%> </td>
+                                     <%if nota.nota5.nil? %>
+                                          <td style="font-size: 8px; border-color: black "align="center"> --- </td>
+                                     <%else%>
+                                          <td style="font-size: 8px; border-color: black "align="center"> <%= nota.nota5%>  </td>
+                                     <%end%>
                                 <%else%>
                                    <td style="font-size: 8px; border-color: black" align="center"> --- </td>
                                 <%end%>

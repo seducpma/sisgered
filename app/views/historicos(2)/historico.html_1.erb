@@ -1,0 +1,314 @@
+<div id="interno2">
+<% title "CONSULTA_FICHA".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>HISTÓRICO ESCOLAR</strong></font><br/>
+ </div>
+    <div class="tabs">
+    
+     <% form_tag historico_path, :method => 'get' do %>
+      <fieldset>
+        <table width="100%" align="center" bgcolor="#DCDCDC" >
+             <tr>
+               <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
+                   <%= select_tag :aluno_id, options_for_select(@alunos1.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
+              </td>
+              <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
+             </tr>
+
+       </table>
+     </fieldset>
+     <% if @aluno.present? %>
+      <% @aluno.each do |aluno| %>
+       <fieldset>
+          <table width="100%" align="center" bgcolor="#F5F5F5">
+            <tr>
+              <td rowspan="2" align="left"><center><%= image_tag aluno.photo.url(:original) %> </center></td>
+              <td><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                  <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                  <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center><br/>
+                  <center><font size="2"><b><u>HISTÓRICO ESCOLAR</u> &nbsp&nbsp&nbsp&nbsp</b></font></center><br/>
+
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+
+           </table>
+          <table cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+               <tr>
+                  <td width =" 15%"><b>Unidade de Ensino:</b></td>
+                  <td><b><%=h aluno.unidade.nome %></b></td>
+               </tr>
+               <tr>
+                   <td><b>Endereço:</b></td>
+                   <td><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
+               </tr>
+               <tr>
+                  <td><b>Autorização:</b></td>
+                  <td><%=h aluno.unidade.autorizacao%></td>
+               </tr>
+               <tr>
+                 <td colspan="2" align="center"><br/><b>DADOS DO ALUNOS</b></td>
+               </tr>
+          </table>
+          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+               <tr>
+                  <td ><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %></td>
+                  <td><b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %></td>
+                  <td colspan="2"><b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+               </tr>
+               <% if (aluno.aluno_certidao_nascimento.present?)  %>
+                   <tr>
+                     <td colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                     <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                     <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
+                     </td>
+                   </tr>
+               <%end%>
+               <tr>
+                  <td ><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %></td>
+                  <td><b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
+                  <% if !(aluno.aluno_nacionalidade == 'BRASILEIRO')   %>
+                    <td><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
+                  <%else%>
+                    <td colspan="2"></td>
+                  <%end%>
+               </tr>
+               <% if (aluno.aluno_RG.present?)  %>
+                 <tr>
+                    <td ><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
+                    <td><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %></td>
+                    <td><b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
+                    
+                 </tr>
+                 
+               <%end%>
+             
+          </table>
+          <table cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+               <tr>
+                 <td><br/> <font size="2"><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b></font><br/>
+                      <font size="1"><b> Lei Federal 9294/96 Art. 26, 32, 33, 34 -
+                                Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
+                </td>
+              </tr>
+         </table>
+
+         <div id="dados_historico">
+
+<% @aluno.each do |aluno| %>
+  <table border="1" cellspacing="0" cellpadding="1" width="100%">
+    <tr cellspacing="2" cellpadding="2" >
+      <td width=" 40%" rowspan="3" align="center"><b>ÁREAS DE CONHECIMENTO </b></td>
+      <td width=" 60%" colspan="9" align="center"><b>MENÇÔES OU NOTAS</b></td>
+
+   </tr>
+  </table>
+<%end%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+ <tr >
+     <td width ="30%"rowspan="2"> <b><center>CURRÍCULO BÁSICO   </center> </b></td>
+     <td width ="5%" align="center" ><b>1º</b></td>
+     <td width ="5%" align="center" ><b>2º</b></td>
+     <td width ="5%" align="center" ><b>3º</b></td>
+     <td width ="5%" align="center" ><b>4º</b></td>
+     <td width ="5%" align="center" ><b>5º</b></td>
+     <td width ="5%" align="center" ><b>6º</b></td>
+     <td width ="5%" align="center" ><b>7º</b></td>
+     <td width ="5%" align="center" ><b>8º</b></td>
+     <td width ="5%" align="center" ><b>9º</b></td>
+   </tr>
+   <tr>
+
+  <% ano = @ano_inicial.ano_letivo %>
+  <%for i in 0..8 %>
+     <%if ano < Time.now.year %>
+        <td width ="5%" align="center" ><b><%= ano%></b></td>
+     <%else%>
+        <td align="center" ><b></b></td>
+     <%end%>
+
+     <% ano = ano + 1 %>
+  <%end%>
+
+   <%@disciplinas.each do |disciplina|%>
+      <%if disciplina.curriculo == 'B'%>
+           <tr>
+              <td align="left"><%= disciplina.disciplina %></td>
+              <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+              <% ano = 0 %>
+              <%  while ano < 9 %>
+                         <%fl1=1%>
+                         <% for nota in @notas %>
+                                <%if (nota.nota5.present?) and (nota.ano_letivo== (@ano_inicial.ano_letivo + ano))%>
+                                  <%if fl1==1 %>
+                                     <td align="center"><%= nota.nota5%></td>
+                                     <%fl1=0%>
+                                  <%end%>
+                                <%end%>
+                         <%end%>
+                         <%if fl1==1 %>
+                            <td align="center">---</td>
+                            <%fl1=0%>
+                         <%end%>
+                         <% ano = ano +1 %>
+              <%end%>
+           </tr>
+      <%end%>
+   <%end%>
+ </tr>
+  <tr bgcolor =" #DCDCDC">
+     <td><b> Carga Horária</b></td>
+      <% ano = @ano_inicial.ano_letivo %>
+      <%for i in 0..8 %>
+         <%if ano < Time.now.year %>
+            <td width ="5%" align="center" ><b>1000</b></td>
+         <%else%>
+            <td align="center" ><b></b></td>
+         <%end%>
+
+         <% ano = ano + 1 %>
+      <%end%>
+ </tr>
+
+
+ <tr >
+     <td width ="30%"rowspan="2"> <b><center>OFICINAS DIVERSITICADAS </center> </b></td>
+     <td width ="5%" align="center" ><b>1º</b></td>
+     <td width ="5%" align="center" ><b>2º</b></td>
+     <td width ="5%" align="center" ><b>3º</b></td>
+     <td width ="5%" align="center" ><b>4º</b></td>
+     <td width ="5%" align="center" ><b>5º</b></td>
+     <td width ="5%" align="center" ><b>6º</b></td>
+     <td width ="5%" align="center" ><b>7º</b></td>
+     <td width ="5%" align="center" ><b>8º</b></td>
+     <td width ="5%" align="center" ><b>9º</b></td>
+   </tr>
+   <tr>
+        <% ano = @ano_inicial.ano_letivo %>
+        <%for i in 0..8 %>
+           <%if ano < Time.now.year %>
+              <td width ="5%" align="center" ><b><%= ano%></b></td>
+           <%else%>
+              <td align="center" ><b></b></td>
+           <%end%>
+           <% ano = ano + 1 %>
+        <%end%>
+
+         <%@disciplinas.each do |disciplina|%>
+            <%if disciplina.curriculo == 'D'%>
+                 <tr>
+                    <td align="left"><%= disciplina.disciplina %></td>
+                    <% @notas= Nota.find(:all, :conditions=> ['disciplina_id=? AND aluno_id=?', disciplina, session[:aluno_id]], :order => 'ano_letivo ASC') %>
+                    <% ano = 0 %>
+                    <%  while ano < 9 %>
+                               <%fl1=1%>
+                               <% for nota in @notas %>
+                                      <%if (nota.nota5.present?) and (nota.ano_letivo== (@ano_inicial.ano_letivo + ano))%>
+                                        <%if fl1==1 %>
+                                           <td align="center"><%= nota.nota5%></td>
+                                           <%fl1=0%>
+                                        <%end%>
+                                      <%end%>
+                               <%end%>
+                               <%if fl1==1 %>
+                                  <td align="center">---</td>
+                                  <%fl1=0%>
+                               <%end%>
+                               <% ano = ano +1 %>
+                    <%end%>
+                 </tr>
+            <%end%>
+         <%end%>
+  </tr>
+  <tr bgcolor =" #DCDCDC">
+     <td><b> Carga Horária</b></td>
+      <% ano = @ano_inicial.ano_letivo %>
+      <%for i in 0..8 %>
+         <%if ano < Time.now.year %>
+            <td width ="5%" align="center" ><b>480</b></td>
+         <%else%>
+            <td align="center" ><b></b></td>
+         <%end%>
+
+         <% ano = ano + 1 %>
+      <%end%>
+ </tr>
+   <tr bgcolor =" #DCDCDC">
+     <td><b> Carga Horária Total do Curso </b></td>
+      <% ano = @ano_inicial.ano_letivo %>
+      <%for i in 0..8 %>
+         <%if ano < Time.now.year %>
+            <td width ="5%" align="center" ><b>1480</b></td>
+         <%else%>
+            <td align="center" ><b></b></td>
+         <%end%>
+
+         <% ano = ano + 1 %>
+      <%end%>
+ </tr>
+</table>
+
+
+
+
+
+
+         </div>
+
+
+
+          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+               <tr>
+                 <td align="CENTER"><br/><br/><br/> NOTAS / FALTAS    / NOTAS / FALTAS    /NOTAS / FALTAS    /NOTAS / FALTAS    / <br/> <br/><br/><br/><br/><br/><br/>
+                </td>
+              </tr>
+         </table>
+
+
+
+
+
+
+
+          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+              <tr>
+                <td width="12%" align="CENTER"valign="top"><font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observações:.jpeg"), "#inline_observacao", :class =>"inline" %></u></b></font>
+                        <br/><font size ="1"color ="red"><b>Para lançar clique em observações</b></font>
+                   </td>
+                  <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
+               </tr>
+          </table>
+     </fieldset>
+    <%end%>
+   <%end%>
+<%end%>
+       <br/>
+       <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Nova Consulta???', relatorios_classe_atribuicaos_path, :title => "Nova Consulta" %>
+     
+     </td>
+
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
+
+
+      <%= render "form_observacao" %>
+
+
+
+
+

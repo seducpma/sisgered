@@ -1,0 +1,26 @@
+<h1>Listing atribuicaos</h1>
+
+<table>
+  <tr>
+    <th>Classe</th>
+    <th>Professor</th>
+    <th>Disciplina</th>
+    <th>Ano letivo</th>
+  </tr>
+
+<% @atribuicaos.each do |atribuicao| %>
+  <tr>
+    <td><%=h atribuicao.classe_id %></td>
+    <td><%=h atribuicao.professor_id %></td>
+    <td><%=h atribuicao.disciplina %></td>
+    <td><%=h atribuicao.ano_letivo %></td>
+    <td><%= link_to 'Show', atribuicao %></td>
+    <td><%= link_to 'Edit', edit_atribuicao_path(atribuicao) %></td>
+    <td><%= link_to 'Destroy', atribuicao, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New atribuicao', new_atribuicao_path %>
