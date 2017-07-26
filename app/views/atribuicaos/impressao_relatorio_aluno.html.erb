@@ -95,7 +95,7 @@
    <tr>
      <%@notasB.each do |nota|%>
 
-      <th style="font-size: 8px" width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></th>
+      <th style="font-size: 8px" width=" 20%" align="left"><%= nota.atribuicao.disciplina.disciplina %></th>
       <%if nota.nota1.present? or nota.faltas1 != 0%>
            <th style="font-size: 8px" align="center"> <%if nota.nota1.to_i < 5.0 %>
                                    <font color ="red"> <%= nota.nota1 %> </font>
