@@ -66,19 +66,19 @@
    </tr>
    <tr>
      <td width = px align="center" ><b>Nota</b></td>
-     <td width ="5%" align="center" ><b>Faltas</b></td>
+     <td width ="5%" align="center" ><b>Faltas*</b></td>
      <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
-     <td width ="5%" align="center" ><b>Faltas</b></td>
+     <td width ="5%" align="center" ><b>Faltas*</b></td>
      <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
-     <td width ="5%" align="center" ><b>Faltas</b></td>
+     <td width ="5%" align="center" ><b>Faltas*</b></td>
      <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
-     <td width ="5%" align="center"><b>Faltas</b></td>
+     <td width ="5%" align="center"><b>Faltas*</b></td>
      <td width ="5%" align="center"><b>Freq.</b></td>
      <td width ="5%" align="center" ><b>Nota</b></td>
-     <td width ="5%" align="center" ><b>Faltas</b></td>
+     <td width ="5%" align="center" ><b>Faltas*</b></td>
      <td width ="5%" align="center"><b>Freq.</b></td>
    </tr>
    <tr>
@@ -100,8 +100,12 @@
                                     <%= nota.nota1 %>
                                <%end%>
            </td>
-           <td align="center"><%= nota.faltas1 %></td>
-           <td align="center">
+                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                  <td align="center"></td>
+                                  <td align="center"></td>
+                         <%else%>
+                              <td align="center"><%= nota.faltas1 %></td>
+                              <td align="center">
                                 <%if nota.aulas1 !=0 %>
                                   <%if nota.faltas1 == 0 %>
                                       100 %
@@ -117,53 +121,61 @@
                                 <%else%>
                                    <font color ="red"> ERRO* </font><% session[:obs]=1 %>
                                  <%end%>
-           </td>
+                               </td>
+                           <%end%>
       <%else%>
-           <td align="center">--</td>
-           <td align="center">--</td>
-           <td align="center">--</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
       <%end%>
       <%if nota.nota2.present? or nota.faltas2 != 0%>
-            <td align="center"> <%if nota.nota2.to_i < 5.0 %>
+           <td align="center"> <%if nota.nota2.to_i < 5.0 %>
                                    <font color ="red"> <%= nota.nota2 %> </font>
                                <%else%>
                                     <%= nota.nota2 %>
                                <%end%>
            </td>
-
-           <td align="center"><%= nota.faltas2 %></td>
-           <td align="center">
+                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                               <td align="center"></td>
+                               <td align="center"></td>
+                          <%else%>
+                              <td align="center"><%= nota.faltas2 %></td>
+                              <td align="center">
                                 <%if nota.aulas2 !=0 %>
                                   <%if nota.faltas2 == 0 %>
                                       100 %
                                   <%else%>
                                       <% frequencia2 =  (100-(nota.faltas2.to_f / nota.aulas2.to_f)*100).to_i %>
-                                      <%if frequencia2 < 75 %>
+                                      <%if frequencia2< 75 %>
                                            <font color ="red"> <%= frequencia2%> % </font>
                                       <%else%>
                                            <%= frequencia2%> %
+
                                       <%end%>
                                    <%end%>
                                 <%else%>
                                    <font color ="red"> ERRO* </font><% session[:obs]=1 %>
                                  <%end%>
-
-           </td>
+                               </td>
+                           <%end%>
       <%else%>
-           <td align="center">--</td>
-           <td align="center">--</td>
-           <td align="center">--</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
       <%end%>
-      <%if nota.nota3.present?  or nota.faltas3 != 0%>
-          <td align="center"> <%if nota.nota3.to_i < 5.0 %>
+      <%if nota.nota3.present? or nota.faltas3 != 0%>
+           <td align="center"> <%if nota.nota3.to_i < 5.0 %>
                                    <font color ="red"> <%= nota.nota3 %> </font>
                                <%else%>
                                     <%= nota.nota3 %>
                                <%end%>
            </td>
-
-           <td align="center"><%= nota.faltas3 %></td>
-           <td align="center">
+                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                <td align="center"></td>
+                                <td align="center"></td>
+                          <%else%>
+                              <td align="center"><%= nota.faltas3 %></td>
+                              <td align="center">
                                 <%if nota.aulas3 !=0 %>
                                   <%if nota.faltas3 == 0 %>
                                       100 %
@@ -173,27 +185,32 @@
                                            <font color ="red"> <%= frequencia3%> % </font>
                                       <%else%>
                                            <%= frequencia3%> %
+
                                       <%end%>
                                    <%end%>
                                 <%else%>
                                    <font color ="red"> ERRO* </font><% session[:obs]=1 %>
                                  <%end%>
-           </td>
+                               </td>
+                           <%end%>
       <%else%>
-           <td align="center">--</td>
-           <td align="center">--</td>
-           <td align="center">--</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
       <%end%>
-      <%if nota.nota4.present?  or nota.faltas4 != 0%>
+      <%if nota.nota4.present? or nota.faltas4 != 0%>
            <td align="center"> <%if nota.nota4.to_i < 5.0 %>
                                    <font color ="red"> <%= nota.nota4 %> </font>
                                <%else%>
                                     <%= nota.nota4 %>
                                <%end%>
            </td>
-
-           <td align="center"><%= nota.faltas4 %></td>
-           <td align="center">
+                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                  <td align="center"></td>
+                                  <td align="center"></td>
+                          <%else%>
+                              <td align="center"><%= nota.faltas4 %></td>
+                              <td align="center">
                                 <%if nota.aulas4 !=0 %>
                                   <%if nota.faltas4 == 0 %>
                                       100 %
@@ -203,31 +220,32 @@
                                            <font color ="red"> <%= frequencia4%> % </font>
                                       <%else%>
                                            <%= frequencia4%> %
+
                                       <%end%>
                                    <%end%>
                                 <%else%>
                                    <font color ="red"> ERRO* </font><% session[:obs]=1 %>
                                  <%end%>
-           </td>
-
+                               </td>
+                           <%end%>
       <%else%>
-           <td align="center">--</td>
-           <td align="center">--</td>
-           <td align="center">--</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
       <%end%>
-          <%if nota.nota5.present? %>
+      <%if nota.nota5.present? or nota.faltas5 != 0%>
            <td align="center"> <%if nota.nota5.to_i < 5.0 %>
                                    <font color ="red"> <%= nota.nota5 %> </font>
                                <%else%>
                                     <%= nota.nota5 %>
                                <%end%>
            </td>
-
-          <%else%>
-               <td align="center">--</td>
-          <%end%>
-            <td align="center"><%= nota.faltas5 %></td>
-            <td align="center">
+                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                              <td align="center"></td>
+                              <td align="center"></td>
+                          <%else%>
+                              <td align="center"><%= nota.faltas5 %></td>
+                              <td align="center">
                                 <%if nota.aulas5 !=0 %>
                                   <%if nota.faltas5 == 0 %>
                                       100 %
@@ -239,9 +257,18 @@
                                            <%= frequencia5%> %
                                       <%end%>
                                    <%end%>
-                                <%end%>
-           </td>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% session[:obs]=1 %>
+                                 <%end%>
+                               </td>
+                           <%end%>
 
+
+      <%else%>
+           <td align="center">---</td>
+           <td align="center">---</td>
+           <td align="center">---</td>
+      <%end%>
    </tr>
     <%end%>
      <% if session[:obs] ==1 %>
@@ -294,7 +321,7 @@
            <td align="center"><% if nota.nota1.nil? %>
                                     ---
                                  <%else%>
-                                     <%= nota.nota1 %>
+                                     <%   %>
                                  <%end%>
            </td>
            <td align="center"> <%if nota.aulas1 == 0 %>
@@ -327,7 +354,7 @@
            <td align="center"><% if nota.nota2.nil? %>
                                     ---
                                  <%else%>
-                                     <%= nota.nota2 %>
+                                     <%   %>
                                  <%end%>
            </td>
            <td align="center"> <%if nota.aulas2 == 0 %>
@@ -360,7 +387,7 @@
            <td align="center"><% if nota.nota3.nil? %>
                                     ---
                                  <%else%>
-                                     <%= nota.nota3 %>
+                                     <%   %>
                                  <%end%>
            </td>
            <td align="center"> <%if nota.aulas3 == 0 %>
@@ -393,7 +420,7 @@
            <td align="center"><% if nota.nota4.nil? %>
                                     ---
                                  <%else%>
-                                     <%= nota.nota4 %>
+                                     <%   %>
                                  <%end%>
            </td>
            <td align="center"> <%if nota.aulas4 == 0 %>
@@ -427,7 +454,7 @@
            <td align="center"><% if nota.nota5.nil? %>
                                     ---
                                  <%else%>
-                                     <%= nota.nota5 %>
+                                     <%   %>
                                  <%end%>
 
            </td>
@@ -462,12 +489,9 @@
 
    </tr>
     <%end%>
-
-
-
-
    <tr>
-     <td colspan="23"></td>
+     <td></td>
+     <td colspan="23"><b>* As faltas referem-se a "dias" faltados pelo aluno</b></td>
    </tr>
    <tr>
      <td colspan="23"><b>Observações:</b></td>
@@ -506,9 +530,8 @@
 
       <table  width="100% ">
           <tr>
-           <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-
-          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+            <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td><td>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                   <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
           <%end%>
           </tr>

@@ -96,7 +96,11 @@
                                                <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                   <td align="center">
                                                       <% if  nota.nota1.nil? %>
-                                                             ---
+                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                            ---
+                                                         <%else%>
+                                                             <%  %>
+                                                         <%end%>
                                                       <%else%>
                                                           <%if (nota.nota1.to_i < 5.0)  %>
                                                                 <% if nota.nota1 =="F" %>
@@ -109,7 +113,11 @@
                                                         <%end%>
                                                        <%end %>
                                                  </td>
-                                                 <td align="center" ><%= nota.faltas1%></td>
+                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                     <td> </td>
+                                                  <%else%>
+                                                      <td align="center" ><%= nota.faltas1%> </td>
+                                                  <%end%>
                                               <%end%>
                                             <%end%>
                                       <%end%>
@@ -139,6 +147,16 @@
 
            </td>
          </tr>
+          <tr style="font-size:10px">
+             <td></td>
+             <td colspan="23">* As faltas referem-se a "dias" faltados pelo aluno <br/>
+                          <% if  session[:num_classe]< 6   %>
+                              * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                          <%else%>
+                               <%  %>
+                          <%end%>
+             </td>
+           </tr>
 
       </table>
             <table  width="100%">
@@ -253,7 +271,11 @@
                                                <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                   <td align="center">
                                                       <% if  nota.nota2.nil? %>
-                                                             ---
+                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                            ---
+                                                         <%else%>
+                                                             <%  %>
+                                                         <%end%>
                                                       <%else%>
                                                           <%if (nota.nota2.to_i < 5.0)  %>
                                                                 <% if nota.nota2 =="F" %>
@@ -266,7 +288,11 @@
                                                         <%end%>
                                                        <%end %>
                                                  </td>
-                                                 <td align="center" ><%= nota.faltas2%></td>
+                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                     <td> </td>
+                                                  <%else%>
+                                                      <td align="center" ><%= nota.faltas2%></td>
+                                                  <%end%>
                                               <%end%>
                                            <%end%>
                                       <%end%>
@@ -292,10 +318,18 @@
         </tr>
          <tr style="font-size:10px">
            <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
-
-           </td>
+           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
          </tr>
+          <tr style="font-size:10px">
+             <td></td>
+             <td colspan="23">* As faltas referem-se a "dias" faltados pelo aluno <br/>
+                          <% if  session[:num_classe]< 6   %>
+                              * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                          <%else%>
+                               <%  %>
+                          <%end%>
+             </td>
+           </tr>
       </table>
             <table  width="100%">
                <tr>
@@ -406,7 +440,11 @@
                                              <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                 <td align="center">
                                                     <% if  nota.nota3.nil? %>
-                                                           ---
+                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                            ---
+                                                         <%else%>
+                                                             <%  %>
+                                                         <%end%>
                                                     <%else%>
                                                         <%if (nota.nota3.to_i < 5.0)  %>
                                                               <% if nota.nota3 =="F" %>
@@ -419,7 +457,11 @@
                                                       <%end%>
                                                      <%end %>
                                                </td>
-                                               <td align="center" ><%= nota.faltas3%></td>
+                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                     <td> </td>
+                                                  <%else%>
+                                                      <td align="center" ><%= nota.faltas3%> </td>
+                                                  <%end%>
                                             <%end%>
                                          <%end%>
                                      <%end%>
@@ -445,10 +487,18 @@
         </tr>
          <tr style="font-size:10px">
            <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
-
-           </td>
+           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
          </tr>
+          <tr style="font-size:10px">
+             <td></td>
+             <td colspan="23">* As faltas referem-se a "dias" faltados pelo aluno <br/>
+                          <% if  session[:num_classe]< 6   %>
+                              * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                          <%else%>
+                               <%  %>
+                          <%end%>
+             </td>
+           </tr>
 
       </table>
             <table  width="100%">
@@ -561,7 +611,11 @@
                                                <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                   <td align="center">
                                                       <% if  nota.nota4.nil? %>
-                                                             ---
+                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                            ---
+                                                         <%else%>
+                                                             <%  %>
+                                                         <%end%>
                                                       <%else%>
                                                           <%if (nota.nota4.to_i < 5.0)  %>
                                                                 <% if nota.nota4 =="F" %>
@@ -574,7 +628,11 @@
                                                         <%end%>
                                                        <%end %>
                                                  </td>
-                                                 <td align="center" ><%= nota.faltas4%></td>
+                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                     <td> </td>
+                                                  <%else%>
+                                                      <td align="center" ><%= nota.faltas4%> </td>
+                                                  <%end%>
                                               <%end%>
                                            <%end%>
                                     <%end%>
@@ -600,10 +658,18 @@
         </tr>
          <tr style="font-size:10px">
            <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
-
-           </td>
+           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
          </tr>
+          <tr style="font-size:10px">
+             <td></td>
+             <td colspan="23">* As faltas referem-se a "dias" faltados pelo aluno <br/>
+                          <% if  session[:num_classe]< 6   %>
+                              * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                          <%else%>
+                               <%  %>
+                          <%end%>
+             </td>
+           </tr>
       </table>
             <table  width="100%">
                <tr>
@@ -715,7 +781,11 @@
                                              <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                 <td align="center">
                                                     <% if  nota.nota5.nil? %>
-                                                           ---
+                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                            ---
+                                                         <%else%>
+                                                             <%  %>
+                                                         <%end%>
                                                     <%else%>
                                                         <%if (nota.nota5.to_i < 5.0)  %>
                                                               <% if nota.nota5 =="F" %>
@@ -728,7 +798,11 @@
                                                       <%end%>
                                                      <%end %>
                                                </td>
-                                               <td align="center" ><%= nota.faltas5%></td>
+                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                     <td> </td>
+                                                  <%else%>
+                                                      <td align="center" ><%= nota.faltas5%> </td>
+                                                  <%end%>
                                             <%end%>
                                          <%end%>
                                      <%end%>
@@ -754,10 +828,18 @@
         </tr>
          <tr style="font-size:10px">
            <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
-
-           </td>
+           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
          </tr>
+          <tr style="font-size:10px">
+             <td></td>
+             <td colspan="23">* As faltas referem-se a "dias" faltados pelo aluno <br/>
+                          <% if  session[:num_classe]< 6   %>
+                              * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                          <%else%>
+                               <%  %>
+                          <%end%>
+             </td>
+           </tr>
       </table>
             <table  width="100%">
                <tr>

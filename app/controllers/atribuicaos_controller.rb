@@ -270,6 +270,7 @@ def create_notas
       @classe.each do |classe|
          session[:unidade]=classe.unidade_id
          session[:classe_id] = classe.id
+         session[:num_classe]= classe.classe_classe[0,1].to_i
        end
         @matricula = Matricula.find(:all,:conditions =>['classe_id = ? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
         quantidade = @matricula.count
@@ -494,6 +495,9 @@ end
 def mapa_de_classe
        session[:classe_id] = params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @classe.each do |classe|
+         session[:num_classe]= classe.classe_classe[0,1].to_i
+       end
        @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  params[:classe][:id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', params[:classe][:id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
        @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
@@ -509,6 +513,9 @@ def mapa_de_classe_anterior
        session[:classe_id] = params[:classe_mapa][:id]
        session[:ano] =  params[:ano_letivo_mapa]
        @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
+       @classe.each do |classe|
+         session[:num_classe]= classe.classe_classe[0,1].to_i
+       end
        @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
        @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
@@ -677,7 +684,7 @@ end
 
 def transferencia_aluno
  session[:aluno_id]=params[:aluno][:aluno_id]
-     @aluno = Matricula.find(:all, :conditions => ['aluno_id =? and unidade_id =?', params[:aluno][:aluno_id],current_user.unidade_id])
+     @aluno = Matricula.find(:all, :conditions => ['aluno_id =? and unidade_id =? and ano_letivo=?', params[:aluno][:aluno_id],current_user.unidade_id, Time.now.year])
      @matricula= Matricula.find(:all, :conditions =>["aluno_id=? AND ano_letivo=? AND unidade_id=?",params[:aluno][:aluno_id], Time.now.year,  current_user.unidade_id])
       for matricula in @matricula
         session[:classe]= matricula.classe.classe_classe
