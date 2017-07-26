@@ -556,16 +556,17 @@
 
    </tr>
     
-   <tr>
-     <td></td>
-     <td colspan="23"><b>* As faltas referem-se a "dias" faltados pelo aluno</b><br/>
-                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                      <%  %>
-                <%else%>
-                   <b>* As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a <br/>&nbsp&nbsp disciplina de PORTUGUÊS</b>
-                 <%end%>
-     </td>
-   </tr>
+          <tr>
+             <td></td>
+             <td colspan="23">
+                            <% if  session[:num_classe]< 6   %>
+                                * As faltas referem-se a "dias" faltados pelo aluno <br/>
+                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                          <%else%>
+                               <%  %>
+                          <%end%>
+             </td>
+           </tr>
 <%end%>
 <!--            <tr>
                <td colspan="16"><b>Observações:</b >&nbsp&nbsp 1) <b>F</b> = Frequentou &nbsp&nbsp <b>NF</b> = NÃO Frequentou <br/>

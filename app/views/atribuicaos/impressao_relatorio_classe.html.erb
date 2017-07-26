@@ -470,10 +470,17 @@
 
    </tr>
           <%end%>
-   <tr>
-     <th></th>
-     <th style="font-size: 8px" colspan="23"><b>* As faltas referem-se a "dias" faltados pelo aluno</b></th>
-   </tr>
+          <tr style="font-size:10px">
+             <td></td>
+             <th style="font-size: 8px" colspan="23">
+                            <% if  session[:num_classe]< 6   %>
+                                * As faltas referem-se a "dias" faltados pelo aluno <br/>
+                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                          <%else%>
+                               <%  %>
+                          <%end%>
+             </td>
+           </tr>
 
          <tr>
            <th style="font-size: 7px"colspan="23" align="left"><b>Observações:</b></th>
