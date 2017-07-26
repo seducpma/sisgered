@@ -99,7 +99,11 @@
                                              <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                 <th align="center">
                                                     <% if  nota.nota3.nil? %>
-                                                           ---
+                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                            ---
+                                                         <%else%>
+                                                             <%  %>
+                                                         <%end%>
                                                     <%else%>
                                                         <%if (nota.nota3.to_i < 5.0)  %>
                                                               <% if nota.nota3 =="F" %>
@@ -112,7 +116,11 @@
                                                       <%end%>
                                                      <%end %>
                                                </th>
-                                               <th align="center" ><%= nota.faltas3%></th>
+                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                     <th> </th>
+                                                  <%else%>
+                                                      <th align="center" ><%= nota.faltas3%> </th>
+                                                  <%end%>
                                             <%end%>
                                          <%end%>
                                     <%end%>

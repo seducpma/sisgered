@@ -112,7 +112,11 @@
                                                       <%end%>
                                                      <%end %>
                                                </th>
-                                               <th align="center" ><%= nota.faltas5%></th>
+                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                     <th> </th>
+                                                  <%else%>
+                                                      <th align="center" ><%= nota.faltas5%> </th>
+                                                  <%end%>
                                             <%end%>
                                          <%end%>
                                     <%end%>
