@@ -93,6 +93,11 @@
                                           <td align="center"> -- </td>
                                        <%else%>
                                             <%@notas_alu.each do |nota|%>
+                                                <% if nota.disciplina.curriculo == 'D'   %>
+                                                    <%session[:nota_disciplina]= ''%>
+                                                <%else%>
+                                                    <%session[:nota_disciplina]= nota.nota1 %>
+                                                <%end%>
                                                <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                   <td align="center">
                                                       <% if  nota.nota1.nil? %>
@@ -103,14 +108,10 @@
                                                          <%end%>
                                                       <%else%>
                                                           <%if (nota.nota1.to_i < 5.0)  %>
-                                                                <% if nota.nota1 =="F" %>
-                                                                     <%= nota.nota1 %>
-                                                                <%else%>
-                                                                     <font color ="red"> <%= nota.nota1 %> </font>
-                                                                <%end%>
-                                                         <%else%>
-                                                               <%= nota.nota1 %>
-                                                        <%end%>
+                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                           <%else%>
+                                                                 <%=  session[:nota_disciplina]%>
+                                                            <%end%>
                                                        <%end %>
                                                  </td>
                                                  <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
@@ -151,8 +152,8 @@
              <td></td>
              <td colspan="23">
                            <% if  session[:num_classe]< 6   %>
-                                * As faltas referem-se a "dias" faltados pelo aluno <br/>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
                           <%else%>
                                <%  %>
                           <%end%>
@@ -269,6 +270,11 @@
                                           <td align="center"> -- </td>
                                        <%else%>
                                             <%@notas_alu.each do |nota|%>
+                                                <% if nota.disciplina.curriculo == 'D'   %>
+                                                    <%session[:nota_disciplina]= ''%>
+                                                <%else%>
+                                                    <%session[:nota_disciplina]= nota.nota2 %>
+                                                <%end%>
                                                <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                   <td align="center">
                                                       <% if  nota.nota2.nil? %>
@@ -279,14 +285,10 @@
                                                          <%end%>
                                                       <%else%>
                                                           <%if (nota.nota2.to_i < 5.0)  %>
-                                                                <% if nota.nota2 =="F" %>
-                                                                     <%= nota.nota2 %>
-                                                                <%else%>
-                                                                     <font color ="red"> <%= nota.nota2 %> </font>
-                                                                <%end%>
-                                                         <%else%>
-                                                               <%= nota.nota2 %>
-                                                        <%end%>
+                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                           <%else%>
+                                                                 <%=  session[:nota_disciplina]%>
+                                                            <%end%>
                                                        <%end %>
                                                  </td>
                                                  <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
@@ -325,8 +327,8 @@
              <td></td>
              <td colspan="23">
                             <% if  session[:num_classe]< 6   %>
-                                * As faltas referem-se a "dias" faltados pelo aluno <br/>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
                           <%else%>
                                <%  %>
                           <%end%>
@@ -439,6 +441,11 @@
                                           <td align="center"> -- </td>
                                        <%else%>
                                           <%@notas_alu.each do |nota|%>
+                                                <% if nota.disciplina.curriculo == 'D'   %>
+                                                    <%session[:nota_disciplina]= ''%>
+                                                <%else%>
+                                                    <%session[:nota_disciplina]= nota.nota3 %>
+                                                <%end%>
                                              <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                 <td align="center">
                                                     <% if  nota.nota3.nil? %>
@@ -448,15 +455,12 @@
                                                              <%  %>
                                                          <%end%>
                                                     <%else%>
-                                                        <%if (nota.nota3.to_i < 5.0)  %>
-                                                              <% if nota.nota3 =="F" %>
-                                                                   <%= nota.nota3 %>
-                                                              <%else%>
-                                                                   <font color ="red"> <%= nota.nota3 %> </font>
-                                                              <%end%>
-                                                       <%else%>
-                                                             <%= nota.nota3 %>
-                                                      <%end%>
+                                                          <%if (nota.nota3.to_i < 5.0)  %>
+                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                           <%else%>
+                                                                 <%=  session[:nota_disciplina]%>
+                                                            <%end%>
+
                                                      <%end %>
                                                </td>
                                                  <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
@@ -495,8 +499,8 @@
              <td></td>
              <td colspan="23">
                             <% if  session[:num_classe]< 6   %>
-                                * As faltas referem-se a "dias" faltados pelo aluno <br/>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
                           <%else%>
                                <%  %>
                           <%end%>
@@ -611,6 +615,11 @@
                                           <td align="center"> -- </td>
                                        <%else%>
                                             <%@notas_alu.each do |nota|%>
+                                                <% if nota.disciplina.curriculo == 'D'   %>
+                                                    <%session[:nota_disciplina]= ''%>
+                                                <%else%>
+                                                    <%session[:nota_disciplina]= nota.nota4 %>
+                                                <%end%>
                                                <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                   <td align="center">
                                                       <% if  nota.nota4.nil? %>
@@ -621,14 +630,11 @@
                                                          <%end%>
                                                       <%else%>
                                                           <%if (nota.nota4.to_i < 5.0)  %>
-                                                                <% if nota.nota4 =="F" %>
-                                                                     <%= nota.nota4 %>
-                                                                <%else%>
-                                                                     <font color ="red"> <%= nota.nota4 %> </font>
-                                                                <%end%>
-                                                         <%else%>
-                                                               <%= nota.nota4 %>
-                                                        <%end%>
+                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                           <%else%>
+                                                                 <%=  session[:nota_disciplina]%>
+                                                            <%end%>
+
                                                        <%end %>
                                                  </td>
                                                  <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
@@ -667,8 +673,8 @@
              <td></td>
              <td colspan="23">
                             <% if  session[:num_classe]< 6   %>
-                                * As faltas referem-se a "dias" faltados pelo aluno <br/>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
                           <%else%>
                                <%  %>
                           <%end%>
@@ -782,6 +788,11 @@
                                           <td align="center"> -- </td>
                                        <%else%>
                                           <%@notas_alu.each do |nota|%>
+                                                <% if nota.disciplina.curriculo == 'D'   %>
+                                                    <%session[:nota_disciplina]= ''%>
+                                                <%else%>
+                                                    <%session[:nota_disciplina]= nota.nota5 %>
+                                                <%end%>
                                              <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
                                                 <td align="center">
                                                     <% if  nota.nota5.nil? %>
@@ -791,15 +802,11 @@
                                                              <%  %>
                                                          <%end%>
                                                     <%else%>
-                                                        <%if (nota.nota5.to_i < 5.0)  %>
-                                                              <% if nota.nota5 =="F" %>
-                                                                   <%= nota.nota5 %>
-                                                              <%else%>
-                                                                   <font color ="red"> <%= nota.nota5 %> </font>
-                                                              <%end%>
-                                                       <%else%>
-                                                             <%= nota.nota5 %>
-                                                      <%end%>
+                                                          <%if (nota.nota5.to_i < 5.0)  %>
+                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                           <%else%>
+                                                                 <%=  session[:nota_disciplina]%>
+                                                            <%end%>
                                                      <%end %>
                                                </td>
                                                  <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
@@ -838,8 +845,8 @@
              <td></td>
              <td colspan="23"
                             <% if  session[:num_classe]< 6   %>
-                                * As faltas referem-se a "dias" faltados pelo aluno <br/>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas e frequência, somente a disciplina de PORTUGUÊS
+                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
                           <%else%>
                                <%  %>
                           <%end%>
