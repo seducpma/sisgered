@@ -80,20 +80,18 @@
                     <% @atribuicao_classe.each do |atrib| %>
                         <%if @notas_alu.empty?%>
                             <%if matriculas_classe.status != "MATRICULADO"%>
-                                <%if matriculas_classe.status == "REMANEJADO"%>
-                                    <th align="center"><font color="red">RM</font></th>
-                                <%else%>
-                                    <th align="center"><font color="red">TR</font></th>
-                                <%end%>
-                                <th align="center"> -- </th>
-                            <%else%>
-                                <th align="center"><font color="red">S/N</font></th>
-                                <th align="center"> -- </th>
-                            <%end%>
+                                            <%if matriculas_classe.status == "REMANEJADO"%>
+                                                <th align="center"><font color="red">RM</font></th>
+                                                <th align="center"><font color="red">RM</font></th>
+                                            <%end%>
+                                        <%else%>
+                                            <th align="center"><font color="red">S/N</font></th>
+                                            <th align="center"> --- </th>
+                                        <%end%>
                         <%else%>
                             <%if matriculas_classe.status == "TRANSFERIDO"%>
                                 <th align="center"><font color="red">TR</font></th>
-                                <th align="center"> -- </th>
+                                <th align="center"><font color="red">TR</font></th>
                             <%else%>
                                 <%@notas_alu.each do |nota|%>
                                     <% if nota.disciplina.curriculo == 'D'   %>

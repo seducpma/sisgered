@@ -1,184 +1,182 @@
 <style type="text/css">
-  .textovertical {
-	-webkit-transform:rotate(270deg);
-	-moz-transform:rotate(270deg);
-	-o-transform: rotate(270deg);
-}
+    .textovertical {
+        -webkit-transform:rotate(270deg);
+        -moz-transform:rotate(270deg);
+        -o-transform: rotate(270deg);
+    }
 </style>
 
 <% @classe.each do |classe| %>
     <table width="100%">
-         <tr>
+        <tr>
             <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-             <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+            <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                 <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
                 <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
                 <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
-                <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                    <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
                 <%  session[:classe]=  classe.id%>
-             </td>
-          </tr>
-          <tr>
-              <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <hr/>
             </td>
-          </tr>
-
-          <%session[:mostra_nome]=1%>
-          <table border="1" cellspacing="0" cellpadding="1" width="100%">
-               <tr  style="font-size: 9px">
-                 <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS 1º BIMESTRE</b></center></font>
-                       <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
-                      <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
-                      <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font> 
-                  </td>
-                 <%pv=0%>
-                 <% @atribuicao_classe.each do |atrib| %>
-                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
-                 <%end%>
-                </tr>
-                   <% if session[:mostra_nome]==1%>
-                       <tr style="font-size: 10px">
-                          <td  align="center"><b>Nº: </b> </td>
-                          <td align="center"><b> Nome: </b> </td>
-                          <% session[:disc] = 0 %>
-                          <% if pv == 0 %>
-
-                               <% @atribuicao_classe.each do |atrib| %>
-                                <td align="center" width ="1%" ><b>Nota</b></td>
-                                <td align="center" width =1%"><b>Falta</b></td>
-                                <% session[:disc] = session[:disc] + 1 %>
-                              <%end%>
-                            <%pv=1%>
-                          <%end%>
-                       </tr>
-                    <%end%>
-
-                   <% @matriculas_classe.each do |matriculas_classe| %>
-                       <tr style="font-size: 10px">
-                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                              <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
-                                  <% if  matriculas_classe.status == "MATRICULADO"%>
-
-                                    <%else%>
-                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
-                                  <%end%>
-                                   </font> </td>
-                              <%else%>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
-                             <%end%>
-                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
-                             <% @atribuicao_classe.each do |atrib| %>
-                             <% @notas_ant = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=?', matriculas_classe.aluno_id,Time.now.year]) %>
-                             <%t=0%>
-                                <%if @notas_alu.empty?  %>
-                                      <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <%if matriculas_classe.status == "REMANEJADO"%>
-                                              <td align="center"><font color="red">RM</font></td>
-                                           <%else%>
-                                              <td align="center"><font color="red">TR</font></td>
-                                           <%end%>
-                                          <td align="center"> -- </td>
-                                      <%else%>
-                                          <td align="center"><font color="red">S/N</font></td>
-                                          <td align="center"> -- </td>
-                                      <%end%>
-                                <%else%>
-                                      <%if matriculas_classe.status == "TRANSFERIDO"%>
-                                          <td align="center"><font color="red">TR</font></td>
-                                          <td align="center"> -- </td>
-                                       <%else%>
-                                            <%@notas_alu.each do |nota|%>
-                                                <% if nota.disciplina.curriculo == 'D'   %>
-                                                    <%session[:nota_disciplina]= ''%>
-                                                <%else%>
-                                                    <%session[:nota_disciplina]= nota.nota1 %>
-                                                <%end%>
-                                               <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                                  <td align="center">
-                                                      <% if  nota.nota1.nil? %>
-                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                            ---
-                                                         <%else%>
-                                                             <%  %>
-                                                         <%end%>
-                                                      <%else%>
-                                                          <%if (nota.nota1.to_i < 5.0)  %>
-                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
-                                                           <%else%>
-                                                                 <%=  session[:nota_disciplina]%>
-                                                            <%end%>
-                                                       <%end %>
-                                                 </td>
-                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                     <td> </td>
-                                                  <%else%>
-                                                      <td align="center" ><%= nota.faltas1%> </td>
-                                                  <%end%>
-                                              <%end%>
-                                            <%end%>
-                                      <%end%>
-                               <%end%>
-
-                   <%end%>
-                </tr>
-              <%session[:mostra_nome]=0%>
-
-         <%cont = 0%>
-        <%end%>
-        
-         <tr style="font-size: 8px">
-           <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b></font> </td>
-            <% session[:prof] = 0 %>
-            <% if session[:prof] == 0 %>
-               <% @atribuicao_classe.each do |atrib| %>
-                  <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
-                  <% session[:prof] = session[:prof] + 1 %>
-              <%end%>
-              <%pv=1%>
-            <%end%>
         </tr>
-         <tr style="font-size:10px">
-           <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b> = TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
+        <tr>
+            <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr/>
+            </td>
+        </tr>
 
-           </td>
-         </tr>
-          <tr style="font-size:10px">
-             <td></td>
-             <td colspan="23">
-                           <% if  session[:num_classe]< 6   %>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
-                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
-                          <%else%>
-                               <%  %>
-                          <%end%>
-             </td>
-           </tr>
+        <%session[:mostra_nome]=1%>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+            <tr  style="font-size: 9px">
+                <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS 1º BIMESTRE</b></center></font>
+                    <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
+                    <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
+                    <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
+                </td>
+                <%pv=0%>
+                <% @atribuicao_classe.each do |atrib| %>
+                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
+                <%end%>
+            </tr>
+            <% if session[:mostra_nome]==1%>
+                <tr style="font-size: 10px">
+                    <td  align="center"><b>Nº: </b> </td>
+                    <td align="center"><b> Nome: </b> </td>
+                    <% session[:disc] = 0 %>
+                    <% if pv == 0 %>
 
-      </table>
-            <table  width="100%">
-               <tr>
-                 <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+                        <% @atribuicao_classe.each do |atrib| %>
+                            <td align="center" width ="1%" ><b>Nota</b></td>
+                            <td align="center" width =1%"><b>Falta</b></td>
+                            <% session[:disc] = session[:disc] + 1 %>
+                        <%end%>
+                        <%pv=1%>
+                    <%end%>
+                </tr>
+            <%end%>
 
-                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa1_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
-                      <%end%>
-               </tr>
+            <% @matriculas_classe.each do |matriculas_classe| %>
+                <tr style="font-size: 10px">
+                    <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
+                    <% if session[:disc] < 10 %>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                            <% if  matriculas_classe.status == "MATRICULADO"%>
 
-            </table>
-      <tr>
-        <td>
-        </td>
-      </tr>
+                            <%else%>
+                                <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                            <%end%>
+                            </font> </td>
+                    <%else%>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
+                    <%end%>
+                    <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <% @notas_ant = Nota.find(:all,:conditions =>['aluno_id = ? AND ano_letivo=?', matriculas_classe.aluno_id,Time.now.year]) %>
+                        <%t=0%>
+                        <%if @notas_alu.empty?  %>
+                            <%if matriculas_classe.status != "MATRICULADO"%>
+                                <%if matriculas_classe.status == "REMANEJADO"%>
+                                    <td align="center"><font color="red">RM</font></td>
+                                    <td align="center"><font color="red">RM</font></td>
+                                <%end%>
+                            <%else%>
+                                <td align="center"><font color="red">S/N</font></td>
+                                <td align="center"> --- </td>
+                            <%end%>
+                        <%else%>
+                            <%if matriculas_classe.status == "TRANSFERIDO"%>
+                                <td align="center"><font color="red">TR</font></td>
+                                <td align="center"><font color="red">TR</font></td>
+                            <%else%>
+                                <%@notas_alu.each do |nota|%>
+                                    <% if nota.disciplina.curriculo == 'D'   %>
+                                        <%session[:nota_disciplina]= ''%>
+                                    <%else%>
+                                        <%session[:nota_disciplina]= nota.nota1 %>
+                                    <%end%>
+                                    <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                        <td align="center">
+                                            <% if  nota.nota1.nil? %>
+                                                <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                    ---
+                                                <%else%>
+                                                    <%  %>
+                                                <%end%>
+                                            <%else%>
+                                                <%if (nota.nota1.to_i < 5.0)  %>
+                                                    <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                <%else%>
+                                                    <%=  session[:nota_disciplina]%>
+                                                <%end%>
+                                            <%end %>
+                                        </td>
+                                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                            <td> </td>
+                                        <%else%>
+                                            <td align="center" ><%= nota.faltas1%> </td>
+                                        <%end%>
+                                    <%end%>
+                                <%end%>
+                            <%end%>
+                        <%end%>
+
+                    <%end%>
+                </tr>
+                <%session[:mostra_nome]=0%>
+
+                <%cont = 0%>
+            <%end%>
+
+            <tr style="font-size: 8px">
+                <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b></font> </td>
+                <% session[:prof] = 0 %>
+                <% if session[:prof] == 0 %>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
+                        <% session[:prof] = session[:prof] + 1 %>
+                    <%end%>
+                    <%pv=1%>
+                <%end%>
+            </tr>
+            <tr style="font-size:10px">
+                <td> <b>Legenda Notas</b></td>
+                <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b> = TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
+
+                </td>
+            </tr>
+            <tr style="font-size:10px">
+                <td></td>
+                <td colspan="23">
+                    <% if  session[:num_classe]< 6   %>
+                        * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                        * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
+                    <%else%>
+                        <%  %>
+                    <%end%>
+                </td>
+            </tr>
+
+        </table>
+        <table  width="100%">
+            <tr>
+                <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+
+                    <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa1_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
+                <%end%>
+            </tr>
+
+        </table>
+        <tr>
+            <td>
+            </td>
+        </tr>
     </table>
     <table width="100%" align="center" bgcolor="#DCDCDC" >
-      <tr><td> <br/><hr><br/><br/></td>
-      </tr>
+        <tr><td> <br/><hr><br/><br/></td>
+        </tr>
     </table>
 <%end%>
 
@@ -187,172 +185,170 @@
 
 <% @classe.each do |classe| %>
     <table width="100%">
-         <tr>
+        <tr>
             <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-             <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+            <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                 <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
                 <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
                 <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
-                <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                    <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
                 <%  session[:classe]=  classe.id%>
-             </td>
-          </tr>
-          <tr>
-              <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <hr/>
             </td>
-          </tr>
-
-          <%session[:mostra_nome]=1%>
-          <table border="1" cellspacing="0" cellpadding="1" width="100%">
-               <tr  style="font-size: 9px">
-                 <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS 2º BIMESTRE</b></center></font>
-                       <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
-                      <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
-                      <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
-                  </td>
-                 <%pv=0%>
-                 <% @atribuicao_classe.each do |atrib| %>
-                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
-                 <%end%>
-                </tr>
-                   <% if session[:mostra_nome]==1%>
-                       <tr style="font-size: 10px">
-                          <td  align="center"><b>Nº: </b> </td>
-                          <td align="center"><b> Nome: </b> </td>
-                          <% session[:disc] = 0 %>
-                          <% if pv == 0 %>
-                              <% @atribuicao_classe.each do |atrib| %>
-                                <td align="center" width ="1%" ><b>Nota</b></td>
-                                <td align="center" width =1%"><b>Falta</b></td>
-                                <% session[:disc] = session[:disc] + 1 %>
-                              <%end%>
-                            <%pv=1%>
-                          <%end%>
-                       </tr>
-                    <%end%>
-
-                   <% @matriculas_classe.each do |matriculas_classe| %>
-                       <tr style="font-size: 10px">
-                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                              <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
-                                  <% if  matriculas_classe.status == "MATRICULADO"%>
-
-                                    <%else%>
-                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
-                                  <%end%>
-                                   </font> </td>
-                              <%else%>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
-                             <%end%>                             
-                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
-
-                             <% @atribuicao_classe.each do |atrib| %>
-                                <%if @notas_alu.empty?%>
-                                      <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <%if matriculas_classe.status == "REMANEJADO"%>
-                                              <td align="center"><font color="red">RM</font></td>
-                                           <%else%>
-                                              <td align="center"><font color="red">TR</font></td>
-                                           <%end%>
-                                          <td align="center"> -- </td>
-                                      <%else%>
-                                       <td align="center"><font color="red">S/N</font></td>
-                                       <td align="center"> -- </td>
-                                      <%end%>
-                                <%else%>
-                                      <%if matriculas_classe.status == "TRANSFERIDO"%>
-                                          <td align="center"><font color="red">TR</font></td>
-                                          <td align="center"> -- </td>
-                                       <%else%>
-                                            <%@notas_alu.each do |nota|%>
-                                                <% if nota.disciplina.curriculo == 'D'   %>
-                                                    <%session[:nota_disciplina]= ''%>
-                                                <%else%>
-                                                    <%session[:nota_disciplina]= nota.nota2 %>
-                                                <%end%>
-                                               <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                                  <td align="center">
-                                                      <% if  nota.nota2.nil? %>
-                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                            ---
-                                                         <%else%>
-                                                             <%  %>
-                                                         <%end%>
-                                                      <%else%>
-                                                          <%if (nota.nota2.to_i < 5.0)  %>
-                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
-                                                           <%else%>
-                                                                 <%=  session[:nota_disciplina]%>
-                                                            <%end%>
-                                                       <%end %>
-                                                 </td>
-                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                     <td> </td>
-                                                  <%else%>
-                                                      <td align="center" ><%= nota.faltas2%></td>
-                                                  <%end%>
-                                              <%end%>
-                                           <%end%>
-                                      <%end%>
-                               <%end%>
-
-                   <%end%>
-                </tr>
-              <%session[:mostra_nome]=0%>
-
-         <%cont = 0%>
-        <%end%>
-
-         <tr style="font-size: 8px">
-           <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b></font> </td>
-            <% session[:prof] = 0 %>
-            <% if session[:prof] == 0 %>
-               <% @atribuicao_classe.each do |atrib| %>
-                  <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
-                  <% session[:prof] = session[:prof] + 1 %>
-              <%end%>
-              <%pv=1%>
-            <%end%>
         </tr>
-         <tr style="font-size:10px">
-           <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
-         </tr>
-          <tr style="font-size:10px">
-             <td></td>
-             <td colspan="23">
-                            <% if  session[:num_classe]< 6   %>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
-                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
-                          <%else%>
-                               <%  %>
-                          <%end%>
-             </td>
-           </tr>
-      </table>
-            <table  width="100%">
-               <tr>
-                 <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+        <tr>
+            <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr/>
+            </td>
+        </tr>
 
-                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa2_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
-                      <%end%>
-               </tr>
+        <%session[:mostra_nome]=1%>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+            <tr  style="font-size: 9px">
+                <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS 2º BIMESTRE</b></center></font>
+                    <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
+                    <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
+                    <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
+                </td>
+                <%pv=0%>
+                <% @atribuicao_classe.each do |atrib| %>
+                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
+                <%end%>
+            </tr>
+            <% if session[:mostra_nome]==1%>
+                <tr style="font-size: 10px">
+                    <td  align="center"><b>Nº: </b> </td>
+                    <td align="center"><b> Nome: </b> </td>
+                    <% session[:disc] = 0 %>
+                    <% if pv == 0 %>
+                        <% @atribuicao_classe.each do |atrib| %>
+                            <td align="center" width ="1%" ><b>Nota</b></td>
+                            <td align="center" width =1%"><b>Falta</b></td>
+                            <% session[:disc] = session[:disc] + 1 %>
+                        <%end%>
+                        <%pv=1%>
+                    <%end%>
+                </tr>
+            <%end%>
 
-            </table>
-      <tr>
-        <td>
-        </td>
-      </tr>
+            <% @matriculas_classe.each do |matriculas_classe| %>
+                <tr style="font-size: 10px">
+                    <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
+                    <% if session[:disc] < 10 %>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                            <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                            <%else%>
+                                <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                            <%end%>
+                            </font> </td>
+                    <%else%>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
+                    <%end%>
+                    <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <%if @notas_alu.empty?%>
+                            <%if matriculas_classe.status != "MATRICULADO"%>
+                                <%if matriculas_classe.status == "REMANEJADO"%>
+                                    <td align="center"><font color="red">RM</font></td>
+                                    <td align="center"><font color="red">RM</font></td>
+                                <%end%>
+                            <%else%>
+                                <td align="center"><font color="red">S/N</font></td>
+                                <td align="center"> --- </td>
+                            <%end%>
+                        <%else%>
+                            <%if matriculas_classe.status == "TRANSFERIDO"%>
+                                <td align="center"><font color="red">TR</font></td>
+                                <td align="center"><font color="red">TR</font></td>
+                            <%else%>
+                                <%@notas_alu.each do |nota|%>
+                                    <% if nota.disciplina.curriculo == 'D'   %>
+                                        <%session[:nota_disciplina]= ''%>
+                                    <%else%>
+                                        <%session[:nota_disciplina]= nota.nota2 %>
+                                    <%end%>
+                                    <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                        <td align="center">
+                                            <% if  nota.nota2.nil? %>
+                                                <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                    ---
+                                                <%else%>
+                                                    <%  %>
+                                                <%end%>
+                                            <%else%>
+                                                <%if (nota.nota2.to_i < 5.0)  %>
+                                                    <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                <%else%>
+                                                    <%=  session[:nota_disciplina]%>
+                                                <%end%>
+                                            <%end %>
+                                        </td>
+                                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                            <td> </td>
+                                        <%else%>
+                                            <td align="center" ><%= nota.faltas2%></td>
+                                        <%end%>
+                                    <%end%>
+                                <%end%>
+                            <%end%>
+                        <%end%>
+
+                    <%end%>
+                </tr>
+                <%session[:mostra_nome]=0%>
+
+                <%cont = 0%>
+            <%end%>
+
+            <tr style="font-size: 8px">
+                <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b></font> </td>
+                <% session[:prof] = 0 %>
+                <% if session[:prof] == 0 %>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
+                        <% session[:prof] = session[:prof] + 1 %>
+                    <%end%>
+                    <%pv=1%>
+                <%end%>
+            </tr>
+            <tr style="font-size:10px">
+                <td> <b>Legenda Notas</b></td>
+                <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
+            </tr>
+            <tr style="font-size:10px">
+                <td></td>
+                <td colspan="23">
+                    <% if  session[:num_classe]< 6   %>
+                        * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                        * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
+                    <%else%>
+                        <%  %>
+                    <%end%>
+                </td>
+            </tr>
+        </table>
+        <table  width="100%">
+            <tr>
+                <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+
+                    <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa2_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
+                <%end%>
+            </tr>
+
+        </table>
+        <tr>
+            <td>
+            </td>
+        </tr>
     </table>
     <table width="100%" align="center" bgcolor="#DCDCDC" >
-      <tr><td> <br/><hr><br/><br/></td>
-      </tr>
+        <tr><td> <br/><hr><br/><br/></td>
+        </tr>
     </table>
 <%end%>
 
@@ -360,172 +356,170 @@
 
 <% @classe.each do |classe| %>
     <table width="100%">
-         <tr>
+        <tr>
             <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-             <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+            <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                 <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
                 <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
                 <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
-                <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                    <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
                 <%  session[:classe]=  classe.id%>
-             </td>
-          </tr>
-          <tr>
-              <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <hr/>
             </td>
-          </tr>
-
-          <%session[:mostra_nome]=1%>
-          <table border="1" cellspacing="0" cellpadding="1" width="100%">
-               <tr  style="font-size: 9px">
-                 <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS 3º BIMESTRE</b></center></font>
-                       <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
-                      <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
-                      <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
-                  </td>
-                 <%pv=0%>
-                 <% @atribuicao_classe.each do |atrib| %>
-                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
-                 <%end%>
-                </tr>
-                   <% if session[:mostra_nome]==1%>
-                       <tr style="font-size: 10px">
-                          <td  align="center"><b>Nº: </b> </td>
-                          <td align="center"><b> Nome: </b> </td>
-                          <% session[:disc] = 0 %>
-                          <% if pv == 0 %>
-                              <% @atribuicao_classe.each do |atrib| %>
-                                <td align="center" width ="1%" ><b>Nota</b></td>
-                                <td align="center" width =1%"><b>Falta</b></td>
-                                <% session[:disc] = session[:disc] + 1 %>
-                              <%end%>
-                            <%pv=1%>
-                          <%end%>
-                       </tr>
-                    <%end%>
-
-                   <% @matriculas_classe.each do |matriculas_classe| %>
-                       <tr style="font-size: 10px">
-                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                              <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
-                                  <% if  matriculas_classe.status == "MATRICULADO"%>
-
-                                    <%else%>
-                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
-                                  <%end%>
-                                   </font> </td>
-                              <%else%>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
-                             <%end%>                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
-                             <% @atribuicao_classe.each do |atrib| %>
-                                <%if @notas_alu.empty?%>
-                                      <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <%if matriculas_classe.status == "REMANEJADO"%>
-                                              <td align="center"><font color="red">RM</font></td>
-                                           <%else%>
-                                              <td align="center"><font color="red">TR</font></td>
-                                           <%end%>
-                                          <td align="center"> -- </td>
-                                      <%else%>
-                                       <td align="center"><font color="red">S/N</font></td>
-                                       <td align="center"> -- </td>
-                                      <%end%>
-                                <%else%>
-                                      <%if matriculas_classe.status == "TRANSFERIDO"%>
-                                          <td align="center"><font color="red">TR</font></td>
-                                          <td align="center"> -- </td>
-                                       <%else%>
-                                          <%@notas_alu.each do |nota|%>
-                                                <% if nota.disciplina.curriculo == 'D'   %>
-                                                    <%session[:nota_disciplina]= ''%>
-                                                <%else%>
-                                                    <%session[:nota_disciplina]= nota.nota3 %>
-                                                <%end%>
-                                             <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                                <td align="center">
-                                                    <% if  nota.nota3.nil? %>
-                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                            ---
-                                                         <%else%>
-                                                             <%  %>
-                                                         <%end%>
-                                                    <%else%>
-                                                          <%if (nota.nota3.to_i < 5.0)  %>
-                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
-                                                           <%else%>
-                                                                 <%=  session[:nota_disciplina]%>
-                                                            <%end%>
-
-                                                     <%end %>
-                                               </td>
-                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                     <td> </td>
-                                                  <%else%>
-                                                      <td align="center" ><%= nota.faltas3%> </td>
-                                                  <%end%>
-                                            <%end%>
-                                         <%end%>
-                                     <%end%>
-                               <%end%>
-
-                   <%end%>
-                </tr>
-              <%session[:mostra_nome]=0%>
-
-         <%cont = 0%>
-        <%end%>
-
-         <tr style="font-size: 8px">
-           <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b> </font></td>
-            <% session[:prof] = 0 %>
-            <% if session[:prof] == 0 %>
-               <% @atribuicao_classe.each do |atrib| %>
-                  <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
-                  <% session[:prof] = session[:prof] + 1 %>
-              <%end%>
-              <%pv=1%>
-            <%end%>
         </tr>
-         <tr style="font-size:10px">
-           <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
-         </tr>
-          <tr style="font-size:10px">
-             <td></td>
-             <td colspan="23">
-                            <% if  session[:num_classe]< 6   %>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
-                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
-                          <%else%>
-                               <%  %>
-                          <%end%>
-             </td>
-           </tr>
+        <tr>
+            <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr/>
+            </td>
+        </tr>
 
-      </table>
-            <table  width="100%">
-               <tr>
-                 <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+        <%session[:mostra_nome]=1%>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+            <tr  style="font-size: 9px">
+                <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS 3º BIMESTRE</b></center></font>
+                    <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
+                    <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
+                    <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
+                </td>
+                <%pv=0%>
+                <% @atribuicao_classe.each do |atrib| %>
+                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
+                <%end%>
+            </tr>
+            <% if session[:mostra_nome]==1%>
+                <tr style="font-size: 10px">
+                    <td  align="center"><b>Nº: </b> </td>
+                    <td align="center"><b> Nome: </b> </td>
+                    <% session[:disc] = 0 %>
+                    <% if pv == 0 %>
+                        <% @atribuicao_classe.each do |atrib| %>
+                            <td align="center" width ="1%" ><b>Nota</b></td>
+                            <td align="center" width =1%"><b>Falta</b></td>
+                            <% session[:disc] = session[:disc] + 1 %>
+                        <%end%>
+                        <%pv=1%>
+                    <%end%>
+                </tr>
+            <%end%>
 
-                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa3_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
-                      <%end%>
-               </tr>
+            <% @matriculas_classe.each do |matriculas_classe| %>
+                <tr style="font-size: 10px">
+                    <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
+                    <% if session[:disc] < 10 %>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                            <% if  matriculas_classe.status == "MATRICULADO"%>
 
-            </table>
-      <tr>
-        <td>
-        </td>
-      </tr>
+                            <%else%>
+                                <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                            <%end%>
+                            </font> </td>
+                    <%else%>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
+                    <%end%>                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <%if @notas_alu.empty?%>
+                            <%if matriculas_classe.status != "MATRICULADO"%>
+                                <%if matriculas_classe.status == "REMANEJADO"%>
+                                    <td align="center"><font color="red">RM</font></td>
+                                    <td align="center"><font color="red">RM</font></td>
+                                <%end%>
+                            <%else%>
+                                <td align="center"><font color="red">S/N</font></td>
+                                <td align="center"> --- </td>
+                            <%end%>
+                        <%else%>
+                            <%if matriculas_classe.status == "TRANSFERIDO"%>
+                                <td align="center"><font color="red">TR</font></td>
+                                <td align="center"><font color="red">TR</font></td>
+                            <%else%>
+                                <%@notas_alu.each do |nota|%>
+                                    <% if nota.disciplina.curriculo == 'D'   %>
+                                        <%session[:nota_disciplina]= ''%>
+                                    <%else%>
+                                        <%session[:nota_disciplina]= nota.nota3 %>
+                                    <%end%>
+                                    <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                        <td align="center">
+                                            <% if  nota.nota3.nil? %>
+                                                <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                    ---
+                                                <%else%>
+                                                    <%  %>
+                                                <%end%>
+                                            <%else%>
+                                                <%if (nota.nota3.to_i < 5.0)  %>
+                                                    <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                <%else%>
+                                                    <%=  session[:nota_disciplina]%>
+                                                <%end%>
+
+                                            <%end %>
+                                        </td>
+                                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                            <td> </td>
+                                        <%else%>
+                                            <td align="center" ><%= nota.faltas3%> </td>
+                                        <%end%>
+                                    <%end%>
+                                <%end%>
+                            <%end%>
+                        <%end%>
+
+                    <%end%>
+                </tr>
+                <%session[:mostra_nome]=0%>
+
+                <%cont = 0%>
+            <%end%>
+
+            <tr style="font-size: 8px">
+                <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b> </font></td>
+                <% session[:prof] = 0 %>
+                <% if session[:prof] == 0 %>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
+                        <% session[:prof] = session[:prof] + 1 %>
+                    <%end%>
+                    <%pv=1%>
+                <%end%>
+            </tr>
+            <tr style="font-size:10px">
+                <td> <b>Legenda Notas</b></td>
+                <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
+            </tr>
+            <tr style="font-size:10px">
+                <td></td>
+                <td colspan="23">
+                    <% if  session[:num_classe]< 6   %>
+                        * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                        * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
+                    <%else%>
+                        <%  %>
+                    <%end%>
+                </td>
+            </tr>
+
+        </table>
+        <table  width="100%">
+            <tr>
+                <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+
+                    <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa3_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
+                <%end%>
+            </tr>
+
+        </table>
+        <tr>
+            <td>
+            </td>
+        </tr>
     </table>
     <table width="100%" align="center" bgcolor="#DCDCDC" >
-      <tr><td> <br/><hr><br/><br/></td>
-      </tr>
+        <tr><td> <br/><hr><br/><br/></td>
+        </tr>
     </table>
 <%end%>
 
@@ -534,171 +528,169 @@
 
 <% @classe.each do |classe| %>
     <table width="100%">
-         <tr>
+        <tr>
             <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-             <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+            <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                 <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
                 <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
                 <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
-                <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                    <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
                 <%  session[:classe]=  classe.id%>
-             </td>
-          </tr>
-          <tr>
-              <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <hr/>
             </td>
-          </tr>
-
-          <%session[:mostra_nome]=1%>
-          <table border="1" cellspacing="0" cellpadding="1" width="100%">
-               <tr  style="font-size: 9px">
-                 <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS 4º BIMESTRE</b></center></font>
-                       <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
-                      <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
-                      <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
-                  </td>
-                 <%pv=0%>
-                 <% @atribuicao_classe.each do |atrib| %>
-                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
-                 <%end%>
-                </tr>
-                   <% if session[:mostra_nome]==1%>
-                       <tr style="font-size: 10px">
-                          <td  align="center"><b>Nº: </b> </td>
-                          <td align="center"><b> Nome: </b> </td>
-                          <% session[:disc] = 0 %>
-                          <% if pv == 0 %>
-                              <% @atribuicao_classe.each do |atrib| %>
-                                <td align="center" width ="1%" ><b>Nota</b></td>
-                                <td align="center" width =1%"><b>Falta</b></td>
-                                <% session[:disc] = session[:disc] + 1 %>
-                              <%end%>
-                            <%pv=1%>
-                          <%end%>
-                       </tr>
-                    <%end%>
-
-                   <% @matriculas_classe.each do |matriculas_classe| %>
-                       <tr style="font-size: 10px">
-                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                              <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
-                                  <% if  matriculas_classe.status == "MATRICULADO"%>
-
-                                    <%else%>
-                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
-                                  <%end%>
-                                   </font> </td>
-                              <%else%>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
-                             <%end%>                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
-                             <% @atribuicao_classe.each do |atrib| %>
-                                <%if @notas_alu.empty?%>
-                                      <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <%if matriculas_classe.status == "REMANEJADO"%>
-                                              <td align="center"><font color="red">RM</font></td>
-                                           <%else%>
-                                              <td align="center"><font color="red">TR</font></td>
-                                           <%end%>
-                                          <td align="center"> -- </td>
-                                      <%else%>
-                                       <td align="center"><font color="red">S/N</font></td>
-                                       <td align="center"> -- </td>
-                                      <%end%>
-                                <%else%>
-                                      <%if matriculas_classe.status == "TRANSFERIDO"%>
-                                          <td align="center"><font color="red">TR</font></td>
-                                          <td align="center"> -- </td>
-                                       <%else%>
-                                            <%@notas_alu.each do |nota|%>
-                                                <% if nota.disciplina.curriculo == 'D'   %>
-                                                    <%session[:nota_disciplina]= ''%>
-                                                <%else%>
-                                                    <%session[:nota_disciplina]= nota.nota4 %>
-                                                <%end%>
-                                               <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                                  <td align="center">
-                                                      <% if  nota.nota4.nil? %>
-                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                            ---
-                                                         <%else%>
-                                                             <%  %>
-                                                         <%end%>
-                                                      <%else%>
-                                                          <%if (nota.nota4.to_i < 5.0)  %>
-                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
-                                                           <%else%>
-                                                                 <%=  session[:nota_disciplina]%>
-                                                            <%end%>
-
-                                                       <%end %>
-                                                 </td>
-                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                     <td> </td>
-                                                  <%else%>
-                                                      <td align="center" ><%= nota.faltas4%> </td>
-                                                  <%end%>
-                                              <%end%>
-                                           <%end%>
-                                    <%end%>
-                               <%end%>
-
-                   <%end%>
-                </tr>
-              <%session[:mostra_nome]=0%>
-
-         <%cont = 0%>
-        <%end%>
-
-         <tr style="font-size: 8px">
-           <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b></font> </td>
-            <% session[:prof] = 0 %>
-            <% if session[:prof] == 0 %>
-               <% @atribuicao_classe.each do |atrib| %>
-                  <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
-                  <% session[:prof] = session[:prof] + 1 %>
-              <%end%>
-              <%pv=1%>
-            <%end%>
         </tr>
-         <tr style="font-size:10px">
-           <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
-         </tr>
-          <tr style="font-size:10px">
-             <td></td>
-             <td colspan="23">
-                            <% if  session[:num_classe]< 6   %>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
-                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
-                          <%else%>
-                               <%  %>
-                          <%end%>
-             </td>
-           </tr>
-      </table>
-            <table  width="100%">
-               <tr>
-                 <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+        <tr>
+            <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr/>
+            </td>
+        </tr>
 
-                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa4_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
-                      <%end%>
-               </tr>
+        <%session[:mostra_nome]=1%>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+            <tr  style="font-size: 9px">
+                <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS 4º BIMESTRE</b></center></font>
+                    <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
+                    <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
+                    <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
+                </td>
+                <%pv=0%>
+                <% @atribuicao_classe.each do |atrib| %>
+                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
+                <%end%>
+            </tr>
+            <% if session[:mostra_nome]==1%>
+                <tr style="font-size: 10px">
+                    <td  align="center"><b>Nº: </b> </td>
+                    <td align="center"><b> Nome: </b> </td>
+                    <% session[:disc] = 0 %>
+                    <% if pv == 0 %>
+                        <% @atribuicao_classe.each do |atrib| %>
+                            <td align="center" width ="1%" ><b>Nota</b></td>
+                            <td align="center" width =1%"><b>Falta</b></td>
+                            <% session[:disc] = session[:disc] + 1 %>
+                        <%end%>
+                        <%pv=1%>
+                    <%end%>
+                </tr>
+            <%end%>
 
-            </table>
-      <tr>
-        <td>
-        </td>
-      </tr>
+            <% @matriculas_classe.each do |matriculas_classe| %>
+                <tr style="font-size: 10px">
+                    <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
+                    <% if session[:disc] < 10 %>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                            <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                            <%else%>
+                                <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                            <%end%>
+                            </font> </td>
+                    <%else%>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
+                    <%end%>                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <%if @notas_alu.empty?%>
+                            <%if matriculas_classe.status != "MATRICULADO"%>
+                                <%if matriculas_classe.status == "REMANEJADO"%>
+                                    <td align="center"><font color="red">RM</font></td>
+                                    <td align="center"><font color="red">RM</font></td>
+                                <%end%>
+                            <%else%>
+                                <td align="center"><font color="red">S/N</font></td>
+                                <td align="center"> --- </td>
+                            <%end%>
+                        <%else%>
+                            <%if matriculas_classe.status == "TRANSFERIDO"%>
+                                <td align="center"><font color="red">TR</font></td>
+                                <td align="center"><font color="red">TR</font></td>
+                            <%else%>
+                                <%@notas_alu.each do |nota|%>
+                                    <% if nota.disciplina.curriculo == 'D'   %>
+                                        <%session[:nota_disciplina]= ''%>
+                                    <%else%>
+                                        <%session[:nota_disciplina]= nota.nota4 %>
+                                    <%end%>
+                                    <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                        <td align="center">
+                                            <% if  nota.nota4.nil? %>
+                                                <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                    ---
+                                                <%else%>
+                                                    <%  %>
+                                                <%end%>
+                                            <%else%>
+                                                <%if (nota.nota4.to_i < 5.0)  %>
+                                                    <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                <%else%>
+                                                    <%=  session[:nota_disciplina]%>
+                                                <%end%>
+
+                                            <%end %>
+                                        </td>
+                                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                            <td> </td>
+                                        <%else%>
+                                            <td align="center" ><%= nota.faltas4%> </td>
+                                        <%end%>
+                                    <%end%>
+                                <%end%>
+                            <%end%>
+                        <%end%>
+
+                    <%end%>
+                </tr>
+                <%session[:mostra_nome]=0%>
+
+                <%cont = 0%>
+            <%end%>
+
+            <tr style="font-size: 8px">
+                <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b></font> </td>
+                <% session[:prof] = 0 %>
+                <% if session[:prof] == 0 %>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
+                        <% session[:prof] = session[:prof] + 1 %>
+                    <%end%>
+                    <%pv=1%>
+                <%end%>
+            </tr>
+            <tr style="font-size:10px">
+                <td> <b>Legenda Notas</b></td>
+                <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
+            </tr>
+            <tr style="font-size:10px">
+                <td></td>
+                <td colspan="23">
+                    <% if  session[:num_classe]< 6   %>
+                        * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                        * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
+                    <%else%>
+                        <%  %>
+                    <%end%>
+                </td>
+            </tr>
+        </table>
+        <table  width="100%">
+            <tr>
+                <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+
+                    <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa4_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
+                <%end%>
+            </tr>
+
+        </table>
+        <tr>
+            <td>
+            </td>
+        </tr>
     </table>
     <table width="100%" align="center" bgcolor="#DCDCDC" >
-      <tr><td> <br/><hr><br/><br/></td>
-      </tr>
+        <tr><td> <br/><hr><br/><br/></td>
+        </tr>
     </table>
 <%end%>
 
@@ -706,171 +698,171 @@
 
 <% @classe.each do |classe| %>
     <table width="100%">
-         <tr>
+        <tr>
             <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-             <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+            <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                 <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
                 <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
                 <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
-                <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                    <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
                 <%  session[:classe]=  classe.id%>
-             </td>
-          </tr>
-          <tr>
-              <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <hr/>
             </td>
-          </tr>
-
-          <%session[:mostra_nome]=1%>
-          <table border="1" cellspacing="0" cellpadding="1" width="100%">
-               <tr  style="font-size: 9px">
-                 <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS FINAIS</b></center></font>
-                       <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
-                      <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
-                      <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
-                  </td>
-                 <%pv=0%>
-                 <% @atribuicao_classe.each do |atrib| %>
-                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
-                 <%end%>
-                </tr>
-                   <% if session[:mostra_nome]==1%>
-                       <tr style="font-size: 10px">
-                          <td  align="center"><b>Nº: </b> </td>
-                          <td align="center"><b> Nome: </b> </td>
-                          <% session[:disc] = 0 %>
-                          <% if pv == 0 %>
-                              <% @atribuicao_classe.each do |atrib| %>
-                                <td align="center" width ="1%" ><b>Nota</b></td>
-                                <td align="center" width =1%"><b>Falta</b></td>
-                                <% session[:disc] = session[:disc] + 1 %>
-                              <%end%>
-                            <%pv=1%>
-                          <%end%>
-                       </tr>
-                    <%end%>
-
-                   <% @matriculas_classe.each do |matriculas_classe| %>
-                       <tr style="font-size: 10px">
-                          <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
-                              <% if session[:disc] < 10 %>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
-                                  <% if  matriculas_classe.status == "MATRICULADO"%>
-
-                                    <%else%>
-                                       <font color="red"> (<%=  matriculas_classe.status %>)</font>
-                                  <%end%>
-                                   </font> </td>
-                              <%else%>
-                                   <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
-                             <%end%>
-                             <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
-                             <% @atribuicao_classe.each do |atrib| %>
-                                <%if @notas_alu.empty?%>
-                                      <%if matriculas_classe.status != "MATRICULADO"%>
-                                          <%if matriculas_classe.status == "REMANEJADO"%>
-                                              <td align="center"><font color="red">RM</font></td>
-                                           <%else%>
-                                              <td align="center"><font color="red">TR</font></td>
-                                           <%end%>
-                                          <td align="center"> -- </td>
-                                      <%else%>
-                                       <td align="center"><font color="red">S/N</font></td>
-                                       <td align="center"> -- </td>
-                                      <%end%>
-                                <%else%>
-                                      <%if matriculas_classe.status == "TRANSFERIDO"%>
-                                          <td align="center"><font color="red">TR</font></td>
-                                          <td align="center"> -- </td>
-                                       <%else%>
-                                          <%@notas_alu.each do |nota|%>
-                                                <% if nota.disciplina.curriculo == 'D'   %>
-                                                    <%session[:nota_disciplina]= ''%>
-                                                <%else%>
-                                                    <%session[:nota_disciplina]= nota.nota5 %>
-                                                <%end%>
-                                             <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
-                                                <td align="center">
-                                                    <% if  nota.nota5.nil? %>
-                                                         <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                            ---
-                                                         <%else%>
-                                                             <%  %>
-                                                         <%end%>
-                                                    <%else%>
-                                                          <%if (nota.nota5.to_i < 5.0)  %>
-                                                                <font color ="red">  <%=  session[:nota_disciplina]%> </font>
-                                                           <%else%>
-                                                                 <%=  session[:nota_disciplina]%>
-                                                            <%end%>
-                                                     <%end %>
-                                               </td>
-                                                 <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                                                     <td> </td>
-                                                  <%else%>
-                                                      <td align="center" ><%= nota.faltas5%> </td>
-                                                  <%end%>
-                                            <%end%>
-                                         <%end%>
-                                     <%end%>
-                               <%end%>
-
-                   <%end%>
-                </tr>
-              <%session[:mostra_nome]=0%>
-
-         <%cont = 0%>
-        <%end%>
-
-         <tr style="font-size: 8px">
-           <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b> </font></td>
-            <% session[:prof] = 0 %>
-            <% if session[:prof] == 0 %>
-               <% @atribuicao_classe.each do |atrib| %>
-                  <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
-                  <% session[:prof] = session[:prof] + 1 %>
-              <%end%>
-              <%pv=1%>
-            <%end%>
         </tr>
-         <tr style="font-size:10px">
-           <td> <b>Legenda Notas</b></td>
-           <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
-         </tr>
-          <tr style="font-size:10px">
-             <td></td>
-             <td colspan="23"
-                            <% if  session[:num_classe]< 6   %>
-                                * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
-                                * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
-                          <%else%>
-                               <%  %>
-                          <%end%>
-             </td>
-           </tr>
-      </table>
-            <table  width="100%">
-               <tr>
-                 <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+        <tr>
+            <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr/>
+            </td>
+        </tr>
+
+        <%session[:mostra_nome]=1%>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+            <tr  style="font-size: 9px">
+                <td colspan="2" align="CENTER"><font size ="2"><center><b>NOTAS FINAIS</b></center></font>
+                    <font size =2"><b> Classe:</b> <%=h classe.classe_classe%></font> <br/>
+                    <font size ="2"><b> Período:</b> <%=h classe.horario %> </font> <br/>
+                    <font size ="2"><b> Ano Letivo:</b> <%=h classe.classe_ano_letivo%></font>
+                </td>
+                <%pv=0%>
+                <% @atribuicao_classe.each do |atrib| %>
+                    <td align="center"width ="5%" colspan="2"><div class="textovertical"><b> <%= atrib.disciplina.disciplina %></b></div></td>
+                <%end%>
+            </tr>
+            <% if session[:mostra_nome]==1%>
+                <tr style="font-size: 10px">
+                    <td  align="center"><b>Nº: </b> </td>
+                    <td align="center"><b> Nome: </b> </td>
+                    <% session[:disc] = 0 %>
+                    <% if pv == 0 %>
+                        <% @atribuicao_classe.each do |atrib| %>
+                            <td align="center" width ="1%" ><b>Nota</b></td>
+                            <td align="center" width =1%"><b>Falta</b></td>
+                            <% session[:disc] = session[:disc] + 1 %>
+                        <%end%>
+                        <%pv=1%>
+                    <%end%>
+                </tr>
+            <%end%>
+
+            <% @matriculas_classe.each do |matriculas_classe| %>
+                <tr style="font-size: 10px">
+                    <td align="center"><b><%= matriculas_classe.classe_num %></b></font> </td>
+                    <% if session[:disc] < 10 %>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+                            <% if  matriculas_classe.status == "MATRICULADO"%>
+
+                            <%else%>
+                                <font color="red"> (<%=  matriculas_classe.status %>)</font>
+                            <%end%>
+                            </font> </td>
+                    <%else%>
+                        <td align="left"><b><%= truncate(matriculas_classe.aluno.aluno_nome,:length => 20,:omission => "...") %></b></font> </td>
+                    <%end%>
+                    <% @notas_alu = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id   INNER JOIN alunos ON alunos.id = notas.aluno_id ", :conditions => ["atribuicaos.classe_id =? AND notas.ativo is null AND notas.matricula_id =? ", session[:classe_id],matriculas_classe.id],:order =>'disciplinas.ordem ASC')%>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <%if @notas_alu.empty?%>
+                            <%if matriculas_classe.status != "MATRICULADO"%>
+                                <%if matriculas_classe.status == "REMANEJADO"%>
+                                    <td align="center"><font color="red">RM</font></td>
+                                <%else%>
+                                    <td align="center"><font color="red">TR</font></td>
+                                <%end%>
+                                <td align="center"> -- </td>
+                            <%else%>
+                                <td align="center"><font color="red">S/N</font></td>
+                                <td align="center"> -- </td>
+                            <%end%>
+                        <%else%>
+                            <%if matriculas_classe.status == "TRANSFERIDO"%>
+                                <td align="center"><font color="red">TR</font></td>
+                                <td align="center"><font color="red">TR</font></td>
+                            <%else%>
+                                <%@notas_alu.each do |nota|%>
+                                    <% if nota.disciplina.curriculo == 'D'   %>
+                                        <%session[:nota_disciplina]= ''%>
+                                    <%else%>
+                                        <%session[:nota_disciplina]= nota.nota5 %>
+                                    <%end%>
+                                    <%if (nota.aluno_id == matriculas_classe.aluno.id) and (nota.atribuicao_id == atrib.id)%>
+                                        <td align="center">
+                                            <% if  nota.nota5.nil? %>
+                                                <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                                    ---
+                                                <%else%>
+                                                    <%  %>
+                                                <%end%>
+                                            <%else%>
+                                                <%if (nota.nota5.to_i < 5.0)  %>
+                                                    <font color ="red">  <%=  session[:nota_disciplina]%> </font>
+                                                <%else%>
+                                                    <%=  session[:nota_disciplina]%>
+                                                <%end%>
+                                            <%end %>
+                                        </td>
+                                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                                            <td> </td>
+                                        <%else%>
+                                            <td align="center" ><%= nota.faltas5%> </td>
+                                        <%end%>
+                                    <%end%>
+                                <%end%>
+                            <%end%>
+                        <%end%>
+
+                    <%end%>
+                </tr>
+                <%session[:mostra_nome]=0%>
+
+                <%cont = 0%>
+            <%end%>
+
+            <tr style="font-size: 8px">
+                <td  colspan="2" align="right" valign="top"><font size ="1"><b>Professor: </b> </font></td>
+                <% session[:prof] = 0 %>
+                <% if session[:prof] == 0 %>
+                    <% @atribuicao_classe.each do |atrib| %>
+                        <td colspan="2" align="center"valign="top" width ="1%" ><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></td>
+                        <% session[:prof] = session[:prof] + 1 %>
+                    <%end%>
+                    <%pv=1%>
+                <%end%>
+            </tr>
+            <tr style="font-size:10px">
+                <td> <b>Legenda Notas</b></td>
+                <td colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp   </td>
+            </tr>
+            <tr style="font-size:10px">
+                <td></td>
+                <td colspan="23"
+                <% if  session[:num_classe]< 6   %>
+                        * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
+                        * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
+                    <%else%>
+                        <%  %>
+                    <%end%>
+                </td>
+            </tr>
+        </table>
+        <table  width="100%">
+            <tr>
+                <td width="6%"align="left"   style="border-color: white"'"><br/><%= button_to '', home_path, {:method => "get"}  %></td>
                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
 
-                  <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa5_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
-                      <%end%>
-               </tr>
+                    <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_mapa5_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
+                <%end%>
+            </tr>
 
-            </table>
-      <tr>
-        <td>
-        </td>
-      </tr>
+        </table>
+        <tr>
+            <td>
+            </td>
+        </tr>
     </table>
     <table width="100%" align="center" bgcolor="#DCDCDC" >
-      <tr><td> <br/><hr><br/><br/></td>
-      </tr>
+        <tr><td> <br/><hr><br/><br/></td>
+        </tr>
     </table>
 <%end%>
 

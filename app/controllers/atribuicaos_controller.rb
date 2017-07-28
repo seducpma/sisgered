@@ -697,9 +697,9 @@ def transferencia_aluno
         session[:unidade_user]= matricula.classe.unidade_id
       end
      @classe = Classe.find(:all, :joins => "inner join matriculas on classes.id = matriculas.classe_id", :conditions =>['matriculas.aluno_id =? AND ano_letivo=?' , params[:aluno][:aluno_id], Time.now.year])
-      @classe.each do |classe|
-         session[:num_classe]= classe.classe_classe[0,1].to_i
-       end
+     @classe.each do |classe|
+        session[:num_classe]= classe.classe_classe[0,1].to_i
+    end
      @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =? AND notas.unidade_id =?", session[:aluno_id], session[:unidade_user], Time.now.year, session[:unidade_user]],:order =>'disciplinas.ordem ASC ')
      @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.unidade_id =?"  , session[:aluno_id],session[:unidade_user],Time.now.year, session[:unidade_user]],:order =>'disciplinas.ordem ASC ')
      @notas = @notasD + @notasB
