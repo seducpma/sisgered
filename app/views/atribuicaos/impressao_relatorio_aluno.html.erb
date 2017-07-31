@@ -258,14 +258,24 @@
            <%if nota.aulas5 != 0%>
                  <th style="font-size: 8px" align="center">---</th>
            <%else%>
-                 <td> 0</td>
+                <%if nota.nota5.present? or nota.faltas5 != 0%>
+                    <th style="font-size: 8px" align="center">0</th>
+                <%else%>
+                    <th style="font-size: 8px" align="center">---</th>
+                 <%end%>
+                  
            <%end%>
            <%if nota.faltas5 != 0%>
                  <th style="font-size: 8px" align="center">---</th>
                  <th style="font-size: 8px" align="center">---</th>
            <%else%>
-                 <th style="font-size: 8px" align="center"> 0 </th>
-                 <th style="font-size: 8px" align="center"> 100% </th>
+                <%if nota.aulas5 != 0%>
+                       <th style="font-size: 8px" align="center"> 0 </th>
+                       <th style="font-size: 8px" align="center"> 100% </th>
+                <%else%>
+                       <th style="font-size: 8px" align="center">---</th>
+                       <th style="font-size: 8px" align="center">---</th>
+                <%end%>
            <%end%>
 
       <%end%>

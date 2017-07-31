@@ -233,6 +233,13 @@
                         <td align="center">---</td>
                         <td align="center">---</td>
                     <%end%>
+
+
+
+
+
+
+
                     <%if nota.nota5.present? or nota.faltas5 != 0%>
                         <td align="center"> <%if nota.nota5.to_i < 5.0 %>
                                 <%if nota.nota5.nil?%>
@@ -273,19 +280,42 @@
 
 
                     <%else%>
-                        <%if nota.aulas5 != 0%>
+                        <%if (nota.aulas5 != 0)  %>
                             <td align="center">---</td>
                         <%else%>
-                            <td> 0</td>
+                            <%if nota.nota5.present? or nota.faltas5 != 0%>
+                                <td align="center">0</td>
+                            <%else%>
+                                <td align="center">---</td>
+                            <%end%>
                         <%end%>
                         <%if nota.faltas5 != 0%>
                             <td align="center">---</td>
                             <td align="center">---</td>
                         <%else%>
-                            <td align="center"> 0 </td>
-                            <td align="center"> 100% </td>
+                            <%if nota.aulas5 != 0%>
+                               <td align="center"> 0 </td>
+                               <td align="center"> 100% </td>
+                            <%else%>
+                              <td align="center">---</td>
+                              <td align="center">---</td>
+                            <%end%>
+
                         <%end%>
                     <%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </tr>
             <%end%>
             <% if session[:obs] ==1 %>
