@@ -182,6 +182,12 @@
                        <td align="left"><b>Emissão:</b></td>
                        <td colspan="5"align="left"><%=h aluno.aluno_emissaoCPF %></td>
                    </tr>
+                    <% if !aluno.aluno_conjuge.nil? %>
+                          <tr bgcolor="#F5F5F5">
+                            <td width =" 10%"><b>Conjuge:</b></td>
+                            <td colspan="10">   <%=h aluno.aluno_conjuge %></td>
+                          </tr>
+                    <%end%>
                      <tr >
                      <td width =" 12%"><b>Reside com:</b></td>
                      <td colspan="7">  <%=h aluno.aluno_reside_com %></td>

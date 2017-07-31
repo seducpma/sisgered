@@ -96,6 +96,9 @@ class Aluno < ActiveRecord::Base
    if  !self.aluno_local_trabalho_responsavel.nil?
       self.aluno_local_trabalho_responsavel.upcase!
    end
+   if  !self.aluno_conjuge.nil?
+      self.aluno_conjuge.upcase!
+   end
 
 
 

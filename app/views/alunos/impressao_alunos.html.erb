@@ -93,6 +93,13 @@
              </td>
             </tr>
             <%end%>
+                    <% if !aluno.aluno_conjuge.nil? %>
+                          <tr style="line-height: 9px" >
+                            <td width =" 10%"><b>Conjuge:</b></td>
+                            <td colspan="10">   <%=h aluno.aluno_conjuge %></td>
+                          </tr>
+                    <%end%>
+
            <tr style="line-height: 9px">
              <td><b>Reside com:</b></td>
              <td colspan="9">  <%=h aluno.aluno_reside_com %></td>

@@ -67,7 +67,14 @@
             <%= f.date_select(:aluno_validade_estrangeiro, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year + 25)) %></td>
          
        </tr>
- 
+       <tr bgcolor="#F5F5F5">
+           <td colspan="4">
+             (Se for o caso, senão não preencher)
+             &nbsp&nbsp <b> Nome conjuge: </b>
+             &nbsp&nbsp  <%= f.text_field :aluno_conjuge, :size=>'70'%>
+           </td>
+       </tr>
+       
        <tr bgcolor="#F5F5F5">
           <td><b>RG:</b></td>
           <td colspan="3"><%= f.text_field :aluno_RG, :size=>'12'%>

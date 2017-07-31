@@ -39,7 +39,7 @@
   <%end%>
 </table>
  <table cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
-  <% @matricula.each do |aluno| %>
+  <% @aluno.each do |aluno| %>
   <tr style="line-height: 12px">
        <th style="font-size: 12px" colspan="3" align="justify">
                <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%=h aluno.aluno.aluno_nome %></b>  R.A.: <b><%=h aluno.aluno.aluno_ra %></b>,
@@ -112,7 +112,7 @@
 
 <%if (current_user.unidade.tipo_id == 1) or (current_user.unidade.tipo_id == 4) or (current_user.unidade.tipo_id == 7) or (current_user.unidade.tipo_id == 9)%>
   <table border="1" cellspacing="0" cellpadding="0" width="100%" style="border-color: white">
-    <% @matricula.each do |aluno| %>
+    <% @aluno.each do |aluno| %>
     <br/>
      <font size="2"><center><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp BOLETIM DE RENDIMENTO ESCOLAR  &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  Ano letivo <%= Time.now.year %></b></center></font>
        <table  border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
@@ -274,18 +274,14 @@
            <th style="font-size: 8px" align="center">---</th>
       <%end%>
       <%if nota.nota5.present? or nota.faltas5 != 0%>
-           <th style="font-size: 8px" align="center"> <%if nota.nota5.to_i < 5.0 %>
-                                   <font color ="red"> <%= nota.nota5 %> </font>
-                               <%else%>
-                                    <%= nota.nota5 %>
-                               <%end%>
-           </th>
-            <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
-                       <th style="font-size: 8px" align="center"> </th>
-                       <th style="font-size: 8px" align="center"> </th>
-            <%else%>
-                       <th style="font-size: 8px" align="center"><%= nota.faltas5 %></th>
-                       <th style="font-size: 8px" align="center">
+           <th style="font-size: 10px"align="center"> <%= nota.aulas5 %> </th>
+                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                              <th style="font-size: 10px"align="center"></th>
+                              <th style="font-size: 10px"align="center"></th>
+                          <%else%>
+                              <th style="font-size: 10px"align="center"><%= nota.faltas5 %></th>
+                              <th style="font-size: 10px"align="center">
+                                <%if nota.aulas5 !=0 %>
                                   <%if nota.faltas5 == 0 %>
                                       100 %
                                   <%else%>
@@ -294,15 +290,47 @@
                                            <font color ="red"> <%= frequencia5%> % </font>
                                       <%else%>
                                            <%= frequencia5%> %
-
                                       <%end%>
                                    <%end%>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% session[:obs]=1 %>
+                                 <%end%>
                                </th>
-            <%end%>
+                           <%end%>
+
+
       <%else%>
-           <th style="font-size: 8px" align="center">---</th>
-           <th style="font-size: 8px" align="center">---</th>
-           <th style="font-size: 8px" align="center">---</th>
+           <%if nota.faltas5 != 0%>
+                 <th style="font-size: 10px"align="center">---</th>
+           <%else%>
+                    <%if nota.aulas5 == 0 %>
+                         <th style="font-size: 10px"align="center"> --- </th>
+                     <%else%>
+                         <th style="font-size: 10px"align="center"> <%= nota.aulas5%></th>
+                     <%end%>
+
+           <%end%>
+           <%if nota.faltas5 == 0%>
+                    <%if nota.aulas5 == 0 %>
+                         <th style="font-size: 10px"align="center"> --- </th>
+                     <%else%>
+                          <th style="font-size: 10px"align="center">0 </th>
+                     <%end%>
+           <%else%>
+                 <th style="font-size: 10px"align="center"> <%= nota.faltas5%></th>
+           <%end%>
+                 <th style="font-size: 10px"align="center">
+                    <%if nota.aulas5 == 0 %>
+                        ---
+                     <%else%>
+                        <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
+                          <%if frequencia5 < 75 %>
+                                <font color ="red"> <%= frequencia5%> % </font>
+                          <%else%>
+                                <%= frequencia5%> %
+                         <%end%>
+                    <%end%>
+                 </th>
       <%end%>
 
    </tr>
@@ -472,25 +500,16 @@
            <th style="font-size: 10px"align="center">---</th>
            <th style="font-size: 10px"align="center">---</th>
       <%end%>
-      <%if nota.aulas5.present? != 0%>
 
-           <th style="font-size: 10px"align="center"><% if nota.aulas5 == 0 %>
-                                    ---
-                                 <%else%>
-                                     <%= nota.aulas5 %>
-                                 <%end%>
-
-           </th>
-           <th style="font-size: 10px"align="center"><% if nota.aulas5 == 0 %>
-                                    ---
-                                 <%else%>
-                                     <%= nota.faltas5 %>
-                                 <%end%>
-           </th>
-           <th style="font-size: 10px"align="center">
-                                <%if nota.aulas5 == 0 %>
-                                   ---
-                                <%else%>
+      <%if nota.nota5.present? or nota.faltas5 != 0%>
+           <th style="font-size: 10px"align="center"> <%= nota.aulas5 %> </th>
+                        <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+                              <th style="font-size: 10px"align="center"></th>
+                              <th style="font-size: 10px"align="center"></th>
+                          <%else%>
+                              <th style="font-size: 10px"align="center"><%= nota.faltas5 %></th>
+                              <th style="font-size: 10px"align="center">
+                                <%if nota.aulas5 !=0 %>
                                   <%if nota.faltas5 == 0 %>
                                       100 %
                                   <%else%>
@@ -501,14 +520,55 @@
                                            <%= frequencia5%> %
                                       <%end%>
                                    <%end%>
-                                <%end%>
-           </th>
+                                <%else%>
+                                   <font color ="red"> ERRO* </font><% session[:obs]=1 %>
+                                 <%end%>
+                               </th>
+                           <%end%>
+
 
       <%else%>
-           <th style="font-size: 10px"align="center">---</th>
-           <th style="font-size: 10px"align="center">---</th>
-           <th style="font-size: 10px"align="center">---</th>
+           <%if nota.faltas5 != 0%>
+                 <th style="font-size: 10px"align="center">---</th>
+           <%else%>
+                    <%if nota.aulas5 == 0 %>
+                         <th style="font-size: 10px"align="center"> --- </th>
+                     <%else%>
+                         <th style="font-size: 10px"align="center"> <%= nota.aulas5%></th>
+                     <%end%>
+
+           <%end%>
+           <%if nota.faltas5 == 0%>
+                    <%if nota.aulas5 == 0 %>
+                         <th style="font-size: 10px"align="center"> --- </th>
+                     <%else%>
+                          <th style="font-size: 10px"align="center">0 </th>
+                     <%end%>
+           <%else%>
+                 <th style="font-size: 10px"align="center"> <%= nota.faltas5%></th>
+           <%end%>
+                 <th style="font-size: 10px"align="center">
+                    <%if nota.aulas5 == 0 %>
+                        ---
+                     <%else%>
+                        <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
+                          <%if frequencia5 < 75 %>
+                                <font color ="red"> <%= frequencia5%> % </font>
+                          <%else%>
+                                <%= frequencia5%> %
+                         <%end%>
+                    <%end%>
+                 </th>
       <%end%>
+
+
+
+
+
+
+
+
+
 
    </tr>
    <%end%>
