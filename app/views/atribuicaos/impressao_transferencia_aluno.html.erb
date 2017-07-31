@@ -11,7 +11,8 @@
                 Infantil
           <%end%>
           </i></b><br/></center><br/>
-        <font size="3"><b><center> <U>TRANSFERÊNCIA DURANTE O PERÍODO LETIVO</cente></u></b></font><br/>
+        <font size="3"><b><center> <U>TRANSFERÊNCIA DURANTE O PERÍODO LETIVO- <%= Time.now.year%></cente></u></b></font><br/>
+
     </td>
   </tr>
     <tr style="border-color: white">
@@ -43,7 +44,7 @@
        <th style="font-size: 12px" colspan="3" align="justify">
                <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%=h aluno.aluno.aluno_nome %></b>  R.A.: <b><%=h aluno.aluno.aluno_ra %></b>,
                <% if (aluno.aluno.aluno_RG.present?)  %>
-                  e RG: <b><%=h aluno.aluno_RG %></b> emitido em <b><%=h aluno.aluno.aluno_emissaoRG %></b> ,
+                  e RG: <b><%=h aluno.aluno.aluno_RG %></b> emitido em <b><%=h aluno.aluno.aluno_emissaoRG %></b> ,
                <%end%>
                nascido(a) em <b><%=h aluno.aluno.aluno_nascimento.strftime("%d/%m/%Y") %></b> na cidade de <%=h aluno.aluno.aluno_naturalidade %>
                , encontra-se devidamente matriculado nesta unidade escolar na <b>classe</b>

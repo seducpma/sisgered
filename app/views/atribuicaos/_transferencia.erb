@@ -11,7 +11,7 @@
                 Infantil
           <%end%>
           </i></b><br/></center><br/>
-       <font size="3"><b><center> <U>TRANSFERÊNCIA DURANTE O PERÍODO LETIVO</cente></u></b></font><br/>
+       <font size="3"><b><center> <U>TRANSFERÊNCIA DURANTE O PERÍODO LETIVO - <%= Time.now.year%></cente></u></b></font><br/>
 
     </td>
   </tr>
@@ -324,20 +324,33 @@
            <%if nota.faltas5 != 0%>
                  <td align="center">---</td>
            <%else%>
-                 <td align="center"> <%= nota.aulas5%></td>
+                    <%if nota.aulas5 == 0 %>
+                         <td align="center"> --- </td>
+                     <%else%>
+                         <td align="center"> <%= nota.aulas5%></td>
+                     <%end%>
+                 
            <%end%>
            <%if nota.faltas5 == 0%>
-                 <td align="center"> 0 </td>
+                    <%if nota.aulas5 == 0 %>
+                         <td align="center"> --- </td>
+                     <%else%>
+                          <td align="center"> 0 </td>
+                     <%end%>
            <%else%>
                  <td align="center"> <%= nota.faltas5%></td>
            <%end%>
                  <td align="center">
-                          <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
+                    <%if nota.aulas5 == 0 %>
+                        ---
+                     <%else%>
+                        <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
                           <%if frequencia5 < 75 %>
                                 <font color ="red"> <%= frequencia5%> % </font>
                           <%else%>
                                 <%= frequencia5%> %
                          <%end%>
+                    <%end%>
                  </td>
       <%end%>
    </tr>
