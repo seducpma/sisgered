@@ -104,28 +104,40 @@ class RelatoriosController < ApplicationController
 
   def professor
     session[:professor_id]=params[:relatorio_professor_id]
-    @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =?", session[:professor_id] ])
+    @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
+    @alunos2= Matricula.find(:all, :select => 'alunos.id, alunos.aluno_nome',:joins =>:aluno  ,:conditions=>['matriculas.classe_id=?', @atribuicao[0].classe_id ], :order => 'alunos.aluno_nome ASC')
        render :partial => 'aluno_classe'
   end
 
 
   def consulta_relatorio
       @relatorio = Relatorio.find(:all, :conditions => ['aluno_id =?', params[:aluno_id]])
-
-
-
   end
 
-def consulta_relatorios
+  def fapea_ano
+      if current_user.has_role?('admin')
+        @fapea_ano = Relatorio.find(:all, :conditions=> ['ano_letivo =?' , params[:ano_letivo]])
+        @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND ano_letivo=?', params[:ano_letivo] ],:order => 'alunos.aluno_nome ASC')
+      else
+        @fapea_ano = Relatorio.find(:all, :joins=> :aluno, :conditions=> ['ano_letivo =? and alunos.unidade_id=?' , params[:ano_letivo], current_user.unidade_id])
+        @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND relatorios.ano_letivo=?', current_user.unidade_id, params[:ano_letivo] ],:order => 'alunos.aluno_nome')
+        t=0
+     end
+   render :partial => 'selecao_nome'
+  end
+
+
+
+def consulta_fapea
+
     if params[:type_of].to_i == 3
-        if ( params[:aluno].present?)
-            session[:aluno_imp]= params[:aluno1]
+        
+            session[:aluno_imp]= params[:aluno_fapea]
             session[:ano_imp]=params[:ano_letivo]
             session[:impressao]= 1
-            params[:aluno1]
 
-            @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? ", params[:aluno1]])
-            @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
+            @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? ", params[:aluno_fapea]])
+            @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? ', @relatorios[0].atribuicao_id] )
             @classe[0].classe_id
             @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
 
@@ -134,15 +146,15 @@ def consulta_relatorios
             render :update do |page|
                page.replace_html 'relatorio', :partial => "fapea"
            end
-      end
+
+     
     else if params[:type_of].to_i == 1
 
-                 if ( params[:aluno].present?)
-                 session[:aluno_imp]= params[:aluno3]
+                 if ( params[:aluno_fapea1].present?)
+                 session[:aluno_imp]= params[:aluno_fapea1]
                  session[:ano_imp]=params[:ano_letivo]
-
-                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno3], params[:ano_letivo]])
-                  @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
+                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]])
+                  @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=?', @relatorios[0].atribuicao_id] )
                   @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
                   session[:impressao]= 1
@@ -152,6 +164,7 @@ def consulta_relatorios
                    end
                 end
         else  if params[:type_of].to_i == 2
+                t=0
                  if ( params[:aluno].present?)
                   session[:aluno_imp]= params[:aluno]
                   session[:ano_imp]=params[:ano_letivo]
@@ -173,11 +186,11 @@ end
 def editar
 
     if params[:type_of].to_i == 3
-        if ( params[:aluno].present?)
-            session[:aluno_imp]= params[:aluno1]
+        if ( params[:aluno_fapea].present?)
+            session[:aluno_imp]= params[:aluno_fapea]
             session[:ano_imp]=params[:ano_letivo]
             session[:impressao]= 1
-                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno1]])
+                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno_fapea]])
                   @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
                   @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
@@ -188,10 +201,10 @@ def editar
            end
       end
     else if params[:type_of].to_i == 1
-                 if ( params[:aluno].present?)
-                  session[:aluno_imp]= params[:aluno3]
+                 if ( params[:aluno_fapea1].present?)
+                  session[:aluno_imp]= params[:aluno_fapea1]
                   session[:ano_imp]=params[:ano_letivo]
-                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno3], params[:ano_letivo]])
+                  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]])
                   @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
                   @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
@@ -343,27 +356,30 @@ end
          @unidade_procedencia = Unidade.find(:all,:conditions =>['id = ?', current_user.unidade_id], :order => 'nome ASC')
          @disciplinas= Disciplina.find(:all, :conditions =>['curriculo != "I" and ano_letivo =? ', (Time.now.year)], :order =>'disciplina'  )
        else
+         #@alunosRel = Relatorio.find(:all, :select => 'alunos.id, alunos.aluno_nome', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null', current_user.unidade_id ],:order => 'alunos.aluno_nome')
          @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id < 40  OR id >51'], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
          @disciplinas= Disciplina.find(:all, :conditions =>['curriculo =? and ano_letivo =? ', 'I', (Time.now.year)], :order =>'disciplina'  )
        end
-
        #@alunos = Aluno.find(:all, :conditions => ['aluno_status is null'],:order => 'aluno_nome')
        #@alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+unidade.to_s+" AND`id` NOT IN
        #                (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+unidade.to_s+")
        #                 ORDER BY aluno_nome ASC")
 
-       #@alunos2 = Aluno.find(:all, :select => 'iid, aluno_nome',:conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
-        @alunos2 = Aluno.find(:all, :select => 'alunos.id, alunos.aluno_nome', :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id", :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND atribuicaos.professor_id =?', current_user.unidade_id, current_user.professor_id ],:order => 'alunos.aluno_nome')
+       @alunos2 = Aluno.find(:all, :select => 'alunos.id, alunos.aluno_nome', :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id", :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND atribuicaos.professor_id =?', current_user.unidade_id, current_user.professor_id ],:order => 'alunos.aluno_nome')       #@alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA")  ', current_user.unidade_id],:order => 'alunos.aluno_nome')
 
-
-       #@alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA")  ', current_user.unidade_id],:order => 'alunos.aluno_nome')
+      
        if current_user.has_role?('admin')
           @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
+          @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null'],:order => 'alunos.aluno_nome ASC')
        else if current_user.has_role?('professor_infantil')
              @professor_unidade = Professor.find(:all, :conditions => ['id = ?  AND desligado = 0', (current_user.professor_id)],:order => 'nome ASC')
-             else if  current_user.has_role?('direcao_infantil')   or    current_user.has_role?('secretaria_infantil')
+#             @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null', current_user.unidade_id ],:order => 'alunos.aluno_nome')
+              #@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => "INNER JOIN alunos ON alunos.id = relatorios.aluno_id INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id", :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND atribuicaos.professor_id =?', current_user.unidade_id, current_user.professor_id ],:order => 'alunos.aluno_nome')
+              @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => [:professor, :aluno], :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND relatorios.professor_id =?', current_user.unidade_id, current_user.professor_id ],:order => 'alunos.aluno_nome')
+              else if  current_user.has_role?('direcao_infantil')   or    current_user.has_role?('secretaria_infantil') or    current_user.has_role?('pedagogo')
                    @professor_unidade = Professor.find(:all, :conditions => ['unidade_id = ?  AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
+                   @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null', current_user.unidade_id ],:order => 'alunos.aluno_nome')
                  end
            end
        end

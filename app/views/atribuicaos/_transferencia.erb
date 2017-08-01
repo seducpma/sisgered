@@ -84,7 +84,7 @@
                <% if  session[:classe]== "EJA" %>               
                    <b> EJA </b> - Ensino de Jovens e Adultos
                <%else%>
-                     <%if (current_user.unidade.tipo_id = 1) or (current_user.unidade.tipo_id = 4) or (current_user.unidade.tipo_id = 7) or (current_user.unidade.tipo_id == 9)%>
+                     <%if (current_user.unidade.tipo_id == 1) or (current_user.unidade.tipo_id == 4) or (current_user.unidade.tipo_id == 7) or (current_user.unidade.tipo_id == 9)%>
 
                      <%else%>
                            <%if  session[:classe][0,3] == 'BI '%>
