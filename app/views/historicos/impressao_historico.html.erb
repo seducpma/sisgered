@@ -237,7 +237,9 @@
                          <%  session[:cidade]= unidade.cidade  %>
                 <%  end %>
             <td  style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
-                       <%=  session[:unidade]  %>
+                          <%if  @notas[0].nota5.present? %>
+                               <%=  session[:unidade]  %>
+                          <%end%>
                     <%else%>
                       <% if !@notas[0].nil? %>
                         <%=  session[:unidade1] = @notas[0].escola  %>
@@ -247,8 +249,11 @@
                       <%end%>
                     <%end%>
              </td>
-             <td  style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
-                       <%=  session[:cidade]  %>
+             <td  style="font-size: 8px; border-color: black">
+                     <%if !@unidade.empty? %>
+                            <%if  @notas[0].nota5.present? %>
+                               <%=  session[:cidade]  %>
+                            <%end%>
                     <%else%>
                     <% if !@notas[0].nil? %>
                         <%=  session[:cidade] = @notas[0].cidade  %>
