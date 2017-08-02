@@ -8,11 +8,17 @@
   <fieldset>
    <legend><font size=4>Dados Pessoais</font></legend>
    <table width="100%">
-       <tr bgcolor="#F5F5F5">
-          <td align="left"  width ="20%"><b>Nome:</b></td>
-          <td align="left" colspan="3"><%= f.collection_select :aluno_id, @pessoas_aluno, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
-
-       </tr>
+       <%if session[:continua_saude]==1%>
+               <tr bgcolor="#F5F5F5">
+                  <td align="left"  width ="20%"><b>Nome:</b></td>
+                  <td align="left" colspan="3"><%= session[:alunonome_cadastro] %></td>
+               </tr>
+       <%else%>
+               <tr bgcolor="#F5F5F5">
+                  <td align="left"  width ="20%"><b>Nome:</b></td>
+                  <td align="left" colspan="3"><%= f.collection_select :aluno_id, @pessoas_aluno, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
+               </tr>
+       <%end%>
        <tr bgcolor="#F5F5F5">
          <td><b>Possui Cartão SUS:</b></td>
          <td><%= f.text_field :saude_cartao_sus, :size=>"30", :value => "NÃO" %></td>

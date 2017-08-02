@@ -35,7 +35,7 @@ class SocioeconomicosController < ApplicationController
 
   def create
     @socioeconomico = Socioeconomico.new(params[:socioeconomico])
-
+    @socioeconomico.aluno_id = session[:alunoid_cadastro]
     respond_to do |format|
       if @socioeconomico.save
         flash[:notice] = 'SALVO COM SUCESSO!'
@@ -46,6 +46,7 @@ class SocioeconomicosController < ApplicationController
         format.xml  { render :xml => @socioeconomico.errors, :status => :unprocessable_entity }
       end
     end
+    session[:continua_economico]=0
   end
 
   def update

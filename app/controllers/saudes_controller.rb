@@ -35,7 +35,8 @@ class SaudesController < ApplicationController
 
   def create
     @saude = Saude.new(params[:saude])
-
+    @saude.aluno_id = session[:alunoid_cadastro]
+    
     respond_to do |format|
       if @saude.save
         flash[:notice] = 'SALVO COM SUCESSO!'
@@ -46,6 +47,8 @@ class SaudesController < ApplicationController
         format.xml  { render :xml => @saude.errors, :status => :unprocessable_entity }
       end
     end
+  session[:continua_saude]=0
+  session[:continua_economico]=1
   end
 
   def update

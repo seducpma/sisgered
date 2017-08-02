@@ -40,6 +40,7 @@ class AlunosController < ApplicationController
     @aluno = Aluno.new(params[:aluno])
     @verifica = Aluno.find_by_aluno_nome(@aluno.aluno_nome)
     @verifica2 = Aluno.find_by_aluno_nascimento(@aluno.aluno_nascimento)
+    
 
 
     if (@verifica and @verifica2) then
@@ -50,6 +51,8 @@ class AlunosController < ApplicationController
     else
     respond_to do |format|
       if @aluno.save
+        session[:alunoid_cadastro]= @aluno.id
+        session[:alunonome_cadastro]= @aluno.aluno_nome
         flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@aluno) }
         format.xml  { render :xml => @aluno, :status => :created, :location => @aluno }
@@ -59,6 +62,8 @@ class AlunosController < ApplicationController
       end
      end
   end
+  session[:continua_saude]=1
+  session[:continua_economico]=0
 end
 
   def update
@@ -307,7 +312,7 @@ end
 
 
 def consulta_cadastro_aluno
-  t=0
+  
       session[:aluno_id]=params[:aluno][:aluno_id]
 
       #@socioeconomico = Socioeconomico.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])

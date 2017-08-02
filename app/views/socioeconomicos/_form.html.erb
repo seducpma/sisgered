@@ -8,11 +8,17 @@
   <fieldset>
    <legend><font size=4>Dados Pessoais</font></legend>
    <table width="100%">
-       <tr bgcolor="#F5F5F5">
-          <td align="left" ><b>Nome:</b></td>
-          <td align="left" colspan="6"><%= f.collection_select :aluno_id, @pessoas_aluno, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
-
-       </tr>
+       <%if session[:continua_economico]==1%>
+               <tr bgcolor="#F5F5F5">
+                  <td align="left"  width ="20%"><b>Nome:</b></td>
+                  <td align="left" colspan="3"><%= session[:alunonome_cadastro] %></td>
+               </tr>
+       <%else%>
+               <tr bgcolor="#F5F5F5">
+                  <td align="left" ><b>Nome:</b></td>
+                  <td align="left" colspan="6"><%= f.collection_select :aluno_id, @pessoas_aluno, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
+               </tr>
+        <%end%>
        <tr bgcolor="#F5F5F5">
          <td witdh ="15%"><b>Casa:</b></td>
          <td witdh ="22%"><%= f.select :economico_casa,(CASA).sort, :include_blank => '-- Selecionar --' %></td>

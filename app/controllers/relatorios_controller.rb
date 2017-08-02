@@ -121,8 +121,7 @@ class RelatoriosController < ApplicationController
       else
         @fapea_ano = Relatorio.find(:all, :joins=> :aluno, :conditions=> ['ano_letivo =? and alunos.unidade_id=?' , params[:ano_letivo], current_user.unidade_id])
         @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND relatorios.ano_letivo=?', current_user.unidade_id, params[:ano_letivo] ],:order => 'alunos.aluno_nome')
-        t=0
-     end
+    end
    render :partial => 'selecao_nome'
   end
 
