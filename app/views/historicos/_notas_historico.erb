@@ -190,25 +190,24 @@
                    <%  session[:unidade]= unidade.nome  %>
                    <%  session[:cidade]= unidade.cidade  %>
               <%  end %>
-      <td><%if !@unidade.empty? %>
-                  <%if session[:cidade_nota] == 1 %>
-                        <%=  session[:unidade]  %> <% session[:cidade_nota]=0 %>
-                  <%else%>
-                     
-                  <%end%>
-                 
+              <td><%if !@unidade.empty? %>
+                      <%if  @notas[0].nota5.present? %>
+                           <%=  session[:unidade]  %>
+                      <%end%>
+
               <%else%>
                   <% if !@notas[0].nil? %>
                     <%=  session[:unidade1] = @notas[0].escola  %>
                   <%end%>
-
-                <% if nota.ano_letivo == anoletivo%>
-                    <%= session[:unidade1] %>
-                <%end%>
+                   <% if nota.ano_letivo == anoletivo%>
+                     <%= session[:unidade1] %>
+                 <%end%>
               <%end%>
        </td>
        <td><%if !@unidade.empty? %>
-                 <%=  session[:cidade]  %>
+                  <%if  @notas[0].nota5.present? %>
+                       <%=  session[:cidade]  %>
+                  <%end%>
               <%else%>
                 <% if !@notas[0].nil? %>
                     <%=  session[:cidade] = @notas[0].cidade  %>
