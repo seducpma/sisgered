@@ -114,8 +114,8 @@ class MatriculasController < ApplicationController
                         if @matricula.save
                          @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
                          @aluno[0].unidade_id =  current_user.unidade_id
+                          @aluno[0].aluno_status = nil
                          @aluno[0].save
-
                          if !@matricula_anterior.nil?
 
                             if  @matricula.status == "*REMANEJADO"
