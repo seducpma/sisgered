@@ -7,9 +7,6 @@ class HistoricosController < ApplicationController
 
 
 
-
-
-
     def resultado_final
 
     end
@@ -43,6 +40,7 @@ class HistoricosController < ApplicationController
         end
         @disciplina = Disciplina.new(params[:disciplina])
         @disciplina.curriculo = 'B'
+        @disciplina.tipo_un = 3
         @disciplina.ordem = n_ordem +1
 
         if @disciplina.save
@@ -156,6 +154,7 @@ class HistoricosController < ApplicationController
                 session[:unidade_id]= aluno.unidade_id
                 session[:aluno_id]= aluno.id
                 session[:aluno_nome] = aluno.aluno_nome
+
             end
             @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
             @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
