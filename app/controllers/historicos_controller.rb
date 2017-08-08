@@ -9,6 +9,8 @@ def destroy_nota
     @nota = Nota.find(params[:id])
     @nota.destroy
 
+            w= session[:aluno_id]
+            t=0
             @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
             for aluno in @aluno
                 session[:unidade_id]= aluno.unidade_id
@@ -26,6 +28,10 @@ def destroy_nota
             @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
             @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
             @ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
+
+            w= session[:aluno_id]
+            t=0
+
             respond_to do |format|
               format.html { redirect_to(historicoContinua_path) }
               format.xml  { head :ok }
@@ -173,6 +179,8 @@ def destroy_nota
 
 
     def historico
+            w= session[:aluno_id]
+            t=0
         if  (params[:aluno_id].present?)
             session[:aluno_id] = params[:aluno_id]
             @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', params[:aluno_id]])
@@ -199,7 +207,8 @@ def destroy_nota
 
        def historicoContinua
 
-            
+            w= session[:aluno_id]
+            t=0
 
             @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
             for aluno in @aluno
