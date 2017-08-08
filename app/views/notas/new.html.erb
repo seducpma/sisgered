@@ -2,7 +2,7 @@
 <% title "NOTAS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>LANÇAMENTOS NOTAS/FALTAS HISTÓRICO</strong></font><br/>
+     <font size="3"><strong>LANÇAMENTOS NOTAS/FALTAS HISTÓRICOxxx</strong></font><br/>
  </div>
       <div class="tabs">
           <% form_for (@nota) do |f| %>
@@ -28,7 +28,7 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td width =" 13%"><b>Ano Letivo:</b></td>
-                   <td><%= f.select :ano_letivo, (ANO).sort %>
+                   <td><%= f.select :ano_letivo, (ANO).sort%>
                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Nota:</b>
                        <%= f.select :nota5 , options_for_select(@NOTASB1.insert(0, @nota.nota5)) %>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

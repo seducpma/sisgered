@@ -131,6 +131,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_atribuicao '/consulta_atribuicao', :controller => 'atribuicaos', :action => 'consulta_atribuicao'
 
   map.historico'/historico', :controller => 'historicos', :action => 'historico'
+  map.historicoContinua'/historicoContinua', :controller => 'historicos', :action => 'historicoContinua'
   map.historicoatri'/historicoatri', :controller => 'atribuicaos', :action => 'historico_aluno'
   map.historico_aluno'/historico_aluno', :controller => 'historicos', :action => 'historico_aluno'
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'

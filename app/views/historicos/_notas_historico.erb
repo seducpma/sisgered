@@ -46,7 +46,10 @@
                                  <%if nota.nota5.nil? %>
                                       <td align="center"> --- </td>
                                  <%else%>
-                                      <td align="center"> <%= nota.nota5%>  </td>
+                                      <td align="center">&nbsp <%= nota.nota5%>&nbsp
+                                                         <% if nota.matricula_id.nil?%>
+                                                              &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>nota}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
+                                                         <%end%>  </td>
                                  <%end%>
                           <%else%>
                              <td align="center"> --- </td>
@@ -123,7 +126,12 @@
                                  <%if nota.nota5.nil? %>
                                       <td align="center"> --- <% session[:cidade_nota]=1 %></td>
                                  <%else%>
-                                      <td align="center"> <%= nota.nota5%>  <% session[:notasD]=1 %></td>
+                                      <td align="center"> &nbsp <%= nota.nota5%>&nbsp
+                                                         <% if nota.matricula_id.nil?%>
+                                                              &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>nota}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
+                                                         <%end%>
+                                                         <% session[:notasD]=1 %>
+                                      </td>
                                  <%end%>
                             <%else%>
                                <td align="center"> --- </td>
@@ -135,7 +143,7 @@
       <%end%>
 
     <%end%>
-    <tr bgcolor =" #DCDCDC">
+      <tr bgcolor =" #DCDCDC">
       <td><b> Carga Horária</b></td>
              <%for i in 0..8 %>
                  <% anoletivo = anoinicial+ i %>
@@ -149,7 +157,7 @@
                                       <td align="center"> --- </td>
                                  <%else%>
                                       <%if session[:notasD]==1%>
-                                          <td align="center"> <%= 480 %> <% session[:notasD]= 0%> </td>
+                                          <td align="center"> <%= 480 %> </td>
                                       <%else%>
                                           <td align="center"> ---  </td>
                                       <%end%>
@@ -199,7 +207,7 @@
                   <% if !@notas[0].nil? %>
                     <%=  session[:unidade1] = @notas[0].escola  %>
                   <%end%>
-                   <% if nota.ano_letivo == anoletivo%>
+                   <% if (!nota.nil? and nota.ano_letivo == anoletivo)%>
                      <%= session[:unidade1] %>
                  <%end%>
               <%end%>

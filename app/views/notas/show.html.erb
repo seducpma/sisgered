@@ -57,7 +57,7 @@
             <td width ="6%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
             <td width ="6%" align="left"><%= button_to 'Continuar Lançamento', new1_notas_path, {:method => "get"}  %></td>
             <td width ="6%"align="left"><%= button_to 'Novo Lançamento',{:action => "new", :controller => :notas}, :method => "get", :title => "Editar" %></td>
-            <td align="left"><%= button_to 'Historico',historico_path, :title => "Histórico" %></td>
+            <td align="left"><%= button_to 'Historico',historicoContinua_path, :title => "Histórico", session[:aluno_id] => @nota.aluno_id %></td>
 
          </tr>
        </table>
