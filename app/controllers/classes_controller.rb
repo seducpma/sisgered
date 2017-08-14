@@ -33,6 +33,15 @@ class ClassesController < ApplicationController
     @alunos = @alunos - @alunos_selecionados
   end
 
+   def show
+    @classe = Classe.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @classe }
+    end
+   end
+
+
   def create
     @classe = Classe.new(params[:classe])
     respond_to do |format|

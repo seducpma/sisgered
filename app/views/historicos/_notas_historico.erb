@@ -37,6 +37,9 @@
 
     <%session[:contnota]=0%>
     <%session[:cargah]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
+    <%session[:escola]=['', '', '', '', '', '','', '', '']%>
+    <%session[:cidade]=['', '', '', '', '', '','', '', '']%>
+
     <%while session[:contnota] < session[:contnotaBTot] %>
         <tr>
             <td align="left"><%= @notasB[session[:contnota]].disciplina.disciplina %> </td>
@@ -53,6 +56,14 @@
                         <%else%>
                             <%= @notasB[acertoHTML].nota5%>
                             <%session[:cargah][i]=1%>
+                                <%if @notasB[acertoHTML].escola.nil? %>
+                                     <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
+                                     <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
+
+                                <%else%>
+                                     <%session[:escola][i]= @notasB[acertoHTML].escola  %>
+                                     <%session[:cidade][i]= @notasB[acertoHTML].cidade  %>
+                               <%end%>
                         <%end%>
                         <%if @notasB[acertoHTML].matricula_id.nil?%>
                             &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasB[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
@@ -76,7 +87,7 @@
         <%end%>
     </tr>
 </table>
-<% if @notasDisciplinasD.present? %>
+<% if @notasD.present? %>
     <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
         <tr >
             <td width ="30%"rowspan="2"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
@@ -109,13 +120,14 @@
             <tr>
                 <td align="left"><%= @notasD[session[:contnota]].disciplina.disciplina %> </td>
                 <%for i in 0..8%>
-                    <%if session[:contnota]>(session[:contnotaDTot]-1)%>
-                        <%acertoHTML=1%>
+                    <%if (session[:contnota]>(session[:contnotaDTot]-1))%>   <!-- Linha alterada -->
+                        <%acertoHTML=0%>
                     <%else%>
                         <%acertoHTML=session[:contnota]%>
                     <%end%>
                     <%if (@notasD[acertoHTML].ano_letivo) == (anoinicial+i)%>
-                        <td align="center">   <%if @notasD[acertoHTML].nota5.nil?%>
+                        <td align="center">
+                            <%if @notasD[acertoHTML].nota5.nil?%>
                                 ---
                             <%else%>
                                 <%= @notasD[acertoHTML].nota5%>
@@ -133,33 +145,16 @@
             </tr>
         <%end%>
 
-        <tr bgcolor =" #DCDCDC">
-            <td><b> Carga Horária</b></td>
-            <%for i in 0..8 %>
-                <% anoletivo = anoinicial+ i %>
-                <% @notasD1= Nota.find(:all, :select=> 'nota5, ano_letivo',:conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
-                <% if @notasD1.empty?%>
-                    <td align="center"> --- </td>
-                <%else%>
-                    <%for nota in @notasD1%>
-                        <%if nota.ano_letivo == anoletivo %>
-                            <%if nota.nota5.nil? %>
-                                <td align="center"> --- </td>
-                            <%else%>
-                                <%if session[:notasD]==1%>
-                                    <td align="center"> <%= 480 %> </td>
-                                <%else%>
-                                    <td align="center"> ---  </td>
-                                <%end%>
-
-                            <%end%>
-                        <%else%>
-                            <td align="center"> --- </td>
-                        <%end%>
-                    <%end%>
-                <%end%>
+    <tr bgcolor =" #DCDCDC">
+        <td><b> Carga Horária</b></td>
+        <%for i in 0..8%>
+            <%if session[:cargah][i]==0%>
+                <td align="center">---</td>
+            <%else%>
+                <td align="center"> <%= 480 %>  </td>
             <%end%>
-        </tr>
+        <%end%>
+    </tr>
 
     </table>
 
@@ -177,41 +172,17 @@
         <td width=" 60%" align="center"><b>Unidade de Ensino</b></td>
         <td width=" 22%" align="center"><b>Municipio/Estado</b></td>
     </tr>
-    <%for i in 0..8 %>
-        <% anoletivo = anoinicial+ i %>
-        <% @notas= Nota.find(:all, :conditions=> ['aluno_id=? AND ano_letivo=?',  session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
-        <tr bgcolor="#F5F5F5">
-            <td align="center"><%= i + 1%>º Ano </td>
-            <td width ="5%" align="center" > <%=  anoletivo %></td>
-            <%  @unidade= Unidade.find(:all, :select => 'unidades.id, unidades.nome, unidades.cidade', :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
-            <%  for unidade in @unidade %>
-                <%  session[:unidade]= unidade.nome  %>
-                <%  session[:cidade]= unidade.cidade  %>
-            <%  end %>
-            <td><%if !@unidade.empty? %>
-                    <%if  @notas[0].nota5.present? %>
-                        <%=  session[:unidade]  %>
-                    <%end%>
 
-                <%else%>
-                    <% if !@notas[0].nil? %>
-                        <%=  session[:unidade1] = @notas[0].escola  %>
-                    <%end%>
-                    <% if (!nota.nil? and nota.ano_letivo == anoletivo)%>
-                        <%= session[:unidade1] %>
-                    <%end%>
-                <%end%>
-            </td>
-            <td><%if !@unidade.empty? %>
-                    <%if  @notas[0].nota5.present? %>
-                        <%=  session[:cidade]  %>
-                    <%end%>
-                <%else%>
-                    <% if !@notas[0].nil? %>
-                        <%=  session[:cidade] = @notas[0].cidade  %>
-                    <%end%>
-                <%end%>
-            </td>
+
+
+
+
+    <%for i in 0..8 %>
+            <tr bgcolor="#F5F5F5">
+            <td align="center"><%= i + 1%>º Ano </td>
+            <td width ="5%" align="center" > <%=  anoinicial+i %></td>
+            <td><%= session[:escola][i] %></td>
+            <td><%= session[:cidade][i] %> </td>
         </tr>
     <%end%>
 </table>
