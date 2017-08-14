@@ -107,7 +107,7 @@
                     <%else%>
                         <%acertoHTML=session[:contnota]%>
                     <%end%>
-                    <%if (@notasB[acertoHTML].ano_letivo) == (ano+i)%>
+                    <%if (@notasB[acertoHTML].ano_letivo) == (anoinicial+i)%>
                         <td style="font-size: 8px; border-color: black " align="center"><%if @notasB[acertoHTML].nota5.nil?%>
                                 ---
                             <%else%>
@@ -167,11 +167,11 @@
                 <%for i in 0..8%>
                     <%t1=t1+1%>
                     <%if session[:contnota]>(session[:contnotaDTot]-1)%>
-                        <%acertoHTML=1%>
+                        <%acertoHTML=0%>
                     <%else%>
                         <%acertoHTML=session[:contnota]%>
                     <%end%>
-                    <%if (@notasD[acertoHTML].ano_letivo) == (ano+i)%>
+                     <%if (@notasD[acertoHTML].ano_letivo) == (anoinicial+i)%>
                         <td style="font-size: 8px; border-color: black " align="center">
                             <%if @notasD[acertoHTML].nota5.nil?%>
                                 ---
@@ -189,35 +189,18 @@
             </tr>
         <%end%>
 
-         <tr style="line-height: 2px; border-color: black" bgcolor =" #DCDCDC" >
-            <td style="font-size: 8px; border-color: black "align="center" bgcolor =" #DCDCDC"><b> Carga Horária</b></td>
-            <%for i in 0..8 %>
-                <% anoletivo = anoinicial+ i %>
-                <% @notasD1= Nota.find(:all, :select=> 'nota5, ano_letivo',:conditions=> ['disciplina_id=? AND aluno_id=? AND ano_letivo=?', 1, session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
-                <% if @notasD1.empty?%>
-                    <td style="font-size: 8px; border-color: black "align="center"> --- </td>
+        <tr style="line-height: 2px; border-color: black" bgcolor =" #DCDCDC">
+            <td style="font-size: 8px; border-color: black " align="left"><b> Carga Horária</b></td>
+            <%for i in 0..8%>
+                <%if session[:cargah][i]==0%>
+                    <td style="font-size: 8px; border-color: black "align="center">---</td>
                 <%else%>
-                    <%for nota in @notasD1%>
-                        <%if nota.ano_letivo == anoletivo %>
-                            <%if nota.nota5.nil? %>
-                                <td  style="font-size: 8px; border-color: black "align="center"> --- </td>
-                            <%else%>
-                                <%if session[:notasD]==1%>
-                                    <td style="font-size: 8px; border-color: black "align="center"> <%= 480 %> </td>
-                                <%else%>
-                                    <td style="font-size: 8px; border-color: black "align="center"> ---  </td>
-                                <%end%>
-
-                            <%end%>
-                        <%else%>
-                            <td align="center"> --- </td>
-                        <%end%>
-                    <%end%>
+                    <td style="font-size: 8px; border-color: black "align="center"> <%= 480 %>  </td>
                 <%end%>
             <%end%>
         </tr>
 
-    
+   
 
 <%end%>
 
@@ -233,41 +216,13 @@
         <td width=" 60%" align="center"style="font-size: 8px; border-color: black"><b>Unidade de Ensino</b></td>
         <td width=" 22%" align="center"style="font-size: 8px; border-color: black"><b>Municipio/Estado</b></td>
     </tr>
-    <%for i in 0..8 %>
-        <% anoletivo = anoinicial+ i %>
-        <% @notas= Nota.find(:all, :conditions=> ['aluno_id=? AND ano_letivo=?',  session[:aluno_id], anoletivo], :order => 'ano_letivo ASC') %>
-        <tr style="line-height: 6px; border-color: black">
-            <td align="center" style="font-size: 8px; border-color: black"><%= i + 1%>º Ano </td>
-            <td width ="5%" align="center" style="font-size: 8px; border-color: black"> <%=  anoletivo %></td>
-            <%  @unidade= Unidade.find(:all, :joins=>"INNER JOIN classes ON unidades.id = classes.unidade_id INNER JOIN matriculas ON classes.id = matriculas.classe_id INNER JOIN notas ON matriculas.id = notas.matricula_id", :conditions =>['notas.disciplina_id=? AND notas.aluno_id=? AND notas.ano_letivo=?', 1, session[:aluno_id], anoletivo] )%>
-            <%  for unidade in @unidade %>
-                <%  session[:unidade]= unidade.nome  %>
-                <%  session[:cidade]= unidade.cidade  %>
-            <%  end %>
-            <td style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
-                    <%if  @notas[0].nota5.present? %>
-                        <%=  session[:unidade]  %>
-                    <%end%>
 
-                <%else%>
-                    <% if !@notas[0].nil? %>
-                        <%=  session[:unidade1] = @notas[0].escola  %>
-                    <%end%>
-                    <% if (!nota.nil? and nota.ano_letivo == anoletivo)%>
-                        <%= session[:unidade1] %>
-                    <%end%>
-                <%end%>
-            </td>
-            <td style="font-size: 8px; border-color: black"><%if !@unidade.empty? %>
-                    <%if  @notas[0].nota5.present? %>
-                        <%=  session[:cidade]  %>
-                    <%end%>
-                <%else%>
-                    <% if !@notas[0].nil? %>
-                        <%=  session[:cidade] = @notas[0].cidade  %>
-                    <%end%>
-                <%end%>
-            </td>
+        <%for i in 0..8 %>
+            <tr  style="line-height: 6px; border-color: black">
+            <td align="center" style="font-size: 8px; border-color: black"><%= i + 1%>º Ano </td>
+            <td width ="5%" align="center" style="font-size: 8px; border-color: black"> <%=  anoinicial+i %></td>
+            <td style="font-size: 8px; border-color: black"><%= session[:escola][i] %></td>
+            <td style="font-size: 8px; border-color: black"><%= session[:cidade][i] %> </td>
         </tr>
     <%end%>
 </table>        
