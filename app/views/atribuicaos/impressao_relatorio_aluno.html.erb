@@ -239,18 +239,28 @@
                        <th style="font-size: 8px" align="center"> </th>
                        <th style="font-size: 8px" align="center"> </th>
             <%else%>
-                       <th style="font-size: 8px" align="center"><%= nota.faltas5 %></th>
+                       <th style="font-size: 8px" align="center"><%  if !nota.aulas5.nil? and !nota.faltas5.nil?%>
+                                                                     <%= nota.faltas5 %>
+                                                                    <%else%>
+                                                                          ---
+                                                                   <%end%>
+
+                       </th>
                        <th style="font-size: 8px" align="center">
                                   <%if nota.faltas5 == 0 %>
                                       100 %
                                   <%else%>
-                                      <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
-                                      <%if frequencia5 < 75 %>
-                                           <font color ="red"> <%= frequencia5%> % </font>
-                                      <%else%>
-                                           <%= frequencia5%> %
+                                       <%  if !nota.aulas5.nil? and !nota.faltas5.nil?%>
+                                              <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
+                                              <%if frequencia5 < 75 %>
+                                                   <font color ="red"> <%= frequencia5%> % </font>
+                                              <%else%>
+                                                   <%= frequencia5%> %
 
-                                      <%end%>
+                                              <%end%>
+                                        <%else%>
+                                              ---
+                                       <%end%>
                                    <%end%>
                                </th>
             <%end%>

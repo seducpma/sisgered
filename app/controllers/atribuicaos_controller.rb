@@ -130,9 +130,7 @@ end
 
       end
     else
-
-t=0
-         @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
+        @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
             respond_to do |format|
              if @atribuicao.update_attributes(params[:atribuicao])
                #for outras_atribuicaos in @outras_atribuicaos
