@@ -45,7 +45,11 @@ ActionController::Routing::Routes.draw do |map|
   
   map.construcao '/construcao', :controller => 'alunos', :action => 'construcao'
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
+  map.new_disciplinanota '/new_disciplinanota', :controller => 'disciplinas', :action => 'new_disciplinanota'
+  map.create_discipina_nota '/create_discipina_nota', :controller => 'disciplinas', :action => 'create_discipina_nota'
 
+
+  map.teste '/teste', :controller => 'disciplinas', :action => 'teste'
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'

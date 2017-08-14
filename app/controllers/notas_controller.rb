@@ -131,12 +131,9 @@ end
      session[:classe_id]= @nota.atribuicao.classe_id
      session[:professor_id]=@nota.professor_id
      session[:disc_id]=@nota.atribuicao.disciplina_id
-    
-
      if @nota.update_attributes(params[:nota])
         session[:id]
         session[:aluno]
-        #@nota = Nota.all(:conditions => ["atribuicao_id =? AND aluno_id =? AND ano_letivo =? ", session[:id], session[:aluno], Time.now.year])
         session[:nota_id] = @nota.id
         @disci = Disciplina.find(:all, :conditions => ["id =?",session[:disc_id]])
         @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',  session[:classe_id],session[:professor_id], session[:disc_id]])
@@ -198,7 +195,7 @@ end
        if @nota.nota4 == '---'
          @nota.nota4= nil
        end
-     w=@atribuicao_classe[0].disciplina_id
+     @atribuicao_classe[0].disciplina_id
 
 # outras atribuições do mesmo professor (nucleo comum)
 #
@@ -283,7 +280,6 @@ end
   def destroy
     @nota = Nota.find(params[:id])
     @nota.destroy
-
     respond_to do |format|
       format.html { redirect_to(home_url) }
       format.xml  { head :ok }
