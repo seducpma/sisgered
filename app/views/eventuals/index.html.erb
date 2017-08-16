@@ -1,0 +1,28 @@
+<h1>Listing eventuals</h1>
+
+<table>
+  <tr>
+    <th>Professor</th>
+    <th>Disponibilidade</th>
+    <th>Horario</th>
+    <th>Ano letivo</th>
+    <th>Obs</th>
+  </tr>
+
+<% @eventuals.each do |eventual| %>
+  <tr>
+    <td><%=h eventual.professor %></td>
+    <td><%=h eventual.disponibilidade %></td>
+    <td><%=h eventual.horario %></td>
+    <td><%=h eventual.ano_letivo %></td>
+    <td><%=h eventual.obs %></td>
+    <td><%= link_to 'Show', eventual %></td>
+    <td><%= link_to 'Edit', edit_eventual_path(eventual) %></td>
+    <td><%= link_to 'Destroy', eventual, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New eventual', new_eventual_path %>

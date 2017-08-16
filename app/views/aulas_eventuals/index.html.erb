@@ -1,0 +1,41 @@
+
+
+    <div id="interno2">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>AULAS EVENTUAIS</strong></font><br/>
+ </div>
+    <table  width="100%"  bgcolor="#DCDCDC">
+      <tr >
+          <%if @reservar_salas.present? %>
+          <td>
+              <%=  @aulas_eventual.id%>
+          </td>
+          <%end%>
+          <td colspan="2" width="95%" align="right ">
+
+               <% form_for @search do |f| %>
+
+                 <font size="3"> Unidade:</font>
+                 <%= f.collection_select :unidade_id_equals, @unidades_infantil, :id, :nome, :include_blank => true%>
+                 <%= f.submit "Visualizar", :class => "btn_filtrar" %>
+              <% end %>
+
+         </td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+           <td colspan="2" align="right">
+                <%= render :partial => "calendar" %>
+                <%if !@reservar_salas.present? %>
+                     <%if (params[:search]).present? %>
+                          <%= button_to'Cadastrar Aula Eventual',:action => "new", :unidade_id => params[:search][:unidade_id_equals] %>
+                      <%end%>
+                 <%end%>
+
+          </td>
+       </tr>
+  </table>
+</div>
+<br/>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  professor: 
+  disponibilidade: MyString
+  horario: MyString
+  ano_letivo: 1
+  obs: MyString
+
+two:
+  professor: 
+  disponibilidade: MyString
+  horario: MyString
+  ano_letivo: 1
+  obs: MyString

@@ -1,0 +1,39 @@
+<h1>New aulas_eventual</h1>
+
+<% form_for(@aulas_eventual) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :eventual %><br />
+    <%= f.text_field :eventual %>
+  </p>
+  <p>
+    <%= f.label :unidade %><br />
+    <%= f.text_field :unidade %>
+  </p>
+  <p>
+    <%= f.label :classe %><br />
+    <%= f.text_field :classe %>
+  </p>
+  <p>
+    <%= f.label :periodo %><br />
+    <%= f.text_field :periodo %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.label :data %><br />
+    <%= f.date_select :data %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', aulas_eventuals_path %>

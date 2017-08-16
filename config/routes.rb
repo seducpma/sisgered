@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :aulas_eventuals
+  map.resources :eventuals
   map.resources :ufaltas
-
   map.resources :relatorios,:collection => { :relatorio=>:get, :consultas=>:get, :consultas_observacao =>:get, :editar=>:get}
   map.resources :observacao_historicos
   map.resources :observacao_notas

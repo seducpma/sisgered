@@ -56,6 +56,7 @@ doc\:plugins\:open_flash_chart=
 doc\:plugins\:restful_authentication=
 doc\:plugins\:role_requirement=
 doc\:plugins\:svn=
+doc\:plugins\:table_builder=
 doc\:plugins\:will_paginate=
 doc\:rails=
 doc\:reapp=

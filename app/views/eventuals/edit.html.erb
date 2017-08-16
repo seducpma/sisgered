@@ -1,0 +1,32 @@
+<h1>Editing eventual</h1>
+
+<% form_for(@eventual) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :professor %><br />
+    <%= f.text_field :professor %>
+  </p>
+  <p>
+    <%= f.label :disponibilidade %><br />
+    <%= f.text_field :disponibilidade %>
+  </p>
+  <p>
+    <%= f.label :horario %><br />
+    <%= f.text_field :horario %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @eventual %> |
+<%= link_to 'Back', eventuals_path %>

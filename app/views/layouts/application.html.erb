@@ -7,7 +7,7 @@
     <title><%= "SISGERED - Sistema de Gerenciamento Educacional" %></title>
 
     
-    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'application','calendar',"style",'menu',"colorbox", :cache => true%>
     <%= stylesheet_link_tag 'impressao', :media => "print" %>
     <%= stylesheet_link_tag '/javascripts/plugins/flexigrid/css/flexigrid.css' %>
     <%= stylesheet_link_tag 'colorbox','geral',"jquery.tooltip.css","pepper-grinder/jquery-ui-1.8.16.custom","jquery.multiselect","ui.selectmenu" %>
@@ -309,7 +309,19 @@ display: none;
                  </ul>
               </li>
              <%end%>
-              
+
+            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
+              <li><a class="item-primary" href="#;">EVENTUAL</a>
+                 <ul style="width:108px;">
+                     <li><%= link_to "Aulas Eventuais",aulas_eventuals_path %></li>
+                 </ul>
+              </li>
+            <%end%>
+
+
+
+
+
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil')  )%>
                  <li><a class="item-primary" href="#;">DOCUMENTOS</a>
                    <ul style="width:108px;">
