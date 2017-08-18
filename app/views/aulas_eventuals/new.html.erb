@@ -1,39 +1,81 @@
-<h1>New aulas_eventual</h1>
+<div id="interno4">
+<% title "AULASEVENTUAL".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>AULAS EVENTUAIS</strong></font><br/>
+ </div>
+<% @classes = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  session[:aulas_eventual_unidade_id], Time.now.year], :order => 'classe_classe') %>
+  <div class="tabs">
+     <% form_for(@aulas_eventual) do |f| %>
+      <%= f.error_messages %>
+             <br/>
+             <table  width="100%"  align="center"  bgcolor="#F5F5F5" >
+                <tr>
+                  <td colspan="4"><b><font size="3"> &nbsp CADASTRAR AULAS EVENTUAIS &nbsp - </b></td>
+                </tr>
+                <tr>
+                  <td colspan="4"><hr></td>
+                </tr>
+               <tr>
+               <tr>
+                   <td colspan="4"><font color ="RED">&nbsp&nbsp&nbsp <b><u>Atenção:</u> &nbsp Selecione primeiro a DATA e depois a UNIDADE</b></font><br/><br/></td>
+               </tr>
+                 <td align="left" width="10px">  <b>Data:</b></td>
+                 <td align="left" width="125x"><%= datepicker_tag(:aulas_eventual, :data,{ :size => 10},{:dateFormat => "'yy-mm-dd'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %></td>
+                       <%= observe_field 'aulas_eventual_data',
+                                     :with   => :aulas_eventual_data,
+                                     :url  => { :action => 'data_eventual' }%>
 
-<% form_for(@aulas_eventual) do |f| %>
-  <%= f.error_messages %>
+                 <td><b>&nbsp&nbsp&nbsp&nbsp&nbsp Unidade: </b></td>
+                 <td>&nbsp&nbsp&nbsp <%= collection_select :aulas_eventual, :unidade_id, @unidades_infantil, :id, :nome, :include_blank => ' -- Selecione -- ' %> </td>
+                       <%= observe_field 'aulas_eventual_unidade_id',
+                                     :with   => :aulas_eventual_unidade_id,
+                                     :url  => { :action => 'nome_prof_eventual' },
+                                     :update => "professor" %>
+                </tr>
 
-  <p>
-    <%= f.label :eventual %><br />
-    <%= f.text_field :eventual %>
-  </p>
-  <p>
-    <%= f.label :unidade %><br />
-    <%= f.text_field :unidade %>
-  </p>
-  <p>
-    <%= f.label :classe %><br />
-    <%= f.text_field :classe %>
-  </p>
-  <p>
-    <%= f.label :periodo %><br />
-    <%= f.text_field :periodo %>
-  </p>
-  <p>
-    <%= f.label :ano_letivo %><br />
-    <%= f.text_field :ano_letivo %>
-  </p>
-  <p>
-    <%= f.label :data %><br />
-    <%= f.date_select :data %>
-  </p>
-  <p>
-    <%= f.label :obs %><br />
-    <%= f.text_field :obs %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+                <tr>
+
+
+                 <td colspan="4"> <div id="professor"><br/></div>
+                                  <div id="observacao"></div>
+                 </td>
+
+
+                   </tr>
+                <tr>
+                   <td><b>Classe: </b></td>
+                   <td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
+                   <td align="right" width="80px" > <b>Período: </b></td>
+                   <td> &nbsp&nbsp&nbsp&nbsp<%= f.select :periodo, Classe::HORARIO %></td>
+               </tr>
+                <tr>
+                   <td align="left" valign="top"><b>Observação:</b></td>
+                   <td align="left" colspan="4"><%= f.text_area(:obs,:cols =>77, :rows => "3") %></td>
+
+               </tr>
+           </table>
+
+             <table width="100%"  align="center">
+                    <tr>
+                       <td width="5px%"align="left"><%= f.submit 'Salvar' %></td>
+      <% end %>
+                       <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                </table>
+
+
+
+
+
+     </div>
+   </div>
+</div>
+<br/>
+
+
+
+
+
 
 <%= link_to 'Back', aulas_eventuals_path %>

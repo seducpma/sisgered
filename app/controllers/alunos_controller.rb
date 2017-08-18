@@ -187,9 +187,9 @@ end
          session[:de_para]=1
        end
 
-      @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_aluno_id]])
-       @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
-       @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+        @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_aluno_id]])
+        @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+        @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
         @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', params[:aluno_aluno_id]])
         @aluno.each do |aluno|
 

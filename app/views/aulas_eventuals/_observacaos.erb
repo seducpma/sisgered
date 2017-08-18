@@ -1,0 +1,20 @@
+<table  width="100%">
+           <tr>
+               <td align="right" width =" 12%"valign="top"> <font color="blue"><b>Diposivel: </b></td>
+               <td align="left"> <font color="blue">&nbsp<%=@professor[0].disponibilidade%> &nbsp&nbsp&nbsp <b>Período:</b> <%=@professor[0].horario%></b></font>
+             </td>
+          </tr>
+          <% if  !@professor[0].obs.nil?%>
+               <tr>
+                   <td align="right" width =" 12%"valign="top"> <font color="blue"><b>Obs: </b></td>
+                   <td align="left"> <font color="blue">&nbsp<%=@professor[0].obs%></font>
+                 </td>
+              </tr>
+          <%end%>
+
+
+</table>
+
+
+
+

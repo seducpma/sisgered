@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :aulas_eventuals
+  map.resources :aulas_eventuals, :collection => { :index2=>:get}
   map.resources :eventuals
   map.resources :ufaltas
   map.resources :relatorios,:collection => { :relatorio=>:get, :consultas=>:get, :consultas_observacao =>:get, :editar=>:get}
@@ -43,14 +43,17 @@ ActionController::Routing::Routes.draw do |map|
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   
-  
+
+
+
+  map.aulas_eventuals2 '/aulas_eventuals2', :controller => 'aulas_eventuals', :action => 'index2'
   map.construcao '/construcao', :controller => 'alunos', :action => 'construcao'
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
   map.new_disciplinanota '/new_disciplinanota', :controller => 'disciplinas', :action => 'new_disciplinanota'
   map.create_discipina_nota '/create_discipina_nota', :controller => 'disciplinas', :action => 'create_discipina_nota'
 
 
-  map.teste '/teste', :controller => 'disciplinas', :action => 'teste'
+  #map.teste '/teste', :controller => 'disciplinas', :action => 'teste'
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
@@ -148,9 +151,7 @@ ActionController::Routing::Routes.draw do |map|
   map.relatorios_observacoes'/relatorios_observacoes', :controller => 'atribucaos', :action => 'relatorios_observacoes'
   map.continuar'/continuar', :controller => 'alunos', :action => 'continuar'
 
-
   map.historico_aviso '/historico_aviso', :controller => 'notas', :action => 'aviso'
-
 
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
   map.matriculas_saidas '/matriculas_saidas', :controller => 'matriculas', :action => 'matriculas_saidas'
@@ -167,10 +168,8 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
 
-  
   map.reset_password '/reset_password/:id', :controller => 'passwords', :action => 'edit'
   map.resource :password
-
 
   map.resources :users
   map.resource :session

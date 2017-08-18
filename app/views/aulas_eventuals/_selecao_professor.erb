@@ -1,0 +1,19 @@
+<table width="100%">
+           <tr>
+             <td align="left"><b> Professor: </b>&nbsp
+
+             <%= collection_select :aulas_eventual, :eventual_id, @professores, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                 <%= observe_field 'aulas_eventual_eventual_id',
+                     :with   => :aulas_eventual_eventual_id,
+                      :url  => { :action => 'observacao_prof_eventual' },
+                      :update => "observacao" %>
+
+
+
+          </tr>
+
+</table>
+
+
+
+

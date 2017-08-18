@@ -313,7 +313,14 @@ display: none;
             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
               <li><a class="item-primary" href="#;">EVENTUAL</a>
                  <ul style="width:108px;">
-                     <li><%= link_to "Aulas Eventuais",aulas_eventuals_path %></li>
+                     <li><a class="item-primary" href="#;">Aulas Eventuais</a>
+                         <ul>
+                            <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
+                            <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
+                         </ul>
+                     </li>
+
+                     
                  </ul>
               </li>
             <%end%>

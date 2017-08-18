@@ -4,13 +4,13 @@
 <% title "ALUNOS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>AULAS EVENTUAIS</strong></font><br/>
+     <font size="3"><strong>AULAS EVENTUAIS - AGENDA POR UNIDADE</strong></font><br/>
  </div>
     <table  width="100%"  bgcolor="#DCDCDC">
       <tr >
           <%if @reservar_salas.present? %>
           <td>
-              <%=  @aulas_eventual.id%>
+              
           </td>
           <%end%>
           <td colspan="2" width="95%" align="right ">
@@ -25,9 +25,11 @@
          </td>
        </tr>
        <tr bgcolor="#F5F5F5">
-           <td colspan="2" align="right">
+           <td colspan="3" align="right">
                 <%= render :partial => "calendar" %>
-                <%if !@reservar_salas.present? %>
+               <%t=0%>
+                <%if !@aulas_eventual.present? %>
+               <%t=0%>
                      <%if (params[:search]).present? %>
                           <%= button_to'Cadastrar Aula Eventual',:action => "new", :unidade_id => params[:search][:unidade_id_equals] %>
                       <%end%>
@@ -35,7 +37,18 @@
 
           </td>
        </tr>
-  </table>
+
+              <tr>
+                <td align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                <td width="2%" align="right" ><%= button_to("Imprimir", onclick="javascript:window.print()", :title => "Imprimir") %></td>
+                <%if (params[:search]).present? %>
+                    <% if current_user.has_role?('SEDUC') or current_user.has_role?('admin')%>
+                       <td width="2%" align="right"><%= button_to'Cadastrar Aula Eventual',:action => "new", :unidade_id => params[:search][:unidade_id_equals] %></td>
+                    <%end%>
+                <%end%>
+
+               </tr>
+            </table>
 </div>
 <br/>
 </div>

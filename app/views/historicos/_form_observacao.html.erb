@@ -2,8 +2,6 @@
   <div id='inline_observacao' style='padding:10px; background:#EEE9E9;'>
     <% form_remote_for( :observacao_historico,:url => { :action => 'create_observacao_historico' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
 
-
-
     <b><u>OBSERVAÇÕES HISTÓRICO ALUNOS</u></b> <br/>
       <hr>
        <%= error_messages_for 'contact' %>

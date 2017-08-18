@@ -5,9 +5,9 @@
             <% if @aulas_eventual.present? %>
               <div id="calendar">
                   <%if !@aulas_eventual[0].present? %>
-                       <h1><center> <b>NÃO existe nada cadastado para esta unidade</b></center> </h1>
+                       <h2><center> <b>NÃO existe nada cadastado para esta unidade</b></center> </h2>
                   <%else%>
-                        <h1><center> <b><%=  @aulas_eventual[0].unidade.tipo.nome%> <%=  @aulas_eventual[0].unidade.nome%> </b></center> </h1>
+                        <h2><center> <b>AGENDA - <%=  @aulas_eventual[0].unidade.tipo.nome%> <%=  @aulas_eventual[0].unidade.nome%> </b></center> </h>
                   <%end%>
                 <h2 id="month">
                   <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d"), :search => params[:search] %>
@@ -21,7 +21,11 @@
                     <ul>
                       <% for data in articles %>
                         <li><b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 28,:omission => "...")), data%></font></b><br/>
-                            Classe: <%= link_to h(data.classe.classe_classe), data%><br/>
+                            Classe: <%= link_to h(data.classe.classe_classe), data%>
+                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
+                                &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
+                            <%end%>
+                            <br/>
                             <b>----------------------------</b>
                         </li>
 
@@ -32,13 +36,8 @@
               </div>
             <%end%>
             <br/>
-            <table align="right">
-              <tr>
-                <td align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-                <td width="2%" align="right" ><%= button_to("Imprimir", onclick="javascript:window.print()", :title => "Imprimir") %></td>
-                <td width="2%" align="right"></td>
-               </tr>
-            </table>
+
+
        </td>
      </tr>
   </table>

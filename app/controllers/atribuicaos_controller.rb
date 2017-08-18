@@ -810,8 +810,8 @@ end
   end
 
   def mapa_classe_ano
-        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
-   render :partial => 'selecao_mapa'
+     @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+     render :partial => 'selecao_mapa'
   end
   
 
