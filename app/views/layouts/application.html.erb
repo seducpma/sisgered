@@ -309,27 +309,7 @@ display: none;
                  </ul>
               </li>
              <%end%>
-
-            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
-              <li><a class="item-primary" href="#;">EVENTUAL</a>
-                 <ul style="width:108px;">
-                     <li><a class="item-primary" href="#;">Aulas Eventuais</a>
-                         <ul>
-                            <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
-                            <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
-                         </ul>
-                     </li>
-
-                     
-                 </ul>
-              </li>
-            <%end%>
-
-
-
-
-
-                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil')  )%>
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil')  )%>
                  <li><a class="item-primary" href="#;">DOCUMENTOS</a>
                    <ul style="width:108px;">
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
@@ -373,6 +353,28 @@ display: none;
                   </ul>
               </li>
            <%end%>
+
+            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
+              <li><a class="item-primary" href="#;">EVENTUAL</a>
+                 <ul style="width:108px;">
+                     <li><a class="item-primary" href="#;">AULAS</a>
+                         <ul>
+                            <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
+                            <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
+                         </ul>
+                     </li>
+                    <li><a class="item-primary" href="#;">PROFESSORES</a>
+                         <ul>
+                            <li><%= link_to "Cadastrar",new_eventual_path %></li>
+                            <li><%= link_to "Consulta",aulas_eventuals2_path %></li>
+                         </ul>
+                     </li>
+
+
+                 </ul>
+              </li>
+            <%end%>
+
           
            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo'))%>
             <li><span class="divider divider-vert" ></span></li>
@@ -400,7 +402,7 @@ display: none;
               </li>
               <%end%>
             <%end%>
- 
+
 
 
 

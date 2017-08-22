@@ -241,3 +241,13 @@ ANO   ={ "2016" =>"2016",
 CURRICULO={ 'B '=>'BASICO',
             'D'=> 'DIVERSIFICADO'
           }
+
+CATEGORIA={ 'PA '=>'PA',
+            'PB-I'=> 'PB-I'
+          }
+
+PERIODO={ 'MATUTINO '=>'MATUTINO',
+          'VESPERTINO'=> 'VESPERTINO'
+          }
+
+

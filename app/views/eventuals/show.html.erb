@@ -1,28 +1,66 @@
-<p>
-  <b>Professor:</b>
-  <%=h @eventual.professor %>
-</p>
-
-<p>
-  <b>Disponibilidade:</b>
-  <%=h @eventual.disponibilidade %>
-</p>
-
-<p>
-  <b>Horario:</b>
-  <%=h @eventual.horario %>
-</p>
-
-<p>
-  <b>Ano letivo:</b>
-  <%=h @eventual.ano_letivo %>
-</p>
-
-<p>
-  <b>Obs:</b>
-  <%=h @eventual.obs %>
-</p>
+<div id="interno3">
+<% title "PROFESSOR" %>
+<div class ="tabs">
 
 
-<%= link_to 'Edit', edit_eventual_path(@eventual) %> |
-<%= link_to 'Back', eventuals_path %>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> PROFESSOR</b></font></legend>
+             <table  width="100%"  align="center"  bgcolor="#F5F5F5" >
+               <tr>
+                 <td align="left" width="10%">  <b>Professor: </b></td>
+                 <td align="left" colspan="3"><%=h @eventual.professor.nome %></td>
+               </tr>
+               <tr>
+                 <td align="left" width="10%">  <b>Fone: </b></td>
+                 <td align="left" colspan="3"><%=h @eventual.professor.telefone %> - <%=h @eventual.professor.cel%> </td>
+               </tr>
+                <tr>
+                  <td align="left" width="10%"><b>Unidade: </b></td>
+                  <td align="left" colspan="3"><%=h @eventual.unidade.nome %></td>
+               </tr>
+                <tr>
+                  <td align="left" width="10%">  <b>Disponibilidade: </b></td>
+                  <td align="left" colspan="3"><%=h @eventual.disponibilidade %></td>
+                  <td align="left" width="10%">  <b>Período: </b></td>
+                  <td align="left"><%=h @eventual.periodo %></td>
+                </tr>
+                <tr>
+                  <td align="left" width="10%"><b>Contato: </b></td>
+                  <td align="left" colspan="3"><%=h @eventual.contato %></td>
+               </tr>
+
+                <tr>
+                   <td align="left" valign="top"><b>Observação:</b></td>
+                   <td align="left" colspan="5"><%=h @eventual.obs %></td>
+
+               </tr>
+           </table>
+     </fieldset>
+   </td>
+  </tr>
+ </table>
+
+    <table>
+         <tr>
+
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('supervisao')%>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@classe}, :method => "get", :title => "Editar"%></td>
+                 <td width="6%"align="left" ><%= button_to 'Excluir Classe', {:action => "destroy", :id =>@classe}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+
+            <%else%>
+                <td align="center"></td>
+             <%end%>
+           <td width="4%"align="left"><%= button_to 'Cadastrar Classe' ,new_class_path, :title => "Cadastar  " %></td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+    </table>
+
+
+</div>
+<br/>
+</div>
+
+
+

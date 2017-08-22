@@ -1,4 +1,8 @@
 class EventualsController < ApplicationController
+
+    before_filter :load_iniciais
+
+
   # GET /eventuals
   # GET /eventuals.xml
   def index
@@ -82,4 +86,12 @@ class EventualsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+    def load_iniciais
+        @unidades_infantil = Unidade.find(:all, :conditions =>  ["tipo_id = 2 OR tipo_id = 5 OR tipo_id = 8"], :order => 'nome ASC')
+        @eventuals = Eventual.find(:all,:select => "id", :conditions => ['ano_letivo=?', Time.now.year])
+        @professores= Professor.find_by_sql("SELECT id, nome FROM professors WHERE `id` NOT IN ( SELECT professor_id FROM eventuals )" )
+
+    end
+
 end

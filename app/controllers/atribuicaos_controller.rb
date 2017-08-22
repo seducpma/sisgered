@@ -255,7 +255,7 @@ def create_notas
       session[:ano_nota]= Time.now.year
        @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
        session[:aluno] =params[:aluno_aluno_id]
-       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno], session[:ano_nota] ])
+       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=? and unidade_id=?', session[:aluno], session[:ano_nota],current_user.unidade_id  ])
        @matriculas.each do |matricula|
          session[:classe]=matricula.classe_id
          session[:num]=matricula.classe_num
@@ -298,7 +298,7 @@ if params[:type_of].to_i == 1
        session[:aluno] = params[:aluno][:id]
        session[:ano_nota] = params[:ano_letivo1]
        @aluno = Aluno.find(:all,:conditions =>['id = ? ', session[:aluno]])
-       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],session[:ano_nota] ])
+       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=? and unidade_id=?', session[:aluno],session[:ano_nota],current_user.unidade_id  ])
 
        @matriculas.each do |matricula|
          session[:classe]=matricula.classe_id
@@ -379,7 +379,7 @@ if ( params[:disciplina].present?)
 
 def impressao_relatorio_aluno
        @aluno = Aluno.find(:all,:conditions =>['id = ? ', session[:aluno]])
-       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],session[:ano_nota] ])
+       @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=? and unidade_id=?', session[:aluno],session[:ano_nota],current_user.unidade_id ])
 
        @matriculas.each do |matricula|
          session[:classe]=matricula.classe_id

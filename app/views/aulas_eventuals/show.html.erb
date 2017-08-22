@@ -4,7 +4,7 @@
  <table bgcolor="#DCDCDC" width="100%">
    <tr bgcolor="#DCDCDC"  width="100%">
      <td>
-       <fieldset><legend><font  size=3><b> AULA EVENTUAL</b></font></legend>
+       <fieldset><legend><font  size=3><b> SUBSTITUIÇÃO</b></font></legend>
          <table width="100%">
            <tr bgcolor="#F5F5F5"  width="100%">
 
@@ -37,7 +37,7 @@
 
     <table>
          <tr>
-           <td width="4%"align="left"><%= button_to 'Aulas Eventuais' ,aulas_eventuals_path,:id =>@aulas_eventual, :method => "get", :title => "Aulas Eventuais  " %></td>
+           <td width="4%"align="left"><%= button_to 'Agenda Unidade' ,aulas_eventuals_path,:id =>@aulas_eventual, :method => "get", :title => "Aulas Eventuais  " %></td>
              <td width="4%"align="left"><%= button_to 'Cadastrar' ,new_aulas_eventual_path, :title => "Cadastar  " %></td>
             <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@aulas_eventual}, :method => "get", :title => "Editar"%></td>
@@ -58,5 +58,3 @@
 
 
 
-<%= link_to 'Edit', edit_aulas_eventual_path(@aulas_eventual) %> |
-<%= link_to 'Back', aulas_eventuals_path %>
