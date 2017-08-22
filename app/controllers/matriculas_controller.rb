@@ -75,9 +75,10 @@ class MatriculasController < ApplicationController
   def create
    @matricula_anterior = Matricula.new(params[:matricula])
    @matricula_anterior.aluno_id
-   w=params[:matricula][:classe_id]
+   params[:matricula][:classe_id]
    
    @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=?',  params[:matricula][:classe_id], Time.now.year, @matricula_anterior.aluno_id])
+
    @atribuicao= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', params[:matricula][:classe_id], Time.now.year])
      if (@matricula_anterior.empty?) or (session[:matricula_transferencia] == 1)
          if !@atribuicao.empty?
@@ -101,6 +102,9 @@ class MatriculasController < ApplicationController
                       session[:classe_id]= @matricula.classe_id
                       #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["atribuicaos.classe_id =? ",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
                        @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
+                             session[:classe_ant]= @matricula_anterior.classe_id
+                             session[:unidade_ant_id]= @matricula_anterior.unidade_id
+
                        if !@matricula_anterior.nil?
                            session[:status_anterior] =  @matricula_anterior.status
                        end
@@ -112,10 +116,10 @@ class MatriculasController < ApplicationController
                        end
                       respond_to do |format|
                         if @matricula.save
-                         @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
-                         @aluno[0].unidade_id =  current_user.unidade_id
+                          @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
+                          @aluno[0].unidade_id =  current_user.unidade_id
                           @aluno[0].aluno_status = nil
-                         @aluno[0].save
+                          @aluno[0].save
                          if !@matricula_anterior.nil?
 
                             if  @matricula.status == "*REMANEJADO"
@@ -127,7 +131,7 @@ class MatriculasController < ApplicationController
                             if  @matricula.status == "TRANSFERENCIA"
                                 @matricula_anterior.status = "TRANSFERIDO"
                                 @matricula_anterior.data_transferencia= @matricula.data_transferencia
-                                @matricula_anterior.transf_unidade_id = @matricula.classe_id
+                                @matricula_anterior.transf_unidade_id = @matricula.unidade_id
                                 @matricula_anterior.save
                             end
                          end
@@ -181,35 +185,29 @@ class MatriculasController < ApplicationController
                           end
                        end
                        if (@matricula.status == '*REMANEJADO') or (@matricula.status == 'TRANSFERENCIA')
-
-
-
-                          @classe_ant= Classe.find(:all, :joins => "INNER JOIN  matriculas  ON  classes.id=matriculas.classe_id  INNER JOIN alunos ON alunos.id=matriculas.aluno_id", :conditions =>['aluno_id = ?',@matricula.aluno_id])
-                          for classe_ant in @classe_ant
-                             session[:classe_ant]= classe_ant.id
-                             session[:unidade_ant_id]= classe_ant.unidade_id
-
-                          end
                           @atribuicaos_ant = Atribuicao.find(:all,:conditions =>['classe_id = ?', session[:classe_ant]])
+                          @matricula.aluno_id
+                          @matricula.classe_id
                           @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id = ?', @matricula.classe_id])
                           @notas_ant = Nota.find(:all, :conditions => ['aluno_id = ? AND unidade_id =? AND ano_letivo=?', @matricula.aluno_id, session[:unidade_ant_id], Time.now.year])
-
                                if (!@matricula.classe_id.nil?) then
                                 if (current_user.unidade_id > 41  and  current_user.unidade_id < 52) or (current_user.unidade_id == 62)
                                    for atri in @atribuicao
+
                                      @nota = Nota.new(params[:nota])
-                                     @nota.aluno_id = @matricula.aluno_id
-                                     @nota.atribuicao_id= atri.id
-                                     @nota.matricula_id= @matricula.id
-                                     @nota.professor_id= atri.professor_id
+                                     w1=@nota.aluno_id = @matricula.aluno_id
+                                     w2=@nota.atribuicao_id= atri.id
+                                     w3=@nota.matricula_id= @matricula.id
+                                     w4=@nota.professor_id= atri.professor_id
                                      @nota.disciplina_id = atri.disciplina_id
                                      @nota.unidade_id=  @matricula.unidade_id
                                      @nota.disciplina_id= atri.disciplina_id
                                      @nota.ano_letivo =  Time.now.year
+                                     t=0
                                       for notas_ant in @notas_ant
                                         if atri.disciplina_id == notas_ant.disciplina_id
                                           if !notas_ant.nota1.nil?
-                                             @nota.nota1 = notas_ant.nota1
+                                             w5=@nota.nota1 = notas_ant.nota1
                                           else
                                             @nota.nota1 = nil
                                           end
