@@ -4,7 +4,7 @@
 <% title "ALUNOS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>AGENDA DE SUBTITUIÇÕERS AULAS - POR PROFESSOR</strong></font><br/>
+     <font size="3"><strong>AGENDA DE SUBTITUIÇÕERS - POR PROFESSOR</strong></font><br/>
  </div>
     <table  width="100%"  bgcolor="#DCDCDC">
       <tr >
@@ -19,7 +19,7 @@
 
 
                  <font size="3"> Professor:</font>
-                 <%= f.collection_select :eventual_id_equals, @professores_eventual_infantil, :id, :nome, :include_blank => true%>
+                 <%= f.collection_select :eventual_id_equals, @professores_eventual_infantil2, :id, :nome, :include_blank => true%>
                  <%= f.submit "Visualizar", :class => "btn_filtrar" %>
               <% end %>
 
@@ -30,16 +30,16 @@
                 <%= render :partial => "calendar2" %>
                <%t=0%>
                 <%if !@aulas_eventual.present? %>
-               <%t=0%>
+
                      <%if (params[:search]).present? %>
-                          <%= button_to'Cadastrar Aula Eventual',:action => "new", :unidade_id => params[:search][:unidade_id_equals] %>
+                          <%= button_to'Cadastrar Aula Substituição',:action => "new", :unidade_id => params[:search][:unidade_id_equals] %>
                       <%end%>
                  <%end%>
 
           </td>
        </tr>
               <tr>
-                <td align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                <td width="90%" align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
                 <td width="2%" align="right" ><%= button_to("Imprimir", onclick="javascript:window.print()", :title => "Imprimir") %></td>
 
                </tr>

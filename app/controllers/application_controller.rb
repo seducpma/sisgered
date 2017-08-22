@@ -242,7 +242,9 @@ CURRICULO={ 'B '=>'BASICO',
             'D'=> 'DIVERSIFICADO'
           }
 
-CATEGORIA={ 'PA '=>'PA',
+CATEGORIA={ 'ADI'=> 'ADI',
+            'PA '=>'PA',
+            'PC '=>'PC',
             'PB-I'=> 'PB-I'
           }
 

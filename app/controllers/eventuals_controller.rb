@@ -45,7 +45,7 @@ class EventualsController < ApplicationController
   # POST /eventuals.xml
   def create
     @eventual = Eventual.new(params[:eventual])
-
+    @eventual.ano_letivo = Time.now.year
     respond_to do |format|
       if @eventual.save
         flash[:notice] = 'Eventual was successfully created.'

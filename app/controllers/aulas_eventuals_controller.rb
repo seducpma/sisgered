@@ -108,6 +108,7 @@ class AulasEventualsController < ApplicationController
 
 def data_eventual
     session[:aulas_eventual_data]=  params[:aulas_eventual_data]
+
 end
 
 def periodo_prof_eventual
@@ -115,16 +116,17 @@ def periodo_prof_eventual
 end
 
 def caregoria_prof_eventual
-    session[:caregoria_prof_eventual]=  params[:categoria]
+     session[:caregoria_prof_eventual]=  params[:categoria]
 end
 
 
     def nome_prof_eventual
         session[:aulas_eventual_unidade_id]=params[:aulas_eventual_unidade_id]
-        @professores = Eventual.find_by_sql("SELECT eventuals.id, professors.nome FROM eventuals INNER JOIN  professors  ON  professors.id = eventuals.professor_id WHERE eventuals.periodo = '"+session[:periodo_prof_eventual]+"' AND eventuals.categoria = '"+session[:caregoria_prof_eventual]+"' AND eventuals.id NOT IN (SELECT aulas_eventuals.eventual_id FROM aulas_eventuals WHERE aulas_eventuals.ano_letivo ="+(Time.now.year).to_s+" AND data = '"+session[:aulas_eventual_data].to_s+"' AND aulas_eventuals.unidade_id = "+session[:aulas_eventual_unidade_id]+" )")
+        @professores = Eventual.find_by_sql("SELECT eventuals.id, professors.nome FROM eventuals INNER JOIN  professors  ON  professors.id = eventuals.professor_id INNER JOIN  unidades  ON  unidades.id = professors.unidade_id WHERE eventuals.periodo = '"+session[:periodo_prof_eventual]+"' AND eventuals.categoria = '"+session[:caregoria_prof_eventual]+"' AND eventuals.id NOT IN (SELECT aulas_eventuals.eventual_id FROM aulas_eventuals WHERE aulas_eventuals.ano_letivo ="+(Time.now.year).to_s+" AND data = '"+session[:aulas_eventual_data].to_s+"' AND aulas_eventuals.unidade_id = "+session[:aulas_eventual_unidade_id]+" order by unidades.regiao_id ASC )")
         @classes = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  session[:aulas_eventual_unidade_id], Time.now.year], :order => 'classe_classe')
         @interno= Eventual.find_by_sql("SELECT aulas_eventuals.eventual_id FROM aulas_eventuals WHERE aulas_eventuals.ano_letivo ="+(Time.now.year).to_s+" AND data = '"+session[:aulas_eventual_data].to_s+"' AND aulas_eventuals.unidade_id = "+session[:aulas_eventual_unidade_id]+" " )
-        if @professores.present? and @interno.present?
+
+        if @professores.present?
            render :partial => 'selecao_professor'
         else
            render :partial => 'aviso'
@@ -152,9 +154,15 @@ end
     end
 
     def load_iniciais
-        @unidades_infantil = Unidade.find(:all, :conditions =>  ["tipo_id = 2 OR tipo_id = 5 OR tipo_id = 8"], :order => 'nome ASC')
-        @professores_eventual_infantil = Eventual.find(:all, :select => 'professors.id, professors.nome, eventuals.id', :joins => :professor,  :conditions=> [ 'eventuals.ano_letivo =?',Time.now.year ] ,:order => 'professors.nome ASC')
-
+         if current_user.has_role?('admin')
+            @unidades_infantil = Unidade.find(:all,  :select => 'nome, id',:conditions =>  ["tipo_id = 2 OR tipo_id = 5 OR tipo_id = 8"], :order => 'nome ASC')
+            @professores_eventual_infantil2 = Eventual.find(:all, :select => 'professors.id, professors.nome, eventuals.id', :joins => :professor,  :conditions=> [ 'eventuals.ano_letivo =?',Time.now.year ] ,:order => 'professors.nome ASC')
+         else
+            @unidades_infantil = Unidade.find(:all,  :select => 'nome, id', :conditions =>  ["id=?", current_user.unidade_id], :order => 'nome ASC')
+            @professores_eventual_infantil2 = Eventual.find(:all, :select => 'professors.id, professors.nome, eventuals.id', :joins => :professor,  :conditions=> [ 'eventuals.ano_letivo =? and eventuals.unidade_id=?',Time.now.year, current_user.unidade_id ] ,:order => 'professors.nome ASC')
+         end
+       @professores_eventual_infantil = Eventual.find(:all, :select => 'professors.id, professors.nome, eventuals.id', :joins => :professor,  :conditions=> [ 'eventuals.ano_letivo =?',Time.now.year ] ,:order => 'professors.nome ASC')
+        
     end
 
 
