@@ -339,13 +339,15 @@ def destroy_nota
             @alunos1 = Aluno.find(:all, :select => 'id, aluno_nome', :joins => ['matricula', 'classe'], :conditions => 'classes.classe_classe == 1' , :order => 'aluno_nome ASC' )
             #@alunos3 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
             @alunos_boletim = @alunos1
+
+
         else
             #@professors1 = Professor.find(:all, :conditions => ['id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
             @professors = Professor.find(:all, :conditions => 'desligado = 0', :order => 'nome ASC')
             @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54) AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
             #@alunos1 = Aluno.find(:all, :select => 'id, aluno_nome',:joins => ['matricula', 'classe'], :conditions => ['alunos.unidade_id =? AND matriculas.ano_letivo = ? AND classes.classe_classe =! "EJA""',current_user.unidade_id, Time.now.year],:order => 'aluno_nome ASC' )
-            @alunos1 = Aluno.find(:all, :select => 'distinct(alunos.id), alunos.aluno_nome',:joins => "inner join matriculas on alunos.id = matriculas.aluno_id inner join classes on classes.id = matriculas.classe_id", :conditions => ['alunos.unidade_id =? AND matriculas.ano_letivo = ? AND classes.classe_classe != "EJA"',current_user.unidade_id, Time.now.year],:order => 'aluno_nome ASC' )
-
+            #@alunos1 = Aluno.find(:all, :select => 'distinct(alunos.id), alunos.aluno_nome',:joins => "inner join matriculas on alunos.id = matriculas.aluno_id inner join classes on classes.id = matriculas.classe_id", :conditions => ['alunos.unidade_id =? AND matriculas.ano_letivo = ? AND classes.classe_classe != "EJA"',current_user.unidade_id, Time.now.year],:order => 'aluno_nome ASC' )
+            @alunos1=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')
             
 
 
