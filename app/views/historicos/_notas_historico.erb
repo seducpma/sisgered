@@ -31,10 +31,6 @@
             <td width ="5%" align="center" ><b> <%=  anoinicial+i %></b></td>
         <%end%>
     </tr>
-    
-
-
-
     <%session[:contnota]=0%>
     <%session[:cargah]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
     <%session[:escola]=['', '', '', '', '', '','', '', '']%>
@@ -71,7 +67,7 @@
                     </td>
                     <%session[:contnota]=session[:contnota]+1%>
                 <%else%>
-                    <td align="center">---</td>
+                    <td align="center">--- </td>
                 <%end%>
             <%end%>
         </tr>
