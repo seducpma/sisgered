@@ -27,7 +27,7 @@
                                                  :url  => { :action => 'data_eventual' }%>
 
                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Período: </b>
-                                 <%= f.select :periodo, AulasEventual::PERIODO, :include_blank => ' -- Selecionar -- ' %>
+                                 <%= f.select :periodo, (AulasEventual::PERIODO).sort, :include_blank => ' -- Selecionar -- ' %>
                                         <%= observe_field 'aulas_eventual_periodo',
                                                      :with   => :periodo,
                                                      :url  => { :action => 'periodo_prof_eventual' }
