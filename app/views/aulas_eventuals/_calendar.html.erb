@@ -1,4 +1,3 @@
-
 <table border="1" cellspacing="0" cellpadding="1" width="100%">
   <tr>
     <td><br/>
@@ -42,5 +41,17 @@
 
        </td>
      </tr>
+        <table align="right" >
+          <tr class ="invisible_to_print ">
+               <td align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+               <td width="2%" align="right" ><%= button_to("Imprimir", onclick="javascript:window.print()", :title => "Imprimir") %></td>
+                <%if (params[:search]).present? %>
+                    <% if current_user.has_role?('SEDUC') or current_user.has_role?('admin')%>
+                       <td width="2%" align="right"><%= button_to'Cadastrar Substituição',:action => "new", :unidade_id => params[:search][:unidade_id_equals],:target => '_blank' %></td>
+                    <%end%>
+                <%end%>
+           </tr>
+        </table>
+
   </table>
 
