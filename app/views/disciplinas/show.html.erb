@@ -85,7 +85,13 @@
        <tr bgcolor="#F5F5F5">
          <td width =" 12%"><b>Disciplina:</b></td>
          <td> <%= @nota[0].disciplina.disciplina %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-               <b>Ano Letivo:</b> <%= @nota[0].disciplina.ano_letivo %> </td>
+               <b>Tipo Curriculo:</b></font>
+                     <%if  @nota[0].disciplina.curriculo == 'B'%>
+                            BÁSICO
+                     <%else%>
+                         DIVERSIFICADO
+                     <%end%>
+         </td>
 
 
        </tr>
@@ -95,7 +101,9 @@
            <td width =" 12%"><b>Lançamentos:</b></td>
            <td colspan="3"><b>Nota:</b>&nbsp&nbsp<%= @nota[0].nota5%>
               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-             <b>Série:</b>&nbsp<%= @nota[0].classe %> º Ano
+             <b>Série:</b>&nbsp<%= @nota[0].classe %> º Ano &nbsp&nbsp&nbsp&nbsp
+             <b>Ano Letivo:</b> <%= @nota[0].disciplina.ano_letivo %>
+
          </td>
       </tr>
     </table>

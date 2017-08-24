@@ -74,8 +74,8 @@ t=0
     def show
 
         @disciplina = Disciplina.find(params[:id])
-        @nota = Nota.find(:all, :conditions => ['disciplina_id = ?', session[:nota_id]])
-
+        @nota = Nota.find(:all, :conditions => ['disciplina_id = ?',@disciplina.id])
+        session[:aluno_id]=  @nota[0].aluno_id
         respond_to do |format|
             format.html # show.html.erb
             format.xml  { render :xml => @disciplina }
