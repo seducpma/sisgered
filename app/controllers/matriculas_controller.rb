@@ -102,8 +102,10 @@ class MatriculasController < ApplicationController
                       session[:classe_id]= @matricula.classe_id
                       #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["atribuicaos.classe_id =? ",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
                        @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
+                         if @matricula_anterior.present?
                              session[:classe_ant]= @matricula_anterior.classe_id
                              session[:unidade_ant_id]= @matricula_anterior.unidade_id
+                         end
 
                        if !@matricula_anterior.nil?
                            session[:status_anterior] =  @matricula_anterior.status
