@@ -13,7 +13,7 @@ class AulasEventualsController < ApplicationController
             @aulas_eventual = @search.all
             @aulas_eventual_unidade = @search.first
         end
-
+       session[:search]=params[:search]
     end
 
 
@@ -148,12 +148,12 @@ end
          @date = params[:month] ? Date.parse(params[:month]) : Date.today
 
         @search = AulasEventual.search(session[:search])
-        if !(params[:search].blank?)
+        if !(session[:search].blank?)
             @aulas_eventual = @search.all
             @aulas_eventual_unidade = @search.first
         end
 
-        
+       render :layout => "impressao"
         #@aulas_eventual = AulasEventual.find(:all, :conditions=> [ 'ano_letivo =?',Time.now.year ])
     end
 
@@ -164,6 +164,7 @@ end
          else
             @unidades_infantil = Unidade.find(:all,  :select => 'nome, id', :conditions =>  ["id=?", current_user.unidade_id], :order => 'nome ASC')
             @professores_eventual_infantil2 = Eventual.find(:all, :select => 'professors.id, professors.nome, eventuals.id', :joins => :professor,  :conditions=> [ 'eventuals.ano_letivo =? and eventuals.unidade_id=?',Time.now.year, current_user.unidade_id ] ,:order => 'professors.nome ASC')
+            t=0
          end
        @professores_eventual_infantil = Eventual.find(:all, :select => 'professors.id, professors.nome, eventuals.id', :joins => :professor,  :conditions=> [ 'eventuals.ano_letivo =?',Time.now.year ] ,:order => 'professors.nome ASC')
         

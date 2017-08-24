@@ -9,10 +9,11 @@
   </tr>
 </table>
 
-<table border="1" cellspacing="0" cellpadding="1" width="100%">
+<table border="1" cellspacing="0" cellpadding="1" width="100%"  >
    <tr  class ="invisible_to_print ">
      <td colspan="4"align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
   </tr>
+
 
   <tr>
     <td><br/>
@@ -34,7 +35,7 @@
                     <%= date.day %>
                     <ul>
                       <% for data in articles %>
-                        <li><b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 28,:omission => "...")), data%></font></b><br/>
+                        <li><b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
                             Classe: <%= link_to h(data.classe.classe_classe), data%>
                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
                                 &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
@@ -54,6 +55,7 @@
 
        </td>
      </tr>
+
   </table>
 
 

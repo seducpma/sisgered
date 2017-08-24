@@ -1,6 +1,6 @@
 class AlunosController < ApplicationController
 
- # before_filter :load_alunos
+ # before_filter :iniciais
 
   def index
     @alunos = Aluno.all
@@ -325,7 +325,14 @@ def consulta_cadastro_aluno
             end
 end
 
+#def iniciais
+ #   @matriculas = Matricula.find(:all,:select => "id, aluno_id", :conditions => ['ano_letivo=?', Time.now.year])
 
+  #  @alunos1 =  Aluno.find(:all,  :conditions => ['(aluno_status != "EGRESSO" or aluno_status is not null) and (alunos.id NOT IN (?))', @matriculas ],:order => "aluno_nome")
+                                    
+#t=0
+
+#end
   
 
 

@@ -7,7 +7,8 @@
                   <%if !@aulas_eventual[0].present? %>
                        <h2><center> <b>NÃO existe nada cadastado para esta unidade</b></center> </h2>
                   <%else%>
-                        <h2><center> <b>AGENDA - <%=  @aulas_eventual[0].unidade.tipo.nome%> <%=  @aulas_eventual[0].unidade.nome%> </b></center> </h>
+                        <h2><center> <b>AGENDA - <%=  @aulas_eventual[0].unidade.tipo.nome%> <%=  @aulas_eventual[0].unidade.nome%> </b></center> </h2>
+                        <% categoria= @aulas_eventual[0].categoria  %>
                   <%end%>
                 <h2 id="month">
                   <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d"), :search => params[:search] %>
@@ -20,7 +21,8 @@
                     <%= date.day %>
                     <ul>
                       <% for data in articles %>
-                        <li><b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 28,:omission => "...")), data%></font></b><br/>
+                        <li><b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
+                            (Professor(a) <%= categoria %>)
                             Classe: <%= link_to h(data.classe.classe_classe), data%>
                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
                                 &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>

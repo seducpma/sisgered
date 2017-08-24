@@ -165,7 +165,7 @@ display: none;
                 </ul>
               </li>
 
-            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_infantil'))%>
+            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
               <li><a class="item-primary" href="#;">AGENDA</a>
                  <ul style="width:108px;">
                      <li><a class="item-primary" href="#;">Substituições</a>
