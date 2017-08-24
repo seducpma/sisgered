@@ -439,8 +439,8 @@ end
          @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
        end
        @alunos3 = Aluno.find(:all, :select =>"alunos.id, alunos.aluno_nome", :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND  matriculas.ano_letivo =?', current_user.unidade_id, Time.now.year],:order => 'alunos.aluno_nome')
-
-       if current_user.unidade_id == 53 or current_user.unidade_id == 52
+       
+        if current_user.unidade_id == 53 or current_user.unidade_id == 52
             @classe = Classe.find(:all, :conditions => ['classe_ano_letivo = ? ',  Time.now.year  ], :order => 'classe_classe ASC')
 
         else
