@@ -38,11 +38,7 @@
 
     <%while session[:contnota] < session[:contnotaBTot] %>
         <tr>
-            <td align="left"><%= @notasB[session[:contnota]].disciplina.disciplina %>
-            <% if  @notasB[session[:contnota]].disciplina.id == 1 %>
-                monstra_escola=1
-            <%end%>
-            </td>
+            <td align="left"><%= @notasB[session[:contnota]].disciplina.disciplina %> </td>
             <%for i in 0..8%>
                 <%if session[:contnota]>(session[:contnotaBTot]-1)%>
                     <%acertoHTML=1%>
@@ -183,12 +179,8 @@
             <tr bgcolor="#F5F5F5">
             <td align="center"><%= i + 1%>º Ano </td>
             <td width ="5%" align="center" > <%=  anoinicial+i %></td>
-            <td> <%if %>
-                   <%= session[:escola][i] %>
-            </td>
-            <td>
-                   <%= session[:cidade][i] %>
-            </td>
+            <td> <%= session[:escola][i] %> </td>
+            <td> <%= session[:cidade][i] %> </td>
         </tr>
     <%end%>
 </table>
