@@ -6,7 +6,7 @@ class DisciplinasController < ApplicationController
 
 
     def create_discipina_nota
-t=0
+
         @disciplina = Disciplina.new(params[:disciplina])
         @disciplina.disciplina=params[:NovaDisciplina]
         @disciplina.curriculo=params[:NovoCurriculo]

@@ -47,7 +47,17 @@ class MatriculasController < ApplicationController
     end
 
   end
-
+  def ja_cadastrado
+      session[:id] = params[:aluno_id]
+    #@verifica = Matricula.find_by_idnome(session[:nome])
+    @verifica = Matricula.find(params[:aluno_id])
+     if @verifica then
+       render :update do |page|
+          page.replace_html 'jacadastrado1', :text => 'MATRICULA JÁ CADASTRADA'
+          page.replace_html 'jacadastrado2', :text => 'MATRICULA JÁ CADASTRADA'
+        end
+    end
+  end
 
 
   def remanejamento

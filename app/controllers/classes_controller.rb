@@ -44,17 +44,33 @@ class ClassesController < ApplicationController
 
   def create
     @classe = Classe.new(params[:classe])
-    respond_to do |format|
-      if @classe.save
-        flash[:notice] = 'SALVO COM SUCESSO!'
-        format.html { redirect_to(@classe) }
-        format.xml  { render :xml => @classe, :status => :created, :location => @classs }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @classe.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+    classe= params[:numero]+" "+params[:letra]
+    @verifica = Classe.find(:all, :conditions => ['classe_classe =? AND classe_ano_letivo=? AND unidade_id=?',classe, Time.now.year,current_user.unidade_id])
+
+     if @verifica.present? then
+         flash[:notice] = 'CLASSE JÁ CADASTRADA!'
+       respond_to do |format|
+          format.html { render :action => "new" }
+
+       end
+        
+     else
+         @classe.classe_classe= classe
+
+            respond_to do |format|
+              if @classe.save
+                flash[:notice] = 'SALVO COM SUCESSO!'
+                format.html { redirect_to(@classe) }
+                format.xml  { render :xml => @classe, :status => :created, :location => @classs }
+              else
+                format.html { render :action => "new" }
+                format.xml  { render :xml => @classe.errors, :status => :unprocessable_entity }
+              end
+            end
+        end
+     end
+
+  
 
   def update
     @alunosA = Aluno.find(:all,:joins => "INNER JOIN  matriculas  ON  alunos.id=matriculas.aluno_id  INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])
@@ -311,16 +327,26 @@ def nucleo_basico
                 if @acerto.save
                   flash[:notice] = 'NOTAS ACERTADAS COM SUCESSO!'
                 end
-
            end
-    
-    
-    
        end
-
-
-
 end
+
+  def ja_cadastrados
+
+t=0
+       #params[:NovaNota]
+      numero = params[:numero]
+      letra = params[:letra]
+t=0
+    @verifica = Classe.find(:all, :conditions => ['classe_classe =? AND classe_ano_letivo=?',params[:classe_classe_classe], Time.now.year])
+
+     if !@verifica.nil? then
+       render :update do |page|
+          page.replace_html 'jacadastrado1', :text => 'CLASSE JÁ CADASTRADA'
+          page.replace_html 'jacadastrado2', :text => 'CLASSE JÁ CADASTRADA'
+        end
+    end
+  end
 
 
  def destroy_professor
