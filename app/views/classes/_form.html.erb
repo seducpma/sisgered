@@ -33,14 +33,15 @@
            <td ><b>Classe: </b><div id='jacadastrado1'>
 
                   <% if current_user.unidade_id  %>
-                       <%  if ((current_user.unidade_id > 41  and  current_user.unidade_id < 52) or current_user.unidade_id == 62)%>
-                          <%= select_tag :numero, options_for_select([ "  ", "NI","NII","BI","BII", "BIII", "MI","MII","M7","8","9", "EJA" ]) %> &nbsp
+                       <%  if (current_user.unidade.tipo_id == 2 or current_user.unidade.tipo_id == 5 or current_user.unidade.tipo_id == 8)%>
+                          <%= select_tag :numero, options_for_select([ "  ", "NI","NII","BI","BII", "BIII", "MI","MII","MS" ]) %> &nbsp
                           <%= select_tag :letra, options_for_select([ "  ", "A", "B", "C", "D", "E",]) %>
 
                        <%else%>
                           <%= select_tag :numero, options_for_select([ "  ", "1","2","3","4","5","6","7","8","9", "EJA" ]) %> &nbsp
                           <%= select_tag :letra, options_for_select([ "  ", "A", "B", "C", "D", "E",]) %>
                        <%end%>
+                  <%end%>
                </div>
            </td>
            <td > <b>Período: </b><%= f.select :horario, Classe::HORARIO %></td>

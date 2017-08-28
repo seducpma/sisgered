@@ -1,6 +1,4 @@
-<table border="1" cellspacing="0" cellpadding="1" width="100%">
-  <tr>
-    <td><br/>
+<br/>
             <% if @aulas_eventual.present? %>
               <div id="calendar">
                   <%if !@aulas_eventual[0].present? %>
@@ -10,9 +8,9 @@
                         <% categoria= @aulas_eventual[0].categoria  %>
                   <%end%>
                 <h2 id="month">
-                  <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d"), :search => params[:search] %>
-                  <%=h @date.strftime("%B %Y") %>
-                  <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d"), :search => params[:search] %>
+                    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d"), :search => params[:search] %>
+                    <%=h @date.strftime("%B %Y") %>
+                    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d"), :search => params[:search] %>
                 </h2>
                 <% calendar_for @aulas_eventual, :year => @date.year, :month => @date.month, :search => params[:search] do |calendar| %>
                <%= calendar.head('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado') %>
@@ -24,10 +22,10 @@
                             (Professor(a) <%= categoria %>)
                             Classe: <%= link_to h(data.classe.classe_classe), data%>
                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
-                                &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
+                            <div  class ="invisible_to_print ">&nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %></div>
                             <%end%>
                             <br/>
-                            <b>----------------------------</b>
+                            <b>----------------------</b>
                         </li>
 
                       <% end %>
@@ -39,8 +37,7 @@
             <br/>
 
 
-       </td>
-     </tr>
+
         <table align="right" >
           <tr class ="invisible_to_print ">
                <td align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>

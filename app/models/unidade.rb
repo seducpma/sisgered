@@ -10,4 +10,5 @@ class Unidade < ActiveRecord::Base
   has_many :classes
   has_many :transferencias
   has_many :notas
+  has_many :users
 end

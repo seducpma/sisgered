@@ -9,6 +9,7 @@
     
     <%= stylesheet_link_tag 'application','calendar',"style",'menu',"colorbox", :cache => true%>
     <%= stylesheet_link_tag 'impressao', :media => "print" %>
+    <%= stylesheet_link_tag 'calendar_impressao', :media => "print" %>
     <%= stylesheet_link_tag '/javascripts/plugins/flexigrid/css/flexigrid.css' %>
     <%= stylesheet_link_tag 'colorbox','geral',"jquery.tooltip.css","pepper-grinder/jquery-ui-1.8.16.custom","jquery.multiselect","ui.selectmenu" %>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
@@ -19,7 +20,7 @@
   </head>
 
 <body>
-<style media="print">
+<style media="print" class ="invisible_to_print ">
 .invisible_to_print {
 display: none;
 }
@@ -27,8 +28,8 @@ display: none;
  <div id="contents">
   <div id="informacao">
     <% unless informativos_corrente.empty? %>
-     <div id="announcement">
-      <table class="tabelas">
+     <div id="announcement" class ="invisible_to_print ">
+      <table class="tabelas" >
           <tr>
                <td>
                 <p><h2 align="center"><u>Quadro de Avisos</u></h2></p>
@@ -49,7 +50,7 @@ display: none;
    
   </div>
   <%end%>
-  <div id="header">
+  <div id="header" class ="invisible_to_print ">
     <br/>
     <div id="topo"></div>
     <%if logged_in? then%>
@@ -151,13 +152,13 @@ display: none;
    <%end%>
  </div>
  
-   <div class="nav">
-   <div class="nav-container-outer">
-     <img src="/stylesheets/images/nav-bg-l.jpg" alt="" class="float-left" />
-     <img src="/stylesheets/images/nav-bg-r.jpg" alt="" class="float-right" />
-            <ul id="nav-container" class="nav-container">
+   <div class="nav" class ="invisible_to_print ">
+   <div class="nav-container-outer" class ="invisible_to_print ">
+     <img src="/stylesheets/images/nav-bg-l.jpg" alt="" class="float-left"  class ="invisible_to_print "/>
+     <img src="/stylesheets/images/nav-bg-r.jpg" alt="" class="float-right"  class ="invisible_to_print " />
+            <ul id="nav-container" class="nav-container" class ="invisible_to_print ">
 
-              <li><a class="item-primary" href="#">SISGERED</a>
+              <li class ="invisible_to_print" ><a class="item-primary" href="#">SISGERED</a>
                 <ul style="width:108px;">
                   <li><%= link_to 'Inicio', root_path %></li>
                   <li><%= link_to 'Manual on-line', href= "https://docs.google.com/document/d/1KORwNkxV7ogNpc7EUyMxQHA4MMSSju_eOouI5cNABFE/edit?usp=sharing", :target => '_blank' %></li>
@@ -166,7 +167,7 @@ display: none;
               </li>
 
             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-              <li><a class="item-primary" href="#;">AGENDA</a>
+              <li  class ="invisible_to_print "><a class="item-primary" href="#;">AGENDA</a>
                  <ul style="width:108px;">
                      <li><a class="item-primary" href="#;">Substituições</a>
                          <ul>
@@ -190,9 +191,9 @@ display: none;
 
 
 
-              <li><span class="divider divider-vert" ></span></li>
+              <li  class ="invisible_to_print "><span class="divider divider-vert" ></span></li>
               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil') or current_user.has_role?('direcao_fundamental')  )%>
-              <li><a class="item-primary" href="#;">CADASTRAR</a>
+              <li  class ="invisible_to_print "><a class="item-primary" href="#;">CADASTRAR</a>
                  <ul style="width:108px;">
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil'))%>
                          <li><a class="item-primary" href="#;">Aluno</a>
@@ -260,7 +261,7 @@ display: none;
                  </ul>
               </li>
      <%end%>
-              <li><a class="item-primary" href="#;">CONSULTAR</a>
+              <li  class ="invisible_to_print "><a class="item-primary" href="#;">CONSULTAR</a>
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil'))%>
                  <ul style="width:108px;">
                    <li><a class="item-primary" href="#;">Aluno</a>
@@ -307,10 +308,10 @@ display: none;
                   </ul>
                <%end%>
               </li>
-              <li><span class="divider divider-vert" ></span></li>
+              <li  class ="invisible_to_print "><span class="divider divider-vert" ></span></li>
 
               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
-                               <li><a class="item-primary" href="#;">EDITAR</a>
+               <li  class ="invisible_to_print "><a class="item-primary" href="#;">EDITAR</a>
                 <ul style="width:108px;">
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
@@ -335,7 +336,7 @@ display: none;
               </li>
              <%end%>
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil')  )%>
-                 <li><a class="item-primary" href="#;">DOCUMENTOS</a>
+                 <li  class ="invisible_to_print "><a class="item-primary" href="#;">DOCUMENTOS</a>
                    <ul style="width:108px;">
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                         <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
@@ -381,10 +382,10 @@ display: none;
 
          
            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo'))%>
-            <li><span class="divider divider-vert" ></span></li>
+            <li  class ="invisible_to_print "><span class="divider divider-vert" ></span></li>
 
               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo'))%>
-                <li><a class="item-primary" href="#;">LANÇAMENTOS</a>
+                <li  class ="invisible_to_print "><a class="item-primary" href="#;">LANÇAMENTOS</a>
                 <ul style="width:108px;">
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                      <li><%= link_to "Alterações",lancamentos_notas_notas_path %></li>
@@ -413,12 +414,12 @@ display: none;
     
 
 
-              <li><span class="divider divider-vert" ></span></li>
+
 <!--=========================================== NOVO MENU==============-->
 
               <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('direcao_infantil') %>
-              <li><span class="divider divider-vert" ></span></li>
-              <li><a class="item-primary" href="#;">GERENCIAR</a>
+              <li class ="invisible_to_print "><span class="divider divider-vert" ></span></li>
+              <li class ="invisible_to_print "><a class="item-primary" href="#;">GERENCIAR</a>
                  <ul style="width:108px;">
                      <li><%= link_to 'Usuários', roles_users_path %></li>
                      <% if current_user.has_role?('admin') %>

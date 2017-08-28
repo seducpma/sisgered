@@ -47,6 +47,7 @@ class AlunosController < ApplicationController
        respond_to do |format|
          format.html { render :action => "new" }
          flash[:notice1] = "ALUNO(A) JÁ CADASTRADO(A)"
+         
     end
     else
     respond_to do |format|
@@ -100,7 +101,7 @@ end
 
   def mesmo_nome
     session[:nome] = params[:aluno_aluno_nome]
-    t=session[:nome]
+    t=session[:nascimento]
     @verifica = Aluno.find_by_aluno_nome(session[:nome])
     if @verifica then
       render :update do |page|

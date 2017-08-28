@@ -44,8 +44,8 @@ class ClassesController < ApplicationController
 
   def create
     @classe = Classe.new(params[:classe])
-    classe= params[:numero]+" "+params[:letra]
-    @verifica = Classe.find(:all, :conditions => ['classe_classe =? AND classe_ano_letivo=? AND unidade_id=?',classe, Time.now.year,current_user.unidade_id])
+    session[:classe]= params[:numero]+" "+params[:letra]
+    @verifica = Classe.find(:all,  :select => 'id', :conditions => ['classe_classe =? AND classe_ano_letivo=? AND unidade_id=?',session[:classe], Time.now.year,current_user.unidade_id])
 
      if @verifica.present? then
          flash[:notice] = 'CLASSE JÁ CADASTRADA!'
@@ -55,7 +55,7 @@ class ClassesController < ApplicationController
        end
         
      else
-         @classe.classe_classe= classe
+         @classe.classe_classe=  session[:classe]
 
             respond_to do |format|
               if @classe.save

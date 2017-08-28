@@ -193,8 +193,9 @@ def destroy_nota
             
             
             @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-            
+            ano=@ano_inicial.ano_letivo
             @ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
+            t=0
         end
 
     end

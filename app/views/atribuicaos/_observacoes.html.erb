@@ -1,7 +1,7 @@
 
    <% c=0 %>
 
-<% @historico_aluno .observacao_historicos.each do |obs|%>
+<% @historico_aluno.each do |obs|%>
       <b><%= c=c+1%>.</b> <%="#{obs.observacao}" %>  - 
       <b>Data: </b> <%  if obs.data.nil?  %>
                         
