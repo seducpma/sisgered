@@ -173,12 +173,14 @@ display: none;
                          <ul>
                             <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
                             <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
-                            <li><a class="item-primary" href="#;">Professores</a>
-                                 <ul>
-                                    <li><%= link_to "Cadastrar",new_eventual_path %></li>
-                                    <li><%= link_to "Consulta",aulas_eventuals2_path %></li>
-                                 </ul>
-                             </li>
+                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
+                                    <li><a class="item-primary" href="#;">Professores</a>
+                                         <ul>
+                                            <li><%= link_to "Cadastrar",new_eventual_path %></li>
+                                            <li><%= link_to "Consulta",aulas_eventuals2_path %></li>
+                                         </ul>
+                                     </li>
+                            <%end%>
                          </ul>
                      </li>
 

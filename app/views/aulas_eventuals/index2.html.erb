@@ -3,17 +3,12 @@
     <div id="interno2">
 <% title "ALUNOS".singularize %>
 <div class="tabs">
- <div id="caixa_titulo">
+ <div id="caixa_titulo"  class ="invisible_to_print ">
      <font size="3"><strong>AGENDA DE SUBTITUIÇÕERS - POR PROFESSOR</strong></font><br/>
  </div>
-    <table  width="100%"  bgcolor="#DCDCDC">
-      <tr >
-          <%if @reservar_salas.present? %>
-          <td>
-              
-          </td>
-          <%end%>
-          <td colspan="2" width="95%" align="right ">
+    <table width="100%"  bgcolor="#DCDCDC"  style= "border-color: white" >
+      <tr  class ="invisible_to_print ">
+          <th colspan="2" width="95%" align="right ">
 
                <% form_for @search ,:url => { :action => 'index2' } do |f|%>
 
@@ -23,27 +18,29 @@
                  <%= f.submit "Visualizar", :class => "btn_filtrar" %>
               <% end %>
 
-         </td>
+         </th>
        </tr>
        <tr bgcolor="#F5F5F5">
-           <td colspan="2" align="right">
+           <th colspan="2" align="right">
                 <%= render :partial => "calendar2" %>
                <%t=0%>
-                <%if !@aulas_eventual.present? %>
-
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_infantil'))%>
+                   <%if !@aulas_eventual.present? %>
                      <%if (params[:search]).present? %>
                           <%= button_to'Cadastrar Aula Substituição',:action => "new", :unidade_id => params[:search][:unidade_id_equals] %>
                       <%end%>
+                   <%end%>
                  <%end%>
-
-          </td>
+          </th>
        </tr>
-              <tr>
+       <div class ="invisible_to_print ">
+              <tr class ="invisible_to_print ">
                 <td width="90%" align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
                 <td width="2%" align="right" ><%= button_to("Imprimir", onclick="javascript:window.print()", :title => "Imprimir") %></td>
 
                </tr>
-            </table>
+       </div>
+    </table>
 
 </div>
 <br/>

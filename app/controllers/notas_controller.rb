@@ -313,7 +313,7 @@ class NotasController < ApplicationController
     end
 
     def atribuicao_lancamentos_notas
-        render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
+        render :partial => 'notas_lancamentos', :layout => "layouts/application"
     end
 
 
