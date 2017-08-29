@@ -90,6 +90,7 @@
             <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
         <%else%>
             <% classe= @ano_inicial.classe %>
+
         <%end%>
         <% anoinicial = ano.to_i - classe +1  %>
         <tr style="line-height: 2px; border-color: black ">
@@ -127,9 +128,6 @@
                                      <%session[:escola][i]= @notasB[acertoHTML].escola  %>
                                      <%session[:cidade][i]= @notasB[acertoHTML].cidade  %>
                                <%end%>
-                        <%end%>
-                        <%if @notasB[acertoHTML].matricula_id.nil?%>
-                            &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasB[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
                         <%end%>
                     </th>
                     <%session[:contnota]=session[:contnota]+1%>
@@ -199,9 +197,7 @@
                                 <%= @notasD[acertoHTML].nota5%>
                                 <%session[:cargah][i]=1%>
                             <%end%>
-                            <%if @notasD[acertoHTML].matricula_id.nil?%>
-                                &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasD[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
-                            <%end%>
+
                         </th>
                         <%session[:contnota]=session[:contnota]+1%>
                     <%else%>
@@ -237,17 +233,16 @@
         </tr>
 
 
+    <%for i in 0..8 %>
+         <tr  style="line-height: 6px; border-color: black">
+            <td align="center"style="font-size: 8px; border-color: black"><%= i + 1%>º Ano </td>
+            <td width ="5%" align="center"style="font-size: 8px; border-color: black" > <%=  anoinicial+i %></td>
+            <td style="font-size: 8px; border-color: black"> <%= session[:escola][i] %> </td>
+            <td style="font-size: 8px; border-color: black"> <%= session[:cidade][i] %> </td>
+        </tr>
+    <%end%>
 
 
-
-        <%for i in 0..8 %>
-           <tr  style="line-height: 6px; border-color: black">
-              <td align="center" style="font-size: 8px; border-color: black"><%= i + 1%>º Ano </td>
-              <td width ="5%" align="center" style="font-size: 8px; border-color: black"> <%=  anoinicial+i %></td>
-              <td style="font-size: 8px; border-color: black"> <%= session[:escola][i] %> </td>
-              <td style="font-size: 8px; border-color: black"> <%= session[:cidade][i] %> </td>
-           </tr>
-        <%end%>
     </table>
 
 

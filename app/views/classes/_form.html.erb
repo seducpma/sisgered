@@ -16,19 +16,8 @@
                  </font> </b>
               </td>
         </tr>
-         <tr>
-         <tr>
-           <td ><b>Classe: </b><div id='jacadastrado1'><%= f.text_field :classe_classe, :size => 5 %>
-                     <%= observe_field :classe_classe_classe,
-                        :with => :classe_classe_classe,
-                        :url => { :action => 'ja_cadastrado' }%>               
-               </div>
-           </td>
-           <td > <b>Período: </b><%= f.select :horario, Classe::HORARIO %></td>
-           <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>"2017" %>
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size =>2 %></td>
 
-        </tr>
+
          <tr>
            <td ><b>Classe: </b><div id='jacadastrado1'>
 
@@ -43,6 +32,9 @@
                        <%end%>
                   <%end%>
                </div>
+                      <%= observe_field :classe_classe_classe,
+                        :with => :classe_classe_classe,
+                        :url => { :action => 'ja_cadastrado' }%>
            </td>
            <td > <b>Período: </b><%= f.select :horario, Classe::HORARIO %></td>
            <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>"2017" %>
