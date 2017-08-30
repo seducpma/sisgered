@@ -172,14 +172,27 @@ display: none;
                  <ul style="width:108px;">
 
 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
-                     <li><a class="item-primary" href="#;">Cadastrar</a>
+                     <li><a class="item-primary" href="#;">Cadastro</a>
                          <ul>
-                             <% if (current_user.has_role?('admin'))%>
-                                <li><%= link_to "Funcionarios",new_funcionario_path %></li>
-                              <%end%>
-                            <li><%= link_to "Professores",new_eventual_path %></li>
+                             <li><a class="item-primary" href="#;">Cadastrar</a>
+                                 <ul>
+                                     <% if (current_user.has_role?('admin'))%>
+                                        <li><%= link_to "Funcionarios",new_funcionario_path %></li>
+                                      <%end%>
+                                    <li><%= link_to "Professores",new_eventual_path %></li>
+                                 </ul>
+                             </li>
+                              <li><a class="item-primary" href="#;">Consultar</a>
+                                 <ul>
+                                     <% if (current_user.has_role?('admin'))%>
+                                        <li><%= link_to "Funcionarios",consulta_professor_eventual_path %></li>
+                                      <%end%>
+                                    <li><%= link_to "Professores",consulta_professor_eventual_path %></li>
+                                 </ul>
+                             </li>
                          </ul>
                      </li>
+
                      <% if (current_user.has_role?('admin') )%>
                      <li><a class="item-primary" href="#;">Faltas</a>
                          <ul>

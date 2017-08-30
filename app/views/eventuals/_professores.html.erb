@@ -1,0 +1,39 @@
+  <div class="tabs">
+    <table bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC" >
+            <th width="40">Matricula</th>
+            <th width="300">Nome</th>
+            <th width="200">Categoria</th>
+            <th width="200">Unidade</th>
+            <th colspan="3"></th>
+        </tr>
+           <%$t=0%>
+           <% @professors.each do |professor| %>
+           <%$t = $t+1%>
+             <tr bgcolor="#F5F5F5">
+                <td align="left"><%=h professor.professor.matricula%></td>
+                <td align="left"><%=h professor.professor.nome%></td>
+                <td align="left"><%=h professor.categoria%></td>
+                <td align="left"><%=h professor.unidade.nome%></td>
+                <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>professor},:method => "get", :title => "Visualizar") %></td>
+               <% if ((current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil')) )%>
+                    <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>professor}, :method => "get", :title => "Editar"%></td>
+                <%else%>
+                    <td align="center"> --- </td>
+                <%end%>
+
+              </tr>
+            <% end %>
+
+
+
+     </table>
+     <table bgcolor="#DCDCDC" width="100%">
+      <tr >
+        <td colspan="3" align="right"><b>TOTAL PROFESSORES: </b>
+            <font color ="red "size="2"><b><%=$t %></b></font> 
+          </td>
+      </tr>
+    </table>
+  </div>
+
