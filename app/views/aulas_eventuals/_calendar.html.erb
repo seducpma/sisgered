@@ -1,8 +1,4 @@
-
-
-<table width="100%" border="1">
-<tr>
-  <td colspan="3">
+<link rel="stylesheet" media="all" href="css/calendar.css" />
       <br/>
             <% if @aulas_eventual.present? %>
               <div id="calendar">
@@ -17,7 +13,8 @@
                     <%=h @date.strftime("%B %Y") %>
                     <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d"), :search => params[:search] %>
                 </h2>
-                <link rel="stylesheet" type="text/css" href="css/calendar.css" />
+
+
                 <% calendar_for @aulas_eventual, :year => @date.year, :month => @date.month, :search => params[:search] do |calendar| %>
                <%= calendar.head('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado') %>
                   <% calendar.day(:day_method => :data) do |date, articles| %>
@@ -25,7 +22,7 @@
                     <ul>
                       <% for data in articles %>
                         <li><b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
-                            (Professor(a) <%= categoria %>)
+                            (Prof.(a) <%= categoria %>)
                             Classe: <%= link_to h(data.classe.classe_classe), data%>
                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
                             <div  class ="invisible_to_print ">&nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %></div>
@@ -41,10 +38,6 @@
               </div>
             <%end%>
             <br/>
-    </td>
-    </tr>
-
-</table>
 
         <div class ="invisible_to_print ">
             <table cellspacing="0" cellpadding="0" align="right" class ="invisible_to_print " >
