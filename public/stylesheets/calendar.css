@@ -7,15 +7,15 @@
 #calendar th {
   font-family: "Lucida Grande",arial,helvetica,sans-serif;
   font-size: 10px;
-  padding: 1px;
+  padding: 6px;
   border: 1px solid #999;
-  vertical-align: top;
 }
 
 #calendar th {
   background: #DDD;
   color: #666;
   text-align: center;
+  vertical-align: top;
   width: 14.2857142857143%;
 }
 
