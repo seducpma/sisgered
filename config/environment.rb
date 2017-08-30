@@ -32,7 +32,7 @@ Rails::Initializer.run do |config|
   
   #config.gem 'i18n', :version => '0.6.1'
   config.gem 'paperclip', :version => '~>2.3'
-  config.gem 'rdoc'
+  #config.gem 'rdoc'
   config.gem "googlecharts", :lib => "gchart"
   config.gem 'whenever', :lib => false
   config.gem "searchlogic", :version => "2.4.14"
@@ -41,7 +41,7 @@ Rails::Initializer.run do |config|
   config.gem "will_paginate", :version => '2.3.15'
 
 
-  config.gem 'rdoc'
+  #config.gem 'rdoc'
   #config.gem 'brazilian-rails', :version =>'2.1.15'
   #config.gem 'time_diff', :version => '0.2.2'
 
