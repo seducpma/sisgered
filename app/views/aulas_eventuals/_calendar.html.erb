@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/calendar.css" />
+
 
 <table width="100%" border="1">
 <tr>
@@ -17,6 +17,7 @@
                     <%=h @date.strftime("%B %Y") %>
                     <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d"), :search => params[:search] %>
                 </h2>
+                <link rel="stylesheet" type="text/css" href="css/calendar.css" />
                 <% calendar_for @aulas_eventual, :year => @date.year, :month => @date.month, :search => params[:search] do |calendar| %>
                <%= calendar.head('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado') %>
                   <% calendar.day(:day_method => :data) do |date, articles| %>
