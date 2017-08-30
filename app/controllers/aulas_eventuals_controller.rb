@@ -158,7 +158,7 @@ end
     end
 
     def load_iniciais
-         if current_user.has_role?('admin')
+         if current_user.has_role?('admin') or current_user.has_role?('SEDUC')
             @unidades_infantil = Unidade.find(:all,  :select => 'nome, id',:conditions =>  ["tipo_id = 2 OR tipo_id = 5 OR tipo_id = 8"], :order => 'nome ASC')
             @professores_eventual_infantil2 = Eventual.find(:all, :select => 'professors.id, professors.nome, eventuals.id', :joins => :professor,  :conditions=> [ 'eventuals.ano_letivo =?',Time.now.year ] ,:order => 'professors.nome ASC')
          else

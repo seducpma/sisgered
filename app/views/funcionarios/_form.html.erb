@@ -1,0 +1,59 @@
+<% form_for @funcionario, :html => { :multipart => true } do |f| %>
+ <%= f.error_messages %>
+  <font  size="2">
+    <fieldset><legend><font  size=3>Dados Funcionario</font></legend>
+        <table width="100%" align="center"  bgcolor="#F5F5F5" >
+        <tr>
+            <td colspan="2" ><b>Matricula: </b><%= f.text_field :matricula, :size => 20 %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <b>Nome: </b><%= f.text_field :nome, :size => 90 %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><b> Endereço: </b><%= f.text_field :endereco,:size =>70 %>
+                          <b>Nº </b><%= f.text_field :num, :size => 4 %>&nbsp&nbsp&nbsp&nbsp
+                          <b>Complemento: </b><%= f.text_field :complemento, :size =>22 %></td>
+        </tr>
+        <tr>
+            <td colspan="2"><b>Cidade: </b><%= f.text_field :cidade, :size =>50 %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                              <b>Bairro: </b><%= f.text_field :bairro,:size =>40 %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                              <b>CEP: </b><%= f.text_field :cep, :size =>9 %></td>
+        </tr>
+        <tr>
+            <td colspan="2" ><b>Data de Nascimento: </b><%= datepicker_tag(:funcionario, :nascimento,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                              <b>Telefone(s): </b><%= f.text_field :fone, :size =>26%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                              <b>Celular(es): </b><%= f.text_field :cel, :size =>32 %> </td>
+          
+        </tr>
+        <tr>
+          <td colspan="2"><b>E-mail(s): </b><%= f.text_field :email, :size =>48%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Unidade: </b><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+        </tr>
+        <tr>
+            <td colspan="2"><b>Função/Cargo: </b><%= f.text_field :funcao, :size => 53 %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                             <b>Setor:</b><%= f.text_field :setor, :size => 53 %></td>
+         </tr>
+
+        <tr>
+            <td valign="top" ><b>Observações:</b></td><td><%= f.text_area(:obs, :cols=> "120", :rows=>"3")%></td>
+         </tr>
+
+
+      </table>
+
+      
+       <table width="100%" >
+         <tr>
+            <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+<%end%>
+            <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    
+  
+
+         </tr>
+       </table>
+      </fieldset>
+    
+  </font>
+
+
+

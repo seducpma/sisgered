@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :funcionarios
+
+  map.resources :funcionarios
+
   map.resources :aulas_eventuals, :collection => { :index2=>:get}
   map.resources :eventuals
   map.resources :ufaltas

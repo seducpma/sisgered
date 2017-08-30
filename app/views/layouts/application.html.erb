@@ -169,23 +169,27 @@ display: none;
             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
               <li  class ="invisible_to_print "><a class="item-primary" href="#;">AGENDA</a>
                  <ul style="width:108px;">
+
+<% if (current_user.has_role?('admin'))%>
+                     <li><a class="item-primary" href="#;">Cadastrar</a>
+                         <ul>
+                            <li><%= link_to "Funcionarios",new_funcionario_path %></li>
+                            <li><%= link_to "Professores",new_eventual_path %></li>
+                         </ul>
+                     </li>
+                     <li><a class="item-primary" href="#;">Faltas</a>
+                         <ul>
+                            <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
+                            <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
+                         </ul>
+                     </li>
+<%end%>
                      <li><a class="item-primary" href="#;">Substituições</a>
                          <ul>
                             <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
                             <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
-                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
-                                    <li><a class="item-primary" href="#;">Professores</a>
-                                         <ul>
-                                            <li><%= link_to "Cadastrar",new_eventual_path %></li>
-                                            <li><%= link_to "Consulta",aulas_eventuals2_path %></li>
-                                         </ul>
-                                     </li>
-                            <%end%>
                          </ul>
                      </li>
-
-
-
                  </ul>
               </li>
             <%end%>
