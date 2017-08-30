@@ -170,19 +170,23 @@ display: none;
               <li  class ="invisible_to_print "><a class="item-primary" href="#;">AGENDA</a>
                  <ul style="width:108px;">
 
-<% if (current_user.has_role?('admin'))%>
+<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
                      <li><a class="item-primary" href="#;">Cadastrar</a>
                          <ul>
-                            <li><%= link_to "Funcionarios",new_funcionario_path %></li>
+                             <% if (current_user.has_role?('admin'))%>
+                                <li><%= link_to "Funcionarios",new_funcionario_path %></li>
+                              <%end%>
                             <li><%= link_to "Professores",new_eventual_path %></li>
                          </ul>
                      </li>
+                     <% if (current_user.has_role?('admin') )%>
                      <li><a class="item-primary" href="#;">Faltas</a>
                          <ul>
                             <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
                             <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
                          </ul>
                      </li>
+                    <%end%>
 <%end%>
                      <li><a class="item-primary" href="#;">Substituições</a>
                          <ul>
