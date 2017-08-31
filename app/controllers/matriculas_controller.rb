@@ -311,6 +311,8 @@ class MatriculasController < ApplicationController
           if session[:saidaT] == 2
                @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
                @aluno[0].aluno_status =  'TRANSFERIDO'
+               @aluno[0].unidade_anterior = @aluno[0].unidade_id # ###ALEX 31/08/2015 - Para guardar a unidade anterior que o aluno esteve
+               @aluno[0].unidade_id = 52 # ###ALEX 31/08/2015 - Para colocar o aluno transferido para fora em uma unidade neutra
                @aluno[0].save
                session[:saidaT] = 0
           end
@@ -445,7 +447,7 @@ end
          @unidade_procedencia1 = Unidade.find(:all,:conditions =>['((id > 41 AND id <52) OR id = 62) AND id != ?',current_user.unidade_id ], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all,:conditions =>['id = ?', current_user.unidade_id], :order => 'nome ASC')
        else
-         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['((id < 41 OR id >51) AND id <> 62) AND id != ? ', current_user.unidade_id], :order => 'nome ASC')
+         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['((id <= 41 OR id >51) AND id <> 62) AND id != ? ', current_user.unidade_id], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
        end
        @alunos3 = Aluno.find(:all, :select =>"alunos.id, alunos.aluno_nome", :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND  matriculas.ano_letivo =?', current_user.unidade_id, Time.now.year],:order => 'alunos.aluno_nome')
