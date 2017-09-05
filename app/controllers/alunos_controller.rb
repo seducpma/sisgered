@@ -52,6 +52,11 @@ class AlunosController < ApplicationController
     else
     respond_to do |format|
       if @aluno.save
+        @aluno.unidade_id = User.current.unidade_id
+        if @aluno.aluno_nacionalidade == 'BRASILEIRO'
+           @aluno.aluno_chegada_brasil = nil
+           @aluno.aluno_validade_estrangeiro = nil
+        end
         session[:alunoid_cadastro]= @aluno.id
         session[:alunonome_cadastro]= @aluno.aluno_nome
         flash[:notice] = 'CADASTRADO COM SUCESSO.'
@@ -320,7 +325,7 @@ def consulta_cadastro_aluno
       #@saude = Saude.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
       @aluno = Aluno.find(:all, :select=> "aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id ", :conditions => ['id =? ', params[:aluno][:aluno_id]])
       @matriculas = Matricula.find(:all,:conditions => ['aluno_id =?', params[:aluno][:aluno_id]])
-      @matriculas_ano_atual = Matricula.find(:all, :select =>"unidade_id, classe_id, ano_letivo", :conditions => ['aluno_id =? and ano_letivo=?', params[:aluno][:aluno_id], Time.now.year])
+      @matriculas_ano_atual = Matricula.find(:all, :select =>"unidade_id, classe_id, ano_letivo", :conditions => ['aluno_id =? and ano_letivo=? and (status!= "ABANDONO")', params[:aluno][:aluno_id], Time.now.year])
            render :update do |page|
              page.replace_html 'cadastro', :partial => 'exibe_cadastro'
             end

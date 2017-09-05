@@ -8,7 +8,7 @@
         <% form_for @matricula do |f| %>
          <%= f.error_messages %>
         <fieldset><legend><font size=4>Matrícula Aluno</font></legend>
-             <%@alunos_matricula = Aluno.find_by_sql("SELECT a.id, a.aluno_nome FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null) AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+")) ORDER BY a.aluno_nome")%>
+             <%@alunos_matricula = Aluno.find_by_sql("SELECT a.id, a.aluno_nome FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")%>
             <% @classes_atual = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe') %>
         <table>
             <tr>

@@ -87,7 +87,7 @@ class MatriculasController < ApplicationController
    @matricula_anterior.aluno_id
    params[:matricula][:classe_id]
    
-   @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=?',  params[:matricula][:classe_id], Time.now.year, @matricula_anterior.aluno_id])
+   @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=? AND status != "ABANDONO"',  params[:matricula][:classe_id], Time.now.year, @matricula_anterior.aluno_id])
 
    @atribuicao= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', params[:matricula][:classe_id], Time.now.year])
      if (@matricula_anterior.empty?) or (session[:matricula_transferencia] == 1)
@@ -295,7 +295,7 @@ class MatriculasController < ApplicationController
              format.xml  { head :ok }
           end
 
-   end
+     end
 
 
 
@@ -305,9 +305,11 @@ class MatriculasController < ApplicationController
 
   def update
     @matricula = Matricula.find(params[:id])
+      
     respond_to do |format|
       if @matricula.update_attributes(params[:matricula])
           @matricula.save
+
           if session[:saidaT] == 2
                @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
                @aluno[0].aluno_status =  'TRANSFERIDO'
@@ -316,6 +318,18 @@ class MatriculasController < ApplicationController
                @aluno[0].save
                session[:saidaT] = 0
           end
+          if @matricula.status =='ABANDONO'
+               @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
+               @aluno[0].aluno_status =  'ABANDONO'
+               @aluno[0].unidade_anterior = @aluno[0].unidade_id
+               w=@aluno[0].unidade_id = 52
+               w1=@aluno[0].aluno_sexo  = 'MASCULINO'
+               t=0
+               @aluno[0].save
+              
+          end
+
+
 
         flash[:notice] = 'SALVO COM SUCESSO'
         if session[:alterar_direcionamento_editar] == 0

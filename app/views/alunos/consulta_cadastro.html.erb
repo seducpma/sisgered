@@ -6,7 +6,7 @@
  </div>
     <div class="tabs">
       
-      <% @alunos_todos = Aluno.find(:all, :select => 'id, aluno_nome', :conditions=>["aluno_status != 'EGRESSO' or aluno_status is null"], :order => "aluno_nome ASC") %>
+      <% @alunos_todos = Aluno.find(:all, :select => 'id, aluno_nome', :conditions=>["aluno_status != 'EGRESSO' or aluno_status is null "], :order => "aluno_nome ASC") %>
        <% form_remote_tag :url => consulta_cadastro_aluno_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
           <fieldset>
             <% @disciplina = Disciplina.find(:all) %>
