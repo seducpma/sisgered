@@ -49,9 +49,7 @@ class AlunosController < ApplicationController
          
     end
     else
-
-     w=@aluno.unidade_id = User.current.unidade_id
-     t=0
+     @aluno.unidade_id = User.current.unidade_id
         if @aluno.aluno_nacionalidade == 'BRASILEIRO'
            @aluno.aluno_chegada_brasil = nil
            @aluno.aluno_validade_estrangeiro = nil
