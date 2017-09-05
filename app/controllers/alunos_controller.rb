@@ -42,7 +42,6 @@ class AlunosController < ApplicationController
     @verifica2 = Aluno.find_by_aluno_nascimento(@aluno.aluno_nascimento)
     
 
-
     if (@verifica and @verifica2) then
        respond_to do |format|
          format.html { render :action => "new" }
@@ -50,13 +49,16 @@ class AlunosController < ApplicationController
          
     end
     else
-    respond_to do |format|
-      if @aluno.save
-        @aluno.unidade_id = User.current.unidade_id
+
+     w=@aluno.unidade_id = User.current.unidade_id
+     t=0
         if @aluno.aluno_nacionalidade == 'BRASILEIRO'
            @aluno.aluno_chegada_brasil = nil
            @aluno.aluno_validade_estrangeiro = nil
         end
+    respond_to do |format|
+      if @aluno.save
+
         session[:alunoid_cadastro]= @aluno.id
         session[:alunonome_cadastro]= @aluno.aluno_nome
         flash[:notice] = 'CADASTRADO COM SUCESSO.'
