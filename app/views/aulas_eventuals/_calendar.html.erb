@@ -21,11 +21,13 @@
                     <%= date.day %>
                     <ul>
                       <% for data in articles %>
-                        <li><b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
-                            (Prof.(a) <%= categoria %>)
+                        <li><tabl>
+
+                            <b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
+                            (Prof.(a) <%= categoria %>)<br/>
                             Classe: <%= link_to h(data.classe.classe_classe), data%>
                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
-                            <div  class ="invisible_to_print ">&nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %></div>
+                                   <div  class ="invisible_to_print ">&nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %></div>
                             <%end%>
                             <br/>
                             <b>----------------------</b>

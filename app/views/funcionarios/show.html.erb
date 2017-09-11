@@ -15,7 +15,7 @@
            </tr>
             <tr bgcolor="#F5F5F5">
                 <td align="left" width="4%"><b>Matrícula:</b></td>
-                <td align="left"> <%=h @funcionario.matricula %></td>
+                <td width ="40%" align="left"> <%=h @funcionario.matricula %></td>
                 <td width ="10%" align="left"><b>Nome:</b></td>
                 <td align="left"><%=h @funcionario.nome%></td>
              </tr>
@@ -67,18 +67,15 @@
 
         <table width="100%" >
              <tr>
-                <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consulta_ficha_alunos_path, :title => "Nova Consulta" %></td>
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
-                   <td width="6%"align="left"><%= button_to 'Novo Cadastro' ,new_aluno_path, :title => "Novo Cadastro" %></td>
+                   <td width="6%"align="left"><%= button_to 'Cadastrar' ,new_funcionario_path, :title => "Novo Cadastro" %></td>
                <% end %>
+                <td width="6%"align="left" ><%= button_to 'Consultar' ,consulta_ficha_alunos_path, :title => "Nova Consulta" %></td>
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
-                     <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@aluno}, :method => "get", :title => "Editar"%></td>
+                     <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@funcionario}, :method => "get", :title => "Editar"%></td>
                 <%end%>
-                <td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_alunos_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                <!--<td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_alunos_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>-->
                  <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
-                  <td align="right"><%= button_to 'Continuar Cadastrando' ,new_funcionario_path, :title => "Continuar" %></td>
-               <% end %>
              </tr>
            </table>
         </table>

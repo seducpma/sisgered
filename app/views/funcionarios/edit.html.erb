@@ -1,84 +1,12 @@
-<h1>Editing funcionario</h1>
-
-<% form_for(@funcionario) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :matricula %><br />
-    <%= f.text_field :matricula %>
-  </p>
-  <p>
-    <%= f.label :nome %><br />
-    <%= f.text_field :nome %>
-  </p>
-  <p>
-    <%= f.label :nascimento %><br />
-    <%= f.datetime_select :nascimento %>
-  </p>
-  <p>
-    <%= f.label :endereco %><br />
-    <%= f.text_field :endereco %>
-  </p>
-  <p>
-    <%= f.label :num %><br />
-    <%= f.text_field :num %>
-  </p>
-  <p>
-    <%= f.label :complemento %><br />
-    <%= f.text_field :complemento %>
-  </p>
-  <p>
-    <%= f.label :cep %><br />
-    <%= f.text_field :cep %>
-  </p>
-  <p>
-    <%= f.label :bairro %><br />
-    <%= f.text_field :bairro %>
-  </p>
-  <p>
-    <%= f.label :cidade %><br />
-    <%= f.text_field :cidade %>
-  </p>
-  <p>
-    <%= f.label :fone %><br />
-    <%= f.text_field :fone %>
-  </p>
-  <p>
-    <%= f.label :cel %><br />
-    <%= f.text_field :cel %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :unidade %><br />
-    <%= f.text_field :unidade %>
-  </p>
-  <p>
-    <%= f.label :funcao %><br />
-    <%= f.text_field :funcao %>
-  </p>
-  <p>
-    <%= f.label :setor %><br />
-    <%= f.text_field :setor %>
-  </p>
-  <p>
-    <%= f.label :horario %><br />
-    <%= f.text_field :horario %>
-  </p>
-  <p>
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </p>
-  <p>
-    <%= f.label :obs %><br />
-    <%= f.text_field :obs %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @funcionario %> |
-<%= link_to 'Back', funcionarios_path %>
+<div id="interno2">
+<% title "FUNCIONARIOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CADASTRO DE FUNCIONARIOS</strong></font><br/>
+ </div>
+      <div class="tabs">
+     <%= render :partial => 'form' %>
+    </div>
+</div>
+<br/>
+</div>
