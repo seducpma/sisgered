@@ -1,5 +1,4 @@
 <link rel="stylesheet" media="all" href="css/calendar.css" />
-      <br/>
             <% if @aulas_eventual.present? %>
               <div id="calendar">
                   <%if !@aulas_eventual[0].present? %>
@@ -21,14 +20,15 @@
                     <%= date.day %>
                     <ul>
                       <% for data in articles %>
-                        <li><tabl>
-
-                            <b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
-                            (Prof.(a) <%= categoria %>)<br/>
-                            Classe: <%= link_to h(data.classe.classe_classe), data%>
+                        <li>
                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
-                                   <div  class ="invisible_to_print ">&nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %></div>
+                                <div  class ="invisible_to_print ">&nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %></div> <b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
+                            <%else%> 
+                                   <b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
                             <%end%>
+                            (Prof.(a) <%= categoria %>)<br/>
+                            Classe: <%= data.classe.classe_classe%>
+                            
                             <br/>
                             <b>----------------------</b>
                         </li>

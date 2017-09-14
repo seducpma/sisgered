@@ -24,7 +24,15 @@
                  </tr>
                  <tr bgcolor="#F5F5F5" >
                    <td align="left"><b>Professor:</b></td>
-                   <td colspan="3"align="left"> <%=h @aulas_eventual.eventual.professor.nome %></td>
+                   <td colspan="3"align="left"> <%=h @aulas_eventual.eventual.professor.nome %> (<%=h @aulas_eventual.eventual.categoria %>)</td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5" >
+                   <td align="left"><b>Contato:</b></td>
+                   <td colspan="3"align="left"> <%=h @aulas_eventual.eventual.contato %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5" >
+                   <td align="left"><b>OBS:</b></td>
+                   <td colspan="3"align="left"><%=h @aulas_eventual.eventual.obs %></td>
                  </tr>
                </table>
            </td>

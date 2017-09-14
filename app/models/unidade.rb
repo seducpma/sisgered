@@ -11,4 +11,5 @@ class Unidade < ActiveRecord::Base
   has_many :transferencias
   has_many :notas
   has_many :users
+  has_many :aulas_faltas
 end

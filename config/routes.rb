@@ -1,8 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get}
   map.resources :funcionarios
-
   map.resources :funcionarios
-
   map.resources :aulas_eventuals, :collection => { :index2=>:get}
   map.resources :eventuals
   map.resources :ufaltas
@@ -51,6 +50,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.aulas_eventuals2 '/aulas_eventuals2', :controller => 'aulas_eventuals', :action => 'index2'
+  map.aulas_faltas2 '/aulas_faltas2', :controller => 'aulas_faltas', :action => 'index2'
   map.construcao '/construcao', :controller => 'alunos', :action => 'construcao'
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
   map.new_disciplinanota '/new_disciplinanota', :controller => 'disciplinas', :action => 'new_disciplinanota'
@@ -93,6 +93,9 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_historico'impressao_historico', :controller => 'historicos', :action => 'impressao_historico'
   map.impressao_historico_aluno'impressao_historico_aluno', :controller => 'atribuicaos', :action => 'impressao_historico_aluno'
   map.impressao_fapea '/impressao_fapea', :controller => 'relatorios', :action => 'impressao_fapea'
+  map.impressao_faltas '/impressao_faltas', :controller => 'aulas_faltas', :action => 'impressao_faltas'
+
+
 
   #map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'arquivo_historico'
   map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'download_historico'
@@ -157,6 +160,7 @@ ActionController::Routing::Routes.draw do |map|
   map.atribuicao_lancamentos_notas'/atribuicao_lancamentos_notas', :controller => 'notas', :action => 'atribuicao_lancamentos_notas'
   map.relatorios_observacoes'/relatorios_observacoes', :controller => 'atribucaos', :action => 'relatorios_observacoes'
   map.continuar'/continuar', :controller => 'alunos', :action => 'continuar'
+  map.relatorios_faltas'/relatorios_faltas', :controller => 'aulas_faltas', :action => 'relatorios_faltas'
 
   map.historico_aviso '/historico_aviso', :controller => 'notas', :action => 'aviso'
 

@@ -1,5 +1,6 @@
 class Funcionario < ActiveRecord::Base
   belongs_to :unidade
+  has_many :aulas_faltas
 
 before_save  :maiusculo
 

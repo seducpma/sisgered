@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170829195431) do
+ActiveRecord::Schema.define(:version => 20170912154213) do
 
   create_table "alunos", :force => true do |t|
     t.integer  "unidade_id"
@@ -129,6 +129,18 @@ ActiveRecord::Schema.define(:version => 20170829195431) do
     t.string   "categoria",   :limit => 20
     t.string   "periodo"
     t.integer  "ano_letivo"
+    t.date     "data"
+    t.string   "obs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "aulas_faltas", :force => true do |t|
+    t.integer  "professor_id"
+    t.integer  "funcionario_id"
+    t.integer  "unidade_id"
+    t.string   "funcao"
+    t.string   "periodo"
     t.date     "data"
     t.string   "obs"
     t.datetime "created_at"

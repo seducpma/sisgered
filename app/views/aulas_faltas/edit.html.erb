@@ -1,0 +1,40 @@
+<h1>Editing aulas_falta</h1>
+
+<% form_for(@aulas_falta) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :professor %><br />
+    <%= f.text_field :professor %>
+  </p>
+  <p>
+    <%= f.label :funcionario %><br />
+    <%= f.text_field :funcionario %>
+  </p>
+  <p>
+    <%= f.label :unidade %><br />
+    <%= f.text_field :unidade %>
+  </p>
+  <p>
+    <%= f.label :funcao %><br />
+    <%= f.text_field :funcao %>
+  </p>
+  <p>
+    <%= f.label :periodo %><br />
+    <%= f.text_field :periodo %>
+  </p>
+  <p>
+    <%= f.label :data %><br />
+    <%= f.date_select :data %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @aulas_falta %> |
+<%= link_to 'Back', aulas_faltas_path %>

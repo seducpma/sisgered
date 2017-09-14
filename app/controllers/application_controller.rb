@@ -236,7 +236,7 @@ ANO   ={ "2016" =>"2016",
          "2005" =>"2005",
 
         }
-# Acrescentei o ano de "2016" e não retirei o "2007" ###Alex
+
 
 
 CURRICULO={ 'B '=>'BASICO',
@@ -250,7 +250,21 @@ CATEGORIA={ 'ADI'=> 'ADI',
           }
 
 PERIODO={ 'MATUTINO '=>'MATUTINO',
-          'VESPERTINO'=> 'VESPERTINO'
+          'VESPERTINO'=> 'VESPERTINO',
+          'INTEGRAL'=> 'INTEGRAL'
           }
 
-
+MES ={'-- Selecionar -- '=> 0,
+       'JANEIRO' => 1,
+       'FEVEREIRO' => 2,
+       'MARÇO' => 3,
+       'ABRIL' => 4,
+       'MAIO' => 5,
+       'JUNHO' => 6,
+       'JULHO' => 7,
+       'AGOSTO' => 8,
+       'SETEMBRO' => 9,
+       'OUTUBRO' => 10,
+       'NOVEMBRO' => 11,
+       'DEZEMBRO' => 12
+}

@@ -1,0 +1,13 @@
+<table width="100% ">
+ <tr>
+     <td align="left"><b> Professor: </b>&nbsp&nbsp <%= collection_select :aulas_falta, :professor_id, @professores, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+ </tr>
+ <tr>
+     <td align="left"><b> Funcionario: </b><%= collection_select :aulas_falta, :funcionario_id, @funcionarios, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+ </tr>
+
+</table>
+
+
+
+

@@ -196,8 +196,9 @@ display: none;
                      <% if (current_user.has_role?('admin') )%>
                      <li><a class="item-primary" href="#;">Faltas</a>
                          <ul>
-                            <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
-                            <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
+                            <li><%= link_to "Agenda Unidades",aulas_faltas_path %></li>
+                            <li><%= link_to "Agenda professors",aulas_faltas2_path %></li>
+                            <li><%= link_to "Relatório / Mês",relatorio_falta_mes_aulas_faltas_path %></li>
                          </ul>
                      </li>
                     <%end%>

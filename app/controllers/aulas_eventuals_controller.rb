@@ -120,7 +120,7 @@ def caregoria_prof_eventual
 end
 
 
-    def nome_prof_eventual
+def nome_prof_eventual
         session[:aulas_eventual_unidade_id]=params[:aulas_eventual_unidade_id]
         @professores1 = Eventual.find_by_sql("SELECT eventuals.id, professors.nome FROM eventuals INNER JOIN  professors  ON  professors.id = eventuals.professor_id INNER JOIN  unidades  ON  unidades.id = professors.unidade_id WHERE eventuals.periodo = '"+session[:periodo_prof_eventual]+"' AND eventuals.categoria = '"+session[:caregoria_prof_eventual]+"'AND eventuals.unidade_id = "+session[:aulas_eventual_unidade_id]+" AND eventuals.id NOT IN (SELECT aulas_eventuals.eventual_id FROM aulas_eventuals WHERE aulas_eventuals.ano_letivo ="+(Time.now.year).to_s+" AND data = '"+session[:aulas_eventual_data].to_s+"' AND aulas_eventuals.unidade_id = "+session[:aulas_eventual_unidade_id]+" order by unidades.regiao_id ASC ) order by unidades.regiao_id ASC")
         @divisao=Eventual.find_by_sql("SELECT eventuals.id, professors.nome FROM eventuals INNER JOIN  professors  ON  professors.id = eventuals.professor_id LIMIT 1")

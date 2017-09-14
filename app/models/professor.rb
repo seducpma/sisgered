@@ -6,6 +6,7 @@ class Professor < ActiveRecord::Base
   has_many :users
   has_many :relatorios
   has_many :eventuals
+  has_many :aulas_faltas
   
   #has_one :tempo_servico, :dependent => :delete
   #has_one :titulo_professor, :dependent => :delete

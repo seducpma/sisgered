@@ -1,0 +1,38 @@
+<p>
+  <b>Professor:</b>
+  <%=h @aulas_falta.professor %>
+</p>
+
+<p>
+  <b>Funcionario:</b>
+  <%=h @aulas_falta.funcionario %>
+</p>
+
+<p>
+  <b>Unidade:</b>
+  <%=h @aulas_falta.unidade %>
+</p>
+
+<p>
+  <b>Funcao:</b>
+  <%=h @aulas_falta.funcao %>
+</p>
+
+<p>
+  <b>Periodo:</b>
+  <%=h @aulas_falta.periodo %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%=h @aulas_falta.data %>
+</p>
+
+<p>
+  <b>Obs:</b>
+  <%=h @aulas_falta.obs %>
+</p>
+
+
+<%= link_to 'Edit', edit_aulas_falta_path(@aulas_falta) %> |
+<%= link_to 'Back', aulas_faltas_path %>

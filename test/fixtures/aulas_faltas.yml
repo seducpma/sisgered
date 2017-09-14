@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  professor: 
+  funcionario: 
+  unidade: 
+  funcao: MyString
+  periodo: MyString
+  data: 2017-09-12
+  obs: MyString
+
+two:
+  professor: 
+  funcionario: 
+  unidade: 
+  funcao: MyString
+  periodo: MyString
+  data: 2017-09-12
+  obs: MyString
