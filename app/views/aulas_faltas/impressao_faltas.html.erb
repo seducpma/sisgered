@@ -10,30 +10,37 @@
     <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
     <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
         <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
-
-             <center><font size="1">Unidade Escolar:  <%=h @aulas_faltas[0].unidade.nome %>  </font></center>
-             <center><font size="1"><%=h @aulas_faltas[0].unidade.endereco%><%=h @aulas_faltas[0].unidade.num%> - Americana - SP  </font>
-             <font size="1"><%=h @aulas_faltas[0].unidade.CEP%> - <%=h @aulas_faltas[0].unidade.fone%>  </font></center>
-
+               <%  if (session[:verifica_unidade_id]=='52') %>
+                   <center><font size="1">Unidade Escolar:  SECRETARIA DE EDUCAÇÃO  </font></center>
+                    <center><font size="1">Rua dos Professores, 40 - Americana - SP  </font>
+                   <font size="1">13.465.060 - (19) 3475-9700  </font></center>
+               <%else%>
+                     <center><font size="1">Unidade Escolar: <%=h @aulas_faltas[0].unidade.tipo.nome%> <%=h @aulas_faltas[0].unidade.nome %>  </font></center>
+                     <center><font size="1"><%=h @aulas_faltas[0].unidade.endereco%><%=h @aulas_faltas[0].unidade.num%> - Americana - SP  </font>
+                     <font size="1"><%=h @aulas_faltas[0].unidade.CEP%> - <%=h @aulas_faltas[0].unidade.fone%>  </font></center>
+               <%end%>
     </td>
   </tr>
   <tr style="border-color: white">
-    <td style="border-color: white" colspan="2" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font></td>
+    <td style="border-color: white" colspan="2" align="right"><font size="2"><b>RELATÓRIOS FALTAS / MÊS - <%=h @aulas_faltas[0].unidade.tipo.nome%> <%=h @aulas_faltas[0].unidade.nome %></b></font></td>
   </tr>
  </table>
-<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
-   <tr>
-      <th width=" 10%" align="center"><b>Data</b></th>
-      <th width=" 50%" align="center"><b>Funcionario(a)</b></th>
-      <th width=" 18%" align="center"><b>Função</b></th>
-      <th width=" 15%" align="center"><b>Periodo</b></th>
-   </tr>
-   <%  t=0 %>
-  <% @aulas_faltas.each do |falta| %>
-    <% t=t+1 %>
-   <tr>
-       <th style="font-size: 8px" align="left"><%= falta.data.strftime("%d/%m/%Y") %></th>
-       <th style="font-size: 8px" align="left"><% if falta.funcionario_id.nil? %>
+<%  mes=0 %>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+            <tr cellspacing="2" cellpadding="2" >
+                <th style="font-size: 8px" width=" 05%" align="center"><b>Data</b></th>
+                <th style="font-size: 8px" width=" 15%" align="center"><b>Unidade</b></th>
+                <th style="font-size: 8px" width=" 40%" align="center"><b>Funcionario(a)</b></th>
+                <th style="font-size: 8px" width=" 10%" align="center"><b>Função</b></th>
+                <th style="font-size: 8px" width=" 15%" align="center"><b>Periodo</b></th>
+                <th style="font-size: 8px" width=" 20%" align="center"><b>Tipo</b></th>
+            </tr>
+    <% @aulas_faltas.each do |falta| %>
+     <% mes=mes+1 %>
+            <tr>
+                 <th style="font-size: 8px" align="left"><%= falta.data.strftime("%d/%m/%Y") %></th>
+                 <th style="font-size: 8px" align="left"><%= falta.unidade.tipo.nome %> <%= falta.unidade.nome %></th>
+                 <th style="font-size: 8px" align="left"><% if falta.funcionario_id.nil? %>
                         <%= falta.professor.nome  %>
                      <%end%>
                       <% if falta.professor_id.nil? %>
@@ -42,14 +49,19 @@
                  </th>
         <th style="font-size: 8px" align="left"><%= falta.funcao %></th>
         <th style="font-size: 8px" align="left"><%= falta.periodo %></th>
-    </tr>
-  <%end%>
-</table>
+        <th style="font-size: 8px" align="left"><%= falta.tipo %></th>
+     </tr>
+
+    <%end%>
+
+  </table>
 <br/>
- <table frame="box" rules="all" width="100%" style="border-color: white">
+
+<table frame="box" rules="all" width="100%" style="border-color: white">
   <tr style="border-color: white">
-        <th style="font-size: 8px" width ="40%">
-             <table frame="box" rules="all" width="100%" style="border-color: white">
+
+          <th style="font-size: 8px"  width ="31%" valign="top">
+             <table frame="box" rules="all" width="100%" style="border-color: white" width ="30%">
                 <tr style="border-color: white">
                   <th style="font-size: 8px"><b><u>PROFESSORES</u></b></th>
                   <th style="font-size: 8px"><b><u>FALTAS</u></b></th>
@@ -57,18 +69,15 @@
                  <%t1=1%>
                 <% @faltas_professor.each do |faltaP| %>
                    <tr style="border-color: white">
-                       <th align="left"style="font-size: 8px"><%= t1%>) <%= faltaP.professor.nome %></th>
-                        <th style="font-size: 8px" align="center"><%= faltaP.conta%> </th>
+                       <th align="left"style="font-size: 8px"><%= t1%>) <%= truncate(faltaP.professor.nome,:length => 25,:omission => "...") %></th>
+                       <th style="font-size: 8px" align="center"><%= faltaP.conta%> </th>
                     </tr>
-                    <%t1=t1+1%>
+                    <%t1 =t1+1%>
                   <%end%>
             </table>
-        </th>
-        <th width ="5%">
-            
-        </th>
-        <th style="font-size: 8px" valign="top">
-             <table frame="box" rules="all" width="100%" style="border-color: white">
+         </th>
+        <th style="font-size: 8px"  width ="31%" valign="top">
+             <table frame="box" rules="all" width="100%" style="border-color: white" width ="30%">
                  <tr style="border-color: white">
                   <th style="font-size: 8px"><b><u>FUNCIONARIOS</u></b></th>
                   <th style="font-size: 8px"><b><u>FALTAS</u></b></th>
@@ -83,6 +92,55 @@
                   <%end%>
             </table>
         </th>
-        <th style="font-size: 8px"valign="top" align="center"> <b><u> TOTAL DE FALTAS NO MÊS</u>  <br/> <%= t %></b> </th>
-  </tr>
+        <th style="font-size: 8px"  width ="38%" valign="top">
+             <table frame="box" rules="all" width="100%" style="border-color: white" idth ="40%">
+                 <tr style="border-color: white">
+                  <th style="font-size: 8px"><b><u>TIPO FALTAS</u></b></th>
+                  <th width ="1%" style="font-size: 8px" align="center"><b><u>no MÊS</u></b></th>
+                  <th width ="1%" style="font-size: 8px" align="center"><b><u>no ANO</u></b></th>
+
+                </tr>
+                <%t1 =1%>
+                <%cont=0%>
+                <%ano=0%>
+                <% @tipo_faltas.each do |faltas| %>
+                    <tr style="border-color: white">
+                        <th align="left"style="font-size: 8px"><%= t1%>)  <%= truncate(faltas.tipo,:length => 20,:omission => "...") %></th>
+
+                        <%if @tipo_faltas_mes[cont].present? %>
+                            <%if (faltas.tipo == @tipo_faltas_mes[cont].tipo)%>
+                                <th width ="5%" style="font-size: 8px" align="center"><%= @tipo_faltas_mes[cont].conta%> </th>
+                                <%cont=cont+1%>
+                            <%else%>
+                                <th width ="5%" style="font-size: 8px" align="center"> 0  </th>
+                            <%end%>
+
+                       <%else%>
+                                <th width ="5%" style="font-size: 8px" align="center"> 0 </th>
+                       <%end%>
+                         <%  ano = ano + (faltas.conta).to_i %>
+                        <th width ="5%" style="font-size: 8px" align="center"><%= faltas.conta%> </th>
+                    </tr>
+                    <%t1 =t1+1%>
+                  <%end%>
+               <tr style="border-color: white">
+                 <th width ="5%" style="font-size: 8px" align="right"> <b>TOTAL  FALTAS ==></b> </th>
+                 <th width ="5%" style="font-size: 8px" align="center"> <b> <%= mes %></b> </th>
+                <th width ="5%" style="font-size: 8px" align="center"> <%= ano %></b> </th>
+               </tr>
+            </table>
+
+
+
+
+     </th>
+    </tr>
   </table>
+
+
+
+
+
+
+
+

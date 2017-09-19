@@ -267,4 +267,15 @@ MES ={'-- Selecionar -- '=> 0,
        'OUTUBRO' => 10,
        'NOVEMBRO' => 11,
        'DEZEMBRO' => 12
-}
+       }
+
+
+FALTA ={ '-- Selecionar -- ' => 'Selecionar',
+         'JUSTIÇA ELEITORAL' => 'JUSTIÇA ELEITORAL',
+         'FALTA ABONADA' => 'FALTA ABONADA',
+         'FALTA JUSTIFICADA' => 'FALTA JUSTIFICADA',
+         'ATESTADO MÉDICO' => 'ATESTADO MÉDICO',
+         'LICENÇA MÉDICA' => 'LICENÇA MÉDICA',
+         'FALTA INJUSTIFICADA' => 'FALTA INJUSTIFICADA',
+         'OUTRAS' => 'OUTRAS'
+       }

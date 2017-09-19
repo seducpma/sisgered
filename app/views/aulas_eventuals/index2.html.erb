@@ -4,7 +4,7 @@
 <% title "ALUNOS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo"  class ="invisible_to_print ">
-     <font size="3"><strong>AGENDA DE SUBTITUIÇÕERS - POR PROFESSOR</strong></font><br/>
+     <font size="3"><strong>AGENDA DE SUBTITUIÇÕES - POR PROFESSOR</strong></font><br/>
  </div>
     <table width="100%"  bgcolor="#DCDCDC"  style= "border-color: white" >
       <tr  class ="invisible_to_print ">
@@ -14,7 +14,7 @@
 
 
                  <font size="3"> Professor:</font>
-                 <%= f.collection_select :eventual_id_equals, @professores_eventual_infantil2, :id, :nome, :include_blank => true%>
+                 <%= f.collection_select :eventual_id_equals, @professores_eventual, :id, :nome, :include_blank => true%>
                  <%= f.submit "Visualizar", :class => "btn_filtrar" %>
               <% end %>
 

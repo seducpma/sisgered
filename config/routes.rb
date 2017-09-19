@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get}
+  map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
   map.resources :funcionarios
   map.resources :funcionarios
-  map.resources :aulas_eventuals, :collection => { :index2=>:get}
+  map.resources :aulas_eventuals, :collection => { :index2=>:get,   :relatorio_eventual_mes_professor => :get,   :relatorio_eventual_mes_unidade => :get, :relatorio_eventual_mes_unidade => :get}
   map.resources :eventuals
   map.resources :ufaltas
   map.resources :relatorios,:collection => { :relatorio=>:get, :consultas=>:get, :consultas_observacao =>:get, :editar=>:get}
@@ -51,6 +51,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.aulas_eventuals2 '/aulas_eventuals2', :controller => 'aulas_eventuals', :action => 'index2'
   map.aulas_faltas2 '/aulas_faltas2', :controller => 'aulas_faltas', :action => 'index2'
+  map.aulas_faltas3 '/aulas_faltas3', :controller => 'aulas_faltas', :action => 'index3'
   map.construcao '/construcao', :controller => 'alunos', :action => 'construcao'
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
   map.new_disciplinanota '/new_disciplinanota', :controller => 'disciplinas', :action => 'new_disciplinanota'
@@ -94,8 +95,10 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_historico_aluno'impressao_historico_aluno', :controller => 'atribuicaos', :action => 'impressao_historico_aluno'
   map.impressao_fapea '/impressao_fapea', :controller => 'relatorios', :action => 'impressao_fapea'
   map.impressao_faltas '/impressao_faltas', :controller => 'aulas_faltas', :action => 'impressao_faltas'
-
-
+  map.impressao_faltas_professor '/impressao_faltas_professor', :controller => 'aulas_faltas', :action => 'impressao_faltas_professor'
+  map.impressao_faltas_funcionario '/impressao_faltas_funcionario', :controller => 'aulas_faltas', :action => 'impressao_faltas_funcionario'
+  map.impressao_eventuals '/impressao_eventuals', :controller => 'aulas_eventuals', :action => 'impressao_eventuals'
+  map.impressao_eventuals_professor '/impressao_eventuals_professor', :controller => 'aulas_eventuals', :action => 'impressao_eventuals_professor'
 
   #map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'arquivo_historico'
   map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'download_historico'
@@ -161,6 +164,10 @@ ActionController::Routing::Routes.draw do |map|
   map.relatorios_observacoes'/relatorios_observacoes', :controller => 'atribucaos', :action => 'relatorios_observacoes'
   map.continuar'/continuar', :controller => 'alunos', :action => 'continuar'
   map.relatorios_faltas'/relatorios_faltas', :controller => 'aulas_faltas', :action => 'relatorios_faltas'
+  map.relatorios_faltas_professor'/relatorios_faltas_professor', :controller => 'aulas_faltas', :action => 'relatorios_faltas_professor'
+  map.relatorios_faltas_funcionario'/relatorios_faltas_funcionario', :controller => 'aulas_faltas', :action => 'relatorios_faltas_funcionario'
+  map.relatorios_eventual_professor'/relatorios_eventual_professor', :controller => 'aulas_eventuals', :action => 'relatorios_eventual_professor'
+  map.relatorios_eventuals'/relatorios_eventuals', :controller => 'aulas_eventuals', :action => 'relatorios_eventuals'
 
   map.historico_aviso '/historico_aviso', :controller => 'notas', :action => 'aviso'
 

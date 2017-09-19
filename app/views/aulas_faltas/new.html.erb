@@ -1,4 +1,4 @@
-<div id="interno4">
+<div id="interno1">
 <% title "AULASEVENTUAL".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -26,18 +26,22 @@
                    </td>
 
                </tr>
-                 <td align="right" width="10%">  <b>Data: </b>&nbsp</td>
-                 <td align="left">&nbsp<%= datepicker_tag(:aulas_falta, :data,{ :size => 10},{:dateFormat => "'yy-mm-dd'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+               <td align="right" width="10%">  <b>Data: </b>&nbsp</td>
+               <td colspan="4">
+                                &nbsp<%= datepicker_tag(:aulas_falta, :data,{ :size => 10},{:dateFormat => "'yy-mm-dd'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
                                    <%= observe_field 'aulas_falta_data',
                                                  :with   => :aulas_aulas_data,
                                                  :url  => { :action => 'data_falta' }%>
-                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Período: </b>
                                  <%= f.select :periodo, (AulasFalta::PERIODO).sort, :include_blank => ' -- Selecionar -- ' %>
                                         <%= observe_field 'aulas_falta_periodo',
                                                      :with   => :periodo,
                                                      :url  => { :action => 'periodo_periodo' }
                                                       %>
+                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                 <b>Tipo Falta: </b>&nbsp
+                                 <%= f.select :tipo, (AulasFalta::FALTA).sort, :include_blank => ' -- Selecionar -- ' %>
+
                  </td>
                
                 <tr>
@@ -60,7 +64,7 @@
 
                 <tr>
                    <td align="left" valign="top"><b>Observação:</b></td>
-                   <td align="left" colspan="5"><%= f.text_area(:obs,:cols => 70, :rows => "3") %></td>
+                   <td align="left" colspan="5"><%= f.text_area(:obs,:cols => 100, :rows => "3") %></td>
 
                </tr>
            </table>
@@ -69,8 +73,8 @@
                     <tr>
                        <td width="5px"align="left"><%= f.submit 'Salvar' %></td>
       <% end %>
-                       <td width="5px" align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-                       <td align="left"><%= button_to 'Nova Consulta', new_aulas_eventual_path %></td>
+                       <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                       
 
                    </tr>
                 </table>

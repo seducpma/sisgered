@@ -100,11 +100,14 @@ class EventualsController < ApplicationController
     render :partial => 'professores'
   end
 
+  
     def load_iniciais
-        @unidades_infantil = Unidade.find(:all, :conditions =>  ["tipo_id = 2 OR tipo_id = 5 OR tipo_id = 8"], :order => 'nome ASC')
-        @eventuals = Eventual.find(:all,:select => "id", :conditions => ['ano_letivo=?', Time.now.year])
-        @professores= Professor.find_by_sql("SELECT id, nome FROM professors WHERE `id` NOT IN ( SELECT professor_id FROM eventuals )" )
-
+         if current_user.has_role?('admin') or current_user.has_role?('SEDUC')
+            @unidades_infantil = Unidade.find(:all, :conditions =>  ["tipo_id = 2 OR tipo_id = 5 OR tipo_id = 8"], :order => 'nome ASC')
+            @eventuals = Eventual.find(:all,:select => "id", :conditions => ['ano_letivo=?', Time.now.year])
+            @professores= Professor.find_by_sql("SELECT id, nome FROM professors WHERE `id` NOT IN ( SELECT professor_id FROM eventuals )" )
+         else
+         end
     end
 
 end

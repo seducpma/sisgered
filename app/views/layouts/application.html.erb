@@ -167,48 +167,65 @@ display: none;
                 </ul>
               </li>
 
-            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+            <% if (current_user.has_role?('admin'))%>
               <li  class ="invisible_to_print "><a class="item-primary" href="#;">AGENDA</a>
                  <ul style="width:108px;">
 
-<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
-                     <li><a class="item-primary" href="#;">Cadastro</a>
-                         <ul>
-                             <li><a class="item-primary" href="#;">Cadastrar</a>
-                                 <ul>
-                                     <% if (current_user.has_role?('admin'))%>
-                                        <li><%= link_to "Funcionarios",new_funcionario_path %></li>
-                                      <%end%>
-                                    <li><%= link_to "Professores",new_eventual_path %></li>
-                                 </ul>
-                             </li>
-                              <li><a class="item-primary" href="#;">Consultar</a>
-                                 <ul>
-                                     <% if (current_user.has_role?('admin'))%>
-                                        <li><%= link_to "Funcionarios",consulta_professor_eventual_path %></li>
-                                      <%end%>
-                                    <li><%= link_to "Professores",consulta_professor_eventual_path %></li>
-                                 </ul>
-                             </li>
-                         </ul>
-                     </li>
-
-                     <% if (current_user.has_role?('admin') )%>
+<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao_infantil'))%>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
+                         <li><a class="item-primary" href="#;">Cadastro</a>
+                             <ul>
+                                 <li><a class="item-primary" href="#;">Cadastrar</a>
+                                     <ul>
+                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
+                                            <li><%= link_to "Funcionarios",new_funcionario_path %></li>
+                                          <%end%>
+                                        <li><%= link_to "Professores",new_eventual_path %></li>
+                                     </ul>
+                                 </li>
+                                  <li><a class="item-primary" href="#;">Consultar</a>
+                                     <ul>
+                                         <% if (current_user.has_role?('admin')or current_user.has_role?('SEDUC'))%>
+                                            <li><%= link_to "Funcionarios",consulta_professor_eventual_path %></li>
+                                          <%end%>
+                                        <li><%= link_to "Professores",consulta_professor_eventual_path %></li>
+                                     </ul>
+                                 </li>
+                             </ul>
+                         </li>
+                     <%end%>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_infantil') )%>
                      <li><a class="item-primary" href="#;">Faltas</a>
                          <ul>
                             <li><%= link_to "Agenda Unidades",aulas_faltas_path %></li>
-                            <li><%= link_to "Agenda professors",aulas_faltas2_path %></li>
-                            <li><%= link_to "Relatório / Mês",relatorio_falta_mes_aulas_faltas_path %></li>
+                            <li><%= link_to "Agenda Professores",aulas_faltas2_path %></li>
+                            <li><%= link_to "Agenda Funcionários",aulas_faltas3_path %></li>
+                            <li><a class="item-primary" href="#;">"Relatório / Mês"</a>
+                                 <ul>
+                                    <li><%= link_to "Funcionario",relatorio_falta_mes_funcionario_aulas_faltas_path %></li>
+                                    <li><%= link_to "Professor",relatorio_falta_mes_professor_aulas_faltas_path %></li>
+                                    <li><%= link_to "Unidade",relatorio_falta_mes_aulas_faltas_path %></li>
+                                 </ul>
+                             </li>
+
                          </ul>
                      </li>
                     <%end%>
-<%end%>
+
                      <li><a class="item-primary" href="#;">Substituições</a>
                          <ul>
                             <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
                             <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
+                            <li><a class="item-primary" href="#;">"Relatório / Mês"</a>
+                                 <ul>
+                                    <li><%= link_to "Professor",relatorio_eventual_mes_professor_aulas_eventuals_path %></li>
+                                    <li><%= link_to "Unidade",relatorio_eventual_mes_unidade_aulas_eventuals_path %></li>
+                                 </ul>
+                             </li>
+
                          </ul>
                      </li>
+<%end%>
                  </ul>
               </li>
             <%end%>
@@ -360,7 +377,7 @@ display: none;
                  </ul>
               </li>
              <%end%>
-               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil')  )%>
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_fundamental')  )%>
                  <li  class ="invisible_to_print "><a class="item-primary" href="#;">DOCUMENTOS</a>
                    <ul style="width:108px;">
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>

@@ -1,5 +1,5 @@
-#set :application, "192.168.0.12"
-set :application, "192.168.1.132"
+set :application, "192.168.0.12"
+#set :application, "192.168.1.132"
 set :repository, "git://github.com/seducpma/sisgered.git"
 set :user, "servidor"
 set :use_sudo, false

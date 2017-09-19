@@ -1,0 +1,55 @@
+<table class ="invisible_to_print ">
+  <tr>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+</table>
+
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+  <tr style="border-color: white">
+    <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+               <%  if (session[:verifica_unidade_id]=='52') %>
+                   <center><font size="1">Unidade Escolar:  SECRETARIA DE EDUCAÇÃO  </font></center>
+                    <center><font size="1">Rua dos Professores, 40 - Americana - SP  </font>
+                   <font size="1">13.465.060 - (19) 3475-9700  </font></center>
+               <%else%>
+                     <center><font size="1">Unidade Escolar:  <%=h @aulas_eventuals[0].unidade.nome %>  </font></center>
+                     <center><font size="1"><%=h @aulas_eventuals[0].unidade.endereco%><%=h @aulas_eventuals[0].unidade.num%> - Americana - SP  </font>
+                     <font size="1"><%=h @aulas_eventuals[0].unidade.CEP%> - <%=h @aulas_eventuals[0].unidade.fone%>  </font></center>
+               <%end%>
+    </td>
+  </tr>
+  <tr style="border-color: white">
+    <td style="border-color: white" colspan="2" align="right"><font size="2"><b>RELATÓRIOS SUBSTITUIÇÕES / MÊS &nbsp&nbsp&nbsp&nbsp</b></font></td>
+  </tr>
+ </table>
+<br/>
+<%t=0%>
+ <table frame="box" rules="all" width="100%" style="border-color: white">
+  <tr style="border-color: white">
+        <th style="font-size: 8px" width ="40%">
+             <table frame="box" rules="all" width="100%" style="border-color: white">
+                <tr style="border-color: white">
+                  <th style="font-size: 8px"><b><u>PROFESSORES</u></b></th>
+                  <th style="font-size: 8px"><b><u>FALTAS</u></b></th>
+                </tr>
+                 <%t1=1%>
+                <% @eventuals_professor.each do |faltaP| %>
+                   <tr style="border-color: white">
+                       <th align="left"style="font-size: 8px"><%= t1%>) <%= faltaP.eventual.professor.nome %></th>
+                        <th style="font-size: 8px" align="center"><%= faltaP.conta%> </th>
+                    </tr>
+                    <%t1=t1+1%>
+                    <%t=t+1%>
+                  <%end%>
+            </table>
+        </th>
+        <th width ="5%">
+            
+        </th>
+
+        <th style="font-size: 8px"valign="top" align="center"> <b><u> TOTAL DE SUBSTITUIÇÔES NO MÊS</u>  <br/> <%= t %></b> </th>
+  </tr>
+  </table>

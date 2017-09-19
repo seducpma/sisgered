@@ -41,11 +41,54 @@
             <%end%>
             <br/>
 
+
+
+
+         <%t=0%>
+         <%if  (@eventual_professor.present?)%>
+            <table  frame="box" width="100%" style="border-color: white">
+              <tr style="border-color: white">
+                <td style="border-color: white" width ="40%">
+                        <table  frame="box" width="100%" style="border-color: white">
+                             <tr style="border-color: white">
+                                <td style="border-color: white"><b><u>PROFESSORES</u></b></td>
+                                <td style="border-color: white" align="center"><b><u>FALTAS</u></b></td>
+                            </tr>
+                            <%t1 =1%>
+                            <% @eventual_professor.each do |aulas| %>
+                              <tr style="border-color: white">
+                                  <td style="border-color: white"><%= t1%>) <%= aulas.eventual.professor.nome %></td>
+                                  <th style="border-color: white" align="center"><%= aulas.conta%> </th>
+                              </tr>
+                                <%t1 =t1+1%>
+                                <%t= t + (aulas.conta).to_i %>
+                              <%end%>
+                        </table>
+                    </td>
+                    <th style="border-color: white"valign="top" align="center"%> <font size="2"> <b><u>TOTAL DE FALTAS NO MÊS</u> <br/>
+                             <%= t %></b> </font></th></tr>
+              </table>
+        <%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class ="invisible_to_print ">
             <table cellspacing="0" cellpadding="0" align="right" class ="invisible_to_print " >
               <tr class ="invisible_to_print " >
                    <td align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-                   <td width="2%" align="right" ><%= button_to("Imprimir", onclick="javascript:window.print()", :title => "Imprimir") %></td>
+                   <td width="2%" align="right" ><%= button_to("Imprimir Agenda", onclick="javascript:window.print()", :title => "Imprimir") %></td>
+                   <td width="2%" align="right" ><%= button_to "Relatório / Mês / Prof.", relatorio_eventual_mes_professor_aulas_eventuals_path %></td>
                     <%if (params[:search]).present? %>
                         <% if current_user.has_role?('SEDUC') or current_user.has_role?('admin')%>
                            <td width="2%" align="right"><%= button_to'Cadastrar Substituição',:action => "new", :unidade_id => params[:search][:unidade_id_equals],:target => '_blank' %></td>

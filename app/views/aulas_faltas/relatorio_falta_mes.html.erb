@@ -3,7 +3,7 @@
 
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>RELATÓRIO FALTAS/MÊS</strong></font><br/>
+     <font size="3"><strong>RELATÓRIO FALTAS/MÊS - UNIDADE</strong></font><br/>
  </div>
     <div class="tabs">
     <% form_remote_tag :url => relatorios_faltas_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
@@ -44,7 +44,7 @@
        <table>
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <td align="left"><%= button_to 'Nova Consulta', relatorios_anterior_classe_atribuicaos_path, :title => "Nova Consulta" %></td>
+     <td align="left"><%= button_to 'Nova Consulta', relatorio_falta_mes_aulas_faltas_path, :title => "Nova Consulta" %></td>
 
     </tr>
   </table>
