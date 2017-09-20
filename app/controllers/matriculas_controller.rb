@@ -207,26 +207,28 @@ class MatriculasController < ApplicationController
                                    for atri in @atribuicao
 
                                      @nota = Nota.new(params[:nota])
-                                     w1=@nota.aluno_id = @matricula.aluno_id
-                                     w2=@nota.atribuicao_id= atri.id
-                                     w3=@nota.matricula_id= @matricula.id
-                                     w4=@nota.professor_id= atri.professor_id
+                                     @nota.aluno_id = @matricula.aluno_id
+                                     @nota.atribuicao_id= atri.id
+                                     @nota.matricula_id= @matricula.id
+                                     @nota.professor_id= atri.professor_id
                                      @nota.disciplina_id = atri.disciplina_id
                                      @nota.unidade_id=  @matricula.unidade_id
                                      @nota.disciplina_id= atri.disciplina_id
                                      @nota.ano_letivo =  Time.now.year
-                                     t=0
+
                                       for notas_ant in @notas_ant
                                         if atri.disciplina_id == notas_ant.disciplina_id
                                           if !notas_ant.nota1.nil?
-                                             w5=@nota.nota1 = notas_ant.nota1
+                                             @nota.nota1 = notas_ant.nota1
                                           else
                                             @nota.nota1 = nil
                                           end
                                           if !notas_ant.faltas1.nil?
                                              @nota.faltas1 = notas_ant.faltas1
+                                             @nota.aulas1=atri.aulas1
                                           else
                                             @nota.faltas1 = 0
+                                            @nota.aulas1=atri.aulas1
                                           end
                                           if !notas_ant.nota2.nil?
                                              @nota.nota2 = notas_ant.nota2
@@ -235,8 +237,10 @@ class MatriculasController < ApplicationController
                                           end
                                           if !notas_ant.faltas2.nil?
                                              @nota.faltas2 = notas_ant.faltas2
+                                             @nota.aulas2=atri.aulas2
                                           else
                                             @nota.faltas2 = 0
+                                            @nota.aulas2=atri.aulas2
                                           end
                                           if !notas_ant.nota3.nil?
                                              @nota.nota3 = notas_ant.nota3
@@ -245,8 +249,10 @@ class MatriculasController < ApplicationController
                                           end
                                           if !notas_ant.faltas3.nil?
                                              @nota.faltas3 = notas_ant.faltas3
+                                             @nota.aulas3=atri.aulas3
                                           else
                                             @nota.faltas3 = 0
+                                            @nota.aulas3=atri.aulas3
                                           end
                                           if !notas_ant.nota4.nil?
                                              @nota.nota4 = notas_ant.nota4
@@ -255,8 +261,10 @@ class MatriculasController < ApplicationController
                                           end
                                           if !notas_ant.faltas4.nil?
                                              @nota.faltas4 = notas_ant.faltas4
+                                             @nota.aulas4=atri.aulas4
                                           else
                                             @nota.faltas4 = 0
+                                            @nota.aulas4=atri.aulas4
                                            end
                                         notas_ant.ativo=1
                                         notas_ant.save
@@ -322,9 +330,8 @@ class MatriculasController < ApplicationController
                @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
                @aluno[0].aluno_status =  'ABANDONO'
                @aluno[0].unidade_anterior = @aluno[0].unidade_id
-               w=@aluno[0].unidade_id = 52
-               w1=@aluno[0].aluno_sexo  = 'MASCULINO'
-               t=0
+               @aluno[0].unidade_id = 52
+               @aluno[0].aluno_sexo  = 'MASCULINO'
                @aluno[0].save
               
           end
@@ -425,10 +432,8 @@ def matriculas_saidas
          @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
     else if params[:type_of].to_i == 2
            session[:saidaT] = 2
-            w=params[:aluno][:id]
             @matriculas = Matricula.find(:all, :conditions =>['aluno_id = ? AND (status = "MATRICULADO" OR status = "*REMANEJADO" OR status = "TRANSFERENCIA")', params[:aluno][:id]], :order => 'classe_num ASC')
-           t=0
-           render :update do |page|
+                      render :update do |page|
               page.replace_html 'aluno1', :partial => 'alunos_saida'
             end
          end

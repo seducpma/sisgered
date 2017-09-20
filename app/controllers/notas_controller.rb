@@ -86,23 +86,21 @@ class NotasController < ApplicationController
     end
 
     def botao
-        w= params[:nota_ano_letivo]
-        t=0
+        params[:nota_ano_letivo]
+        
         render :partial => 'ok'
     end
   
     def create
-
         @nota = Nota.new(params[:nota])
         @existe= Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=?', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo])
         if  session[:cont_nome]=1
             w=@nota.aluno_id=session[:aluno_id]
-            t=0
+           t=0
 
         end
         if !@existe.empty?
             respond_to do |format|
-         
                 session[:aluno]= @nota.aluno.aluno_nome
                 session[:ano]= @nota.ano_letivo
                 session[:disciplina]= @nota.disciplina.disciplina
