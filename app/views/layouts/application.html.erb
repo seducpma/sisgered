@@ -167,7 +167,7 @@ display: none;
                 </ul>
               </li>
 
-            <% if (current_user.has_role?('admin'))%>
+<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao_infantil'))%>
               <li  class ="invisible_to_print "><a class="item-primary" href="#;">AGENDA</a>
                  <ul style="width:108px;">
 
@@ -197,10 +197,10 @@ display: none;
                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_infantil') )%>
                      <li><a class="item-primary" href="#;">Faltas</a>
                          <ul>
-                            <li><%= link_to "Agenda Unidades",aulas_faltas_path %></li>
-                            <li><%= link_to "Agenda Professores",aulas_faltas2_path %></li>
-                            <li><%= link_to "Agenda Funcionários",aulas_faltas3_path %></li>
-                            <li><a class="item-primary" href="#;">"Relatório / Mês"</a>
+                            <li><%= link_to "Agenda Unidade",aulas_faltas_path %></li>
+                            <li><%= link_to "Agenda Professor",aulas_faltas2_path %></li>
+                            <li><%= link_to "Agenda Funcionário",aulas_faltas3_path %></li>
+                            <li><a class="item-primary" href="#;"> Relatório / Mês </a>
                                  <ul>
                                     <li><%= link_to "Funcionario",relatorio_falta_mes_funcionario_aulas_faltas_path %></li>
                                     <li><%= link_to "Professor",relatorio_falta_mes_professor_aulas_faltas_path %></li>
@@ -214,9 +214,9 @@ display: none;
 
                      <li><a class="item-primary" href="#;">Substituições</a>
                          <ul>
-                            <li><%= link_to "Agenda Unidades",aulas_eventuals_path %></li>
-                            <li><%= link_to "Agenda professors",aulas_eventuals2_path %></li>
-                            <li><a class="item-primary" href="#;">"Relatório / Mês"</a>
+                            <li><%= link_to "Agenda Unidade",aulas_eventuals_path %></li>
+                            <li><%= link_to "Agenda professor",aulas_eventuals2_path %></li>
+                            <li><a class="item-primary" href="#;"> Relatório / Mês </a>
                                  <ul>
                                     <li><%= link_to "Professor",relatorio_eventual_mes_professor_aulas_eventuals_path %></li>
                                     <li><%= link_to "Unidade",relatorio_eventual_mes_unidade_aulas_eventuals_path %></li>

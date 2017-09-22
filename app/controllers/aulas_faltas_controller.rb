@@ -19,8 +19,9 @@ class AulasFaltasController < ApplicationController
             @faltas_professor = AulasFalta.find_by_sql("SELECT professor_id, count( id ) as conta FROM aulas_faltas WHERE (month( data) = "+@date.strftime("%m")+" AND ano_letivo = "+(Time.now.year).to_s+" AND unidade_id ="+(params[:search][:unidade_id_equals]).to_s+" AND professor_id IS NOT NULL ) GROUP BY professor_id")
             @faltas_funcionario = AulasFalta.find_by_sql("SELECT funcionario_id, count( id ) as conta FROM aulas_faltas WHERE (month( data) = "+@date.strftime("%m")+" AND ano_letivo = "+(Time.now.year).to_s+" AND unidade_id ="+(params[:search][:unidade_id_equals]).to_s+" AND funcionario_id IS NOT NULL) GROUP BY professor_id")
         end
-        session[:funcionanrio] =1
-        session[:professor] =1
+        session[:funcionario] = 1
+        session[:professor] = 1
+
 
     end
 
@@ -131,10 +132,17 @@ class AulasFaltasController < ApplicationController
 
     def nome_falta
         session[:aulas_falta_unidade_id]=params[:aulas_falta_unidade_id]
-        @professores = Professor.find(:all, :conditions => ['unidade_id =? or unidade_id =? ', params[:aulas_falta_unidade_id], 54], :order => 'nome ASC')
-        @funcionarios = Funcionario.find(:all, :conditions => ['unidade_id =? ', params[:aulas_falta_unidade_id]], :order => 'nome ASC')
 
-        if (@professores.present?) or  (@funcionarios.present?)
+        @tipo_unidade = Unidade.find(:all, :select => ['id, tipo_id'] , :conditions => ['id =?',  current_user.unidade_id]  )
+        if @tipo_unidade[0].tipo_id == 8 or @tipo_unidade[0].tipo_id == 5 or @tipo_unidade[0].tipo_id == 2
+           @professores = Professor.find(:all, :conditions => ['unidade_id =? ', params[:aulas_falta_unidade_id]], :order => 'nome ASC')
+           @funcionarios = Funcionario.find(:all, :conditions => ['unidade_id =? ', params[:aulas_falta_unidade_id]], :order => 'nome ASC')
+        else
+           @professores = Professor.find(:all, :conditions => ['unidade_id =? or unidade_id = 53 or  unidade_id = 75 or diversas_unidades = 1', params[:aulas_falta_unidade_id]], :order => 'nome ASC')
+           @funcionarios = Funcionario.find(:all, :conditions => ['unidade_id =? ', params[:aulas_falta_unidade_id]], :order => 'nome ASC')
+
+        end
+        if (@professores.present?) or (@funcionarios.present?)
             render :partial => 'selecao_falta'
         else
             render :partial => 'aviso'

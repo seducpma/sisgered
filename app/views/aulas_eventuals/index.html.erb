@@ -26,7 +26,7 @@
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_infantil'))%>
                     <%if !@aulas_eventual.present? %>
                          <%if (params[:search]).present? %>
-                              <%= button_to'Cadastrar Aula Eventual',:action => "new", :unidade_id => params[:search][:unidade_id_equals] %>
+                              <%= button_to'Cadastrar SUbstituição',:action => "new", :unidade_id => params[:search][:unidade_id_equals] %>
                           <%end%>
                      <%end%>
                 <%end%>
