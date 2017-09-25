@@ -26,32 +26,29 @@
                                                  :with   => :aulas_eventual_data,
                                                  :url  => { :action => 'data_eventual' }%>
 
-                                 &nbsp&nbsp&nbsp&nbsp <b>Período: </b>
+                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Período: </b>
                                  <%= f.select :periodo, (AulasEventual::PERIODO).sort, :include_blank => ' -- Selecionar -- ' %>
                                         <%= observe_field 'aulas_eventual_periodo',
                                                      :with   => :periodo,
                                                      :url  => { :action => 'periodo_prof_eventual' }
                                                       %>
-                                 &nbsp&nbsp&nbsp&nbsp<b>Categoria: </b>
-                                 <%= f.select :categoria, AulasEventual::CATEGORIA, :include_blank => ' -- Selecionar -- ' %>
-                                        <%= observe_field 'aulas_eventual_categoria',
-                                                     :with   => :categoria,
-                                                     :url  => { :action => 'caregoria_prof_eventual' }
-                                                      %>
                  </td>
                 </tr>
                 <tr>
 
-                    <td align="left"><b>Unidade: </b> </td>
-                    <td ><%= collection_select :aulas_eventual, :unidade_id, @unidades_infantil, :id, :nome, :include_blank => ' -- Selecionar -- ' %>
+                    <td align="left" width="10%">&nbsp <b>Categoria: </b> </td>
+                    <td align="left">&nbsp<%= f.select :categoria, AulasEventual::CATEGORIA, :include_blank => ' -- Selecionar -- ' %>
+                                        <%= observe_field 'aulas_eventual_categoria',
+                                                     :with   => :categoria,
+                                                     :url  => { :action => 'caregoria_prof_eventual' }
+                                                      %>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Unidade: </b>
+                                 <%= collection_select :aulas_eventual, :unidade_id, @unidades_infantil, :id, :nome, :include_blank => ' -- Selecionar -- ' %>
                                        <%= observe_field 'aulas_eventual_unidade_id',
                                                      :with   => :aulas_eventual_unidade_id,
                                                      :url  => { :action => 'nome_prof_eventual' },
                                                      :update => "professor"%>
-                        
-                     
-                        &nbsp&nbsp&nbsp&nbsp <div id="faltante"></div>
-                    </td>
+                     </td>
                 </tr>
                 <tr>
                       <td colspan="8"> <div id="professor"><br/></div>
@@ -60,7 +57,7 @@
               </tr>
 
                 <tr>
-                   <td align="right" valign="top"><b>Obs:</b></td>
+                   <td align="left" valign="top"><b>Observação:</b></td>
                    <td align="left" colspan="5"><%= f.text_area(:obs,:cols => 70, :rows => "3") %></td>
 
                </tr>

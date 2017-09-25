@@ -1,25 +1,26 @@
 <table width="100% ">
            <tr>
 
-               <td colspan="3"><b><b>Professor(Falta): </b>
-                    <%= collection_select :aulas_eventual, :faltante, @prof_falta, :nome, :nome, :include_blank => ' -- Selecionar -- ' %>
-                </td>
-
-
+               <td align="left" width ="10%"><b>Professor(Falta): </b></td>
+               <td align="left">     <%= collection_select :aulas_eventual, :faltante, @prof_falta, :nome, :nome, :include_blank => ' -- Selecionar -- ' %></td>
+                  <%= observe_field 'aulas_eventual_faltante',
+                     :with   => :aulas_eventual_faltante,
+                      :url  => { :action => 'aulas_faltas_faltente_classe' },
+                      :update => "classe" %>
+               <td align="left"> <div id ="classe"></div>
           </tr>
            <tr>
 
-                   <td><b>Classe: </b></td>
-                   <td><%= collection_select :aulas_eventual, :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
-             <td align="left"><b> Professor(Subst.): </b>&nbsp
-
-             <%= collection_select :aulas_eventual, :eventual_id, @professores, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                  
+             <td align="left"><b> Professor(Subst.): </b></td>
+             <td align="left"><%= collection_select :aulas_eventual, :eventual_id, @professores, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
                  <%= observe_field 'aulas_eventual_eventual_id',
                      :with   => :aulas_eventual_eventual_id,
                       :url  => { :action => 'observacao_prof_eventual' },
                       :update => "observacao" %>
 
-
+             <td><b>Classe: </b></td>
+                   <td><%= collection_select :aulas_eventual, :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
 
           </tr>
 

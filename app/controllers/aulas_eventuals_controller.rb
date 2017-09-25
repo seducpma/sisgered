@@ -115,6 +115,7 @@ class AulasEventualsController < ApplicationController
 def data_eventual
     session[:aulas_eventual_data]=  params[:aulas_eventual_data]
 
+
 end
 
 def periodo_prof_eventual
@@ -137,16 +138,24 @@ def nome_prof_eventual
         @professores = @professores1 + @divisao + @professores2
         @classes = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  session[:aulas_eventual_unidade_id], Time.now.year], :order => 'classe_classe')
         @interno= Eventual.find_by_sql("SELECT aulas_eventuals.eventual_id FROM aulas_eventuals WHERE aulas_eventuals.ano_letivo ="+(Time.now.year).to_s+" AND data = '"+session[:aulas_eventual_data].to_s+"' AND aulas_eventuals.unidade_id = "+session[:aulas_eventual_unidade_id]+" " )
-        w= session[:aulas_eventual_unidade_id]
-        #@aulas_faltas = AulasFalta.find(:all, :conditions =>[ ])
-        @prof_falta = Professor.find(:all, :joins => "LEFT JOIN aulas_faltas ON professors.id = aulas_faltas.professor_id", :conditions => ['aulas_faltas.professor_id is not null AND aulas_faltas.unidade_id =? AND month(data) =?', session[:aulas_eventual_unidade_id], @date.month])
-        t=0
+        @prof_falta = Professor.find(:all, :joins => "LEFT JOIN aulas_faltas ON professors.id = aulas_faltas.professor_id", :conditions => ['aulas_faltas.professor_id is not null AND aulas_faltas.unidade_id =? AND aulas_faltas.data =?', session[:aulas_eventual_unidade_id], session[:aulas_eventual_data]])
+
         if @professores.present?
            render :partial => 'selecao_professor'
         else
            render :partial => 'aviso'
         end
     end
+
+
+def aulas_faltas_faltente_classe
+   w=session[:professor_faltante] = params[:aulas_eventual_faltante]
+   @professor_faltante = Professor.find (:all, :select => ['id, nome'], :conditions => ['nome =?', params[:aulas_eventual_faltante]] )
+   w= @professor_faltante
+   t=0
+
+end
+
 
     def observacao_prof_eventual
         @professor = Eventual.find(:all, :conditions => ['id = ?',  params[:aulas_eventual_eventual_id]] )
