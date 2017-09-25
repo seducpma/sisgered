@@ -28,7 +28,7 @@ class NotasController < ApplicationController
             @serie[cont-1] = (session[:classe_nota]-cont).to_s
             cont=cont+1
         end
-
+       
 #        if  session[:classe_nota] == 9
 #            @ano_letivo = [ (session[:ano]- 8).to_s, (session[:ano]- 7).to_s, (session[:ano]- 6).to_s, (session[:ano]- 5).to_s, (session[:ano]- 4).to_s,(session[:ano]- 3).to_s,(session[:ano]- 2).to_s,(session[:ano]- 1).to_s]
 #        else if  session[:classe_nota] == 8
@@ -66,12 +66,14 @@ class NotasController < ApplicationController
     end
 
     def new1
+        
         @nota = Nota.new
         session[:flagx]=1
         respond_to do |format|
             format.html # new.html.erb
             format.xml  { render :xml => @nota }
         end
+
     end
 
     def edit
@@ -93,12 +95,19 @@ class NotasController < ApplicationController
   
     def create
         @nota = Nota.new(params[:nota])
-        @existe= Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=?', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo])
         if  session[:cont_nome]=1
-            w=@nota.aluno_id=session[:aluno_id]
-           t=0
-
+            @nota.aluno_id=session[:aluno_id]
+            @nota.ano_letivo = session[:ano_letivo]
         end
+        @existe= Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=?', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo])
+        w1=@nota.aluno_id
+        w2=@nota.disciplina_id
+       w3=@nota.ano_letivo
+
+
+t=0
+
+
         if !@existe.empty?
             respond_to do |format|
                 session[:aluno]= @nota.aluno.aluno_nome

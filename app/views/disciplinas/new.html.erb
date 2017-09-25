@@ -22,7 +22,8 @@
                         <td align="left"><font size="2"> <b>Tipo Curriculo:</b></font></td>
                         <td><%= select_tag :NovoCurriculo,options_for_select([ "BÁSICO", "DIVERSIFICADO" ]) %>&nbsp&nbsp&nbsp&nbsp
                             <b>Ano Letivo:</b>
-                            <%= select_tag :NovoAnoLetivo,options_for_select([ "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016",]) %></td>
+                            <%=  select_tag :NovoAnoLetivo, options_for_select(@ano_letivo.insert(0, '---')) %>
+                            
                     </tr>
 
                 </table>
@@ -31,8 +32,8 @@
                <table width="100%" align="center" >
                    <tr bgcolor="#F5F5F5">
                      <td colspan="2"align="left"><font size="2"> <b>Nota:</b></font>
-                         <%= select_tag :NovaNota,options_for_select([ "10.0", "9.0", "8.0", "7.0", "6.0", "5.0", "4.0", "3.0", "2.0", "1.0", "0.0", "SN", "TR", "RM", "F", "NF", "ABN" ]) %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&
-                         <b>Série:</b>&nbsp&nbsp<%= select_tag :NovaClasse,options_for_select([ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]) %> º Ano
+                         <%= select_tag :NovaNota,options_for_select([ "10.0", "9.0", "8.0", "7.0", "6.0", "5.0", "4.0", "3.0", "2.0", "1.0", "0.0", "SN", "TR", "RM", "F", "NF", "ABN" ]) %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Série:</b>&nbsp&nbsp<%= select_tag :NovaClasse, options_for_select(@serie.insert(0, '---')) %> º Ano
                      </td>
                    </tr>
 

@@ -86,6 +86,16 @@ class DisciplinasController < ApplicationController
 
 
     def new
+        cont=1
+        @ano_letivo=[0,0]
+        @serie=[0,0]
+        while (cont < session[:classe_nota]) do
+            @ano_letivo[cont-1] = (session[:ano] - cont).to_s
+            @serie[cont-1] = (session[:classe_nota]-cont).to_s
+            cont=cont+1
+            
+        end
+
         @disciplina = Disciplina.new
 
         respond_to do |format|

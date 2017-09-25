@@ -57,12 +57,12 @@
                             <%session[:cargah][i]=1%>
                                 <%if @notasB[acertoHTML].escola.nil? %>
                                    <% if !@notasB[acertoHTML].matricula_id.nil? %>
-                                       <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>xx
+                                       <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
                                        <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
                                    <%end%>
 
                                 <%else%>
-                                     <%session[:escola][i]= @notasB[acertoHTML].escola  %>yy
+                                     <%session[:escola][i]= @notasB[acertoHTML].escola  %>
                                      <%session[:cidade][i]= @notasB[acertoHTML].cidade  %>
                                <%end%>
                         <%end%>

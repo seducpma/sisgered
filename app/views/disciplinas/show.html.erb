@@ -1,71 +1,4 @@
 <div id="interno3">
-<% title "DISCIPLINA" %>
-<div class ="tabs">
- <table bgcolor="#DCDCDC" width="100%">
-     <tr>
-
-         <td>
-             <font size=4>LANÇAMENTOS DISCIPLINA/NOTAS HISTÓRICO</font>
-         </td>
-     </tr>
-   <tr bgcolor="#F5F5F5"  width="100%">
-     <td>
-       <fieldset><legend><font  size=3><b>DISCIPLINA</b></font></legend>
-           <table width="100%" align="center" >
-                <tr bgcolor="#F5F5F5">
-                    <td align="left" width ="10%" ><font size="2"> <b>Aluno:</b></font></td>
-                    <td><%=h @nota[0].aluno.aluno_nome%></td>
-               </tr>
-               <tr bgcolor="#F5F5F5">
-                    <td align="left" width ="10%" ><font size="2"> <b>Disciplina:</b></font></td>
-                     <td><%=h @disciplina.disciplina%></td>
-               </tr>
-                <tr bgcolor="#F5F5F5">
-                     <td align="left"><font size="2"> <b>Tipo Curriculo:</b></font></td>
-                     <td><%=h @disciplina.curriculo%>&nbsp&nbsp&nbsp&nbsp
-                          <b>Ano Letivo:</b>
-                          <%=h @disciplina.ano_letivo%></td>
-               </tr>
-             </table>
-       </fieldset>
-       <fieldset><legend><font  size=3><b>DISCIPLINA</b></font></legend>
-           <table width="100%" align="center" >
-                <tr bgcolor="#F5F5F5">
-                    <td align="left" width ="10%" ><font size="2"> <b>Disciplina:</b></font></td>
-                     <td><%=h @disciplina.disciplina%></td>
-               </tr>
-                <tr bgcolor="#F5F5F5">
-                     <td align="left"><font size="2"> <b>Tipo Curriculo:</b></font></td>
-                     <td><%=h @disciplina.curriculo%>&nbsp&nbsp&nbsp&nbsp
-                          <b>Ano Letivo:</b>
-                          <%=h @disciplina.ano_letivo%></td>
-               </tr>
-             </table>
-     </fieldset>
-
-   </td>
-  </tr>
- </table>
-
-    <table>
-         <tr>
-
-            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('supervisao')%>
-                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@disciplina}, :method => "get", :title => "Editar"%></td>
-                 <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@disciplina}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
-
-            <%else%>
-                <td align="center"></td>
-             <%end%>
-             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-          </tr>
-    </table>
-
-
-</div>
-<br/>
-</div>
-<div id="interno3">
 <% title "ATRIBUICAO" %>
   <div class ="tabs">
 
@@ -103,7 +36,7 @@
               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
              <b>Série:</b>&nbsp<%= @nota[0].classe %> º Ano &nbsp&nbsp&nbsp&nbsp
              <b>Ano Letivo:</b> <%= @nota[0].disciplina.ano_letivo %>
-
+<%= session[:classe] = @nota[0].classe %> %>
          </td>
       </tr>
     </table>
@@ -112,8 +45,6 @@
          <tr>
 
             <td width ="6%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-            <td width ="6%" align="left"><%= button_to 'Continuar Lançamento', new1_notas_path, {:method => "get"}  %></td>
-            <td width ="6%"align="left"><%= button_to 'Novo Lançamento',{:action => "new", :controller => :notas}, :method => "get", :title => "Editar" %></td>
             <td align="left"><%= button_to 'Historico',historicoContinua_path, :title => "Histórico", session[:aluno_id] => @nota[0].aluno_id %></td>
 
          </tr>
