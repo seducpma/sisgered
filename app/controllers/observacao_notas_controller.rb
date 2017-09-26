@@ -35,6 +35,30 @@ class ObservacaoNotasController < ApplicationController
     end
   end
 
+
+  def new2
+
+    @observacao_nota = ObservacaoNota.new
+       w7=session[:new2_aluno_nome]
+    @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo = ?",session[:new2_aluno_id], Time.now.year ])
+    for matricula in @matricula
+         w3=session[:classe]= matricula.classe.classe_classe
+         w4=session[:periodo] = matricula.classe.horario
+         w5=session[:data] = DateTime.now.to_date
+         w6=session[:quem] = 'PROFESSOR'
+         t=0
+    end
+    w=@observacao_nota.data = session[:data]
+    w1=@observacao_nota.quem = session[:quem]
+t=0
+    session[:new2_create] =  1
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @observacao_nota }
+    end
+  end
+
+
   # GET /observacao_notas/1/edit
   def edit
     @observacao_nota = ObservacaoNota.find(params[:id])

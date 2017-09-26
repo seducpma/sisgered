@@ -114,7 +114,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'
   map.editar_atribuicao_classe '/editar_atribuicao_classe', :controller => 'atribuicaos', :action => 'editar_atribuicao_classe'
   map.show_editar '/show_editar', :controller => 'atribuicaos', :action => 'show_editar'
-
+  map.new2_obs_notas '/new2_obs_notas', :controller => 'observacao_notas', :action => 'new2'
 
   map.consulta_professor_eventual '/consulta_professor_eventual', :controller => 'eventuals', :action => 'consultas'
   map.consulta_unidade '/consulta_unidade', :controller => 'unidades', :action => 'consulta_unidade'
