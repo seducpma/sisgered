@@ -39,26 +39,24 @@ class ObservacaoNotasController < ApplicationController
   def new2
 
     @observacao_nota = ObservacaoNota.new
-       k=session[:xxxx]
-       w8=session[:id_nota]
-       t=0
+       
+       session[:xxxx]
+       session[:new2_aluno_id]
+
     @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo = ?",session[:new2_aluno_id], Time.now.year ])
-    t=0
+
     for matricula in @matricula
-         w3=session[:classe]= matricula.classe.classe_classe
-         w4=session[:periodo] = matricula.classe.horario
-         w5=session[:data] = DateTime.now.to_date
-         w6=session[:quem] = 'PROFESSOR'
-         t=0
+        session[:classe]= matricula.classe.classe_classe
+        session[:periodo] = matricula.classe.horario
+        session[:data] = DateTime.now.to_date
+        session[:quem] = 'PROFESSOR'
+
     end
-    w=@observacao_nota.data = session[:data]
-    w1=@observacao_nota.quem = session[:quem]
-t=0
     session[:new2_create] =  1
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @observacao_nota }
-    end
+        respond_to do |format|
+          format.html # new.html.erb
+          format.xml  { render :xml => @observacao_nota }
+        end
   end
 
 
@@ -70,19 +68,40 @@ t=0
   # POST /observacao_notas
   # POST /observacao_notas.xml
   def create
-    @observacao_nota = ObservacaoNota.new(params[:observacao_nota])
-    @observacao_nota.ano_letivo =  Time.now.year
-    t=0
-    respond_to do |format|
-      if @observacao_nota.save
-        flash[:notice] = 'ObservacaoNota was successfully created.'
-        format.html { redirect_to(@observacao_nota) }
-        format.xml  { render :xml => @observacao_nota, :status => :created, :location => @observacao_nota }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @observacao_nota.errors, :status => :unprocessable_entity }
-      end
+    if     session[:new2_create] ==  1
+       session[:new2_create] =  0
+        @observacao_nota = ObservacaoNota.new(params[:observacao_nota])
+        @observacao_nota.ano_letivo =  Time.now.year
+        @observacao_nota.quem = session[:quem]
+        @observacao_nota.data = session[:data]
+        @observacao_nota.aluno_id = session[:new2_aluno_id]
+        w=@observacao_nota.nota_id = session[:id_nota]
+t=0
+        respond_to do |format|
+                  if @observacao_nota.save
+                    @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
+                    @nota = Nota.find(:all, :conditions => ['id= ?',session[:id_nota]])
+                    format.html { redirect_to(edit_nota_path(@nota)) }
+
+                  end
+                end
+    else
+        @observacao_nota = ObservacaoNota.new(params[:observacao_nota])
+        @observacao_nota.ano_letivo =  Time.now.year
+        t=0
+        respond_to do |format|
+          if @observacao_nota.save
+            flash[:notice] = 'ObservacaoNota was successfully created.'
+            format.html { redirect_to(@observacao_nota) }
+            format.xml  { render :xml => @observacao_nota, :status => :created, :location => @observacao_nota }
+          else
+            format.html { render :action => "new" }
+            format.xml  { render :xml => @observacao_nota.errors, :status => :unprocessable_entity }
+          end
+        end
+        t=0
     end
+
   end
 
   # PUT /observacao_notas/1

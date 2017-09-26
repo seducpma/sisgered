@@ -19,7 +19,7 @@
                             <td colspan="6"><font size ="2" color="red"><b>2) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR  LANÇAMENTO JÁ <br/> &nbsp&nbsp&nbsp&nbsp EXECUTADO PELO PROFESSOR.</b></font></b></td>
                         </tr>
                         <tr bgcolor="#F5F5F5">
-                            <td colspan="6"><font size ="2" color="red"><b>3) OBSERVAÇÕES PODEM SER LANÇADAS DIVERSAS  VEZES, PARA LANÇAR CLIQUE NO <br/> &nbsp&nbsp&nbsp&nbsp LINK  <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></td>
+                            <td colspan="6"><font size ="2" color="red"><b>3) OBSERVAÇÕES PODEM SER LANÇADAS DIVERSAS  VEZES, PARA LANÇAR CLIQUE NO <br/> &nbsp&nbsp&nbsp&nbsp LINK  <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), new2_obs_notas_path %></u></b></td>
                                             </tr>
                                             <tr bgcolor="#F5F5F5">
                                                 <td colspan="4"><%session[:new2_aluno_nome]= @nota.aluno.aluno_nome%>
@@ -233,9 +233,8 @@
 
                                             <tr>
                                                 <td width="2%" valign="top">
-                                                    <font size ="1"color ="red"><b>Para lançar observações clique no botão Observações</b></font><br/>
-                                                    <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></font>
-
+                                                    <font size ="1"color ="red"><b>Para lançar observações <br/> clique no botão Observações</b></font><br/>
+                                                    <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), new2_obs_notas_path %>
 
                                                 </td>
                                                 <td colspan="4" valign="top"> <%if !@nota.obs1.nil?%>
