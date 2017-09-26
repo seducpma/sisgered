@@ -39,8 +39,11 @@ class ObservacaoNotasController < ApplicationController
   def new2
 
     @observacao_nota = ObservacaoNota.new
-       w7=session[:new2_aluno_nome]
+       k=session[:xxxx]
+       w8=session[:id_nota]
+       t=0
     @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo = ?",session[:new2_aluno_id], Time.now.year ])
+    t=0
     for matricula in @matricula
          w3=session[:classe]= matricula.classe.classe_classe
          w4=session[:periodo] = matricula.classe.horario

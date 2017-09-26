@@ -22,8 +22,8 @@
                             <td colspan="6"><font size ="2" color="red"><b>3) OBSERVAÇÕES PODEM SER LANÇADAS DIVERSAS  VEZES, PARA LANÇAR CLIQUE NO <br/> &nbsp&nbsp&nbsp&nbsp LINK  <font color ="blue"><b><u><%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></u></b></td>
                                             </tr>
                                             <tr bgcolor="#F5F5F5">
-                                                <td colspan="4"><%session[:new2_aluno_id]= @nota.aluno_id%> <%session[:new2_aluno_nome]= @nota.aluno.aluno_nome%>
-                                                    <b>Aluno:</b>&nbsp&nbsp  <font color="blue"><%= session[:new2_aluno_id]%></font></td>
+                                                <td colspan="4"><%session[:new2_aluno_nome]= @nota.aluno.aluno_nome%>
+                                                    <b>Aluno:</b>&nbsp&nbsp  <font color="blue"><%=  @nota.aluno.aluno_nome%></font></td>
 
                                             </tr>
                                             <tr bgcolor="#F5F5F5">
