@@ -97,16 +97,11 @@ class NotasController < ApplicationController
         @nota = Nota.new(params[:nota])
         if  session[:cont_nome]=1
             @nota.aluno_id=session[:aluno_id]
-            @nota.ano_letivo = session[:ano_letivo]
         end
         @existe= Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=?', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo])
-        w1=@nota.aluno_id
-        w2=@nota.disciplina_id
-       w3=@nota.ano_letivo
-
-
-t=0
-
+        @nota.aluno_id
+        @nota.disciplina_id
+       @nota.ano_letivo
 
         if !@existe.empty?
             respond_to do |format|
