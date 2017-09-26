@@ -8,7 +8,7 @@
     <% form_remote_tag :url => editar_ficha_cadastral_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
-         <%  @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND ( aluno_status is null or aluno_status = "SEM_MATRICULA")', current_user.unidade_id],:order => "aluno_nome") %>
+         <%  @alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_nome") %>
           <tr>
             <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
                &nbsp&nbsp&nbsp

@@ -356,7 +356,20 @@
    </tr>
    <%end%>
    <%flag1=0%>
-   <%if !@notasD.empty?%>
+   <%@notas.each do |nota|%>
+     <% if flag1 == 0%>
+        <%if nota.aulas5.nil?%>
+          <%flag1=1%>
+            <tr>
+            <td colspan="20">
+              <center><font color ="red"><b>  PROFESSORES QUE NÃO LANÇARAM AS AULAS DADAS NO BIMESTRE OU AS FALTAS DO ALUNO, O SISTEMA NÂO CALCULA A FREQUÊNCIA, <br/>
+                  PARA QUE O BOLETIM FIQUE CORRETO, FAVOR SOLICITAR QUE O PROFESSOR LANCE AS FALTAS E A QUANTIDADE DE AULAS DADAS.</b> </center>
+            </td>
+          </tr>
+       <%end%>
+    <%end%>
+   <%end%>
+  <%if !@notasD.empty?%>
    <tr>
      <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
      <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
@@ -589,29 +602,10 @@
           </table>
     <%end%>
       <%end%><br/>
+
      <br/>
-    </table>
-
-<table  width="100%">
-        <tr>
-           <td><br/> <font size="2"><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b></font><br/>
-                     <font size="1"><b> Lei Federal 9294/96 Art. 26, 32, 33, 34 -
-                               Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
-           </td>
-       </tr>
-       <tr>
-           <td>
-               <div id="dados_historico"> <%= render :partial => 'notas_historico'  %>     </div>
-           </td>
-       </tr>
-
-
 
     </table>
-
-
-
-
           <table  width="100% ">
               <tr>
                <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>

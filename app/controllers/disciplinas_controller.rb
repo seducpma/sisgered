@@ -72,10 +72,11 @@ class DisciplinasController < ApplicationController
     end
 
     def show
-
+        t=0
         @disciplina = Disciplina.find(params[:id])
-        @nota = Nota.find(:all, :conditions => ['disciplina_id = ?',@disciplina.id])
-        session[:aluno_id]=  @nota[0].aluno_id
+        @nota = Nota.find(params[:id])
+        t=0
+
         respond_to do |format|
             format.html # show.html.erb
             format.xml  { render :xml => @disciplina }
@@ -86,16 +87,6 @@ class DisciplinasController < ApplicationController
 
 
     def new
-        cont=1
-        @ano_letivo=[0,0]
-        @serie=[0,0]
-        while (cont < session[:classe_nota]) do
-            @ano_letivo[cont-1] = (session[:ano] - cont).to_s
-            @serie[cont-1] = (session[:classe_nota]-cont).to_s
-            cont=cont+1
-            
-        end
-
         @disciplina = Disciplina.new
 
         respond_to do |format|
@@ -111,38 +102,9 @@ class DisciplinasController < ApplicationController
 
     def create
         @disciplina = Disciplina.new(params[:disciplina])
-        @disciplina.disciplina=params[:NovaDisciplina]
-        @disciplina.curriculo=params[:NovoCurriculo]
-        @disciplina.ano_letivo=params[:NovoAnoLetivo]
-        @disciplina.tipo_un = 3
-        if params[:NovoCurriculo] == 'BÁSICO'
-            @disciplina.curriculo = 'B'
-            @contador = Disciplina.find(:all, :conditions => ['curriculo = "B"'], :order => 'ordem ASC')
-            for contador in @contador
-                @disciplina.ordem=(contador.ordem)+1
-            end
-        else if params[:NovoCurriculo] == 'DIVERSIFICADO'
-                @disciplina.curriculo = 'D'
-                @contador = Disciplina.find(:all, :conditions => ['curriculo = "B"'], :order => 'ordem ASC')
-                for contador in @contador
-                    @disciplina.ordem=(contador.ordem)+1
-                end
-            end
-        end
-
-        @nota = Nota.new(params[:nota])
-        @nota.aluno_id=session[:aluno_id]
-        @nota.nota5 = params[:NovaNota]
-        @nota.escola = params[:NovaEscola]
-        @nota.cidade = params[:NovaCidade]
-        @nota.classe = params[:NovaClasse]
-        @nota.ano_letivo = params[:NovoAnoLetivo]
-
 
         respond_to do |format|
             if @disciplina.save
-                @nota.disciplina_id = @disciplina.id
-                @nota.save
                 flash[:notice] = 'Disciplina was successfully created.'
                 format.html { redirect_to(@disciplina) }
                 format.xml  { render :xml => @disciplina, :status => :created, :location => @disciplina }

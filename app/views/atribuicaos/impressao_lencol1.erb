@@ -140,29 +140,36 @@
                 <%end%>
             </tr>
             <tr style="font-size: 7px">
-                <th align="left"> <b>Legenda Notas</b></th>
-                <th colspan="30"align="left"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp<br/>
+                <th> <b>Legenda Notas</b></th>
+                <th colspan="20"> <b>S/N</b>= Sem Nota &nbsp&nbsp <b>TR</b>= Transferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
+
+                </th>
+            </tr>
+            <tr style="font-size:10px">
+                <td></td>
+                <td colspan="23">
                     <% if  session[:num_classe]< 6   %>
                         * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
                         * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.
+                    <%else%>
+                        <%  %>
                     <%end%>
-
-                </th>
+                </td>
             </tr>
         </table>
     </table>
 <%end%>
 <table  width="100%"style="border-color: white" >
     <tr style="font-size: 9px"style="border-color: white">
-        <th align="RIGHT"   style="border-color: white"> <b>Americana</b>, <%= Time.now.strftime("%d de %B de %Y") %>></th>
+        <th align="RIGHT"   style="border-color: white"> <br/><b>Americana</b>, <%= Time.now.strftime("%d de %B de %Y") %><br/></th>
     </tr>
     <tr style="font-size: 9px"style="border-color: white">
-        <th align="center"   style="border-color: white"> <br/>
+        <th align="center"   style="border-color: white"> <br/><br/><br/>
             ________________________________ <br/>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Secretário(a) U.E </th>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Secretário(a) U.E <br/></th>
     </tr>
     <tr style="font-size: 10px"style="border-color: white">
-        <th align="left"   style="border-color: white"> <br/>
+        <th align="left"   style="border-color: white"> <br/><br/><br/><br/><br/><br/><br/><br/>
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Carimbo da U.E <br/></th>
     </tr>
 </table>

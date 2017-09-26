@@ -209,11 +209,10 @@ RELIGIAO = { "CATÓLICO ROMANO" => "CATÓLICO ROMANO",
              "METODISTA"=> "METODISTA"
 }
 
-TURMA ={"---" => nil,
-         "1" =>"1",
+TURMA ={ "1" =>"1",
          "2" =>"2",
-         "3" =>"3",
-         "4" =>"4",
+         "3"  =>"3",
+         "4" => "4",
          "5" =>"5",
          "6" =>"6",
          "7" =>"7",
@@ -236,46 +235,9 @@ ANO   ={ "2016" =>"2016",
          "2005" =>"2005",
 
         }
-
+# Acrescentei o ano de "2016" e não retirei o "2007" ###Alex
 
 
 CURRICULO={ 'B '=>'BASICO',
             'D'=> 'DIVERSIFICADO'
           }
-
-CATEGORIA={ 'ADI'=> 'ADI',
-            'PA '=>'PA',
-            'PC '=>'PC',
-            'PB-I'=> 'PB-I'
-          }
-
-PERIODO={ 'MATUTINO '=>'MATUTINO',
-          'VESPERTINO'=> 'VESPERTINO',
-          'INTEGRAL'=> 'INTEGRAL'
-          }
-
-MES ={'-- Selecionar -- '=> 0,
-       'JANEIRO' => 1,
-       'FEVEREIRO' => 2,
-       'MARÇO' => 3,
-       'ABRIL' => 4,
-       'MAIO' => 5,
-       'JUNHO' => 6,
-       'JULHO' => 7,
-       'AGOSTO' => 8,
-       'SETEMBRO' => 9,
-       'OUTUBRO' => 10,
-       'NOVEMBRO' => 11,
-       'DEZEMBRO' => 12
-       }
-
-
-FALTA ={ '-- Selecionar -- ' => 'Selecionar',
-         'JUSTIÇA ELEITORAL' => 'JUSTIÇA ELEITORAL',
-         'FALTA ABONADA' => 'FALTA ABONADA',
-         'FALTA JUSTIFICADA' => 'FALTA JUSTIFICADA',
-         'ATESTADO MÉDICO' => 'ATESTADO MÉDICO',
-         'LICENÇA MÉDICA' => 'LICENÇA MÉDICA',
-         'FALTA INJUSTIFICADA' => 'FALTA INJUSTIFICADA',
-         'OUTRAS' => 'OUTRAS'
-       }

@@ -109,8 +109,8 @@
               <tr>
 
                 <td width ="24%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
-                                              <%= link_to image_tag("/stylesheets/images/disciplina.png"),new_disciplina_path, :target => '_blank' %>
-                                              <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, session[:aluno] => @nota.aluno_id , :target => '_blank' %>
+                <%= link_to image_tag("/stylesheets/images/disciplina.png"), "#inline_disciplina", :class =>"inline" %>
+                <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, session[:aluno] => @nota.aluno_id , :target => '_blank' %>
                 </td>
                 <td valign="middle">
                     &nbsp&nbsp</u> Para incluir <b>Observações</b> , <b>Disciplinas </b> ou <b>Notas</b> utilize os botões à esquerda.

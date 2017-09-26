@@ -28,19 +28,13 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td width =" 13%"><b>Ano Letivo:</b></td>
-                   <td><%= f.select :ano_letivo , options_for_select(@ano_letivo.insert(0, '---')) %>
-                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Nota:</b>
+                   <td><%= f.select :ano_letivo, (ANO).sort%>
+                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Nota:</b>
                        <%= f.select :nota5 , options_for_select(@NOTASB1.insert(0, @nota.nota5)) %>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                        <b>Faltas:</b>&nbsp&nbsp<%= f.text_field :faltas5 , :size => '3'%>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                       <b>Série:</b>&nbsp&nbsp<%= f.select :classe, options_for_select(@serie.insert(0, '---')) %> º Ano
-
-                        <%= observe_field 'nota_classe',
-                           :update => "oki",
-                           :url    => { :action => 'botao' },
-                           :with   => 'nota_ano_letivo' %>
-
+                       <b>Série:</b>&nbsp&nbsp<%= f.select :classe, (TURMA).sort %> º Ano
                    </td>
                 </tr>
                  <tr bgcolor="#F5F5F5">
@@ -58,11 +52,11 @@
             </fieldset>
                  <table width="100%" >
                    <tr bgcolor="#F5F5F5">
-                     <td width="90%"align="left"><b><div id='oki'> Selecione a ANO LETIVO e a SÉRIE para habilitar o botão SALVAR </div></b></td>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
 
           <%end%>
 
-                     <td align="right"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
                    </tr>
                  </table>
             </font>

@@ -22,11 +22,8 @@
 
     <%if @ano_inicial.classe.nil?%>
         <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
-        <%  session[:classe_nota] = classe %>
-
     <%else%>
         <% classe= @ano_inicial.classe %>
-        
     <%end%>
     <% anoinicial = ano.to_i - classe +1  %>
     <tr>
@@ -34,6 +31,10 @@
             <td width ="5%" align="center" ><b> <%=  anoinicial+i %></b></td>
         <%end%>
     </tr>
+    
+
+
+
     <%session[:contnota]=0%>
     <%session[:cargah]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
     <%session[:escola]=['', '', '', '', '', '','', '', '']%>
@@ -56,10 +57,8 @@
                             <%= @notasB[acertoHTML].nota5%>
                             <%session[:cargah][i]=1%>
                                 <%if @notasB[acertoHTML].escola.nil? %>
-                                   <% if !@notasB[acertoHTML].matricula_id.nil? %>
-                                       <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
-                                       <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
-                                   <%end%>
+                                     <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
+                                     <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
 
                                 <%else%>
                                      <%session[:escola][i]= @notasB[acertoHTML].escola  %>
@@ -72,7 +71,7 @@
                     </td>
                     <%session[:contnota]=session[:contnota]+1%>
                 <%else%>
-                    <td align="center">--- </td>
+                    <td align="center">---</td>
                 <%end%>
             <%end%>
         </tr>
@@ -179,11 +178,11 @@
 
 
     <%for i in 0..8 %>
-         <tr bgcolor="#F5F5F5">
+            <tr bgcolor="#F5F5F5">
             <td align="center"><%= i + 1%>º Ano </td>
             <td width ="5%" align="center" > <%=  anoinicial+i %></td>
-            <td> <%= session[:escola][i] %> </td>
-            <td> <%= session[:cidade][i] %> </td>
+            <td><%= session[:escola][i] %></td>
+            <td><%= session[:cidade][i] %> </td>
         </tr>
     <%end%>
 </table>

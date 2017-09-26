@@ -1,6 +1,6 @@
 class AlunosController < ApplicationController
 
- # before_filter :iniciais
+ # before_filter :load_alunos
 
   def index
     @alunos = Aluno.all
@@ -42,21 +42,15 @@ class AlunosController < ApplicationController
     @verifica2 = Aluno.find_by_aluno_nascimento(@aluno.aluno_nascimento)
     
 
+
     if (@verifica and @verifica2) then
        respond_to do |format|
          format.html { render :action => "new" }
          flash[:notice1] = "ALUNO(A) JÁ CADASTRADO(A)"
-         
     end
     else
-     @aluno.unidade_id = User.current.unidade_id
-        if @aluno.aluno_nacionalidade == 'BRASILEIRO'
-           @aluno.aluno_chegada_brasil = nil
-           @aluno.aluno_validade_estrangeiro = nil
-        end
     respond_to do |format|
       if @aluno.save
-
         session[:alunoid_cadastro]= @aluno.id
         session[:alunonome_cadastro]= @aluno.aluno_nome
         flash[:notice] = 'CADASTRADO COM SUCESSO.'
@@ -106,7 +100,7 @@ end
 
   def mesmo_nome
     session[:nome] = params[:aluno_aluno_nome]
-    t=session[:nascimento]
+    t=session[:nome]
     @verifica = Aluno.find_by_aluno_nome(session[:nome])
     if @verifica then
       render :update do |page|
@@ -193,9 +187,9 @@ end
          session[:de_para]=1
        end
 
-        @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_aluno_id]])
-        @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
-        @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+      @aluno = Aluno.find(:all, :conditions => ['id =?', params[:aluno_aluno_id]])
+       @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
+       @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
         @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', params[:aluno_aluno_id]])
         @aluno.each do |aluno|
 
@@ -325,20 +319,13 @@ def consulta_cadastro_aluno
       #@saude = Saude.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
       @aluno = Aluno.find(:all, :select=> "aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id ", :conditions => ['id =? ', params[:aluno][:aluno_id]])
       @matriculas = Matricula.find(:all,:conditions => ['aluno_id =?', params[:aluno][:aluno_id]])
-      @matriculas_ano_atual = Matricula.find(:all, :select =>"unidade_id, classe_id, ano_letivo", :conditions => ['aluno_id =? and ano_letivo=? and (status!= "ABANDONO")', params[:aluno][:aluno_id], Time.now.year])
+      @matriculas_ano_atual = Matricula.find(:all, :select =>"unidade_id, classe_id, ano_letivo", :conditions => ['aluno_id =? and ano_letivo=?', params[:aluno][:aluno_id], Time.now.year])
            render :update do |page|
              page.replace_html 'cadastro', :partial => 'exibe_cadastro'
             end
 end
 
-#def iniciais
- #   @matriculas = Matricula.find(:all,:select => "id, aluno_id", :conditions => ['ano_letivo=?', Time.now.year])
 
-  #  @alunos1 =  Aluno.find(:all,  :conditions => ['(aluno_status != "EGRESSO" or aluno_status is not null) and (alunos.id NOT IN (?))', @matriculas ],:order => "aluno_nome")
-                                    
-#t=0
-
-#end
   
 
 
