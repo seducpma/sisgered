@@ -1,0 +1,53 @@
+<% form_for (@matricula) do |f| %>
+ <%= f.error_messages %>
+  <font  size="2">
+    <br/>
+    <table width="100%" align="center" bgcolor="#F5F5F5" >
+
+                <%  @alunos1 = Aluno.find(:all, :select => 'id, aluno_nome', :conditions  => ["aluno_status is not null  AND  aluno_status != 'EGRESSO'"],:order => 'aluno_nome ASC') %>
+                <%@classes_transf = Classe.find(:all, :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')%>
+        <tr> <td ></td> </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <font color="blue"><b><u> TRANSFERÊNCIA DE ALUNOS DE UNIDADES NÃO PERTENCENTES À SEDUC</u></b> <br/><br/>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="justifyr">
+            <font color="red"><b><u> OBS:</u></b> Antes de  executar a transferência do aluno é necessário verificar se o aluno já possui cadastrado no Sistema de SEDUC. (Menu CONSULTAR opção ALUNO / SEDUC) caso não possua cadastro é necessário cadastro-lo (Menu CADASTRAR opção ALUNO)<br/><br/>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Procedência: </b></td>
+          <td><%= f.text_field :procedencia, :size=>"30"  %></td>
+        </tr>
+       <tr>
+          <td><b>Aluno: </b></td>
+          <td><%= f.collection_select :aluno_id, @alunos1, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+       </tr>
+       <tr>
+          <td><b>Classe: </b></td>
+          <td><%= f.collection_select :classe_id, @classes_transf, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
+       </tr>
+       <tr>
+          <td width="23%"><b>Data Transferência: </b></td>
+          <td><%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%><div id="alunos_trans"></td>
+       </tr>
+        <tr>
+          <td><b>Status: </b></td>
+          <td> <%= f.text_field :status, :size=>"15", :readonly => "readonly"  , :value =>"TRANSFERENCIA" %></td>
+        </tr>
+    </table>
+   <table width="100%" >
+         <tr> <td><br/></td> </tr>
+         <tr>
+            <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+   <%end%>
+            <td width="4%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+            <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_ficha_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+    <%end%>
+         </tr>
+       </table>
+
+  </font>

@@ -1,0 +1,60 @@
+<div id="interno1">
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>MATRÍCULAS</strong></font><br/>
+ </div>
+    <div class="tabs">
+    <% form_remote_tag :url => alteracao_matricula_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <fieldset>
+       <table width="100%" align="center" bgcolor="#DCDCDC" >
+         <%@alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')%>
+          <tr>
+            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
+               &nbsp&nbsp&nbsp
+                <%= collection_select :aluno, :id, @alunos2, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+               <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+          </td>
+        </tr>
+       </table>
+       </fieldset>
+      <fieldset>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+          <tr>
+            <td>
+                <div id="classe_alunos"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+              <br/>
+            </td>
+          </tr>
+       </table>
+          <% end %>
+
+      </fieldset>
+
+       <br/>
+       <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Nova Consulta', alterar_matriculas_path, :title => "Nova Consulta" %></td>
+   </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

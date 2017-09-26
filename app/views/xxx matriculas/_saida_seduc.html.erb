@@ -1,0 +1,45 @@
+    <table width="100%" align="center" bgcolor="#F5F5F5">
+        <tr> <td></td> </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <font color="blue"><b><u> SAÍDA DE ALUNOS PARA OUTRAS UNIDADES DA SEDUC</u></b> <br/><br/>
+              
+          </td>
+       </tr>
+
+        <tr >
+          <td colspan="2">
+                  <fieldset>
+                   <table width="100%" align="center" bgcolor="#DCDCDC" >
+                      <tr>
+                        <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
+                           &nbsp&nbsp&nbsp
+                            <%= collection_select :aluno,:id, @alunos3, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+
+                                        <%= observe_field 'aluno_id',
+                                         :update => "alunos1",
+                                         :url    => { :action => 'matriculas_saidas_seduc' },
+                                         :with   => 'aluno_id' %>
+                      </td>
+                    </tr>
+                   </table>
+                   </fieldset>
+    
+
+                   <br/>
+          </td>
+        </tr>
+          
+    
+  </table>
+ 
+<br/>
+
+
+
+
+
+
+
+
+

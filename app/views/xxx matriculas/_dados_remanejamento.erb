@@ -1,0 +1,83 @@
+
+<table width="100%">
+     <% for classe in @classe %>
+       <tr bgcolor="#F5F5F5" >
+           <td align="left" width="10%"><b>Unidade:</b></td>
+           <td align="left">  <%=h classe.unidade.nome%></td>
+           <td align="left" width="18%"><b> Ano Letivo:</b></td>
+           <td align="left"> <%=h classe.classe_ano_letivo %> <% session[:classe_id] =  classe.id%></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+           <td align="left"><b>Classe:</b></td>
+           <td align="left">  <%=h classe.classe_classe%></td>
+           <td align="left"><b>Horário:</b></td>
+           <td align="left">  <%=h classe.horario %></td>
+      </tr>
+        <tr bgcolor="#F5F5F5" >
+          <td align="left"><b>Descrição:</b></td>
+          <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+        <td valign="top"> <b> Professor(es):</b> </td>
+        <% cont=1 %>
+         <% cont1=1 %>
+        <td colspan="4"> <% for atrib in @atribuicao_classe %>
+                           <table width="100%">
+                              <tr bgcolor="#F5F5F5" >
+                                 <td align="left" width="50%">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
+                                 <td align="left"width="10%"><b> Disciplina:</b></td>
+                                 <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo'))%>
+                                          <td align="center"><%= button_to 'Editar', { :action => "edit", :controller => "atribuicaos", :id =>atrib}, :method => "get", :title => "Editar"%></td>
+                                          <% if (current_user.has_role?('admin'))%>
+                                               <td  align="left" ><%= button_to'Excluir', { :action => "destroy_professor", :id =>atrib}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
+                                            <%end%>
+                                  <%end%>
+                             </tr>
+                           </table>
+                          <% cont= cont+1 %>
+                         <%end%>
+         </td>
+      </tr>
+   </table>
+  <%end%>
+<table width="100%">
+     <tr>
+       <td align="center"width ="10%"><b>Nº</b></td>
+       <td width ="12%"><b>RA</b></td>
+       <td width ="60%"><b>NOME</b></td>
+       <td align="center"width ="10%"><b></b></td>
+     </tr>
+
+     <% for classe in @classe %>
+        <% classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
+         <tr bgcolor="#F5F5F5">
+           <td align="center"> &nbsp <%= cont1%> </td>
+           <td align="left"> <%="#{ aluno.aluno_ra}"%> </td>
+           <td align="left"> <%="#{ aluno.aluno_nome}"%> </td>
+           <% if (current_user.has_role?('admin'))%>
+              <td align="left" ><%= button_to 'Excluir', {:action => "destroy_classe_aluno", :id =>aluno}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+           <%else%>
+              <td> ---- </td>
+           <%end%>
+          <%cont1 = cont1+1%>
+       <%end%>
+    <%end%>
+    </tr>
+    <%cont11 = cont1%>
+    <% for trans in @transferencia %>
+          <tr bgcolor="#F5F5F5">
+           <td align="center"> &nbsp <%= cont11%> </td>
+           <td align="left"> <%="#{ trans.aluno.aluno_ra}"%> </td>
+           <td align="left"> <%="#{ trans.aluno.aluno_nome}"%> <Font color ="blue">(Transferência)</font> </td>
+           <td align="left" ></td>
+          <%cont11 = cont11+1%>
+         </tr>
+
+    <%end%>
+      <tr>
+
+        <td colspan="7"align="right"><br/><%= button_to 'Editar Classe', {:controller =>"classes", :action => "edit", :id =>classe}, :method => "get", :title => "Editar"%></td>
+      </tr>
+
+</table>

@@ -1,0 +1,54 @@
+<div id="interno1">
+<% title "TRASNFERENCIAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>TRANSFERÊNCIAS SAÍDAS</strong></font><br/>
+ </div>
+    <div class="tabs">
+          <div class="tabs">
+<% form_remote_tag :url =>matriculas_saidas_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+         <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="SEDUC_filtro"><%= radio_button_tag(:type_of, "1") %></a>Para Unidades SEDUC
+              <a href="#" class="OUTRAS_filtro"><%= radio_button_tag(:type_of, "2") %></a>Para OUTRAS Unidades
+
+            </td>
+         </tr>
+
+
+
+
+         <tr>
+           <td><div class="consulta_SEDUC" style="display:none"> <%= render "saida_seduc" %> </div>
+               <div class="consulta_OUTRAS" style="display:none"> <%= render "saida_outras" %> </div>
+           </td>
+         </tr>
+
+       <tr>
+         <td>
+            <div id="aluno1"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+          <%session[:alterar_direcionamento_editar]= 0%></td>
+       </tr>
+        </table>
+       <br/>
+<%end%>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
+<br/>
+<br/>
+
+
+
+
+
+
+
+
