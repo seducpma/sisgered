@@ -58,12 +58,15 @@ em relação a antiga! 27/04/2017 18:52 ###ALEX
                   <tr>
                     <td ><b>Status: </b></td>
                     <td>
-
-                    <% if @matricula.status =="MATRICULADO"  or @matricula.status =="TRANSFERENCIA"%>
-                         <%= f.collection_select :status , @status_transf, :status, :status %> <br/>
-                     <%else%>
-                         <%= h@matricula.status%>
-                     <%end%>
+<!--
+  <% if @matricula.status =="MATRICULADO" %>
+                            Matriculado
+                         <%else%>
+                           <%= h@matricula.status%>
+                          <%end%> 
+                          &nbsp&nbsp - &nbsp&nbsp <b> Alterar Status: &nbsp
+-->
+  <%= f.collection_select :status , @status_transf, :status, :status %> </b>
                     </td>
                   </tr>
                   <tr>
