@@ -1,0 +1,14 @@
+ <%  if  (@historico_aluno.present?) %>
+    <% c=0 %>
+    <% @historico_aluno.each do |obs|%>
+          <b><%= c=c+1%>.</b> <%="#{obs.observacao}" %>  -
+          <b>Data: </b> <%  if obs.data.nil?  %>
+                            -
+                        <%else%>
+                            <%=  obs.data.strftime("%d/%m/%Y")%> - <%=  obs.quem %>
+                        <%end%>
+
+    <br/>
+    <%end%>
+<%end%>
+

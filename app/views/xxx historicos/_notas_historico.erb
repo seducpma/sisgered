@@ -1,0 +1,188 @@
+<table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor =" #DCDCDC">
+    <tr cellspacing="2" cellpadding="2" >
+        <td width=" 40%" rowspan="3" align="center"><b>ÁREAS DE CONHECIMENTO </b></td>
+        <td width=" 60%" colspan="9" align="center"><b>MENÇÔES OU NOTAS</b></td>
+    </tr>
+</table>
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+    <tr >
+        <td width ="30%"rowspan="2"> <b><center>CURRÍCULO BÁSICO   </center> </b></td>
+        <td width ="5%" align="center" ><b>1º</b></td>
+        <td width ="5%" align="center" ><b>2º</b></td>
+        <td width ="5%" align="center" ><b>3º</b></td>
+        <td width ="5%" align="center" ><b>4º</b></td>
+        <td width ="5%" align="center" ><b>5º</b></td>
+        <td width ="5%" align="center" ><b>6º</b></td>
+        <td width ="5%" align="center" ><b>7º</b></td>
+        <td width ="5%" align="center" ><b>8º</b></td>
+        <td width ="5%" align="center" ><b>9º</b></td>
+    </tr>
+    <% ano = @ano_inicial.ano_letivo %>
+
+    <%if @ano_inicial.classe.nil?%>
+        <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
+    <%else%>
+        <% classe= @ano_inicial.classe %>
+    <%end%>
+    <% anoinicial = ano.to_i - classe +1  %>
+    <tr>
+        <%for i in 0..8 %>
+            <td width ="5%" align="center" ><b> <%=  anoinicial+i %></b></td>
+        <%end%>
+    </tr>
+    
+
+
+
+    <%session[:contnota]=0%>
+    <%session[:cargah]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
+    <%session[:escola]=['', '', '', '', '', '','', '', '']%>
+    <%session[:cidade]=['', '', '', '', '', '','', '', '']%>
+
+    <%while session[:contnota] < session[:contnotaBTot] %>
+        <tr>
+            <td align="left"><%= @notasB[session[:contnota]].disciplina.disciplina %> </td>
+            <%for i in 0..8%>
+                <%if session[:contnota]>(session[:contnotaBTot]-1)%>
+                    <%acertoHTML=1%>
+                <%else%>
+                    <%acertoHTML=session[:contnota]%>
+                <%end%>
+                <%if (@notasB[acertoHTML].ano_letivo) == (anoinicial+i)%>
+                    <td align="center">
+                        <%if @notasB[acertoHTML].nota5.nil?%>
+                            ---
+                        <%else%>
+                            <%= @notasB[acertoHTML].nota5%>
+                            <%session[:cargah][i]=1%>
+                                <%if @notasB[acertoHTML].escola.nil? %>
+                                     <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
+                                     <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
+
+                                <%else%>
+                                     <%session[:escola][i]= @notasB[acertoHTML].escola  %>
+                                     <%session[:cidade][i]= @notasB[acertoHTML].cidade  %>
+                               <%end%>
+                        <%end%>
+                        <%if @notasB[acertoHTML].matricula_id.nil?%>
+                            &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasB[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
+                        <%end%>
+                    </td>
+                    <%session[:contnota]=session[:contnota]+1%>
+                <%else%>
+                    <td align="center">---</td>
+                <%end%>
+            <%end%>
+        </tr>
+    <%end%>
+    <tr bgcolor =" #DCDCDC">
+        <td><b> Carga Horária</b></td>
+        <%for i in 0..8%>
+            <%if session[:cargah][i]==0%>
+                <td align="center">---</td>
+            <%else%>
+                <td align="center"> <%= 1000 %>  </td>
+            <%end%>
+        <%end%>
+    </tr>
+</table>
+<% if @notasD.present? %>
+    <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+        <tr >
+            <td width ="30%"rowspan="2"> <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
+            <td width ="5%" align="center" ><b>1º</b></td>
+            <td width ="5%" align="center" ><b>2º</b></td>
+            <td width ="5%" align="center" ><b>3º</b></td>
+            <td width ="5%" align="center" ><b>4º</b></td>
+            <td width ="5%" align="center" ><b>5º</b></td>
+            <td width ="5%" align="center" ><b>6º</b></td>
+            <td width ="5%" align="center" ><b>7º</b></td>
+            <td width ="5%" align="center" ><b>8º</b></td>
+            <td width ="5%" align="center" ><b>9º</b></td>
+        </tr>
+        <% ano = @ano_inicial.ano_letivo %>
+        <%if @ano_inicial.classe.nil?%>
+            <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
+        <%else%>
+            <% classe= @ano_inicial.classe %>
+        <%end%>
+
+        <% anoinicial = ano.to_i - classe + 1  %>
+        <tr>
+            <%for i in 0..8 %>
+                <td width ="5%" align="center" ><b> <%=anoinicial+i %></b></td>
+            <%end%>
+        </tr>
+        <%session[:contnota]=0%>
+        <%session[:cargah]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
+        <%while session[:contnota] < session[:contnotaDTot] %>
+            <tr>
+                <td align="left"><%= @notasD[session[:contnota]].disciplina.disciplina %> </td>
+                <%for i in 0..8%>
+                    <%if (session[:contnota]>(session[:contnotaDTot]-1))%>   <!-- Linha alterada -->
+                        <%acertoHTML=0%>
+                    <%else%>
+                        <%acertoHTML=session[:contnota]%>
+                    <%end%>
+                    <%if (@notasD[acertoHTML].ano_letivo) == (anoinicial+i)%>
+                        <td align="center">
+                            <%if @notasD[acertoHTML].nota5.nil?%>
+                                ---
+                            <%else%>
+                                <%= @notasD[acertoHTML].nota5%>
+                                <%session[:cargah][i]=1%>
+                            <%end%>
+                            <%if @notasD[acertoHTML].matricula_id.nil?%>
+                                &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasD[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
+                            <%end%>
+                        </td>
+                        <%session[:contnota]=session[:contnota]+1%>
+                    <%else%>
+                        <td align="center">---</td>
+                    <%end%>
+                <%end%>
+            </tr>
+        <%end%>
+
+    <tr bgcolor =" #DCDCDC">
+        <td><b> Carga Horária</b></td>
+        <%for i in 0..8%>
+            <%if session[:cargah][i]==0%>
+                <td align="center">---</td>
+            <%else%>
+                <td align="center"> <%= 480 %>  </td>
+            <%end%>
+        <%end%>
+    </tr>
+
+    </table>
+
+<%end%>
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+    <tr>
+        <td colspan="4"><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <b>ESTUDOS REALIZADOS</b><br/><br/></td>
+    </tr>
+
+    <tr cellspacing="2" cellpadding="2" bgcolor =" #DCDCDC">
+        <td width=" 8%" align="center"><b>Período </b></td>
+        <td width=" 10%" align="center"><b>Ano Letivo </b></td>
+        <td width=" 60%" align="center"><b>Unidade de Ensino</b></td>
+        <td width=" 22%" align="center"><b>Municipio/Estado</b></td>
+    </tr>
+
+
+
+
+
+    <%for i in 0..8 %>
+            <tr bgcolor="#F5F5F5">
+            <td align="center"><%= i + 1%>º Ano </td>
+            <td width ="5%" align="center" > <%=  anoinicial+i %></td>
+            <td><%= session[:escola][i] %></td>
+            <td><%= session[:cidade][i] %> </td>
+        </tr>
+    <%end%>
+</table>

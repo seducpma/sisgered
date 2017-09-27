@@ -288,9 +288,9 @@ display: none;
                                <li><a class="item-primary" href="#;">EDITAR</a>
                 <ul style="width:108px;">
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
-<!--                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+-                   <% if (current_user.has_role?('admin'))%>
                         <li><%= link_to "Atribuição",editar_atribuicao_atribuicaos_path %></li>
-                   <%end%>-->
+                   <%end%>
 
                    <li><%= link_to "Classe",editar_classe_classes_path %></li>
 

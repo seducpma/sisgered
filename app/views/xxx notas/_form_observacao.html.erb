@@ -1,0 +1,46 @@
+<div style='display:none'>
+  <div id='inline_form_observacao' style='margin-bottom:10px  height:900px  ' background:#EEE9E9;'>
+
+    <% form_remote_for( :observacao_nota,:url => { :action => 'create_observacao_nota' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
+<div id="interno2">
+<% title "CONSULTA_CLASSE".singularize %>
+  <div class="tabs">
+    <br/><font size="3"><b>&nbsp&nbsp&nbsp OBSERVAÇÕES - ALUNOS</b> <br/>
+      <hr>
+       <%= error_messages_for 'contact' %>
+      <table  width="100%" >
+         <tr bgcolor="#F5F5F5">
+           <td><br/>&nbsp&nbsp&nbsp<b>Aluno: </b></td>
+           <td colspan="2"><br/><%=h @nota.aluno.aluno_nome%></td>
+         </tr>
+         <tr bgcolor="#F5F5F5">
+            <td width="10%" valign="top"><b><font size="2"><%= f.label :observacao, 'Observações:' %></font></b></td>
+            <td colspan="2"><%= f.text_area :observacao, :cols=>'50', :rows=> '3', :id=>"contador1" %><br/>
+              <script>
+                      $(document).on("keydown", "#contador1", function () {
+                          var caracteresRestantes = 800;
+                          var caracteresDigitados = parseInt($(this).val().length);
+                          var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+                          $(".caracteres").text(caracteresRestantes);
+
+                      });
+
+              </script>
+              <font size ="2"><b><span class="caracteres">800</span> Caracteres Restantes </b></font>
+
+            </td>
+        </tr>
+        <tr>
+          <td colspan="3"><hr/></td>
+        </tr>
+        <tr>
+          <td  colspan="2" align="right" ><%= f.submit "Salvar" %></td>
+<%end%>
+            <td width="6%" align="RIGHT" ><%= button_to "Fechar",{:action => "edit", :id =>session[:id_nota]}, :method => "get" %></td>
+        </tr>
+       </table>
+     </div>
+  </div>
+</div>
+  </div>
