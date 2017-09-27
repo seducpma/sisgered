@@ -14,19 +14,11 @@ class Aluno < ActiveRecord::Base
 
 
   before_save  :maiusculo
-  before_save  :atribui_dados
+
  
   validates_presence_of :aluno_nome
 
-  def atribui_dados
-    
-    self.unidade_id = User.current.unidade_id
-    if self.aluno_nacionalidade == 'BRASILEIRO'
-       self.aluno_chegada_brasil = nil
-       self.aluno_validade_estrangeiro = nil
-    end
-  
-  end
+
 
  def maiusculo
     self.aluno_especial.upcase!

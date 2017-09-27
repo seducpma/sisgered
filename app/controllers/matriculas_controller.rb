@@ -319,6 +319,7 @@ class MatriculasController < ApplicationController
           @matricula.save
 
           if session[:saidaT] == 2
+              t=0
                @aluno=Aluno.find(:all, :conditions => ['id =?', @matricula.aluno_id])
                @aluno[0].aluno_status =  'TRANSFERIDO'
                @aluno[0].unidade_anterior = @aluno[0].unidade_id # ###ALEX 31/08/2015 - Para guardar a unidade anterior que o aluno esteve

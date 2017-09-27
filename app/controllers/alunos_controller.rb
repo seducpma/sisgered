@@ -41,7 +41,10 @@ class AlunosController < ApplicationController
     @verifica = Aluno.find_by_aluno_nome(@aluno.aluno_nome)
     @verifica2 = Aluno.find_by_aluno_nascimento(@aluno.aluno_nascimento)
     
-
+    if @aluno.aluno_nacionalidade == 'BRASILEIRO'
+       @aluno.aluno_chegada_brasil = nil
+       @aluno.aluno_validade_estrangeiro = nil
+    end
 
     if (@verifica and @verifica2) then
        respond_to do |format|
