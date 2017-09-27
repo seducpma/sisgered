@@ -1,0 +1,36 @@
+<div id="interno2">
+<% title "PROFESSORES", :id =>"professors" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>CONSULTA PROFESSOR</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <% form_remote_tag :url => consultaprofessor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+         <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+              <td align="right">  <b class="label_busca2">Professor:
+                  <%= collection_select :eventual,:professor_id, @professores_eventual, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %></b></font>
+                 <%= observe_field 'eventual_professor_id',
+                       :update => "professores",
+                       :url    => { :action => 'lista_professor' },
+                       :with   => 'eventual_professor_id' %>
+            </td>
+         </tr>
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="professores"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <br/>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Nova Consulta', consulta_professor_eventual_path, :title => "Nova Consulta" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+

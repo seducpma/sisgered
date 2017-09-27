@@ -1,0 +1,67 @@
+<div id="interno2">
+<% title "CONSULTA_FICHA".singularize %>
+
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>RELATÓRIO SUBSTITUIÇÔES/MÊS - UNIDADE</strong></font><br/>
+ </div>
+    <div class="tabs">
+    <% form_remote_tag :url => relatorios_eventuals_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <fieldset>
+          <table width="100%" align="center" bgcolor="#DCDCDC">
+          <tr>
+            <td align= "right"><font size="2"> <b class="label_busca3">Mês:</b></font>&nbsp
+              <%= select_tag :mes, options_for_select(AulasFalta::MES).sort, :include_blank => ' -- Selecionar -- ' %> &nbsp&nbsp&nbsp&nbsp
+              <b>Unidade:</b></font>&nbsp
+               <%= collection_select :aulas_eventual,:unidade_id, @unidades_infantil, :id, :nome, :include_blank => ' -- Selecionar -- ' %>
+               
+          </td>
+          <td width ="14%" align="right">
+            <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+          </td>
+        </tr>
+       </table>
+
+
+
+   <% end %>
+
+      </fieldset>
+      <fieldset>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+          <tr>
+            <td with ="100%">
+                <div id="calendario"></div>
+            </td>
+
+          </tr>
+       </table>
+
+
+      </fieldset>
+
+       <br/>
+       <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Nova Consulta', relatorio_falta_mes_aulas_faltas_path, :title => "Nova Consulta" %></td>
+
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
+
+
+
+
+
+
+
+

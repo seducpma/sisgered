@@ -96,8 +96,7 @@ class MatriculasController < ApplicationController
                         @matricula = Matricula.new(params[:matricula])
                         session[:flagnum] = 0
                      else
-                       w=params[:matricula][:classe_id]
-                          @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
+                         @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
                          if  @matricula_num.nil?
                            @matricula = Matricula.new(params[:matricula])
                            @matricula.classe_num = 1

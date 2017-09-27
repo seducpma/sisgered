@@ -1,0 +1,41 @@
+
+
+    <div id="interno2">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo"  class ="invisible_to_print ">
+     <font size="3"><strong>AGENDA FALTAS - POR FUNCIONARIO</strong></font><br/>
+ </div>
+    <table width="100%"  bgcolor="#DCDCDC"  style= "border-color: white" >
+      <tr  class ="invisible_to_print ">
+          <th colspan="2" width="95%" align="right ">
+
+               <% form_for @search ,:url => { :action => 'index3' } do |f|%>
+
+
+                 <font size="3"> Funcionario:</font>
+                 <%= f.collection_select :funcionario_id_equals, @funcionarios_faltas, :id, :nome, :include_blank => true%>
+                 <%= f.submit "Visualizar", :class => "btn_filtrar" %>
+              <% end %>
+
+         </th>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+           <th colspan="2" align="right">
+                <%= render :partial => "calendar3" %>
+               <%t=0%>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_infantil'))%>
+                   <%if !@aulas_faltas.present? %>
+                     <%if (params[:search]).present? %>
+                          <%= button_to'Cadastrar Falta',:action => "new", :funcionario_id => params[:search][:funcionanrio_id_equals] %>
+                      <%end%>
+                   <%end%>
+                 <%end%>
+          </th>
+       </tr>
+
+    </table>
+
+</div>
+<br/>
+</div>

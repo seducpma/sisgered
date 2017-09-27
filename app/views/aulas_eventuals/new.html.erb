@@ -1,0 +1,89 @@
+<div id="interno4">
+<% title "AULASEVENTUAL".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>SUBSTITUIÇÃO</strong></font><br/>
+ </div>
+
+  <div class="tabs">
+     <% form_for(@aulas_eventual) do |f| %>
+      <%= f.error_messages %>
+             <br/>
+             <table  width="100%"  align="center"  bgcolor="#F5F5F5" >
+                <tr>
+                  <td colspan="8"><b><font size="3"> &nbsp CADASTRAR AULA SUBSTITUIÇÃO &nbsp - </b></td>
+                </tr>
+                <tr>
+                  <td colspan="8"><hr></td>
+                </tr>
+               <tr>
+               <tr>
+                   <td colspan="8"><font color ="RED"> <b><u>Atenção:</u> Selecione primeiro a DATA, PERIODO, CATEGORIA e depois a  UNIDADE.</b></font><br/><br/></td>
+               </tr>
+                 <td align="right" width="10%">  <b>Data: </b></td>
+                 <td align="left"><%= datepicker_tag(:aulas_eventual, :data,{ :size => 10},{:dateFormat => "'yy-mm-dd'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+                                   <%= observe_field 'aulas_eventual_data',
+                                                 :with   => :aulas_eventual_data,
+                                                 :url  => { :action => 'data_eventual' }%>
+
+                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Período: </b>
+                                 <%= f.select :periodo, (AulasEventual::PERIODO).sort, :include_blank => ' -- Selecionar -- ' %>
+                                        <%= observe_field 'aulas_eventual_periodo',
+                                                     :with   => :periodo,
+                                                     :url  => { :action => 'periodo_prof_eventual' }
+                                                      %>
+                 </td>
+                </tr>
+                <tr>
+
+                    <td align="left" width="10%">&nbsp <b>Categoria: </b> </td>
+                    <td align="left">&nbsp<%= f.select :categoria, AulasEventual::CATEGORIA, :include_blank => ' -- Selecionar -- ' %>
+                                        <%= observe_field 'aulas_eventual_categoria',
+                                                     :with   => :categoria,
+                                                     :url  => { :action => 'caregoria_prof_eventual' }
+                                                      %>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Unidade: </b>
+                                 <%= collection_select :aulas_eventual, :unidade_id, @unidades_infantil, :id, :nome, :include_blank => ' -- Selecionar -- ' %>
+                                       <%= observe_field 'aulas_eventual_unidade_id',
+                                                     :with   => :aulas_eventual_unidade_id,
+                                                     :url  => { :action => 'nome_prof_eventual' },
+                                                     :update => "professor"%>
+                     </td>
+                </tr>
+                <tr>
+                      <td colspan="8"> <div id="professor"><br/></div>
+                                  <div id="observacao"></div>
+                     </td>
+              </tr>
+
+                <tr>
+                   <td align="left" valign="top"><b>Observação:</b></td>
+                   <td align="left" colspan="5"><%= f.text_area(:obs,:cols => 70, :rows => "3") %></td>
+
+               </tr>
+           </table>
+
+             <table width="100%"  align="center">
+                    <tr>
+                       <td width="5px"align="left"><%= f.submit 'Salvar' %></td>
+      <% end %>
+                       <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                       
+                       
+                   </tr>
+                </table>
+
+
+
+
+
+     </div>
+   </div>
+</div>
+<br/>
+
+
+
+
+
+

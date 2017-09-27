@@ -1,0 +1,92 @@
+
+
+
+<div id="interno2">
+<% title "FUNCIONRIO" %>
+<div class ="tabs">
+
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> Dados Pessoais</b></font></legend>
+         <table  width="100%">
+           <tr bgcolor="#F5F5F5">
+                <td colspan="10"align="center" width="4%"><b>FICHA CADASTRAL DE FUNCIONARIOUNO</b></td>
+           </tr>
+            <tr bgcolor="#F5F5F5">
+                <td align="left" width="4%"><b>Matrícula:</b></td>
+                <td width ="40%" align="left"> <%=h @funcionario.matricula %></td>
+                <td width ="10%" align="left"><b>Nome:</b></td>
+                <td align="left"><%=h @funcionario.nome%></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+                <td align="left"><b>Endereço:</b></td>
+                <td align="left">  <%=h @funcionario.endereco%>, <%=h @funcionario.num%> </td>
+                <td align="left"><b>Complemento:</b></td>
+                <td align="left"><%=h @funcionario.complemento %></td>
+              </tr>
+             <tr bgcolor="#F5F5F5">
+                <td align="left"><b>Cidade:</b></td>
+                <td align="left">  <%=h @funcionario.cidade%> </td>
+                <td align="left"><b>Bairro:</b></td>
+                <td align="left"><%=h @funcionario.bairro %></td>
+              </tr>
+             <tr bgcolor="#F5F5F5">
+                <td align="left"><b>CEP:</b></td>
+                <td align="left">  <%=h @funcionario.cep%> </td>
+                <td align="left"><b>Nascimento:</b></td>
+                <td align="left"><%if !@funcionario.nascimento.nil? %>
+                                      <%=h @funcionario.nascimento.strftime("%d/%m/%Y")%>
+                                <%end%>
+                </td>
+              </tr>
+             <tr bgcolor="#F5F5F5">
+                <td align="left"><b>Telefone:</b></td>
+                <td align="left">  <%=h @funcionario.fone%> </td>
+                <td align="left"><b>Celular:</b></td>
+                <td align="left"><%=h @funcionario.cel %></td>
+              </tr>
+             <tr bgcolor="#F5F5F5">
+                <td align="left"><b>E_mail:</b></td>
+                <td align="left">  <%=h @funcionario.email%> </td>
+                <td align="left"><b>Unidade:</b></td>
+                <td align="left"><%=h @funcionario.unidade.nome %></td>
+              </tr>
+             <tr bgcolor="#F5F5F5">
+                <td align="left"><b>Função:</b></td>
+                <td align="left">  <%=h @funcionario.funcao%> </td>
+                <td align="left"><b>Setor:</b></td>
+                <td align="left"><%=h @funcionario.setor %></td>
+             </tr>
+             <tr bgcolor="#F5F5F5">
+                <td align="left"><b>Observação:</b></td>
+                <td colspan="3">  <%=h @funcionario.obs%> </td>
+              </tr>
+         </table>
+       </fieldset>
+
+        <table width="100%" >
+             <tr>
+               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
+                   <td width="6%"align="left"><%= button_to 'Cadastrar' ,new_funcionario_path, :title => "Novo Cadastro" %></td>
+               <% end %>
+                <td width="6%"align="left" ><%= button_to 'Consultar' ,consulta_ficha_alunos_path, :title => "Nova Consulta" %></td>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
+                     <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@funcionario}, :method => "get", :title => "Editar"%></td>
+                <%end%>
+                <!--<td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_alunos_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>-->
+                 <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+             </tr>
+           </table>
+        </table>
+  </td>
+
+</div>
+<br/>
+</div>
+
+
+
+
+<%= link_to 'Edit', edit_funcionario_path(@funcionario) %> |
+<%= link_to 'Back', funcionarios_path %>

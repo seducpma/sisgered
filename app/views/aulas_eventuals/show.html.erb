@@ -1,0 +1,68 @@
+<div id="interno3">
+<% title "PROFESSOR" %>
+<div class ="tabs">
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> SUBSTITUIÇÃO</b></font></legend>
+         <table width="100%">
+           <tr bgcolor="#F5F5F5"  width="100%">
+
+             <td valign="top">
+               <table  bgcolor="#DCDCDC" width="100%">
+                 <tr bgcolor="#F5F5F5">
+                  <td align="left" width="10%"><b> Unidade:</b></td>
+                  <td align="left" width="40%"><%=h@aulas_eventual.unidade.tipo.nome%> <%=h@aulas_eventual.unidade.nome%></td>
+                   <td align="left" width="16%"><b>Ano Letivo:</b></td>
+                   <td align="left"> <%=h @aulas_eventual.ano_letivo %> </td>
+                </tr>
+                <tr bgcolor="#F5F5F5" >
+                   <td align="left"><b>Classe:</b></td>
+                   <td align="left">  <%=h @aulas_eventual.classe.classe_classe%></td>
+                   <td align="left"><b>Período:</b></td>
+                   <td align="left"> <%=h @aulas_eventual.periodo %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5" >
+                   <td align="left"><b>Professor:</b></td>
+                   <td colspan="3"align="left"> <%=h @aulas_eventual.eventual.professor.nome %> (<%=h @aulas_eventual.eventual.categoria %>)</td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5" >
+                   <td align="left"><b>Contato:</b></td>
+                   <td colspan="3"align="left"> <%=h @aulas_eventual.eventual.contato %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5" >
+                   <td align="left"><b>OBS:</b></td>
+                   <td colspan="3"align="left"><%=h @aulas_eventual.eventual.obs %></td>
+                 </tr>
+               </table>
+           </td>
+        </tr>
+      </table>
+     </fieldset>
+   </td>
+  </tr>
+ </table>
+
+    <table>
+         <tr>
+           <td width="4%"align="left"><%= button_to 'Agenda Unidade' ,aulas_eventuals_path,:id =>@aulas_eventual, :method => "get", :title => "Aulas Eventuais  " %></td>
+             <td width="4%"align="left"><%= button_to 'Cadastrar' ,new_aulas_eventual_path, :title => "Cadastar  " %></td>
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@aulas_eventual}, :method => "get", :title => "Editar"%></td>
+                 <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy", :id =>@aulas_eventual}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+             <%end%>
+               
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+    </table>
+
+
+</div>
+<br/>
+</div>
+
+
+
+
+
+

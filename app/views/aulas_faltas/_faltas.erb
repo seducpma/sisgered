@@ -1,0 +1,176 @@
+<link rel="stylesheet" media="all" href="css/calendar.css" />
+
+<%  if @aulas_faltas[0].present?%>
+    <table width="100%" >
+        <tr>
+            <td style="border-color: white" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+            <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+                 <% if session[:tiporelatorio]==1 %>
+                    <%  if (session[:verifica_unidade_id]=='52') %>
+                        <center><font size="1">Unidade Escolar:  SECRETARIA DE EDUCAÇÃO  </font></center>
+                        <center><font size="1">Rua dos Professores, 40 - Americana - SP  </font>
+                        <font size="1">13.465.060 - (19) 3475-9700  </font></center>
+                    <%else%>
+                        <center><font size="1">Unidade Escolar:  <%=h @aulas_faltas[0].unidade.nome %>  </font></center>
+                        <center><font size="1"><%=h @aulas_faltas[0].unidade.endereco%><%=h @aulas_faltas[0].unidade.num%> - Americana - SP  </font>
+                        <font size="1"><%=h @aulas_faltas[0].unidade.CEP%> - <%=h @aulas_faltas[0].unidade.fone%>  </font></center>
+
+                    <%end%>
+                 <%else if session[:tiporelatorio]==2 %>
+                          <center><font size="1">Professor:  <%=h @aulas_faltas[0].professor.nome %>  </font></center>
+                          <center><font size="1">Função:<%=h @aulas_faltas[0].professor.funcao%> </font>
+                       <%end%>
+                 <%end%>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="22" align="right"><font size="2"><b>FALTAS REFERENTES AO MÊS DE <%= session[:mes] %> DE <%=  Time.now.year%> &nbsp&nbsp&nbsp&nbsp</b></font>
+            </td>
+        </tr>
+    </table>
+<%  mes=0 %>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+            <tr cellspacing="2" cellpadding="2" >
+                <td width=" 10%" align="center"><b>Data</b></td>
+                <td width=" 15%" align="center"><b>Unidade</b></td>
+                <td width=" 55%" align="center"><b>Funcionario(a)</b></td>
+                <td width=" 15%" align="center"><b>Função</b></td>
+                <td width=" 15%" align="center"><b>Periodo</b></td>
+                <td width=" 15%" align="center"><b>Tipo</b></td>
+            </tr>
+    <% @aulas_faltas.each do |falta| %>
+     <% mes=mes+1 %>
+            <tr>
+                 <td><%= falta.data.strftime("%d/%m/%Y") %></td>
+                 <td><%= falta.unidade.tipo.nome %> <%= falta.unidade.nome %></td>
+                 <td><% if falta.funcionario_id.nil? %>
+                        <%= falta.professor.nome  %>
+                     <%end%>
+                      <% if falta.professor_id.nil? %>
+                        <%= falta.funcionario.nome  %>
+                     <%end%>
+                 </td>
+                 <td align="center"><%= falta.funcao %></td>
+                 <td><%= falta.periodo %></td>
+                 <td align="center"><%= falta.tipo %></td>
+            </tr>
+
+    <%end%>
+
+  </table>
+<br/>
+<table width="100%" >
+    <tr><%if  (session[:mostra_faltas_professor] == 1)%>
+        <td width ="35%" valign="top"><table>
+                <tr>
+                  <td><b><u>PROFESSOR(ES)</u></b></td>
+                  <td><b><u>FALTAS</u></b></td>
+                </tr>
+                <%t1 =1%>
+                <% @faltas_professor.each do |faltaP| %>
+                   <tr>
+                        <td><%= t1%>) <%= truncate(faltaP.professor.nome,:length => 25,:omission => "...") %></td>
+                        <td align="center"><%= faltaP.conta%> </td>
+                    </tr>
+                    <%t1 =t1+1%>
+                  <%end%>
+            </table>
+        </td>
+        <%end%>
+        <%if  (session[:mostra_faltas_funcionario] == 1)%>
+        <td width ="30%" valign="top"><table>
+                <tr>
+                  <td><b><u>FUNCIONARIOS</u></b></td>
+                  <td><b><u>FALTAS</u></b></td>
+                </tr>
+                <%t1 =1%>
+                <% @faltas_funcionario.each do |falta_fun| %>
+                   <tr>
+                        <td><%= t1%>) <%= truncate(falta_fun.funcionario.nome,:length => 25,:omission => "...") %></td>  
+                        <td  align="center"><%= falta_fun.conta%> </td>
+                    </tr>
+                    <%t1 =t1+1%>
+                  <%end%>
+            </table>
+        </td>
+       <%end%>
+        <td valign="top" width ="30%" ><table  width="100%" >
+                <tr>
+                  <td><b><u>TIPO FALTAS</u></b></td>
+                  
+                  <td width =" 20%" align="center"><b><u>no MÊS</u></b></td>
+                  <td width =" 20%" align="center"><b><u>no ANO</u></b></td>
+                </tr>
+                <%t1 =1%>
+                <%cont=0%>
+                <%ano=0%>
+                <% @tipo_faltas.each do |faltas| %>
+                   <tr>
+                        <td><%= t1%>)  <%= truncate(faltas.tipo,:length => 25,:omission => "...") %></td>   
+                        <%if @tipo_faltas_mes[cont].present? %>
+                            <%if (faltas.tipo == @tipo_faltas_mes[cont].tipo)%>
+                                <td width =" 5%" align="center"><%= @tipo_faltas_mes[cont].conta%> </td>
+                                <%cont=cont+1%>
+
+                            <%else%>
+                                <td width =" 5%" align="center"> 0  </td>
+                            <%end%>
+                            
+                       <%else%>
+                                <td width =" 5%" align="center"> 0 </td>
+                       <%end%>
+                        <%  ano = ano + (faltas.conta).to_i %>
+                        <td  align="center"><%= faltas.conta%> </td>
+
+                    </tr>
+                    <%t1 =t1+1%>
+                  <%end%>
+            <tr>
+                <td align="right"> <b>TOTAL  FALTAS ==> </b> </td>
+                <td align="center"> <b> <%= mes %></b> </td>
+                <td align="center"> <b> <%= ano %></b> </td>
+            </tr>
+        </table>
+     </td>
+    </tr>
+  </table>
+  <table  width="100% ">
+            <tr>
+                <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                       <%if session[:imprimemes] == 1%>
+                         <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_faltas_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                         <%  session[:imprimemes] = 0%>
+                       <%end%>
+                       <%if session[:imprimeprofessor]  == 1%>
+                         <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_faltas_professor_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                         <%  session[:imprimeprofessor]  = 0%>
+                       <%end%>
+                       <%if session[:imprimefuncionario]  == 1%>
+                         <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_faltas_funcionario_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                         <% session[:imprimefuncionario]  = 0%>
+                       <%end%>
+                 <%end%>
+            </tr>
+
+        </table>
+<%else%>
+         <table  width="100% ">
+            <tr>
+                <td align="center" colspan="2"><br/>
+                   <font size="3"> <b> Não consta registro de faltas neste mês para esta unidade escolar</b>  </font> <br/>
+                </td>
+            </tr>
+            <tr>
+                <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td><td>
+            </tr>
+        </table>
+
+<%end%>
+        <%  session[:mostra_faltas_funcionario] = 0%>
+        <%  session[:mostra_faltas_professor] = 0%>

@@ -74,16 +74,16 @@
             <th style="font-size: 8px; border-color: black"width=" 60%" colspan="9" align="center"><b>MENÇÔES OU NOTAS</b></th>
         </tr>
         <tr style="line-height: 2px; border-color: black">
-            <td style="font-size: 8px; border-color: black " width ="30%"rowspan="2"> <b><center>CURRÍCULO BÁSICO   </center> </b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>1º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>2º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>3º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>4º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>5º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>6º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>7º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>8º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>9º</b></td>
+            <th style="font-size: 8px; border-color: black " width ="30%"rowspan="2"> <b><center>CURRÍCULO BÁSICO   </center> </b></td>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>1º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>2º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>3º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>4º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>5º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>6º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>7º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>8º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>9º</b></th>
         </tr>
         <% ano = @ano_inicial.ano_letivo %>
         <%if @ano_inicial.classe.nil?%>
@@ -95,7 +95,7 @@
         <% anoinicial = ano.to_i - classe +1  %>
         <tr style="line-height: 2px; border-color: black ">
             <%for i in 0..8 %>
-                <td style="font-size: 8px; border-color: black " align="center" ><b> <%=  anoinicial+i %></b></td>
+                <th style="font-size: 8px; border-color: black " align="center" ><b> <%=  anoinicial+i %></b></th>
             <%end%>
         </tr>
         <%session[:contnota]=0%>
@@ -103,7 +103,7 @@
         <%session[:escola]=['', '', '', '', '', '','', '', '']%>
         <%session[:cidade]=['', '', '', '', '', '','', '', '']%>
         <%while session[:contnota] < session[:contnotaBTot] %>
-        <tr style="line-height: 2px; border-color: black">
+        <tr style="line-height: 4px; border-color: black">
             <th style="font-size: 8px; border-color: black " align="left"><%= @notasB[session[:contnota]].disciplina.disciplina %> </th>
             <%for i in 0..8%>
                 <%if session[:contnota]>(session[:contnotaBTot]-1)%>
@@ -153,16 +153,16 @@
 
 
         <tr style="line-height: 2px; border-color: black " >
-            <td style="font-size: 8px; border-color: black " width ="30%"rowspan="2" > <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>1º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>2º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>3º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>4º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>5º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>6º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>7º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>8º</b></td>
-            <td style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>9º</b></td>
+            <th style="font-size: 8px; border-color: black " width ="30%"rowspan="2" > <b><center>CURRÍCULO DIVERSIFICADO   </center> </b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>1º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>2º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>3º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>4º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>5º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>6º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>7º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>8º</b></th>
+            <th style="font-size: 8px; border-color: black " width ="5%" align="center" ><b>9º</b></th>
         </tr>
 
         <% ano = @ano_inicial.ano_letivo %>
@@ -175,13 +175,13 @@
         <% anoinicial = ano.to_i - classe + 1  %>
         <tr style="line-height: 2px; border-color: black ">
             <%for i in 0..8 %>
-                <td style="font-size: 8px; border-color: black " align="center" ><%=anoinicial+i %></b></td>
+                <th style="font-size: 8px; border-color: black " align="center" ><%=anoinicial+i %></b></th>
             <%end%>
         </tr>
         <%session[:contnota]=0%>
         <%session[:cargah]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
         <%while session[:contnota] < session[:contnotaDTot] %>
-            <tr style="line-height: 2px; border-color: black">
+            <tr style="line-height: 4px; border-color: black">
                 <th style="font-size: 8px; border-color: black " align="left"><%= @notasD[session[:contnota]].disciplina.disciplina %> </th>
                 <%for i in 0..8%>
                     <%if (session[:contnota]>(session[:contnotaDTot]-1))%>   <!-- Linha alterada -->
@@ -226,19 +226,19 @@
                 <b>ESTUDOS REALIZADOS</b><br/><br/></td>
         </tr>
          <tr style="line-height: 4px; border-color: black">
-            <td width=" 8%" align="center" style="font-size: 8px; border-color: black"><b>Período </b></td>
-            <td width=" 10%" align="center"style="font-size: 8px; border-color: black"><b>Ano Letivo </b></td>
-            <td width=" 60%" align="center"style="font-size: 8px; border-color: black"><b>Unidade de Ensino</b></td>
-            <td width=" 22%" align="center"style="font-size: 8px; border-color: black"><b>Municipio/Estado</b></td>
+            <th width=" 8%" align="center" style="font-size: 8px; border-color: black"><b>Período </b></th>
+            <th width=" 10%" align="center"style="font-size: 8px; border-color: black"><b>Ano Letivo </b></th>
+            <th width=" 60%" align="center"style="font-size: 8px; border-color: black"><b>Unidade de Ensino</b></th>
+            <th width=" 22%" align="center"style="font-size: 8px; border-color: black"><b>Municipio/Estado</b></th>
         </tr>
 
 
     <%for i in 0..8 %>
          <tr  style="line-height: 4px; border-color: black">
-            <td align="center"style="font-size: 8px; border-color: black"><%= i + 1%>º Ano </td>
-            <td width ="5%" align="center"style="font-size: 8px; border-color: black" > <%=  anoinicial+i %></td>
-            <td style="font-size: 8px; border-color: black"> <%= session[:escola][i] %> </td>
-            <td style="font-size: 8px; border-color: black"> <%= session[:cidade][i] %> </td>
+            <th align="center"style="font-size: 8px; border-color: black"><%= i + 1%>º Ano </th>
+            <th width ="5%" align="center"style="font-size: 8px; border-color: black" > <%=  anoinicial+i %></th>
+            <th style="font-size: 8px; border-color: black"> <%= session[:escola][i] %> </th>
+            <th style="font-size: 8px; border-color: black"> <%= session[:cidade][i] %> </th>
         </tr>
     <%end%>
 
@@ -320,11 +320,15 @@
                             <tr style="border-color: white">
                                 <td  style="border-color: white; font-size: 9px">
                                     <br/><br/><br/><br/><br/><br/>
-                                    &nbsp&nbsp&nbsp&nbsp&nbsp__________________________________________ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ________________________________________<br/>
-                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Secretaria da Unidade Escolar       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Diretor da  Unidade Escolar    <br/>
-                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b>
                                     <br/><br/><br/><br/><br/><br/>
-                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b>
+                                    <br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp__________________________________________ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ________________________________________<br/>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Secretaria da Unidade Escolar       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Diretor da  Unidade Escolar    <br/>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
+                                    <br/><br/><br/><br/><br/><br/>
+
                                     <br/><br/><br/><br/><br/><br/>
                                 </td>
                             </tr>

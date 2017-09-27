@@ -259,9 +259,8 @@ def consulta_observacoes
     else if params[:type_of].to_i == 2
 
                  if ( params[:aluno1].present?)
-                    w1=session[:aluno_imp]= params[:aluno1]
-                    w=session[:disciplina]=params[:disciplina2]
-
+                    session[:aluno_imp]= params[:aluno1]
+                    session[:disciplina]=params[:disciplina2]
                     @notas = Nota.find(:all,  :conditions => ["aluno_id =? and disciplina_id=?", session[:aluno_imp], session[:disciplina]])
                     @matriculas = Matricula.find(:all, :conditions => ["aluno_id =?  ",session[:aluno_imp],])
                     @aluno = Aluno.find(:all,:conditions =>['id = ? AND aluno_status is null', session[:aluno_imp]])

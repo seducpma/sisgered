@@ -201,9 +201,7 @@ end
 def gerar_notas
        session[:classe_id]
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
-       w=@classe[0].id
-
-       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+      @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0])
 
        for matricula in @matriculas

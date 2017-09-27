@@ -1,0 +1,287 @@
+<% session[:anaja]=0%> <% session[:buriti]=0%> <% session[:ccaic]=0%> <% session[:chui]=0%> <% session[:curima]=0%> <% session[:majoi]=0%> <% session[:maraca]=0%> <% session[:tapera]=0%> <% session[:tupa]=0%> <% session[:wanda]=0%>
+<% session[:aracari]= 0%> <% session[:aracati]= 0%> <% session[:bacuri]= 0%> <% session[:batuira]= 0%>  <% session[:bore]= 0%> <% session[:caranda]= 0%>  <% session[:ceci]= 0%> <% session[:corimbo]= 0%> <% session[:curumim]=0%> <%session[:cunhatai]=0%> <% session[:indaia]= 0%> <% session[:jacina]= 0%> <% session[:jacy]= 0%> <% session[:manai]= 0%> <% session[:patativa]= 0%> <% session[:paturi]= 0%> <% session[:potira]= 0%> <% session[:sabia]= 0%> <% session[:tangara]= 0%>
+<% session[:aracy]= 0%> <% session[:arapiranga]= 0%> <% session[:arauna]= 0%> <% session[:baeti]= 0%> <% session[:curio]= 0%> <% session[:grauna]= 0%> <% session[:jaguari]= 0%> <% session[:juriti]= 0%> <% session[:maira]= 0%> <% session[:manaca]= 0%> <% session[:panambi]= 0%> <% session[:pitanga]= 0%> <% session[:thaira]= 0%> <% session[:taragua]= 0%> <% session[:urupe]= 0%>
+<% session[:total]= 0%>
+
+           <% if @aulas_faltas.present? %>
+              <div id="calendar">
+                  <%if !@aulas_faltas[0].present? %>
+                       <h2><center> <b>NÃO existe nada cadastado para esta unidade</b></center> </h2>
+                  <%else%>
+                        <h2><center> <b>AGENDA DE FALTAS - <%=  @aulas_faltas[0].professor.nome%> </b></center> </h2>
+                       
+                  <%end%>  
+                <h2 id="month">
+                  <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d"), :search => params[:search] %>
+                  <%=h @date.strftime("%B %Y") %>
+                  <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d"), :search => params[:search] %>
+                </h2>
+                <% calendar_for @aulas_faltas, :year => @date.year, :month => @date.month, :search => params[:search] do |calendar| %>
+               <%= calendar.head('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado') %>
+                  <% calendar.day(:day_method => :data) do |date, articles| %>
+                    <%= date.day %>
+                    <ul>
+                      <% for data in articles %>
+                        <li><b><font color ="blue"> <%= data.unidade.tipo.nome%> <%= data.unidade.nome%></font></b><br/>
+                             <%  session[:professor_id]= data.professor_id %>
+                               <% session[:anaja]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 16 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:buriti]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 55 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:ccaic]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 8 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:chui]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 17 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:curima]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 24 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:majoi]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 25 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:maraca]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 15 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:tapera]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 25 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:tupa]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 63 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:wanda]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 57 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+
+                               <% session[:aracari]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 31 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:aracati]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 13 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:bacuri]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 38 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:batuira]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 22 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:bore]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 34 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:caranda]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 11 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:ceci]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 35 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:corimbo]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 36 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+
+                               <% session[:curumim]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 32 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:cunhatai]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 14 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:indaia]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 21 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:jacina]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 23 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:jacy]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 6 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:manai]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 12 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:patativa]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 30 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:paturi]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 20 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:potira]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 19 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:sabia]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 39 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:tangara]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 37 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+
+                               <% session[:aracy]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 7 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:arapiranga]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 2 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:arauna]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 10 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:baeti]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 3 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:curio]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 27 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:grauna]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 9 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:jaguari]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 58 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:juriti]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 5 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:maira]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 4 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:manaca]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 18 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:panambi]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 41 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:pitanga]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 40 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:thaira]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 33 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:taragua]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 28 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+                               <% session[:urupe]=  AulasFalta.find(:all, :select => 'id', :conditions => ['unidade_id = 29 AND professor_id =? AND month(data) =?', session[:professor_id], @date.month ]).count %>
+
+                            <br/>
+                            <b>--------------------</b>
+                        </li>
+
+                      <% end %>
+                    </ul>
+                  <% end %>
+                <% end %>
+              </div>
+            <%end%>
+            <table frame="box" rules="all" width="100%" style="border-color: white">
+              <tr style="border-color: white">
+                  <td style="border-color: white" width ="100px" valign="top"><b>Estatística:</b></td>
+                  <td style="border-color: white" width ="100px" valign="top"><b><u>Creche:</u></b><br/>
+                           <%if session[:anaja] != 0 %>
+                              Anaja = <%= session[:anaja] %>
+                              <% session[:total]=  session[:total] + session[:anaja] %> <br/>
+                           <%end%>
+                           <%if  session[:buriti] != 0 %>
+                              Creche Buriti = <%= session[:buriti] %>
+                              <% session[:total]=  session[:total] + session[:buriti] %> <br/>
+                           <%end%>
+                           <%if  session[:ccaic] != 0 %>
+                              Creche CAIC = <%= session[:ccaic] %> 
+                              <% session[:total]=  session[:total] + session[:ccaic] %> <br/>
+                           <%end%>
+                           <%if  session[:chui] != 0 %>
+                              Creche Chui = <%= session[:chui] %>
+                              <% session[:total]=  session[:total] + session[:chui] %> <br/>
+                           <%end%> 
+                           <%if  session[:curima] != 0 %>
+                              Creche Curimã = <%= session[:curima] %>
+                              <% session[:total]=  session[:total] + session[:curima] %> <br/>
+                           <%end%>
+                           <%if  session[:majoi] != 0 %>
+                              Creche Majoi = <%= session[:majoi] %>
+                              <% session[:total]=  session[:total] + session[:majoi] %>  <br/>
+                           <%end%>
+                           <%if  session[:maraca] != 0 %>
+                              Creche Maraca = <%= session[:maraca] %>
+                              <% session[:total]=  session[:total] + session[:maraca] %> <br/>
+                           <%end%>
+                           <%if  session[:tapera] != 0 %>
+                              Creche Tapera = <%= session[:tapera] %>
+                              <% session[:total]=  session[:total] + session[:tapera] %> <br/>
+                           <%end%>
+                           <%if  session[:tupa] != 0 %>
+                              Creche Tupã = <%= session[:tupa] %>
+                              <% session[:total]=  session[:total] + session[:tupa] %> <br/>
+                           <%end%>
+                           <%if  session[:wanda] != 0 %>
+                              Creche Wanda = <%= session[:wanda] %>
+                              <% session[:total]=  session[:total] + session[:wanda] %> <br/>
+                           <%end%>
+                           
+                  </td>
+                  <td style="border-color: white" width ="100px" valign="top"><b><u>EMEI:</u></b><br/>
+                         <%if session[:aracari] != 0 %>
+                            EMEI Araçari = <%= session[:aracari] %>
+                            <% session[:total]=  session[:total] + session[:aracari] %> <br/>
+                         <%end%>
+                         <%if session[:aracati] != 0 %>
+                            EMEI Aracati = <%= session[:aracati] %>
+                            <% session[:total]=  session[:total] + session[:aracati] %> <br/>
+                         <%end%>
+                         <%if session[:bacuri] != 0 %>
+                            EMEI Bacuri = <%= session[:bacuri] %>
+                            <% session[:total]=  session[:total] + session[:bacuri] %> <br/>
+                         <%end%>
+                         <%if session[:batuira] != 0 %>
+                            EMEI Baturi = <%= session[:batuira] %>
+                            <% session[:total]=  session[:total] + session[:batuira] %> <br/>
+                         <%end%>
+                         <%if session[:bore] != 0 %>
+                            EMEI Boré = <%= session[:bore] %>]
+                            <% session[:total]=  session[:total] + session[:bore] %> <br/>
+                         <%end%>
+                         <%if session[:caranda] != 0 %>
+                            EMEI Caranda = <%= session[:caranda] %>
+                            <% session[:total]=  session[:total] + session[:caranda] %> <br/>
+                         <%end%>
+                         <%if session[:ceci] != 0 %>
+                            EMEI Ceci = <%= session[:ceci] %>
+                            <% session[:total]=  session[:total] + session[:ceci] %> <br/>
+                         <%end%>                         
+                         <%if session[:corimbo] != 0 %>
+                            EMEI Corimbo = <%= session[:corimbo] %>
+                            <% session[:total]=  session[:total] + session[:corimbo] %> <br/>
+                         <%end%>
+                         <%if session[:curumim] != 0 %>
+                            EMEI Curumim = <%= session[:curumim] %>
+                            <% session[:total]=  session[:total] + session[:curumim] %> <br/>
+                         <%end%>
+                         <%if session[:cunhatai] != 0 %>
+                            EMEI Cunhatai = <%= session[:cunhatai] %>
+                            <% session[:total]=  session[:total] + session[:cunhatai] %> <br/>
+                         <%end%>
+                         <%if session[:indaia] != 0 %>
+                            EMEI Indaia = <%= session[:indaia] %>
+                            <% session[:total]=  session[:total] + session[:indaia] %> <br/>
+                         <%end%>
+                         <%if session[:jacina] != 0 %>
+                            EMEI Jacina = <%= session[:jacina] %>
+                            <% session[:total]=  session[:total] + session[:jacina] %> <br/>
+                         <%end%>
+                         <%if session[:jacy] != 0 %>
+                            EMEI Jacy = <%= session[:jacy] %>
+                            <% session[:total]=  session[:total] + session[:jacy] %> <br/>
+                         <%end%>
+                         <%if session[:manai] != 0 %>
+                            EMEI Manai = <%= session[:manai] %>
+                            <% session[:total]=  session[:total] + session[:manai] %> <br/>
+                         <%end%>
+                         <%if session[:patativa] != 0 %>
+                            EMEI Patativa = <%= session[:patativa] %>
+                            <% session[:total]=  session[:total] + session[:patativa] %> <br/>
+                         <%end%>
+                         <%if session[:paturi] != 0 %>
+                            EMEI Paturi = <%= session[:paturi] %>
+                            <% session[:total]=  session[:total] + session[:paturi] %> <br/>
+                         <%end%>
+                         <%if session[:potira] != 0 %>
+                            EMEI Potira = <%= session[:potira] %>
+                            <% session[:total]=  session[:total] + session[:potira] %> <br/>
+                         <%end%>
+                         <%if session[:sabia] != 0 %>
+                            EMEI Sabia = <%= session[:sabia] %>
+                            <% session[:total]=  session[:total] + session[:sabia] %> <br/>
+                         <%end%>
+                         <%if session[:tangara] != 0 %>
+                            EMEI Tangara = <%= session[:tangara] %>
+                            <% session[:total]=  session[:total] + session[:tangara] %> <br/>
+                         <%end%>
+                  </td>
+                   <td width ="150px" valign="top" style="border-color: white"><b><u>Casa da Criança:</u></b><br/>
+                         <%if session[:aracy] != 0 %>
+                            CC Aracy = <%= session[:aracy] %>
+                            <% session[:total]=  session[:total] + session[:aracy] %> <br/>
+                         <%end%>
+                         <%if session[:arapiranga] != 0 %>
+                            CC Arapiranga = <%= session[:arapiranga] %>
+                            <% session[:total]=  session[:total] + session[:arapiranga] %> <br/>
+                         <%end%>
+                         <%if session[:arauna] != 0 %>
+                            CC Arauna = <%= session[:arauna] %>
+                            <% session[:total]=  session[:total] + session[:arauna] %> <br/>
+                         <%end%>
+                         <%if session[:baeti] != 0 %>
+                            CC Baeti = <%= session[:baeti] %>
+                            <% session[:total]=  session[:total] + session[:baeti] %> <br/>
+                         <%end%>
+                         <%if session[:curio] != 0 %>
+                            CC Curió = <%= session[:curio] %>
+                            <% session[:total]=  session[:total] + session[:curio] %> <br/>
+                         <%end%>
+                         <%if session[:grauna] != 0 %>
+                            CC Grauna = <%= session[:grauna] %>
+                            <% session[:total]=  session[:total] + session[:grauna] %> <br/>
+                         <%end%>
+                         <%if session[:jaguari] != 0 %>
+                            CC Jaguari = <%= session[:Jaguari] %>
+                            <% session[:total]=  session[:total] + session[:jaguari] %> <br/>
+                         <%end%>
+                         <%if session[:juriti] != 0 %>
+                            CC Juriti = <%= session[:juriti] %>
+                            <% session[:total]=  session[:total] + session[:juriti] %> <br/>
+                         <%end%>
+                         <%if session[:maira] != 0 %>
+                            CC Maira = <%= session[:maira] %>
+                            <% session[:total]=  session[:total] + session[:maira] %> <br/>
+                         <%end%>
+                         <%if session[:manaca] != 0 %>
+                            CC Manaca = <%= session[:manaca] %>
+                            <% session[:total]=  session[:total] + session[:manaca] %> <br/>
+                         <%end%>
+                         <%if session[:panambi] != 0 %>
+                            CC Panamby = <%= session[:panambi] %>
+                            <% session[:total]=  session[:total] + session[:panambi] %> <br/>
+                         <%end%>
+                         <%if session[:pitanga] != 0 %>
+                            CC Pitanga = <%= session[:pitanga] %>
+                            <% session[:total]=  session[:total] + session[:pitanga] %> <br/>
+                         <%end%>
+                         <%if session[:thaira] != 0 %>
+                            CC Thaira = <%= session[:thaira] %>
+                            <% session[:total]=  session[:total] + session[:thaira] %> <br/>
+                         <%end%>
+                         <%if session[:taragua] != 0 %>
+                            CC Taragua = <%= session[:taraga] %>
+                            <% session[:total]=  session[:total] + session[:taraga] %> <br/>
+                         <%end%>
+                         <%if session[:urupe] != 0 %>
+                            CC Urupe = <%= session[:urupe] %>
+                            <% session[:total]=  session[:total] + session[:urupe] %> <br/>
+                         <%end%>
+                   </td>
+                   <td width ="150px" valign="top" style="border-color: white"><b><u>Total de Aulas :</u></b> <%= session[:total]%></td>
+               </tr>
+            </table>
+        <div class ="invisible_to_print ">
+            <table cellspacing="0" cellpadding="0" align="right" class ="invisible_to_print " >
+              <tr class ="invisible_to_print " >
+                   <td align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   <td width="2%" align="right" ><%= button_to("Imprimir Agenda", onclick="javascript:window.print()", :title => "Imprimir") %></td>
+                <td width="2%" align="right" ><%= button_to "Relatório / Mês", relatorio_falta_mes_professor_aulas_faltas_path %></td>
+                    <%if (params[:search]).present? %>
+                        <% if current_user.has_role?('SEDUC') or current_user.has_role?('admin')%>
+                           <td width="2%" align="right"><%= button_to'Cadastrar Falta',:action => "new", :professor_id => params[:search][:professor_id_equals],:target => '_blank' %></td>
+                        <%end%>
+                    <%end%>
+               </tr>
+            </table>
+         </div>

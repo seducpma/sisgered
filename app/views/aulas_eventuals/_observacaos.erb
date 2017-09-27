@@ -1,0 +1,19 @@
+<table  width="100%">
+           <tr>
+               <td width ="4px"></td>
+               <td align="left" width ="20px"valign="top"> <font color="blue"> 
+                       <b>Fone: </b> &nbsp<%=@professor[0].contato%> &nbsp&nbsp&nbsp
+                       <b> - Unidade: </b> &nbsp<%=@professor[0].unidade.nome %> (<%=@professor[0].unidade.fone %> <br/>
+                       <b> Diposivel: </b> &nbsp<%=@professor[0].disponibilidade%> &nbsp&nbsp&nbsp<br/>
+                 <% if  !@professor[0].obs.nil?%>
+                    <font color="blue"><b>Obs: </b>&nbsp<%=@professor[0].obs%>
+               <%end%>
+             </td>
+       </tr>
+
+</font>
+</table>
+
+
+
+

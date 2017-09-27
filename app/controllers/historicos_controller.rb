@@ -253,9 +253,9 @@ def destroy_nota
             w4=session[:aluno_id] 
             @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?',session[:aluno_id] ])
             for aluno in @aluno
-                w=session[:unidade_id]= aluno.unidade_id
-                w1=session[:aluno_id]= aluno.id
-                w2=session[:aluno_nome] = aluno.aluno_nome
+                session[:unidade_id]= aluno.unidade_id
+                session[:aluno_id]= aluno.id
+                session[:aluno_nome] = aluno.aluno_nome
             end
             @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
             @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
