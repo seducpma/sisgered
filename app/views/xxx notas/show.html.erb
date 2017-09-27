@@ -1,0 +1,67 @@
+<div id="interno3">
+<% title "ATRIBUICAO" %>
+  <div class ="tabs">
+
+
+  <fieldset><legend><font size=4>LANÇAMENTOS NOTAS/FALTAS HISTÓRICO</font></legend>
+    <table width="100%">
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>RA:</b></td>
+         <td><%= @nota.aluno.aluno_ra  %></td>
+         <td width =" 12%"><b>Aluno:</b></td>
+         <td><%= @nota.aluno.aluno_nome %></td>
+      </tr>
+
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Unidade:</b></td>
+         <td colspan="3" ><%= @nota.aluno.unidade.nome %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Periodo:</b></td>
+         <td><%= session[:periodo]%> </td>
+         <td width =" 12%"><b>Disciplina:</b></td>
+         <td> <%= session[:disciplina]%> </td>
+
+       </tr>
+       <% if !@nota.professor_id.nil?  %>
+           <tr bgcolor="#F5F5F5">
+             <td width =" 12%"><b>Professor:</b></td>
+             <td colspan="3"><%= session[:professor]%></td>
+          </tr>
+      <%end%>
+       <tr bgcolor="#F5F5F5">
+         
+           <td width =" 12%"><b>Lançamentos:</b></td>
+           <td colspan="3"><b>Nota:</b>&nbsp&nbsp<%= @nota.nota5%>
+             &nbsp&nbsp&nbsp&nbsp&nbsp
+             <b>Faltas:</b>&nbsp<%= @nota.faltas5 %>
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+             <b>Série:</b>&nbsp<%= @nota.classe %> º Ano
+             <%if  !session[:ano_letivo].nil? or !session[:ano_letivo].empty %>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                 <b>Ano Letivo:</b> <%= session[:ano_letivo]%>
+             <%end%>
+         </td>
+      </tr>
+       <% if !@nota.escola.nil?  %>
+           <tr bgcolor="#F5F5F5">
+             <td width =" 12%"><b>Escola: </b></td>
+             <td colspan="3">  <%= @nota.escola%></td>
+          </tr>
+      <%end%>
+    </table>
+  </fieldset>
+    <table width="100%" >
+         <tr>
+            
+            <td width ="6%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td width ="6%" align="left"><%= button_to 'Continuar Lançamento', new1_notas_path, {:method => "get"}  %></td>
+            <td width ="6%"align="left"><%= button_to 'Novo Lançamento',{:action => "new", :controller => :notas}, :method => "get", :title => "Editar" %></td>
+            <td align="left"><%= button_to 'Historico',historicoContinua_path, :title => "Histórico", session[:aluno_id] => @nota.aluno_id %></td>
+
+         </tr>
+       </table>
+
+</div>
+<br/><br/>
+

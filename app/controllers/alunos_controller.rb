@@ -41,17 +41,17 @@ class AlunosController < ApplicationController
     @verifica = Aluno.find_by_aluno_nome(@aluno.aluno_nome)
     @verifica2 = Aluno.find_by_aluno_nascimento(@aluno.aluno_nascimento)
     
-    if @aluno.aluno_nacionalidade == 'BRASILEIRO'
-       @aluno.aluno_chegada_brasil = nil
-       @aluno.aluno_validade_estrangeiro = nil
-    end
-
     if (@verifica and @verifica2) then
        respond_to do |format|
          format.html { render :action => "new" }
          flash[:notice1] = "ALUNO(A) JÁ CADASTRADO(A)"
     end
     else
+     @aluno.unidade_id = User.current.unidade_id
+        if @aluno.aluno_nacionalidade == 'BRASILEIRO'
+           @aluno.aluno_chegada_brasil = nil
+           @aluno.aluno_validade_estrangeiro = nil
+        end
     respond_to do |format|
       if @aluno.save
         session[:alunoid_cadastro]= @aluno.id

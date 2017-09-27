@@ -1,0 +1,54 @@
+<table width="100%">
+     <% for classe in @classe %>
+        <tr bgcolor="#F5F5F5" >
+           <td align="left" width="10%"><b>Unidade:</b></td>
+           <td align="left">  <%=h classe.unidade.nome%></td>
+           <td align="left" width="10%"><b> Ano Letivo:</b></td>
+           <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
+       </tr>
+
+       <tr bgcolor="#F5F5F5">
+           <td align="left"><b>Classe:</b></td>
+           <td align="left">  <%=h classe.classe_classe%></td>
+           <td align="left"><b>Horário:</b></td>
+           <td align="left">  <%=h classe.horario %></td>
+      </tr>
+        <tr bgcolor="#F5F5F5" >
+          <td align="left"><b>Descrição:</b></td>
+          <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+       </tr>
+      <tr bgcolor="#F5F5F5">
+        <td valign="top"> <b> Professor(es):</b> </td>
+        <% cont=1 %>
+         <% cont1=1 %>
+        <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                           <table width="100%">
+                              <tr bgcolor="#F5F5F5" >
+                                 <td align="left" width="50%">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
+                                 <td align="left"width="10%"><b> Disciplina:</b></td>
+                                 <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                             </tr>
+                           </table>
+                          <% cont= cont+1 %>
+                         <%end%>
+        </td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+        <td valign="top"> <b> Alunos:</b> </td>
+        <td colspan="4">   <% @classe.alunos.sort_by{|aluno| aluno.aluno_nome}.each do |aluno| %>
+                            <table>
+                              <tr>
+                                <td width="80%"> &nbsp <%= cont1%> -  <%="#{ aluno.aluno_nome}" %> </td>
+                                <td width="6%"align="left" ><%= button_to 'Notas', "#inline_form_notas", :class =>"inline", :title => "Notas/Faltas"%></td>
+                                <td width="6%"align="left"><%= button_to 'Notas2', new_nota_path,:target => '_blank', :title => "Notas/Faltas" %></td>
+                              </tr>
+                            </table>
+                            <%cont1 = cont1+1%>
+                    <%end%>
+            </td>
+      </tr>
+
+
+         <%end%>
+</table>
+  <%= render "form_notas" %>
