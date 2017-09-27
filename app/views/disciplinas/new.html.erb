@@ -1,15 +1,59 @@
-
-</div><div id="interno3">
+</div><div id="interno5">
 <% title "CLASSES".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>CADASTRO DE DISCIPLINAS</strong></font><br/>
+     <font size="3"><strong>LANÇAMENTOS DISCIPLINAS E NOTAS HISTÓRICO</strong></font><br/>
  </div>
       <div class="tabs">
-      <%= render :partial => 'form' %>
+          <table>
+              <tr bgcolor="#F5F5F5">
+                 <td width =" 12%"><b>Aluno:</b></td>
+                 <td><%= session[:aluno_nome]%>  </td>
+             </tr>
+          </table>
+        <% form_for @disciplina, :html => { :multipart => true } do |f| %>
+            <fieldset><legend><font size=4>Disciplina</font></legend>
+                <table width="100%" align="center" >
+                    <tr bgcolor="#F5F5F5">
+                        <td align="left" width ="10%" ><font size="2"> <b>Disciplina:</b></font></td>
+                        <td><%= text_field_tag :NovaDisciplina, params[:NovaDisciplina],  :size => '40' %></td>
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td align="left"><font size="2"> <b>Tipo Curriculo:</b></font></td>
+                        <td><%= select_tag :NovoCurriculo,options_for_select([ "BÁSICO", "DIVERSIFICADO" ]) %>&nbsp&nbsp&nbsp&nbsp
+                            <b>Ano Letivo:</b>
+                            <%=  select_tag :NovoAnoLetivo, options_for_select(@ano_letivo.insert(0, '---')) %>
+                            
+                    </tr>
+
+                </table>
+           </fieldset>
+           <fieldset><legend><font size=4>Nota/Faltas</font></legend>
+               <table width="100%" align="center" >
+                   <tr bgcolor="#F5F5F5">
+                     <td colspan="2"align="left"><font size="2"> <b>Nota:</b></font>
+                         <%= select_tag :NovaNota,options_for_select([ "10.0", "9.0", "8.0", "7.0", "6.0", "5.0", "4.0", "3.0", "2.0", "1.0", "0.0", "SN", "TR", "RM", "F", "NF", "ABN" ]) %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Série:</b>&nbsp&nbsp<%= select_tag :NovaClasse, options_for_select(@serie.insert(0, '---')) %> º Ano
+                     </td>
+                   </tr>
+
+              </table>
+         </fieldset>
+          <table>
+                   <tr>
+                       <td><%= submit_tag "SALVAR", :class => "btn_filtrar" %>  </td>
+
+
+
+            <%end%>
+
+                       <td> <%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
     </div>
 </div>
 <br/>
-</div>
+
 
 

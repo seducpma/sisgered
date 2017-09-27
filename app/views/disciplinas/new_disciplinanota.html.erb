@@ -11,7 +11,7 @@
                  <td><%= session[:aluno_nome]%>  </td>
              </tr>
           </table>
-        <% form_remote_tag :url => create_discipina_nota_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+        <% form_remote_tag :url => new_disclipina_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
             <fieldset><legend><font size=4>Disciplina</font></legend>
                 <table width="100%" align="center" >
                     <tr bgcolor="#F5F5F5">

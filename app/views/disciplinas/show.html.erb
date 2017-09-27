@@ -1,41 +1,57 @@
 <div id="interno3">
-<% title "DISCIPLINA" %>
-<div class ="tabs">
+<% title "ATRIBUICAO" %>
+  <div class ="tabs">
 
 
- <table bgcolor="#DCDCDC" width="100%">
-   <tr bgcolor="#DCDCDC"  width="100%">
-     <td>
-       <fieldset><legend><font  size=3><b>DISCIPLINA</b></font></legend>
-         <table width="100%">
-           <tr bgcolor="#F5F5F5"  width="100%">
-              <td align="left" width ="15%"><b> Disciplina:</b></td>
-              <td align="left"> <%=h @disciplina.disciplina%></td>
-         </tr>
-      </table>
-     </fieldset>
-   </td>
-  </tr>
- </table>
+  <fieldset><legend><font  size=3>DISCIPLINA HISTÓRICO</font></legend>
+    <table width="100%">
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>RA:</b></td>
+         <td ><%= @nota[0].aluno.aluno_ra  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               <b>Aluno:</b> <%= @nota[0].aluno.aluno_nome%></td>
+      </tr>
 
-    <table>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Unidade:</b></td>
+         <td ><%= @nota[0].aluno.unidade.nome %></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td width =" 12%"><b>Disciplina:</b></td>
+         <td> <%= @nota[0].disciplina.disciplina %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               <b>Tipo Curriculo:</b></font>
+                     <%if  @nota[0].disciplina.curriculo == 'B'%>
+                            BÁSICO
+                     <%else%>
+                         DIVERSIFICADO
+                     <%end%>
+         </td>
+
+
+       </tr>
+       
+       <tr bgcolor="#F5F5F5">
+
+           <td width =" 12%"><b>Lançamentos:</b></td>
+           <td colspan="3"><b>Nota:</b>&nbsp&nbsp<%= @nota[0].nota5%>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+             <b>Série:</b>&nbsp<%= @nota[0].classe %> º Ano &nbsp&nbsp&nbsp&nbsp
+             <b>Ano Letivo:</b> <%= @nota[0].disciplina.ano_letivo %>
+<%= session[:classe] = @nota[0].classe %> %>
+         </td>
+      </tr>
+    </table>
+  </fieldset>
+    <table width="100%" >
          <tr>
 
-            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('supervisao')%>
-                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@disciplina}, :method => "get", :title => "Editar"%></td>
-                 <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@disciplina}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+            <td width ="6%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td align="left"><%= button_to 'Historico',historicoContinua_path, :title => "Histórico", session[:aluno_id] => @nota[0].aluno_id %></td>
 
-            <%else%>
-                <td align="center"></td>
-             <%end%>
-             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-          </tr>
-    </table>
-
+         </tr>
+       </table>
 
 </div>
-<br/>
-</div>
+<br/><br/>
 
 
 

@@ -1,0 +1,16 @@
+<h1>Editing disciplina</h1>
+
+<% form_for(@disciplina) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :disciplina %><br />
+    <%= f.text_field :disciplina %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @disciplina %> |
+<%= link_to 'Back', disciplinas_path %>
