@@ -1,13 +1,82 @@
 <%  if session[:flag_edit_atribuicao] == 1 %>
 
-      <div id="interno2">
+      <div id="interno4">
       <% title "ATRIBUICAOS".singularize %>
       <div class="tabs">
        <div id="caixa_titulo">
-           <font size="3"><strong>EDITAR ATRIBUIÇÃO AULAS</strong></font><br/>
+           <font size="3"><strong>EDITAR ATRIBUIÇÃO AULAS </strong></font><br/>
        </div>
             <div class="tabs">
-            <%= render :partial => 'form' %>
+                <% if (current_user.has_role?('admin') )%>
+                      <%= render :partial => 'form' %>
+                <% else if (current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')  or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                            <% form_for (@atribuicao) do |f| %>
+                             <%= f.error_messages %>
+                                 <% if current_user.professor_id.nil?  %>
+                                     <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
+                                       <%   @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"]) %>
+                                     <% else %>
+                                       <%   @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I'AND id !=2"],:order => 'ordem ASC') %>
+                                     <% end %>
+
+                                 <% else %>
+                                     <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
+                                        <%  @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"]) %>
+                                     <%  else %>
+                                         <%  @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I' AND id !=2"],:order => 'ordem ASC') %>
+                                     <%  end %>
+                                 <%  end %>
+
+                              <fieldset><legend><font size=4>Atribuição</font></legend>
+                                       <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+                                           <% @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC') %>
+                                      <%  else %>
+                                           <%  @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54 or diversas_unidades = 1) AND desligado = 0   ', (current_user.unidade_id)],:order => 'nome ASC')%>
+                                     <%  end %>
+
+
+                                <table width="100%">
+                                   <tr bgcolor="#F5F5F5">
+                                     <td width =" 12%"><b>Disciplina:</b></td>
+                                     <td><%=h @atribuicao.disciplina.disciplina %>
+                                     &nbsp&nbsp&nbsp<b>Classe:</b>&nbsp <%= @atribuicao.classe.classe_classe %>
+                                     &nbsp&nbsp&nbsp<b>Ano Letivo:</b>&nbsp <%=h @atribuicao.ano_letivo %></td>
+                                   </tr>
+                                   <tr bgcolor="#F5F5F5">
+                                       <td colspan="2"><b>Professor(substituido):</b>&nbsp <%= @atribuicao.professor.nome %> <br/>
+                                     <b>pelo Professor(novo):</b>&nbsp&nbsp <%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                                  </tr>
+                                  <% if session[:flag_edit_atribuicao] != 1 %>
+                                    <tr>
+                                      <td colspan="4">
+                                         <font color="gray"> <u><b>Obs:</u> Se o nome do professor NÃO constar na lista, favor entrar em contato com a Informática/SEDUC
+
+                                         </font> </b>
+                                       </td>
+                                    </tr>
+                                  <%end%>
+                               </table>
+                              </fieldset>
+                             <br/>
+
+                                   <table width="100%" >
+                                     <tr bgcolor="#F5F5F5">
+                                       <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+                            <%end%>
+                                     <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                         </tr>
+                       </table>
+                  </font>
+          <%end%>
+        <%end%>
+
+
+
+
+
+
+
           </div>
       </div>
       <br/>

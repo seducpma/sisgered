@@ -165,6 +165,8 @@ display: none;
                   <li><%= link_to 'Sair', logout_path,:confirm => "Tem certeza que deseja fazer logout?" %></li>
                 </ul>
               </li>
+
+<!--
 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao_infantil'))%>
               <li  class ="invisible_to_print "><a class="item-primary" href="#;">AGENDA</a>
                  <ul style="width:108px;">
@@ -228,7 +230,7 @@ display: none;
               </li>
             <%end%>
 
-
+-->
 
 
 
@@ -246,10 +248,10 @@ display: none;
                               </ul>
                          </li>
                  <%end%>
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')  or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
 
+<!--                   <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')  or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>-->
+                       <% if (current_user.has_role?('admin'))%>
                           <li><%= link_to "Atribuição",new_atribuicao_path %></li>
-
                    <%end%>
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                        
@@ -355,7 +357,7 @@ display: none;
                                <li><a class="item-primary" href="#;">EDITAR</a>
                 <ul style="width:108px;">
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
-                   <% if (current_user.has_role?('admin'))%>
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
                         <li><%= link_to "Atribuição",editar_atribuicao_atribuicaos_path %></li>
                    <%end%>
 
