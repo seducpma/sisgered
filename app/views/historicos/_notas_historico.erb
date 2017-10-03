@@ -23,7 +23,6 @@
     <%if @ano_inicial.classe.nil?%>
         <% classe= @ano_inicial.matricula.classe.classe_classe[0,1].to_i %>
         <% session[:classe_nota] = classe %>
-        <%t=0%>
     <%else%>
         <% classe= @ano_inicial.classe %>
         
