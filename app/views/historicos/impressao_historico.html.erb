@@ -103,7 +103,7 @@
         <%session[:escola]=['', '', '', '', '', '','', '', '']%>
         <%session[:cidade]=['', '', '', '', '', '','', '', '']%>
         <%while session[:contnota] < session[:contnotaBTot] %>
-        <tr style="line-height: 4px; border-color: black">
+           <tr style="line-height: 4px; border-color: black">
             <th style="font-size: 8px; border-color: black " align="left"><%= @notasB[session[:contnota]].disciplina.disciplina %> </th>
             <%for i in 0..8%>
                 <%if session[:contnota]>(session[:contnotaBTot]-1)%>
@@ -119,24 +119,24 @@
                             <%= @notasB[acertoHTML].nota5%> <%(session[:classe]= i+1)%>
                             <%session[:cargah][i]=1%>
                                 <%if @notasB[acertoHTML].escola.nil? %>
-                                   <% if !@notasB[acertoHTML].matricula_id.nil? %>
+                                   <% if !@notasB[acertoHTML].matricula_id.nil? and (@notasB[acertoHTML].ano_letivo != Time.now.year)%>
                                        <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
                                        <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
                                    <%end%>
 
                                 <%else%>
                                      <% if  !@notasB[acertoHTML].escola.empty? and !@notasB[acertoHTML].escola.nil?  %>
-                                        <%session[:escola][i]= @notasB[acertoHTML].escola  %>
+                                        <%session[:escola][i]= @notasB[acertoHTML].escola  %> 
                                    <%end%>
                                     <%if !@notasB[acertoHTML].cidade.empty? and  !@notasB[acertoHTML].cidade.nil?%>
-                                        <%session[:cidade][i]= @notasB[acertoHTML].cidade  %>
+                                        <%session[:cidade][i]= @notasB[acertoHTML].cidade  %> 
                                     <%end%>
                                <%end%>
                         <%end%>
                     </th>
                     <%session[:contnota]=session[:contnota]+1%>
                 <%else%>
-                    <th style="font-size: 8px; border-color: black " align="center">--- </th>
+                    <td align="center">--- </td>
                 <%end%>
             <%end%>
         </tr>
@@ -238,19 +238,13 @@
 
 
     <%for i in 0..8 %>
-         <tr  style="line-height: 4px; border-color: black">
+        <tr  style="line-height: 4px; border-color: black">
             <th align="center"style="font-size: 8px; border-color: black"><%= i + 1%>º Ano </th>
             <th width ="5%" align="center"style="font-size: 8px; border-color: black" > <%=  anoinicial+i %></th>
-            <% if @notasB[i].matricula_id.nil? and (@notasB[i].ano_letivo != Time.now.year)%>
-                <th style="font-size: 8px; border-color: black"> <%= session[:escola][i] %> </th>
-                <th style="font-size: 8px; border-color: black"> <%= session[:cidade][i] %> </th>
-           <%else %>
-                <th style="font-size: 8px; border-color: black"> </th>
-                <th style="font-size: 8px; border-color: black">  </th>
-            <%end%>
+            <th style="font-size: 8px; border-color: black"> <%= session[:escola][i] %> </th>
+            <th style="font-size: 8px; border-color: black"> <%= session[:cidade][i] %> </th>
         </tr>
     <%end%>
-
 
     </table>
 
