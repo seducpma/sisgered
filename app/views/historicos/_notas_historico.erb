@@ -49,20 +49,24 @@
                 <%end%>
                 <%if (@notasB[acertoHTML].ano_letivo) == (anoinicial+i)%>
                     <td align="center">
-                        <%if @notasB[acertoHTML].nota5.nil?%>
+                        <%if (@notasB[acertoHTML].nota5.nil? or @notasB[acertoHTML].nota5.empty?)  and @notasB[acertoHTML].ano_letivo == Time.now.year%>
                             ---
                         <%else%>
-                            <%= @notasB[acertoHTML].nota5%>
+                            <%= @notasB[acertoHTML].nota5%> 
                             <%session[:cargah][i]=1%>
                                 <%if @notasB[acertoHTML].escola.nil? %>
-                                   <% if !@notasB[acertoHTML].matricula_id.nil? %>
+                                   <% if !@notasB[acertoHTML].matricula_id.nil? and (@notasB[acertoHTML].ano_letivo != Time.now.year)%>
                                        <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
                                        <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
                                    <%end%>
 
                                 <%else%>
-                                     <%session[:escola][i]= @notasB[acertoHTML].escola  %>
-                                     <%session[:cidade][i]= @notasB[acertoHTML].cidade  %>
+                                     <% if  !@notasB[acertoHTML].escola.empty? and !@notasB[acertoHTML].escola.nil?  %>
+                                        <%session[:escola][i]= @notasB[acertoHTML].escola  %>
+                                   <%end%>
+                                    <%if !@notasB[acertoHTML].cidade.empty? and  !@notasB[acertoHTML].cidade.nil?%>
+                                        <%session[:cidade][i]= @notasB[acertoHTML].cidade  %>
+                                    <%end%>
                                <%end%>
                         <%end%>
                         <%if @notasB[acertoHTML].matricula_id.nil?%>
@@ -79,7 +83,7 @@
     <tr bgcolor =" #DCDCDC">
         <td><b> Carga Horária</b></td>
         <%for i in 0..8%>
-            <%if session[:cargah][i]==0%>
+            <%if session[:cargah][i]==0 %>
                 <td align="center">---</td>
             <%else%>
                 <td align="center"> <%= 1000 %>  </td>
@@ -127,7 +131,7 @@
                     <%end%>
                     <%if (@notasD[acertoHTML].ano_letivo) == (anoinicial+i)%>
                         <td align="center">
-                            <%if @notasD[acertoHTML].nota5.nil?%>
+                            <%if (@notasD[acertoHTML].nota5.nil? or @notasD[acertoHTML].nota5.empty?)  and @notasD[acertoHTML].ano_letivo == Time.now.year%>
                                 ---
                             <%else%>
                                 <%= @notasD[acertoHTML].nota5%>

@@ -21,8 +21,8 @@ class NotasController < ApplicationController
 
     def new
         cont=1
-        @ano_letivo=["",""]
-        @serie=["",""]
+        @ano_letivo=[""]
+        @serie=[""]
         while (cont < session[:classe_nota]) do
             @ano_letivo[cont-1] = (session[:ano] - cont).to_s
             @serie[cont-1] = (session[:classe_nota]-cont).to_s
