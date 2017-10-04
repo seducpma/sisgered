@@ -61,7 +61,7 @@
           <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
                <tr>
                   <td ><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
-                                     <%session[:cont_nome] = 1 %>
+                                     <%session[:cont_nome] = 1 %> <%session[:aluno_id] = aluno.id%>
                   </td>
                   <td><b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %></td>
                   <td colspan="2"><b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
@@ -123,8 +123,9 @@
           <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
                <tr>
                    <td colspan="2"> <font COLOR="RED" >&nbsp<u><b>ATENÇÃO:</b></u> 1) Para incluir observação no histórico utilize o botão <b>OBSERVAÇÃO</b>.<br/>
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir nota em disciplinas que já constem no histórico utilize o botão <b>NOTA</b><br/>
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para incluir neste hitórico disciplinas que não constam utilize o botão <b>DISCIPLINA</b>. (CUIDADO PARA NÃ0 INCLUIR DISCIPLINAS <br/>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir Carga Horaria  / Unidade de Ensino / Cidade nas notas lançadas pelo histórico utlizar o botão <b>CARGA HORÁRIA</b>.<br/>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para incluir nota em disciplinas que já constem no histórico utilize o botão <b>NOTA</b><br/>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    4) Para incluir neste hitórico disciplinas que não constam utilize o botão <b>DISCIPLINA</b>. (CUIDADO PARA NÃ0 INCLUIR DISCIPLINAS <br/>
                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -137,8 +138,10 @@
               <tr>
                 
                 <td width ="24%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
+                                              <%= link_to image_tag("/stylesheets/images/horaria.png"), new_observacao_historico_path, :target => '_blank' %>
                                               <%= link_to image_tag("/stylesheets/images/disciplina.png"),new_disciplina_path, :target => '_blank' %>
                                               <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, :target => '_blank' %>
+                                              
                 </td>
                </tr>
 

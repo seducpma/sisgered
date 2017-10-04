@@ -24,6 +24,13 @@ class ObservacaoHistoricosController < ApplicationController
   # GET /observacao_historicos/new
   # GET /observacao_historicos/new.xml
   def new
+    cont=1
+    @ano_letivo=[""]
+    while (cont < session[:classe_nota]) do
+        @ano_letivo[cont-1] = (session[:ano] - cont).to_s
+         cont=cont+1
+    end
+
     @observacao_historico = ObservacaoHistorico.new
 
     respond_to do |format|
@@ -41,7 +48,10 @@ class ObservacaoHistoricosController < ApplicationController
   # POST /observacao_historicos.xml
   def create
     @observacao_historico = ObservacaoHistorico.new(params[:observacao_historico])
-
+    if session[:lanca_c_horaria] == 1
+       @observacao_historico.aluno_id = session[:aluno_id]
+       session[:lanca_c_horaria]=0
+    end
     respond_to do |format|
       if @observacao_historico.save
         flash[:notice] = 'ObservacaoHistorico was successfully created.'
