@@ -119,23 +119,14 @@
                                 <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_b IS NOT NULL", @notasB[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                                 <%= @notasB[acertoHTML].nota5%> <%(session[:classe]= i+1)%>
                                 <% if !@carga_horaria.present? %>
-                                    <%=session[:cargah_b][i]=1000%>
-                                <%else%>
-                                    <%session[:cargah_b][i]=@carga_horaria[0].carga_horaria_b %>
-                                <%end%>
-                                <%if @notasB[acertoHTML].escola.nil? %>
-                                    <% if !@notasB[acertoHTML].matricula_id.nil? and (@notasB[acertoHTML].ano_letivo != Time.now.year)%>
-                                        <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
-                                        <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
-                                    <%end%>
+                                    <%  session[:cargah_b][i]=1000%>
+                                    <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
+                                    <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
 
                                 <%else%>
-                                    <% if  !@notasB[acertoHTML].escola.empty? and !@notasB[acertoHTML].escola.nil?  %>
-                                        <%session[:escola][i]= @notasB[acertoHTML].escola  %>
-                                    <%end%>
-                                    <%if !@notasB[acertoHTML].cidade.empty? and  !@notasB[acertoHTML].cidade.nil?%>
-                                        <%session[:cidade][i]= @notasB[acertoHTML].cidade  %>
-                                    <%end%>
+                                    <%session[:cargah_b][i]=@carga_horaria[0].carga_horaria_b %>
+                                    <% session[:escola][i]= @carga_horaria[0].escola %>
+                                    <% session[:cidade][i]= @carga_horaria[0].cidade %>
                                 <%end%>
                             <%end%>
                         </th>
@@ -203,7 +194,7 @@
                                     <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_b IS NOT NULL", @notasD[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                                     <%= @notasD[acertoHTML].nota5%>
                                     <% if !@carga_horaria.present? %>
-                                        <%=session[:cargah_d][i]=480%>
+                                        <%  session[:cargah_d][i]=480%>
                                     <%else%>
                                         <%session[:cargah_d][i]= @carga_horaria[0].carga_horaria_d %>
                                     <%end%>
