@@ -486,7 +486,7 @@
             <tr>
                 <th style="font-size: 7px"colspan="23" align="left"><b>Observações:</b></th>
             </tr>
-            <%@notas.each do |nota|%>
+<!--            <%@notas.each do |nota|%>
                 <%if nota.aluno_id == session[:aluno]%>
                     <% if nota.observacao_notas.present? %>
                         <tr>
@@ -505,7 +505,7 @@
                     <%end%>
                 <%end%>
             <%end%>
-
+-->
             <%  @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno_id], session[:ano_nota],nil ] )%>
 
             <%@observacao2.each do |observacao| %>
