@@ -37,7 +37,7 @@
              <b>Faltas:</b>&nbsp<%= @nota.faltas5 %>
              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
              <b>Série:</b>&nbsp<%= @nota.classe %> º Ano
-             <%if  !session[:ano_letivo].nil? or !session[:ano_letivo].empty? %>
+             <%if  !session[:ano_letivo].nil? or !session[:ano_letivo].empty?  or session[:ano_letivo].present?%>
                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                  <b>Ano Letivo:</b> <%= session[:ano_letivo]%>
              <%end%>

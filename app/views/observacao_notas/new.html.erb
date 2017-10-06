@@ -30,6 +30,12 @@
                 <tr bgcolor="#F5F5F5">
                   <td colspan="4"><div id="aluno_classe"></div></td>
                 </tr >
+                <%if current_user.has_role?('professor_fundamental')%>
+                    <tr>
+                        <td width =" 5%"><b>Disciplina:</b></td>
+                      <td><%= collection_select_tag :disciplina_id, @disciplinas1, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
+                    </tr>
+                 <%end%>
                  <tr bgcolor="#F5F5F5">
                    <td valign="top"><b>Relatório:</b></td>
                    <td>  <%= f.text_area(:observacao, :cols=> "80", :rows=>"10", :id=>"contador2") %><br/>
@@ -50,8 +56,12 @@
                 <tr>
                   <td><b>Data:</b></td>
                   <td> <%= f.date_select(:data, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-1)%>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
-                    <b>Observação feita pelo(a):</b> <%= f.select :quem , options_for_select(@quem) %></td>
+
+                    <%if !current_user.has_role?('professor_fundamental')%>
+                           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Observação feita pelo(a):</b> <%= f.select :quem , options_for_select(@quem) %>
+                    <%end%>
+                  </td>
                 </tr>
 
               </table>

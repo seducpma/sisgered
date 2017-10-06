@@ -66,6 +66,9 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.notas_lancamentos '/notas_lancamentos', :controller => 'notas', :action => 'notas_lancamentos'
   map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :impressao_geral => :get, :status => :get, :update => :put}
 
+
+
+
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
   map.impressao_alunos '/impressao_alunos', :controller => 'alunos', :action => 'impressao_alunos'
   map.impressao_saude '/impressao_saude', :controller => 'saudes', :action => 'impressao_saude'
