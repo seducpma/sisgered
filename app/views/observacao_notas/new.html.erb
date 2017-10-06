@@ -33,7 +33,7 @@
                 <%if current_user.has_role?('professor_fundamental')%>
                     <tr>
                         <td width =" 5%"><b>Disciplina:</b></td>
-                      <td><%= collection_select_tag :disciplina_id, @disciplinas1, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
+                      <td><%= collection_select :disciplina_id, @disciplinas1, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
                     </tr>
                  <%end%>
                  <tr bgcolor="#F5F5F5">

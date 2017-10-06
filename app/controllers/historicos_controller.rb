@@ -182,8 +182,8 @@ def destroy_nota
             @notasB = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.escola, notas.cidade, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' or notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
            
             @notasD = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.escola, notas.cidade, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
-            
-
+            @carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", 2015, session[:aluno_id]])
+t=0
             session[:contnotaBTot]=(@notasB.count)
             session[:contnotaDTot]=(@notasD.count)
             @disciplinas = @disciplinasD + @disciplinasB
