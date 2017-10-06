@@ -143,10 +143,10 @@
                                             </tr>
                                             <% if nota.observacao_notas.present? %>
                                                 <%   t= session[:obs_id]= nota.observacao_notas.id   %>
-                                                <tr bgcolor="#DCDCDC">
-                                                    <td bgcolor="#F5F5F5"></td>
-                                                    <td align="right"valign="top" ><u> Observações:</u></td>
-                                                    <td colspan="15" >
+                                                <tr bgcolor="#DCDCDC" class="visualiza">
+                                                    <td class="visualiza"></td>
+                                                    <td align="right"valign="top" class="visualiza"><u> Observações:</u></td>
+                                                    <td colspan="13"  class="visualiza" >
                                                         <% c=0 %>
                                                         <table cellspacing="0" cellpadding="1" width="100%" style="border-color: #F5F5F5" class="visualiza">
                                                             <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
@@ -161,7 +161,7 @@
                                                                                 <%else%>
                                                                                     <%= link_to  image_tag('/stylesheets/images/excluir.png', :title => 'Excluir'), {:controller =>"observacao_notas", :action => "destroy", :id =>obs}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%>
                                                                                 <%end%>
-                                                                        </td>
+                                                                         </td>
                                                                     </tr>
                                                                 <%end%>
                                                             <%end%>
