@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
 
   map.resources :funcionarios, :collection => { :consulta=>:get}
-  map.resources :aulas_eventuals, :collection => { :index2=>:get,   :relatorio_eventual_mes_professor => :get,   :relatorio_eventual_mes_unidade => :get, :relatorio_eventual_mes_unidade => :get}
+  map.resources :aulas_eventuals, :collection => { :index2=>:get,   :relatorio_eventual_mes_professor => :get,  :relatorio_eventual_mes_unidade => :get}
   map.resources :eventuals
   map.resources :ufaltas
   map.resources :relatorios,:collection => { :relatorio=>:get, :consultas=>:get, :consultas_observacao =>:get, :editar=>:get}
