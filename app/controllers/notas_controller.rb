@@ -105,14 +105,14 @@ t=0
             @nota.unidade_id =  current_user.unidade_id
             if session[:flagx] == 1
                 @nota.classe = session[:classe]
-                @nota.escola = session[:escola]
+  #              @nota.escola = session[:escola]
                 @nota.ano_letivo = session[:ano_letivo]
-                @nota.escola = session[:escola]
+  #              @nota.escola = session[:escola]
 
             end
-            if @nota.escola =='    Favor digitar o Nome da Escola - Cidade - Estado'
-                @nota.escola = ' '
-            end
+#            if @nota.escola =='    Favor digitar o Nome da Escola - Cidade - Estado'
+ #               @nota.escola = ' '
+#            end
             respond_to do |format|
                 if @nota.save
                     session[:cont_nome]=0
@@ -122,7 +122,7 @@ t=0
                     session[:aluno_id]=@nota.aluno_id
                     session[:disciplina_id]= @nota.disciplina_id
                     session[:ano_letivo]= @nota.ano_letivo
-                    session[:escola]= @nota.escola
+#                    session[:escola]= @nota.escola
                     format.html { redirect_to(@nota) }
                     format.xml  { render :xml => @nota, :status => :created, :location => @nota }
                 else

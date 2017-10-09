@@ -106,26 +106,33 @@
 
         <fieldset><legend><font size=3>Cadastrar</font></legend>
           <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+               <tr>
+                   <td colspan="2"> <font COLOR="RED" >&nbsp<u><b>ATENÇÃO:</b></u> 1) Para incluir observação no histórico utilize o botão <b>OBSERVAÇÃO</b>.<br/>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir Carga Horaria  / Unidade de Ensino / Cidade nas notas lançadas quando NÂO cursadas em unidade da SEDUC ,
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp utilizar o botão <b>CARGA HORÁRIA</b>.<br/>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para incluir nota em disciplinas que já constem no histórico utilize o botão <b>NOTA</b><br/>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    4) Para incluir neste hitórico disciplinas que não constam utilize o botão <b>DISCIPLINA</b>. (CUIDADO PARA NÃ0 INCLUIR DISCIPLINAS <br/>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  QUE JÁ EXISTAM)
+
+
+                </td>
+               </tr>
               <tr>
 
                 <td width ="24%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
+                                              <%= link_to image_tag("/stylesheets/images/horaria.png"), new_observacao_historico_path, :target => '_blank' %>
                                               <%= link_to image_tag("/stylesheets/images/disciplina.png"),new_disciplina_path, :target => '_blank' %>
-                                              <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, session[:aluno] => @nota.aluno_id , :target => '_blank' %>
-                </td>
-                <td valign="middle">
-                    &nbsp&nbsp</u> Para incluir <b>Observações</b> , <b>Disciplinas </b> ou <b>Notas</b> utilize os botões à esquerda.
-                </td>
-               </tr>
-              <tr>
-                  <td colspan="2"> <font COLOR="RED" >&nbsp&nbsp<u><b>ATENÇÃO:</b></u> Para que qualquer disciplina aparereça no boletim do aluno é necessário haver nota atribuida, após cadastrar nova disciplina,
-                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp favor cadastrar também a nota.
-
+                                              <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, :target => '_blank' %>
 
                 </td>
                </tr>
+
           </table>
         </fieldset>
-
      </fieldset>
     <%end%>
 
@@ -147,18 +154,19 @@
 
     </tr>
   </table>
- </div>
+
+ 
 
 
 
-</div>
+
 
 <br/>
-</div>
+
+
 
    <%= render "form_observacao" %>
-      <%= render "form_disciplina" %>
-      <%= render "form_nota" %>
+
 
 
 
