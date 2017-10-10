@@ -58,15 +58,17 @@
                                                                             <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1)) %>
                                                                             <%= f.text_field :faltas1 , :size => '1'%>
                                                                         <%else%>
-                                                                            &nbsp&nbsp&nbsp<%= @nota.nota1%>&nbsp&nbsp&nbsp&nbsp
-                                                                            <!-- <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1)) %>-->
-                                                                            <%= @nota.faltas1%>
+                                                                            <!--&nbsp&nbsp&nbsp<%= @nota.nota1%>&nbsp&nbsp&nbsp&nbsp-->
+                                                                            <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1)) %>
+                                                                            <!--<%= @nota.faltas1%>-->
+                                                                            &nbsp <%= f.text_field :faltas1 , :size => '1'%>
                                                                         <%end%>
                                                                     </td>
                                                                 <%else%>
                                                                     <td width ="3%"> <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, '---')) %>
-                                                                        <!--<%= f.text_field :faltas1 , :size => '1'%>-->
-                                                                        <%= @nota.faltas1%>
+                                                                        <%= f.text_field :faltas1 , :size => '1'%>
+                                                                        &nbsp <%= f.text_field :faltas1 , :size => '1'%>
+                                                                        <!--<%= @nota.faltas1%>-->
                                                                     </td>
                                                                 <%end%>
 
@@ -91,9 +93,10 @@
                                                                             <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %>
                                                                             <%= f.text_field :faltas2 , :size => '1'%>
                                                                         <%else%>
-                                                                            &nbsp&nbsp&nbsp<%= @nota.nota2%>&nbsp&nbsp&nbsp&nbsp
-                                                                            <!--<%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %>-->
-                                                                            <%= @nota.faltas2%>
+                                                                            <!--&nbsp&nbsp&nbsp<%= @nota.nota2%>&nbsp&nbsp&nbsp&nbsp-->
+                                                                            <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2)) %>
+                                                                            <!--<%= @nota.faltas2%>-->
+                                                                            &nbsp <%= f.text_field :faltas2 , :size => '1'%>
                                                                         <%end%>
                                                                     </td>
                                                                 <%else%>
@@ -125,7 +128,7 @@
                                                                     <td width ="3%"><%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                                                                             <%= f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3)) %>
                                                                         <%else%>
-                                                                                 <!--&nbsp&nbsp&nbsp<%= @nota.nota3%>&nbsp&nbsp&nbsp&nbsp-->
+                                                                           <!--&nbsp&nbsp&nbsp<%= @nota.nota3%>&nbsp&nbsp&nbsp&nbsp-->
                                                                             <%= f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3)) %>
                                                                         <%end%>
                                                                         <%= f.text_field :faltas3 , :size => '1'%>
@@ -172,14 +175,14 @@
                                                                         <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, @nota.nota4)) %>
                                                                                         <!-- &nbsp&nbsp&nbsp<%= @nota.nota4%>&nbsp&nbsp&nbsp -->
                                                                     <%else%>
-                                                                        <!--                                                 <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, '---')) %>
+                                                                        <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, '---')) %>
                                                                     <%end%>
                                                                     <%if @nota.faltas4 !=0 %>
                                                                                                                           &nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas4%>
                                                                     <%else%>
                                                                         <%= f.text_field :faltas4 , :size => '2'%>
                                                                     <%end%>
-                                                                    -->
+
                                                                 </td>
                                                             <%end%>
                                                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
@@ -201,12 +204,10 @@
                                                                 <td width ="3%"> <%if @nota.nota5.present?%>
                                                                         <%= f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota5)) %>
                                                                     <%else%>
-                                                                        <!--                                                <%= f.select :nota5 , options_for_select(@NOTASB5.insert(0, '---')) %>
+                                                                        <%= f.select :nota5 , options_for_select(@NOTASB5.insert(0, '---')) %>
 
                                                                     <%end%>
-
-                                                                                                                     &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas5%>
-                                                                    -->
+                                                                      &nbsp&nbsp&nbsp&nbsp<%= @nota.faltas5%>
                                                                 </td>
                                                             <%end%>
                                                             <%session[:aluno_nota]=@nota.aluno_id%>

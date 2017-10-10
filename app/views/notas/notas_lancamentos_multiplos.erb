@@ -126,16 +126,16 @@
                                                     <td align="center"><%= nota.nota3%></td>
                                                     <td align="center"><%= nota.faltas3%></td>
                                                 <%end%>
-                                                <%if !nota.nota4.present? or nonota.ta.nota4=='SN'%>
-                                                    <td align="center"><!--<%= f.select :nota4 , options_for_select(@NOTASB4) %>--></td>
-                                                    <td align="center"><!--<%= f.text_field :faltas4 , :size => '1'%>--></td>
+                                                <%if !nota.nota4.present? or nota.ta.nota4=='SN'%>
+                                                    <td align="center"><%= f.select :nota4 , options_for_select(@NOTASB4) %></td>
+                                                    <td align="center"><%= f.text_field :faltas4 , :size => '1'%></td>
                                                 <%else%>
                                                     <td align="center"><%= nota.nota4%></td>
                                                     <td align="center"><%= nota.faltas4%></td>
                                                 <%end%>
                                                 <%if !nota.nota5.present? or nota.nota5=='SN' %>
-                                                    <td align="center"><!--<%= f.select :nota5, options_for_select(@NOTASB5) %>--></td>
-                                                    <td align="center"><!--<%= f.text_field :faltas5 , :size => '1'%>--></td>
+                                                    <td align="center"><%= f.select :nota5, options_for_select(@NOTASB5) %></td>
+                                                    <td align="center"><!--<%= f.text_field :faltas5 , :size => '1'%>--> <%= nota.faltas5%></td>
                                                 <%else%>
                                                     <td align="center"> <%= nota.nota5%></td>
                                                     <td align="center"><%= nota.faltas5%></td>
