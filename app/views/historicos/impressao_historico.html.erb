@@ -252,11 +252,24 @@
             </tr>
         <%end%>
              <tr  style="line-height: 4px; border-color: black">
-              <th align="center"style="font-size: 8px; border-color: black" colspan="5"></th>
+              <th align="center"style="font-size: 8px" colspan="5"></th>
             </tr>
               <tr  style="line-height: 8px; border-color: black">
-                <th align="center"style="font-size: 8px" width="12%" align="CENTER"valign="top"><b>Observação:</b></th>
-                <th align="center"style="font-size: 8px" colspan="4" valign="top"> </th>
+                <th align="left"style="font-size: 8px" width="12%" valign="top"><b>Observação:</b></th>
+                <th align="left"style="font-size: 8px" colspan="4" valign="top">
+
+                        <% c=0 %>
+                        <% @historico_aluno.each do |obs|%>
+                           <%  if  (!obs.observacao.nil?) %>
+                              <b><%= c=c+1%>.</b> <%="#{obs.observacao}" %>  -
+                              <b>Data: </b> <%=  obs.created_at.strftime("%d/%m/%Y")%> - <%=  obs.quem %>
+
+
+                        <br/>
+                        <%end%>
+                    <%end%>
+
+                </th>
             </tr>
     </table>
 
