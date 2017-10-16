@@ -1,361 +1,363 @@
 <div id="interno2">
-<% title "PESSOA" %>
-<div class ="tabs">
+    <% title "PESSOA" %>
+    <div class ="tabs">
 
- <table bgcolor="#DCDCDC" width="100%">
-   <tr bgcolor="#DCDCDC"  width="100%">
-     <td>
-       <fieldset><legend><font  size=3><b> Dados Pessoais</b></font></legend>
-         <table width="100%">
-           <tr bgcolor="#F5F5F5">
-             <td align="center" valign="top">
-                    <%= image_tag @aluno.photo.url(:original) %>
-             </td>
-             <td colspan="7"valign="top">
-                 <table bgcolor="#DCDCDC" width="100%">
-                  <tr bgcolor="#F5F5F5">
-                     <td colspan="10"align="center" width="4%"><b>FICHA CADASTRAL DE ALUNO</b></td>
-                  </tr>
+        <table bgcolor="#DCDCDC" width="100%">
+            <tr bgcolor="#DCDCDC"  width="100%">
+                <td>
+                    <fieldset><legend><font  size=3><b> Dados Pessoais</b></font></legend>
+                        <table width="100%">
+                            <tr bgcolor="#F5F5F5">
+                                <td align="center" valign="top">
+                                    <% if !aluno.photo_file_name.nil? %>
+                                        <%= image_tag @aluno.photo.url(:original) %>
+                                    <%end%>
+                                </td>
+                                <td colspan="7"valign="top">
+                                    <table bgcolor="#DCDCDC" width="100%">
+                                        <tr bgcolor="#F5F5F5">
+                                            <td colspan="10"align="center" width="4%"><b>FICHA CADASTRAL DE ALUNO</b></td>
+                                        </tr>
 
-                  <tr bgcolor="#F5F5F5">
-                     <td align="left" width="4%"><b>Nome:</b></td>
-                     <td colspan="4" align="left"> <%=h @aluno.aluno_nome %></td>
-                     <td align="right"><b>Sexo:</b></td>
-                     <td colspan="2" align="left"><%=h @aluno.aluno_sexo %></td>
-                  </tr>
-                   <tr bgcolor="#F5F5F5">
-                       <td align="left"><b>Nascimento:</b></td>
-                       <td align="left">  <%=h @aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
-                       <td align="left"><b>Nº Certidão:</b></td>
-                       <td colspan="5"align="left"><%=h @aluno.aluno_certidao_nascimento %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Livro:</b><%=h @aluno.aluno_livro %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Folha:</b> <%=h @aluno.aluno_folha %></td>
-                    </tr>
-                   <tr bgcolor="#F5F5F5">
-                       <td align="left"><b>RG:</b></td>
-                       <td align="left">  <%=h @aluno.aluno_RG%></td>
-                       <td align="left"><b>Emissão:</b></td>
-                       <td colspan="5"align="left"><%=h @aluno.aluno_emissaoRG %></td>
-                    </tr>
-                   <tr bgcolor="#F5F5F5">
-                       <td align="left"><b>CPF:</b></td>
-                       <td align="left">  <%=h @aluno.aluno_CPF%></td>
-                       <td align="left"><b>Emissão:</b></td>
-                       <td colspan="5"align="left"><%=h @aluno.aluno_emissaoCPF %></td>
-                   </tr>
-                  <tr bgcolor="#FFFfff">
-                    <td width =" 10%"><b>Nº RA:</b></td>
-                    <td width ="15%">   <%=h @aluno.aluno_ra %></td>
-                    <td width =" 12%"><b>Nº RM:</b></td>
-                    <td>   <%=h @aluno.aluno_rm %></td>
-                    <td width =" 20%"><b>Nº INEP:</b></td>
-                    <td>   <%=h @aluno.aluno_inep %></td>
-                    <td width =" 12%"><b>Nº NIS:</b></td>
-                    <td colspan="4">   <%=h @aluno.aluno_nis %></td>
-                  </tr>
+                                        <tr bgcolor="#F5F5F5">
+                                            <td align="left" width="4%"><b>Nome:</b></td>
+                                            <td colspan="4" align="left"> <%=h @aluno.aluno_nome %></td>
+                                            <td align="right"><b>Sexo:</b></td>
+                                            <td colspan="2" align="left"><%=h @aluno.aluno_sexo %></td>
+                                        </tr>
+                                        <tr bgcolor="#F5F5F5">
+                                            <td align="left"><b>Nascimento:</b></td>
+                                            <td align="left">  <%=h @aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
+                                            <td align="left"><b>Nº Certidão:</b></td>
+                                            <td colspan="5"align="left"><%=h @aluno.aluno_certidao_nascimento %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Livro:</b><%=h @aluno.aluno_livro %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Folha:</b> <%=h @aluno.aluno_folha %></td>
+                                        </tr>
+                                        <tr bgcolor="#F5F5F5">
+                                            <td align="left"><b>RG:</b></td>
+                                            <td align="left">  <%=h @aluno.aluno_RG%></td>
+                                            <td align="left"><b>Emissão:</b></td>
+                                            <td colspan="5"align="left"><%=h @aluno.aluno_emissaoRG %></td>
+                                        </tr>
+                                        <tr bgcolor="#F5F5F5">
+                                            <td align="left"><b>CPF:</b></td>
+                                            <td align="left">  <%=h @aluno.aluno_CPF%></td>
+                                            <td align="left"><b>Emissão:</b></td>
+                                            <td colspan="5"align="left"><%=h @aluno.aluno_emissaoCPF %></td>
+                                        </tr>
+                                        <tr bgcolor="#FFFfff">
+                                            <td width =" 10%"><b>Nº RA:</b></td>
+                                            <td width ="15%">   <%=h @aluno.aluno_ra %></td>
+                                            <td width =" 12%"><b>Nº RM:</b></td>
+                                            <td>   <%=h @aluno.aluno_rm %></td>
+                                            <td width =" 20%"><b>Nº INEP:</b></td>
+                                            <td>   <%=h @aluno.aluno_inep %></td>
+                                            <td width =" 12%"><b>Nº NIS:</b></td>
+                                            <td colspan="4">   <%=h @aluno.aluno_nis %></td>
+                                        </tr>
 
-              </table>
-             </td>
-           </tr>
+                                    </table>
+                                </td>
+                            </tr>
 
-           <tr bgcolor="#F5F5F5">
-               <td align="left"><b>Naturalidade:</b></td>
-               <td colspan="3"align="left"><%=h @aluno.aluno_naturalidade %></td>
+                            <tr bgcolor="#F5F5F5">
+                                <td align="left"><b>Naturalidade:</b></td>
+                                <td colspan="3"align="left"><%=h @aluno.aluno_naturalidade %></td>
 
-               <td align="left"><b>Nacionalidade:</b></td>
-               <td align="left"><%=h @aluno.aluno_nacionalidade %></td>
+                                <td align="left"><b>Nacionalidade:</b></td>
+                                <td align="left"><%=h @aluno.aluno_nacionalidade %></td>
 
-               <%if @aluno.aluno_nacionalidade != 'BRASILEIRO'%>
-                <td colspan="3"><b>Se estangeiro: &nbsp&nbsp Chegada Brasil:&nbsp&nbsp</b>
-                       <%if !@aluno.aluno_chegada_brasil.nil?%>
-                           <%=h @aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%>
-                       <%end%>
+                                <%if @aluno.aluno_nacionalidade != 'BRASILEIRO'%>
+                                    <td colspan="3"><b>Se estangeiro: &nbsp&nbsp Chegada Brasil:&nbsp&nbsp</b>
+                                        <%if !@aluno.aluno_chegada_brasil.nil?%>
+                                            <%=h @aluno.aluno_chegada_brasil.strftime("%d/%m/%Y")%>
+                                        <%end%>
+
+                                    </td>
+                                </tr>
+                                <tr  bgcolor="#F5F5F5">
+                                    <td></td> <td></td><td></td>
+                                    <td ><b>RNE:&nbsp&nbsp</b><%=h @aluno.aluno_RNE %></td>
+                                    <td> <b>Classificação:&nbsp&nbsp</b><%=h @aluno.aluno_classificacao %></td>
+                                    <td colspan="2"><b>Validade:&nbsp&nbsp</b>
+                                        <%if !@aluno.aluno_validade_estrangeiro.nil?%>
+                                            <%=h @aluno.aluno_validade_estrangeiro.strftime("%d/%m/%Y")%>
+                                        <%end%>
+                                    </td>
+                                <%else%>
+                                    <td colspan="4"></td>
+                                <%end%>
+
+                            </tr>
+                            <% if !@aluno.aluno_conjuge.nil? %>
+                                <tr bgcolor="#F5F5F5">
+                                    <td width =" 10%"><b>Conjuge:</b></td>
+                                    <td colspan="10">   <%=h @aluno.aluno_conjuge %></td>
+                                </tr>
+                            <%end%>
+
+
+
+                            <tr bgcolor="#F5F5F5">
+                                <td width =" 12%"><b>Reside com:</b></td>
+                                <td colspan="7">  <%=h @aluno.aluno_reside_com %></td>
+                            </tr>
+                            <%  if @aluno.aluno_reside_com == 'PAI'%>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Pai:</b></td>
+                                    <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Mãe:</b></td>
+                                    <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Endereço(mãe):</b></td>
+                                    <td align="left"  colspan="4"><%=h @aluno.aluno_endereco_mae %></td></td>
+                                    <td align="left"><b>Cidade(mãe):</b></td>
+                                    <td colspan="2" align="left"><%=h @aluno.aluno_cidade_mae%></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Fone(s):</b></td>
+                                    <td align="left" colspan="2"><%=h @aluno.aluno_fone_mae %></td></td>
+                                    <td align="left"><b>E-mail(mãe):</b></td>
+                                    <td colspan="4" align="left"><%=h @aluno.aluno_email_mae%></td>
+                                </tr>
+                            <%end%>
+                            <%  if @aluno.aluno_reside_com == 'MAE'%>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Pai:</b></td>
+                                    <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Endereço(pai):</b></td>
+                                    <td align="left" colspan="4"><%=h @aluno.aluno_endereco_pai %></td></td>
+                                    <td align="left"><b>Cidade(pai):</b></td>
+                                    <td colspan="2" align="left"><%=h @aluno.aluno_cidade_pai%></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Fone(s):</b></td>
+                                    <td align="left" colspan="2"><%=h @aluno.aluno_fone_pai %></td></td>
+                                    <td align="left"><b>E-mail(pai):</b></td>
+                                    <td colspan="4" align="left"><%=h @aluno.aluno_email_pai%></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Mãe:</b></td>
+                                    <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
+                                </tr>
+                            <%end%>
+                            <%  if @aluno.aluno_reside_com == 'RESPONSAVEL'%>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Pai:</b></td>
+                                    <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"  colspan="4"><b>Endereço(resp.):</b></td>
+                                    <td align="left" colspan="3" ><%=h @aluno.aluno_endereco_pai %></td></td>
+                                    <td align="left"  colspan="2"><b>Cidade(resp.):</b> <%=h @aluno.aluno_cidade_pai%></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Fone(s):</b></td>
+                                    <td align="left" colspan="2"><%=h @aluno.aluno_fone_pai %></td></td>
+                                    <td align="left" colspan="4"><b>E-mail(resp.):</b><%=h @aluno.aluno_email_pai%></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Mãe:</b></td>
+                                    <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Endereço:</b></td>
+                                    <td align="left"colspan="3"><%=h @aluno.aluno_endereco_mae %></td></td>
+                                    <td align="left"colspan="4"><b>Cidade:</b> <%=h @aluno.aluno_cidade_mae%></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Fone(s):</b></td>
+                                    <td align="left" colspan="3"><%=h @aluno.aluno_fone_mae %></td></td>
+                                    <td align="left" colspan="4"><b>E-mail:</b><%=h @aluno.aluno_email_mae%></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Responsável:</b></td>
+                                    <td colspan="4 align="left"><%=h @aluno.aluno_responsavel %></td>
+                                    <td align="left"colspan="4"><b>Parentesco:</b> <%=h @aluno.aluno_parente %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Endereço:</b></td>
+                                    <td align="left" colspan="4"><%=h @aluno.aluno_endereco_responsavel %></td></td>
+                                    <td align="left" colspan="2" ><b>Cidade:</b><%=h @aluno.aluno_cidade_responsavel%></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left"><b>Fone(s):</b></td>
+                                    <td align="left" colspan="4"><%=h @aluno.aluno_fone_responsavel %></td></td>
+                                    <td align="left" colspan="4"><b>E-mail:</b><%=h @aluno.aluno_email_responsavel%></td>
+                                </tr>
+                            <%end%>
+                            <%  if @aluno.aluno_reside_com == 'PAIS'%>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Pai:</b></td>
+                                    <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
+                                </tr>
+                                <tr bgcolor="#F5F5F5">
+                                    <td align="left" width="4%"><b>Mãe:</b></td>
+                                    <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
+                                </tr>
+                            <%end%>
+                            <tr bgcolor="#F5F5F5">
+                                <td colspan="4"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
+                                <td colspan="4"><%=h @aluno.aluno_restricao %></td>
+
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td align="left" width="4%"><b>Endereço:</b></td>
+                                <td colspan="4" align="left"><%=h @aluno.aluno_endereco %> <b>Nº </b> <%=h @aluno.aluno_num %></td>
+                                <td align="left" width="4%"><b>Complemento:</b></td>
+                                <td colspan="2" align="left"><%=h @aluno.aluno_complemento %></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td align="left" width="4%"><b>Bairro:</b></td>
+                                <td  align="left"><%=h @aluno.aluno_bairro %></td>
+                                <td align="left" width="4%"><b>CEP:</b></td>
+                                <td  align="left"><%=h @aluno.aluno_cep %></td>
+                                <td align="left" width="4%"><b>Cidade:</b></td>
+                                <td colspan="3" align="left"><%=h @aluno.aluno_cidade %></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td align="left" width="4%"><b>Telefone:</b></td>
+                                <td align="left"><%=h @aluno.aluno_fone_fixo %></td>
+                                <td align="left"><b>Celular:</b></td>
+                                <td align="left"><%=h @aluno.aluno_fone_cel %></td></td>
+                                <td align="left"><b>E-mail:</b></td>
+                                <td colspan="3"align="left"><%=h @aluno.aluno_email%></td></td>
+                            </tr>
+
+
+                            <tr bgcolor="#F5F5F5">
+                                <td width ="17%"><b>Bolsa Família:</b></td>
+                                <td><%=h @aluno.aluno_bolsa_familia %></td>
+                                <td colspan="2" width =" 15%"><b>Nome Beneficiário:</b></td>
+                                <td colspan="4"> <%=h @aluno.aluno_nome_beneficiario %></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td colspan="2" ><b> Possui necessidade(s) especial(s):</b> </td>
+                                <td colspan="6"><%=h @aluno.aluno_especial %></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td align="left"><b>Observação:</b></td>
+                                <td colspan="7" align="left"><%=h @aluno.aluno_obs %></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset><legend><font  size=3><b> Responsável</b></font></legend>
+                        <table width="100%">
+                            <tr bgcolor="#F5F5F5">
+                                <td ><b>Nome:</b></td>
+                                <td> <%= @aluno.aluno_nome_responsavel%></td>
+                                <td><b>Parentesco: </b></td><td><%=  @aluno.aluno_parente_responsavel %></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td ><b>Profissão:</b></td>
+                                <td > <%= @aluno.aluno_profissao_responsavel%></td>
+                                <td  colspan="2"><b>Condição Profissional: </b>&nbsp&nbsp
+                                    <%= @aluno.aluno_condicao_profissao_responsavel %></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td colspan="2"> <b>Local Trabalho: </b><%= @aluno.aluno_local_trabalho_responsavel %></td>
+                                <td><b>Fone(s): </b></td><td><%= @aluno.aluno_fone_trabalho_responsavel%></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td colspan="4" ><b>Outras pessoas que possam ser contatadas em caso de necessidade ou urgência:</b></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td><b>Nome:</b></td>
+                                <td> <%= @aluno.aluno_contato1%>&nbsp&nbsp
+                                    <b>Fone:</b><%= @aluno.aluno_contato1_fone%></td>
+                                <td><b>Nome:</b></td>
+                                <td> <%= @aluno.aluno_contato2%>&nbsp&nbsp
+                                    <b>Fone:</b><%= @aluno.aluno_contato2_fone%></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td><b>Nome:</b></td>
+                                <td> <%= @aluno.aluno_contato3%>&nbsp&nbsp
+                                    <b>Fone:</b><%= @aluno.aluno_contato3_fone%></td>
+                                <td><b>Nome:</b></td>
+                                <td> <%= @aluno.aluno_contato4%>&nbsp&nbsp
+                                    <b>Fone:</b><%= @aluno.aluno_contato4_fone%></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td width="5%"><b>Nome:</b></td>
+                                <td> <%= @aluno.aluno_contato5%>&nbsp&nbsp
+                                    <b>Fone:</b><%= @aluno.aluno_contato5_fone%></td>
+                                <td width="5%"><b>Nome:</b></td>
+                                <td> <%= @aluno.aluno_contato6%>&nbsp&nbsp
+                                    <b>Fone:</b><%= @aluno.aluno_contato6_fone%></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset><legend><font  size=3><b> Autorizações</b></font></legend>
+                        <table width="100%">
+                            <tr bgcolor="#F5F5F5">
+                                <td>1) Autorizo participar normalmente das atividades física, pois a criança não apresenta problemas de saúde que o impeça de paricipar.</td>
+                                <td ><%=h @aluno.aluno_autoriza_ativ_fisica %></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td>2) Autorizo participar de atividades extra calsse (passeios, excursões e outras ativades curriculares), na cidade de Americana, devidamente acompanhado pelos professores:</td>
+                                <td ><%=h @aluno.aluno_autoriza_ativ_extraclasse%></td>
+
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td>3) Autorizo a Secretaria de Educação a fazer uso da imagem da criança em trabalhos pedagógicos para fins de exibição  na escola ou lugares afins</td>
+                                <td ><%=h @aluno.aluno_autoriza_imagem%></td>
+                            </tr>
+
+                            <tr bgcolor="#F5F5F5">
+                                <td>4) Autorizo tratamento médico emergencial, em caso de enfermidade ou acidente na escola, ministrar primeiros socorros e providenciar deslocamento até hospital</td>
+                                <td ><%=h @aluno.aluno_emergencial%></td>
+
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td>5) Autorizo tratamento odontologico, se disponibilizado pela Prefeitura Municipal de Americana</td>
+                                <td ><%=h @aluno.aluno_odontologico%></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td>6) Autorizo a aplicação de fluor</td>
+                                <td ><%=h @aluno.aluno_fluor%></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td>7) Autorizo meu filho (a) ir embora sozinho</td>
+                                <td> <%=h @aluno.aluno_vai_embora_so %></td>
+                            </tr>
+                            <tr bgcolor="#F5F5F5">
+                                <td>8) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros.
+                                    Nome pessoa(s) autorizadas: <b>  <%=h @aluno.aluno_acompanhante %> </b></td>
+                                <td>  <%=h @aluno.aluno_vai_embora %></td>
+                            </tr>
+                        </table>
+                    </fieldset>
 
                 </td>
-           </tr>
-           <tr  bgcolor="#F5F5F5">
-             <td></td> <td></td><td></td>
-             <td ><b>RNE:&nbsp&nbsp</b><%=h @aluno.aluno_RNE %></td>
-             <td> <b>Classificação:&nbsp&nbsp</b><%=h @aluno.aluno_classificacao %></td>
-             <td colspan="2"><b>Validade:&nbsp&nbsp</b>
-                                   <%if !@aluno.aluno_validade_estrangeiro.nil?%>
-                                       <%=h @aluno.aluno_validade_estrangeiro.strftime("%d/%m/%Y")%>
-                                     <%end%>
-            </td>
-            <%else%>
-            <td colspan="4"></td>
-            <%end%>
-
             </tr>
-            <% if !@aluno.aluno_conjuge.nil? %>
-                  <tr bgcolor="#F5F5F5">
-                    <td width =" 10%"><b>Conjuge:</b></td>
-                    <td colspan="10">   <%=h @aluno.aluno_conjuge %></td>
-                  </tr>
-            <%end%>
+        </table>
+        <% session[:aluno] = @aluno.id %>
 
 
-
-           <tr bgcolor="#F5F5F5">
-             <td width =" 12%"><b>Reside com:</b></td>
-             <td colspan="7">  <%=h @aluno.aluno_reside_com %></td>
-           </tr>
-            <%  if @aluno.aluno_reside_com == 'PAI'%>
-               <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Pai:</b></td>
-                  <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
-               </tr>
-               <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Mãe:</b></td>
-                  <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
-               </tr>
-               <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Endereço(mãe):</b></td>
-                   <td align="left"  colspan="4"><%=h @aluno.aluno_endereco_mae %></td></td>
-                   <td align="left"><b>Cidade(mãe):</b></td>
-                   <td colspan="2" align="left"><%=h @aluno.aluno_cidade_mae%></td>
-                </tr>
-                <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Fone(s):</b></td>
-                   <td align="left" colspan="2"><%=h @aluno.aluno_fone_mae %></td></td>
-                   <td align="left"><b>E-mail(mãe):</b></td>
-                   <td colspan="4" align="left"><%=h @aluno.aluno_email_mae%></td>
-                </tr>
-           <%end%>
-            <%  if @aluno.aluno_reside_com == 'MAE'%>
-               <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Pai:</b></td>
-                  <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
-               </tr>
-                <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Endereço(pai):</b></td>
-                   <td align="left" colspan="4"><%=h @aluno.aluno_endereco_pai %></td></td>
-                   <td align="left"><b>Cidade(pai):</b></td>
-                   <td colspan="2" align="left"><%=h @aluno.aluno_cidade_pai%></td>
-                </tr>
-                <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Fone(s):</b></td>
-                   <td align="left" colspan="2"><%=h @aluno.aluno_fone_pai %></td></td>
-                   <td align="left"><b>E-mail(pai):</b></td>
-                   <td colspan="4" align="left"><%=h @aluno.aluno_email_pai%></td>
-                </tr>
-                <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Mãe:</b></td>
-                  <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
-               </tr>
-           <%end%>
-           <%  if @aluno.aluno_reside_com == 'RESPONSAVEL'%>
-               <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Pai:</b></td>
-                  <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
-               </tr>
-                <tr bgcolor="#F5F5F5">
-                   <td align="left"  colspan="4"><b>Endereço(resp.):</b></td>
-                   <td align="left" colspan="3" ><%=h @aluno.aluno_endereco_pai %></td></td>
-                   <td align="left"  colspan="2"><b>Cidade(resp.):</b> <%=h @aluno.aluno_cidade_pai%></td>
-                </tr>
-                <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Fone(s):</b></td>
-                   <td align="left" colspan="2"><%=h @aluno.aluno_fone_pai %></td></td>
-                   <td align="left" colspan="4"><b>E-mail(resp.):</b><%=h @aluno.aluno_email_pai%></td>
-                </tr>
-                <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Mãe:</b></td>
-                  <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
-               </tr>
-               <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Endereço:</b></td>
-                   <td align="left"colspan="3"><%=h @aluno.aluno_endereco_mae %></td></td>
-                   <td align="left"colspan="4"><b>Cidade:</b> <%=h @aluno.aluno_cidade_mae%></td>
-                </tr>
-                <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Fone(s):</b></td>
-                   <td align="left" colspan="3"><%=h @aluno.aluno_fone_mae %></td></td>
-                   <td align="left" colspan="4"><b>E-mail:</b><%=h @aluno.aluno_email_mae%></td>
-                </tr>
-                <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Responsável:</b></td>
-                  <td colspan="4 align="left"><%=h @aluno.aluno_responsavel %></td>
-                  <td align="left"colspan="4"><b>Parentesco:</b> <%=h @aluno.aluno_parente %></td>
-               </tr>
-               <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Endereço:</b></td>
-                   <td align="left" colspan="4"><%=h @aluno.aluno_endereco_responsavel %></td></td>
-                   <td align="left" colspan="2" ><b>Cidade:</b><%=h @aluno.aluno_cidade_responsavel%></td>
-                </tr>
-                <tr bgcolor="#F5F5F5">
-                   <td align="left"><b>Fone(s):</b></td>
-                   <td align="left" colspan="4"><%=h @aluno.aluno_fone_responsavel %></td></td>
-                   <td align="left" colspan="4"><b>E-mail:</b><%=h @aluno.aluno_email_responsavel%></td>
-                </tr>
-              <%end%>
-           <%  if @aluno.aluno_reside_com == 'PAIS'%>
-               <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Pai:</b></td>
-                  <td colspan="7" align="left"><%=h @aluno.aluno_pai %></td>
-               </tr>
-                <tr bgcolor="#F5F5F5">
-                  <td align="left" width="4%"><b>Mãe:</b></td>
-                  <td colspan="7" align="left"><%=h @aluno.aluno_mae %></td>
-               </tr>
-              <%end%>
-           <tr bgcolor="#F5F5F5">
-             <td colspan="4"><b>Há restrições no caso de pais separados ou guarda da criança? </b></td>
-             <td colspan="4"><%=h @aluno.aluno_restricao %></td>
-
-           </tr>
-           <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Endereço:</b></td>
-               <td colspan="4" align="left"><%=h @aluno.aluno_endereco %> <b>Nº </b> <%=h @aluno.aluno_num %></td>
-               <td align="left" width="4%"><b>Complemento:</b></td>
-               <td colspan="2" align="left"><%=h @aluno.aluno_complemento %></td>
+        <table width="100%" >
+            <tr>
+                <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consulta_ficha_alunos_path, :title => "Nova Consulta" %></td>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
+                    <td width="6%"align="left"><%= button_to 'Novo Cadastro' ,new_aluno_path, :title => "Novo Cadastro" %></td>
+                <% end %>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
+                    <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@aluno}, :method => "get", :title => "Editar"%></td>
+                <%end%>
+                <td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_alunos_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
+                    <td align="right"><%= button_to 'Continuar Cadastrando' ,new_saude_path, :title => "Continuar" %></td>
+                <% end %>
             </tr>
-            <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Bairro:</b></td>
-               <td  align="left"><%=h @aluno.aluno_bairro %></td>
-               <td align="left" width="4%"><b>CEP:</b></td>
-               <td  align="left"><%=h @aluno.aluno_cep %></td>
-               <td align="left" width="4%"><b>Cidade:</b></td>
-               <td colspan="3" align="left"><%=h @aluno.aluno_cidade %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-               <td align="left" width="4%"><b>Telefone:</b></td>
-               <td align="left"><%=h @aluno.aluno_fone_fixo %></td>
-               <td align="left"><b>Celular:</b></td>
-               <td align="left"><%=h @aluno.aluno_fone_cel %></td></td>
-               <td align="left"><b>E-mail:</b></td>
-               <td colspan="3"align="left"><%=h @aluno.aluno_email%></td></td>
-            </tr>
+        </table>
+        </table>
 
 
-           <tr bgcolor="#F5F5F5">
-              <td width ="17%"><b>Bolsa Família:</b></td>
-              <td><%=h @aluno.aluno_bolsa_familia %></td>
-              <td colspan="2" width =" 15%"><b>Nome Beneficiário:</b></td>
-              <td colspan="4"> <%=h @aluno.aluno_nome_beneficiario %></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-             <td colspan="2" ><b> Possui necessidade(s) especial(s):</b> </td>
-             <td colspan="6"><%=h @aluno.aluno_especial %></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-               <td align="left"><b>Observação:</b></td>
-               <td colspan="7" align="left"><%=h @aluno.aluno_obs %></td>
-            </tr>
-          </table>
-       </fieldset>
-       <fieldset><legend><font  size=3><b> Responsável</b></font></legend>
-         <table width="100%">
-           <tr bgcolor="#F5F5F5">
-             <td ><b>Nome:</b></td>
-             <td> <%= @aluno.aluno_nome_responsavel%></td>
-             <td><b>Parentesco: </b></td><td><%=  @aluno.aluno_parente_responsavel %></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-               <td ><b>Profissão:</b></td>
-               <td > <%= @aluno.aluno_profissao_responsavel%></td>
-               <td  colspan="2"><b>Condição Profissional: </b>&nbsp&nbsp
-                 <%= @aluno.aluno_condicao_profissao_responsavel %></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-             <td colspan="2"> <b>Local Trabalho: </b><%= @aluno.aluno_local_trabalho_responsavel %></td>
-             <td><b>Fone(s): </b></td><td><%= @aluno.aluno_fone_trabalho_responsavel%></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-              <td colspan="4" ><b>Outras pessoas que possam ser contatadas em caso de necessidade ou urgência:</b></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-               <td><b>Nome:</b></td>
-               <td> <%= @aluno.aluno_contato1%>&nbsp&nbsp
-                 <b>Fone:</b><%= @aluno.aluno_contato1_fone%></td>
-                <td><b>Nome:</b></td>
-               <td> <%= @aluno.aluno_contato2%>&nbsp&nbsp
-                 <b>Fone:</b><%= @aluno.aluno_contato2_fone%></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-               <td><b>Nome:</b></td>
-               <td> <%= @aluno.aluno_contato3%>&nbsp&nbsp
-                 <b>Fone:</b><%= @aluno.aluno_contato3_fone%></td>
-                <td><b>Nome:</b></td>
-               <td> <%= @aluno.aluno_contato4%>&nbsp&nbsp
-                 <b>Fone:</b><%= @aluno.aluno_contato4_fone%></td>
-           </tr>
-           <tr bgcolor="#F5F5F5">
-               <td width="5%"><b>Nome:</b></td>
-               <td> <%= @aluno.aluno_contato5%>&nbsp&nbsp
-                 <b>Fone:</b><%= @aluno.aluno_contato5_fone%></td>
-                <td width="5%"><b>Nome:</b></td>
-               <td> <%= @aluno.aluno_contato6%>&nbsp&nbsp
-                 <b>Fone:</b><%= @aluno.aluno_contato6_fone%></td>
-           </tr>
-         </table>
-       </fieldset>
-       <fieldset><legend><font  size=3><b> Autorizações</b></font></legend>
-         <table width="100%">
-             <tr bgcolor="#F5F5F5">
-               <td>1) Autorizo participar normalmente das atividades física, pois a criança não apresenta problemas de saúde que o impeça de paricipar.</td>
-               <td ><%=h @aluno.aluno_autoriza_ativ_fisica %></td>
-             </tr>
-            <tr bgcolor="#F5F5F5">
-                <td>2) Autorizo participar de atividades extra calsse (passeios, excursões e outras ativades curriculares), na cidade de Americana, devidamente acompanhado pelos professores:</td>
-               <td ><%=h @aluno.aluno_autoriza_ativ_extraclasse%></td>
-
-            </tr>
-            <tr bgcolor="#F5F5F5">
-                <td>3) Autorizo a Secretaria de Educação a fazer uso da imagem da criança em trabalhos pedagógicos para fins de exibição  na escola ou lugares afins</td>
-                  <td ><%=h @aluno.aluno_autoriza_imagem%></td>
-            </tr>
-
-            <tr bgcolor="#F5F5F5">
-                <td>4) Autorizo tratamento médico emergencial, em caso de enfermidade ou acidente na escola, ministrar primeiros socorros e providenciar deslocamento até hospital</td>
-                <td ><%=h @aluno.aluno_emergencial%></td>
-
-            </tr>
-            <tr bgcolor="#F5F5F5">
-                <td>5) Autorizo tratamento odontologico, se disponibilizado pela Prefeitura Municipal de Americana</td>
-                <td ><%=h @aluno.aluno_odontologico%></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-                <td>6) Autorizo a aplicação de fluor</td>
-                <td ><%=h @aluno.aluno_fluor%></td>
-            </tr>
-             <tr bgcolor="#F5F5F5">
-              <td>7) Autorizo meu filho (a) ir embora sozinho</td>
-              <td> <%=h @aluno.aluno_vai_embora_so %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-                <td>8) Autorizo meu filho (a) ir embora em condução por mim contratada ou acompanhado por terceiros.
-                  Nome pessoa(s) autorizadas: <b>  <%=h @aluno.aluno_acompanhante %> </b></td>
-                <td>  <%=h @aluno.aluno_vai_embora %></td>
-            </tr>
-         </table>
-       </fieldset>
-
-     </td>
-  </tr>
- </table>
-  <% session[:aluno] = @aluno.id %>
-
-
-  <table width="100%" >
-         <tr>
-            <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consulta_ficha_alunos_path, :title => "Nova Consulta" %></td>
-           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
-               <td width="6%"align="left"><%= button_to 'Novo Cadastro' ,new_aluno_path, :title => "Novo Cadastro" %></td>
-           <% end %>
-            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
-                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@aluno}, :method => "get", :title => "Editar"%></td>
-            <%end%>
-            <td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_alunos_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
-              <td align="right"><%= button_to 'Continuar Cadastrando' ,new_saude_path, :title => "Continuar" %></td>
-           <% end %>
-         </tr>
-       </table>
-    </table>
-
-
-</div>
-<br/>
+    </div>
+    <br/>
 </div>
 
 

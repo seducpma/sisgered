@@ -24,7 +24,11 @@
 <% @aluno.each do |aluno| %>
     <table border="1" cellspacing="0" cellpadding="1" width="100%">
         <tr>
-            <td rowspan="8"> <center><img src="<%=h  aluno.photo.url(:original)  %>" style ="width:140px; height: 150px;"></center></td>
+            <td rowspan="8">
+                <% if !aluno.photo_file_name.nil? %>
+                    <center><img src="<%=h  aluno.photo.url(:original)  %>" style ="width:140px; height: 150px;"></center>
+                <%end%>
+            </td>
 
         </tr>
         <tr>
@@ -89,12 +93,12 @@
                 </td>
             </tr>
         <%end%>
-                    <% if !aluno.aluno_conjuge.nil? %>
-                          <tr bgcolor="#F5F5F5">
-                            <td width =" 10%"><b>Conjuge:</b></td>
-                            <td colspan="10">   <%=h aluno.aluno_conjuge %></td>
-                          </tr>
-                    <%end%>
+        <% if !aluno.aluno_conjuge.nil? %>
+            <tr bgcolor="#F5F5F5">
+                <td width =" 10%"><b>Conjuge:</b></td>
+                <td colspan="10">   <%=h aluno.aluno_conjuge %></td>
+            </tr>
+        <%end%>
         <tr>
             <td><b>Reside com:</b></td>
             <td colspan="9">  <%=h aluno.aluno_reside_com %></td>
