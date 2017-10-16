@@ -7,7 +7,7 @@ class Nota < ActiveRecord::Base
   has_many :observacao_notas
   belongs_to :matricula
 
-
+validates_presence_of :ano_letivo
 
 
 
