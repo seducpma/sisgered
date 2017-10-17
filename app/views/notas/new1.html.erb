@@ -23,7 +23,7 @@
                     <td width =" 13%"><b>Ano Letivo:</b></td>
                    <td><%= session[:ano_letivo]%>
                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Nota:</b>
-                        <%= f.select :nota5 , options_for_select(@NOTASB1.insert(0, @nota.nota5)) %>
+                        <%= f.select :nota5 , options_for_select(@NOTASH.insert(0, '---')) %>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                        <b>Faltas:</b>&nbsp&nbsp<%= f.text_field :faltas5 , :size => '3'%>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
