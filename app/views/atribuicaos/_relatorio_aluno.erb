@@ -246,13 +246,13 @@
 
                     <%if nota.nota5.present? or nota.faltas5 != 0%>
                         <td align="center"> <%if nota.nota5.to_i < 5.0 %>
-                                <%if nota.nota5.nil?%>
+                                <%if nota.nota5.nil? or nota.nota5 == ''%>
                                     ---
                                 <%else%>
                                     <font color ="red"> <%= nota.nota5 %> </font>
                                 <%end%>
                             <%else%>
-                                <%if nota.nota5.nil?%>
+                                <%if nota.nota5.nil? or nota.nota5 == ''%>
                                     ---
                                 <%else%>
                                     <%= nota.nota5 %>
