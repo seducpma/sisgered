@@ -258,8 +258,6 @@ class AtribuicaosController < ApplicationController
         end
     end
 
-
-
     def relatorio_aluno_nome
         session[:ano_nota]= Time.now.year
         @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])

@@ -28,7 +28,7 @@
                 <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
                 <% @classe.each do |classe| %>
                     <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
-                    <center><font size="1"><%=h classe.unidade.endereco%><%=h classe.unidade.num%> - Americana - SP  </font>
+                    <center><font size="1"><%=h classe.unidade.endereco%>, <%=h classe.unidade.num%> - Americana - SP  </font>
                         <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
                 <%end%>
             </td>
