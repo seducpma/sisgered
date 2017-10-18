@@ -9,9 +9,9 @@
             <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                 <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
 
-                <center><font size="1">Unidade Escolar:  <%=h aluno.unidade.nome %>  </font></center>
-                <center><font size="1"><%=h aluno.unidade.endereco%><%=h aluno.unidade.num%> - Americana - SP  </font>
-                    <font size="1"><%=h aluno.unidade.CEP%> - <%=h aluno.unidade.fone%>  </font></center>
+                <center><font size="1">Unidade Escolar:  <%=h session[:unidade_nome] %>  </font></center>
+                <center><font size="1"><%=h session[:un_end]%>, <%=h session[:un_end_nr]%> - Americana - SP  </font>
+                    <font size="1"><%=h session[:un_end_cep]%> - <%=h session[:un_end_fone]%>  </font></center>
 
             </td>
         </tr>

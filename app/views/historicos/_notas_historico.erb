@@ -56,15 +56,15 @@
                             <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_b IS NOT NULL", @notasB[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                             <%=@notasB[acertoHTML].nota5%>
                             <% if !@carga_horaria.present?  and !@notasB[acertoHTML].matricula_id.nil? %>
-                                    <%session[:cargah_b][i]=1000 %>
-                                    <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
-                                    <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
+                                <%session[:cargah_b][i]=1000 %>
+                                <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
+                                <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
 
                             <%else%>
-                                 <% if @carga_horaria.present? %>
-                                      <%session[:cargah_b][i]=@carga_horaria[0].carga_horaria_b %>
-                                      <% session[:escola][i]= @carga_horaria[0].escola %>
-                                      <% session[:cidade][i]= @carga_horaria[0].cidade %>
+                                <% if @carga_horaria.present? %>
+                                    <%session[:cargah_b][i]=@carga_horaria[0].carga_horaria_b %>
+                                    <%  session[:escola][i]=@carga_horaria[0].escola %>
+                                    <%  session[:cidade][i]=@carga_horaria[0].cidade %>
                                 <%end%>
 
                             <%end%>
@@ -135,32 +135,32 @@
                     <%else%>
                         <%acertoHTML=session[:contnota]%>
                     <%end%>
-                <%if (@notasD[acertoHTML].ano_letivo) == (anoinicial+i)%>
-                    <td align="center">
-                        <%if (@notasD[acertoHTML].nota5.nil? or @notasD[acertoHTML].nota5.empty?)  and @notasD[acertoHTML].ano_letivo == Time.now.year%>
-                            ---
-                        <%else%>
-                            <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", @notasD[acertoHTML].ano_letivo, session[:aluno_id]]) %>
-                            <%=@notasD[acertoHTML].nota5%>
-                            <% if !@carga_horaria.present? and !@notasD[acertoHTML].matricula_id.nil?%>
-                                <%session[:cargah_d][i]=480%>
-                                    <% session[:escola][i]= @notasD[acertoHTML].matricula.unidade.nome %>
-                                    <% session[:cidade][i]= @notasD[acertoHTML].matricula.unidade.cidade %>
+                    <%if (@notasD[acertoHTML].ano_letivo) == (anoinicial+i)%>
+                        <td align="center">
+                            <%if (@notasD[acertoHTML].nota5.nil? or @notasD[acertoHTML].nota5.empty?)  and @notasD[acertoHTML].ano_letivo == Time.now.year%>
+                                ---
                             <%else%>
-                                 <% if @carga_horaria.present? %>
-                                    <%session[:cargah_d][i]=@carga_horaria[0].carga_horaria_d %>
-                                    <% session[:escola][i]= @carga_horaria[0].escola %>
-                                    <% session[:cidade][i]= @carga_horaria[0].cidade %>
-                                  <%end%>
+                                <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", @notasD[acertoHTML].ano_letivo, session[:aluno_id]]) %>
+                                <%=@notasD[acertoHTML].nota5%>
+                                <% if !@carga_horaria.present? and !@notasD[acertoHTML].matricula_id.nil?%>
+                                    <%session[:cargah_d][i]=480%>
+                                    <%  session[:escola][i]=@notasD[acertoHTML].matricula.unidade.nome %>
+                                    <%  session[:cidade][i]=@notasD[acertoHTML].matricula.unidade.cidade %>
+                                <%else%>
+                                    <% if @carga_horaria.present? %>
+                                        <%session[:cargah_d][i]=@carga_horaria[0].carga_horaria_d %>
+                                        <%  session[:escola][i]=@carga_horaria[0].escola %>
+                                        <%  session[:cidade][i]=@carga_horaria[0].cidade %>
+                                    <%end%>
+
+                                <%end%>
 
                             <%end%>
-
-                        <%end%>
-                        <%if @notasD[acertoHTML].matricula_id.nil?%>
-                            &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasD[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
-                        <%end%>
-                    </td>
-                    <%session[:contnota]=session[:contnota]+1%>
+                            <%if @notasD[acertoHTML].matricula_id.nil?%>
+                                &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasD[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
+                            <%end%>
+                        </td>
+                        <%session[:contnota]=session[:contnota]+1%>
                     <%else%>
                         <td align="center">---</td>
                     <%end%>
@@ -175,7 +175,7 @@
                     <td align="center">---</td>
                 <%else%>
                     <td align="center"> <%= session[:cargah_d][i] %>  </td>
-                     
+
                 <%end%>
             <%end%>
         </tr>
