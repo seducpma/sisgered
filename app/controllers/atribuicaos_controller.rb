@@ -265,24 +265,17 @@ class AtribuicaosController < ApplicationController
         @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
         session[:aluno] =params[:aluno_aluno_id]
         @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and ano_letivo=? and unidade_id=?', session[:aluno], session[:ano_nota], current_user.unidade_id])
-        #@matriculas_un = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=? and unidade_id=?', session[:aluno], session[:ano_nota], current_user.unidade_id ])
-        t=@matriculas[0].unidade.nome
-        t1=session[:aluno]
-        t2=session[:ano_nota]
-        t3=current_user.unidade_id
-        t4=0
 
         @matriculas.each do |matricula|
-            x0=session[:classe]=matricula.classe_id
-            x1=session[:num]=matricula.classe_num
-            x2=session[:status]=matricula.status
-            x3=session[:matricula_id]= matricula.id
-            x4=session[:un_nome]=matricula.unidade.nome
-            x5=session[:un_end]=matricula.unidade.endereco
-            x6=session[:un_end_nr]=matricula.unidade.num
-            x7=session[:un_end_cep]=matricula.unidade.CEP
-            x8=session[:un_end_fone]=matricula.unidade.fone
-            x0=0
+            session[:classe]=matricula.classe_id
+            session[:num]=matricula.classe_num
+            session[:status]=matricula.status
+            session[:matricula_id]= matricula.id
+            session[:un_nome]=matricula.unidade.nome
+            session[:un_end]=matricula.unidade.endereco
+            session[:un_end_nr]=matricula.unidade.num
+            session[:un_end_cep]=matricula.unidade.CEP
+            session[:un_end_fone]=matricula.unidade.fone
         end
 
         @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
@@ -398,20 +391,14 @@ class AtribuicaosController < ApplicationController
 
     def impressao_relatorio_aluno
         @aluno = Aluno.find(:all,:conditions =>['id = ? ', session[:aluno]])
-        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and  ano_letivo=?', session[:aluno],session[:ano_nota] ])
+        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and ano_letivo=? and unidade_id=?', session[:aluno],session[:ano_nota], current_user.unidade_id])
 
-        @matriculas.each do |matricula|
-            session[:classe]=matricula.classe_id
-            session[:num]=matricula.classe_num
-            session[:status]=matricula.status
-            session[:matricula_id]= matricula.id
-        end
         @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
         @classe.each do |classe|
             session[:unidade]=classe.unidade_id
             session[:classe_id] = classe.id
         end
-        @matricula = Matricula.find(:all,:conditions =>['classe_id = ? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
+        @matricula = Matricula.find(:all,:conditions =>['classe_id=? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
         quantidade = @matricula.count
         if quantidade == 1
             session[:matricula_id]= @matricula[0].id

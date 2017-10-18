@@ -11,9 +11,9 @@
     <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
         <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
         <% @aluno.each do |aluno| %>
-             <center><font size="1">Unidade Escolar:  <%=h aluno.unidade.nome %>  </font></center>
-             <center><font size="1"><%=h aluno.unidade.endereco%><%=h aluno.unidade.num%> - Americana - SP  </font>
-             <font size="1"><%=h aluno.unidade.CEP%> - <%=h aluno.unidade.fone%>  </font></center>
+             <center><font size="1">Unidade Escolar:  <%=h session[:unidade_nome] %>  </font></center>
+             <center><font size="1"><%=h session[:un_end] %><%=h session[:un_end_nr]%> - Americana - SP  </font>
+             <font size="1"><%=h session[:un_end_cep]%> - <%=h session[:un_end_fone]%>  </font></center>
         <%end%>
 
     </td>
@@ -165,7 +165,7 @@
                                     <%= nota.nota3 %>
                                <%end%>
            </th>
-            <% if (nota.atribuicao.disciplina.nucleo_comum ==1 and  session[:num_classe]< 6  ) %>
+            <% if (nota.atribuicao.disciplina.nucleo_comum==1 and session[:num_classe]<6) %>
                        <th style="font-size: 8px" align="center"> </th>
                        <th style="font-size: 8px" align="center"> </th>
             <%else%>
