@@ -9,7 +9,7 @@
                         <table width="100%">
                             <tr bgcolor="#F5F5F5">
                                 <td align="center" valign="top">
-                                    <% if !aluno.photo_file_name.nil? %>
+                                    <% if !@aluno.photo_file_name.nil? %>
                                         <%= image_tag @aluno.photo.url(:original) %>
                                     <%end%>
                                 </td>

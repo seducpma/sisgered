@@ -1,3 +1,5 @@
+<%session[:classe]=0%>
+
 <table class ="invisible_to_print ">
     <tr>
         <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
@@ -117,13 +119,18 @@
                                 ---
                             <%else%>
                                 <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_b IS NOT NULL", @notasB[acertoHTML].ano_letivo, session[:aluno_id]]) %>
-                                <%= @notasB[acertoHTML].nota5%> <%(session[:classe]= i+1)%>
+                                <%= @notasB[acertoHTML].nota5%>
+                                <%if (session[:classe]<i+1)
+                                    (session[:classe]=i+1)%>
+                                <%end%>
+                                <%t0=0%>
+
                                 <% if !@carga_horaria.present? %>
-                                 <% if !@notasB[acertoHTML].matricula.nil? %>
-                                    <%session[:cargah_b][i]=1000%>
-                                    <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
-                                    <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
-                                 <%end%>
+                                    <% if !@notasB[acertoHTML].matricula.nil? %>
+                                        <%session[:cargah_b][i]=1000%>
+                                        <% session[:escola][i]= @notasB[acertoHTML].matricula.unidade.nome %>
+                                        <% session[:cidade][i]= @notasB[acertoHTML].matricula.unidade.cidade %>
+                                    <%end%>
                                 <%else%>
                                     <%session[:cargah_b][i]=@carga_horaria[0].carga_horaria_b %>
                                     <% session[:escola][i]= @carga_horaria[0].escola %>
@@ -238,8 +245,8 @@
         <tr style="line-height: 4px; border-color: black">
             <th width=" 8%" align="center" style="font-size: 8px; border-color: black"><b>Período </b></th>
             <th width=" 10%" align="center"style="font-size: 8px; border-color: black"><b>Ano Letivo </b></th>
-            <th width=" 60%" align="center"style="font-size: 8px; border-color: black"><b>Unidade de Ensino</b></th>
-            <th width=" 22%" align="center"style="font-size: 8px; border-color: black"><b>Municipio/Estado</b></th>
+            <th width=" 50%" align="center"style="font-size: 8px; border-color: black"><b>Unidade de Ensino</b></th>
+            <th width=" 32%" align="center"style="font-size: 8px; border-color: black"><b>Municipio/Estado</b></th>
         </tr>
 
 
@@ -251,26 +258,22 @@
                 <th style="font-size: 8px; border-color: black"> <%= session[:cidade][i] %> </th>
             </tr>
         <%end%>
-             <tr  style="line-height: 4px; border-color: black">
-              <th align="center"style="font-size: 8px" colspan="5"></th>
-            </tr>
-              <tr  style="line-height: 8px; border-color: black">
-                <th align="left"style="font-size: 8px" width="12%" valign="top"><b>Observação:</b></th>
-                <th align="left"style="font-size: 8px" colspan="4" valign="top">
-
-                        <% c=0 %>
-                        <% @historico_aluno.each do |obs|%>
-                           <%  if  (!obs.observacao.nil?) %>
-                              <b><%= c=c+1%>.</b> <%="#{obs.observacao}" %>  -
-                              <b>Data: </b> <%=  obs.created_at.strftime("%d/%m/%Y")%> - <%=  obs.quem %>
-
-
+        <tr  style="line-height: 4px; border-color: black">
+            <th align="center"style="font-size: 8px" colspan="5"></th>
+        </tr>
+        <tr  style="line-height: 8px; border-color: black">
+            <th align="left"style="font-size: 8px" width="12%" valign="top"><b>Observação:</b></th>
+            <th align="left"style="font-size: 8px" colspan="4" valign="top">
+                <% c=0 %>
+                <% @historico_aluno.each do |obs|%>
+                    <%  if  (!obs.observacao.nil?) %>
+                        <b><%= c=c+1%>.</b> <%="#{obs.observacao}" %>  -
+                        <b>Data: </b> <%=  obs.created_at.strftime("%d/%m/%Y")%> - <%=  obs.quem %>
                         <br/>
-                        <%end%>
                     <%end%>
-
-                </th>
-            </tr>
+                <%end%>
+            </th>
+        </tr>
     </table>
 
     <table style="border-color: white" width="100%">
@@ -278,7 +281,6 @@
             <th colspan="10"align="right"  style="border-color: white"><font size="1px"> Pg.1</font></th>
         </tr>
     </table>
-
 
     <div style="page-break-after: always"></div>
 
@@ -289,8 +291,6 @@
                 <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                     <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
                     <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center>
-
-
                 </td>
             </tr>
         </table>
@@ -306,7 +306,7 @@
                     <% var1 = 0 %>
                     <font size="2"><br/>
                         O sr(a) diretor(a) <b><%= @notas_ano.matricula.unidade.nome%></b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
-                        certfica que o aluno(a) <%= @notas_ano.matricula.aluno.aluno_nome %> </b> concluiu</b> o
+                        certifica que o aluno(a) <%= @notas_ano.matricula.aluno.aluno_nome %> </b> concluiu</b> o
 
                         <%if @ano_final.classe.nil?%>
                             <% if @ano_final.matricula.classe.classe_classe == 'EJA' %>
@@ -314,7 +314,7 @@
                             <%else%>
 
 
-                                <b><%= (session[:classe]) %>º ano</b>
+                                <b><%= (session[:classe]) %>º ano</b>  <!-- ###ALEX Está errado corrigir -->
 
                             <%end%>
                         <%else%>
@@ -348,11 +348,8 @@
                                     <br/><br/><br/><br/><br/><br/>
                                     <br/><br/><br/><br/><br/><br/>
                                     &nbsp&nbsp&nbsp&nbsp&nbsp__________________________________________ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ________________________________________<br/>
-                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Secretaria da Unidade Escolar       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Diretor da  Unidade Escolar    <br/>
-                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
-                                    <br/><br/><br/><br/><br/><br/>
-
-                                    <br/><br/><br/><br/><br/><br/>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Secretaria da Unidade Escolar       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Diretor da  Unidade Escolar    <br/>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
                                 </td>
                             </tr>
                             </table>
@@ -366,13 +363,13 @@
                             <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
 
                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
-                                <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_transferencia_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                                <td align="right" >
+                                <!-- <%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_transferencia_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> -->
+                                <%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %>
+                                </b></td>
                             <%end%>
                         </tr>
                     </table>
                 <%end%>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
     </table>
-
 <%end%>

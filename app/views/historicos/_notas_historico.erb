@@ -142,6 +142,9 @@
                             <%else%>
                                 <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", @notasD[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                                 <%=@notasD[acertoHTML].nota5%>
+
+                                <%t0=0%>
+
                                 <% if !@carga_horaria.present? and !@notasD[acertoHTML].matricula_id.nil?%>
                                     <%session[:cargah_d][i]=480%>
                                     <%  session[:escola][i]=@notasD[acertoHTML].matricula.unidade.nome %>
