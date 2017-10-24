@@ -6,14 +6,14 @@
  </div>
     <div class="tabs">
       
-      <% @alunos_todos = Aluno.find(:all, :select => 'id, aluno_nome', :conditions=>["aluno_status != 'EGRESSO' or aluno_status is null"], :order => "aluno_nome ASC") %>
+      <% @alunos_todos = Aluno.find(:all, :select => "id, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn", :conditions=>["aluno_status != 'EGRESSO' or aluno_status is null"], :order => "aluno_nome ASC") %>
        <% form_remote_tag :url => consulta_cadastro_aluno_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
           <fieldset>
             <% @disciplina = Disciplina.find(:all) %>
             <table width="100%" align="center" bgcolor="#DCDCDC" >
                <tr>
                  <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
-                    <%= collection_select :aluno, :aluno_id, @alunos_todos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+                    <%= collection_select :aluno, :aluno_id, @alunos_todos, :id, :aluno_nome_dtn, :include_blank => ' -- Selecione -- ' %>
                       <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
 
                  </td>

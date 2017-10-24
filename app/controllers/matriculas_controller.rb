@@ -386,10 +386,9 @@ class MatriculasController < ApplicationController
 
 
   def unidade_transferencia
-
    session[:unidade_ant_id] = Unidade.find_by_nome(params[:matricula_procedencia])
    #@alunos = Aluno.find(:all, :joins =>"inner join matriculas on alunos.id = matriculas.aluno_id and matriculas.status != 'TRANSFERIDO'" , :conditions =>['alunos.unidade_id =? AND alunos.aluno_status is null AND matriculas.ano_letivo =?',  session[:unidade_ant_id], Time.now.year], :order => 'aluno_nome' )
-   @alunos = Aluno.find(:all, :joins =>"inner join matriculas on alunos.id = matriculas.aluno_id " , :conditions =>['alunos.unidade_id =? AND matriculas.ano_letivo =?',  session[:unidade_ant_id], Time.now.year], :order => 'aluno_nome' )
+   @alunos = Aluno.find(:all, :select => "alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y'), ' | ', cl.classe_classe) AS aluno_nome_dtn", :joins =>"inner join matriculas mat on alunos.id=mat.aluno_id LEFT JOIN classes cl on mat.classe_id=cl.id" , :conditions =>['alunos.unidade_id =? AND mat.ano_letivo =?',  session[:unidade_ant_id], Time.now.year], :order => 'alunos.aluno_nome')
    @unidade_para = Unidade.find(:all, :conditions => ['id =?', current_user.unidade_id], :order => 'nome ASC')
    @classes = Classe.find(:all, :conditions =>['unidade_id =?',  current_user.unidade_id], :order => 'classe_classe')
    render :partial => 'selecao_alunos'
@@ -469,7 +468,7 @@ end
          @unidade_procedencia1 = Unidade.find(:all,:conditions =>['((id <= 41 OR id >51) AND id <> 62) AND id != ? ', current_user.unidade_id], :order => 'nome ASC')
          @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
        end
-       @alunos3 = Aluno.find(:all, :select =>"alunos.id, alunos.aluno_nome", :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND  matriculas.ano_letivo =?', current_user.unidade_id, Time.now.year],:order => 'alunos.aluno_nome')
+       @alunos3 = Aluno.find(:all, :select =>"alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn", :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND  matriculas.ano_letivo =?', current_user.unidade_id, Time.now.year],:order => 'alunos.aluno_nome')
        
         if current_user.unidade_id == 53 or current_user.unidade_id == 52
             @classe = Classe.find(:all, :conditions => ['classe_ano_letivo = ? ',  Time.now.year  ], :order => 'classe_classe ASC')

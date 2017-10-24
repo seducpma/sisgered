@@ -17,7 +17,7 @@
               <table>
                 <tr>
                   
-                  <td><b>Aluno: </b></td><td><%= f.collection_select :aluno_id , @alunos3, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %> </td>
+                  <td><b>Aluno: </b></td><td><%= f.collection_select :aluno_id , @alunos3, :id, :aluno_nome_dtn, :include_blank => ' -- Selecione -- ' %> </td>
 
                      <%= observe_field 'matricula_aluno_id',
                           :with => 'aluno_id',

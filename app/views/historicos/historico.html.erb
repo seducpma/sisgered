@@ -11,7 +11,7 @@
         <table width="100%" align="center" bgcolor="#DCDCDC" >
              <tr>
                <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
-                   <%= select_tag :aluno_id, options_for_select(@alunos1.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
+                   <%= select_tag :aluno_id, options_for_select(@alunos_nome.collect { |ff| [(ff.aluno_nome+' | '+ff.aluno_nascimento.strftime("%d/%m/%Y")), ff.id] }.insert(0, '--Selecionar--')) %>
               </td>
               <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
 

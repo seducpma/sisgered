@@ -431,7 +431,8 @@ def destroy_nota
         @alunos2 = Aluno.find(:all,:select => 'id, aluno_nome',  :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
         t=0
         #@alunos1 = Classe.find(:all,:select => 'alunos.id, alunos.aluno_nome',  :joins =>  [:matriculas, :alunos] , :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND  matriculas.aluno_id = alunos.id AND classes.classe.classe != "EJA" ' , current_user.unidade_id],:order => 'aluno_nome')
-        @alunos1 = Aluno.find(:all,:joins => "INNER JOIN  matriculas  ON  alunos.id=matriculas.aluno_id  INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id =? AND classes.classe_classe != "EJA" AND classes.classe_ano_letivo =?', current_user.unidade_id, Time.now.year], :order => 'aluno_nome ASC')
+        @alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND classes.classe_ano_letivo=?', current_user.unidade_id, Time.now.year], :order => 'aluno_nome ASC')
+        @alunos1 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND classes.classe_ano_letivo=?', current_user.unidade_id, Time.now.year], :order => 'aluno_nome ASC')
         t=0
         if current_user.unidade_id == 53 or current_user.unidade_id == 52
             @classe = Classe.find(:all, :order => 'classe_classe ASC')
