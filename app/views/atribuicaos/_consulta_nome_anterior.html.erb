@@ -1,14 +1,23 @@
-  <%@alunos_boletim=Matricula.find(:all,:select=>"alunos.aluno_nome, alunos.id",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')%>
 <table width="100%" align="center" bgcolor="#DCDCDC"  >
-  <%  @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')%>
-          <tr>
-            <td align="right"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
-             <%= select_tag :ano_letivo1, options_for_select(@ano_boletim.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
-            </td>
-            <td width="62%" align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font>
+    <%  @ano_boletim=Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')%>
+    <tr>
+        <td align="right"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
+            <%= select_tag :ano_letivo1, options_for_select(@ano_boletim.collect { |ff| [ff.ano, ff.ano] }.insert(0, '-Selec.-')) %>
+            <%= observe_field 'ano_letivo1',
+              :update => "aluno_anterior",
+              :url    => { :action => 'boletim_anterior' },
+              :with   => 'ano_letivo1' %>
 
-               <%= collection_select :aluno, :id, @alunos_boletim, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
-               <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
-          </td>
-        </tr>
-       </table>
+        </td>
+        <td width="8%" align="right"><font size="2"> <b class="label_busca3">Aluno:</b></font></td>
+        <td width="60%">
+            <div id="aluno_anterior">
+                <font color="red"> Selecione o ano letivo</font>
+            </div>
+
+        </td>
+        <td>
+            <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+        </td>
+    </tr>
+</table>

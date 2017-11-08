@@ -29,6 +29,7 @@
                  <tr bgcolor="#F5F5F5">
                    <td width =" 13%"><b>Ano Letivo:</b></td>
                    <td><%= f.select :ano_letivo , options_for_select(@ano_letivo.insert(0, '---')) %>
+                       <%@NOTASH = ["SN","10.0","9.5","9.0","8.5","8.0","7.5","7.0","6.5","6.0","5.5","5.0","4.5","4.0","3.5","3.0","2.5","2.0","1.5","1.0","0.5","0.0","A","B","C","D","E","TR","RM","F","NF","ABN"]%>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Nota:</b>
                        <%= f.select :nota5 , options_for_select(@NOTASH.insert(0, '---')) %>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

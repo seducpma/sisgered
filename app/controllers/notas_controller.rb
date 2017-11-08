@@ -34,14 +34,18 @@ t=0
 
     def new
         cont=1
-        @ano_letivo=[""]
-        @serie=[""]
+        @ano_letivo=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        @serie=[1,2,3,4,5,6,7,8,9]
+        for i in 0..14
+            @ano_letivo[i]=Time.now.year.to_i-(15-i)
+        end
+=begin
         while (cont < session[:classe_nota]) do
             @ano_letivo[cont-1] = (session[:ano] - cont).to_s
             @serie[cont-1] = (session[:classe_nota]-cont).to_s
             cont=cont+1
         end
-       
+=end
         @nota = Nota.new
         session[:flagx]=0
         respond_to do |format|
@@ -472,7 +476,4 @@ t=0
 
         end
     end
-
-
-
 end

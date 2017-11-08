@@ -1,192 +1,158 @@
 <div id="interno2">
-<% title "CONSULTA_FICHA".singularize %>
-<div class="tabs">
- <div id="caixa_titulo">
-     <font size="3"><strong>HISTÓRICO ESCOLAR</strong></font><br/>
- </div>
+    <% title "CONSULTA_FICHA".singularize %>
     <div class="tabs">
-    
-     <% form_tag historico_path, :method => 'get' do %>
-      <fieldset>
-        <table width="100%" align="center" bgcolor="#DCDCDC" >
-             <tr>
-               <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
-                   <%= select_tag :aluno_id, options_for_select(@alunos_nome.collect { |ff| [(ff.aluno_nome+' | '+ff.aluno_nascimento.strftime("%d/%m/%Y")), ff.id] }.insert(0, '--Selecionar--')) %>
-              </td>
-              <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
-
-             </tr>
-             <tr>
-               <td colspan="2">
-
-               </td>
-             </tr>
-       </table>
-     </fieldset>
-     <% if @aluno.present? %>
-      <% @aluno.each do |aluno| %>
-       <fieldset>
-          <table width="100%" align="center" bgcolor="#F5F5F5">
-            <tr>
-              <td rowspan="2" align="left">
-              <% if !aluno.photo_file_name.nil? %>
-                    <center><%= image_tag aluno.photo.url(:original) %> </center>
-              <%end%>
-              </td>
-              <td><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
-                  <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
-                  <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center><br/>
-                  <center><font size="2"><b><u>HISTÓRICO ESCOLAR</u> &nbsp&nbsp&nbsp&nbsp</b></font></center><br/>
-
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-            </tr>
-
-           </table>
-          <table cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
-               <tr>
-                  <td width =" 15%"><b>Unidade de Ensino:</b></td>
-                  <td><b><%=h aluno.unidade.nome %></b></td>
-               </tr>
-               <tr>
-                   <td><b>Endereço:</b></td>
-                   <td><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
-               </tr>
-               <tr>
-                  <td><b>Autorização:</b></td>
-                  <td><%=h aluno.unidade.autorizacao%></td>
-               </tr>
-               <tr>
-                 <td colspan="2" align="center"><br/><b>DADOS DO ALUNOS</b></td>
-               </tr>
-          </table>
-          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
-               <tr>
-                  <td ><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
-                                     <%session[:cont_nome] = 1 %> <%session[:aluno_id] = aluno.id%>
-                  </td>
-                  <td><b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %></td>
-                  <td colspan="2"><b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
-               </tr>
-               <% if (aluno.aluno_certidao_nascimento.present?)  %>
-                   <tr>
-                     <td colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                     <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                     <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
-                     </td>
-                   </tr>
-               <%end%>
-               <tr>
-                  <td ><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %></td>
-                  <td><b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
-                  <% if !(aluno.aluno_nacionalidade == 'BRASILEIRO')   %>
-                    <td><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
-                  <%else%>
-                    <td colspan="2"></td>
-                  <%end%>
-               </tr>
-               <% if (aluno.aluno_RG.present?)  %>
-                 <tr>
-                    <td ><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
-                    <td><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %></td>
-                    <td><b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
-                    
-                 </tr>
-                 
-               <%end%>
-             
-          </table>
-          <table cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
-               <tr>
-                 <td><br/> <font size="2"><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b></font><br/>
-                      <font size="1"><b> Lei Federal 9294/96 Art. 26, 32, 33, 34 -
-                                Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
-                </td>
-              </tr>
-         </table>
-
-         <div id="dados_historico"> <%= render :partial => 'notas_historico'  %>     </div>
-
-
-
-
-
-          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
-            <tr>
-              <td colspan="2"></td>
-            </tr>
-              <tr>
-                <td width="12%" align="CENTER"valign="top"><b>Observação:</b></td>
-                  <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
-               </tr>
-          </table>
-        
-        <fieldset><legend><font size=3>Cadastrar</font></legend>
-          <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
-               <tr>
-                   <td colspan="2"> <font COLOR="RED" >&nbsp<u><b>ATENÇÃO:</b></u> 1) Para incluir observação no histórico utilize o botão <b>OBSERVAÇÃO</b>.<br/>
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir Carga Horaria  / Unidade de Ensino / Cidade nas notas lançadas quando NÂO cursadas em unidade da SEDUC ,
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp utilizar o botão <b>CARGA HORÁRIA</b>.<br/>
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para incluir nota em disciplinas que já constem no histórico utilize o botão <b>NOTA</b><br/>
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    4) Para incluir neste hitórico disciplinas que não constam utilize o botão <b>DISCIPLINA</b>. (CUIDADO PARA NÃ0 INCLUIR DISCIPLINAS <br/>
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  QUE JÁ EXISTAM)
-
-
-                </td>
-               </tr>
-              <tr>
-                
-                <td width ="24%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
-                                              <%= link_to image_tag("/stylesheets/images/horaria.png"), new_observacao_historico_path, :target => '_blank' %>
-                                              <%= link_to image_tag("/stylesheets/images/disciplina.png"),new_disciplina_path, :target => '_blank' %>
-                                              <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, :target => '_blank' %>
-                                              
-                </td>
-               </tr>
-
-          </table>
-        </fieldset>
-
-     </fieldset>
-    <%end%>
-
-    <%else%>
-      <br/>
-      <font color="red"> <center><b><u>ATENÇÃO:</u></b> ESTE PROCESSO PODE DEMORAR .... FAVOR AGUARDAR, APÓS CLICAR NO BOTÃO VISUALIZAR !</center></font>
-   <%end%>
-      
-<%end%>
-       <br/>
-       <table>
-    <tr>
-     <td width="6%" align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %> </td>
-     <td width="6%" align="left"><%= button_to 'Nova Consulta', historico_path, :title => "Nova Consulta" %></td>
-     <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_historico_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
-
-     
-     
-
-    </tr>
-  </table>
- </div>
-
-
-
+        <div id="caixa_titulo">
+            <font size="3"><strong>HISTÓRICO ESCOLAR</strong></font><br/>
+        </div>
+        <div class="tabs">
+            <%form_tag historico_path, :method => 'get' do %>
+                <fieldset>
+                    <table width="100%" align="center" bgcolor="#DCDCDC" >
+                        <tr>
+                            <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
+                                <%= select_tag :aluno_id, options_for_select(@alunos_nome.collect { |ff| [(ff.aluno_nome+' | '+ff.aluno_nascimento.strftime("%d/%m/%Y")), ff.id] }.insert(0, '--Selecionar--')) %>
+                            </td>
+                            <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+<!-- Ponto onde fica igual ao historicoContinua -->
+                <%if @aluno.present?%>
+                    <%@aluno.each do |aluno|%>
+                        <fieldset>
+                            <table width="100%" align="center" bgcolor="#F5F5F5">
+                                <tr>
+                                    <td rowspan="2" align="left">
+                                        <% if !aluno.photo_file_name.nil? %>
+                                            <center><%= image_tag aluno.photo.url(:original) %></center>
+                                        <%end%>
+                                    </td>
+                                    <td><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                                        <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                                        <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center><br/>
+                                        <center><font size="2"><b><u>HISTÓRICO ESCOLAR</u> &nbsp&nbsp&nbsp&nbsp</b></font></center><br/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+                                <tr>
+                                    <td width =" 15%"><b>Unidade de Ensino:</b></td>
+                                    <td><b><%=h aluno.unidade.nome %></b></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Endereço:</b></td>
+                                    <td><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Autorização:</b></td>
+                                    <td><%=h aluno.unidade.autorizacao%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"><br/><b>DADOS DO ALUNOS</b></td>
+                                </tr>
+                            </table>
+                            <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+                                <tr>
+                                    <td ><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
+                                        <%session[:cont_nome] = 1 %> <%session[:aluno_id] = aluno.id%>
+                                    </td>
+                                    <td><b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %></td>
+                                    <td colspan="2"><b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+                                </tr>
+                                <%if (aluno.aluno_certidao_nascimento.present?)%>
+                                    <tr>
+                                        <td colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
+                                        </td>
+                                    </tr>
+                                <%end%>
+                                <tr>
+                                    <td ><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %></td>
+                                    <td><b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
+                                    <% if !(aluno.aluno_nacionalidade == 'BRASILEIRO')   %>
+                                        <td><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
+                                    <%else%>
+                                        <td colspan="2"></td>
+                                    <%end%>
+                                </tr>
+                                <% if (aluno.aluno_RG.present?)  %>
+                                    <tr>
+                                        <td ><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
+                                        <td><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %></td>
+                                        <td><b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
+                                    </tr>
+                                <%end%>
+                            </table>
+                            <table cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+                                <tr>
+                                    <td>
+                                        <br/> <font size="2"><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</center></u></b></font><br/>
+                                        <font size="1"><b> Lei Federal 9294/96 Art. 26, 32, 33, 34 -
+                                                Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id="dados_historico"> <%= render :partial => 'notas_historico'%></div>
+                            <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+                                <tr>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td width="12%" align="CENTER"valign="top"><b>Observação:</b></td>
+                                    <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
+                                </tr>
+                            </table>
+                            <fieldset>
+                                <legend><font size=3>Cadastrar</font></legend>
+                                <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+                                    <tr>
+                                        <td colspan="2"> <font COLOR="RED" >&nbsp<u><b>ATENÇÃO:</b></u> 1) Para incluir observação no histórico utilize o botão <b>OBSERVAÇÃO</b>.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir <b>Ano Letivo / Carga Horaria / Unidade de Ensino / Cidade</b> nas notas lançadas quando NÂO cursadas em unidade
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  da SEDUC, utilizar o botão <b>CARGA HORÁRIA</b>.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para incluir nota em disciplinas que já constem no histórico utilize o botão <b>NOTA</b>.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    4) Em caso de reprovação, lançar através do botão <b>Observação</b> o Ano e as informações necessárias.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    5) Para incluir neste hitórico disciplinas que não constam utilize o botão <b>DISCIPLINA</b>. (CUIDADO PARA NÃ0 INCLUIR DISCIPLINAS <br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                QUE JÁ EXISTAM)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width ="24%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
+                                            <%= link_to image_tag("/stylesheets/images/horaria.png"), new_observacao_historico_path, :target => '_blank' %>
+                                            <%= link_to image_tag("/stylesheets/images/disciplina.png"),new_disciplina_path, :target => '_blank' %>
+                                            <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, :target => '_blank' %>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </fieldset>
+                    <%end%>
+                <%else%>
+                    <br/>
+                    <font color="red"> <center><b><u>ATENÇÃO:</u></b> ESTE PROCESSO PODE DEMORAR .... FAVOR AGUARDAR, APÓS CLICAR NO BOTÃO VISUALIZAR !</center></font>
+                <%end%>
+            <%end%>
+            <br/>
+            <table>
+                <tr>
+                    <td width="6%" align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %> </td>
+                    <td width="6%" align="left"><%= button_to 'Nova Consulta', historico_path, :title => "Nova Consulta" %></td>
+                    <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_historico_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br/>
 </div>
-
-<br/>
-</div>
-
-   <%= render "form_observacao" %>
-
-
-
-
-
-
+<%= render "form_observacao" %>

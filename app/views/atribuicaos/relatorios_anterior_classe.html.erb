@@ -1,68 +1,67 @@
 <div id="interno2">
-<% title "CONSULTA_FICHA".singularize %>
-<div class="tabs">
- <div id="caixa_titulo">
-     <font size="3"><strong>BOLETIM ESCOLAR (ANOS ANTERIORES)</strong></font><br/>
- </div>
+    <% title "CONSULTA_FICHA".singularize %>
     <div class="tabs">
-    <% form_remote_tag :url => relatorios_anterior_classe_atribuicaos_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
-      <fieldset>
-        <table width="100%" align="center" bgcolor="#DCDCDC" >
-          <tr>
-            <td colspan="2">
-              <a href="#" class="filtro_nome"><%= radio_button_tag(:type_of, "1") %></a>Aluno
-              <a href="#" class="classe_filtro"><%= radio_button_tag(:type_of, "2") %></a>Classe
-              <!--  <a href="#" class="prof_filtro"><%= radio_button_tag(:type_of, "3") %></a>Professor-->
+        <div id="caixa_titulo">
+            <font size="3"><strong>BOLETIM ESCOLAR (ANOS ANTERIORES)</strong></font><br/>
+        </div>
+        <div class="tabs">
+            <% form_remote_tag :url => relatorios_anterior_classe_atribuicaos_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+                <fieldset>
+                    <table width="100%" align="center" bgcolor="#DCDCDC" >
+                        <tr>
+                            <td colspan="2">
+                                <a href="#" class="filtro_nome"><%= radio_button_tag(:type_of, "1") %></a>Aluno
+                                <a href="#" class="classe_filtro"><%= radio_button_tag(:type_of, "2") %></a>Classe
+                                <!--  <a href="#" class="prof_filtro"><%= radio_button_tag(:type_of, "3") %></a>Professor-->
 
-            </td>
-         </tr>
-         <tr>
-           <td colspan="2"><div class="consulta_nome" style="display:none"> <%= render "consulta_nome_anterior" %> </div>
-               <div class="consulta_classe" style="display:none"> <%= render "consulta_classe_anterior" %> </div>
-               <div class="consulta_professor" style="display:none"> <%= render "consulta_professor" %> </div>
-           </td>
-         </tr>
-        <tr>
-         <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-         <td align="left"><%= button_to 'Nova Consulta', relatorios_anterior_classe_atribuicaos_path, :title => "Nova Consulta" %></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><div class="consulta_nome" style="display:none"> <%= render "consulta_nome_anterior" %> </div>
+                                <div class="consulta_classe" style="display:none"> <%= render "consulta_classe_anterior" %> </div>
+                                <div class="consulta_professor" style="display:none"> <%= render "consulta_professor" %> </div>
+                            </td>
+                        </tr>
+                        <tr>
+         <% end %>
+                        <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                        <td align="left"><%= button_to 'Nova Consulta', relatorios_anterior_classe_atribuicaos_path, :title => "Nova Consulta" %></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+                    <tr>
+                        <td with ="100%">
+                            <div id="relatorio"><font color ="RED"><br/><center><div class="consulta_nome" style="display:none"><%= image_tag("/stylesheets/images/loading.gif") %><br/>
+                                            Este processo pode demorar algum tempo <br/>
+                                            Após selecionar a Classe ou o Aluno - AGUARDE </center></font></div></div>
+                            <font color ="RED"><br/><center><div class="consulta_classe" style="display:none"><%= image_tag("/stylesheets/images/loading.gif") %><br/>
+                                        Este processo pode demorar algum tempo <br/>
+                                        Após selecionar a Classe ou o Aluno - AGUARDE </center></font><br/></div>
+                        </td>
 
-        </tr>
-   <% end %>
-        </table>
-      </fieldset>
-      <fieldset>
-        <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
-          <tr>
-            <td with ="100%">
-                <div id="relatorio"><font color ="RED"><br/><center><div class="consulta_nome" style="display:none"><%= image_tag("/stylesheets/images/loading.gif") %><br/>
-                      Este processo pode demorar algum tempo <br/>
-                      Após selecionar a Classe ou o Aluno - AGUARDE </center></font></div></div>
-              <font color ="RED"><br/><center><div class="consulta_classe" style="display:none"><%= image_tag("/stylesheets/images/loading.gif") %><br/>
-                      Este processo pode demorar algum tempo <br/>
-                      Após selecionar a Classe ou o Aluno - AGUARDE </center></font><br/></div>
-            </td>
-
-          </tr>
-       </table>
-
-
-      </fieldset>
-
-       <br/>
-       <table>
-    <tr>
-     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <td align="left"><%= button_to 'Nova Consulta', relatorios_anterior_classe_atribuicaos_path, :title => "Nova Consulta" %></td>
-
-    </tr>
-  </table>
- </div>
+                    </tr>
+                </table>
 
 
+            </fieldset>
 
-</div>
+            <br/>
+            <table>
+                <tr>
+                    <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                    <td align="left"><%= button_to 'Nova Consulta', relatorios_anterior_classe_atribuicaos_path, :title => "Nova Consulta" %></td>
 
-<br/>
+                </tr>
+            </table>
+        </div>
+
+
+
+    </div>
+
+    <br/>
 </div>
 
 

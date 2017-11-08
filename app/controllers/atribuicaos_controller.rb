@@ -326,7 +326,7 @@ class AtribuicaosController < ApplicationController
             if quantidade == 1
                 session[:matricula_id]= @matricula[0].id
             else if quantidade == 2
-                    session[:matricula_id]= @matricula[1].id
+                    sessio:aln[:matricula_id]= @matricula[1].id
                 else if quantidade == 3
                         session[:matricula_id]= @matricula[2].id
                     else if quantidade == 4
@@ -363,9 +363,7 @@ class AtribuicaosController < ApplicationController
 
 
     def relatorio_classe
-
-        if ( params[:disciplina].present?)
-
+        if (params[:disciplina].present?)
             @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
             for dis in @disci
                 session[:disc_id] = dis.id
@@ -377,15 +375,12 @@ class AtribuicaosController < ApplicationController
             end
             @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
             @notas = Nota.find(:all, :joins => :atribuicao, :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=?",  params[:classe][:id], params[:professor][:id], session[:disc_id]])
-
-
         end
         respond_to do |format|
             format.html # index.html.erb
             format.xml  { render :xml => @classes }
         end
     end
-
 
     def impressao_relatorio_aluno
         @aluno = Aluno.find(:all,:conditions =>['id = ? ', session[:aluno]])
@@ -714,7 +709,7 @@ class AtribuicaosController < ApplicationController
 
     def impressao_transferencia_aluno
         #@aluno = Matricula.find(:all, :conditions => ['aluno_id =? and unidade_id =?', session[:aluno_id],current_user.unidade_id])
-        @aluno = Matricula.find(:all, :conditions => ['aluno_id =? and unidade_id =? and ano_letivo=?', session[:aluno_id],current_user.unidade_id, Time.now.year])
+        @aluno = Matrclasses_anoicula.find(:all, :conditions => ['aluno_id =? and unidade_id =? and ano_letivo=?', session[:aluno_id],current_user.unidade_id, Time.now.year])
         #@matricula= Matricula.find(:all, :conditions =>["aluno_id=? AND ano_letivo=? AND unidade_id=?",session[:aluno_id], Time.now.year,  current_user.unidade_id])
         for matricula in @aluno
             session[:classe]= matricula.classe.classe_classe
@@ -916,5 +911,10 @@ class AtribuicaosController < ApplicationController
     #    @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')
     #    # @alunos2 = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
     #  end
+
+    def boletim_anterior
+        @alunos_boletim=Matricula.find(:all,:select=>"alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,params[:ano_letivo1]],:order => 'alunos.aluno_nome ASC')
+        render :partial => 'alunos_boletim_anterior'
+    end
 
 end
