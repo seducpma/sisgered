@@ -337,8 +337,9 @@ end
 
 
   def dados
-    @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =?", session[:professor_id] ])
-
+    w=session[:professor_id]
+    w1=params[:relatorio_aluno_id]
+    @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? AND ano_letivo=?", session[:professor_id],Time.now.year])
     @aluno = Aluno.find(:all, :conditions => ["id=?", params[:relatorio_aluno_id]])
 
     render :update do |page|
