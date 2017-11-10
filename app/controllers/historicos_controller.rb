@@ -217,8 +217,8 @@ class HistoricosController < ApplicationController
             @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND notas.ano_letivo <?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
             session[:ano]= @ano_inicial.ano_letivo
             session[:classe]= @ano_inicial.classe
-            #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
-            #@ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
+#  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+#@ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
 
 =begin Comentado para colar o conteúdo inteiro da "def historico" para cá e ver se funciona normalmente
         @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
@@ -271,17 +271,44 @@ class HistoricosController < ApplicationController
 
     end
 
-
-
     def impressao_historico
+            @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
+            for aluno in @aluno
+                session[:unidade_id]= aluno.unidade_id
+                session[:aluno_id]= aluno.id
+                session[:aluno_nome] = aluno.aluno_nome
+            end
+            @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
+            @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
+            @disciplinasB = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
+            @disciplinasD = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'D' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
+            @notasB = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
+            @notasD = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
+            #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+            #@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", 2015, session[:aluno_id]])
+            session[:contnotaBTot]=(@notasB.count)
+            session[:contnotaDTot]=(@notasD.count)
+            @disciplinas = @disciplinasD + @disciplinasB
+            #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+            #@notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
+            @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id] , Time.now.year], :order => 'notas.ano_letivo ASC')
+            @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
+            @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
+            @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =?', session[:aluno_id]], :order => 'ano_letivo ASC')
+            session[:ano]= @ano_inicial.ano_letivo
+            session[:classe]= @ano_inicial.classe
+            @notas_ano = Nota.find(:last, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? ",  session[:aluno_id], session[:unidade_id]])
+            render :layout => "impressao"
+    end
+=begin Comentado para colar o conteúdo inteiro da "def historico" para cá e ver se funciona normalmente
         w4=session[:aluno_id]
         @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?',session[:aluno_id] ])
         for aluno in @aluno
-            session[:unidade_id]= aluno.unidade_id
-            session[:aluno_id]= aluno.id
-            session[:aluno_nome] = aluno.aluno_nome
+            session[:unidade_id]=aluno.unidade_id
+            session[:aluno_id]=aluno.id
+            session[:aluno_nome]=aluno.aluno_nome
         end
-        @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
+        @historico_aluno=ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
         @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
         #@disciplinasB = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
         @disciplinasD = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'D' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
@@ -306,7 +333,7 @@ class HistoricosController < ApplicationController
         end
         @notas_ano = Nota.find(:last, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? ",  session[:aluno_id], session[:unidade_id]])
         render :layout => "impressao"
-    end
+=end Comentado para colar o conteúdo inteiro da "def historico" para cá e ver se funciona normalmente
 
 
     def apagar__nao_serve_para_nada
