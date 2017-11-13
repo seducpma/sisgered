@@ -65,6 +65,7 @@
             <td width ="5%" align="center" ><b><%=session[:ano_letivo][i]%></b></td>
         <%end%>
     </tr>
+<%t0=0%>
     <%while session[:contnota] < session[:contnotaBTot] %>
         <tr>
             <td align="left"><%=@notasB[session[:contnota]].disciplina.disciplina %> </td>
@@ -79,6 +80,7 @@
                     <td align="center">
                         <%if (@notasB[acertoHTML].nota5.nil? or @notasB[acertoHTML].nota5.empty?) and (@notasB[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
+<%t0=0%>
                         <%else%>
                             <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_b IS NOT NULL", @notasB[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                             <%=@notasB[acertoHTML].nota5%>
@@ -101,6 +103,7 @@
                     <%session[:contnota]=session[:contnota]+1%>
                 <%else%>
                     <td align="center">---</td>
+<%t0=0%>
                 <%end%>
             <%end%>
         </tr>

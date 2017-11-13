@@ -89,7 +89,7 @@ t=0
         if  session[:cont_nome]=1
             @nota.aluno_id=session[:aluno_id]
         end
-        @existe= Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=?', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo])
+        @existe=Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=? and ativo<>1', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo])
         @nota.aluno_id
         @nota.disciplina_id
        @nota.ano_letivo
