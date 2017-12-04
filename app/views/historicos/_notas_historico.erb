@@ -25,7 +25,7 @@
     <%session[:cidade]=['', '', '', '', '', '','', '', '']%>
     <%session[:ano_letivo]=['', '', '', '', '', '','', '', '']%>
     <%session[:classe_anos]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
-    <!-- Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+<!-- Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
 <%#ano=@ano_inicial.ano_letivo%>
 
 <%#if @ano_inicial.classe.nil?%>
@@ -34,7 +34,7 @@
 <%#else%>
 <%#classe=@ano_inicial.classe %>
 <%#end%>
-    -->
+-->
     <%for ano_letivo in @anos_letivos%>
         <%if ano_letivo.classe.nil?%>
             <%if (!ano_letivo.nota5.nil? and !ano_letivo.nota5.empty?)%>
@@ -60,7 +60,9 @@
         <%session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
         <%if !session[:ano_nota_lançada].empty?%>
             <%session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
-            <%session[:ano_letivo][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
+            <%if session[:ano_letivo][session[:ano_nota_lançada]-1].nil?%>
+                <%session[:ano_letivo][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
+            <%end%>
             <%session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
         <%end%>
     <%end%>
@@ -72,6 +74,7 @@
             <td width ="5%" align="center" ><b><%=session[:ano_letivo][i]%></b></td>
         <%end%>
     </tr>
+    <%t0=0%>
     <%while session[:contnota] < session[:contnotaBTot] %>
         <tr>
             <td align="left"><%=@notasB[session[:contnota]].disciplina.disciplina %> </td>
@@ -106,9 +109,7 @@
                         <%end%>
                     </td>
                     <%session[:contnota]=session[:contnota]+1%>
-<%t0=0%>
                 <%else%>
-<%t0=0%>
                     <td align="center">---</td>
                 <%end%>
             <%end%>
