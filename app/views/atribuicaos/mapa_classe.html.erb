@@ -9,6 +9,15 @@
       <fieldset>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
+            <td>
+              <%= radio_button_tag(:type_of, "1") %>1º Bim.
+              <%= radio_button_tag(:type_of, "2") %>2º Bim.
+              <%= radio_button_tag(:type_of, "3") %>3º Bim.
+              <%= radio_button_tag(:type_of, "4") %>4º Bim.
+              <%= radio_button_tag(:type_of, "5") %>Final
+
+            </td>
+
             <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Classe:</b></font>
                &nbsp&nbsp&nbsp
                 <%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>

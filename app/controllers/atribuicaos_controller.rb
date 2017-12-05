@@ -498,14 +498,24 @@ class AtribuicaosController < ApplicationController
         @classe.each do |classe|
             session[:num_classe]= classe.classe_classe[0,1].to_i
         end
-#        @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  params[:classe][:id]], :order => 'nome')
         @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', params[:classe][:id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
         @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
-#        @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  params[:classe][:id]],:order =>'matriculas.id ASC')
-#        @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?', params[:classe][:id]],:order =>' matriculas.classe_num')
-#        @disciplinas= Disciplina.find(:all)
         render :update do |page|
-            page.replace_html 'mapa', :partial => 'mapa'
+           if params[:type_of].to_i == 1
+               page.replace_html 'mapa', :partial => 'mapa1'
+          else if params[:type_of].to_i == 2
+                   page.replace_html 'mapa', :partial => 'mapa2'
+               else if params[:type_of].to_i == 3
+                        page.replace_html 'mapa', :partial => 'mapa3'
+                    else if params[:type_of].to_i == 4
+                               page.replace_html 'mapa', :partial => 'mapa4'
+                        else if params[:type_of].to_i == 5
+                                    page.replace_html 'mapa', :partial => 'mapa5'
+                             end
+                        end 
+                    end 
+              end
+           end
         end
     end
 
@@ -516,15 +526,24 @@ class AtribuicaosController < ApplicationController
         @classe.each do |classe|
             session[:num_classe]= classe.classe_classe[0,1].to_i
         end
-        @professor = Professor.find(:all, :joins => [:atribuicaos], :conditions=> ["atribuicaos.classe_id = ? ",  session[:classe_id]], :order => 'nome')
         @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
         @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
-        @notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN matriculas ON matriculas.id = notas.matricula_id", :conditions => ["atribuicaos.classe_id =?",  session[:classe_id]],:order =>'matriculas.id ASC')
-        @alunos = Aluno.find(:all, :select => 'alunos.id', :joins => "inner join matriculas on alunos.id = matriculas.aluno_id", :conditions =>['matriculas.classe_id =?',session[:classe_id]],:order =>' matriculas.classe_num')
-        @disciplinas= Disciplina.find(:all)
-              
-        render :update do |page|
-            page.replace_html 'mapa', :partial => 'mapa'
+         render :update do |page|
+           if params[:type_of].to_i == 1
+               page.replace_html 'mapa', :partial => 'mapa1'
+          else if params[:type_of].to_i == 2
+                   page.replace_html 'mapa', :partial => 'mapa2'
+               else if params[:type_of].to_i == 3
+                        page.replace_html 'mapa', :partial => 'mapa3'
+                    else if params[:type_of].to_i == 4
+                               page.replace_html 'mapa', :partial => 'mapa4'
+                        else if params[:type_of].to_i == 5
+                                    page.replace_html 'mapa', :partial => 'mapa5'
+                             end
+                        end
+                    end
+              end
+           end
         end
     end
 
