@@ -1,0 +1,60 @@
+</div><div id="interno4">
+    <% title "NOTAS".singularize %>
+    <div class="tabs">
+        <div id="caixa_titulo">
+            <font size="3"><strong>LANÇAMENTOS OBSERVAÇÕES</strong></font><br/>
+        </div>
+        <div class="tabs">
+            <% form_for (@nota) do |f| %>
+                <%= f.error_messages %>
+                <fieldset><legend><font size=4>Alunos</font></legend>
+                    <table >
+                                            <tr bgcolor="#F5F5F5">
+                                                <td colspan="4"><%session[:new2_aluno_nome]= @nota.aluno.aluno_nome%>
+                                                    <b>Aluno:</b>&nbsp&nbsp  <font color="blue"><%=  @nota.aluno.aluno_nome%></font></td>
+
+                                            </tr>
+                                            <tr bgcolor="#F5F5F5">
+                                                <td colspan="4"><b>Classe:</b>&nbsp&nbsp <%= session[:classe]%>
+                                                &nbsp&nbsp&nbsp&nbsp <b>Periodo:</b> &nbsp&nbsp <%= session[:periodo]%> - <%= session[:ano]%></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6">
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td width ="10%"><%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></td>
+
+                                                <td valign="middle">
+                                                    <font size ="1"color ="red"><b> <===== Para lançar observações  clique no botão Observações</b> </font>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" valign="top"> <%if !@nota.obs1.nil?%>
+                                                        <b>1. </b><%=h @nota.obs1%> - <b>Data:</b> <%= @nota.created_at.strftime("%d/%m/%Y") %>
+                                                    <%end%><br/>
+                                                    <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
+                                            </tr>
+
+
+                                            </table>
+                                            </fieldset>
+                                            <table width="100%" >
+                                                <tr bgcolor="#F5F5F5">
+                                                    
+
+                                                <%end%>
+
+                                                <td width="4%"align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+                                                    <td><%= button_to 'Voltar',lancamentos_observacaos_notas_path, :method => :get %></td>
+                                            </tr>
+                                        </table>
+                                    </font>
+                                    </div>
+                                    </div>
+                                    <br/>
+
+
+                                    <%= render "form_observacao" %>

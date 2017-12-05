@@ -70,9 +70,19 @@ t=0
         @nota = Nota.find(params[:id])
         session[:id_nota] = params[:id]
         session[:new2_aluno_id]= @nota.aluno_id
-
-    
     end
+
+
+    def observacao
+        @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
+        @nota = Nota.find(params[:id])
+        session[:id_nota] = params[:id]
+        session[:new2_aluno_id]= @nota.aluno_id
+        
+    end
+
+
+
 
     def aviso
     
@@ -364,6 +374,34 @@ t=0
             format.xml  { render :xml => @classes }
         end
     end
+
+
+
+    def lancamentos_observacaos
+        t=0
+        if ( params[:disciplina].present?)
+            @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+            for dis in @disci
+                session[:disc_id] = dis.id
+            end
+            session[:classe_id] = params[:classe][:id]
+            session[:professor_id]= params[:professor][:id]
+            @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+            for atrib in @atribuicao_classe
+                session[:atrib_id] = atrib.id
+            end
+            session[:classe_id]
+            session[:disc_id]
+            session[:atrib_id]
+            @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo = ?",  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year],:order => 'matriculas.classe_num ASC')
+        end
+        respond_to do |format|
+            format.html # index.html.erb
+            format.xml  { render :xml => @classes }
+        end
+    end
+
 
     def impressao_alteracao_lancamentos
         @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',session[:classe_id], session[:professor_id], session[:disc_id]])
