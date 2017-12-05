@@ -303,6 +303,36 @@ class AtribuicaosController < ApplicationController
         render :partial => 'relatorio_aluno'
     end
 
+    def impressao_relatorio_aluno
+        @aluno = Aluno.find(:all,:conditions =>['id = ? ', session[:aluno]])
+        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and ano_letivo=? and unidade_id=?', session[:aluno],session[:ano_nota], current_user.unidade_id])
+
+        @classe=Classe.find(:all,:conditions =>['id = ?', session[:classe]])
+        @classe.each do |classe|
+            session[:unidade]=classe.unidade_id
+            session[:classe_id] = classe.id
+        end
+        @matricula = Matricula.find(:all,:conditions =>['classe_id=? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
+        quantidade = @matricula.count
+        if quantidade == 1
+            session[:matricula_id]= @matricula[0].id
+        else if quantidade == 2
+                session[:matricula_id]= @matricula[1].id
+            else if quantidade == 3
+                    session[:matricula_id]= @matricula[2].id
+                else if quantidade == 4
+                        session[:matricula_id]= @matricula[3].id
+                    end
+                end
+            end
+        end
+        @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo=? AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+        @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D' and unidade_id =? AND notas.ano_letivo=? AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+        @notas = @notasB+@notasD
+        @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], session[:ano_nota],nil ] )
+        render :layout => "impressao"
+    end
+
     def relatorios_anterior_classe
         if params[:type_of].to_i == 1
             session[:aluno] = params[:aluno][:id]
@@ -359,9 +389,6 @@ class AtribuicaosController < ApplicationController
         end
     end
 
-
-
-
     def relatorio_classe
         if (params[:disciplina].present?)
             @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
@@ -380,36 +407,6 @@ class AtribuicaosController < ApplicationController
             format.html # index.html.erb
             format.xml  { render :xml => @classes }
         end
-    end
-
-    def impressao_relatorio_aluno
-        @aluno = Aluno.find(:all,:conditions =>['id = ? ', session[:aluno]])
-        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and ano_letivo=? and unidade_id=?', session[:aluno],session[:ano_nota], current_user.unidade_id])
-
-        @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
-        @classe.each do |classe|
-            session[:unidade]=classe.unidade_id
-            session[:classe_id] = classe.id
-        end
-        @matricula = Matricula.find(:all,:conditions =>['classe_id=? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
-        quantidade = @matricula.count
-        if quantidade == 1
-            session[:matricula_id]= @matricula[0].id
-        else if quantidade == 2
-                session[:matricula_id]= @matricula[1].id
-            else if quantidade == 3
-                    session[:matricula_id]= @matricula[2].id
-                else if quantidade == 4
-                        session[:matricula_id]= @matricula[3].id
-                    end
-                end
-            end
-        end
-        @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
-        @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota] , session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
-        @notas = @notasB+@notasD
-        @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], session[:ano_nota],nil ] )
-        render :layout => "impressao"
     end
 
     #     BOLETIM ESCOLAR   BOLETIM ESCOLAR   BOLETIM ESCOLAR
