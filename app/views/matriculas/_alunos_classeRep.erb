@@ -35,11 +35,21 @@
                           <%  if  matricula.status =="TRANSFERIDO"%>
                               <font color ="red"> Transferido </font>
                           <%else if  matricula.status =="TRANSFERENCIA"%>
-                                 <font color ="blue"> Transferência </font>
+                                 <font color ="blue"> Transferência </font> <br/>
+                                    <%if matricula.reprovado =="1" %>
+                                      <font color="red"> Reprovado</font>
+                                   <%else %>
+                                        <font color="blue"> Aprovado</font>
+                                   <%end%>
                                  <%else if  matricula.status =="REMANEJADO"%>
                                           <font color ="green"> Remanejado </font>
                                        <%else if  matricula.status =="*REMANEJADO"%>
-                                                <font color ="green"> *Remanejado </font>
+                                                <font color ="green"> *Remanejado </font> <br/>
+                                                    <%if matricula.reprovado =="1" %>
+                                                      <font color="red"> Reprovado</font>
+                                                   <%else %>
+                                                        <font color="blue"> Aprovado</font>
+                                                   <%end%>
                                              <%else if  matricula.status =="ABANDONO"%>
                                                       <font color ="red"> Abandono</font>
                                                   <%end%>
