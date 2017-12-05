@@ -112,6 +112,9 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
 
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
   map.alteracao_matricula '/alteracao_matricula', :controller => 'matriculas', :action => 'alteracao_matricula'
+  map.reprovacao '/reprovacao', :controller => 'matriculas', :action => 'reprovacao'
+  map.reprovacao_aluno '/reprovacao_aluno', :controller => 'matriculas', :action => 'reprovacao_aluno'
+  map.show_reprovado '/show_reprovado', :controller => 'matriculas', :action => 'show_reprovado'
   map.editar_ficha_cadastral '/editar_ficha_cadastral', :controller => 'alunos', :action => 'editar_ficha_cadastral'
   map.editar_transferencia_aluno '/editar_transferencia_aluno', :controller => 'transferencias', :action => 'editar_transferencia_aluno'
   map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'
@@ -145,6 +148,8 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.consulta_transferencia_classe '/consulta_transferencia_classe', :controller => 'transferencias', :action => 'consulta_transferencia_classe'
   map.consulta_classe_nota '/consulta_classe_nota', :controller => 'atribuicaos', :action => 'consulta_classe_nota'
   map.consultar_matricula '/consultar_matricula', :controller => 'matriculas', :action => 'consultar_matricula'
+  map.consulta_reprovados '/consulta_reprovados', :controller => 'matriculas', :action => 'consulta_reprovados'
+  map.consulta_reprovados1 '/consulta_reprovados1', :controller => 'matriculas', :action => 'consulta_reprovados1'
   map.consultar_relatorio '/consultar_relatorio', :controller => 'relatorio', :action => 'consulta_relatorio'
   #map.consulta_observacoes '/consulta_observacoes', :controller => 'atribuicaos', :action => 'consulta_observacoes'
   #map.consulta_relatorios '/consulta_relatorios', :controller => 'relatorios', :action => 'consulta_relatorios'

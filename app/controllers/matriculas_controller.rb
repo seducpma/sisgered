@@ -78,8 +78,52 @@ class MatriculasController < ApplicationController
         @matricula = Matricula.find(params[:id])
     end
 
-    def edit_saida_seduc
+    def edit_reprovacao
+        session[:id_reprovado]=params[:id]
         @matricula = Matricula.find(params[:id])
+        @matricula.reprovado = 1
+        respond_to do |format|
+            if @matricula.update_attributes(params[:matricula])
+               @matricula.save
+                flash[:notice] = 'ALUNO REPROVADO'
+                    format.html { redirect_to(show_reprovado_path) }
+                    format.xml  { head :ok }
+                    
+
+            else
+                format.html { render :action => "edit" }
+                format.xml  { render :xml => @matricula.errors, :status => :unprocessable_entity }
+            end
+        end
+    end
+
+
+    def show_reprovado
+    @matricula = Matricula.find(session[:id_reprovado])
+   end
+
+
+    def reprovados_consultar
+        session[:aluno_id]=params[:aluno][:id]
+        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ?', params[:aluno][:id]], :order => 'classe_num ASC')
+        render :update do |page|
+            page.replace_html 'classe_alunos', :partial => 'alunos_reprovados'
+        end
+    end
+
+
+    def consulta_reprovados1
+       session[:classe_id]=params[:classe][:id]
+       
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0], :order =>'disciplinas.ordem ASC ' )
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
+t=0
+        render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_classeRep'
+       end
+
+        
     end
 
     def create
@@ -409,6 +453,18 @@ class MatriculasController < ApplicationController
             page.replace_html 'classe_alunos', :partial => 'alunos_classe'
         end
     end
+
+    def reprovacao
+    end
+
+     def reprovacao_aluno
+       session[:aluno_id]=params[:aluno][:id]
+        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? AND ano_letivo =?', params[:aluno][:id],Time.now.year ], :order => 'classe_num ASC')
+        render :update do |page|
+            page.replace_html 'classe_alunos', :partial => 'alunos_reprovacao'
+        end
+    end
+
 
 
     def consultar_matricula
