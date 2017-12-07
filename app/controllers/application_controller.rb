@@ -256,7 +256,7 @@ NUM = { '  1'=> '1',
         }
 
 NUMI = { '  BI'=> 'BI',
-           'BII'=> '2',
+           'BII'=> 'BII',
            'MI'=> 'MI',
            'MII' => 'MII',
            'MULTS' => 'MULTS',
