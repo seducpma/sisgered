@@ -44,6 +44,11 @@ class ClassesController < ApplicationController
 
   def create
     @classe = Classe.new(params[:classe])
+
+    session[:classe]= params[:num]+" "+params[:letra]
+    @verifica = Classe.find(:all,  :select => 'id', :conditions => ['classe_classe =? AND classe_ano_letivo=? AND unidade_id=?',session[:classe], @classe.classe_ano_letivo,current_user.unidade_id])
+    @classe.classe_classe = session[:classe]
+    t=0
     respond_to do |format|
       if @classe.save
         flash[:notice] = 'SALVO COM SUCESSO!'
@@ -55,6 +60,9 @@ class ClassesController < ApplicationController
       end
     end
   end
+
+
+
 
   def update
     @alunosA = Aluno.find(:all,:joins => "INNER JOIN  matriculas  ON  alunos.id=matriculas.aluno_id  INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.id = ?', session[:classe_id]])

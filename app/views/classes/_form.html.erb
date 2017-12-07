@@ -19,9 +19,14 @@
          <tr>
 
          <tr>
-           <td ><b>Classe: </b><%= f.text_field :classe_classe, :size => 5 %></td>
+           <% if (current_user.unidade.tipo.id == 2)or (current_user.unidade.tipo.id == 5) or (current_user.unidade.tipo.id == 8) %>
+             <td ><b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUMI).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %></td>
+           <%else if (current_user.unidade.tipo.id == 1)or (current_user.unidade.tipo.id == 4) or (current_user.unidade.tipo.id ==78) %>
+                    <td ><b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUM).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %></td>
+                   <%end%>
+           <%end%>
            <td > <b>Período: </b><%= f.select :horario, Classe::HORARIO %></td>
-           <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>"2017" %>
+           <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>"2018" %>
              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size =>2 %></td>
 
         </tr>

@@ -9,7 +9,7 @@ class Classe < ActiveRecord::Base
   before_save :caps_look
   before_save :atribui_unidade
 
-  validates_presence_of :classe_classe
+  #validates_presence_of :classe_classe
 
   HORARIO = %w(--Selecionar-- MATUTINO VESPERTINO NOTURNO INTEGRAL)
 
@@ -27,7 +27,6 @@ class Classe < ActiveRecord::Base
 
   def atribui_unidade
     self.unidade_id = User.current.unidade_id
-    self.classe_ano_letivo = Time.now.year
   end
 
 end
