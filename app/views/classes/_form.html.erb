@@ -26,7 +26,7 @@
                    <%end%>
            <%end%>
            <td > <b>Período: </b><%= f.select :horario, Classe::HORARIO %></td>
-           <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>"2018" %>
+           <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>45.day.from_now.year %>
              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size =>2 %></td>
 
         </tr>
