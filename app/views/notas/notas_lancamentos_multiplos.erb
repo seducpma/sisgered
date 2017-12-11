@@ -153,7 +153,7 @@
                                                 <%else%>
                                                     <td align="center"><%= nota.faltas4%></td>
                                                 <%end%>
-                                                <%nota.faltas5=nota.faltas4+nota.faltas3+nota.faltas2+nota.faltas1%>
+                                                <%nota.faltas5=nota.faltas4.to_i+nota.faltas3.to_i+nota.faltas2.to_i+nota.faltas1.to_i%>
                                                 <%if !nota.nota5.present? or nota.nota5=='SN'%>
                                                     <td align="center"><%= f.select :nota5 , options_for_select(@NOTASB5) %></td>
                                                 <%else%>
