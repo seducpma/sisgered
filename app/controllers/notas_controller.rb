@@ -2,17 +2,20 @@ class NotasController < ApplicationController
     before_filter :load_classes
 
     def update_multiplas_notas
-  
-    Nota.update(params[:nota].keys, params[:nota].values)
-    
-    flash[:notice] = 'NOTAS LANÇADA.'
-            @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id],Time.now.year])
-            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id], Time.now.year])
-             @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",   session[:classe_id] , session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-t=0
-  #  redirect_to :action => "'notas_lancamentos'"
- render 'notas_lancamentos_multiplos'
-  end
+        Nota.update(params[:nota].keys, params[:nota].values)
+        flash[:notice] = 'NOTAS LANÇADA.'
+        @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id],Time.now.year])
+        @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id], Time.now.year])
+        @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",   session[:classe_id] , session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
+#        for nota_somaf in @notas
+#            w=nota_somaf.faltas5=nota_somaf.faltas4.to_i+nota_somaf.faltas3.to_i+nota_somaf.faltas2.to_i+nota_somaf.faltas1.to_i
+#t=0
+#            nota_somaf.save
+#        end
+
+        # redirect_to :action => "'notas_lancamentos'"
+        render 'notas_lancamentos_multiplos'
+    end
 
     def index
         @notas = Nota.all
@@ -294,8 +297,8 @@ t=0
         @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=? and notas.ativo is null" , session[:classe_id], session[:professor_id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
         @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=? and notas.ativo is null",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
         if current_user.has_role?('professor_fundamental')
-
             #render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
+            session[:conta]=0
             render "notas_lancamentos_multiplos", :layout => "layouts/application"
         else
 
