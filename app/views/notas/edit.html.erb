@@ -175,8 +175,9 @@
                                                                     <%else%>
                                                                         <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, '---'),0) %>
                                                                     <%end%>
-                                                                    <%if @nota.faltas4 !=0 %>
-                                                                        &nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas4%>
+                                                                    <%if @nota.faltas4!=0 %>
+<!--                                                                        &nbsp&nbsp&nbsp&nbsp&nbsp<%#= @nota.faltas4%>-->
+                                                                        <%= f.text_field :faltas4 , :size => '2'%>
                                                                     <%else%>
                                                                         <%= f.text_field :faltas4 , :size => '2'%>
                                                                     <%end%>

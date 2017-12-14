@@ -175,8 +175,7 @@ class NotasController < ApplicationController
 
   
     def update
-
-        @nota = Nota.find(params[:id])
+#        @nota = Nota.find(params[:id])
         session[:classe_id]= @nota.atribuicao.classe_id
         session[:professor_id]=@nota.professor_id
         session[:disc_id]=@nota.atribuicao.disciplina_id
@@ -186,9 +185,10 @@ class NotasController < ApplicationController
             session[:nota_id] = @nota.id
             @disci = Disciplina.find(:all, :conditions => ["id =?",session[:disc_id]])
             @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',  session[:classe_id],session[:professor_id], session[:disc_id]])
-            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
+#            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
 
-            for atrib in  @atribuicao_classe
+#            for atrib in  @atribuicao_classe
+            for atrib in  @atribuicao
                 @nota.aulas1 = atrib.aulas1
                 @nota.aulas2 = atrib.aulas2
                 @nota.aulas3 = atrib.aulas3
@@ -244,19 +244,20 @@ class NotasController < ApplicationController
             if @nota.nota4 == '---'
                 @nota.nota4= nil
             end
-            @atribuicao_classe[0].disciplina_id
+#            @atribuicao_classe[0].disciplina_id
+            @atribuicao[0].disciplina_id
 
             @nota.save
         end
 
-            if current_user.has_role?('professor_fundamental')
-                @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-                render 'notas_lancamentos'
-            else
-                @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-                render lancamentos_notas_notas_path , :layout => "layouts/application"
-            end
-
+        @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
+        if current_user.has_role?('professor_fundamental')
+#           @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
+            render 'notas_lancamentos'
+        else
+#           @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
+            render lancamentos_notas_notas_path , :layout => "layouts/application"
+        end
     end
 
     def atribuicao_lancamentos_notas
