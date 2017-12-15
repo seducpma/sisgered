@@ -235,12 +235,13 @@
                                         <%if nota.faltas4 == 0 %>
                                             100 %
                                         <%else%>
-                                            <% frequencia4 =  (100-(nota.faltas4.to_f / nota.aulas4.to_f)*100).to_i %>
-                                            <%if frequencia4 < 75 %>
-                                                <font color ="red"> <%= frequencia4%> % </font>
-                                            <%else%>
-                                                <%= frequencia4%> %
-
+                                            <% if nota.aulas4.to_f > 0 %>
+                                                <% frequencia4 =  (100-(nota.faltas4.to_f / nota.aulas4.to_f)*100).to_i %>
+                                                <%if frequencia4 < 75 %>
+                                                    <font color ="red"> <%= frequencia4%> % </font>
+                                                <%else%>
+                                                    <%= frequencia4%> %
+                                                <%end%>
                                             <%end%>
                                         <%end%>
                                     <%else%>
