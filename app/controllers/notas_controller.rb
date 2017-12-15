@@ -175,7 +175,7 @@ class NotasController < ApplicationController
 
   
     def update
-#        @nota = Nota.find(params[:id])
+        @nota = Nota.find(params[:id])
         session[:classe_id]= @nota.atribuicao.classe_id
         session[:professor_id]=@nota.professor_id
         session[:disc_id]=@nota.atribuicao.disciplina_id
@@ -185,10 +185,9 @@ class NotasController < ApplicationController
             session[:nota_id] = @nota.id
             @disci = Disciplina.find(:all, :conditions => ["id =?",session[:disc_id]])
             @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',  session[:classe_id],session[:professor_id], session[:disc_id]])
-#            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
+            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])
 
-#            for atrib in  @atribuicao_classe
-            for atrib in  @atribuicao
+            for atrib in  @atribuicao_classe
                 @nota.aulas1 = atrib.aulas1
                 @nota.aulas2 = atrib.aulas2
                 @nota.aulas3 = atrib.aulas3
@@ -244,8 +243,7 @@ class NotasController < ApplicationController
             if @nota.nota4 == '---'
                 @nota.nota4= nil
             end
-#            @atribuicao_classe[0].disciplina_id
-            @atribuicao[0].disciplina_id
+            @atribuicao_classe[0].disciplina_id
 
             @nota.save
         end
