@@ -172,12 +172,12 @@
                     <th colspan="2" align="center"valign="top"><%= truncate(atrib.professor.nome,:length => 17,:omission => "...") %></th>
                 <%end%> <!-- 174 -->
             </tr>
-            <tr style="font-size:10px">
+            <tr style="font-size:7px">
                 <td> <b>Legenda Notas</b></td>
                 <td colspan="30"> <b>SN</b>= Sem Nota &nbsp&nbsp <b>TR</b> = TRansferido &nbsp&nbsp <b>RM</b>= ReManejado (saida) &nbsp&nbsp <b>*RM</b>= ReManejado (entrada) <b>F</b>= Frequentou &nbsp&nbsp <b>NF</b>= Não Frequentou &nbsp&nbsp <b>ABN</b>= ABaNdono &nbsp&nbsp
                 </td>
             </tr>
-            <tr style="font-size:10px" align="left">
+            <tr style="font-size:7px" align="left">
                 <td colspan="30">
                     <%if  session[:num_classe]<6%>
                         * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
@@ -190,17 +190,18 @@
         </table>
     </table>
     <table  width="100%"style="border-color: white" >
-        <tr style="font-size: 9px"style="border-color: white">
-            <th align="RIGHT"   style="border-color: white"> <br/><b>Americana</b>, <%= Time.now.strftime("%d de %B de %Y") %><br/></th>
+        <tr style="font-size: 7px"style="border-color: white">
+           <th align="left"   style="border-color: white">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Carimbo da U.E <br/>
+           </th>
+
+            <th align="RIGHT"   style="border-color: white"> <b>Americana</b>, <%= Time.now.strftime("%d de %B de %Y") %><br/></th>
         </tr>
-        <tr style="font-size: 9px"style="border-color: white">
-            <th align="center"   style="border-color: white"> <br/><br/><br/>
+        <tr style="font-size: 7px"style="border-color: white">
+            <th align="right"   style="border-color: white"> <br/><br/><br/>
                 ________________________________ <br/>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Secretário(a) U.E <br/></th>
+                 Secretário(a) U.E &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
         </tr>
-        <tr style="font-size: 10px"style="border-color: white">
-            <th align="left"   style="border-color: white"> <br/><br/><br/><br/><br/><br/><br/><br/>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Carimbo da U.E <br/></th>
-        </tr>
+
     </table>
 <%end%>
