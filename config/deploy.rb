@@ -1,7 +1,8 @@
-set :application, "192.168.0.12"
-#set :application, "192.168.1.131"
+#set :application, "192.168.0.12"
+set :application, "192.168.0.14"
 set :repository, "git://github.com/seducpma/sisgered.git"
-set :user, "servidor"
+#set :user, "servidor"
+set :user, "atena"
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/sisgered.seducpma.com"
 set :scm, :git
@@ -14,7 +15,7 @@ server application, :app, :web, :db, :primary => true
    task :stop do ; end
    task :restart, :roles => :app, :except => { :no_release => true } do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-     run "ln -s /home/servidor/photos/sisgered /home/servidor/sisgered.seducpma.com/current/public/photos"
+     run "ln -s /home/atena/photos/sisgered /home/atena/sisgered.seducpma.com/current/public/photos"
   end
 
    task :custom_symlinks do
