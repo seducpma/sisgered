@@ -16,6 +16,10 @@
           <td align="left"><b>Descrição:</b></td>
           <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
        </tr>
+        <tr bgcolor="#F5F5F5" >
+          <td align="left"> <%= button_to ''%></td>
+          <td align="right" colspan="4"><%= button_to ' Editar ' , {:action => "edit", :id =>classe}, :method => "get", :title => "Editar"%> </td>
+       </tr>
        <tr bgcolor="#F5F5F5">
         <td valign="top"> <b> Professor(es):</b> </td>
         <% cont=1 %>

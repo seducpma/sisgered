@@ -30,7 +30,7 @@ class ClassesController < ApplicationController
     @classe = Classe.find(params[:id])
     session[:classe_id]=(params[:id])
     @alunos_selecionados = @classe.alunos
-    @alunos = @alunos - @alunos_selecionados
+#    @alunos = @alunos - @alunos_selecionados
   end
 
    def show
