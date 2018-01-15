@@ -281,6 +281,7 @@ class AtribuicaosController < ApplicationController
             session[:unidade]=classe.unidade_id
             session[:classe_id] = classe.id
             session[:num_classe]= classe.classe_classe[0,1].to_i
+
         end
         @matricula = Matricula.find(:all,:conditions =>['classe_id = ? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
         quantidade = @matricula.count
@@ -350,9 +351,11 @@ class AtribuicaosController < ApplicationController
             @classe.each do |classe|
                 session[:unidade]=classe.unidade_id
                 session[:classe_id] = classe.id
+                session[:num_classe]= classe.classe_classe[0,1].to_i
             end
             @matricula = Matricula.find(:all,:conditions =>['classe_id = ? AND aluno_id=?', session[:classe_id], session[:aluno] ], :order =>'classe_num')
             quantidade = @matricula.count
+
             if quantidade == 1
                 session[:matricula_id]= @matricula[0].id
             else if quantidade == 2
@@ -872,12 +875,12 @@ class AtribuicaosController < ApplicationController
     end
 
     def classes_ano
-        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id],  :order => 'classe_classe ASC'    )
         render :partial => 'selecao_classe'
     end
 
     def mapa_classe_ano
-        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id],  :order => 'classe_classe ASC'    )
         render :partial => 'selecao_mapa'
     end
   
@@ -931,6 +934,7 @@ class AtribuicaosController < ApplicationController
     end
 
     def load_professors
+
         if current_user.unidade_id == 53 or current_user.unidade_id == 52
             @professors = Professor.find(:all, :select => "id, nome", :conditions => 'desligado = 0',:order => 'nome ASC')
             #        @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
