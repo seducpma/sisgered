@@ -113,9 +113,11 @@
                             <td align="center"> --A </td>
                         <%end%> <!-- 108 -->
                     <%else%>
-                        <%if @notas_alu[cont_dis].atribuicao.disciplina.disciplina=="PORTUGUÊS"%>
-                            <%nota_port=@notas_alu[cont_dis].nota1%>
-                        <%end%> <!-- 116 -->
+                        <%if (cont_dis+1)<=@notas_alu.size%>
+                            <%if @notas_alu[cont_dis].atribuicao.disciplina.disciplina=="PORTUGUÊS"%>
+                                <%nota_port=@notas_alu[cont_dis].nota1%>
+                            <%end%> <!-- 116 -->
+                        <%end%>
                         <%if matriculas_classe.status!="MATRICULADO" and matriculas_classe.status!="TRANSFERENCIA" and matriculas_classe.status!="*REMANEJADO"%>
                             <%if cont_dis!=0 and ((cont_dis+1)!=@atribuicao_classe.count)%>
                                 <td align="center"><font color="red">---</font></td>
@@ -130,39 +132,43 @@
                                 <%end%> <!-- 124 -->
                             <%end%> <!-- 120 -->
                         <%else%>
-                            <% if @notas_alu[cont_dis].disciplina.curriculo=='D'%>
-                                <%session[:nota_disciplina]=''%>
-                            <%else%>
-                                <%session[:nota_disciplina]=@notas_alu[cont_dis].nota1 %>
-                            <%end%> <!-- 133 -->
-                            <%if (@notas_alu[cont_dis].aluno_id==matriculas_classe.aluno.id) and (@notas_alu[cont_dis].atribuicao_id==atrib.id)%>
-                                <td align="center">
-                                    <% if @notas_alu[cont_dis].nota1.nil? %> <!-- Notas que não foram lançadas -->
-                                        <%if (@notas_alu[cont_dis].atribuicao.disciplina.nucleo_comum==1 and session[:num_classe]<6 and nota_port!=nil)%>
-                                            --- <!-- Notas das outras disciplinas do Nucleo Comum fora Português -->
-                                        <%else%>
-                                            <!-- Outras disciplinas inclusive Português mas sem nota lançada -->
-                                        <%end%> <!-- 141 -->
-                                    <%else%>
-                                        <%if (@notas_alu[cont_dis].nota1.to_i < 5.0) and (@notas_alu[cont_dis].nota1!="F") and (@notas_alu[cont_dis].nota1!="SN")%>
-                                            <font color ="red">  <%=session[:nota_disciplina]%> </font>
-                                        <%else%>
-                                            <%=session[:nota_disciplina]%>
-                                        <%end%> <!-- 147 -->
-                                    <%end%> <!-- 140 -->
-                                </td>
-                                <% if (@notas_alu[cont_dis].atribuicao.disciplina.nucleo_comum==1 and session[:num_classe]<6)%>
-                                    <td><font color="green"></font></td> <!-- Deixa em branco Faltas das outras disciplinas do Nucleo Comum fora PortuguÊs -->
+                            <%if (cont_dis+1)<=@notas_alu.size%>
+                                <% if @notas_alu[cont_dis].disciplina.curriculo=='D'%>
+                                    <%session[:nota_disciplina]=''%>
                                 <%else%>
-                                    <%if (@notas_alu[cont_dis].nota1!=nil or @notas_alu[cont_dis].faltas1!=0) and nota_port!=nil%>
-                                        <td align="center" ><%= @notas_alu[cont_dis].faltas1%> </td>
+                                    <%session[:nota_disciplina]=@notas_alu[cont_dis].nota1 %>
+                                <%end%> <!-- 133 -->
+                            <%end%>
+                            <%if (cont_dis+1)<=@notas_alu.size%>
+                                <%if (@notas_alu[cont_dis].aluno_id==matriculas_classe.aluno.id) and (@notas_alu[cont_dis].atribuicao_id==atrib.id)%>
+                                    <td align="center">
+                                        <% if @notas_alu[cont_dis].nota1.nil? %> <!-- Notas que não foram lançadas -->
+                                            <%if (@notas_alu[cont_dis].atribuicao.disciplina.nucleo_comum==1 and session[:num_classe]<6 and nota_port!=nil)%>
+                                                --- <!-- Notas das outras disciplinas do Nucleo Comum fora Português -->
+                                            <%else%>
+                                                <!-- Outras disciplinas inclusive Português mas sem nota lançada -->
+                                            <%end%> <!-- 141 -->
+                                        <%else%>
+                                            <%if (@notas_alu[cont_dis].nota1.to_i < 5.0) and (@notas_alu[cont_dis].nota1!="F") and (@notas_alu[cont_dis].nota1!="SN")%>
+                                                <font color ="red">  <%=session[:nota_disciplina]%> </font>
+                                            <%else%>
+                                                <%=session[:nota_disciplina]%>
+                                            <%end%> <!-- 147 -->
+                                        <%end%> <!-- 140 -->
+                                    </td>
+                                    <% if (@notas_alu[cont_dis].atribuicao.disciplina.nucleo_comum==1 and session[:num_classe]<6)%>
+                                        <td><font color="green"></font></td> <!-- Deixa em branco Faltas das outras disciplinas do Nucleo Comum fora PortuguÊs -->
                                     <%else%>
-                                        <td align="center" ></td>
-                                    <%end%> <!-- 157 -->
-                                <%end%> <!-- 154 -->
-                            <%else%>
-                                <td align="center"><font color="green">[4]</font></td>
-                            <%end%> <!-- 138 -->
+                                        <%if (@notas_alu[cont_dis].nota1!=nil or @notas_alu[cont_dis].faltas1!=0) and nota_port!=nil%>
+                                            <td align="center" ><%= @notas_alu[cont_dis].faltas1%> </td>
+                                        <%else%>
+                                            <td align="center" ></td>
+                                        <%end%> <!-- 157 -->
+                                    <%end%> <!-- 154 -->
+                                <%else%>
+                                    <td align="center"><font color="green">[4]</font></td>
+                                <%end%> <!-- 138 -->
+                            <%end%>
                         <%end%> <!-- 119 -->
                     <%end%> <!-- 107 -->
                     <%cont_dis=cont_dis+1%>
