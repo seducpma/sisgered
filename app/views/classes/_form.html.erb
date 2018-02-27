@@ -9,26 +9,21 @@
         <tr>
           <td colspan="4"><hr></td>
         </tr>
-        <tr>
-            <td colspan="4">
-                 <font color="red"> <u><b>Exemplo(Infantil):</u> CLASSE: NI A ou  NI B  ou NII A ou NII B ou BI A ou BI B ou MI A ou MII B   ....  <br/>
-                                     <u><b>Exemplo(Fundamental):</u> CLASSE: 1 A  ou  1 B  ou 2 A  ou 2 B ou 3 A ou 3 B ou 4 A ou 4 B ....
-                 </font> </b>
-              </td>
-        </tr>
+
          <tr>
 
          <tr>
-           <% if (current_user.unidade.tipo.id == 2)or (current_user.unidade.tipo.id == 5) or (current_user.unidade.tipo.id == 8) %>
-             <td ><b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUMI).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %></td>
-           <%else if (current_user.unidade.tipo.id == 1)or (current_user.unidade.tipo.id == 4) or (current_user.unidade.tipo.id ==7) %>
-                      <td ><b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUM).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %></td>
-                 <%end%>
-           <%end%>
-           <td > <b>Período: </b><%= f.select :horario, Classe::HORARIO %></td>
-           <td ><b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>45.day.from_now.year %>
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size =>2 %></td>
-
+           <td colspan="3">
+               <% if (current_user.unidade.tipo.id == 2)or (current_user.unidade.tipo.id == 5) or (current_user.unidade.tipo.id == 8) %>
+                 <b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUMI).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %>
+               <%else if (current_user.unidade.tipo.id == 1)or (current_user.unidade.tipo.id == 4) or (current_user.unidade.tipo.id ==7) %>
+                         <b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUM).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %>
+                     <%end%>
+               <%end%>
+                 &nbsp&nbsp&nbsp <b>Período: </b><%= f.select :horario, Classe::HORARIO %>
+                 &nbsp&nbsp&nbsp <b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>45.day.from_now.year %>
+                 &nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size =>1 %>
+            </td>
         </tr>
 
           <td colspan="4"><b>Identificação Nº no GDAE / PRODESP: </b><%= f.text_field :classe_descricao, :size => 47%></td>
