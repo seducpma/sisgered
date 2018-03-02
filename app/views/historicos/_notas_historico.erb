@@ -21,6 +21,7 @@
     <%session[:contnota]=0%>
     <%session[:cargah_b]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
     <%session[:cargah_d]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
+    <%session[:exclui]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
     <%session[:escola]=['', '', '', '', '', '','', '', '']%>
     <%session[:cidade]=['', '', '', '', '', '','', '', '']%>
     <%session[:ano_letivo]=['', '', '', '', '', '','', '', '']%>
@@ -101,6 +102,7 @@
                                     <%session[:cargah_b][i]=@carga_horaria[0].carga_horaria_b %>
                                     <%  session[:escola][i]=@carga_horaria[0].escola %>
                                     <%  session[:cidade][i]=@carga_horaria[0].cidade %>
+                                    <%  session[:exclui][i]=@carga_horaria[0].id%>
                                 <%end%>
                             <%end%>
                         <%end%>
@@ -228,7 +230,12 @@
         <tr bgcolor="#F5F5F5">
             <%if session[:classe_anos][i]!=0%>
                 <td align="center"><%=session[:classe_anos][i]%>º Ano </td>
-                <td width ="5%" align="center" > <%=session[:ano_letivo][i] %></td>
+                <td width ="5%" align="center" >
+                    <%=session[:ano_letivo][i] %>
+                    <%if session[:exclui][i]!=0%>
+                        &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:controller => "observacao_historicos", :action => "destroy", :id => session[:exclui][i]}, :confirm => "Confirma exclusão?", :method => "delete",:title => "Excluir" %>
+                    <%end%>
+                </td>
                 <td> <%= session[:escola][i] %> </td>
                 <td> <%= session[:cidade][i] %> </td>
             <%end%>

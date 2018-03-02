@@ -9,6 +9,7 @@
            <%= f.error_messages %>
             <fieldset><legend><font size=4>Notas & Faltas</font></legend>
               <% @disciplinasN = Disciplina.find(:all, :conditions => ["tipo_un = 3"], :order=>"disciplina ASC") %>
+              <% @serie=ObservacaoHistorico.find(:all, :select => 'id, classe, ano_letivo, CONCAT(classe,"º série (",ano_letivo,")") as cl_ano', :conditions => ["aluno_id=?", session[:aluno_id]], :order => 'classe') %>
               <table width="100%">
                   <%if session[:cont_nome] = 1 %>
                          <tr bgcolor="#F5F5F5">
@@ -22,26 +23,25 @@
                         </tr>
                  <%end%>
                  <tr bgcolor="#F5F5F5">
-                   <td width =" 12%"><b>Disciplina:</b></td>
-                   <td><%= f.collection_select :disciplina_id, @disciplinasN, :id, :disciplina, :include_blank => ' -- Selecione -- ' %>
-                   </td>
+                   <td width ="12%"><b>Disciplina:</b></td>
+                   <td><%= f.collection_select :disciplina_id, @disciplinasN, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
                 </tr>
                  <tr bgcolor="#F5F5F5">
-                   <td width =" 13%"><b>Ano Letivo:</b></td>
-                   <td><%= f.select :ano_letivo , options_for_select(@ano_letivo.insert(0, '---')) %>
+                   <td colspan="2" align="center">
+                       <b>Série:</b>&nbsp
+                       <%=f.collection_select :classe, @serie, :id, :cl_ano, :include_blank => '--- Selecione ---'  %>
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       <%#=select_tag :classe, options_for_select(@serie.collect {|ff| [((ff.classe).to_s+'° série ('+(ff.ano_letivo).to_s+')'), ff.classe]}.insert(0, "--Selecionar--"))%>
                        <%@NOTASH = ["SN","10.0","9.5","9.0","8.5","8.0","7.5","7.0","6.5","6.0","5.5","5.0","4.5","4.0","3.5","3.0","2.5","2.0","1.5","1.0","0.5","0.0","A","B","C","D","E","TR","RM","F","NF","ABN"]%>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Nota:</b>
                        <%= f.select :nota5 , options_for_select(@NOTASH.insert(0, '---')) %>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                       <b>Faltas:</b>&nbsp&nbsp<%= f.text_field :faltas5 , :size => '3'%>
-                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                       <b>Série:</b>&nbsp&nbsp<%= f.select :classe, options_for_select(@serie.insert(0, '---')) %> º Ano
+                       <b>Faltas:</b>&nbsp&nbsp<%=f.text_field :faltas5 , :size => '3'%>
 
-                        <%= observe_field 'nota_classe',
+                       <%= observe_field 'nota_classe',
                            :update => "oki",
                            :url    => { :action => 'botao' },
                            :with   => 'nota_ano_letivo' %>
-
                    </td>
                 </tr>
 

@@ -310,16 +310,16 @@
 
 
 
-                            <%=@notas_ano.matricula.ano_letivo%></b>
+                            <%=@notas_ano.matricula.ano_letivo%></b>,
 
-                        <% if session[:classe] < 9 %>
-                            , estando apto(a) ao proseguimento os estudos no
+                        <% if (session[:classe_anos].max+1)<9 %>
+                             estando apto(a) ao proseguimento dos estudos no
 
-                                <b><%=(session[:classe_anos].max+1)%>º ano</b>
+                                        <b><%=(session[:classe_anos].max+1)%>º ano</b>
 
                                 do ENSINO FUNDAMENTAL.
                             <%else%>
-                                .
+                            estando apto(a) ao proseguimento dos estudos no 1º ano do ENSINO MÉDIO.
                             <%end%>
 
 

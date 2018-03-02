@@ -58,18 +58,16 @@ class NotasController < ApplicationController
     end
 
     def new1
-        
         @nota = Nota.new
         session[:flagx]=1
         respond_to do |format|
             format.html # new.html.erb
             format.xml  { render :xml => @nota }
         end
-
     end
 
     def edit
-        @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
+        @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id=? and professor_id=? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
         @nota = Nota.find(params[:id])
         session[:id_nota] = params[:id]
         session[:new2_aluno_id]= @nota.aluno_id
@@ -99,22 +97,28 @@ class NotasController < ApplicationController
   
     def create
         @nota = Nota.new(params[:nota])
+        if session[:flagx]!=1
+            if  @nota.classe>0
+                @cl_ano=ObservacaoHistorico.find(:all, :select => 'id, classe, ano_letivo, CONCAT(classe,"º série (",ano_letivo,")") as cl_ano', :conditions => ["id=?", @nota.classe])
+                @nota.classe=@cl_ano[0].classe
+                @nota.ano_letivo=@cl_ano[0].ano_letivo
+            end
+        end
         if  session[:cont_nome]=1
             @nota.aluno_id=session[:aluno_id]
         end
         @existe=Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=? and ativo<>1', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo])
         @nota.aluno_id
         @nota.disciplina_id
-       @nota.ano_letivo
+        @nota.ano_letivo
 
         if !@existe.empty?
             respond_to do |format|
                 session[:aluno]= @nota.aluno.aluno_nome
-                session[:ano]= @nota.ano_letivo
+                session[:ano_letivo]= @nota.ano_letivo
                 session[:disciplina]= @nota.disciplina.disciplina
                 session[:nota]= @nota.nota5
                 session[:faltas]= @nota.faltas5
-
                 format.html {redirect_to(historico_aviso_path) }
             end
         else
@@ -125,7 +129,6 @@ class NotasController < ApplicationController
   #              @nota.escola = session[:escola]
                 @nota.ano_letivo = session[:ano_letivo]
   #              @nota.escola = session[:escola]
-
             end
 #            if @nota.escola =='    Favor digitar o Nome da Escola - Cidade - Estado'
  #               @nota.escola = ' '
