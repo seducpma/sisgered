@@ -87,7 +87,7 @@ class ObservacaoHistoricosController < ApplicationController
     @observacao_historico.destroy
 
     respond_to do |format|
-      format.html { redirect_to(observacao_historicos_url) }
+      format.html { redirect_to(historicoContinua_url) }
       format.xml  { head :ok }
     end
   end
