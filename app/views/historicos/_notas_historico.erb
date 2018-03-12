@@ -91,7 +91,7 @@
                         <%if (@notasB[acertoHTML].nota5.nil? or @notasB[acertoHTML].nota5.empty?) and (@notasB[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
                         <%else%>
-                            <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_b IS NOT NULL", @notasB[acertoHTML].ano_letivo, session[:aluno_id]]) %>
+                            <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                             <%=@notasB[acertoHTML].nota5%>
                             <% if !@carga_horaria.present? and !@notasB[acertoHTML].matricula_id.nil? %>
                                 <%session[:cargah_b][i]=1000 %>
@@ -168,7 +168,7 @@
                             <%if ((@notasD[acertoHTML].nota5.nil? or @notasD[acertoHTML].nota5.empty?) and (@notasD[acertoHTML].ano_letivo==Time.now.year))%>
                                 ---
                             <%else%>
-                                <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", @notasD[acertoHTML].ano_letivo, session[:aluno_id]]) %>
+                                <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasD[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                                 <%=@notasD[acertoHTML].nota5%>
                                 <% if !@carga_horaria.present? and !@notasD[acertoHTML].matricula_id.nil?%>
                                     <%session[:cargah_d][i]=480%>
@@ -208,10 +208,17 @@
         <tr bgcolor =" #DCDCDC">
             <td><b> Carga Horária Total</b></td>
             <%for i in 0..8%>
-                <%if (session[:cargah_b][i]+session[:cargah_d][i])==0%>
+                <%cargah_t=0%>
+                <%if !session[:cargah_b][i].nil?%>
+                    <%cargah_t=session[:cargah_b][i]%>
+                <%end%>
+                <%if !session[:cargah_d][i].nil?%>
+                    <%cargah_t=session[:cargah_d][i]+cargah_t%>
+                <%end%>
+                <%if cargah_t==0%>
                     <td align="center">---</td>
                 <%else%>
-                    <td align="center"> <%= (session[:cargah_b][i]+session[:cargah_d][i]) %>  </td>
+                    <td align="center"> <%= cargah_t %>  </td>
                 <%end%>
             <%end%>
     </table>
