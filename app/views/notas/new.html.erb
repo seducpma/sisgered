@@ -1,4 +1,4 @@
-</div><div id="interno4">
+<div id="interno4">
 <% title "NOTAS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -9,7 +9,7 @@
            <%= f.error_messages %>
             <fieldset><legend><font size=4>Notas & Faltas</font></legend>
               <% @disciplinasN = Disciplina.find(:all, :conditions => ["tipo_un = 3"], :order=>"disciplina ASC") %>
-              <% @serie=ObservacaoHistorico.find(:all, :select => 'id, classe, ano_letivo, CONCAT(classe,"º série (",ano_letivo,")") as cl_ano', :conditions => ["aluno_id=?", session[:aluno_id]], :order => 'classe') %>
+              <% @serie=ObservacaoHistorico.find(:all, :select => 'id, classe, ano_letivo, CONCAT(classe,"º série (",ano_letivo,")") as cl_ano', :conditions => ["aluno_id=? AND classe IS NOT NULL", session[:aluno_id]], :order => 'classe') %>
               <table width="100%">
                   <%if session[:cont_nome] = 1 %>
                          <tr bgcolor="#F5F5F5">
@@ -59,6 +59,7 @@
                  </table>
             </font>
     </div>
+</div>
 </div>
 <br/>
 
