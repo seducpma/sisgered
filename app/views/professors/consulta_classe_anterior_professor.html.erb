@@ -2,7 +2,7 @@
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>CONSULTA PROFESSOR/CLASSE - ANOS LETIVOS ANTERIORES</strong></font><br/>
+     <font size="3"><strong>CONSULTA RESPONSÁVEL/CLASSE - ANOS LETIVOS ANTERIORES</strong></font><br/>
  </div>
     <div class="tabs">
     <% form_remote_tag :url => consulta_classe_anterior_professor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
@@ -13,7 +13,7 @@
               <a href="#" class="filtro_classe1"><%= radio_button_tag(:type_of, "1") %></a>Classe
               <a href="#" class="filtro_disciplina"><%= radio_button_tag(:type_of, "4") %></a>Disciplina
               <a href="#" class="filtro_periodo"><%= radio_button_tag(:type_of, "2") %></a>Periodo
-              <a href="#" class="filtro_professor_nome1"><%= radio_button_tag(:type_of, "3") %></a>Professor
+              <a href="#" class="filtro_professor_nome1"><%= radio_button_tag(:type_of, "3") %></a>Responsável
               
             </td>
          </tr>

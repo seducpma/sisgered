@@ -1,6 +1,6 @@
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td colspan="2"align="right"><font size="2"> <b>Professor:</b></font>
+            <td colspan="2"align="right"><font size="2"> <b>Responsável:</b></font>
                &nbsp&nbsp&nbsp
                 <%= collection_select :professor, :id, @professors, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca1"  %>
                <%= submit_tag "Visualizar", :class => "btn_filtrar" %>

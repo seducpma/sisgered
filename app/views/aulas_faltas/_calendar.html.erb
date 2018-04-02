@@ -27,7 +27,7 @@
                                         <%else%>
                                                <b><font color ="blue"> <%= link_to h(truncate(data.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
                                         <%end%>
-                                        (Prof.(a) <%= data.professor.funcao %>)<br/>
+                                        (Respons. <%= data.professor.funcao %>)<br/>
                                         <b>----------------------</b>
                              <%end%>
                              <% if data.funcionario.present? %>
@@ -57,7 +57,7 @@
                 <td style="border-color: white" width ="40%">
                         <table  frame="box" width="100%" style="border-color: white">
                              <tr style="border-color: white">
-                                <td style="border-color: white"><b><u>PROFESSORES</u></b></td>
+                                <td style="border-color: white"><b><u>RESPONSÁVEIS</u></b></td>
                                 <td style="border-color: white" align="center"><b><u>FALTAS</u></b></td>
                             </tr>
                             <%t1 =1%>

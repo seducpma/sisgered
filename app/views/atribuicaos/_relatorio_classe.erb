@@ -2,7 +2,7 @@
     <tr>
         <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
-            <td align="left" ><font size ="3"><b><u>OBSERVAÇÕES:</u> Fotos, Observações feitas pelo professor e as Observações que estão em vermelho NÃO aparecem na impressão do boletim.</b></font></td>
+            <td align="left" ><font size ="3"><b><u>OBSERVAÇÕES:</u> Fotos, Observações feitas pelo responsável e as Observações que estão em vermelho NÃO aparecem na impressão do boletim.</b></font></td>
             <td><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
         <%end%>
     </tr>
@@ -311,8 +311,8 @@
             <% if obs==1 %>
                 <tr>
                     <td colspan="20">
-                        <center><font color ="red"><b>  *PROFESSORES QUE NÃO LANÇARAM AS AULAS DADAS NO BIMESTRE, O SISTEMA NÂO CALCULA A FREQUÊNCIA,  <br/>
-                                    PARA QUE O BOLETIM FIQUE CORRETO, FAVOR SOLICITAR QUE O PROFESSOR LANCE A QUANTIDADE DE AULAS DADAS E AS FALTAS.</b> </center>
+                        <center><font color ="red"><b>  *RESPONSÁVEIS QUE NÃO LANÇARAM AS AULAS DADAS NO BIMESTRE, O SISTEMA NÂO CALCULA A FREQUÊNCIA,  <br/>
+                                    PARA QUE O BOLETIM FIQUE CORRETO, FAVOR SOLICITAR QUE O RESPONSÁVEL LANCE A QUANTIDADE DE AULAS DADAS E AS FALTAS.</b> </center>
                     </td>
                 </tr>
             <%end%>

@@ -26,7 +26,7 @@
                             <%else%> 
                                    <b><font color ="blue"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
                             <%end%>
-                            (Prof.(a) <%= categoria %>)<br/>
+                            (Respons. <%= categoria %>)<br/>
                             Classe: <%= data.classe.classe_classe%>
                             
                             <br/>
@@ -51,7 +51,7 @@
                 <td style="border-color: white" width ="40%">
                         <table  frame="box" width="100%" style="border-color: white">
                              <tr style="border-color: white">
-                                <td style="border-color: white"><b><u>PROFESSORES</u></b></td>
+                                <td style="border-color: white"><b><u>RESPONSÁVEIS</u></b></td>
                                 <td style="border-color: white" align="center"><b><u>FALTAS</u></b></td>
                             </tr>
                             <%t1 =1%>
@@ -88,7 +88,7 @@
               <tr class ="invisible_to_print " >
                    <td align="right" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
                    <td width="2%" align="right" ><%= button_to("Imprimir Agenda", onclick="javascript:window.print()", :title => "Imprimir") %></td>
-                   <td width="2%" align="right" ><%= button_to "Relatório / Mês / Prof.", relatorio_eventual_mes_professor_aulas_eventuals_path %></td>
+                   <td width="2%" align="right" ><%= button_to "Relatório / Mês / Respons.", relatorio_eventual_mes_professor_aulas_eventuals_path %></td>
                     <%if (params[:search]).present? %>
                         <% if current_user.has_role?('SEDUC') or current_user.has_role?('admin')%>
                            <td width="2%" align="right"><%= button_to'Cadastrar Substituição',:action => "new", :unidade_id => params[:search][:unidade_id_equals],:target => '_blank' %></td>

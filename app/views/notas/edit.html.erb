@@ -13,10 +13,10 @@
                             <td colspan="4"><font  size="3"color="red"><u> <b>ATENÇÃO:</b></u></font></td>
                         </tr>
                         <tr bgcolor="#F5F5F5">
-                            <td colspan="6"><font size ="2" color="red"><b>1) O LANÇAMENTO DE NOTAS E FALTAS  PODERÁ SER EXECUTA SOMENTE UMA ÚNICA <br/> &nbsp&nbsp&nbsp&nbsp VEZ PELO PROFESSOR.</b></font></td>
+                            <td colspan="6"><font size ="2" color="red"><b>1) O LANÇAMENTO DE NOTAS E FALTAS  PODERÁ SER EXECUTA SOMENTE UMA ÚNICA <br/> &nbsp&nbsp&nbsp&nbsp VEZ PELO RESPONSÁVEL.</b></font></td>
                         </tr>
                         <tr bgcolor="#F5F5F5">
-                            <td colspan="6"><font size ="2" color="red"><b>2) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR  LANÇAMENTO JÁ <br/> &nbsp&nbsp&nbsp&nbsp EXECUTADO PELO PROFESSOR.</b></font></b></td>
+                            <td colspan="6"><font size ="2" color="red"><b>2) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR  LANÇAMENTO JÁ <br/> &nbsp&nbsp&nbsp&nbsp EXECUTADO PELO RESPONSÁVEL.</b></font></b></td>
                         </tr>
                         <tr bgcolor="#F5F5F5">
                             <td colspan="6"><font size ="2" color="red"><b>3) OBSERVAÇÕES PODEM SER LANÇADAS DIVERSAS  VEZES, PARA LANÇAR CLIQUE NO <br/> &nbsp&nbsp&nbsp&nbsp LINK  <%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></td>
@@ -51,8 +51,8 @@
                                                         </tr>
                                                         <tr bgcolor="#F5F5F5">
                                                             <td></td>
-                                                            <!-- Acrescentei professor na linha abaixo para permitir alteração nas faltas ###Alex 03/07/2017 16:51 -->
-                                                            <%if (current_user.has_role?('professor_fundamental')) or (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                                            <!-- Acrescentei responsável/professor na linha abaixo para permitir alteração nas faltas ###Alex 03/07/2017 16:51 / Retirei! ###Alex 28/03/2018 15:01 -->
+                                                            <%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                                                                 <%if @nota.nota1.present? %>
                                                                     <td width ="3%"><%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                                                                             <%= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1),0) %>
@@ -87,7 +87,7 @@
                                                                     <%end%>
                                                                 </td>
                                                             <%end%>
-                                                            <% if (current_user.has_role?('professor_fundamental')) or (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
+                                                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
                                                                 <%if @nota.nota2.present? %>
                                                                     <td width ="3%"><%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                                                                             <%= f.select :nota2 , options_for_select(@NOTASB2.insert(0, @nota.nota2),0) %>
@@ -123,7 +123,7 @@
                                                                     <%end%>
                                                                 </td>
                                                             <%end%>
-                                                            <% if (current_user.has_role?('professor_fundamental')) or (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
+                                                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
                                                                 <%if @nota.nota3.present? %>
                                                                     <td width ="3%"><%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                                                                             <%= f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3),0) %>

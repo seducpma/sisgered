@@ -2,11 +2,11 @@
   <% if session[:professor] == 1 %>
       <%if  @professores.present?%>
          <tr>
-             <td align="left"><b> Professor: </b>&nbsp&nbsp <%= collection_select :aulas_falta, :professor_id, @professores, :id, :nome, :include_blank => ' -- Selecione caso seja professor -- ' %></td>
+             <td align="left"><b> Professor: </b>&nbsp&nbsp <%= collection_select :aulas_falta, :professor_id, @professores, :id, :nome, :include_blank => ' -- Selecione caso seja responsável -- ' %></td>
          </tr>
      <%else%>
         <tr>
-             <td align="left"><b> &nbsp&nbsp NÃO há Professor cadastrado para esta unidade </b></td>
+             <td align="left"><b> &nbsp&nbsp NÃO há Responsável cadastrado para esta unidade </b></td>
          </tr>
 
      <%end%>

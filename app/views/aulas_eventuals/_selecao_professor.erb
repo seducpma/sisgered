@@ -1,7 +1,7 @@
 <table width="100% ">
            <tr>
 
-               <td align="left" width ="10%"><b>Professor(Falta): </b></td>
+               <td align="left" width ="10%"><b>Responsável(Falta): </b></td>
                <td align="left">     <%= collection_select :aulas_eventual, :faltante, @prof_falta, :nome, :nome, :include_blank => ' -- Selecionar -- ' %></td>
                   <%= observe_field 'aulas_eventual_faltante',
                      :with   => :aulas_eventual_faltante,
@@ -12,7 +12,7 @@
            <tr>
 
                   
-             <td align="left"><b> Professor(Subst.): </b></td>
+             <td align="left"><b> Responsável(Subst.): </b></td>
              <td align="left"><%= collection_select :aulas_eventual, :eventual_id, @professores, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
                  <%= observe_field 'aulas_eventual_eventual_id',
                      :with   => :aulas_eventual_eventual_id,

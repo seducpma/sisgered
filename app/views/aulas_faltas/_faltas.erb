@@ -18,7 +18,7 @@
 
                     <%end%>
                  <%else if session[:tiporelatorio]==2 %>
-                          <center><font size="1">Professor:  <%=h @aulas_faltas[0].professor.nome %>  </font></center>
+                          <center><font size="1">Responsável: <%=h @aulas_faltas[0].professor.nome %>  </font></center>
                           <center><font size="1">Função:<%=h @aulas_faltas[0].professor.funcao%> </font>
                        <%end%>
                  <%end%>
@@ -67,7 +67,7 @@
     <tr><%if  (session[:mostra_faltas_professor] == 1)%>
         <td width ="35%" valign="top"><table>
                 <tr>
-                  <td><b><u>PROFESSOR(ES)</u></b></td>
+                  <td><b><u>RESPONSÁVEL(S)</u></b></td>
                   <td><b><u>FALTAS</u></b></td>
                 </tr>
                 <%t1 =1%>

@@ -67,7 +67,7 @@
                       <%end%>
 <!--
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
-                          <li><%= link_to "Professor",new_professor_path %></li>
+                          <li><%= link_to "Responsável",new_professor_path %></li>
 
                       <%end%>
 
@@ -111,9 +111,9 @@
                      <%end%>
                        <li><%= link_to "Classe",consulta_classe_path %></li>
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo'))%>
-                           <li><%= link_to "Professor",consulta_professor_nome_path %></li>
-                           <li><%= link_to "Professor/Classe",consulta_classe_professors_path %></li>
-                           <li><%= link_to "Responsável",consulta_reponsavel_path %></li>
+                           <li><%= link_to "Resp.Pedag.",consulta_professor_nome_path %></li>
+                           <li><%= link_to "Resp.Pedag./Classe",consulta_classe_professors_path %></li>
+                           <li><%= link_to "Resp.Pessoal",consulta_reponsavel_path %></li>
                            <!--<li><%= link_to "Transferência",consulta_transferencia_path %></li>-->
                      <%end%>
                         <li><%= link_to "Unidade",consultas_unidades_path %></li>
@@ -129,7 +129,7 @@
                    <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
                    <li><%= link_to "Classe",editar_classe_classes_path %></li>
                    <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
-                   <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                   <li><%= link_to "Responsável",consulta_professor_nome_path %></li>
                   <!-- <li><%= link_to "Transferências",editar_transferencia_transferencias_path %></li>-->
                    <li><%= link_to "Unidade",consultas_unidades_path %></li>
                  </ul>

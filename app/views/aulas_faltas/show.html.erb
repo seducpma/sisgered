@@ -1,5 +1,5 @@
 <div id="interno3">
-<% title "PROFESSOR" %>
+<% title "RESPONSÁVEL" %>
 <div class ="tabs">
  <table bgcolor="#DCDCDC" width="100%">
    <tr bgcolor="#DCDCDC"  width="100%">
@@ -18,7 +18,7 @@
                 </tr>
                  <tr bgcolor="#F5F5F5" >
                    <%  if @aulas_falta.funcionario_id.nil? %>
-                       <td align="left"><b>Professor:</b></td>
+                       <td align="left"><b>Responsável:</b></td>
                        <td colspan="3"align="left"> <%=h @aulas_falta.professor.nome %> </td>
                    <%else%>
                        <td align="left"><b>Funcionario:</b></td>

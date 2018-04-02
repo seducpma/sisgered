@@ -70,7 +70,7 @@ class AtribuicaosController < ApplicationController
         w2=session[:disciplina]=@atribuicao.disciplina_id
         @verifica = Atribuicao.find(:all, :select => 'id', :conditions => ['classe_id =? AND professor_id =? AND disciplina_id=? AND ano_letivo=?',@atribuicao.classe_id, @atribuicao.professor_id, @atribuicao.disciplina_id, Time.now.year])
         if @verifica.present? then
-            flash[:notice] = 'ESTE PROFESSOR JÁ ESTÁ ATRIBUIDO PARA ESTA CLASSE NESTA DISCIPLINA!'
+            flash[:notice] = 'ESTE RESPONSÁVEL JÁ ESTÁ ATRIBUIDO PARA ESTA CLASSE NESTA DISCIPLINA!'
             respond_to do |format|
                 format.html { render :action => "new" }
             end

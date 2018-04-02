@@ -118,7 +118,7 @@ display: none;
                            <font size="1">  <%= uni %></font></td>
                       <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                    <%else if current_user.has_role?('professor_fundamental') %>
-                       <td>Acesso Professor |
+                       <td>Acesso Responsável |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
                            <font size="1">  <%= uni %></font>
@@ -146,7 +146,7 @@ display: none;
                                            </td>
                                             <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                                            <%else if current_user.has_role?('professor_infantil') %>
-                                                 <td>Acesso Professor Infantil |
+                                                 <td>Acesso Responsável Infantil |
                                                      <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                                                      <% uni = @unidade.first.nome  %>
                                                      <font size="1">  <%= uni %></font>
@@ -203,7 +203,7 @@ display: none;
                                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC'))%>
                                             <li><%= link_to "Funcionarios",new_funcionario_path %></li>
                                           <%end%>
-                                        <li><%= link_to "Professores",new_eventual_path %></li>
+                                        <li><%= link_to "Responsáveis",new_eventual_path %></li>
                                      </ul>
                                  </li>
                                   <li><a class="item-primary" href="#;">Consultar</a>
@@ -211,7 +211,7 @@ display: none;
                                          <% if (current_user.has_role?('admin')or current_user.has_role?('SEDUC'))%>
                                             <li><%= link_to "Funcionarios",consulta_professor_eventual_path %></li>
                                           <%end%>
-                                        <li><%= link_to "Professores",consulta_professor_eventual_path %></li>
+                                        <li><%= link_to "Responsáveis",consulta_professor_eventual_path %></li>
                                      </ul>
                                  </li>
                              </ul>
@@ -221,12 +221,12 @@ display: none;
                      <li><a class="item-primary" href="#;">Faltas</a>
                          <ul>
                             <li><%= link_to "Agenda Unidade",aulas_faltas_path %></li>
-                            <li><%= link_to "Agenda Professor",aulas_faltas2_path %></li>
+                            <li><%= link_to "Agenda Responsável",aulas_faltas2_path %></li>
                             <li><%= link_to "Agenda Funcionário",aulas_faltas3_path %></li>
                             <li><a class="item-primary" href="#;"> Relatório / Mês </a>
                                  <ul>
                                     <li><%= link_to "Funcionario",relatorio_falta_mes_funcionario_aulas_faltas_path %></li>
-                                    <li><%= link_to "Professor",relatorio_falta_mes_professor_aulas_faltas_path %></li>
+                                    <li><%= link_to "Responsável",relatorio_falta_mes_professor_aulas_faltas_path %></li>
                                     <li><%= link_to "Unidade",relatorio_falta_mes_aulas_faltas_path %></li>
                                  </ul>
                              </li>
@@ -238,10 +238,10 @@ display: none;
                      <li><a class="item-primary" href="#;">Substituições</a>
                          <ul>
                             <li><%= link_to "Agenda Unidade",aulas_eventuals_path %></li>
-                            <li><%= link_to "Agenda professor",aulas_eventuals2_path %></li>
+                            <li><%= link_to "Agenda Responsável",aulas_eventuals2_path %></li>
                             <li><a class="item-primary" href="#;"> Relatório / Mês </a>
                                  <ul>
-                                    <li><%= link_to "Professor",relatorio_eventual_mes_professor_aulas_eventuals_path %></li>
+                                    <li><%= link_to "Responsável",relatorio_eventual_mes_professor_aulas_eventuals_path %></li>
                                     <li><%= link_to "Unidade",relatorio_eventual_mes_unidade_aulas_eventuals_path %></li>
                                  </ul>
                              </li>
@@ -286,7 +286,7 @@ display: none;
                      <%end%>
 
 <!--                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>
-                          <li><%= link_to "Professor",new_professor_path %></li>
+                          <li><%= link_to "Responsável",new_professor_path %></li>
 
                       <%end%>
 
@@ -356,14 +356,14 @@ display: none;
                      <%end%>
                        <li><%= link_to "Matricula",consultar_matriculas_path %></li>
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                           <li><%= link_to "Professor",consulta_professor_nome_path %></li>
-                           <li><a class="item-primary" href="#;">Professor/Classe</a>
+                           <li><%= link_to "Responsável Disc.",consulta_professor_nome_path %></li>
+                           <li><a class="item-primary" href="#;">Responsável/Classe</a>
                                <ul>
                                   <li><%= link_to "Ano Letivo Atual",consulta_classe_professors_path %></li>
                                   <li><%= link_to "Anos Anteriores",consulta_classe_anterior_professor_path %></li>
                               </ul>
                            </li>
-                           <li><%= link_to "Responsável",consulta_reponsavel_path %></li>
+                           <li><%= link_to "Responsável Aluno",consulta_reponsavel_path %></li>
                            <!--<li><%= link_to "Transferência",consulta_transferencia_path %></li>-->
                      <%end%>
                         <li><%= link_to "Unidade",consultas_unidades_path %></li>
@@ -395,7 +395,7 @@ display: none;
                    <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
 
 
-                   <li><%= link_to "Professor",consulta_professor_nome_path %></li>
+                   <li><%= link_to "Responsável",consulta_professor_nome_path %></li>
                    <li><%= link_to "Unidade",consultas_unidades_path %></li>
                  </ul>
               </li>
