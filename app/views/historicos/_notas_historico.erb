@@ -109,6 +109,11 @@
                         <%if @notasB[acertoHTML].matricula_id.nil?%>
                             &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasB[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
                         <%end%>
+                        <%if @notasB[session[:contnota]].disciplina_id == 1 and !@notasB[session[:contnota]].matricula_id.nil?%>
+
+
+                          <%session[:unidade_id_port] = @notasB[session[:contnota]].unidade_id%>
+                        <%end%>
                     </td>
                     <%session[:contnota]=session[:contnota]+1%>
                 <%else%>

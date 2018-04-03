@@ -303,16 +303,9 @@
                         O sr(a) diretor(a) da Unidade Educacional <b><%= @notas_ano.matricula.unidade.nome%></b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
                         certifica que o aluno(a) <%= @notas_ano.matricula.aluno.aluno_nome %> </b> concluiu</b> o
 
-                        <b><%= (session[:classe_anos].max) %>º ano</b>
+                        <b><%= (session[:classe_anos].max) %>º ano</b> do Ensino Fundamental de 9 anos no <b> ano letivo de  <%=@notas_ano.matricula.ano_letivo%></b>,
 
-
-                        do Ensino Fundamental de 9 anos no <b> ano letivo de
-
-
-
-                            <%=@notas_ano.matricula.ano_letivo%></b>,
-
-                        <% if (session[:classe_anos].max+1)<9 %>
+                        <% if (session[:classe_anos].max+1)<10 %>
                              estando apto(a) ao proseguimento dos estudos no
 
                                         <b><%=(session[:classe_anos].max+1)%>º ano</b>
