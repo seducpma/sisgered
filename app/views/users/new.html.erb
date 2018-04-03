@@ -7,7 +7,7 @@
      <font size="3"><strong>Novo Usuário</strong></font><br/>
  </div>
       <div class="tabs">
-      <table  width="80%" align="center">
+      <table  width="100%" align="center">
         <tr>
           <td>
             <fieldset><legend><font  size=4>Usuário</font></legend>
@@ -51,14 +51,14 @@
                       </tr>
                       <tr>
                         <td colspan="3">
-                          <fieldset><legend><b>SOMENTE PARA RESPONSÁVEIS </b></legend>
+                          <fieldset><legend><b>SOMENTE PARA RESPONSÁVEIS POR DISICPLINAS</b></legend>
                             <table>
                               <tr>
-                                <td colspan="3" align="center"><b>Responsáveis necessitam ser previamente cadastrados no sistema</b></td>
+                                <td colspan="3" align="center"><b>Responsáveis por disciplinas necessitam ser previamente cadastrados no sistema</b></td>
                               </tr>
                                 <td align="left"><b>Responsável:</b></td>
                                 <td colspan="2" align="left"><%= f.collection_select :professor_id, Professor.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %>
-                                 <b><i><font  color="red" size="2" >Se seu nome não consta na lista favor entrar em contato com o diretor(a) de sua unidade escolar.</font></i></b></td>
+                                 </br><b><i><font  color="red" size="2" >Se seu nome não consta na lista favor entrar em contato com o diretor(a) de sua unidade escolar.</font></i></b></td>
 
                             </table>
                           </fieldset>

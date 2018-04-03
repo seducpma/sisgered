@@ -16,7 +16,7 @@
       </tr>
       <tr>
        <td><%= f.label :role_id,'Selecionar o nível de acesso :' %></td>
-       <td colspan="2"><%= f.collection_select  :role_id,@roles, :id, :name, :include_blank => ' --Selecionar-- ' %></td>
+       <td colspan="2"><%= f.collection_select  :role_id,@roles, :id, :descricao, :include_blank => ' --Selecionar-- ' %></td>
              <%= observe_field :roles_user_role_id,
              :with => :roles_user_role_id,
              :url => { :action => 'role_id' } %>
