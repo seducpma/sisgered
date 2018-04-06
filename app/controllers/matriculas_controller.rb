@@ -78,6 +78,10 @@ class MatriculasController < ApplicationController
         @matricula = Matricula.find(params[:id])
     end
 
+    def edit_saida_seduc
+        @matricula = Matricula.find(params[:id])
+    end
+
     def edit_reprovacao
         session[:id_reprovado]=params[:id]
         @matricula = Matricula.find(params[:id])
