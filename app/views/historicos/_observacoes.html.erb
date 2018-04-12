@@ -1,12 +1,9 @@
- 
     <% c=0 %>
     <% @historico_aluno.each do |obs|%>
        <%  if  (!obs.observacao.nil?) %>
-          <b><%= c=c+1%>.</b> <%="#{obs.observacao}" %>  -
+          &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:controller => "observacao_historicos", :action => "destroy_obs", :id => obs.id}, :confirm => "Confirma exclusão?", :method => "delete",:title => "Excluir" %>
+          <b><%= c=c+1%>.</b>&nbsp <%="#{obs.observacao}" %>  -
           <b>Data: </b> <%=  obs.created_at.strftime("%d/%m/%Y")%> - <%=  obs.quem %>
-                        
-
     <br/>
     <%end%>
 <%end%>
-

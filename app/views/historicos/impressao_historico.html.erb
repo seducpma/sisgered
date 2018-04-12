@@ -4,6 +4,42 @@
         <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
     </tr>
 </table>
+
+<!-- Inicio para resolver problema de session[:ano_letivo]- O sistema entrava em looping
+     porque a variável session[:ano_letivo] voltava da parcial para o histórico com valor diferente. 2018-04-12 10:30 ###Alex -->
+<%for ano_letivo in @anos_letivos%>
+    <%if ano_letivo.classe.nil?%>
+        <%if (!ano_letivo.nota5.nil? and !ano_letivo.nota5.empty?)%>
+            <%if ano_letivo.matricula.nil?%>
+                <%session[:ano_letivo][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.ano_letivo%>
+                <%session[:classe_anos][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.matricula.classe.classe_classe[0,1].to_i%>
+            <%else%>
+                <%if ano_letivo.matricula.reprovado.to_i!=1%>
+                    <%session[:ano_letivo][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.ano_letivo%>
+                    <%session[:classe_anos][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.matricula.classe.classe_classe[0,1].to_i%>
+                <%end%>
+            <%end%>
+        <%end%>
+    <%else%>
+        <%if (!ano_letivo.nota5.nil? and !ano_letivo.nota5.empty?)%>
+            <%session[:ano_letivo][(ano_letivo.classe.to_i)-1]=ano_letivo.ano_letivo.to_i%>
+            <%session[:classe_anos][(ano_letivo.classe.to_i)-1]=ano_letivo.classe.to_i%>
+        <%end%>
+    <%end%>
+    <!--<%#session[:ano_letivo][classe.to_i-1]=@ano_inicial.ano_letivo%>-->
+<%end%>
+<%for historico_aluno in @historico_aluno%>
+    <%session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
+    <%if !session[:ano_nota_lançada].empty?%>
+        <%session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
+        <%if session[:ano_letivo][session[:ano_nota_lançada]-1].nil?%>
+            <%session[:ano_letivo][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
+        <%end%>
+        <%session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
+    <%end%>
+<%end%>
+<!-- Fim para resolver problema de session[:ano_letivo] 2018-04-12 10:30 ###Alex -->
+
 <% @aluno.each do |aluno| %>
     <table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
         <tr style="border-color: white">
@@ -301,9 +337,9 @@
                     <% var1 = 0 %>
                     <font size="2"><br/>
                         O sr(a) diretor(a) da Unidade Educacional <b><%= @notas_ano.matricula.unidade.nome%></b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
-                        certifica que o aluno(a) <%= @notas_ano.matricula.aluno.aluno_nome %> </b> concluiu</b> o
+                        certifica que o aluno(a) <b><%= @notas_ano.matricula.aluno.aluno_nome %> </b> concluiu o
 
-                        <b><%= (session[:classe_anos].max) %>º ano</b> do Ensino Fundamental de 9 anos no <b> ano letivo de  <%=@notas_ano.matricula.ano_letivo%></b>,
+                        <b><%= (session[:classe_anos].max) %>º ano</b> do Ensino Fundamental de 9 anos no ano letivo de <b><%=@notas_ano.matricula.ano_letivo%></b>,
 
                         <% if (session[:classe_anos].max+1)<10 %>
                              estando apto(a) ao proseguimento dos estudos no

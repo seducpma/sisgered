@@ -91,4 +91,14 @@ class ObservacaoHistoricosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def destroy_obs
+    @observacao_historico = ObservacaoHistorico.find(params[:id])
+    @observacao_historico.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(historicoContinua_url) }
+      format.xml  { head :ok }
+    end
+  end
 end
