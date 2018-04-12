@@ -159,7 +159,7 @@ class AtribuicaosController < ApplicationController
                     #    end
                     if  session[:flag_edit]== 1
 
-                        if ((@atribuicao.aulas2 < 1 ) or (@atribuicao.aulas1 < 1))
+                        if ((@atribuicao.aulas1 < 1 ))
                             format.html { redirect_to(aviso_atribuicaos_path) }
                             format.xml  { head :ok }
                         else
@@ -167,7 +167,7 @@ class AtribuicaosController < ApplicationController
                             format.html { redirect_to(voltar_lancamento_notas_path)}
                         end
                     else
-                        if ((@atribuicao.aulas2 < 1 ) or (@atribuicao.aulas1 < 1))
+                        if ((@atribuicao.aulas1 < 1 ))
                             format.html { redirect_to(aviso_atribuicaos_path) }
                             format.xml  { head :ok }
                         else
