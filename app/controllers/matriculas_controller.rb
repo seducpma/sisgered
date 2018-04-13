@@ -92,7 +92,7 @@ class MatriculasController < ApplicationController
                 flash[:notice] = 'ALUNO REPROVADO'
                     format.html { redirect_to(show_reprovado_path) }
                     format.xml  { head :ok }
-                    
+
 
             else
                 format.html { render :action => "edit" }
@@ -118,7 +118,7 @@ class MatriculasController < ApplicationController
 
     def consulta_reprovados1
        session[:classe_id]=params[:classe][:id]
-       
+
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0], :order =>'disciplinas.ordem ASC ' )
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
@@ -127,14 +127,14 @@ t=0
           page.replace_html 'classe_alunos', :partial => 'alunos_classeRep'
        end
 
-        
+
     end
 
     def create
         @matricula_anterior = Matricula.new(params[:matricula])
         @matricula_anterior.aluno_id
         params[:matricula][:classe_id]
-   
+
         @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=? AND status != "ABANDONO"',  params[:matricula][:classe_id], Time.now.year, @matricula_anterior.aluno_id])
 
         @atribuicao= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', params[:matricula][:classe_id], Time.now.year])
@@ -360,9 +360,12 @@ t=0
 
     def update
         @matricula = Matricula.find(params[:id])
-      
+
         respond_to do |format|
             if @matricula.update_attributes(params[:matricula])
+                if @matricula.data_transferencia==Date.today
+                    @matricula.data_transferencia=nil
+                end
                 @matricula.save
 
                 if session[:saidaT] == 2
@@ -381,7 +384,7 @@ t=0
                     @aluno[0].unidade_id = 52
                     @aluno[0].aluno_sexo  = 'MASCULINO'
                     @aluno[0].save
-              
+
                 end
 
 
@@ -427,7 +430,7 @@ t=0
     def show_classe
 
         @matriculas = Matricula.find(:all, :conditions => ['classe_id =?', session[:classe_id]], :order => 'classe_num')
-    
+
 
 
     end
@@ -529,7 +532,7 @@ t=0
             @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
         end
         @alunos3 = Aluno.find(:all, :select =>"alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn", :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND  matriculas.ano_letivo =?', current_user.unidade_id, Time.now.year],:order => 'alunos.aluno_nome')
-       
+
         if current_user.unidade_id == 53 or current_user.unidade_id == 52
             @classe = Classe.find(:all, :conditions => ['classe_ano_letivo = ? ',  Time.now.year  ], :order => 'classe_classe ASC')
 

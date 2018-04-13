@@ -10,7 +10,7 @@
             <font  size="2">
               <br/>
               <table width="100%" align="center" bgcolor="#F5F5F5">
-                  <%  @classes = Classe.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'classe_classe') %>               
+                  <%  @classes = Classe.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'classe_classe') %>
                   <tr> <td></td> </tr>
                   <%if (@matricula.status =="MATRICULADO") %>
                     <tr>
@@ -65,12 +65,8 @@ em relação a antiga! 27/04/2017 18:52 ###ALEX
                          <%= h@matricula.status%>
                      <%end%>
                     </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                     <b>Data: </b> &nbsp <%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%></td>
-                  </tr>
-                  <tr>
+                  <tr><td colspan="2"><b>Data: </b> &nbsp <%= f.date_select(:data_transferencia, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-2)%>&nbsp</td>
+                  <tr><td colspan="2"><font color="red"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPara apagar a data de transferência, selecionar a data atual (de hoje)</b></font></td></tr>
                     <td colspan="2">
                       <fieldset><legend><b>SE TRANSFERÊNCIA</b></legend>
                         <table width="100%" >
