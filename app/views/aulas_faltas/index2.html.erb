@@ -4,7 +4,7 @@
 <% title "ALUNOS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo"  class ="invisible_to_print ">
-     <font size="3"><strong>AGENDA DE FALTAS - POR RESPONSÁVEL</strong></font><br/>
+     <font size="3"><strong>AGENDA DE FALTAS - POR PROFESSOR/RESPONSÁVEL</strong></font><br/>
  </div>
     <table width="100%"  bgcolor="#DCDCDC"  style= "border-color: white" >
       <tr  class ="invisible_to_print ">
@@ -13,7 +13,7 @@
                <% form_for @search ,:url => { :action => 'index2' } do |f|%>
 
 
-                 <font size="3"> Responsável:</font>
+                 <font size="3"> Professor/Responsável:</font>
                  <%= f.collection_select :professor_id_equals, @professores_faltas, :id, :nome, :include_blank => true%>
                  <%= f.submit "Visualizar", :class => "btn_filtrar" %>
               <% end %>

@@ -43,13 +43,13 @@
                                      &nbsp&nbsp&nbsp<b>Ano Letivo:</b>&nbsp <%=h @atribuicao.ano_letivo %></td>
                                    </tr>
                                    <tr bgcolor="#F5F5F5">
-                                       <td colspan="2"><b>Responsável(substituido):</b>&nbsp <%= @atribuicao.professor.nome %> <br/>
-                                     <b>pelo Responsável(novo):</b>&nbsp&nbsp <%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                                       <td colspan="2"><b>Professor/Responsável(substituido):</b>&nbsp <%= @atribuicao.professor.nome %> <br/>
+                                     <b>pelo Professor/Responsável(novo):</b>&nbsp&nbsp <%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
                                   </tr>
                                   <% if session[:flag_edit_atribuicao] != 1 %>
                                     <tr>
                                       <td colspan="4">
-                                         <font color="gray"> <u><b>Obs:</u> Se o nome do responsável NÃO constar na lista, favor entrar em contato com a Informática/SEDUC
+                                         <font color="gray"> <u><b>Obs:</u> Se o nome do professor/responsável NÃO constar na lista, favor entrar em contato com a Informática/SEDUC
 
                                          </font> </b>
                                        </td>
@@ -103,7 +103,7 @@
                            <tr bgcolor="#F5F5F5">
                              <td width ="1%"> <b>Classe:</b></td>
                              <td><%=h @atribuicao.classe.classe_classe%></td>
-                             <td><b>Responsável:</b></td>
+                             <td><b>Professor/Responsável:</b></td>
                              <td colspan="2"><%=h @atribuicao.professor.nome%></td>
                           </tr>
                           <tr bgcolor="#F5F5F5">

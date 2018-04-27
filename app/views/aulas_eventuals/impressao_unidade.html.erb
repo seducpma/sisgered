@@ -37,7 +37,7 @@
                     <ul>
                       <% for data in articles %>
                             <b><font color ="blue"><font size="1"> <%= link_to h(truncate(data.eventual.professor.nome, :length => 18,:omission => "...")), data%></font></b><br/>
-                            <font size="1">(Responsável <%= categoria %>)
+                            <font size="1">(Professor/Responsável <%= categoria %>)
                             Classe: <%= data.classe.classe_classe%>
                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') )%>
                                 &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy", :id =>data}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>

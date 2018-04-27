@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 
       <tr bgcolor="#F5F5F5">
-         <td width =" 5%"><b>Responsável:</b></td>
+         <td width =" 5%"><b>Professor/Responsável:</b></td>
          <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
             <%= observe_field 'relatorio_professor_id',
                :update => "dados_aluno_classe",
@@ -38,7 +38,7 @@ $(document).ready(function() {
                :with   => 'relatorio_professor_id' %>
       </tr>
       <tr bgcolor="#F5F5F5">
-        <td colspan="4"><div id="dados_aluno_classe"><font color=" red">  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp<b>Após selecionar o responsável aguarde o sistema retornar os alunos</b></font></div></td>
+        <td colspan="4"><div id="dados_aluno_classe"><font color=" red">  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp<b>Após selecionar o professor/responsável aguarde o sistema retornar os alunos</b></font></div></td>
       </tr >
        <tr bgcolor="#F5F5F5">
          <td colspan="4"><div id="dados_aluno"></font></div></td>

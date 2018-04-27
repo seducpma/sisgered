@@ -30,7 +30,7 @@
                     </td>
                   </tr>
                 <tr bgcolor="#F5F5F5">
-                   <td width =" 5%"><b>Responsável:</b></td>
+                   <td width =" 5%"><b>Professor/Responsável:</b></td>
                    <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
                       <%= observe_field 'relatorio_professor_id',
                          :update => "dados_aluno_classe",

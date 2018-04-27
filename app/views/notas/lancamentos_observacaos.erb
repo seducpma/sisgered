@@ -9,7 +9,7 @@
       <fieldset>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Responsável:</b></font>
+            <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Professor/Responsável:</b></font>
                &nbsp&nbsp&nbsp<%= collection_select :professor, :id, @professors1, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
         </tr>
           <tr>
@@ -42,7 +42,7 @@
                      <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
                  </tr>
                  <tr bgcolor="#F5F5F5">
-                     <td valign="top"> <b> Responsável(s):</b> </td>
+                     <td valign="top"> <b> Professor/Responsável(s):</b> </td>
                           <% cont=1 %>
                           <% cont1=1 %>
                       <td colspan="4">  <% for atrib in @atribuicao_classe %>

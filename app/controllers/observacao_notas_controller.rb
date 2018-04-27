@@ -46,13 +46,13 @@ class ObservacaoNotasController < ApplicationController
     @observacao_nota = ObservacaoNota.new(params[:observacao_nota])
     @observacao_nota.ano_letivo =  Time.now.year
     if  current_user.has_role?('professor_fundamental')
-        @observacao_nota.quem = 'RESPONSÁVEL'
+        @observacao_nota.quem = 'PROFESSOR/RESPONSÁVEL'
 
     end
 
     respond_to do |format|
       if @observacao_nota.save
-        flash[:notice] = 'ObservacaoNota was successfully created.'
+        flash[:notice] = 'OBSERVAÇÃO SAVA COM SUCESSO.'
         format.html { redirect_to(@observacao_nota) }
         format.xml  { render :xml => @observacao_nota, :status => :created, :location => @observacao_nota }
       else
@@ -69,7 +69,7 @@ class ObservacaoNotasController < ApplicationController
 
     respond_to do |format|
       if @observacao_nota.update_attributes(params[:observacao_nota])
-        flash[:notice] = 'ObservacaoNota was successfully updated.'
+        flash[:notice] = 'OBSERVAÇÃO SALVA COM SUCESSO'
         format.html { redirect_to(@observacao_nota) }
         format.xml  { head :ok }
       else

@@ -3,7 +3,7 @@
 
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>RELATÓRIO FALTAS/MÊS - RESPONSÁVEL</strong></font><br/>
+     <font size="3"><strong>RELATÓRIO FALTAS/MÊS - PROFESSOR/RESPONSÁVEL</strong></font><br/>
  </div>
     <div class="tabs">
     <% form_remote_tag :url => relatorios_faltas_professor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
@@ -12,7 +12,7 @@
           <tr>
             <td align= "right"><font size="2"> <b class="label_busca3">Mês:</b></font>&nbsp
               <%= select_tag :mes, options_for_select(AulasFalta::MES).sort, :include_blank => ' -- Selecionar -- ' %> &nbsp&nbsp&nbsp&nbsp
-              <b>Responsável:</b></font>&nbsp
+              <b>Professor/Responsável:</b></font>&nbsp
                <%= collection_select :aulas_falta,:professor_id, @professores_faltas, :id, :nome, :include_blank => ' -- Selecionar -- ' %>
                
           </td>
