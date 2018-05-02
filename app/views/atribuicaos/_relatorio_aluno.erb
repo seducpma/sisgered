@@ -348,7 +348,11 @@
                     <%end%>
                     <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
                     <%if nota.aulas1.present? %>
-                        <td align="center"><%   %></td>
+                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                            <td align="center"><%=nota.nota1%></td>
+                        <%else%>
+                            <td align="center"><%   %></td>
+                        <%end%>
                         <td align="center"> <%if nota.aulas1 == 0 %>
                                 ---
                             <%else%>
@@ -376,7 +380,11 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas2.present? %>
-                        <td align="center"><%   %></td>
+                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                            <td align="center"><%=nota.nota2%></td>
+                        <%else%>
+                            <td align="center"><%   %></td>
+                        <%end%>
                         <td align="center"> <%if nota.aulas2 == 0 %>
                                 ---
                             <%else%>
@@ -404,7 +412,11 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas3.present? %>
-                        <td align="center"><%   %></td>
+                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                            <td align="center"><%=nota.nota3%></td>
+                        <%else%>
+                            <td align="center"><%   %></td>
+                        <%end%>
                         <td align="center"> <%if nota.aulas3 == 0 %>
                                 ---
                             <%else%>
@@ -432,7 +444,11 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas4.present? %>
-                        <td align="center"><%   %></td>
+                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                            <td align="center"><%=nota.nota4%></td>
+                        <%else%>
+                            <td align="center"><%   %></td>
+                        <%end%>
                         <td align="center"> <%if nota.aulas4 == 0 %>
                                 ---
                             <%else%>
@@ -460,7 +476,11 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas5.present?%>
-                        <td align="center"><%   %></td>
+                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                            <td align="center"><%=nota.nota5%></td>
+                        <%else%>
+                            <td align="center"><%   %></td>
+                        <%end%>
                         <td align="center"><% if nota.aulas5 == 0 %>
                                 ---
                             <%else%>

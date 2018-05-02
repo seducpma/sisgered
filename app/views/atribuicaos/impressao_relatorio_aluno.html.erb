@@ -332,7 +332,11 @@
             <%end%>
       <th style="font-size: 8px"align="left"><%= nota.atribuicao.disciplina.disciplina %></th>
       <%if nota.aulas1.present? %>
-           <th style="font-size: 8px"align="center"></th>
+           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+               <th style="font-size: 8px"align="center"><%=nota.nota1%></th>
+           <%else%>
+               <th style="font-size: 8px"align="center"></th>
+           <%end%>
            <th style="font-size: 8px"align="center"><%if nota.aulas1 == 0 %>
                                     ---
                                  <%else%>
@@ -360,7 +364,11 @@
            <th style="font-size: 8px"align="center">---</th>
       <%end%>
       <%if nota.aulas2.present? %>
-           <th style="font-size: 8px"align="center"></th>
+           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+               <th style="font-size: 8px"align="center"><%=nota.nota2%></th>
+           <%else%>
+               <th style="font-size: 8px"align="center"></th>
+           <%end%>
            <th style="font-size: 8px"align="center"><%if nota.aulas2 == 0 %>
                                     ---
                                  <%else%>
@@ -388,7 +396,11 @@
            <th style="font-size: 8px"align="center">---</th>
       <%end%>
       <%if nota.aulas3.present? %>
-           <th style="font-size: 8px"align="center"></th>
+           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+               <th style="font-size: 8px"align="center"><%=nota.nota3%></th>
+           <%else%>
+               <th style="font-size: 8px"align="center"></th>
+           <%end%>
            <th style="font-size: 8px"align="center"> <%if nota.aulas3 == 0 %>
                                     ---
                                  <%else%>
@@ -416,7 +428,11 @@
            <th style="font-size: 8px"align="center">---</th>
       <%end%>
       <%if nota.aulas4.present? %>
-           <th style="font-size: 8px"align="center"></th>
+           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+               <th style="font-size: 8px"align="center"><%=nota.nota4%></th>
+           <%else%>
+               <th style="font-size: 8px"align="center"></th>
+           <%end%>
            <th style="font-size: 8px"align="center"> <%if nota.aulas4 == 0 %>
                                     ---
                                  <%else%>
@@ -444,7 +460,11 @@
            <th style="font-size: 8px"align="center">---</th>
       <%end%>
       <%if nota.aulas5.present? != 0%>
-           <th style="font-size: 8px"align="center"></th>
+           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+               <th style="font-size: 8px"align="center"><%=nota.nota5%></th>
+           <%else%>
+               <th style="font-size: 8px"align="center"></th>
+           <%end%>
            <th style="font-size: 8px"align="center"><% if nota.aulas5 == 0 %>
                                     ---
                                  <%else%>
@@ -538,12 +558,5 @@
               </tr>
             <%end%>
    <%end%>
-
-
-
-
-
- </table>
-
+</table>
 <%end%>
-

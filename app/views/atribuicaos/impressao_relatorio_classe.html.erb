@@ -333,7 +333,11 @@
                         <%end%>
                         <th style="font-size: 8px"align="left"><%= nota.atribuicao.disciplina.disciplina %></th>
                         <%if nota.aulas1.present? %>
-                            <th style="font-size: 8px"align="center"></th>
+                            <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                                <th style="font-size: 8px"align="center"><%=nota.nota1%></th>
+                            <%else%>
+                                <th style="font-size: 8px"align="center"></th>
+                            <%end%>
                             <th style="font-size: 8px"align="center"><%if nota.aulas1 == 0 %>
                                     ---
                                 <%else%>
@@ -361,7 +365,11 @@
                             <th style="font-size: 8px"align="center">---</th>
                         <%end%>
                         <%if nota.aulas2.present? %>
-                            <th style="font-size: 8px"align="center"></th>
+                            <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                                <th style="font-size: 8px"align="center"><%=nota.nota2%></th>
+                            <%else%>
+                                <th style="font-size: 8px"align="center"></th>
+                            <%end%>
                             <th style="font-size: 8px"align="center"><%if nota.aulas2 == 0 %>
                                     ---
                                 <%else%>
@@ -389,7 +397,11 @@
                             <th style="font-size: 8px"align="center">---</th>
                         <%end%>
                         <%if nota.aulas3.present? %>
-                            <th style="font-size: 8px"align="center"></th>
+                            <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                                <th style="font-size: 8px"align="center"><%=nota.nota3%></th>
+                            <%else%>
+                                <th style="font-size: 8px"align="center"></th>
+                            <%end%>
                             <th style="font-size: 8px"align="center"> <%if nota.aulas3 == 0 %>
                                     ---
                                 <%else%>
@@ -417,7 +429,11 @@
                             <th style="font-size: 8px"align="center">---</th>
                         <%end%>
                         <%if nota.aulas4.present? %>
-                            <th style="font-size: 8px"align="center"></th>
+                            <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                                <th style="font-size: 8px"align="center"><%=nota.nota4%></th>
+                            <%else%>
+                                <th style="font-size: 8px"align="center"></th>
+                            <%end%>
                             <th style="font-size: 8px"align="center"> <%if nota.aulas4 == 0 %>
                                     ---
                                 <%else%>
@@ -445,7 +461,11 @@
                             <th style="font-size: 8px"align="center">---</th>
                         <%end%>
                         <%if nota.aulas5.present? != 0%>
-                            <th style="font-size: 8px"align="center"></th>
+                            <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                                <th style="font-size: 8px"align="center"><%=nota.nota5%></th>
+                            <%else%>
+                                <th style="font-size: 8px"align="center"></th>
+                            <%end%>
                             <th style="font-size: 8px"align="center">
                                 <% if nota.aulas5 == 0 or nota.nota5 == '' %>
                                     ---
@@ -490,29 +510,30 @@
                     </th>
                 </tr>
 
-                <tr>
-                    <th style="font-size: 7px"colspan="23" align="left"><b>Observações:</b></th>
-                </tr>
-                <!--            <%@notas.each do |nota|%>
-                    <%if nota.aluno_id == session[:aluno]%>
-                        <% if nota.observacao_notas.present? %>
-                                                                                        <tr>
-                                                                                            <th style="font-size: 8px" align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</th>
-                                                                                            <th style="font-size: 8px" align="left" colspan="15"><% c=0 %>
+                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
+                    <tr>
+                        <th style="font-size: 7px"colspan="23" align="left"><b>Observações:</b></th>
+                    </tr>
+                    <%@notas.each do |nota|%>
+                        <%if nota.aluno_id == session[:aluno]%>
+                            <% if nota.observacao_notas.present? %>
+                                                                                            <tr>
+                                                                                                <th style="font-size: 8px" align="right" valign="top"><%= nota.disciplina.disciplina %>&nbsp&nbsp</th>
+                                                                                                <th style="font-size: 8px" align="left" colspan="15"><% c=0 %>
 
-                            <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=? and ano_letivo=?",nota, session[:ano_nota]])%>
-                            <% @obs.each do |obs|%>
-                                                                                                                    <b><%= c=c+1%>.</b><%=obs.observacao %>  -
-                                                                                                                    <b>Data: </b> <%  if !obs.data.nil?  %>
-                                    <%=  obs.data.strftime("%d/%m/%Y")%><br/>
+                                <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=? and ano_letivo=?",nota, session[:ano_nota]])%>
+                                <% @obs.each do |obs|%>
+                                                                                                                        <b><%= c=c+1%>.</b><%=obs.observacao %>  -
+                                                                                                                        <b>Data: </b> <%  if !obs.data.nil?  %>
+                                        <%=  obs.data.strftime("%d/%m/%Y")%><br/>
+                                    <%end%>
                                 <%end%>
+                                                                                                </th>
+                                                                                            </tr>
                             <%end%>
-                                                                                            </th>
-                                                                                        </tr>
                         <%end%>
                     <%end%>
                 <%end%>
-                -->
                 <%  @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno_id], session[:ano_nota],nil ] )%>
 
                 <%@observacao2.each do |observacao| %>
