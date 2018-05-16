@@ -780,7 +780,7 @@ class AtribuicaosController < ApplicationController
 
     def impressao_transferencia_aluno
         #@aluno = Matricula.find(:all, :conditions => ['aluno_id =? and unidade_id =?', session[:aluno_id],current_user.unidade_id])
-        @aluno = Matrclasses_anoicula.find(:all, :conditions => ['aluno_id =? and unidade_id =? and ano_letivo=?', session[:aluno_id],current_user.unidade_id, Time.now.year])
+        @aluno = Matricula.find(:all, :conditions => ['aluno_id =? and unidade_id =? and ano_letivo=?', session[:aluno_id],current_user.unidade_id, Time.now.year])
         #@matricula= Matricula.find(:all, :conditions =>["aluno_id=? AND ano_letivo=? AND unidade_id=?",session[:aluno_id], Time.now.year,  current_user.unidade_id])
         for matricula in @aluno
             session[:classe]= matricula.classe.classe_classe
