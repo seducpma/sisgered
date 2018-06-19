@@ -4,7 +4,6 @@
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
 <font color ="red"  size="4"align="left"><b> Quando a resposta for diferente de NÃO, favor especificar </b></font>
- 
   <fieldset><legend><font size=4>Dados alunos</font></legend>
     <table width="100%">
        <tr bgcolor="#F5F5F5">
@@ -22,27 +21,23 @@
           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <b>Sexo:</b>&nbsp&nbsp
           <%= f.select :aluno_sexo,(SEXO).sort, :include_blank => '-- Selecionar --' %><br/>
-              <b>Foto: </b> <%= f.file_field :photo%>
-        
+             <b>Foto: </b> <%= f.file_field :photo%>
          </td>
        </tr>
        <tr>
          <td></td>
          <td><b><font color ="red" size="4"><div id='nome_aviso' ></div></b></font></td>
-         
-
        </tr>
        <tr bgcolor="#F5F5F5">
          <td><b><%= f.label :aluno_nascimento, 'Nascimento' %></b></td>
          <td colspan="3">    <%= f.date_select(:aluno_nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
            <b>Nº Certidão:</b>&nbsp&nbsp
-            <%= f.text_field :aluno_certidao_nascimento, :size=>'20'%>&nbsp&nbsp&nbsp
+            <%= f.text_field :aluno_certidao_nascimento, :size=>'20'%>&nbsp&nbsp
             <b>Livro:</b>&nbsp&nbsp
-            <%= f.text_field :aluno_livro, :size=>'4'%>&nbsp&nbsp&nbsp
+            <%= f.text_field :aluno_livro, :size=>'4'%>&nbsp&nbsp
             <b>Folha:</b>&nbsp&nbsp
-            <%= f.text_field :aluno_folha, :size=>'4'%>&nbsp&nbsp&nbsp
-
+            <%= f.text_field :aluno_folha, :size=>'4'%>
          </td>
        </tr>
        <tr  bgcolor="#F5F5F5">
@@ -61,27 +56,25 @@
        <tr bgcolor="#F5F5F5">
          <td></td>
          <td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
            <b>Classificação:</b>&nbsp&nbsp<%= f.text_field :aluno_classificacao, :size=>'12'%>
             &nbsp&nbsp<b>Validade:</b>&nbsp&nbsp
             <%= f.date_select(:aluno_validade_estrangeiro, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year + 25)) %></td>
-         
        </tr>
        <tr bgcolor="#F5F5F5">
            <td colspan="4">
              (Se for o caso, senão não preencher)
              &nbsp&nbsp <b> Nome conjuge: </b>
-             &nbsp&nbsp  <%= f.text_field :aluno_conjuge, :size=>'70'%>
+             &nbsp&nbsp  <%= f.text_field :aluno_conjuge, :size=>'61'%>
            </td>
        </tr>
-       
        <tr bgcolor="#F5F5F5">
           <td><b>RG:</b></td>
           <td colspan="3"><%= f.text_field :aluno_RG, :size=>'12'%>
             &nbsp&nbsp
              <b>Expedição:</b>&nbsp&nbsp
-             <%= f.text_field :aluno_emissaoRG, :size=>'12' %> 
-              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>CPF:</b>
+             <%= f.text_field :aluno_emissaoRG, :size=>'12' %>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>CPF:</b>
              <%= f.text_field :aluno_CPF, :size=>'12'%>
               &nbsp&nbsp
               <b>Expedição:</b>&nbsp&nbsp
@@ -164,7 +157,7 @@
                           <td><b></font>Endereço: </b></td>
                           <td><%= f.text_field :aluno_endereco_responsavel, :size=>"40"%></td>
                           <td><b></font>Cidade: </b></td>
-                          <td colspan="3"><%= f.text_field :aluno_cidade_responsavel, :size=>"30"%></td>
+                          <td colspan="3"><%= f.text_field :aluno_cidade_responsavel, :size=>"20"%></td>
                        </tr>
                        <tr bgcolor="#F5F5F5">
                           <td></td>
@@ -172,7 +165,7 @@
                            <td colspan="3"><%= f.text_field :aluno_fone_responsavel, :size=>"15"%>
                                       &nbsp&nbsp&nbsp&nbsp
                                       <b>E_mail: </b>&nbsp&nbsp
-                                      <%= f.text_field :aluno_email_responsavel, :size=>"22 "%></td>
+                                      <%= f.text_field :aluno_email_responsavel, :size=>"18 "%></td>
                                                         <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b></font>Parentesco: </b></td>
                           <td><%=  f.select :aluno_parente,(PARENTE).sort, :include_blank => '-- Selecionar --' %></td>
                        </tr>
@@ -181,11 +174,8 @@
                 </tr>
               </table>
           </div>
-
         </td>
       </tr>
-  
-
         <tr bgcolor="#F5F5F5">
           <td colspan="44"><b>Há restrições no caso de guarda da criança? </b>
          &nbsp&nbsp&nbsp<%= f.text_field :aluno_restricao, :value => "NÃO", :size=>"66"%></td>
@@ -231,8 +221,9 @@
          <td ><b> Observação:</b>
          <td colspan="3"><%= f.text_field :aluno_obs, :size => "89"%></td>
        </tr>
-     </table>
+    </table>
   </fieldset>
+
  <fieldset><legend><font size=4>Professor/Responsável pelo Aluno</font></legend>
    <table width="100%" >
        <tr bgcolor="#F5F5F5">
