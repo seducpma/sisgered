@@ -20,9 +20,18 @@ class SocioeconomicosController < ApplicationController
     end
   end
 
-  def new
+  def new_continua
     @socioeconomico = Socioeconomico.new
 
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @socioeconomico }
+    end
+  end
+
+  def new
+    @socioeconomico = Socioeconomico.new
+    session[:continua_economico]=0
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @socioeconomico }
@@ -95,7 +104,7 @@ end
 
 
   def load_alunos
-    @pessoas_aluno =  Aluno.find(:all, :conditions=> ['unidade_id=?', current_user.unidade_id],:order => "aluno_nome")
+    @pessoas_aluno =  Aluno.find(:all, :select => "alunos.id, alunos.aluno_nome", :conditions=> ['alunos.unidade_id=? AND (alunos.id NOT IN (SELECT socioeconomicos.aluno_id FROM socioeconomicos))', current_user.unidade_id],:order => "alunos.aluno_nome")
   end
 
 

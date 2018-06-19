@@ -48,7 +48,8 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
 
 
 
-
+  map.new_continua  '/new_continua', :controller => 'saudes', :action => 'new_continua'
+  map.new_continua_econ  '/new_continua_econ', :controller => 'socioeconomicos', :action => 'new_continua'
   map.aulas_eventuals2 '/aulas_eventuals2', :controller => 'aulas_eventuals', :action => 'index2'
   map.aulas_faltas2 '/aulas_faltas2', :controller => 'aulas_faltas', :action => 'index2'
   map.aulas_faltas3 '/aulas_faltas3', :controller => 'aulas_faltas', :action => 'index3'

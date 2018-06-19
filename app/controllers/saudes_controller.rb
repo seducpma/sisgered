@@ -19,9 +19,18 @@ class SaudesController < ApplicationController
     end
   end
 
-  def new
+  def new_continua
     @saude = Saude.new
 
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @saude }
+    end
+  end
+
+  def new
+    @saude = Saude.new
+    session[:continua_saude]=0
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @saude }
@@ -35,7 +44,9 @@ class SaudesController < ApplicationController
 
   def create
     @saude = Saude.new(params[:saude])
-    @saude.aluno_id = session[:alunoid_cadastro]
+    if session[:continua_saude]==1
+       @saude.aluno_id = session[:alunoid_cadastro]
+    end
     
     respond_to do |format|
       if @saude.save
@@ -92,8 +103,7 @@ end
   protected
 
   def load_alunos
-    @pessoas_aluno =  Aluno.find(:all, :conditions=> ['unidade_id=?', current_user.unidade_id],:order => "aluno_nome")
-
+    @pessoas_aluno =  Aluno.find(:all, :select => "alunos.id, alunos.aluno_nome", :conditions=> ['alunos.unidade_id=? AND (alunos.id NOT IN (SELECT saudes.aluno_id FROM saudes))', current_user.unidade_id],:order => "alunos.aluno_nome")
   end
 
 end
