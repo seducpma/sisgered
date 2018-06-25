@@ -123,12 +123,12 @@
                                                     <td align="center"><%= nota.faltas1%></td>
                                                 <%end%>
                                                 <%if !nota.nota2.present? or nota.nota2=='SN'%>
-                                                    <td align="center"><!--<%#= f.select :nota2 , options_for_select(@NOTASB2) %>--></td>
+                                                    <td align="center"><%= f.select :nota2 , options_for_select(@NOTASB2) %></td>
                                                 <%else%>
-                                                    <td align="center"><%#= nota.nota2%> </td>
+                                                    <td align="center"><%= nota.nota2%> </td>
                                                 <%end%>
                                                 <%if !nota.faltas2.present? or nota.faltas2==0%>
-                                                    <td align="center"><!--<%#= f.text_field :faltas2 , :size => '1'%>--></td>
+                                                    <td align="center"><%= f.text_field :faltas2 , :size => '1'%></td>
                                                 <%else%>
                                                     <td align="center"><%= nota.faltas2%></td>
                                                 <%end%>
