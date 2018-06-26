@@ -44,7 +44,11 @@ class SocioeconomicosController < ApplicationController
 
   def create
     @socioeconomico = Socioeconomico.new(params[:socioeconomico])
-    @socioeconomico.aluno_id = session[:alunoid_cadastro]
+    if session[:continua_economico]==1
+       @socioeconomico.aluno_id = session[:alunoid_cadastro]
+    end
+
+    
     respond_to do |format|
       if @socioeconomico.save
         flash[:notice] = 'SALVO COM SUCESSO!'
