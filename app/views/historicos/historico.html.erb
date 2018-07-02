@@ -61,7 +61,7 @@
                             <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
                                 <tr>
                                     <td ><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
-                                        <%session[:cont_nome] = 1 %> <%session[:aluno_id] = aluno.id%>
+                                        <%session[:cont_nome] = 1 %> <%session[:aluno_id] = aluno.id%> <%session[:aluno_nome] = aluno.aluno_nome%>
                                     </td>
                                     <td><b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %></td>
                                     <td colspan="2"><b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>

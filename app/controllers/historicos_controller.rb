@@ -297,8 +297,8 @@ class HistoricosController < ApplicationController
             @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
             session[:ano]= @ano_inicial.ano_letivo
             session[:classe]= @ano_inicial.classe
-            @notas_ano = Nota.find(:last, :joins => "left JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id left JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? and notas.atribuicao_id is not null and  notas.matricula_id is not null",  session[:aluno_id], session[:unidade_id_port]])
-
+            w=@notas_ano = Nota.find(:last, :joins => "left JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id left JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? and notas.atribuicao_id is not null and  notas.matricula_id is not null",  session[:aluno_id], session[:unidade_id_port]])
+t=0
             render :layout => "impressao"
     end
 =begin Comentado para colar o conteúdo inteiro da "def historico" para cá e ver se funciona normalmente

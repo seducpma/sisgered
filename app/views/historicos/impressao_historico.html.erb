@@ -336,10 +336,28 @@
                     <% var = 0 %>
                     <% var1 = 0 %>
                     <font size="2"><br/>
-                        O sr(a) diretor(a) da Unidade Educacional <b><%= @notas_ano.matricula.unidade.nome%></b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
-                        certifica que o aluno(a) <b><%= @notas_ano.matricula.aluno.aluno_nome %> </b> concluiu o
+                        O sr(a) diretor(a) da Unidade Educacional <b>
+                          <% if @notas_ano.nil? %>
+                                  <%= current_user.unidade.nome%>
+                          <%else%>
+                              <%= @notas_ano.matricula.unidade.nome%>
+                        <%end%>
 
-                        <b><%= (session[:classe_anos].max) %>º ano</b> do Ensino Fundamental de 9 anos no ano letivo de <b><%=@notas_ano.matricula.ano_letivo%></b>,
+                        </b> de acordo com o art. 24 VII da Lei Federal nº 394/96,
+                        certifica que o aluno(a) <b>
+                          <% if @notas_ano.nil? %>
+                                  <%= session[:aluno_nome] %>
+                          <%else%>
+                                  <%= @notas_ano.matricula.aluno.aluno_nome %> </b>
+                          <%end%>
+                        concluiu o
+
+                        <b><%= (session[:classe_anos].max) %>º ano</b> do Ensino Fundamental de 9 anos no ano letivo de <b>
+                          <% if @notas_ano.nil? %>
+                                 <%=Time.now.year%> </b>,
+                          <%else%>
+                              <%=@notas_ano.matricula.ano_letivo%></b>,
+                          <%end%>
 
                         <% if (session[:classe_anos].max+1)<10 %>
                              estando apto(a) ao proseguimento dos estudos no
