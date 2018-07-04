@@ -21,7 +21,7 @@ class RelatoriosController < ApplicationController
     @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorio.atribuicao_id, Time.now.year] )
     @classe[0].classe_id
     @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
-
+    session[:imprimir_todos]=0
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @relatorio }
@@ -329,7 +329,12 @@ end
             w=@classe[0].classe_id
             t=0
             @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
-            @relatorios = Relatorio.find(:all, :conditions => ["id =?", session[:relatorio_id]])
+            if session[:imprimir_todos] == 0
+                @relatorios = Relatorio.find(:all, :conditions => ["id =?", session[:relatorio_id]])
+            else
+                 @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? ", session[:aluno_imp]])
+            end
+            session[:imprimir_todos]=0
              session[:poraluno]=0
       else
          w=session[:aluno_imp]
