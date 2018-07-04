@@ -30,7 +30,7 @@
                     </td>
                   </tr>
                 <tr bgcolor="#F5F5F5">
-                   <td width =" 5%"><b>Professor/Responsável:</b></td>
+                   <td width =" 5%"><b>Professor:</b></td>
                    <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
                       <%= observe_field 'relatorio_professor_id',
                          :update => "dados_aluno_classe",
@@ -49,7 +49,7 @@
 
                    
 
-  <%= f.text_area(:observacao, :cols=> "80", :rows=>"10", :id=>"contador") %><br/>
+  <%= f.text_area(:observacao, :cols=> "78", :rows=>"10", :id=>"contador") %><br/>
 <script>
         $(document).on("keydown", "#contador", function () {
             var caracteresRestantes = 12000  ;

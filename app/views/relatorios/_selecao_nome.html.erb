@@ -1,6 +1,6 @@
 <table width="100%" align="center">
    <tr>
-     <td  align="right"><font size="2"><b>Nome Aluno:</b></font>
+     <td  align="right"><font size="2"><b>Aluno:</b></font>
           &nbsp&nbsp&nbsp<%= select_tag :aluno_fapea1, options_for_select(@alunosRel.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
 
      </td>
