@@ -319,15 +319,9 @@ end
 
   def impressao_fapea
       if session[:poraluno]==1
-        w1=session[:aluno_imp]
-        t=0
             @relatorio = Relatorio.find(:last, :conditions => ["aluno_id =?", session[:aluno_imp]])
-            w=session[:relatorio_id]=@relatorio.id
-            t=0
+            session[:relatorio_id]=@relatorio.id
             @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorio.atribuicao_id, Time.now.year] )
-            t=0
-            w=@classe[0].classe_id
-            t=0
             @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
             if session[:imprimir_todos] == 0
                 @relatorios = Relatorio.find(:all, :conditions => ["id =?", session[:relatorio_id]])
@@ -337,14 +331,8 @@ end
             session[:imprimir_todos]=0
              session[:poraluno]=0
       else
-         w=session[:aluno_imp]
-         w1= session[:ano_imp]
-         t=0
          @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]])
-         w3=@relatorios[0].atribuicao_id
-         t=0
          @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, session[:ano_imp]] )
-         t=0
          @classe[0].classe_id
          @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
 

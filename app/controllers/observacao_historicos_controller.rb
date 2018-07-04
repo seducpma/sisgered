@@ -28,10 +28,8 @@ class ObservacaoHistoricosController < ApplicationController
     for i in 0..14
         @ano_letivo[i]=Time.now.year.to_i-(15-i)
     end
-
-
     @observacao_historico = ObservacaoHistorico.new
-
+    @nota=Nota.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @observacao_historico }
@@ -47,12 +45,22 @@ class ObservacaoHistoricosController < ApplicationController
   # POST /observacao_historicos.xml
   def create
     @observacao_historico = ObservacaoHistorico.new(params[:observacao_historico])
+    @nota = Nota.new(params[:nota])
+t=0
     if session[:lanca_c_horaria] == 1
        @observacao_historico.aluno_id = session[:aluno_id]
        session[:lanca_c_horaria]=0
     end
     respond_to do |format|
       if @observacao_historico.save
+            @nota.aluno_id = @observacao_historico.aluno_id
+            @nota.ano_letivo = @observacao_historico.ano_letivo
+            @nota.disciplina_id=1
+            @nota.nota5=0.0
+            @nota.classe= @observacao_historico.classe
+            @nota.save
+
+    t=0
         flash[:notice] = 'ObservacaoHistorico was successfully created.'
         format.html { redirect_to(@observacao_historico) }
         format.xml  { render :xml => @observacao_historico, :status => :created, :location => @observacao_historico }

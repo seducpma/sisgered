@@ -1,4 +1,4 @@
-</div><div id="interno1">
+<div id="interno1">
 <% title "NOTAS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -8,7 +8,7 @@
           <% form_for (@observacao_historico) do |f| %>
            <%= f.error_messages %>
             <fieldset><legend><font size=4> Informações </font></legend>
-              
+
               <table width="100%">
                   <%if session[:cont_nome] = 1 %>
                          <tr bgcolor="#F5F5F5">
@@ -21,6 +21,54 @@
                            <td><%= f.collection_select :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
                         </tr>
                  <%end%>
+                 <tr bgcolor="#F5F5F5">
+                   <td colspan="2"><b>Série / Ano Letivo / Carga Horária TOtal já lançados:</b>
+                     <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+                           <tr >
+                           <td width ="5%" align="center"><b>Série:</b></td>
+                            <td width ="5%" align="center"><b>1º</b></td>
+                            <td width ="5%" align="center"><b>2º</b></td>
+                            <td width ="5%" align="center"><b>3º</b></td>
+                            <td width ="5%" align="center"><b>4º</b></td>
+                            <td width ="5%" align="center"><b>5º</b></td>
+                            <td width ="5%" align="center"><b>6º</b></td>
+                            <td width ="5%" align="center"><b>7º</b></td>
+                            <td width ="5%" align="center"><b>8º</b></td>
+                            <td width ="5%" align="center"><b>9º</b></td>
+                        </tr>
+                        <tr>
+                          <td width ="5%" align="center"><b>Ano:</b></td>
+                          <%for i in 0..8 %>
+                              <td width ="5%" align="center" ><b><%=session[:ano_letivo][i]%> </b> </td>
+                          <%end%>
+                       </tr>
+                        <tr>
+                          <td width ="5%" align="center"><b>C.Hor.Total:</b></td>
+                          <%for i in 0..8 %>
+                               <%cargah_t=0%>
+                               <%if !session[:cargah_b][i].nil?%>
+                                     <%cargah_t=session[:cargah_b][i]%>
+                               <%end%>
+                               <%if !session[:cargah_d][i].nil?%>
+                                   <%cargah_t=session[:cargah_d][i]+cargah_t%>
+                               <%end%>
+                              <td width ="5%" align="center" ><% if   cargah_t != 0  %>
+                                                                  <%= cargah_t %>
+                                                              <%end%>
+                              </td>
+                          <%end%>
+                        </tr>
+                     </table>
+
+
+                   </td>
+                </tr>
+                <tr>
+
+                  <td colspan="8">
+                    <font color ="red" size =" 3"><b><u>ATENÇÃO:</u>1) Cuidado para não lançar série e ano letivo já existente </font></b>
+                  </td>
+                </tr>
                  <tr bgcolor="#F5F5F5">
                    <td colspan="2"><b>Ano Letivo:</b>
                        <%= f.select :ano_letivo , options_for_select(@ano_letivo.insert(0, '---')) %>
