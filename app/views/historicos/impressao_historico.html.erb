@@ -259,11 +259,13 @@
             <tr style="line-height: 2px; border-color: black" bgcolor =" #DCDCDC">
                 <th style="font-size: 8px; border-color: black " align="left"><b> Carga Horária Total</b></th>
                 <%for i in 0..8%>
-                    <%if (session[:cargah_b][i]+session[:cargah_d][i])==0%>
-                        <th style="font-size: 8px; border-color: black "align="center">---</th>
-                    <%else%>
-                        <th style="font-size: 8px; border-color: black "align="center"><%=(session[:cargah_b][i]+session[:cargah_d][i]) %></th>
-                    <%end%>
+                    <%if ((!session[:cargah_b][i].nil?)and (!session[:cargah_d][i].nil?))   %>
+                        <%if ((session[:cargah_b][i]+session[:cargah_d][i])==0)   %>
+                            <th style="font-size: 8px; border-color: black "align="center">---</th>
+                        <%else%>
+                            <th style="font-size: 8px; border-color: black "align="center"><%=(session[:cargah_b][i]+session[:cargah_d][i]) %></th>
+                        <%end%>
+                      <%end%>
                 <%end%>
             </tr>
         </table>
