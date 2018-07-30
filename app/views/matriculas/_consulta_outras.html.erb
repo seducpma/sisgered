@@ -4,7 +4,7 @@
     <br/>
     <table width="100%" align="center" bgcolor="#F5F5F5" >
 
-                <%  @alunos1 = Aluno.find(:all, :select => "id, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn", :conditions  => ["aluno_status is not null  AND  aluno_status != 'EGRESSO'"],:order => 'aluno_nome ASC') %>
+                <%  @alunos1 = Aluno.find(:all, :select => "id, CONCAT(aluno_nome, '-',date_format(aluno_nascimento, '%d/%m/%y')) AS aluno_nome_dtn", :conditions  => ["aluno_status is not null  AND  aluno_status != 'EGRESSO'"],:order => 'aluno_nome ASC') %>
                 <%@classes_transf = Classe.find(:all, :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')%>
         <tr> <td ></td> </tr>
         <tr>

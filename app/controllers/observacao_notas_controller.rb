@@ -42,7 +42,7 @@ class ObservacaoNotasController < ApplicationController
 
   # POST /observacao_notas
   # POST /observacao_notas.xml
-  def createz
+  def create
     @observacao_nota = ObservacaoNota.new(params[:observacao_nota])
     @observacao_nota.ano_letivo =  Time.now.year
     if  current_user.has_role?('professor_fundamental')
