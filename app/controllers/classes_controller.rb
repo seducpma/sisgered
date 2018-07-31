@@ -206,6 +206,23 @@ def editar_classe_aluno
        end
 end
 
+def renumera
+       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+       @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0], :order =>'disciplinas.ordem ASC ' )
+       #@matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',  session[:classe_id]], :order => ' alunos.aluno_nome ASC')
+       @matriculas = Matricula.find(:all,:joins => 'INNER JOIN alunos ON matriculas.aluno_id= alunos.id' ,:conditions =>['classe_id = ?',  session[:classe_id]],:readonly => false, :order => 'alunos.aluno_nome ASC' )
+       
+       session[:num]=1
+       for matricula in @matriculas
+           matricula.classe_num= session[:num]
+           matricula.save
+           session[:num]=session[:num]+1
+       end
+       render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_classe_editar'
+       end
+end
+
 def gerar_notas
        session[:classe_id]
        @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])

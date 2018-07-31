@@ -110,6 +110,8 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.resultado_final '/resultado_final', :controller => 'historicos', :action => 'resultado_final'
   map.final_resultado '/final_resultado', :controller => 'historicos', :action => 'final_resultado'
   map.impressao_unidade '/impressao_unidade', :controller => 'aulas_eventuals', :action => 'impressao_unidade'
+  map.renumera '/renumera', :controller => 'classes', :action => 'renumera'
+
 
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
   map.alteracao_matricula '/alteracao_matricula', :controller => 'matriculas', :action => 'alteracao_matricula'

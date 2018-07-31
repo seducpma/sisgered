@@ -86,3 +86,15 @@
     <%end%>
 <%  session[:alterar_direcionamento_editar]= 1%>
 </table>
+
+
+
+   <% form_remote_tag :url => renumera_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <table width="100%" align="left" >
+          <tr>
+              <td align="right"><%= submit_tag "REORDENAR", :class => "btn_filtrar" %></td>
+        </tr>
+       </table>
+          <% end %>
+
+
