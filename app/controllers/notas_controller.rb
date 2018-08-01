@@ -484,9 +484,9 @@ class NotasController < ApplicationController
             end
             #@classes = Classe.find.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM dis-ciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)..uniq
             #@disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id =1326 AND atribuicaos.ano_letivo = "+Time.now.year.to_s)
-            @disciplinas1 = Disciplina.all(:order => 'ordem ASC' )
-            @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
-            @disciplinas2 = Disciplina.find(:all, :conditions =>'curriculo != "I" ', :order => 'ordem ASC' )
+            @disciplinas1 = Disciplina.find(:all,:conditions => ['nao_disciplina = 0'],:order => 'ordem ASC' )
+            @disciplinas = Disciplina.find(:all,:conditions => ['nao_disciplina = 0'],:order => 'ordem ASC' )
+            #@disciplinas2 = Disciplina.find(:all, :conditions =>'curriculo != "I"  ', :order => 'ordem ASC' )
             if (current_user.unidade_id == 53 or current_user.unidade_id == 52)
                 @professors1 = Professor.find(:all, :conditions => ['desligado = 0 AND diversas_unidades=1'],   :order => 'nome ASC')
             else
@@ -507,13 +507,13 @@ class NotasController < ApplicationController
                 @professors1 = Professor.find(:all, :conditions => [' id = ? AND desligado = 0', current_user.professor_id  ],:order => 'nome ASC')
                 @alunos = Aluno.find(:all, :conditions => ['unidade_id=? AND aluno_status is null', current_user.unidade_id],   :order => 'aluno_nome ASC')
                 @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
-                @disciplinas2 = Disciplina.find(:all, :conditions =>'curriculo != "I" ', :order => 'ordem ASC' )
+                #@disciplinas2 = Disciplina.find(:all, :conditions =>'curriculo != "I" ', :order => 'ordem ASC' )
             else if current_user.has_role?('secretaria_fundamental')
                     @alunos = Aluno.find(:all, :conditions => ['unidade_id=? AND aluno_status is null', current_user.unidade_id],   :order => 'aluno_nome ASC')
                     @disciplinas = Disciplina.find(:all,:order => 'ordem ASC' )
                     @professors1 = Professor.find(:all, :conditions => ['desligado = 0'],   :order => 'nome ASC')
 
-                    @disciplinas2 = Disciplina.find(:all, :conditions =>'curriculo != "I" ', :order => 'ordem ASC' )
+                    #@disciplinas2 = Disciplina.find(:all, :conditions =>'curriculo != "I" ', :order => 'ordem ASC' )
                 end
             end
 

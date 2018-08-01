@@ -894,17 +894,17 @@ class AtribuicaosController < ApplicationController
             if current_user.professor_id.nil?
                 if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
                     # Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
-                    @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+                    @disciplinas1 = Disciplina.find(:all, :conditions => ["(id = 26 or id = 27) AND nao_disciplina = 0"])
                 else
-                    @disciplinas1 = Disciplina.find(:all, :conditions => ["id < 26 or id > 27"])
+                    @disciplinas1 = Disciplina.find(:all, :conditions => ["(id < 26 or id > 27) AND nao_disciplina = 0"] )
                 end
 
             else
                 if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
                     # Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
-                    @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+                    @disciplinas1 = Disciplina.find(:all, :conditions => ["(id = 26 or id = 27)AND nao_disciplina = 0"])
                 else
-                    @disciplinas1 = Disciplina.find(:all, :conditions => ["id != 27 and id !=26"])
+                    @disciplinas1 = Disciplina.find(:all, :conditions => ["(id != 27 and id !=26) AND nao_disciplina = 0"])
                 end
             end
         else
@@ -913,17 +913,17 @@ class AtribuicaosController < ApplicationController
             if current_user.professor_id.nil?
                 if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
                     # Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
-                    @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+                    @disciplinas1 = Disciplina.find(:all, :conditions => ["(id = 26 or id = 27) AND nao_disciplina = 0"])
                 else
-                    @disciplinas1 = Disciplina.find(:all, :conditions => ["id < 26 or id > 27"])
+                    @disciplinas1 = Disciplina.find(:all, :conditions => ["(id < 26 or id > 27) AND nao_disciplina = 0"])
                 end
 
             else
                 if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
                     # Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX
-                    @disciplinas1 = Disciplina.find(:all, :conditions => ["id = 26 or id = 27"])
+                    @disciplinas1 = Disciplina.find(:all, :conditions => ["(id = 26 or id = 27)"])
                 else
-                    @disciplinas1 = Disciplina.find(:all, :conditions => ["id != 27 and id !=26"])
+                    @disciplinas1 = Disciplina.find(:all, :conditions => ["(id != 27 and id !=26)"])
                 end
 
 
