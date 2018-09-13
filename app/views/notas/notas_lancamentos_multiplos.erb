@@ -123,33 +123,33 @@
                                                     <td align="center"><%= nota.faltas1%></td>
                                                 <%end%>
                                                 <%if !nota.nota2.present? or nota.nota2=='SN'%>
-                                                    <td align="center"><%= f.select :nota2 , options_for_select(@NOTASB2) %></td>
+<!-- para liberar pagar comentarios desta linha--> <td align="center"><%= f.select :nota2 , options_for_select(@NOTASB2) %></td>
                                                 <%else%>
                                                     <td align="center"><%= nota.nota2%> </td>
                                                 <%end%>
                                                 <%if !nota.faltas2.present? or nota.faltas2==0%>
-                                                    <td align="center"><%= f.text_field :faltas2 , :size => '1'%></td>
+<!-- para liberar pagar comentarios desta linha--> <td align="center"><%= f.text_field :faltas2 , :size => '1'%></td>
                                                 <%else%>
                                                     <td align="center"><%= nota.faltas2%></td>
                                                 <%end%>
                                                 <%if !nota.nota3.present? or nota.nota3=='SN'%>
-                                                    <td align="center"><!--<%#= f.select :nota3 , options_for_select(@NOTASB3) %>--></td>
+<!-- para liberar pagar comentarios desta linha--> <td align="center"><%= f.select :nota3 , options_for_select(@NOTASB3) %></td>
                                                 <%else%>
                                                     <td align="center"><%= nota.nota3%> </td>
                                                 <%end%>
                                                 <%if !nota.faltas3.present? or nota.faltas3==0%>
-                                                    <td align="center"><!--<%#= f.text_field :faltas3 , :size => '1'%>--></td>
+<!-- para liberar pagar comentarios desta linha--> <td align="center"><%= f.text_field :faltas3 , :size => '1'%></td>
                                                 <%else%>
                                                     <td align="center"><%= nota.faltas3%></td>
                                                 <%end%>
 
                                                 <%if !nota.nota4.present? or nota.nota4=='SN'%>
-                                                    <td align="center"><!--<%#= f.select :nota4 , options_for_select(@NOTASB4) %>--></td>
+<!-- para liberar pagar comentarios desta linha--><td align="center"><!--<%#= f.select :nota4 , options_for_select(@NOTASB4) %>--></td>
                                                 <%else%>
                                                     <td align="center"><%= nota.nota4%> </td>
                                                 <%end%>
                                                 <%if !nota.faltas4.present? or nota.faltas4==0%>
-                                                    <td align="center"><!--<%#= f.text_field :faltas4 , :size => '1'%>--></td>
+<!-- para liberar pagar comentarios desta linha--><td align="center"><!--<%#= f.text_field :faltas4 , :size => '1'%>--></td>
                                                 <%else%>
                                                     <td align="center"><%= nota.faltas4%></td>
                                                 <%end%>

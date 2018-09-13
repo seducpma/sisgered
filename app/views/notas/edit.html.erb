@@ -34,10 +34,10 @@
                                                 <td colspan="6">
                                                     <table width =" 100%">
                                                         <tr bgcolor="#F5F5F5">
-                                                            <td width ="4%"></td>
+                                                            <td width ="2%"></td>
                                                             <td align="center" width ="6%"><b>1º Bimestre</b></td>
                                                             <td align="center" width ="6%"><b>2º Bimestre</b></td>
-                                                            <td align="center" width ="6%"><b>3º Bimestre</b></td>
+                                                            <td align="center" width ="7%"><b>3º Bimestre</b></td>
                                                             <td align="center" width ="6%"><b>4º Bimestre</b></td>
                                                             <td align="center" width ="6%"><b>Final</b></td>
                                                         </tr>
@@ -45,8 +45,8 @@
                                                             <td></td>
                                                             <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
                                                             <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
-                                                            <td width ="3%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
-                                                            <td width ="6%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                                                            <td width ="4%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
+                                                            <td width ="4%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
                                                             <td width ="6%"><b>&nbsp&nbspNota</b>&nbsp&nbsp&nbsp&nbsp<b>Faltas</b></td>
                                                         </tr>
                                                         <tr bgcolor="#F5F5F5">
@@ -127,38 +127,38 @@
                                                             <%end%>
 
 <!-- Inicio Notas e Faltas 3 -->
-                                                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
+                          <!-- SE USUÁRIO NÃO PROFESSOR--><% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
                                                                 <%if @nota.nota3.present? %>
                                                                     <td width ="3%"><%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
-                                                                            <!--<%#=f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3),0) %>-->
-                                                                            <!--<%#=f.text_field :faltas3 , :size => '1'%>-->
+         <!-- para liberar apagar comentario desta linha-->               <%=f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3),0) %>
+         <!-- para liberar apagar comentario desta linha-->               <%=f.text_field :faltas3 , :size => '1'%>
                                                                         <%else%>
-                                                                            &nbsp&nbsp&nbsp<%=@nota.nota3%>&nbsp&nbsp&nbsp&nbsp
-                                                                            <!-- <%#=f.select :nota3, options_for_select(@NOTASB3.insert(0, @nota.nota3),0) %>-->
-                                                                            <%=@nota.faltas3%>
-                                                                            <!--&nbsp <%#=f.text_field :faltas3 , :size => '1'%>-->
+          <!-- para liberar COMENTAR comentario esta linha-->                <!--   &nbsp&nbsp&nbsp<%#=@nota.nota3%>&nbsp&nbsp&nbsp&nbsp -->
+           <!-- para liberar apagar comentario desta linha-->              <%=f.select :nota3, options_for_select(@NOTASB3.insert(0, @nota.nota3),0) %>-
+           <!-- para liberar COMENTAR comentario esta linha-->               <!-- <%#=@nota.faltas3%> -->
+         <!-- para liberar apagar comentario desta linha-->                  &nbsp <%#=f.text_field :faltas3 , :size => '1'%>
                                                                         <%end%>
                                                                     </td>
                                                                 <%else%>
                                                                     <td width ="3%"> <%= f.select :nota3, options_for_select(@NOTASB3.insert(0, '---'),0) %>
-                                                                        <!--<%#= f.text_field :faltas3 , :size => '1'%>-->
-                                                                        <%=@nota.faltas3%>
+         <!-- para liberar apagar comentario desta linha-->           <%= f.text_field :faltas3 , :size => '1'%>
+          <!-- para liberar COMENTAR comentario esta linha-->         <!--<%#=@nota.faltas3%> -->
                                                                     </td>
                                                                 <%end%>
-                                                            <%else%>
+                          <!-- SE USUÁRIO PROFESSOR-->      <%else%>
                                                                 <td width ="3%"> <%if @nota.nota3.present?%>
-                                                                        <!-- <%#= f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3),0) %> -->
-                                                                        &nbsp&nbsp&nbsp<%=@nota.nota3%>&nbsp&nbsp&nbsp
+         <!-- para liberar apagar comentario desta linha-->            <%= f.select :nota3 , options_for_select(@NOTASB3.insert(0, @nota.nota3),0) %>
+           <!-- para liberar COMENTAR comentario esta linha-->       <!--          &nbsp&nbsp&nbsp<%#=@nota.nota3%>&nbsp&nbsp&nbsp -->
                                                                     <%else%>
-                                                                        <%#=f.select :nota3, options_for_select(@NOTASB3.insert(0, '---'),0) %>
-                                                                        &nbsp&nbsp&nbsp <%=@nota.nota3%>&nbsp&nbsp&nbsp
+           <!-- para liberar apagar comentario desta linha-->             <%=f.select :nota3, options_for_select(@NOTASB3.insert(0, '---'),0) %>
+          <!-- para liberar COMENTAR comentario esta linha-->            <!--  &nbsp&nbsp&nbsp <%=@nota.nota3%>&nbsp&nbsp&nbsp -->
                                                                     <%end%>
                                                                     <%if @nota.nota3.present?%>
-                                                                        &nbsp&nbsp&nbsp&nbsp <%= @nota.faltas3%>
-                                                                        <!-- <%#=f.text_field :faltas3 , :size => '2'%> -->
+            <!-- para liberar COMENTAR comentario esta linha-->         <!-- &nbsp&nbsp&nbsp&nbsp <%#= @nota.faltas3%>-->
+             <!-- para liberar apagar comentario desta linha-->            <%=f.text_field :faltas3 , :size => '2'%>
                                                                     <%else%>
-                                                                        <!-- <%#=f.text_field :faltas3 , :size => '2'%> -->
-                                                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas3%>&nbsp&nbsp&nbsp
+             <!-- para liberar apagar comentario desta linha-->          <%=f.text_field :faltas3 , :size => '2'%>
+              <!-- para liberar COMENTAR comentario esta linha-->      <!--  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%#= @nota.faltas3%>&nbsp&nbsp&nbsp -->
                                                                     <%end%>
                                                                 </td>
                                                             <%end%>
