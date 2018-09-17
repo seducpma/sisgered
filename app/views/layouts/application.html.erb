@@ -86,7 +86,7 @@ display: none;
          <td>Acesso de Administrador do Sistema|
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
-                           <font size="1">  <%= uni %></font><font size="1">
+                           <font size="1">  <%= uni %></font>
          </td>
          <td align="right"></font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
         <%else%>
@@ -94,28 +94,32 @@ display: none;
               <td>Acesso SEDUC |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
-                           <font size="1">  <%= uni %></font></td>
+                           <font size="1">  <%= uni %></font>
+              </td>
               <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
            <%else%>
               <% if current_user.has_role?('supervisao') %>
                   <td>Acesso Supervisão |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
-                           <font size="1">  <%= uni %></font></td>
+                           <font size="1">  <%= uni %></font>
+                  </td>
                   <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
               <%else%>
                  <% if current_user.has_role?('direcao_fundamental') %>
                     <td>Acesso Direção UE |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
-                           <font size="1">  <%= uni %></font></td>
+                           <font size="1">  <%= uni %></font>
+                    </td>
                     <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                 <%else%>
                    <% if current_user.has_role?('secretaria_fundamental') %>
                        <td>Acesso Secretaria UE |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
-                           <font size="1">  <%= uni %></font></td>
+                           <font size="1">  <%= uni %></font>
+                       </td>
                       <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                    <%else if current_user.has_role?('professor_fundamental') %>
                        <td>Acesso Responsável |
@@ -129,10 +133,10 @@ display: none;
                                  <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                                  <% uni = @unidade.first.nome  %>
                                  <font size="1">  <%= uni %></font>
-                            </td>
+                             </td>
                              <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                                <%else if current_user.has_role?('secretaria_infantil') %>
-                                     <td>Acesso Secretaria Infantil |
+                                    <td>Acesso Secretaria Infantil |
                                          <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                                          <% uni = @unidade.first.nome  %>
                                          <font size="1">  <%= uni %></font>
