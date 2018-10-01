@@ -153,7 +153,21 @@
                                                 <%else%>
                                                     <td align="center"><%= nota.faltas4%></td>
                                                 <%end%>
-                                                <%nota.faltas5=nota.faltas4.to_i+nota.faltas3.to_i+nota.faltas2.to_i+nota.faltas1.to_i%>
+                                                <%soma=0%>
+                                                <%if !@nota.faltas1.nil?%>
+                                                    <%soma=soma+@nota.faltas1.to_i%>
+                                                <%end%>
+                                                <%if !@nota.faltas2.nil?%>
+                                                    <%soma=soma+@nota.faltas2.to_i%>
+                                                <%end%>
+                                                <%if !@nota.faltas3.nil?%>
+                                                    <%soma=soma+@nota.faltas3.to_i%>
+                                                <%end%>
+                                                <%if !@nota.faltas4.nil?%>
+                                                    <%soma=soma+@nota.faltas4.to_i%>
+                                                <%end%>
+                                                <%@nota.faltas5 = soma%>
+                                                <!--<#%nota.faltas5=nota.faltas4.to_i+nota.faltas3.to_i+nota.faltas2.to_i+nota.faltas1.to_i%>-->
                                                 <%=f.hidden_field :faltas5, {:value => nota.faltas5}%>
                                                 <%if !nota.nota5.present? or nota.nota5=='SN'%>
 <!-- para liberar pagar comentarios desta linha # --> <td align="center"><%= f.select :nota5 , options_for_select(@NOTASB5) %></td>
