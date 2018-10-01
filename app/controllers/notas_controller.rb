@@ -225,7 +225,12 @@ class NotasController < ApplicationController
                 @nota.freq4= 100 -((session[:faltas4] / session[:aulas4])*100)
             end
             @nota.aulas5 = @nota.aulas1 + @nota.aulas2 + @nota.aulas3 + @nota.aulas4
+            w1=@nota.faltas1
+            w2=@nota.faltas2
+            w3= @nota.faltas3
+            w4=@nota.faltas4
             @nota.faltas5 = @nota.faltas1 + @nota.faltas2 + @nota.faltas3 + @nota.faltas4
+            t=0
             if (@nota[:faltas5] == 0)
                 @nota.freq5= 100
             else

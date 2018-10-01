@@ -155,7 +155,7 @@
                                                                     <%end%>
                                                                     <%if @nota.nota3.present?%>
             <!-- para liberar COMENTAR comentario esta linha-->         <!-- &nbsp&nbsp&nbsp&nbsp <%#= @nota.faltas3%>-->
-             <!-- para liberar apagar comentario desta linha-->            <%=f.text_field :faltas3 , :size => '2'%>
+             <!-- para liberar apagar comentario desta linha-->          <%=f.text_field :faltas3 , :size => '2'%>
                                                                     <%else%>
              <!-- para liberar apagar comentario desta linha-->          <%=f.text_field :faltas3 , :size => '2'%>
               <!-- para liberar COMENTAR comentario esta linha-->      <!--  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%#= @nota.faltas3%>&nbsp&nbsp&nbsp -->
@@ -164,50 +164,50 @@
                                                             <%end%>
 
 <!-- Inicio Notas e Faltas 4 -->
-                                                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
+                            <!-- SE USUÁRIO NÃO PROFESSOR--> <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
                                                                 <%if @nota.nota4.present? %>
                                                                     <td width ="3%"><%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
-                                                                            <!--<%#=f.select :nota4 , options_for_select(@NOTASB4.insert(0, @nota.nota4),0) %>-->
-                                                                            <!--<%#=f.text_field :faltas4 , :size => '1'%>-->
+            <!-- para liberar apagar comentario desta linha-->             <%=f.select :nota4 , options_for_select(@NOTASB4.insert(0, @nota.nota4),0) %>
+            <!-- para liberar apagar comentario desta linha-->             <%=f.text_field :faltas4 , :size => '1'%>
                                                                         <%else%>
-                                                                            &nbsp&nbsp&nbsp<%=@nota.nota4%>&nbsp&nbsp&nbsp&nbsp
-                                                                            <!-- <%#=f.select :nota4, options_for_select(@NOTASB4.insert(0, @nota.nota4),0) %>-->
-                                                                            <%=@nota.faltas4%>
-                                                                            <!--&nbsp <%#=f.text_field :faltas4 , :size => '1'%>-->
+            <!-- para liberar COMENTAR comentario esta linha-->             <!--&nbsp&nbsp&nbsp<%#=@nota.nota4%>&nbsp&nbsp&nbsp&nbsp-->
+            <!-- para liberar apagar comentario desta linha-->              <%=f.select :nota4, options_for_select(@NOTASB4.insert(0, @nota.nota4),0) %>
+             <!-- para liberar COMENTAR comentario esta linha-->             <!-- <%#=@nota.faltas4%>-->
+             <!-- para liberar apagar comentario desta linha-->              &nbsp <%=f.text_field :faltas4 , :size => '1'%>
                                                                         <%end%>
                                                                     </td>
                                                                 <%else%>
                                                                     <td width ="3%"> <%= f.select :nota4, options_for_select(@NOTASB4.insert(0, '---'),0) %>
-                                                                        <!--<%#= f.text_field :faltas4 , :size => '1'%>-->
-                                                                        <%=@nota.faltas4%>
+            <!-- para liberar apagar comentario desta linha-->         <%= f.text_field :faltas4 , :size => '1'%>
+           <!-- para liberar COMENTAR comentario esta linha-->         <!--<%#=@nota.faltas4%>-->
                                                                     </td>
                                                                 <%end%>
-                                                            <%else%>
+                <!-- SE USUÁRIO PROFESSOR-->               <%else%>
                                                                 <td width ="3%"> <%if @nota.nota4.present?%>
-                                                                        <!-- <%#= f.select :nota4 , options_for_select(@NOTASB4.insert(0, @nota.nota4),0) %> -->
-                                                                        &nbsp&nbsp&nbsp<%=@nota.nota4%>&nbsp&nbsp&nbsp
+              <!-- para liberar apagar comentario desta linha-->        <%= f.select :nota4 , options_for_select(@NOTASB4.insert(0, @nota.nota4),0) %>
+           <!-- para liberar COMENTAR comentario esta linha-->         <!-- &nbsp&nbsp&nbsp<%#=@nota.nota4%>&nbsp&nbsp&nbsp-->
                                                                     <%else%>
-                                                                        <%#=f.select :nota4, options_for_select(@NOTASB4.insert(0, '---'),0) %>
-                                                                        &nbsp&nbsp&nbsp <%=@nota.nota4%>&nbsp&nbsp&nbsp
+               <!-- para liberar apagar comentario desta linha-->        <%=f.select :nota4, options_for_select(@NOTASB4.insert(0, '---'),0) %>
+           <!-- para liberar COMENTAR comentario esta linha-->         <!--&nbsp&nbsp&nbsp <%=@nota.nota4%>&nbsp&nbsp&nbsp-->
                                                                     <%end%>
                                                                     <%if @nota.nota4.present?%>
-                                                                        &nbsp&nbsp&nbsp&nbsp <%= @nota.faltas4%>
-                                                                        <!-- <%#=f.text_field :faltas4 , :size => '2'%> -->
+           <!-- para liberar COMENTAR comentario esta linha-->         <!--&nbsp&nbsp&nbsp&nbsp <%#= @nota.faltas4%>-->
+             <!-- para liberar apagar comentario desta linha-->        <%=f.text_field :faltas4 , :size => '2'%>
                                                                     <%else%>
-                                                                        <!-- <%#=f.text_field :faltas4 , :size => '2'%> -->
-                                                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @nota.faltas4%>&nbsp&nbsp&nbsp
+            <!-- para liberar apagar comentario desta linha-->          <%=f.text_field :faltas4 , :size => '2'%>
+           <!-- para liberar COMENTAR comentario esta linha-->         <!-- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%#= @nota.faltas4%>&nbsp&nbsp&nbsp-->
                                                                     <%end%>
                                                                 </td>
                                                             <%end%>
 
 <!-- Inicio Notas e Faltas Finais ( 5 ) -->
-                                                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                        <!-- SE USUÁRIO NÃO PROFESSOR-->     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                                                                 <%if @nota.nota5.present? %>
                                                                     <td width ="3%"><%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
-                                                                            <%=f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota5),0) %>
+                 <!-- para liberar apagar comentario desta linha-->    <%=f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota5),0) %>
                                                                         <%else%>
                                                                             &nbsp&nbsp&nbsp<%= @nota.nota5%>&nbsp&nbsp&nbsp&nbsp
-                                                                            <!-- <%=f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota5),0) %>-->
+                 <!-- para liberar apagar comentario desta linha-->         <%=f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota5),0) %>
                                                                         <%end%>
                                                                         <%= f.text_field :faltas5 , :size => '1'%>
                                                                     </td>
@@ -216,18 +216,17 @@
                                                                         <%=f.text_field :faltas5 , :size => '1'%>
                                                                     </td>
                                                                 <%end%>
-                                                            <%else%>
+                          <!-- SE USUÁRIO PROFESSOR-->     <%else%>
                                                                 <td width ="3%">
-                                                                    &nbsp&nbsp&nbsp&nbsp
                                                                     <%if @nota.nota5.present?%>
                                                                         <%=@nota.nota5%>
-                                                                        <%#=f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota5),0) %>
+         <!-- para liberar apagar comentario desta linha-->             <%=f.select :nota5 , options_for_select(@NOTASB5.insert(0, @nota.nota5),0) %>
                                                                     <%else%>
                                                                         <%=@nota.nota5%>
-                                                                        <%#=f.select :nota5 , options_for_select(@NOTASB5.insert(0, '---'),0) %>
+<!-- para liberar apagar comentario desta linha-->                       <%=f.select :nota5 , options_for_select(@NOTASB5.insert(0, '---'),0) %>
 
                                                                     <%end%>
-                                                                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%=@nota.faltas5%>
+                                                                      &nbsp<%=@nota.faltas5%>
                                                                 </td>
                                                             <%end%>
 
