@@ -24,7 +24,7 @@
     <%session[:exclui]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
     <%session[:escola]=['', '', '', '', '', '','', '', '']%>
     <%session[:cidade]=['', '', '', '', '', '','', '', '']%>
-    <%session[:ano_letivo]=['', '', '', '', '', '','', '', '']%>
+    <%session[:ano_letivoh]=['', '', '', '', '', '','', '', '']%>
     <%session[:classe_anos]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
 <!-- Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
 <%#ano=@ano_inicial.ano_letivo%>
@@ -40,29 +40,29 @@
         <%if ano_letivo.classe.nil?%>
             <%if (!ano_letivo.nota5.nil? and !ano_letivo.nota5.empty?)%>
                 <%if ano_letivo.matricula.nil?%>
-                    <%session[:ano_letivo][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.ano_letivo%>
+                    <%session[:ano_letivoh][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.ano_letivo%>
                     <%session[:classe_anos][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.matricula.classe.classe_classe[0,1].to_i%>
                 <%else%>
                     <%if ano_letivo.matricula.reprovado.to_i!=1%>
-                        <%session[:ano_letivo][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.ano_letivo%>
+                        <%session[:ano_letivoh][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.ano_letivo%>
                         <%session[:classe_anos][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.matricula.classe.classe_classe[0,1].to_i%>
                     <%end%>
                 <%end%>
             <%end%>
         <%else%>
             <%if (!ano_letivo.nota5.nil? and !ano_letivo.nota5.empty?)%>
-                <%session[:ano_letivo][(ano_letivo.classe.to_i)-1]=ano_letivo.ano_letivo.to_i%>
+                <%session[:ano_letivoh][(ano_letivo.classe.to_i)-1]=ano_letivo.ano_letivo.to_i%>
                 <%session[:classe_anos][(ano_letivo.classe.to_i)-1]=ano_letivo.classe.to_i%>
             <%end%>
         <%end%>
-        <!--<%#session[:ano_letivo][classe.to_i-1]=@ano_inicial.ano_letivo%>-->
+        <!--<%#session[:ano_letivoh][classe.to_i-1]=@ano_inicial.ano_letivo%>-->
     <%end%>
     <%for historico_aluno in @historico_aluno%>
         <%session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
         <%if !session[:ano_nota_lançada].empty?%>
             <%session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
-            <%if session[:ano_letivo][session[:ano_nota_lançada]-1].nil?%>
-                <%session[:ano_letivo][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
+            <%if session[:ano_letivoh][session[:ano_nota_lançada]-1].nil?%>
+                <%session[:ano_letivoh][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
             <%end%>
             <%session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
         <%end%>
@@ -72,7 +72,7 @@
     -->
     <tr>
         <%for i in 0..8 %>
-            <td width ="5%" align="center" ><b><%=session[:ano_letivo][i]%></b></td>
+            <td width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%></b></td>
         <%end%>
     </tr>
     <%t0=0%>
@@ -86,7 +86,7 @@
                 <%else%>
                     <%acertoHTML=session[:contnota]%>
                 <%end%>
-                <%if (((@notasB[acertoHTML].ano_letivo)==session[:ano_letivo][i].to_i) and (session[:contnota]==acertoHTML) and (disciplina_atual==@notasB[acertoHTML].disciplina.id))%>
+                <%if (((@notasB[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota]==acertoHTML) and (disciplina_atual==@notasB[acertoHTML].disciplina.id))%>
                     <td align="center">
                         <%if (@notasB[acertoHTML].nota5.nil? or @notasB[acertoHTML].nota5.empty?) and (@notasB[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
@@ -154,7 +154,7 @@
         </tr>
         <tr>
             <%for i in 0..8 %>
-                <td width ="5%" align="center" ><b><%=session[:ano_letivo][i]%></b></td>
+                <td width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%></b></td>
             <%end%>
         </tr>
         <%session[:contnota]=0%>
@@ -168,7 +168,7 @@
                     <%else%>
                         <%acertoHTML=session[:contnota]%>
                     <%end%>
-                    <%if (((@notasD[acertoHTML].ano_letivo)==session[:ano_letivo][i].to_i) and (session[:contnota]==acertoHTML) and  (disciplina_atual==@notasD[acertoHTML].disciplina.id))%>
+                    <%if (((@notasD[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota]==acertoHTML) and  (disciplina_atual==@notasD[acertoHTML].disciplina.id))%>
                         <td align="center">
                             <%if ((@notasD[acertoHTML].nota5.nil? or @notasD[acertoHTML].nota5.empty?) and (@notasD[acertoHTML].ano_letivo==Time.now.year))%>
                                 ---
@@ -244,7 +244,7 @@
             <%if session[:classe_anos][i]!=0%>
                 <td align="center"><%=session[:classe_anos][i]%>º Ano </td>
                 <td width ="5%" align="center" >
-                    <%=session[:ano_letivo][i] %>
+                    <%=session[:ano_letivoh][i] %>
                     <%if session[:exclui][i]!=0%>
                         &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:controller => "observacao_historicos", :action => "destroy", :id => session[:exclui][i]}, :confirm => "Confirma exclusão?", :method => "delete",:title => "Excluir" %>
                     <%end%>
@@ -254,4 +254,4 @@
             <%end%>
         </tr>
     <%end%>
-</table>
+able>

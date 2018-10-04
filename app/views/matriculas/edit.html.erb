@@ -3,6 +3,8 @@
 <div class="tabs">
  <div id="caixa_titulo">
      <font size="3"><strong>EDITAR MATRÍCULA</strong></font><br/>
+     <%@status_transf = SituacaoAluno.find(:all, :conditions => ["id >= 6"])%>
+
  </div>
     <div class="tabs">
           <% form_for (@matricula) do |f| %>
@@ -60,7 +62,7 @@ em relação a antiga! 27/04/2017 18:52 ###ALEX
                     <td>
 
                     <% if @matricula.status =="MATRICULADO"  or @matricula.status =="TRANSFERENCIA"%>
-                         <%= f.collection_select :status , @status_transf, :status, :status %> <br/>
+                         <%= f.collection_select :status , @status_transf, :status, :status, :include_blank => @matricula.status %> <br/>
                      <%else%>
                          <%= h@matricula.status%>
                      <%end%>

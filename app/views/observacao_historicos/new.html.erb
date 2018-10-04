@@ -39,7 +39,7 @@
                         <tr>
                           <td width ="5%" align="center"><b>Ano:</b></td>
                           <%for i in 0..8 %>
-                              <td width ="5%" align="center" ><b><%=session[:ano_letivo][i]%> </b> </td>
+                              <td width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%> </b> </td>
                           <%end%>
                        </tr>
                         <tr>
@@ -71,7 +71,7 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td colspan="2"><b>Ano Letivo:</b>
-                       <%= f.select :ano_letivo , options_for_select(@ano_letivo.insert(0, '---')) %>
+                       <%= f.select :ano_letivo , options_for_select(@ano_letivo_nr.insert(0, '---')) %>
                        &nbsp&nbsp <b> Série :</b>
                        <%= f.select :classe , options_for_select(%w(--- 1 2 3 4 5 6 7 8 9),:include_blank => true)%>
                        &nbsp&nbsp <b> Carga Horária (Básico):</b>

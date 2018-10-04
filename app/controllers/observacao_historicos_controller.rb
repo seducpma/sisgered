@@ -24,9 +24,9 @@ class ObservacaoHistoricosController < ApplicationController
   # GET /observacao_historicos/new
   # GET /observacao_historicos/new.xml
   def new
-    @ano_letivo=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    @ano_letivo_nr=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     for i in 0..14
-        @ano_letivo[i]=Time.now.year.to_i-(15-i)
+        @ano_letivo_nr[i]=Time.now.year.to_i-(15-i)
     end
     @observacao_historico = ObservacaoHistorico.new
     @nota=Nota.new

@@ -3,17 +3,27 @@ class NotasController < ApplicationController
 
     def update_multiplas_notas
         Nota.update(params[:nota].keys, params[:nota].values)
-        flash[:notice] = 'NOTAS LANÇADA.'
+        flash[:notice] = 'NOTAS LANÇADAS.'
         @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id],Time.now.year])
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id], Time.now.year])
-        @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",   session[:classe_id] , session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-#        for nota_somaf in @notas
-#            w=nota_somaf.faltas5=nota_somaf.faltas4.to_i+nota_somaf.faltas3.to_i+nota_somaf.faltas2.to_i+nota_somaf.faltas1.to_i
-#t=0
-#            nota_somaf.save
-#        end
-
-        # redirect_to :action => "'notas_lancamentos'"
+        @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",   session[:classe_id] , session[:professor_id], session[:disc_id],Time.now.year ],:readonly => false,:order => 'matriculas.classe_num ASC')
+        for nota_somaf in @notas
+            soma=0
+            if !nota_somaf.faltas1.nil?
+                soma=soma+nota_somaf.faltas1.to_i
+            end
+            if !nota_somaf.faltas2.nil?
+                soma=soma+nota_somaf.faltas2.to_i
+            end
+            if !nota_somaf.faltas3.nil?
+                soma=soma+nota_somaf.faltas3.to_i
+            end
+            if !nota_somaf.faltas4.nil?
+                soma=soma+nota_somaf.faltas4.to_i
+            end
+            nota_somaf.faltas5 = soma
+            nota_somaf.save
+        end
         render 'notas_lancamentos_multiplos'
     end
 
@@ -238,6 +248,12 @@ class NotasController < ApplicationController
             if !@nota.faltas4.nil?
                 soma=soma+@nota.faltas4.to_i
             end
+w0=soma
+w1=@nota.faltas1
+w2=@nota.faltas2
+w3=@nota.faltas3
+w4=@nota.faltas4
+w5=@nota.faltas5
             @nota.faltas5 = soma
             if (@nota[:faltas5] == 0)
                 @nota.freq5= 100
@@ -278,9 +294,6 @@ class NotasController < ApplicationController
         render :partial => 'notas_lancamentos', :layout => "layouts/application"
     end
 
-
-
-
     def destroy
         @nota = Nota.find(params[:id])
         @nota.destroy
@@ -296,7 +309,6 @@ class NotasController < ApplicationController
             page.replace_html 'classe_alunos', :partial => 'alunos_classe'
         end
     end
-
 
     def voltar_lancamento_notas
         t=0
