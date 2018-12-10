@@ -39,10 +39,10 @@
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
     
     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
-         <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_ficha_alunos_path, :title => "Nova Consulta" %></td>
+         <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
          <td width="6%"align="left"><%= button_to '    Cadastrar    ', new_aluno_path, :title => "Cadastrar" %></td>
          <td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_ficha_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-         <td align="left"><%= button_to 'Continuar', continuar_path, :title => "Continuar" %></td>
+         <td align="left"><%= button_to 'Visualizar Ficha', continuar_path, :title => "Continuar" %></td>
     <%else%>
          <td align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
          

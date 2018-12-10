@@ -49,7 +49,7 @@
                      <tr>
                        <td align="LEFT" ><%= button_to '', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get"%></td>
                        <%  if @matriculas_ano_atual.empty? %>
-                            <td colspan="7"align="RIGHT"><%= button_to 'Confirmar', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get", :title => "Editar"%></td>
+                            <td colspan="7"align="RIGHT"><%= button_to 'Importar Ficha', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get", :title => "Editar"%></td>
                        <%end%>
                     </tr>
                  <%end%>
@@ -58,7 +58,7 @@
     </table>
     <%  if @matriculas_ano_atual.empty? %>
            <font size ="3" color ="red"><u><b>ATENÇÃO:</b></u> Para que o cadastro (ficha) do aluno fique disponivel para matricula na sua unidade é necessário clicar
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp no botão <b>CONFIRMAR</b>, e na próxima tela, após confirmar os dados do aluno clicar no botão <b>SALVAR  </b>   </font>
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp no botão <b>IMPORTAR FICHA</b>, e na próxima tela, após confirmar os dados do aluno clicar no botão <b>SALVAR  </b>   </font>
     <%  else %>
           <font size ="3" color ="red"><u><b>ATENÇÃO:</b></u> Este aluno já possui matricula na unidade escolar
             <% for matricula in  @matriculas_ano_atual %>

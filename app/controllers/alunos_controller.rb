@@ -243,6 +243,9 @@ def consulta_ficha_cadastral
 
 end
 
+
+
+
 def editar_ficha_cadastral
        session[:aluno] = params[:aluno][:id]
 
@@ -372,6 +375,13 @@ end
        
     #end
 #  end
+
+
+ def continuar
+     @aluno = Aluno.find(:all, :conditions =>['id=?',  session[:aluno_id]])
+     @saude = Saude.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
+     @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
+ end
 
 
 end
