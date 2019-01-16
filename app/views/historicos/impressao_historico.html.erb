@@ -34,8 +34,9 @@
         <%session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
         <%if session[:ano_letivoh][session[:ano_nota_lançada]-1].nil?%>
             <%session[:ano_letivoh][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
+            <%session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
         <%end%>
-        <%session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
+        <!-- <%#session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%> Mudei o comando para 2 linhas acima ###Alex 16/01/2019 -->
     <%end%>
 <%end%>
 <!-- Fim para resolver problema de session[:ano_letivo] 2018-04-12 10:30 ###Alex -->

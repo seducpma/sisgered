@@ -6,12 +6,17 @@
             <line>230</line>
         </file>
         <file>
-            <url>app/views/atribuicaos/_mapa.erb</url>
-            <line>117</line>
-        </file>
-        <file>
             <url>app/controllers/notas_controller.rb</url>
             <line>41</line>
         </file>
+        <file>
+            <url>app/views/atribuicaos/_mapa.erb</url>
+            <line>117</line>
+        </file>
     </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/home/desenvolvimento/sisgered/app/views/historicos/impressao_historico.html.erb</file>
+        <file>file:/home/desenvolvimento/sisgered/app/views/historicos/historico.html.erb</file>
+        <file>file:/home/desenvolvimento/sisgered/app/views/historicos/_notas_historico.erb</file>
+    </open-files>
 </project-private>
