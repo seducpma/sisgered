@@ -1,5 +1,6 @@
 #set :application, "192.168.0.12"
-set :application, "192.168.0.14"
+#set :application, "192.168.0.14"
+set :application, "177.36.136.46"
 set :repository, "git://github.com/seducpma/sisgered.git"
 #set :user, "servidor"
 set :user, "atena"
