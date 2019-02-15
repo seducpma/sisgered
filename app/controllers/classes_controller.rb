@@ -401,7 +401,17 @@ def consulta_lista_classe
 end
 
   def classes_ano
-        @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+
+    if current_user.unidade_id == 53 or current_user.unidade_id == 52
+        @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_classe", :conditions => ['classes.classe_ano_letivo = ?' , params[:ano_letivo] ], :order => 'classes.classe_classe ASC')
+        #@classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+    else
+       @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id]    )
+    end
+
+
+
+
    render :partial => 'selecao_classe'
   end
 
@@ -410,7 +420,8 @@ end
  def load_classes
    @ano =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
-        @classe = Classe.find(:all, :order => 'classe_classe ASC')
+        #@classe = Classe.find(:all, :order => 'classe_classe ASC')
+        @classe = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_classe", :conditions => ['classes.classe_ano_letivo = ? ', Time.now.year  ], :order => 'classes.classe_classe ASC')
         #@classe_todas =  Classe.find(:all, :order => 'classe_classe ASC')
     else
         @classe = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')

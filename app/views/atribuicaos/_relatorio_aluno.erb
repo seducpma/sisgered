@@ -52,7 +52,14 @@
     <tr bgcolor="#F5F5F5">
         <% for classe in @classe %>
 
-            <td ><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <td ><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp
+                    <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+                       - <%= classe.unidade.nome%>
+                    <%  else %>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <%  end %>
+
+
                 <b>Período:</b>&nbsp&nbsp <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <b>Ano Letivo:</b> &nbsp&nbsp<%=h classe.classe_ano_letivo %></td>
             <%  session[:classe]=  classe.id%>

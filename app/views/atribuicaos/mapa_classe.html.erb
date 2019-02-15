@@ -1,3 +1,11 @@
+
+    <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+       <%  @classes = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_classe", :conditions => ['classes.classe_ano_letivo = ? ', Time.now.year  ], :order => 'classes.classe_classe ASC')%>
+    <%  else %>
+       <% @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')%>
+    <%  end %>
+
+
 <div id="interno2">
 <% title "CONSULTA_FICHA".singularize %>
 <div class="tabs">

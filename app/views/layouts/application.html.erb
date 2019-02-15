@@ -262,7 +262,7 @@ display: none;
 
 
               <li><span class="divider divider-vert" ></span></li>
-              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil') or current_user.has_role?('direcao_fundamental')  )%>
+              <% if (current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil') or current_user.has_role?('direcao_fundamental')  )%>
               <li><a class="item-primary" href="#;">CADASTRAR</a>
                  <ul style="width:108px;">
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil'))%>
@@ -411,8 +411,8 @@ display: none;
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                         <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
                       <%end%>
-                      <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_fundamental')%>
-                      <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('professor_fundamental')%>
+                      <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_fundamental')%>
+                      <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('professor_fundamental')%>
                         <li><a class="item-primary" href="#;">Boletim Escolar</a>
                            <ul>
                               <li><%= link_to "Ano Letivo Atual",relatorios_classe_atribuicaos_path %></li>
@@ -421,7 +421,7 @@ display: none;
                        </li>
                        
                       <%end%>
-                           <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or  current_user.has_role?('professor_fundamental')%>
+                           <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or  current_user.has_role?('professor_fundamental')%>
                                 <li><a class="item-primary" href="#;">Lençol Notas</a>
                                    <ul>
                                       <li><%= link_to "Ano Letivo Atual",mapa_classe_atribuicaos_path %></li>
@@ -435,7 +435,7 @@ display: none;
                                <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
                                       <li><%= link_to "Lista Piloto",consulta_classe_piloto_path %></li>
                               <%end%>
-                             <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')%>
+                             <% if current_user.has_role?('admin')or current_user.has_role?('SEDUC')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')%>
                                  <li><%= link_to "Histórico Escolar",historico_path  %></li>
                          <!--          <li><%= link_to "Histórico EscolarII",historicoatri_path  %></li> -->
                                  <li><%= link_to "Resultado Final",resultado_final_path  %></li>
