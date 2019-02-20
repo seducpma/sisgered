@@ -198,7 +198,7 @@ class AtribuicaosController < ApplicationController
         @atribuicao.destroy
 
         respond_to do |format|
-            format.html { redirect_to(atribuicaos_url) }
+            format.html { redirect_to(home_path) }
             format.xml  { head :ok }
         end
     end
