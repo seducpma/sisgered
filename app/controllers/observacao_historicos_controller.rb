@@ -43,31 +43,40 @@ class ObservacaoHistoricosController < ApplicationController
 
   # POST /observacao_historicos
   # POST /observacao_historicos.xml
-  def create
+   def create
     @observacao_historico = ObservacaoHistorico.new(params[:observacao_historico])
-    @nota = Nota.new(params[:nota])
-t=0
-    if session[:lanca_c_horaria] == 1
-       @observacao_historico.aluno_id = session[:aluno_id]
-       session[:lanca_c_horaria]=0
-    end
-    respond_to do |format|
-      if @observacao_historico.save
-            @nota.aluno_id = @observacao_historico.aluno_id
-            @nota.ano_letivo = @observacao_historico.ano_letivo
-            @nota.disciplina_id=1
-            @nota.nota5=0.0
-            @nota.classe= @observacao_historico.classe
-            @nota.save
-
+    session[:ano]=@observacao_historico.ano_letivo
     t=0
-        flash[:notice] = 'ObservacaoHistorico was successfully created.'
-        format.html { redirect_to(@observacao_historico) }
-        format.xml  { render :xml => @observacao_historico, :status => :created, :location => @observacao_historico }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @observacao_historico.errors, :status => :unprocessable_entity }
-      end
+    @testa_nota_ano= Nota.find(:all, :conditions => ['ano_letivo = ? and aluno_id = ? ',@observacao_historico.ano_letivo, session[:aluno_id]])
+
+    if !@testa_nota_ano.present?
+
+            @nota = Nota.new(params[:nota])
+            if session[:lanca_c_horaria] == 1
+               @observacao_historico.aluno_id = session[:aluno_id]
+               session[:lanca_c_horaria]=0
+            end
+            respond_to do |format|
+              if @observacao_historico.save
+                    @nota.aluno_id = @observacao_historico.aluno_id
+                    @nota.ano_letivo = @observacao_historico.ano_letivo
+                    @nota.disciplina_id=1
+                    @nota.nota5=0.0
+                    @nota.classe= @observacao_historico.classe
+                    @nota.save
+                flash[:notice] = 'ObservacaoHistorico was successfully created.'
+                format.html { redirect_to(@observacao_historico) }
+                format.xml  { render :xml => @observacao_historico, :status => :created, :location => @observacao_historico }
+              else
+                format.html { render :action => "new" }
+                format.xml  { render :xml => @observacao_historico.errors, :status => :unprocessable_entity }
+              end
+            end
+    else
+        respond_to do |format|
+                format.html { redirect_to(aviso_observacao_historicos_path) }
+
+            end
     end
   end
 

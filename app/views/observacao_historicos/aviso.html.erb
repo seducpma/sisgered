@@ -1,0 +1,32 @@
+<div id="interno3">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTOS</strong></font><br/>
+ </div>
+      <div class="tabs">
+        <center>
+            <fieldset><legend><font size=4>Lançamentos</font></legend>
+              <table>
+                <tr>
+                  <td ><font color ="red" size ="4"><b><u>ATENÇÃO:</u> <br/>
+                              &nbsp&nbsp&nbsp Erro no lançamento do ano letivo. <br/>
+                              &nbsp&nbsp&nbsp O ano letivo de <%= session[:ano]%> deste aluno já possui notas. </b>        <font></td>
+                     
+                </tr>
+
+             </table>
+             </fieldset>
+        </center>
+        <table width="100%">
+           <tr>
+              
+
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
+
+    </div>
+</div>
+<br/>
+</div>

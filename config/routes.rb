@@ -6,7 +6,7 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.resources :eventuals
   map.resources :ufaltas
   map.resources :relatorios,:collection => { :relatorio=>:get, :consultas=>:get, :consultas_observacao =>:get, :editar=>:get}
-  map.resources :observacao_historicos
+  map.resources :observacao_historicos,:collection => { :aviso=>:get}
   map.resources :observacao_notas
   map.resources :situacao_alunos
   map.resources :matriculas,:collection => { :transferencia=>:get, :alterar=>:get, :saidas=>:get, :consultar => :get, :new1 => :get, :remanejamento=>:get, :aviso=>:get, :aviso1=>:get, :aviso2=>:get}
