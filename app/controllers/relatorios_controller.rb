@@ -115,7 +115,7 @@ class RelatoriosController < ApplicationController
   end
 
   def fapea_ano
-      if current_user.has_role?('admin')
+      if current_user.has_role?('admin') or current_user.has_role?('pedagogo')
         @fapea_ano = Relatorio.find(:all, :conditions=> ['ano_letivo =?' , params[:ano_letivo]])
         @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND ano_letivo=?', params[:ano_letivo] ],:order => 'alunos.aluno_nome ASC')
       else
