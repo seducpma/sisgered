@@ -120,7 +120,11 @@ class RelatoriosController < ApplicationController
         @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND ano_letivo=?', params[:ano_letivo] ],:order => 'alunos.aluno_nome ASC')
       else
         @fapea_ano = Relatorio.find(:all, :joins=> :aluno, :conditions=> ['ano_letivo =? and alunos.unidade_id=?' , params[:ano_letivo], current_user.unidade_id])
-        @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND relatorios.ano_letivo=?', current_user.unidade_id, params[:ano_letivo] ],:order => 'alunos.aluno_nome')
+        if  current_user.has_role?('professor_infantil')
+           @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND relatorios.ano_letivo=?', current_user.unidade_id, params[:ano_letivo] ],:order => 'alunos.aluno_nome')
+        else
+           @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND relatorios.ano_letivo=?',  params[:ano_letivo] ],:order => 'alunos.aluno_nome')
+        end
     end
    render :partial => 'selecao_nome'
   end
@@ -384,8 +388,7 @@ end
               @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => [:professor, :aluno], :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND relatorios.professor_id =?', current_user.unidade_id, current_user.professor_id ],:order => 'alunos.aluno_nome')
               else if  current_user.has_role?('direcao_infantil')   or    current_user.has_role?('secretaria_infantil') or    current_user.has_role?('pedagogo')
                    @professor_unidade = Professor.find(:all, :conditions => ['unidade_id = ?  AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
-                   #@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null', current_user.unidade_id ],:order => 'alunos.aluno_nome')
-                   @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null' ],:order => 'alunos.aluno_nome')
+                   @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null', current_user.unidade_id ],:order => 'alunos.aluno_nome')
                  end
            end
        end
