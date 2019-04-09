@@ -360,12 +360,21 @@ t=0
 
     def update
         @matricula = Matricula.find(params[:id])
-
+        status=@matricula.status
         respond_to do |format|
             if @matricula.update_attributes(params[:matricula])
                 if @matricula.data_transferencia==Date.today
                     @matricula.data_transferencia=nil
                 end
+                test1=@matricula.status
+                t=0
+                if @matricula.status.empty?
+                    @matricula.status=status
+                end
+                teste=@matricula.status
+                t=0
+
+
                 @matricula.save
 
                 if session[:saidaT] == 2

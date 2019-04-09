@@ -214,7 +214,9 @@ def renumera
        
        session[:num]=1
        for matricula in @matriculas
+           #status = status.matricula.status
            matricula.classe_num= session[:num]
+          # status.matricula.status = status
            matricula.save
            session[:num]=session[:num]+1
        end
