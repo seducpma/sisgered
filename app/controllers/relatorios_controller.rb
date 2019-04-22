@@ -18,7 +18,7 @@ class RelatoriosController < ApplicationController
   def show
     @relatorio = Relatorio.find(params[:id])
     @relatorio.atribuicao_id
-    @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorio.atribuicao_id, Time.now.year] )
+    @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? ', @relatorio.atribuicao_id] )
     @classe[0].classe_id
     @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
     session[:imprimir_todos]=0
@@ -43,7 +43,8 @@ class RelatoriosController < ApplicationController
   def edit
     @relatorio = Relatorio.find(params[:id])
 
-    @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorio.atribuicao_id, Time.now.year] )
+    @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? ', @relatorio.atribuicao_id] )
+   
     @classe[0].classe_id
     @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
 
@@ -194,7 +195,7 @@ def editar
             session[:ano_imp]=params[:ano_letivo]
             session[:impressao]= 1
                   @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno_fapea]])
-                  @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
+                  @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? ', @relatorios[0].atribuicao_id] )
                   @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
             session[:poraluno] = 1
@@ -208,7 +209,7 @@ def editar
                   session[:aluno_imp]= params[:aluno_fapea1]
                   session[:ano_imp]=params[:ano_letivo]
                   @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]])
-                  @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
+                  @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, params[:ano_letivo]] )
                   @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
                   session[:impressao]= 1
