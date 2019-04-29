@@ -8,7 +8,7 @@
     <% form_remote_tag :url => consultaprofessor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
          <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-              <td align="right">  <b class="label_busca2">Professor/Responsável:
+              <td align="right">  <b class="label_busca2">Professor:
                   <%= collection_select :eventual,:professor_id, @professores_eventual, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %></b></font>
                  <%= observe_field 'eventual_professor_id',
                        :update => "professores",

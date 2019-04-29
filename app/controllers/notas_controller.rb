@@ -79,6 +79,7 @@ class NotasController < ApplicationController
     def edit
         @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id=? and professor_id=? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
         @nota = Nota.find(params[:id])
+        t=0
         session[:id_nota] = params[:id]
         session[:new2_aluno_id]= @nota.aluno_id
     end

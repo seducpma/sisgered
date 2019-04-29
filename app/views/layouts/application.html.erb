@@ -122,7 +122,7 @@ display: none;
                        </td>
                       <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                    <%else if current_user.has_role?('professor_fundamental') %>
-                       <td>Acesso Responsável |
+                       <td>Acesso Professor |
                            <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                            <% uni = @unidade.first.nome  %>
                            <font size="1">  <%= uni %></font>
@@ -150,7 +150,7 @@ display: none;
                                            </td>
                                             <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
                                            <%else if current_user.has_role?('professor_infantil') %>
-                                                 <td>Acesso Responsável Infantil |
+                                                 <td>Acesso Professor Infantil |
                                                      <% @unidade = Unidade.find(:all, :conditions => ['id=?',current_user.unidade_id]) %>
                                                      <% uni = @unidade.first.nome  %>
                                                      <font size="1">  <%= uni %></font>

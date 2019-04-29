@@ -12,7 +12,7 @@
           <tr>
             <td align= "right"><font size="2"> <b class="label_busca3">Mês:</b></font>&nbsp
               <%= select_tag :mes, options_for_select(AulasFalta::MES).sort, :include_blank => ' -- Selecionar -- ' %> &nbsp&nbsp&nbsp&nbsp
-              <b>Professor/Responsável:</b></font>&nbsp
+              <b>Professor:</b></font>&nbsp
                <%= collection_select :aulas_falta,:professor_id, @professores_faltas, :id, :nome, :include_blank => ' -- Selecionar -- ' %>
                
           </td>

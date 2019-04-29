@@ -10,13 +10,13 @@
                      <br/>
                      <table  width="100%"  align="center"  bgcolor="#F5F5F5" >
                         <tr>
-                          <td colspan="8"><b><font size="3"> &nbsp CADASTRAR PROFESSOR/RESPONSÁVEL  &nbsp - </b></td>
+                          <td colspan="8"><b><font size="3"> &nbsp CADASTRAR PROFESSOR  &nbsp - </b></td>
                         </tr>
                         <tr>
                           <td colspan="8"><hr></td>
                         </tr>
                        <tr>
-                         <td align="left" width="10%">  <b>Responsável: </b></td>
+                         <td align="left" width="10%">  <b>Professor: </b></td>
                          <td align="left" colspan="3"><%= collection_select :eventual, :professor_id, @professores, :id, :nome, :include_blank => ' -- Selecionar -- ' %></td>
                        </tr>
                         <tr>

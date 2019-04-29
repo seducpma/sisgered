@@ -51,8 +51,10 @@ class AtribuicaosController < ApplicationController
             session[:professora_id]=  @atribuicao_anterior[0].professor_id
             session[:professor_nome]=  @atribuicao_anterior[0].professor.nome
             @atribuicao = Atribuicao.find(params[:id])
+            t=0
 
         else
+ t=0
             @atribuicao = Atribuicao.find(params[:id])
             @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
             session[:flag_edit]=1
@@ -184,6 +186,7 @@ class AtribuicaosController < ApplicationController
             end
             #     end
         end
+        session[:flag_edit_atribuicao]=0
         session[:flag_edit_atribuicao]=0
         session[:flag_edit]=0
     end

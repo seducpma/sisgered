@@ -14,7 +14,7 @@
 
 
 <%  if session[:flag_edit_atribuicao] == 1 %>
-
+<%t=0%>
       <div id="interno2">
       <% title "ATRIBUICAOS".singularize %>
       <div class="tabs">
@@ -99,7 +99,7 @@
 
   <br/>
 <% else %>
-
+<%t=0%>
         <div id="interno4">
         <% title "ATRIBUICAOS".singularize %>
         <div class="tabs">
@@ -118,7 +118,7 @@
                            <tr bgcolor="#F5F5F5">
                              <td width ="1%"> <b>Classe:</b></td>
                              <td><%=h @atribuicao.classe.classe_classe%></td>
-                             <td><b>Professor/Responsável:</b></td>
+                             <td><b>Professor:</b></td>
                              <td colspan="2"><%=h @atribuicao.professor.nome%></td>
                           </tr>
                           <tr bgcolor="#F5F5F5">

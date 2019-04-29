@@ -13,7 +13,7 @@
                <% form_for @search ,:url => { :action => 'index2' } do |f|%>
 
 
-                 <font size="3"> Professor/Responsável:</font>
+                 <font size="3"> Professor:</font>
                  <%= f.collection_select :eventual_id_equals, @professores_eventual, :id, :nome, :include_blank => true%>
                  <%= f.submit "Visualizar", :class => "btn_filtrar" %>
               <% end %>

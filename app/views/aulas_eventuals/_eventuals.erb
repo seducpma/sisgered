@@ -18,7 +18,7 @@
 
                     <%end%>
                  <%else if session[:tiporelatorio]==2 %>
-                          <center><font size="1">Professor/Responsável: <%=h @aulas_eventuals[0].eventual.professor.nome %>  </font></center>
+                          <center><font size="1">Professor: <%=h @aulas_eventuals[0].eventual.professor.nome %>  </font></center>
                           <center><font size="1">Função:<%=h @aulas_eventuals[0].eventual.professor.funcao%> </font>
                        <%end%>
                  <%end%>

@@ -7,10 +7,10 @@
     <div class="tabs">
     <% form_remote_tag :url => consulta_ficha_pontuacao_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
-       <legend><font size=4>Professor/Responsável</font></legend>
+       <legend><font size=4>Professor</font></legend>
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td colspan="2"align="left"><font size="2"> <b class="label_busca3">Matrícula Professor/Responsável:</b></font>
+            <td colspan="2"align="left"><font size="2"> <b class="label_busca3">Matrícula Professor:</b></font>
                &nbsp&nbsp&nbsp
                <%= collection_select  :consulta, :professor_id, @professors1, :id, :matricula, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %>
                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

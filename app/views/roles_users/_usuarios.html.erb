@@ -28,8 +28,8 @@
                              <td>Acesso exclusivo - Funcinário de Unidade Escolar</td>
                            <%else%>
                                   <%if  Role.find(role_user.role_id).name == 'professor_fundamental' then%>
-                                   <td>Responsável U.E.</td>
-                                   <td>Responsável de Unidade Escolar</td>
+                                   <td>Professor U.E.</td>
+                                   <td>Proessorl de Unidade Escolar</td>
                                  <%else if  Role.find(role_user.role_id).name == 'pedagogo' then%>
                                        <td>Pedagogo U.E.</td>
                                        <td>Pedagogo de Unidade Escolar</td>

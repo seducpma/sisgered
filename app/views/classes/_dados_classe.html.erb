@@ -6,7 +6,7 @@
                  <td>
                      <b>Classe: </b> <%=h cl.classe_classe%> &nbsp&nbsp&nbsp
                      <b>Descrição: </b> <%=h cl.classe_descricao %> &nbsp&nbsp&nbsp
-                     <b>Professor/Responsável:</b> <%=h cl.professor.nome %> &nbsp&nbsp&nbsp
+                     <b>Professor:</b> <%=h cl.professor.nome %> &nbsp&nbsp&nbsp
                      <b>Ano Letivo: </b><%=h cl.classe_ano_letivo %> &nbsp&nbsp&nbsp
                   </td>
                   <td><%= button_to 'Confirma',{:action => "edit", :id =>cl}, :method => "get"%></td>
