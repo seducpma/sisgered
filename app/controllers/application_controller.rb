@@ -277,6 +277,7 @@ NUMI = { '  BI'=> 'BI',
            'MULTS' => 'MULTS',
            'NI'=> 'NI',
            'NII'=> 'NII',
+           'PA'=> 'PA',
 
         }
 

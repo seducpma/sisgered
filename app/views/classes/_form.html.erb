@@ -20,8 +20,8 @@
                          <b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUM).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %>
                      <%end%>
                <%end%>
-                 &nbsp&nbsp&nbsp <b>Período: </b><%= f.select :horario, Classe::HORARIO %>
-                 &nbsp&nbsp&nbsp <b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>45.day.from_now.year %>
+                 &nbsp&nbsp <b>Período: </b><%= f.select :horario, Classe::HORARIO %>
+                 &nbsp&nbsp <b>Ano Letivo: </b><%= f.text_field :classe_ano_letivo, :size =>5, :value =>45.day.from_now.year %>
                  &nbsp&nbsp <b>Sala: </b><%= f.text_field :sala, :size =>1 %>
             </td>
         </tr>

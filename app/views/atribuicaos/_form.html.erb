@@ -9,7 +9,11 @@
 
      <% else %>
          <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
-            <%  @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'AND nao_disciplina = 0"]) %>
+             <% if current_user.unidade_id == 52 %>
+                  <%  @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I' AND id !=2 AND nao_disciplina = 0"],:order => 'ordem ASC') %>
+             <%else%>   
+                 <%  @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'AND nao_disciplina = 0"]) %>
+             <%end%>
          <%  else %>
              <%  @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I' AND id !=2 AND nao_disciplina = 0"],:order => 'ordem ASC') %>
          <%  end %>
