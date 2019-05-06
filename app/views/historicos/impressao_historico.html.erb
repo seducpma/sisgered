@@ -357,9 +357,9 @@
 
                         <b><%= (session[:classe_anos].max) %>º ano</b> do Ensino Fundamental de 9 anos no ano letivo de <b>
                           <% if @notas_ano.nil? %>
-                                 <%=Time.now.year%> </b>,
+                                 <%=Time.now.year%>  </b>,
                           <%else%>
-                              <%=@notas_ano.matricula.ano_letivo%></b>,
+                              <%=(@notas_ano.matricula.ano_letivo) - 1%></b>,
                           <%end%>
 
                         <% if (session[:classe_anos].max+1)<10 %>
