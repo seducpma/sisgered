@@ -47,7 +47,7 @@ class ObservacaoHistoricosController < ApplicationController
     @observacao_historico = ObservacaoHistorico.new(params[:observacao_historico])
     session[:ano]=@observacao_historico.ano_letivo
     t=0
-    @testa_nota_ano= Nota.find(:all, :conditions => ['ano_letivo = ? and aluno_id = ? ',@observacao_historico.ano_letivo, session[:aluno_id]])
+    @testa_nota_ano= Nota.find(:all, :conditions => ['ano_letivo = ? and aluno_id = ? and ativo != 1',@observacao_historico.ano_letivo, session[:aluno_id]])
 
     if !@testa_nota_ano.present?
 

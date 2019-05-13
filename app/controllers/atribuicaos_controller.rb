@@ -54,7 +54,7 @@ class AtribuicaosController < ApplicationController
             t=0
 
         else
- t=0
+ 
             @atribuicao = Atribuicao.find(params[:id])
             @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
             session[:flag_edit]=1
@@ -156,6 +156,7 @@ class AtribuicaosController < ApplicationController
                         nota.aulas3=@atribuicao.aulas3
                         nota.aulas4=@atribuicao.aulas4
                         nota.aulas5=@atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
+                        nota.ac5 = nota.ac1+nota.ac2+nota.ac3+nota.ac4
                         nota.save
                     end
                     #    end

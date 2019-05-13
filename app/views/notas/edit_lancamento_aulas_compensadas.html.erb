@@ -1,0 +1,109 @@
+</div><div id="interno1">
+    <% title "NOTAS".singularize %>
+    <div class="tabs">
+        <div id="caixa_titulo">
+            <font size="3"><strong>LANÇAMENTOS DE AULAS COMPENSADAS</strong></font><br/>
+        </div>
+        <div class="tabs">
+            <% form_for (@nota) do |f| %>
+                <%= f.error_messages %>
+                <fieldset><legend><font size=4>Dados alunos</font></legend>
+                    <table>
+                         <tr bgcolor="#F5F5F5">
+                           <td colspan="4"><%session[:new2_aluno_nome]= @nota.aluno.aluno_nome%> 
+                              <b>Aluno:</b>&nbsp&nbsp  <font color="blue"><%=  @nota.aluno.aluno_nome%></font></td>
+
+                                            </tr>
+                                            <tr bgcolor="#F5F5F5">
+                                                <td colspan="4"><b>Classe:</b>&nbsp&nbsp <%= session[:classe]%>
+                                                &nbsp&nbsp&nbsp&nbsp <b>Periodo:</b> &nbsp&nbsp <%= session[:periodo]%> - <%= session[:ano]%></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6">
+                                                    <table width =" 100%">
+                                                        <tr bgcolor="#F5F5F5">
+                                                            <td width ="2%"></td>
+                                                            <td align="center" width ="18%"><b>1º Bimestre</b></td>
+                                                            <td align="center" width ="18%"><b>2º Bimestre</b></td>
+                                                            <td align="center" width ="18%"><b>3º Bimestre</b></td>
+                                                            <td align="center" width ="18%"><b>4º Bimestre</b></td>
+                                                            <td align="center" width ="15%"><b>Final</b></td>
+                                                        </tr>
+                                                        <tr  bgcolor="#F5F5F5">
+                                                            <td></td>
+                                                                  <%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :ac1 , :size => '1'%></td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :ac2 , :size => '1'%></td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :ac3 , :size => '1'%></td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :ac4 , :size => '1'%></td>
+
+                                                                   <%else%>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/> <%if Time.now.month > 2 and Time.now.month < 7 %>
+                                                                                                                                                 <%= f.text_field :ac1 , :size => '1'%>
+                                                                                                                                           <%else%>
+                                                                                                                                                  <%=@nota.ac1%>
+                                                                                                                                           <%end%>
+                                                                        </td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/> <%if Time.now.month > 3 and Time.now.month < 8 %>
+                                                                                                                                                 <%= f.text_field :ac2 , :size => '1'%>
+                                                                                                                                           <%else%>
+                                                                                                                                                  <%=@nota.ac2%>
+                                                                                                                                           <%end%>
+                                                                        </td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%if Time.now.month > 7 and Time.now.month < 11 %>
+                                                                                                                                                 <%= f.text_field :ac3 , :size => '1'%>
+                                                                                                                                           <%else%>
+                                                                                                                                                  <%=@nota.ac3%>
+                                                                                                                                           <%end%>
+                                                                        </td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%if Time.now.month > 9 and Time.now.month < 13 %>
+                                                                                                                                                 <%= f.text_field :ac4 , :size => '1'%>
+                                                                                                                                           <%else%>
+                                                                                                                                                  <%=@nota.ac4%>
+                                                                                                                                           <%end%>
+                                                                        </td>
+                                                                   <%end%>
+                                                            <td align="center" width ="10%"><b>Aulas Compensadas</b><br/><%=@nota.ac1+@nota.ac2+@nota.ac3+@nota.ac4%></td>
+                                                            <%session[:aluno_nota]=@nota.aluno_id%>
+                                                        </tr>
+                                                        <% for atrib in @atribuicao %>
+                                                            <tr bgcolor="#F5F5F5">
+                                                                <td></td>
+                                                                <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas1%> <br/> <b> Faltas: </b> &nbsp<%=@nota.faltas1%> </td>
+                                                                <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas2%> <br/> <b> Faltas: </b> &nbsp<%=@nota.faltas2%> </td>
+                                                                <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas3%> <br/> <b> Faltas: </b> &nbsp<%=@nota.faltas3%> </td>
+                                                                <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas4%> <br/> <b> Faltas: </b> &nbsp<%=@nota.faltas4%></td>
+                                                                <td align="center"> <b>Nº Aulas:</b> <%= atrib.aulas4 + atrib.aulas3 = atrib.aulas2 + atrib.aulas1%> <br/> <b> Faltas: </b> &nbsp<%=@nota.faltas5%> </td>
+                                                            </tr>
+                                                        <%end%>
+                                                    </table>
+                                                </td>
+                                            </tr>
+    
+
+
+
+
+                                            </table>
+                                            </fieldset>
+                                            <table width="100%" >
+                                                <tr bgcolor="#F5F5F5">
+                                                    <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+                                                <%end%>
+
+                                                <td width="4%"align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                                                <%if current_user.has_role?('professor_fundamental') %>
+                                                    <td><%= button_to 'Voltar',lancar_notas_notas_path, :method => :get %></td>
+                                                <%else%>
+                                                    <td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %></td>
+                                                <%end%>
+                                            </tr>
+                                        </table>
+                                    </font>
+                                    </div>
+                                    </div>
+                                    <br/>
+
+
+                                    <%= render "form_observacao" %>

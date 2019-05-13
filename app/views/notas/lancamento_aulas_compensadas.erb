@@ -1,0 +1,156 @@
+<div id="interno2">
+<% title "ALTERA_NOTA".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTOS DE AULAS COMPENSADAS</strong></font><br/>
+ </div>
+    <div class="tabs">
+      <% form_tag lancamento_aulas_compensadas_notas_path, :method => 'get' do %>
+      <fieldset>
+       <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Professor:</b></font>
+               &nbsp&nbsp&nbsp<%= collection_select :professor, :id, @professors1, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+        </tr>
+          <tr>
+            <td colspan="2"align="left"><font size="2"> <b class="label_busca3">Classe:</b></font>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b class="label_busca3">Disciplina:</b></font>
+               &nbsp&nbsp<%= select_tag :disciplina, options_for_select(@disciplinas1.collect { |ff| [ff.disciplina, ff.disciplina] }.insert(0, '--Selecionar--')) %></td>
+            <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
+          </tr>
+       </table>
+
+    <%if @classe.present?%>
+      <fieldset>
+        <table width="100%">
+           <% for classe in @classe %>
+              <tr bgcolor="#F5F5F5" >
+                  <td align="left" width="10%"><b>Unidade:</b></td>
+                   <td align="left">  <%=h classe.unidade.nome%></td>
+                   <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                   <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
+               </tr>
+                <tr bgcolor="#F5F5F5">
+                    <td align="left"><b>Classe:</b></td>
+                    <td align="left">  <%=h classe.classe_classe%></td>
+                    <td align="left"><b>Horário:</b></td>
+                    <td align="left">  <%=h classe.horario %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5" >
+                     <td align="left"><b>Descrição:</b></td>
+                     <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                     <td valign="top"> <b> Professor(es)/Responsável(s):</b> </td>
+                          <% cont=1 %>
+                          <% cont1=1 %>
+                      <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                                           <table width="100%">
+                                              <tr bgcolor="#F5F5F5" >
+                                                 <td align="left" width="50%"> <%=h atrib.professor.nome%></td>
+                                                 <td align="left"width="10%"><b> Disciplina:</b></td>
+                                                 <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+
+                                                   <% session[:disciplina] = atrib.disciplina.disciplina %>
+                                                   <% session[:professor] = atrib.professor.nome %>
+                                                   <% session[:professor_id] = atrib.professor.id %>
+                                                   <% session[:classe] = atrib.classe.classe_classe %>
+                                                   <% session[:ano] = atrib.ano_letivo %>
+                                                   <% session[:periodo] = atrib.classe.horario %>
+                                                   <% session[:id] = atrib.id %>
+                                               </tr>
+                                             </table>
+                                            <% cont= cont+1 %>
+                                           <%end%>
+               </td>
+            </tr>
+       </table>
+     <%end%>
+        <table  border="1" frame="box" rules="all" width="100%">
+          <tr bgcolor="#F5F5F5">
+            <td colspan="14"> <div id="notas_aluno">
+                                <table border="1" cellspacing="0" cellpadding="1" width="100%">
+                                              <tr bgcolor="#F5F5F5">
+            <td width ="78%" colspan="3"><b> Alunos: </b></td>
+            <td align="center"><b>1ºBim</b></td>
+            <td align="center"><b>2ºBim</b></td>
+            <td align="center"><b>3ºBim</b></td>
+            <td align="center"><b>4ºBim</b></td>
+            <td align="center"><b>Final</b></td>
+          </tr>
+      <tr bgcolor="#F5F5F5">
+        <td width ="4%"align="center"><b>Nº</b></td>
+        <td width ="14">&nbsp&nbsp<b>RA</b></td>
+        <td width ="70%">&nbsp&nbsp<b>NOME</b></td>
+        <td width ="5%" align="center"><font size="1"><b>Aulas Compensadas</b></font></td>
+
+        <td width ="5%" align="center"><font size="1"><b>Aulas Compensadas</b></font></td>
+
+        <td width ="5%" align="center"><font size="1"><b>Aulas Compensadas</b></font></td>
+
+        <td width ="5%" align="center"><font size="1"><b>Aulas Compensadas</b></font></td>
+
+        <td width ="5%" align="center"><font size="1"><b>Aulas Compensadas</b></font></td>
+
+        <td width ="9%"align="center">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+      </tr>
+
+                                    <%@notas.each do |nota|%>
+                                    <tr>
+                                      <td align="center"><%= nota.matricula.classe_num  %></td>
+                                      <td ><%= nota.aluno.aluno_ra  %></td>
+                                      <td align="left"><%= nota.aluno.aluno_nome %>
+                                                  <%if !nota.matricula.status =="MATRICULADO" and  nota.matricula.status == 'TRANSFERIDO' %>
+                                                      <font color ="red"> (Transferido)
+                                                  <%end%>
+                                                  <%if nota.matricula.status == 'REMANEJADO' %>
+                                                      <font color ="green"> (Remanejado)</font>
+                                                  <%end%>
+                                      </td>
+                                      <td align="center"><%= nota.ac1 %></td>
+                                      <td align="center"><%= nota.ac2 %></td>
+                                      <td align="center"><%= nota.ac3 %></td>
+                                      <td align="center"><%= nota.ac4 %></td>
+                                      <td align="center"><%if  nota.ac5!=0 %>
+                                                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= (nota.ac1+nota.ac2+nota.ac3+nota.ac4)%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                                     <%else%>
+                                                                          --
+                                                                      <%end%>
+                                      </td>
+                                      <td align="center"><%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit_lancamento_aulas_compensadas", :id =>nota}, :method => "get", :title => "Lançar" %></td>
+                                                                     
+                                    </tr>
+
+              <% cont1=cont1+1 %>
+           <%end%>
+          </table>
+        </div></td>
+          </tr>
+       </table>
+
+            <%else%>
+              <br/>
+              <table  width="100%">
+                    <tr>
+                      <td align="center"><font size="3" color="red"><b> NÃO SELECIONADO ou NÃO ENCONTRADO </b> </td>
+                    </tr>
+              </table>
+           <%end%>
+
+
+
+        </fieldset>
+      <% end %>
+
+       <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+    </tr>
+  </table>
+
+  <br/>
+</font>
+    

@@ -15,7 +15,7 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :relatorios_anterior_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get, :mapa_classe_anterior => :get,:consulta_professor_classe=>:get, :historico_aluno=>:get, :historico => :get, :transferencia_aluno => :get, :transferenciaA=> :get,  :reserva_vaga=> :get,  :reserva_vagas=> :get,  :relatorio_observacoes=> :get, :editar_atribuicao=>:get, :aviso=>:get}
   map.resources :classes_professors
   map.resources :notas_alunos
-  map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get, :lancamentos_observacaos =>:get, :relatorio_classe => :get ,  :new1 => :get, }
+  map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get, :lancamentos_observacaos =>:get, :relatorio_classe => :get ,  :new1 => :get, :lancamento_aulas_compensadas => :get }
   map.resources :classes_alunos
   map.resources :classes,:collection => { :editar_classe=>:get, :gerar_notas=>:get, :nucleo_basico =>:get, :consulta_classe_fone =>:get}
   map.resources :professors,:collection => { :consulta_classe=>:get,  :consulta_classe_anterior=>:get }
@@ -65,6 +65,8 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
   map.voltar_lancamento_notas '/voltar_lancamento_notas', :controller => 'notas', :action => 'voltar_lancamento_notas'
   map.notas_lancamentos '/notas_lancamentos', :controller => 'notas', :action => 'notas_lancamentos'
+  #map.lancamentos_aulas_compensadas '/lancamentos_aulas_compensadas', :controller => 'notas', :action => 'lancamentos_aulas_compensadas'
+  #map.aulas_compensadas '/aulas_compensadas', :controller => 'notas', :action => 'aulas_compensadas'
   map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :impressao_geral => :get, :status => :get, :update => :put}
 
 
