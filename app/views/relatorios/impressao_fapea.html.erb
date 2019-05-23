@@ -17,7 +17,7 @@
                </table>
                 <table cellspacing="0" cellpadding="0" width="100%" style="border-color: white">
                  <tr >
-                   <td width=5%" align="left"><b>Aluno:</b></td>
+                   <td width=5%" align="left"><b>Aluno(a):</b></td>
                    <td><%=h relatorio.aluno.aluno_nome %></td>
                    <td width=10%" align="left"><b>Nascimento:</b></td>
                    <td><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
@@ -47,7 +47,7 @@
                    <td colspan="3"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
                 </tr>
                  <tr  style="border-color: white">
-                   <td align="left" valign="top"><b>Professor:</b> </td>
+                   <td align="left" valign="top"><b>Professor(a):</b> </td>
                    <td colspan="3"><% for professor in @professors %>
                                       <%= professor.nome %> <br/>
                                    <%end%>

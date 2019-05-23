@@ -8,7 +8,7 @@
      <fieldset>
        <table width="100%" align="left" bgcolor="#DCDCDC" >
            <tr bgcolor="#F5F5F5">
-              <td align="left"><b>Aluno:</b></td>
+              <td align="left"><b>Aluno(a):</b></td>
               <td align="left"> <%= collection_select :aluno, :id, @alunos2, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
 
                     <%= observe_field 'aluno_id',

@@ -4,14 +4,14 @@
    <fieldset><legend><font  size=3><b> FAPEA</b></font></legend>
     <table width="100%">
        <tr bgcolor="#F5F5F5">
-         <td width=5%" align="left" valign="top"><b>Professor:</b></td>
+         <td width=5%" align="left" valign="top"><b>Professor(a):</b></td>
          <td colspan="3"><% for professor in @professors %>
                             <%= professor.nome %> <br/>
                          <%end%>  
          </td>
        </tr>
        <tr bgcolor="#F5F5F5">
-         <td  align="left"><b>Aluno:</b></td>
+         <td  align="left"><b>Aluno(a):</b></td>
          <td colspan="3"><%=h @relatorio.aluno.aluno_nome %></td>
        </tr>
        <tr bgcolor="#F5F5F5">

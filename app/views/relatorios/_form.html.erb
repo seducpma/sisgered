@@ -19,18 +19,22 @@ $(document).ready(function() {
         <tr bgcolor="#F5F5F5">
           <td colspan="4" >
                       <b>A partir do planejamento de 2019, que teve como referenciais o Currículo vigente, Currículo Paulista e Base Nacional Comum Curricular (BNCC), elabore o relato da observação do desenvolvimento da criança, tendo como instrumentos a observação  e diferentes registros das experiências propostas em:</b><br/>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp 1. O eu, o outro e o nós;<br/>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp 2. Corpo, gestos e movimentos;<br/>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp 3. Traços, sons, cores e formas;<br/>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp 4. Escuta, fala, pensamento e imaginação;<br/>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp 5. Espaços, tempos, quantidades, relações e transformações.<br/>
+                      <table width =" 100%">
+                          <tr><td><b>Direitos de aprendizagem</b></td> <td><b>Campos de experiências</b></td>  </tr>
+                          <tr><td align="left">Conviver;</td> <td align="left">O eu, o outro e o nós;</td>  </tr>
+                          <tr><td align="left">Brincar;</td> <td align="left">Corpo, gestos e movimentos;</td>  </tr>
+                          <tr><td align="left">Participar;</td> <td align="left">Traços, sons, cores e formas;</td>  </tr>
+                          <tr><td align="left">Expressar;</td> <td align="left">Escuta, fala, pensamento e imaginação;</td>  </tr>
+                          <tr><td align="left">Conhecer-se.</td> <td align="left">Espaços, tempos, quantidades, relações e transformações.</td>  </tr>
+                      </table>
+
           </td>
         </tr>
 
 
 
       <tr bgcolor="#F5F5F5">
-         <td width =" 5%"><b>Professore:</b></td>
+         <td width =" 5%"><b>Professor(a):</b></td>
          <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
             <%= observe_field 'relatorio_professor_id',
                :update => "dados_aluno_classe",
@@ -45,7 +49,7 @@ $(document).ready(function() {
        </tr>
        <tr bgcolor="#F5F5F5">
          <td valign="top"><b>Relatório:</b></td>
-        <td colspan="5"><%= f.text_area(:observacao, :cols=> "78", :rows=>"10") %><br/>
+        <td colspan="5"><%= f.text_area(:observacao, :cols=> "76", :rows=>"10") %><br/>
             Caracteres restantes: <span id="counter"><%= maxcounter=12000 %></span>
         </td>
       </tr>
