@@ -19,7 +19,7 @@
                   <tr bgcolor="#F5F5F5">
                     <td colspan="4"><b>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</b></td>
                   </tr>
-                  <tr bgcolor="#F5F5F5">
+<!--                  <tr bgcolor="#F5F5F5">
                     <td colspan="4" >
                        <b>A partir do planejamento de 2019, que teve como referenciais o Currículo vigente, Currículo Paulista e Base Nacional Comum Curricular (BNCC), elabore o relato da observação do desenvolvimento da criança, tendo como instrumentos a observação  e diferentes registros das experiências propostas em:</b><br/>
                       <table width =" 100%" >
@@ -31,9 +31,15 @@
                           <tr><td align="left">Expressar;</td> <td align="left">Espaços, tempos, quantidades, relações e transformações.</td>  </tr>
                           <tr><td align="left">Conhecer-se.</td> <td align="left"></td>  </tr>
                       </table>
-
                     </td>
                   </tr>
+-->
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><b>Nº Dias Letivos: </b><%= f.text_field :dias_letivos, :size => 5 %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <b>Nº Faltas: </b><%= f.text_field :faltas, :size => 5 %>
+             </td>
+
+        </tr>
                 <tr bgcolor="#F5F5F5">
                    <td width =" 5%"><b>Professor(a):</b></td>
                    <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>

@@ -56,6 +56,11 @@
                    <td align="left"><b>Mãe / Pai:</b></td>
                    <td colspan="4"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
                 </tr>
+                <tr bgcolor="#F5F5F5">
+                     <td align="left"><b>Dias Letivos:</b></td>
+                   <td colspan="3"><%=h relatorio.dias_letivos%> &nbsp&nbsp&nbsp&nbsp <b> Faltas: </b>&nbsp  <%=h relatorio.faltas%> &nbsp&nbsp&nbsp&nbsp <b> Frequência: </b>&nbsp  <%=h relatorio.frequencia%> %</td>
+                </tr>
+
                  <tr bgcolor="#F5F5F5">
                    <td align="left" valign="top"><b>Professor(es):</b></td>
                    <td colspan="4"><% for professor in @professors %>
