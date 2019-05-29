@@ -2,8 +2,9 @@
 <% title "ALTERA_NOTA".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>ALTERAÇÃO DE LANÇAMENTOS</strong></font><br/>
+     <font size="3"><strong>ALTERAÇÃO DE LANÇAMENTOSssss</strong></font><br/>
  </div>
+<%@disciplinas1 = Disciplina.find(:all,:conditions => ['nao_disciplina = 0 AND curriculo <> "I"'],:order => 'disciplina ASC' )    %>
     <div class="tabs">
       <% form_tag lancamentos_notas_notas_path, :method => 'get' do %>
       <fieldset>
@@ -102,9 +103,9 @@
       </tr>
           <tr bgcolor="#F5F5F5">
             <td colspan="14"> <div id="notas_aluno">
-                                <table border="1" cellspacing="0" cellpadding="1" width="100%">
+                                
                                     <%@notas.each do |nota|%>
-                                    <tr>
+                                     <tr bgcolor="#F5F5F5">
                                       <td width ="4%" align="center"><%= nota.matricula.classe_num  %></td>
                                       <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
                                       <td width ="42%" align="left"><%= nota.aluno.aluno_nome %>
@@ -213,7 +214,7 @@
                <%end%>
               <% cont1=cont1+1 %>
            <%end%>
-          </table>
+          
         </div></td>
           </tr>
        </table>

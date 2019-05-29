@@ -331,7 +331,7 @@ w5=@nota.faltas5
         session[:professor_id]=@nota.professor_id
         session[:disc_id]=@nota.atribuicao.disciplina_id
         if @nota.update_attributes(params[:nota])
-           @nota.ac5 = @nota.ac1+@nota.ac2+@nota.ac3+@nota.ac4
+           @nota.comp5 = @nota.comp1+@nota.comp2+@nota.comp3+@nota.comp4
            @nota.save
            @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?',  session[:classe_id],session[:professor_id], session[:disc_id]])
            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?',  session[:classe_id], session[:professor_id], session[:disc_id]])

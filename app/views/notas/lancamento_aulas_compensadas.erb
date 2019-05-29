@@ -1,8 +1,9 @@
 <div id="interno2">
 <% title "ALTERA_NOTA".singularize %>
+    <%@disciplinas1 = Disciplina.find(:all,:conditions => ['nao_disciplina = 0 AND curriculo <> "I"'],:order => 'disciplina ASC' )    %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>LANÇAMENTOS DE AULAS COMPENSADAS</strong></font><br/>
+     <font size="3"><strong>LANÇAMENTOS DE COMPENSAÇÃO DE AUSÊNCIA</strong></font><br/>
  </div>
     <div class="tabs">
       <% form_tag lancamento_aulas_compensadas_notas_path, :method => 'get' do %>
@@ -108,12 +109,12 @@
                                                       <font color ="green"> (Remanejado)</font>
                                                   <%end%>
                                       </td>
-                                      <td align="center"><%= nota.ac1 %></td>
-                                      <td align="center"><%= nota.ac2 %></td>
-                                      <td align="center"><%= nota.ac3 %></td>
-                                      <td align="center"><%= nota.ac4 %></td>
-                                      <td align="center"><%if  nota.ac5!=0 %>
-                                                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= (nota.ac1+nota.ac2+nota.ac3+nota.ac4)%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                      <td align="center"><%= nota.comp1 %></td>
+                                      <td align="center"><%= nota.comp2 %></td>
+                                      <td align="center"><%= nota.comp3 %></td>
+                                      <td align="center"><%= nota.comp4 %></td>
+                                      <td align="center"><%if  nota.comp5!=0 %>
+                                                                         <%= (nota.comp1+nota.comp2+nota.comp3+nota.comp4)%> 
                                                                      <%else%>
                                                                           --
                                                                       <%end%>

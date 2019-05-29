@@ -32,38 +32,38 @@
                                                         <tr  bgcolor="#F5F5F5">
                                                             <td></td>
                                                                   <%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
-                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :ac1 , :size => '1'%></td>
-                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :ac2 , :size => '1'%></td>
-                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :ac3 , :size => '1'%></td>
-                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :ac4 , :size => '1'%></td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :comp1 , :size => '1'%></td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :comp2 , :size => '1'%></td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :comp3 , :size => '1'%></td>
+                                                                        <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%= f.text_field :comp4 , :size => '1'%></td>
 
                                                                    <%else%>
                                                                         <td align="center" width ="18%"><b>Aulas Compensadas</b><br/> <%if Time.now.month > 2 and Time.now.month < 7 %>
-                                                                                                                                                 <%= f.text_field :ac1 , :size => '1'%>
+                                                                                                                                                 <%= f.text_field :comp1 , :size => '1'%>
                                                                                                                                            <%else%>
-                                                                                                                                                  <%=@nota.ac1%>
+                                                                                                                                                  <%=@nota.comp1%>
                                                                                                                                            <%end%>
                                                                         </td>
                                                                         <td align="center" width ="18%"><b>Aulas Compensadas</b><br/> <%if Time.now.month > 3 and Time.now.month < 8 %>
-                                                                                                                                                 <%= f.text_field :ac2 , :size => '1'%>
+                                                                                                                                                 <%= f.text_field :comp2 , :size => '1'%>
                                                                                                                                            <%else%>
-                                                                                                                                                  <%=@nota.ac2%>
+                                                                                                                                                  <%=@nota.comp2%>
                                                                                                                                            <%end%>
                                                                         </td>
                                                                         <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%if Time.now.month > 7 and Time.now.month < 11 %>
-                                                                                                                                                 <%= f.text_field :ac3 , :size => '1'%>
+                                                                                                                                                 <%= f.text_field :comp3 , :size => '1'%>
                                                                                                                                            <%else%>
-                                                                                                                                                  <%=@nota.ac3%>
+                                                                                                                                                  <%=@nota.comp3%>
                                                                                                                                            <%end%>
                                                                         </td>
                                                                         <td align="center" width ="18%"><b>Aulas Compensadas</b><br/><%if Time.now.month > 9 and Time.now.month < 13 %>
-                                                                                                                                                 <%= f.text_field :ac4 , :size => '1'%>
+                                                                                                                                                 <%= f.text_field :comp4 , :size => '1'%>
                                                                                                                                            <%else%>
-                                                                                                                                                  <%=@nota.ac4%>
+                                                                                                                                                  <%=@nota.comp4%>
                                                                                                                                            <%end%>
                                                                         </td>
                                                                    <%end%>
-                                                            <td align="center" width ="10%"><b>Aulas Compensadas</b><br/><%=@nota.ac1+@nota.ac2+@nota.ac3+@nota.ac4%></td>
+                                                            <td align="center" width ="10%"><b>Aulas Compensadas</b><br/><%=@nota.comp1+@nota.comp2+@nota.comp3+@nota.comp4%></td>
                                                             <%session[:aluno_nota]=@nota.aluno_id%>
                                                         </tr>
                                                         <% for atrib in @atribuicao %>

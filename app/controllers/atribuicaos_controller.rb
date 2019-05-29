@@ -333,6 +333,7 @@ class AtribuicaosController < ApplicationController
         end
         @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo=? AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
         @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D' and unidade_id =? AND notas.ano_letivo=? AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+
         @notas = @notasB+@notasD
         @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], session[:ano_nota],nil ] )
         render :layout => "impressao"
