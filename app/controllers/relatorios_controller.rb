@@ -130,7 +130,18 @@ class RelatoriosController < ApplicationController
   def professor
     session[:professor_id]=params[:relatorio_professor_id]
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
-    @alunos2= Matricula.find(:all, :select => 'alunos.id, alunos.aluno_nome',:joins =>:aluno  ,:conditions=>['matriculas.classe_id=?', @atribuicao[0].classe_id ], :order => 'alunos.aluno_nome ASC')
+    cont_cl=0
+    for atribuicao in @atribuicao
+        @aluno= Matricula.find(:all, :select => 'alunos.id, alunos.aluno_nome',:joins =>:aluno  ,:conditions=>['matriculas.classe_id=?', atribuicao.classe_id ], :order => 'alunos.aluno_nome ASC')
+        if cont_cl==0
+          @alunos2=@aluno
+          cont_cl=cont_cl+1
+        else
+          @alunos2=@alunos2 + @aluno
+          cont_cl=cont_cl+1
+        end
+    end
+
        render :partial => 'aluno_classe'
   end
 
