@@ -778,3 +778,1180 @@ Rendered relatorios/_consulta_nome (1.2ms)
   [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=57) [0m
   [4;36;1mUnidade Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
 Completed in 199ms (View: 39, DB: 7) | 200 OK [http://localhost/relatorios/consultas]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 10:12:00) [GET]
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2019-06-07 13:12:00' AND ends_at >= '2019-06-07 13:12:00') [0m
+  [4;35;1mroles_users Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.4ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=57) [0m
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 385ms (View: 258, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 14:41:49) [GET]
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mMysql::Error: Table 'sisgered_development.users' doesn't exist: SHOW FIELDS FROM `users`[0m
+
+ActiveRecord::StatementInvalid (Mysql::Error: Table 'sisgered_development.users' doesn't exist: SHOW FIELDS FROM `users`):
+  lib/authenticated_system.rb:108:in `login_from_session'
+  lib/authenticated_system.rb:12:in `current_user'
+  app/controllers/application_controller.rb:28:in `set_current_user'
+
+Rendered rescues/_trace (28.3ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 14:42:07) [GET]
+  [4;35;1mUser Columns (0.0ms)[0m   [0mMysql::Error: Table 'sisgered_development.users' doesn't exist: SHOW FIELDS FROM `users`[0m
+
+ActiveRecord::StatementInvalid (Mysql::Error: Table 'sisgered_development.users' doesn't exist: SHOW FIELDS FROM `users`):
+  lib/authenticated_system.rb:108:in `login_from_session'
+  lib/authenticated_system.rb:12:in `current_user'
+  app/controllers/application_controller.rb:28:in `set_current_user'
+
+Rendered rescues/_trace (25.8ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 14:47:38) [GET]
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2019-06-07 17:47:38' AND ends_at >= '2019-06-07 17:47:38') [0m
+  [4;35;1mInformativo Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `informativos`[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.3ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.5ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=28) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 135ms (View: 118, DB: 5) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2019-06-07 14:47:42) [GET]
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed in 19ms (DB: 2) | 302 Found [http://localhost/logout]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 14:47:42) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 81ms (DB: 0) | 302 Found [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 14:47:43) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 151ms (View: 141, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 14:47:46) [GET]
+  [4;35;1mUnidade Load (0.7ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (9.8ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;36;1mUnidade Load (1.2ms)[0m   [0;1mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mProfessor Load (23.5ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;35;1mProfessor Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+Completed in 363ms (View: 207, DB: 38) | 200 OK [http://localhost/signup]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 14:47:47) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 14:47:47) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 15:58:38) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 14ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 15:58:38) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 55ms (View: 32, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 15:58:44) [GET]
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (2.6ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 387ms (View: 228, DB: 7) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 15:58:45) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 15:58:45) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 15:59:12) [POST]
+  Parameters: {"user"=>{"unidade_id"=>"52", "password_confirmation"=>"12345678", "password"=>"12345678", "email"=>"asd@teste.com", "professor_id"=>"", "login"=>"ngarcia"}, "authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "commit"=>"Salvar"}
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+
+NoMethodError (undefined method `login' for nil:NilClass):
+  app/controllers/users_controller.rb:57:in `create'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendered rescues/_trace (140.9ms)
+Rendered rescues/_request_and_response (2.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 15:59:35) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 19ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 15:59:35) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 51ms (View: 32, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 15:59:37) [GET]
+  [4;36;1mUnidade Load (0.5ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (3.8ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 411ms (View: 246, DB: 11) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 15:59:38) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:00:03) [POST]
+  Parameters: {"commit"=>"Salvar", "authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "user"=>{"email"=>"asd@teste.com", "password_confirmation"=>"12345678", "unidade_id"=>"52", "password"=>"12345678", "professor_id"=>"", "login"=>"teste123zzz"}}
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+
+NoMethodError (undefined method `login' for nil:NilClass):
+  app/controllers/users_controller.rb:58:in `create'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendered rescues/_trace (194.4ms)
+Rendered rescues/_request_and_response (2.7ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:01:05) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 18ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:01:06) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 52ms (View: 32, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:01:08) [GET]
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (1.6ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 372ms (View: 216, DB: 6) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:01:08) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:01:25) [POST]
+  Parameters: {"authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "user"=>{"professor_id"=>"", "unidade_id"=>"16", "email"=>"asd@teste.com", "password_confirmation"=>"12345678", "password"=>"12345678", "login"=>"teste123xxx"}, "commit"=>"Salvar"}
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (3.7ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'teste123xxx') [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (1.4ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`login` = BINARY 'teste123xxx') LIMIT 1[0m
+  [4;35;1mUser Create (0.4ms)[0m   [0mINSERT INTO `users` (`professor_id`, `remember_token_expires_at`, `email`, `crypted_password`, `created_at`, `unidade_id`, `password_reset_code`, `salt`, `updated_at`, `activation_code`, `remember_token`, `layout`, `login`, `activated_at`) VALUES(NULL, NULL, 'asd@teste.com', '0873d3b8d889e6084bfda14de8bd90a32ee6186a', '2019-06-07 19:01:38', 16, NULL, '20593ab5dace6c4df0a63e48152fd0e6bac80409', '2019-06-07 19:01:38', '2ee9a126c357f57320dfbc4b01e804df882aff3f', NULL, 'application', 'teste123xxx', '2019-06-07 19:01:38')[0m
+  [4;36;1mRolesUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRolesUser Create (0.3ms)[0m   [0mINSERT INTO `roles_users` (`user_id`, `role_id`) VALUES(1645, 6)[0m
+  [4;36;1mSQL (53.0ms)[0m   [0;1mCOMMIT[0m
+Rendering template within layouts/user
+Rendering users/criado
+  [4;35;1mRolesUser Load (0.4ms)[0m   [0mSELECT * FROM `roles_users` WHERE (`roles_users`.user_id = 1645) LIMIT 1[0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mRole Load (0.4ms)[0m   [0mSELECT * FROM `roles` WHERE (`roles`.`id` = 6) [0m
+Completed in 12773ms (View: 31, DB: 63) | 200 OK [http://localhost/users]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:01:38) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:02:33) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 18ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:02:34) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 53ms (View: 33, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:02:36) [GET]
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (8.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (1.7ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 404ms (View: 232, DB: 13) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:02:37) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:02:52) [POST]
+  Parameters: {"user"=>{"login"=>"teste123", "professor_id"=>"", "email"=>"asd@teste.com", "unidade_id"=>"16", "password_confirmation"=>"12345678", "password"=>"12345678"}, "commit"=>"Salvar", "authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A="}
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (1.7ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'teste123') [0m
+Redirected to http://localhost:3000/users/aviso
+Completed in 13163ms (DB: 4) | 302 Found [http://localhost/users]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#aviso (for 127.0.0.1 at 2019-06-07 16:03:05) [GET]
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+Rendering template within layouts/user
+Rendering users/aviso
+Completed in 186ms (View: 20, DB: 1) | 200 OK [http://localhost/users/aviso]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:03:06) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#aviso (for 127.0.0.1 at 2019-06-07 16:03:33) [GET]
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (1.1ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+Rendering template within layouts/user
+Rendering users/aviso
+Completed in 184ms (View: 18, DB: 2) | 200 OK [http://localhost/users/aviso]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:03:33) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:03:34) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:03:56) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:03:56) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 31ms (View: 6, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:14:02) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 14ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:14:02) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 60ms (View: 40, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:14:31) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 14ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:14:32) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 53ms (View: 33, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:14:34) [GET]
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (1.6ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 372ms (View: 215, DB: 6) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:14:34) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:14:57) [POST]
+  Parameters: {"user"=>{"login"=>"asdqwe", "password_confirmation"=>"12345678", "unidade_id"=>"52", "password"=>"12345678", "professor_id"=>"", "email"=>"asd@teste.com"}, "authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "commit"=>"Salvar"}
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (1.6ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'asdqwe') [0m
+Redirected to http://localhost:3000/users/aviso
+Completed in 77ms (DB: 4) | 302 Found [http://localhost/users]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#aviso (for 127.0.0.1 at 2019-06-07 16:14:57) [GET]
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+Rendering template within layouts/user
+Rendering users/aviso
+Completed in 192ms (View: 24, DB: 1) | 200 OK [http://localhost/users/aviso]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:14:57) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:15:37) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 19ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:15:37) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 58ms (View: 36, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:15:41) [GET]
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (2.7ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 406ms (View: 239, DB: 7) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:15:42) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:15:44) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:16:04) [POST]
+  Parameters: {"authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "commit"=>"Salvar", "user"=>{"email"=>"asd@teste.com", "password_confirmation"=>"12345678", "unidade_id"=>"52", "login"=>"teste222222", "professor_id"=>"", "password"=>"12345678"}}
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (2.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'teste222222') [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:17:18) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 13ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:17:19) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 55ms (View: 34, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:17:27) [GET]
+  [4;36;1mUnidade Load (0.5ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (1.4ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (1.6ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 391ms (View: 228, DB: 8) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:17:27) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:17:53) [POST]
+  Parameters: {"authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "commit"=>"Salvar", "user"=>{"professor_id"=>"", "email"=>"silvana.camargo22@gmail.com", "login"=>"ngarcia", "password_confirmation"=>"123456789", "unidade_id"=>"52", "password"=>"123456789"}}
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (1.6ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'ngarcia') [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:18:52) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 17ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:18:52) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 58ms (View: 38, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:18:56) [POST]
+  Parameters: {"authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "commit"=>"Salvar", "user"=>{"unidade_id"=>"52", "password_confirmation"=>"123456789", "login"=>"ngarcia", "password"=>"123456789", "professor_id"=>"", "email"=>"silvana.camargo22@gmail.com"}}
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (1.1ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (login = 'ngarcia') [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:19:22) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 14ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:19:23) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 62ms (View: 38, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:19:34) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 17ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:19:34) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 62ms (View: 42, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:19:36) [GET]
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (1.6ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 389ms (View: 232, DB: 6) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:19:37) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:19:58) [POST]
+  Parameters: {"commit"=>"Salvar", "authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "user"=>{"password_confirmation"=>"12345678", "password"=>"12345678", "professor_id"=>"", "email"=>"asd@teste.com", "login"=>"teste1234zzz", "unidade_id"=>"52"}}
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (3.8ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'teste1234zzz') [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:20:22) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 24ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:20:22) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 57ms (View: 34, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:20:24) [GET]
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (1.9ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (2.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 411ms (View: 242, DB: 8) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:20:25) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:21:13) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"12345678", "email"=>"asd@teste.com", "unidade_id"=>"52", "login"=>"asdqwe", "professor_id"=>"", "password"=>"12345678"}, "authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "commit"=>"Salvar"}
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'asdqwe') [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`login` = BINARY 'asdqwe') LIMIT 1[0m
+  [4;35;1mUser Create (0.6ms)[0m   [0mINSERT INTO `users` (`email`, `created_at`, `activated_at`, `crypted_password`, `remember_token_expires_at`, `unidade_id`, `updated_at`, `password_reset_code`, `login`, `salt`, `remember_token`, `layout`, `activation_code`, `professor_id`) VALUES('asd@teste.com', '2019-06-07 19:21:24', '2019-06-07 19:21:24', 'eb8aff0be4e9ecf14270a5d26034c660cadcf8e8', NULL, 52, '2019-06-07 19:21:24', NULL, 'asdqwe', '2ce63e2306610a6c3890d85f8f430513a7d979c3', NULL, 'application', 'cd07a7258f38d0b3a3f1c8e4239e6263f9b3eec0', NULL)[0m
+  [4;36;1mRolesUser Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRolesUser Create (0.5ms)[0m   [0mINSERT INTO `roles_users` (`user_id`, `role_id`) VALUES(1646, 6)[0m
+  [4;36;1mSQL (57.6ms)[0m   [0;1mCOMMIT[0m
+Rendering template within layouts/user
+Rendering users/criado
+  [4;35;1mRolesUser Load (0.6ms)[0m   [0mSELECT * FROM `roles_users` WHERE (`roles_users`.user_id = 1646) LIMIT 1[0m
+  [4;36;1mRole Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` WHERE (`roles`.`id` = 6) [0m
+Completed in 10576ms (View: 35, DB: 65) | 200 OK [http://localhost/users]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:21:24) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:21:30) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 103ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:21:30) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 26ms (View: 6, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:21:33) [GET]
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (9.4ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.5ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (1.4ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 391ms (View: 208, DB: 15) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:21:33) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:21:51) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"12345678", "email"=>"testexxx@testesedcupma.com", "unidade_id"=>"52", "login"=>"asdqwe", "professor_id"=>"", "password"=>"12345678"}, "authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "commit"=>"Salvar"}
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (1.1ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (2.9ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'asdqwe') [0m
+Redirected to http://localhost:3000/users/aviso
+Completed in 7369ms (DB: 6) | 302 Found [http://localhost/users]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#aviso (for 127.0.0.1 at 2019-06-07 16:21:59) [GET]
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+Rendering template within layouts/user
+Rendering users/aviso
+Completed in 86ms (View: 18, DB: 1) | 200 OK [http://localhost/users/aviso]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:21:59) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:22:04) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:22:04) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 31ms (View: 6, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:27:07) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 98ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:27:07) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 113ms (View: 102, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:27:09) [GET]
+  [4;36;1mUnidade Load (0.6ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mUnidade Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mProfessor Load (4.0ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 281ms (View: 148, DB: 10) | 200 OK [http://localhost/signup]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:27:10) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:27:27) [POST]
+  Parameters: {"authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "user"=>{"login"=>"asdqwe", "unidade_id"=>"52", "email"=>"testexxx@testesedcupma.com", "professor_id"=>"", "password_confirmation"=>"12345678", "password"=>"12345678"}, "commit"=>"Salvar"}
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (login = 'asdqwe') [0m
+Redirected to http://localhost:3000/users/aviso
+Completed in 43ms (DB: 4) | 302 Found [http://localhost/users]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#aviso (for 127.0.0.1 at 2019-06-07 16:27:27) [GET]
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+Rendering template within layouts/user
+Rendering users/aviso
+Completed in 162ms (View: 11, DB: 1) | 200 OK [http://localhost/users/aviso]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:27:27) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#aviso (for 127.0.0.1 at 2019-06-07 16:28:05) [GET]
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+Rendering template within layouts/user
+Rendering users/aviso
+Completed in 139ms (View: 10, DB: 1) | 200 OK [http://localhost/users/aviso]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:28:06) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:28:06) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#aviso (for 127.0.0.1 at 2019-06-07 16:29:41) [GET]
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+Rendering template within layouts/user
+Rendering users/aviso
+Completed in 129ms (View: 15, DB: 1) | 200 OK [http://localhost/users/aviso]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:29:41) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2019-06-07 16:29:50) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 8ms (DB: 0) | 302 Found [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2019-06-07 16:29:50) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 20ms (View: 4, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2019-06-07 16:32:21) [GET]
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` [0m
+  [4;36;1mUser Load (1.1ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/user
+Rendering users/new
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mProfessor Load (1.2ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;35;1mProfessor Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+Completed in 266ms (View: 137, DB: 6) | 200 OK [http://localhost/signup]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:32:21) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2019-06-07 16:32:37) [POST]
+  Parameters: {"authenticity_token"=>"34z64OAS1VJL0dMBdZLi917R/Fd7D42vluceS3Exh5A=", "user"=>{"login"=>"asdqwe", "unidade_id"=>"16", "email"=>"asd@teste.com", "professor_id"=>"", "password_confirmation"=>"12345678", "password"=>"12345678"}, "commit"=>"Salvar"}
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (login = 'asdqwe') [0m
+Redirected to http://localhost:3000/users/aviso
+Completed in 45ms (DB: 3) | 302 Found [http://localhost/users]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#aviso (for 127.0.0.1 at 2019-06-07 16:32:37) [GET]
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM `users` ORDER BY login ASC[0m
+Rendering template within layouts/user
+Rendering users/aviso
+Completed in 125ms (View: 9, DB: 1) | 200 OK [http://localhost/users/aviso]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2019-06-07 16:32:37) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/jquery.tools.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)

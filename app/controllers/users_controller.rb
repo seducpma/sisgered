@@ -54,19 +54,30 @@ class UsersController < ApplicationController
   end
  
   def create
-    logout_keeping_session!
-    @user = User.new(params[:user])
-
-    success = @user && @user.save
-    if success && @user.errors.empty?
-     # redirect_back_or_default('/')
-      render :action => 'criado'
-      flash[:notice] = "USUÁRIO CRIADO COM SUCESSO, ENTRE EM CONTATO COM O ADMINISTRADOR DO SISTEMA PARA LIBERAÇÃO."
+  logout_keeping_session!
+   @user = User.new(params[:user])
+    @existe = User.find(:all, :conditions =>['login = ?', @user.login])
+    session[:usuario] = @existe[0].login
+    if @existe.empty?
  
-    else
-      flash[:error]  = "SENHA OU USUÁRIO NÃO AUTORIZADO "
-      render :action => 'new'
-    end
+            success = @user && @user.save
+            if success && @user.errors.empty?
+             # redirect_back_or_default('/')
+              render :action => 'criado'
+              flash[:notice] = "USUÁRIO CRIADO COM SUCESSO, ENTRE EM CONTATO COM O ADMINISTRADOR DO SISTEMA PARA LIBERAÇÃO."
+
+            else
+              flash[:error]  = "SENHA OU USUÁRIO NÃO AUTORIZADO "
+              render :action => 'new'
+            end
+     else
+         t=0
+                respond_to do |format|
+                    #flash[:notice] = 'CADASTRADO COM SUCESSO.'
+                    format.html { redirect_to(aviso_users_path) }
+                    format.xml  { head :ok }
+                end
+     end
   end
 
   def activate

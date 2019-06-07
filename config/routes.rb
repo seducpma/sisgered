@@ -27,7 +27,7 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.resources :alunos, :collection => {:consulta_ficha => :get ,  :consulta_cadastro => :get, :editar_ficha=>:get, :certeza =>:get}
   map.resources :logs
   map.resources :roles_users
-  map.resources :users
+  map.resources :users, :collection => {:aviso => :get}
   map.resources :classes
   map.resources :informativos
   map.resources :logs
