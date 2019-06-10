@@ -57,10 +57,12 @@ class UsersController < ApplicationController
   logout_keeping_session!
    @user = User.new(params[:user])
     @existe = User.find(:all, :conditions =>['login = ?', @user.login])
-    session[:usuario] = @existe[0].login
+    t=0
+    
     if @existe.empty?
  
             success = @user && @user.save
+            
             if success && @user.errors.empty?
              # redirect_back_or_default('/')
               render :action => 'criado'
@@ -71,6 +73,7 @@ class UsersController < ApplicationController
               render :action => 'new'
             end
      else
+         session[:usuario] = @existe[0].login
          t=0
                 respond_to do |format|
                     #flash[:notice] = 'CADASTRADO COM SUCESSO.'
