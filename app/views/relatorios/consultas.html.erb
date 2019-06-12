@@ -6,19 +6,16 @@
    </div>
   <div class="tabs">
     <% form_remote_tag :url => consulta_fapea_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
-      <table width="100%" align="center" bgcolor="#DCDCDC"  >
+      <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td width="51%">
+            <td width="53%">
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Por Ano
-              <a href="#" class="filtro_fapea"><%= radio_button_tag(:type_of, "2") %></a>Da Unidade <b>*</b>
-              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Por Aluno(Todos) <b>*</b>
+              <a href="#" class="filtro_fapea"><%= radio_button_tag(:type_of, "2") %></a>Da Unidade<b>*</b>
+              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Por Aluno<b>*</b> &nbsp&nbsp&nbsp&nbsp(<b>* Ano Letivo atual)</b>
             </td>
-            <td width="60%" align="right">(Para imprimir FAPEA de outros anos letivos utilize a opção <b>Por Ano)</b></td>
+            <td align="right">(Para imprimir FAPEA de outros anos letivos utilize a opção <b>Por Ano)</b></td>
          </tr>
-         <tr>
-             
-             <td colspan="4">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>* Ano Letivo atual</b></td>
-         </tr>
+
          <tr>
              <td colspan="2"><div class="consulta" style="display:none"> <%= render "consulta" %> </div>
              <div class="consulta_fapea" style="display:none"> <%= render "consulta_fapea" %> </div>
