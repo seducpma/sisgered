@@ -1,6 +1,6 @@
-      <table width="100%" align="center" bgcolor="#DCDCDC" >
+<table width="100%" align="center" bgcolor="#DCDCDC"  >
           <tr>
-            <td align="right"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
+            <td align="right" width="20%"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
              <%= select_tag :ano_letivo, options_for_select(@ano.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
                      <%= observe_field 'ano_letivo',
                           :with => :ano_letivo,
@@ -11,7 +11,7 @@
                   <div id="fapea_ano"> <b class="label_busca3">Aluno(a):</b><font color="red">&nbsp&nbsp&nbsp&nbsp<b></u>&nbsp Selecionar primeiro o ano</b></font> </div>
           </td>
 
-          <td align="right">
+          <td align="right" width="5%">
             <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
           </td>
         </tr>
