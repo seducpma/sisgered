@@ -1,18 +1,19 @@
   <div class="tabs">
     <table bgcolor="#DCDCDC" width="100%">
         <tr bgcolor="#DCDCDC" >
-            <th width="100">Login</th>
-            <th width="100">Acesso de</th>
-            <th width="400">Descricao</th>
-            <th colspan="3">Administração</th>
+            <th width="15%">Login</th>
+            <th width="15%">Acesso de</th>
+            <th width="30%">Descricao</th>
+            <th width="40%">Professor</th>
+            <th width="10%"></th>
         </tr>
         <%$t1=0%>
         <% for role_user in @role_users %>
         <%$t1=$t1+1%>
           <tr bgcolor="	#F5F5F5">
-            <td width="25%"><%= User.find(role_user.user_id).login %></td>
+            <td><%= User.find(role_user.user_id).login %></td>
              <%if  Role.find(role_user.role_id).name == 'admin' then%>
-                 <td width="25%">Administrador</td>
+                 <td >Administrador</td>
                  <td>Acesso total ao sistema</td>
                <%else%>
                    <%if  (Role.find(role_user.role_id).name == 'supervisao') or (Role.find(role_user.role_id).name == 'planejamento') then%>
@@ -29,7 +30,7 @@
                            <%else%>
                                   <%if  Role.find(role_user.role_id).name == 'professor_fundamental' then%>
                                    <td>Professor U.E.</td>
-                                   <td>Proessorl de Unidade Escolar</td>
+                                   <td>Professor Fundamental</td>
                                  <%else if  Role.find(role_user.role_id).name == 'pedagogo' then%>
                                        <td>Pedagogo U.E.</td>
                                        <td>Pedagogo de Unidade Escolar</td>
@@ -40,11 +41,11 @@
                                                      <td>Direção U.E.</td>
                                                      <td>Direção de Unidade Escolar - Infantil</td>
                                                      <%else if  Role.find(role_user.role_id).name == 'professor_infantil' then%>
-                                                         <td>Responsável U.E.</td>
-                                                         <td>Responsável de Unidade Escolar - Infantil</td>
+                                                         <td>Professor U.E.</td>
+                                                         <td>Professor Infantil</td>
                                                          <%else%>
                                                              <td>Usuário</td>
-                                                             <td>Sem acesso ao sistema.</td>
+                                                             <td><font color =" red">Sem acesso ao sistema.</font></td>
                                                          <%end%>
                                                     <%end%>
                                                <%end%>
@@ -55,15 +56,28 @@
                   <%end%>
                <%end%>
 
+            <td align="center" >
+              <% if  !role_user.user.professor.nil?%>     
+                 <%= truncate(role_user.user.professor.nome,:length => 28,:omission => "...") %></b>
+             <%else%>
+                   <%if  Role.find(role_user.role_id).name == 'professor_infantil'  or Role.find(role_user.role_id).name == 'professor_fundamental' then%>
+                       <b>????</b>
+                   <%else%>
+                      Gestão Escolar
+                   <%end%>
+                  
+              <%end%>
 
-
-                                     
-            <td align="center"><%= button_to 'Visualizar',{:action => "show", :id =>role_user}, :method => "get", :title => "Visualizar"%></td>
+            </td>
+  <!--          <td align="center"><%= button_to 'Visualizar',{:action => "show", :id =>role_user}, :method => "get", :title => "Visualizar"%></td>-->
             <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or  current_user.has_role?('SEDUC') %>
                 <td align="center" ><%= button_to 'Editar',{:action => "edit", :id =>role_user}, :method => "get", :title => "Editar"%></td>
             <%else%>
                 <td align="center" > -- </td>
             <%end%>
+
+
+
            <% if current_user.has_role?('admin') or  current_user.has_role?('SEDUC')  %>
                 <td align="center" colspan="1"><%= button_to 'Excluir', role_user, :confirm => 'Confirma Exclusao?', :method => :delete, :title => "Excluir" %></td>
             <%else%>
