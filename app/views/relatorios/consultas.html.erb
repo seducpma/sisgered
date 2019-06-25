@@ -12,8 +12,9 @@
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Por Ano
               <a href="#" class="filtro_fapea"><%= radio_button_tag(:type_of, "2") %></a>Da Unidade<font color =" blue">*</font>
               <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')  %>
-                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Por Aluno(SEDUC)<b><font color =" blue">*</font></b> &nbsp&nbsp&nbsp&nbsp(<font color =" blue"><b>* Ano Letivo atual</b></font>)
+                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Por Aluno(SEDUC)<b><font color =" blue">*</font></b> 
               <%end%>
+              &nbsp&nbsp&nbsp&nbsp(<font color =" blue"><b>* Ano Letivo atual</b></font>)
             </td>
             <td align="right">(Para imprimir FAPEA de outros anos letivos utilize a opção <b>Por Ano)</b></td>
          </tr>
