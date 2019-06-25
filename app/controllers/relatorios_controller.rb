@@ -151,8 +151,9 @@ class RelatoriosController < ApplicationController
   end
 
   def fapea_ano
-      if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fudamental')  or   current_user.has_role?('supervisao')
-        @fapea_ano = Relatorio.find(:all, :conditions=> ['ano_letivo =?' , params[:ano_letivo]])
+      if current_user.has_role?('admin') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_fudamental') or current_user.has_role?('supervisao')
+        @fapea_ano = Relatorio.find(:all, :joins => :aluno, :conditions=> ['ano_letivo =? and alunos.unidade_id=?' , params[:ano_letivo], current_user.unidade_id])
+        ###Alex - mudei no SQL de cima para puxar só da unidade, para diminuir a lista neste momento - AlexML - 25/06/19 12:11 - @fapea_ano = Relatorio.find(:all, :conditions=> ['ano_letivo =?' , params[:ano_letivo]])
         @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND ano_letivo=?', params[:ano_letivo] ],:order => 'alunos.aluno_nome ASC')
       else
         @fapea_ano = Relatorio.find(:all, :joins=> :aluno, :conditions=> ['ano_letivo =? and alunos.unidade_id=?' , params[:ano_letivo], current_user.unidade_id])
