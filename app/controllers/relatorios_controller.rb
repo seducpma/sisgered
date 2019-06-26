@@ -72,19 +72,30 @@ class RelatoriosController < ApplicationController
     respond_to do |format|
       if @relatorio.save
 
+#        if @relatorio.dias_letivos == 0
+#          w3=session[:aulas]=1
+#        else
+#          w4=session[:aulas]=@relatorio.dias_letivos
+#        end
+#        if @relatorio.faltas == 0
+#          w2=session[:faltas]=1
+#        else
+#          w1=session[:faltas]=@relatorio.faltas
+#        end
+
         if @relatorio.dias_letivos == 0
-           w3= session[:aulas]=1
+          session[:faltas]=0
+          @relatorio.faltas=0
+          @relatorio.frequencia=0
         else
           w4=session[:aulas]=@relatorio.dias_letivos
+          if @relatorio.faltas == 0
+            @relatorio.frequencia=100
+          else
+            w2=@relatorio.frequencia = 100-((session[:faltas].to_f / session[:aulas].to_f)*100)
+          end
         end
-        if @relatorio.faltas == 0
-          w= session[:faltas]=1
-        else
-          w1=session[:faltas]=@relatorio.faltas
-        end
-
-        w2=@relatorio.frequencia = 100 -((session[:faltas].to_f / session[:aulas].to_f)*100)
-        t=0
+#       w2=@relatorio.frequencia = 100 -((session[:faltas].to_f / session[:aulas].to_f)*100)
         @relatorio.save
 
         flash[:notice] = 'RELATORIO SALVO COM SUCESSO'
@@ -101,6 +112,20 @@ class RelatoriosController < ApplicationController
   # PUT /relatorios/1.xml
   def update
     @relatorio = Relatorio.find(params[:id])
+    session[:faltas]=@relatorio.faltas
+    session[:aulas]=@relatorio.dias_letivos
+    if @relatorio.dias_letivos == 0
+      session[:faltas]=0
+      @relatorio.faltas=0
+      @relatorio.frequencia=0
+    else
+      session[:aulas]=@relatorio.dias_letivos
+      if @relatorio.faltas == 0
+        @relatorio.frequencia=100
+      else
+        @relatorio.frequencia = 100-((session[:faltas].to_f / session[:aulas].to_f)*100)
+      end
+    end
 
     respond_to do |format|
       if @relatorio.update_attributes(params[:relatorio])
@@ -177,8 +202,10 @@ def consulta_fapea
             session[:impressao]= 1
 
             @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?  and ano_letivo=?", params[:aluno_fapea], Time.now.year])
-            @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? ', @relatorios[0].atribuicao_id] )
-            @classe[0].classe_id
+            @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]], :order => ["id DESC"])
+            ###Alex 26/06/2019 10:27 - Com os PAs deu problema puxou todos porque o ID da classe é 0 - @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? ', @relatorios[0].atribuicao_id] )
+            @classe = Atribuicao.find(:all, :joins => :classe, :select=> 'atribuicaos.classe_id, classes.classe_classe', :conditions => ['classe_id=?', @matricula[0].classe_id] )
+            ###Alex 26/06/2019 10:20 - Não sei para que é estou comentando - @classe[0].classe_id
             @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
             #@professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN relatorios ON professors.id = relatorios.professor_id", :conditions => ['relatorios.id=?', params[:id]])
 
@@ -194,8 +221,10 @@ def consulta_fapea
                  session[:aluno_imp]= params[:aluno_fapea1]
                  session[:ano_imp]=params[:ano_letivo]
                   @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]])
-                  @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=?', @relatorios[0].atribuicao_id] )
-                  @classe[0].classe_id
+                  @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]], :order => ["id DESC"])
+                  ###Alex 26/06/2019 10:27 - Com os PAs deu problema puxou todos porque o ID da classe é 0 - @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=?', @relatorios[0].atribuicao_id] )
+                  @classe = Atribuicao.find(:all, :joins => :classe, :select=> 'atribuicaos.classe_id, classes.classe_classe', :conditions => ['classe_id=?', @matricula[0].classe_id] )
+                  ###Alex 26/06/2019 10:20 - Não sei para que é estou comentando - @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
                   session[:impressao]= 1
                   session[:poraluno] = 0
@@ -209,8 +238,10 @@ def consulta_fapea
                   session[:aluno_imp]= params[:aluno]
                   session[:ano_imp]=params[:ano_letivo]
                   @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno], Time.now.year])
-                  @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
-                  @classe[0].classe_id
+                  @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]], :order => ["id DESC"])
+                  ###Alex 26/06/2019 10:27 - Com os PAs deu problema puxou todos porque o ID da classe é 0 - @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
+                  @classe = Atribuicao.find(:all, :joins => :classe, :select=> 'atribuicaos.classe_id, classes.classe_classe', :conditions => ['classe_id=?', @matricula[0].classe_id] )
+                  ###Alex 26/06/2019 10:20 - Não sei para que é estou comentando - @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
                   render :update do |page|
                      page.replace_html 'relatorio', :partial => "fapea"
@@ -361,8 +392,10 @@ end
   def impressao_fapea
       if session[:poraluno]==1
             @relatorio = Relatorio.find(:last, :conditions => ["aluno_id =?", session[:aluno_imp]])
+            @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]], :order => ["id DESC"])
             session[:relatorio_id]=@relatorio.id
-            @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorio.atribuicao_id, Time.now.year] )
+            ###Alex 26/06/2019 10:27 - Com os PAs deu problema puxou todos porque o ID da classe é 0 - @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorio.atribuicao_id, Time.now.year] )
+            @classe = Atribuicao.find(:all, :joins => :classe, :select=> 'atribuicaos.classe_id, classes.classe_classe', :conditions => ['classe_id=?', @matricula[0].classe_id] )
             @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN relatorios ON professors.id = relatorios.professor_id", :conditions => ['relatorios.id=?', session[:relatorio_id]])
             #@professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
             if session[:imprimir_todos] == 0
@@ -374,10 +407,11 @@ end
              session[:poraluno]=0
       else
          @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]])
-         @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, session[:ano_imp]] )
-         @classe[0].classe_id
+         @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", session[:aluno_imp], session[:ano_imp]], :order => ["id DESC"])
+         ###Alex 26/06/2019 10:27 - Com os PAs deu problema puxou todos porque o ID da classe é 0 - @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, session[:ano_imp]] )
+         @classe = Atribuicao.find(:all, :joins => :classe, :select=> 'atribuicaos.classe_id, classes.classe_classe', :conditions => ['classe_id=?', @matricula[0].classe_id])
+         ###Alex 26/06/2019 10:20 - Não sei para que é estou comentando - @classe[0].classe_id
          @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
-
       end
      render :layout => "impressao"
   end

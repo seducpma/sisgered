@@ -1,5 +1,5 @@
     <%if @relatorios.present?%>
-<%session[:imprimir_todos]=1%>
+      <%session[:imprimir_todos]=1%>
       <% for relatorio in @relatorios %>
         <fieldset><legend><font  size=3><b> FAPEA -
                 
@@ -38,7 +38,7 @@
                    <td><%=h relatorio.atribuicao.classe.unidade.nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                    <b>Disciplina:</b> <%=h relatorio.atribuicao.disciplina.disciplina%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                    <b>Classe:</b>
-                                   <%=h relatorio.atribuicao.classe.classe_classe %>
+                                   <%#=h relatorio.atribuicao.classe.classe_classe %> <%=h @classe[0].classe_classe %>
                    </td>
                    <td><b>Ano Letivo:</b></td>
                    <td colspan="2"><%=h relatorio.ano_letivo %>

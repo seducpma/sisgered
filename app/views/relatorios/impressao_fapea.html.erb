@@ -28,7 +28,7 @@
                    <td><%=h relatorio.atribuicao.classe.unidade.nome %><br/>
                                    <b>Disciplina:</b> <%=h relatorio.atribuicao.disciplina.disciplina%> - 
                                    <b>Classe:</b>
-                                   <%=h relatorio.atribuicao.classe.classe_classe %>
+                                   <%#=h relatorio.atribuicao.classe.classe_classe %> <%=h @classe[0].classe_classe %>
                    </td>
                    <td valign="top"><b>Ano Letivo:</b></td>
                    <td valign="top"><%=h relatorio.ano_letivo %>
