@@ -66,9 +66,6 @@ class RelatoriosController < ApplicationController
     session[:poraluno] = 1
     session[:aluno_imp]= @relatorio.aluno_id
 
-
-
-
     respond_to do |format|
       if @relatorio.save
 
@@ -82,20 +79,19 @@ class RelatoriosController < ApplicationController
 #        else
 #          w1=session[:faltas]=@relatorio.faltas
 #        end
-
+        session[:faltas]=@relatorio.faltas
         if @relatorio.dias_letivos == 0
           session[:faltas]=0
           @relatorio.faltas=0
           @relatorio.frequencia=0
         else
-          w4=session[:aulas]=@relatorio.dias_letivos
+          session[:aulas]=@relatorio.dias_letivos
           if @relatorio.faltas == 0
             @relatorio.frequencia=100
           else
-            w2=@relatorio.frequencia = 100-((session[:faltas].to_f / session[:aulas].to_f)*100)
+            @relatorio.frequencia=100-((session[:faltas].to_f/session[:aulas].to_f)*100)
           end
         end
-#       w2=@relatorio.frequencia = 100 -((session[:faltas].to_f / session[:aulas].to_f)*100)
         @relatorio.save
 
         flash[:notice] = 'RELATORIO SALVO COM SUCESSO'
