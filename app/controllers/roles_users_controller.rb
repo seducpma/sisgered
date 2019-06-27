@@ -28,7 +28,7 @@ class RolesUsersController < ApplicationController
   end
 
   def load_role
-    if current_user.has_role?('admin')
+    if current_user.has_role?('admin') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)
         @roles = Role.find(:all)
     else if current_user.has_role?('direcao_infantil')
           @roles = Role.find(:all, :conditions => ['id = 10 or id = 12 or id = 6 or id =8'])

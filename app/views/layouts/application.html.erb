@@ -499,7 +499,7 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
 <!--=========================================== NOVO MENU==============-->
 
-              <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('direcao_infantil')  or  current_user.has_role?('SEDUC')  %>
+              <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)%>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">GERENCIAR</a>
                  <ul style="width:108px;">

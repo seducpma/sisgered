@@ -2,16 +2,13 @@
       <%session[:imprimir_todos]=1%>
       <% for relatorio in @relatorios %>
         <fieldset><legend><font  size=3><b> FAPEA -
-                
-                
-                    <% bimestre = relatorio.created_at.strftime("%m").to_i %>
+                   <% bimestre = relatorio.created_at.strftime("%m").to_i %>
                    <% if  ( bimestre < 8 ) %>
                      1º Semestre
                    <% else %>
                      2º Semestre
                    <%end%>
                    /<%=h  relatorio.ano_letivo %> 
-
               </b></font></legend>
               <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                 <tr bgcolor="#F5F5F5" style="border-color: white">
@@ -20,7 +17,6 @@
                       <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
                       <center><font size="2"> Unidade Escolar: <%=h relatorio.atribuicao.classe.unidade.nome %> </i></b><br/></center>
                       <center><font size="2"><b><u>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</u></b></font></center>
-
                   </td>
                 </tr>
                </table>

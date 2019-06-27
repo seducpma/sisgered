@@ -5,7 +5,7 @@
     <font size="3"><strong>EDITAR FAPEA</strong></font><br/>
    </div>
   <div class="tabs">
-    <% form_remote_tag :url => editar_relatorios_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+   <%form_remote_tag :url => editar_relatorios_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do%>
          <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
             <td>
@@ -15,9 +15,9 @@
             </td>
          </tr>
          <tr>
-           <td><div class="consulta" style="display:none"> <%= render "consulta" %> </div>
-             <div class="consulta_fapea" style="display:none"> <%= render "consulta_fapea" %> </div>
-             <div class="consulta_unidade" style="display:none"> <%= render "consulta_nome" %> </div>
+           <td><div class="consulta"         style="display:none"><%= render "consulta" %> </div>
+               <div class="consulta_fapea"   style="display:none"><%= render "consulta_fapea" %></div>
+               <div class="consulta_unidade" style="display:none"><%= render "consulta_nome" %></div>
            </td>
          </tr>
         </table>
@@ -37,4 +37,3 @@
  </div>
   <br/>
 </div>
-

@@ -1,7 +1,7 @@
 <table width="100%" align="center" bgcolor="#DCDCDC"  >
           <tr>
             <td align="right" width="20%"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
-            <% if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+            <%if current_user.has_role?('admin') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('supervisao')%>
                   <%= select_tag :ano_letivo, options_for_select(@ano.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
                   <%= observe_field 'ano_letivo',
                           :with => :ano_letivo,
