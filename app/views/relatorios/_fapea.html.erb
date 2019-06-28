@@ -32,7 +32,7 @@
                  <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Unidade:</b></td>
                    <td><%=h relatorio.atribuicao.classe.unidade.nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                   <b>Disciplina:</b> <%=h relatorio.atribuicao.disciplina.disciplina%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                   <b>Disciplina:</b> <%=h @classe[0].disc%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                    <b>Classe:</b>
                                    <%#=h relatorio.atribuicao.classe.classe_classe %> <%=h @classe[0].classe_classe %>
                    </td>
@@ -72,10 +72,11 @@
                 <tr><td colspan="5"> <hr/></td></tr>
                 <%if session[:impressao]==1%>
                 <tr>
-                 
-                  <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil')%>
-                    <td  colspan="4" align="right" ><%= button_to 'Excluir', relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir" %></a></td>
-                  <%end%>
+<!--
+                  <%# if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil')%>
+                    <td  colspan="4" align="right" ><%#= button_to 'Excluir', relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir" %></a></td>
+                  <%#end%>
+-->
                   <td width ="5%" align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
 
                </tr>

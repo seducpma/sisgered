@@ -35,9 +35,9 @@
                  <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Unidade:</b></td>
                    <td colspan="3"><%=h relatorio.atribuicao.classe.unidade.nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                   <b>Disciplina:</b> <%=h relatorio.atribuicao.disciplina.disciplina%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                   <b>Disciplina:</b> <%=h @classe[0].disc%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                    <b>Classe:</b>
-                                   <%=h relatorio.atribuicao.classe.classe_classe %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                   <%#=h relatorio.atribuicao.classe.classe_classe %> <%=h @classe[0].classe_classe %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
                                    <%session[:classe_classe] = relatorio.atribuicao.classe.classe_classe%>
                                    <%session[:classe_id] = relatorio.atribuicao.classe.id%>
@@ -58,7 +58,9 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left" valign="top"><b>Professor(a):</b></td>
-                   <td colspan="3"><%=h relatorio.professor.nome %></td>
+                   <td colspan="3"><% for professor in @professors %>
+                                      <%= professor.nome %> <br/>
+                                   <%end%>
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left" valign="top"><b>Relatório:</b></td>
@@ -72,8 +74,7 @@
 <!--###Alex retirei na linha de baixo "professor_infantil" <%# if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil') or current_user.has_role?('pedagogo')%>-->
                   <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('pedagogo') or session[:prof_autorizado]%>
                      <td  colspan="2" align="right" ><%= button_to 'Editar',  {:controller =>"relatorios", :action => "edit", :id =>relatorio}, :method => "get", :title => "Editar"%></a></td>
-
-                     <td   width ="5%"align="center" ><%= button_to 'Excluir', relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir" %></a></td>
+                     <td  width ="5%"align="center" ><%= button_to 'Excluir', relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir" %></a></td>
                   <%end%>
                   <td width ="5%" align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
 
