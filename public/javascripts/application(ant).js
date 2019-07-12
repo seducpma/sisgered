@@ -394,7 +394,6 @@ jQuery(document).ready(function( $ ){
         $(".consulta_nome").show();
         $(".txt_busca").val("Digite parte da busca").css("color","gray");
         $(".consulta1").hide();
-        $(".consulta_classe_fapea").hide();
         $(".consulta_unidade").hide();
         $(".consulta_professor").hide();
         $(".consulta2").hide();
@@ -443,19 +442,7 @@ jQuery(document).ready(function( $ ){
         $(".consulta_fapea").show();
         $(".consulta").hide();
         $(".consulta_nome_fapea").hide();
-        $(".consulta_classe_fapea").hide();
     });
-
-    $(".filtro_fapeac").click(function ()
-    {
-        $(".consulta_classe_fapea").show();
-        $(".consulta_nome_fapea").hide();
-        $(".consulta").hide();
-        $(".consulta_fapea").hide();
-        $(".consulta_nome_fapea").hide();
-    });
-
-
 
     $(".classe_filtro").click(function ()
     {
@@ -547,7 +534,6 @@ jQuery(document).ready(function( $ ){
         $(".txt_busca2").show();
         $(".label_busca2").show();
         $(".consulta_nome_fapea").show();
-        $(".consulta_classe_fapea").hide();
         $(".consulta_professor").hide();
         $(".consulta").hide();
         $(".consulta_unidade_m").hide();

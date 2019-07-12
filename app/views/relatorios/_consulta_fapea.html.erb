@@ -1,11 +1,17 @@
-<%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+<%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
    <%#@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND ano_letivo=? AND alunos.unidade_id=?',Time.now.year, current_user.unidade_id],:order => 'alunos.aluno_nome ASC')%>
    <%@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND ano_letivo=?',Time.now.year],:order => 'alunos.aluno_nome ASC')%>
    <%#@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND relatorios.ano_letivo =?', Time.now.year],:order => 'alunos.aluno_nome ASC')%>
 <%else%>
-    <%if  current_user.has_role?('professor_infantil')%>
-      <%@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=? AND relatorios.professor_id=?', current_user.unidade_id, Time.now.year, current_user.professor_id  ],:order => 'alunos.aluno_nome')%>
-    <%end%>
+    <%if  current_user.has_role?('secretaria_infantil') or   current_user.has_role?('direcao_infantil')%>
+      <%@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=?', current_user.unidade_id, Time.now.year  ],:order => 'alunos.aluno_nome')%>
+
+    <%else%>
+       <%if  current_user.has_role?('professor_infantil')%>
+         <%@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=? AND relatorios.professor_id=?', current_user.unidade_id, Time.now.year, current_user.professor_id  ],:order => 'alunos.aluno_nome')%>
+       <%end%>
+
+   <%end%>
 <%end%>
 <table width="100%" align="center">
    

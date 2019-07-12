@@ -100,6 +100,7 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.impressao_historico'impressao_historico', :controller => 'historicos', :action => 'impressao_historico'
   map.impressao_historico_aluno'impressao_historico_aluno', :controller => 'atribuicaos', :action => 'impressao_historico_aluno'
   map.impressao_fapea '/impressao_fapea', :controller => 'relatorios', :action => 'impressao_fapea'
+  map.impressao_fapeaT '/impressao_fapeaT', :controller => 'relatorios', :action => 'impressao_fapeaT'
   map.impressao_faltas '/impressao_faltas', :controller => 'aulas_faltas', :action => 'impressao_faltas'
   map.impressao_faltas_professor '/impressao_faltas_professor', :controller => 'aulas_faltas', :action => 'impressao_faltas_professor'
   map.impressao_faltas_funcionario '/impressao_faltas_funcionario', :controller => 'aulas_faltas', :action => 'impressao_faltas_funcionario'

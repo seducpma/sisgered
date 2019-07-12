@@ -6,25 +6,31 @@
    </div>
   <div class="tabs">
     <% form_remote_tag :url => consulta_fapea_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <table width="100%">
+        <tr>
+            <td colspan="5"align="right">(Para imprimir FAPEA do<u> ano letivo atual</u> utilize opção opção <b>Por Classe</b> de <u>outros anos letivos</u> utilize a opção <b>Por Ano)</b></td>
+         </tr>
+      </table>
       <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td width="53%">
+            <td>
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Por Ano
+              <a href="#" class="filtro_fapeac"><%= radio_button_tag(:type_of, "4") %></a>Por Classe <b><font color =" blue">*</font></b>
               <a href="#" class="filtro_fapea"><%= radio_button_tag(:type_of, "2") %></a>Da Unidade<font color =" blue">*</font>
-              <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')  %>
-                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Por Aluno(SEDUC)<b><font color =" blue">*</font></b> 
+              <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao') or current_user.has_role?('secretaria_infantil') %>
+                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Por Aluno <b><font color =" blue">*</font></b>
               <%end%>
               &nbsp&nbsp&nbsp&nbsp(<font color =" blue"><b>* Ano Letivo atual</b></font>)
             </td>
-            <td align="right">(Para imprimir FAPEA de outros anos letivos utilize a opção <b>Por Ano)</b></td>
-         </tr>
+          </tr>
 
          <tr>
              <td colspan="2"><div class="consulta" style="display:none"> <%= render "consulta" %> </div>
+             <div class="consulta_classe_fapea" style="display:none"> <%= render "consulta_classe" %> </div>
              <div class="consulta_fapea" style="display:none"> <%= render "consulta_fapea" %> </div>
              <div class="consulta_nome_fapea" style="display:none"> <%= render "consulta_nome" %> </div>
+
            </td>
-         </tr>
         </table>
     <% end %>
     <br/>

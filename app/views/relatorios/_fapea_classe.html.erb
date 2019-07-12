@@ -1,0 +1,92 @@
+<table>
+    <tr>
+        <td align="right"><b> Imprimir todas as FAPEAs da classe ===> </b> </td>
+        <td width ="5%" align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapeaT_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>        
+    </tr>
+</table>
+  <% for matricula in @matriculas %>
+      <%session[:imprimir_todos]=1%>
+      <%  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", matricula.aluno_id, Time.now.year])%>
+      <% for relatorio in @relatorios %>
+        <fieldset><legend><font  size=3><b> FAPEA -
+                   <% bimestre = relatorio.created_at.strftime("%m").to_i %>
+                   <% if  ( bimestre < 8 ) %>
+                     1º Semestre
+                   <% else %>
+                     2º Semestre
+                   <%end%>
+                   /<%=h  relatorio.ano_letivo %> 
+              </b></font></legend>
+              <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                <tr bgcolor="#F5F5F5" style="border-color: white">
+                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                      <center><font size="2"> Unidade Escolar: <%=h relatorio.atribuicao.classe.unidade.nome %> </i></b><br/></center>
+                      <center><font size="2"><b><u>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</u></b></font></center>
+                  </td>
+                </tr>
+               </table>
+          <table width="100%" >
+                 <tr bgcolor="#F5F5F5">
+                   <td width=5%" align="left"><b>Aluno(a):</b></td>
+                   <td  width=50%"><%=h relatorio.aluno.aluno_nome %> <%  session[:relatorio_id]= relatorio.id%> </td>
+                   <td width=10%" align="left"><b>Nascimento:</b></td>
+                   <td colspan="2"><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %>   </td>
+
+
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td align="left"><b>Unidade:</b></td>
+                   <td><%=h relatorio.atribuicao.classe.unidade.nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                   <b>Disciplina:</b> <%=h @classe[0].disc%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                   <b>Classe:</b>
+                                   <%#=h relatorio.atribuicao.classe.classe_classe %> <%=h @classe[0].classe_classe %>
+                   </td>
+                   <td><b>Ano Letivo:</b></td>
+                   <td colspan="2"><%=h relatorio.ano_letivo %>
+                    <% bimestre = relatorio.created_at.strftime("%m").to_i %>
+                   <% if  ( bimestre < 8 ) %>
+                     - 1º Semestre
+                   <% else %>
+                     - 2º Semestre
+                   <%end%>
+
+
+                   </td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td align="left"><b>Mãe / Pai:</b></td>
+                   <td colspan="4"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                     <td align="left"><b>Dias Letivos:</b></td>
+                   <td colspan="3"><%=h relatorio.dias_letivos%> &nbsp&nbsp&nbsp&nbsp <b> Faltas: </b>&nbsp  <%=h relatorio.faltas%> &nbsp&nbsp&nbsp&nbsp <b> Frequência: </b>&nbsp  <%=h relatorio.frequencia%> %</td>
+                </tr>
+
+                 <tr bgcolor="#F5F5F5">
+                   <td align="left" valign="top"><b>Professor(es):</b></td>
+                   <td colspan="4"><% for professor in @professors %>
+                            <%= professor.nome %> <br/>
+                         <%end%>  
+                   </td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td align="left" valign="top"><b>Relatório:</b></td>
+                   <td colspan="4"><%=   relatorio.observacao.gsub("\n","<br/>\n") %></td>
+                </tr>
+
+                <tr><td colspan="5"> <hr/></td></tr>
+                <%if session[:impressao]==1%>
+                <tr>
+                  <td width ="5%" align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
+                   
+
+               </tr>
+               
+               <%end %>
+             </table>
+           </fieldset>
+          <%end%>
+
+  <%end%>
