@@ -26366,3 +26366,333 @@ Rendering relatorios/impressao_fapeaT
   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23499) [0m
   [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =23500 and ano_letivo =2019) [0m
 Completed in 223ms (View: 49, DB: 25) | 200 OK [http://localhost/impressao_fapeaT]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RelatoriosController#consultas (for 127.0.0.1 at 2019-07-12 11:54:26) [GET]
+  [4;36;1mUser Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id < 40 OR id >51) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.5ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mDisciplina Load (0.6ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo ='I' and ano_letivo =2019 ) ORDER BY disciplina[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null AND atribuicaos.professor_id =318) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mroles_users Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (unidade_id = 57 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mRelatorio Load (0.2ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mRelatorio Load (0.1ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `relatorios` ORDER BY ano_letivo DESC[0m
+  [4;36;1mNota Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT distinct(disciplina) as disciplina FROM `disciplinas` WHERE (ano_letivo =2019 and tipo_un =3) ORDER BY ano_letivo DESC[0m
+Rendering template within layouts/application
+Rendering relatorios/consultas
+  [4;36;1mRelatorio Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `relatorios`[0m
+Rendered relatorios/_consulta (3.9ms)
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (classe_ano_letivo =2019 and unidade_id=57) [0m
+  [4;36;1mClasse Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+Rendered relatorios/_consulta_classe (9.0ms)
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.aluno_status is null AND alunos.unidade_id =57 AND relatorios.ano_letivo=2019) ORDER BY alunos.aluno_nome[0m
+Rendered relatorios/_consulta_fapea (2.2ms)
+  [4;36;1mRelatorio Load (0.7ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.aluno_status is null AND relatorios.ano_letivo =2019) ORDER BY alunos.aluno_nome ASC[0m
+Rendered relatorios/_consulta_nome (207.1ms)
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2019-07-12 14:54:26' AND ends_at >= '2019-07-12 14:54:26') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=57) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 313ms (View: 241, DB: 9) | 200 OK [http://localhost/relatorios/consultas]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RelatoriosController#consultas (for 127.0.0.1 at 2019-07-12 11:54:27) [GET]
+  [4;36;1mUser Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id < 40 OR id >51) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo ='I' and ano_letivo =2019 ) ORDER BY disciplina[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null AND atribuicaos.professor_id =318) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mroles_users Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (unidade_id = 57 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mRelatorio Load (0.2ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mRelatorio Load (0.1ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `relatorios` ORDER BY ano_letivo DESC[0m
+  [4;36;1mNota Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT distinct(disciplina) as disciplina FROM `disciplinas` WHERE (ano_letivo =2019 and tipo_un =3) ORDER BY ano_letivo DESC[0m
+Rendering template within layouts/application
+Rendering relatorios/consultas
+  [4;36;1mRelatorio Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `relatorios`[0m
+Rendered relatorios/_consulta (3.9ms)
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (classe_ano_letivo =2019 and unidade_id=57) [0m
+  [4;36;1mClasse Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+Rendered relatorios/_consulta_classe (90.2ms)
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.aluno_status is null AND alunos.unidade_id =57 AND relatorios.ano_letivo=2019) ORDER BY alunos.aluno_nome[0m
+Rendered relatorios/_consulta_fapea (2.5ms)
+  [4;36;1mRelatorio Load (0.8ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.aluno_status is null AND relatorios.ano_letivo =2019) ORDER BY alunos.aluno_nome ASC[0m
+Rendered relatorios/_consulta_nome (124.1ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2019-07-12 14:54:27' AND ends_at >= '2019-07-12 14:54:27') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=57) [0m
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 298ms (View: 237, DB: 11) | 200 OK [http://localhost/relatorios/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RelatoriosController#consultas (for 127.0.0.1 at 2019-07-12 11:54:27) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id < 40 OR id >51) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo ='I' and ano_letivo =2019 ) ORDER BY disciplina[0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null AND atribuicaos.professor_id =318) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.4ms)[0m   [0mSELECT * FROM `professors` WHERE (unidade_id = 57 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mRelatorio Load (0.3ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mRelatorio Load (1.6ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `relatorios` ORDER BY ano_letivo DESC[0m
+  [4;36;1mNota Load (0.3ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mDisciplina Load (0.3ms)[0m   [0mSELECT distinct(disciplina) as disciplina FROM `disciplinas` WHERE (ano_letivo =2019 and tipo_un =3) ORDER BY ano_letivo DESC[0m
+Rendering template within layouts/application
+Rendering relatorios/consultas
+  [4;36;1mRelatorio Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relatorios`[0m
+Rendered relatorios/_consulta (3.8ms)
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (classe_ano_letivo =2019 and unidade_id=57) [0m
+  [4;36;1mClasse Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+Rendered relatorios/_consulta_classe (10.5ms)
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.aluno_status is null AND alunos.unidade_id =57 AND relatorios.ano_letivo=2019) ORDER BY alunos.aluno_nome[0m
+Rendered relatorios/_consulta_fapea (2.4ms)
+  [4;36;1mRelatorio Load (0.6ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.aluno_status is null AND relatorios.ano_letivo =2019) ORDER BY alunos.aluno_nome ASC[0m
+Rendered relatorios/_consulta_nome (123.5ms)
+  [4;35;1mInformativo Load (0.2ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2019-07-12 14:54:27' AND ends_at >= '2019-07-12 14:54:27') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=57) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 392ms (View: 241, DB: 10) | 200 OK [http://localhost/relatorios/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RelatoriosController#consulta_fapea (for 127.0.0.1 at 2019-07-12 11:54:33) [GET]
+  Parameters: {"aluno"=>"--Selecionar--", "type_of"=>"4", "_"=>"1562943273700", "ano_letivo"=>"--Selecionar--", "authenticity_token"=>"tUJ4PPsUKglRcCRqGd6PFONp5P/68DlUG1JygKLlSwo=", "aluno_fapea"=>"--Selecionar--", "classe_id"=>"2032"}
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id < 40 OR id >51) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo ='I' and ano_letivo =2019 ) ORDER BY disciplina[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null AND atribuicaos.professor_id =318) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT * FROM `professors` WHERE (unidade_id = 57 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mRelatorio Load (0.2ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mRelatorio Load (0.1ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `relatorios` ORDER BY ano_letivo DESC[0m
+  [4;36;1mNota Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT distinct(disciplina) as disciplina FROM `disciplinas` WHERE (ano_letivo =2019 and tipo_un =3) ORDER BY ano_letivo DESC[0m
+  [4;36;1mMatricula Load (0.2ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (classe_id = '2032') ORDER BY classe_num ASC[0m
+  [4;35;1mMatricula Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc FROM `atribuicaos` INNER JOIN `classes` ON `classes`.id = `atribuicaos`.classe_id INNER JOIN `disciplinas` ON `disciplinas`.id = `atribuicaos`.disciplina_id WHERE (classe_id=2032) [0m
+  [4;35;1mAtribuicao Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT nome FROM `professors` INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id WHERE (atribuicaos.classe_id=2032) [0m
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =21044 and ano_letivo =2019) [0m
+  [4;36;1mRelatorio Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `relatorios`[0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;36;1mClasse Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;36;1mUnidade Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mAluno Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21044) [0m
+  [4;36;1mProfessor Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =21051 and ano_letivo =2019) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21051) [0m
+  [4;36;1mRelatorio Load (0.1ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id =21045 and ano_letivo =2019) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21045) [0m
+  [4;35;1mRelatorio Load (0.1ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =20457 and ano_letivo =2019) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 20457) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 20457) [0m
+  [4;36;1mRelatorio Load (0.2ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id =21039 and ano_letivo =2019) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21039) [0m
+  [4;35;1mRelatorio Load (0.1ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =21056 and ano_letivo =2019) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21056) [0m
+  [4;36;1mRelatorio Load (0.1ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id =23495 and ano_letivo =2019) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23495) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23495) [0m
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =23620 and ano_letivo =2019) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23620) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23620) [0m
+Rendered relatorios/_fapea_classe (135.6ms)
+Completed in 341ms (View: 154, DB: 14) | 200 OK [http://localhost/consulta_fapea?authenticity_token=tUJ4PPsUKglRcCRqGd6PFONp5P%2F68DlUG1JygKLlSwo%3D&type_of=4&ano_letivo=--Selecionar--&classe_id=2032&aluno=--Selecionar--&aluno_fapea=--Selecionar--&authenticity_token=tUJ4PPsUKglRcCRqGd6PFONp5P%2F68DlUG1JygKLlSwo%3D&_=1562943273700]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RelatoriosController#impressao_fapea (for 127.0.0.1 at 2019-07-12 11:54:40) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id < 40 OR id >51) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (4.0ms)[0m   [0mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (curriculo ='I' and ano_letivo =2019 ) ORDER BY disciplina[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null AND atribuicaos.professor_id =318) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (unidade_id = 57 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mRelatorio Load (0.2ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mRelatorio Load (0.1ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `relatorios` ORDER BY ano_letivo DESC[0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `notas` ORDER BY ano_letivo DESC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT distinct(disciplina) as disciplina FROM `disciplinas` WHERE (ano_letivo =2019 and tipo_un =3) ORDER BY ano_letivo DESC[0m
+  [4;36;1mRelatorio Load (0.2ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id ='21044') [0m
+  [4;35;1mMatricula Load (0.2ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id ='21044') ORDER BY id DESC[0m
+  [4;36;1mMatricula Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mAtribuicao Load (0.2ms)[0m   [0mSELECT atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc FROM `atribuicaos` INNER JOIN `classes` ON `classes`.id = `atribuicaos`.classe_id INNER JOIN `disciplinas` ON `disciplinas`.id = `atribuicaos`.disciplina_id WHERE (classe_id=2032) [0m
+  [4;36;1mAtribuicao Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT nome FROM `professors` INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id WHERE (atribuicaos.classe_id=2032) [0m
+Rendering template within layouts/impressao
+Rendering relatorios/impressao_fapea
+  [4;36;1mRelatorio Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `relatorios`[0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9391) [0m
+  [4;36;1mClasse Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2032) [0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mAluno Columns (2.6ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21044) [0m
+  [4;36;1mProfessor Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Completed in 238ms (View: 42, DB: 18) | 200 OK [http://localhost/impressao_fapea]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RelatoriosController#consultas (for 127.0.0.1 at 2019-07-12 11:55:22) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id < 40 OR id >51) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo ='I' and ano_letivo =2019 ) ORDER BY disciplina[0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null AND atribuicaos.professor_id =318) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (unidade_id = 57 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mRelatorio Load (0.1ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `relatorios` ORDER BY ano_letivo DESC[0m
+  [4;35;1mNota Load (0.2ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `notas` ORDER BY ano_letivo DESC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT distinct(disciplina) as disciplina FROM `disciplinas` WHERE (ano_letivo =2019 and tipo_un =3) ORDER BY ano_letivo DESC[0m
+Rendering template within layouts/application
+Rendering relatorios/consultas
+  [4;35;1mRelatorio Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `relatorios`[0m
+Rendered relatorios/_consulta (6.9ms)
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (classe_ano_letivo =2019 and unidade_id=57) [0m
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered relatorios/_consulta_classe (91.7ms)
+  [4;36;1mRelatorio Load (0.2ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.aluno_status is null AND alunos.unidade_id =57 AND relatorios.ano_letivo=2019) ORDER BY alunos.aluno_nome[0m
+Rendered relatorios/_consulta_fapea (3.6ms)
+  [4;35;1mRelatorio Load (0.7ms)[0m   [0mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.aluno_status is null AND relatorios.ano_letivo =2019) ORDER BY alunos.aluno_nome ASC[0m
+Rendered relatorios/_consulta_nome (148.8ms)
+  [4;36;1mInformativo Load (0.8ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2019-07-12 14:55:22' AND ends_at >= '2019-07-12 14:55:22') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=57) [0m
+  [4;36;1mUnidade Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 337ms (View: 273, DB: 10) | 200 OK [http://localhost/relatorios/consultas]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RelatoriosController#consulta_fapea (for 127.0.0.1 at 2019-07-12 11:55:28) [GET]
+  Parameters: {"aluno"=>"--Selecionar--", "type_of"=>"4", "_"=>"1562943327943", "ano_letivo"=>"--Selecionar--", "authenticity_token"=>"tUJ4PPsUKglRcCRqGd6PFONp5P/68DlUG1JygKLlSwo=", "aluno_fapea"=>"--Selecionar--", "classe_id"=>"2035"}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id < 40 OR id >51) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` ORDER BY nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (curriculo ='I' and ano_letivo =2019 ) ORDER BY disciplina[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT alunos.id, alunos.aluno_nome FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null AND atribuicaos.professor_id =318) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (unidade_id = 57 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT distinct(alunos.aluno_nome), alunos.id FROM `relatorios` INNER JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id WHERE (alunos.unidade_id=57 AND alunos.aluno_status is null) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mRelatorio Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `relatorios` ORDER BY ano_letivo DESC[0m
+  [4;35;1mNota Load (0.4ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `notas` ORDER BY ano_letivo DESC[0m
+  [4;36;1mDisciplina Load (0.3ms)[0m   [0;1mSELECT distinct(disciplina) as disciplina FROM `disciplinas` WHERE (ano_letivo =2019 and tipo_un =3) ORDER BY ano_letivo DESC[0m
+  [4;35;1mMatricula Load (0.4ms)[0m   [0mSELECT * FROM `matriculas` WHERE (classe_id = '2035') ORDER BY classe_num ASC[0m
+  [4;36;1mMatricula Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mAtribuicao Load (0.3ms)[0m   [0mSELECT atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc FROM `atribuicaos` INNER JOIN `classes` ON `classes`.id = `atribuicaos`.classe_id INNER JOIN `disciplinas` ON `disciplinas`.id = `atribuicaos`.disciplina_id WHERE (classe_id=2035) [0m
+  [4;36;1mAtribuicao Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT nome FROM `professors` INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id WHERE (atribuicaos.classe_id=2035) [0m
+  [4;36;1mRelatorio Load (0.3ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id =21070 and ano_letivo =2019) [0m
+  [4;35;1mRelatorio Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `relatorios`[0m
+  [4;36;1mAtribuicao Load (0.3ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9393) [0m
+  [4;35;1mClasse Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2035) [0m
+  [4;35;1mUnidade Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mAluno Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21070) [0m
+  [4;35;1mProfessor Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mRelatorio Load (0.3ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id =20790 and ano_letivo =2019) [0m
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =21067 and ano_letivo =2019) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9393) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2035) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21067) [0m
+  [4;36;1mRelatorio Load (0.3ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id =19344 and ano_letivo =2019) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9393) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2035) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 19344) [0m
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =19340 and ano_letivo =2019) [0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9394) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2035) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 19340) [0m
+  [4;36;1mRelatorio Load (0.3ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id =21071 and ano_letivo =2019) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9394) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2035) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21071) [0m
+  [4;35;1mRelatorio Load (0.3ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =23497 and ano_letivo =2019) [0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 10504) [0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2390) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 4) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23497) [0m
+  [4;36;1mRelatorio Load (0.3ms)[0m   [0;1mSELECT * FROM `relatorios` WHERE (aluno_id =23499 and ano_letivo =2019) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9394) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2035) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23499) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 9394) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2035) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 57) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23499) [0m
+  [4;35;1mRelatorio Load (0.2ms)[0m   [0mSELECT * FROM `relatorios` WHERE (aluno_id =23500 and ano_letivo =2019) [0m
+Rendered relatorios/_fapea_classe (75.5ms)
+Completed in 248ms (View: 73, DB: 22) | 200 OK [http://localhost/consulta_fapea?authenticity_token=tUJ4PPsUKglRcCRqGd6PFONp5P%2F68DlUG1JygKLlSwo%3D&type_of=4&ano_letivo=--Selecionar--&classe_id=2035&aluno=--Selecionar--&aluno_fapea=--Selecionar--&authenticity_token=tUJ4PPsUKglRcCRqGd6PFONp5P%2F68DlUG1JygKLlSwo%3D&_=1562943327943]
