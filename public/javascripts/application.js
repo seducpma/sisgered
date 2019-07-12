@@ -560,7 +560,7 @@ jQuery(document).ready(function( $ ){
         $(".consulta_unidade_m").hide();
         $(".txt_buscam").hide();
         $(".label_buscam").hide();
-        $(".consulta_unidade").hide();
+        
         $(".consulta1").hide();
         $(".consulta_data").hide();
         $(".label_busca1").hide();

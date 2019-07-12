@@ -305,7 +305,7 @@ def editar
             session[:ano_imp]=params[:ano_letivo]
             session[:impressao]= 1
                   @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =?", params[:aluno_fapea]])
-                  @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]], :order => ["id DESC"])
+                  @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea], Time.now.year], :order => ["id DESC"])
                   ###Alex 26/06/2019 10:27 - Com os PAs deu problema puxou todos porque o ID da classe é 0 - @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorios[0].atribuicao_id, Time.now.year] )
                   @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id] )
                   ###Alex 26/06/2019 10:20 - Não sei para que é estou comentando - @classe[0].classe_id

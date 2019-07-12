@@ -46,8 +46,7 @@
   <table width="100%" >
          <tr>
             <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-             <td colspan="10"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-
+             <td colspan="10"align="left" ><%= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>@relatorio}, :title => "Imprimir esta FAPEA"%></b></td>
                </tr>
 
 
