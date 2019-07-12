@@ -38,11 +38,7 @@
                  </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Unidade:</b></td>
-                   <td><%=h relatorio.atribuicao.classe.unidade.nome %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                   <b>Disciplina:</b> <%=h @classe[0].disc%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                   <b>Classe:</b>
-                                   <%#=h relatorio.atribuicao.classe.classe_classe %> <%=h @classe[0].classe_classe %>
-                   </td>
+                   <td><%=h relatorio.atribuicao.classe.unidade.nome %></td>
                    <td><b>Ano Letivo:</b></td>
                    <td colspan="2"><%=h relatorio.ano_letivo %>
                     <% bimestre = relatorio.created_at.strftime("%m").to_i %>
@@ -51,10 +47,14 @@
                    <% else %>
                      - 2º Semestre
                    <%end%>
-
-
-                   </td>
+                  </td>
                 </tr>
+                <tr bgcolor="#F5F5F5">
+                   <td width=5%" align="left"><b>Disciplina:</b></td>
+                   <td  width=50%"><%=h @classe[0].disc%></td>
+                   <td width=10%" align="left"><b>Classe:</b></td>
+                   <td colspan="2"><%=h @classe[0].classe_classe %> </td>
+                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Mãe / Pai:</b></td>
                    <td colspan="4"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
@@ -79,8 +79,8 @@
                 <tr><td colspan="5"> <hr/></td></tr>
                 
                 <tr>
-                  <td width ="5%" align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapea_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
-                   
+                  
+                  <td  align="left" ><%= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>relatorio}, :title => "Imprimir esta FAPEA"%></td> </td>
 
                </tr>
                

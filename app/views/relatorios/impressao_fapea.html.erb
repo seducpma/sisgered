@@ -3,8 +3,8 @@
     <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
   </tr>
 </table>
-            <% for relatorio in @relatorios %>
-              <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+            <% for relatorio in @relatorio %>
+              <table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
                 <tr  style="border-color: white">
                   <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
                   <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
@@ -25,11 +25,7 @@
                  </tr>
                  <tr >
                    <td valign="top"align="left"><b>Unidade:</b></td>
-                   <td><%=h relatorio.atribuicao.classe.unidade.nome %><br/>
-                                   <b>Disciplina:</b> <%=h @classe[0].disc%> -
-                                   <b>Classe:</b>
-                                   <%#=h relatorio.atribuicao.classe.classe_classe %> <%=h @classe[0].classe_classe %>
-                   </td>
+                   <td><%=h relatorio.atribuicao.classe.unidade.nome %></td>
                    <td valign="top"><b>Ano Letivo:</b></td>
                    <td valign="top"><%=h relatorio.ano_letivo %>
                      <% bimestre = relatorio.created_at.strftime("%m").to_i %>
@@ -40,6 +36,14 @@
                    <%end%>
                    </td>
                 </tr>
+                <tr>
+                   <td width=5%" align="left"><b>Disciplina:</b></td>
+                   <td><%=h @classe[0].disc%></td>
+                   <td width=10%" align="left"><b>Classe::</b></td>
+                   <td><%=h @classe[0].classe_classe %></td>
+               </tr>
+
+
                  <tr  style="border-color: white">
                      <td align="left"><b>Dias Letivos:</b></td>
                    <td colspan="3"><%=h relatorio.dias_letivos%> &nbsp&nbsp&nbsp&nbsp <b> Faltas: </b>&nbsp  <%=h relatorio.faltas%> &nbsp&nbsp&nbsp&nbsp <b> Frequência: </b>&nbsp  <%=h relatorio.frequencia%> %</td>
