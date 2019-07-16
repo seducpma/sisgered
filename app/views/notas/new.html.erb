@@ -50,7 +50,9 @@
             </fieldset>
                  <table width="100%" >
                    <tr bgcolor="#F5F5F5">
-                     <td width="90%"align="left"><b><div id='oki'> Selecione a ANO LETIVO e a SÉRIE para habilitar o botão SALVAR </div></b></td>
+                         <td width="90%"align="left"><b><div id='oki'> Selecionar a SÉRIE  e ANO LETIVO  para habilitar o botão SALVAR <br/>
+                                     <b> <font color =" red"> Se Não constar na lista é necessário cadastra SÉRIA e ANO  LETIVO</font> <%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'Cadastrar SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}, :target => '_blank'%>
+                             </div></b></td>
 
           <%end%>
 
