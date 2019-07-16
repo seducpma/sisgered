@@ -50,13 +50,13 @@
             </fieldset>
                  <table width="100%" >
                    <tr bgcolor="#F5F5F5">
-                         <td width="90%"align="left"><b><div id='oki'> Selecionar a SÉRIE  e ANO LETIVO  para habilitar o botão SALVAR <br/>
-                                     <b> <font color =" red"> Se Não constar na lista é necessário cadastra SÉRIA e ANO  LETIVO</font> <%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'Cadastrar SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}, :target => '_blank'%>
+                         <td width="90%"align="left"><b><div id='oki'> Selecionar a SÉRIE  e ANO LETIVO  para habilitar o botão SALVAR. <br/>
+                                     <b> <font color =" red"> Se Não constar a série/ano letivo na lista é necessário cadastra SÉRIE e ANO  LETIVO</font> <%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'Cadastrar SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}, :target => '_blank'%>
                              </div></b></td>
 
           <%end%>
 
-                     <td align="right"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                             <td valign="bottom"align="right"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
                    </tr>
                  </table>
             </font>
