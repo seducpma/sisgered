@@ -108,7 +108,7 @@ class ObservacaoNotasController < ApplicationController
 
 
   def load_iniciais
-    @quem = ["CONSELHO","DIREÇÂO","PEDAGOGO"]
+    @quem = ["CONSELHO","DIREÇÃO","PEDAGOGO"]
     @alunos = Aluno.find(:all, :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
             if current_user.has_role?('professor_fundamental')
                 @disciplinas1 = Disciplina.find_by_sql("SELECT DISTINCT disciplinas.disciplina  FROM disciplinas INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id WHERE atribuicaos.professor_id = "+(current_user.professor_id).to_s + " AND atribuicaos.ano_letivo = "+Time.now.year.to_s)

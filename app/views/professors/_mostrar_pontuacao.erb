@@ -11,7 +11,7 @@
                        <font size="3"><i><b><u>SISTEMA DE PONTUAÇÃO</u></b><br/>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                       <font size="3"><b><u> TITULAÇÂO PROFESSORES</u></b></i><br/>
+                       <font size="3"><b><u> TITULAÇÃO PROFESSORES</u></b></i><br/>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -270,7 +270,7 @@
 
           </table>
 
-<!--  PONTUAÇÂO TITULAÇÂO -->
+<!--  PONTUAÇÃO TITULAÇÃO -->
 <%  session[:subtotal_titulos] = 0 %>
 
 <table border="1" cellspacing="0" cellpadding="1" width="100%">
@@ -420,7 +420,7 @@
 <table width="100%" ->
 
     <td widht="8%"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_professors_path(:professor => session[:teacher1111])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-    <td align="right"><font size="3"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
+    <td align="right"><font size="3"><b>TOTAL PONTUAÇÃO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
     <td width="12%" align="center"><b><font size="3"><%= session[:pontos]%></b></font> </td>
   </tr>
 </table>
