@@ -148,7 +148,7 @@
       <%end%>
       <%if nota.nota2.present? or nota.faltas2 != 0%>
            <th style="font-size: 8px" align="center"> <%if nota.nota2.to_i < 5.0 %>
-                                   <font color ="red">1 <%= nota.nota2 %> </font>
+                                   <font color ="red"> <%= nota.nota2 %> </font>
                                <%else%>
                                     <%= nota.nota2 %>
                                <%end%>
