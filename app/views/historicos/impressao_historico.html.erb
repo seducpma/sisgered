@@ -353,9 +353,18 @@
                           <%else%>
                                   <%= @notas_ano.matricula.aluno.aluno_nome %> </b>
                           <%end%>
-                        concluiu o
+                        concluiu o<b>
 
-                        <b><%= (session[:classe_anos].max) %>º ano</b> do Ensino Fundamental de 9 anos no ano letivo de <b>
+                            <%if @notas_ano.matricula.aluno.aluno_nome == 'KARINA FERREIRA KARAJA' %>
+                              8
+                            <%else%>
+                              <%= (session[:classe_anos].max) %>
+                            <%end%>
+                            
+                            
+                            º ano</b> do Ensino Fundamental de 9 anos no ano letivo de <b>
+
+
                           <% if @notas_ano.nil? %>
                                  <%=Time.now.year%>  </b>,
                           <%else%>
