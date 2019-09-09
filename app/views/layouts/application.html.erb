@@ -289,7 +289,7 @@ display: none;
                            <li><%= link_to "FAPEA", new_relatorio_path %></li>
                      <%end%>
 
-<!--                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>
+                    <% if (current_user.has_role?('admin'))%> <!-- or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>-->
                           <li><%= link_to "Professor",new_professor_path %></li>
 
                       <%end%>
@@ -297,7 +297,7 @@ display: none;
                       <% if current_user.has_role?('admin')%>
                            <li><%= link_to "Disciplina",new_disciplina_path %></li>
                       <%end%>
--->
+
 
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
@@ -360,7 +360,7 @@ display: none;
                      <%end%>
                        <li><%= link_to "Matricula",consultar_matriculas_path %></li>
                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                           <li><%= link_to "Professor/Respons.",consulta_professor_nome_path %></li>
+                           <li><%= link_to "Professor",consulta_professor_nome_path %></li>
                            <li><a class="item-primary" href="#;">Professor/Classe</a>
                                <ul>
                                   <li><%= link_to "Ano Letivo Atual",consulta_classe_professors_path %></li>
@@ -399,7 +399,7 @@ display: none;
                    <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
 
 
-                   <li><%= link_to "Professor/Respons.",consulta_professor_nome_path %></li>
+                   <li><%= link_to "Professor",consulta_professor_nome_path %></li>
                    <li><%= link_to "Unidade",consultas_unidades_path %></li>
                  </ul>
               </li>

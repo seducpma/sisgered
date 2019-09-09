@@ -1,8 +1,8 @@
 <div id="interno2">
-<% title "PROFESSORES/RESPONSÁVEIS", :id =>"professors" %>
+<% title "PROFESSORES", :id =>"professors" %>
  <div class="tabs">
    <div id="caixa_titulo">
-    <font size="3"><strong>CONSULTA PROFESSOR/RESPONSÁVEL</strong></font><br/>
+    <font size="3"><strong>CONSULTA PROFESSOR</strong></font><br/>
    </div>
   <div class="tabs">
     <% form_remote_tag :url => consultaprofessor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
