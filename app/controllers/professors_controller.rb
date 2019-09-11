@@ -134,6 +134,7 @@ class ProfessorsController < ApplicationController
                           page.replace_html 'professores', :partial => "professores"
                      end
                  else if params[:type_of].to_i == 5
+                         
                          render :update do |page|
                            page.replace_html 'professores', :partial => "professores"
                           end
@@ -155,7 +156,7 @@ end
 
   def lista_professor_unidade
     $sede = params[:unidade_id]
-    @professors = Professor.find(:all, :conditions => ['desligado =0 and unidade_id= ?', params[:unidade_id]])
+    @professors = Professor.find(:all, :conditions => ['desligado =0 and unidade_id= ?', params[:unidade_id]], :order => 'nome ASC' )
     render :partial => 'professores'
   end
 
