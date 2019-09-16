@@ -37,7 +37,7 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="22" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+            <td colspan="22" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR&nbsp&nbsp&nbsp&nbsp</b></font>
             </td>
         </tr>
     </table>
@@ -403,7 +403,7 @@
                     <%end%>
                     <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
                     <%if nota.aulas1!=0 %>
-                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if nota.disciplina_id==65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center"><%=nota.nota1%></td>
                         <%else%>
                             <td align="center"></td>
@@ -441,7 +441,7 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas2!=0 %>
-                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if nota.disciplina_id==65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center"><%=nota.nota2%></td>
                         <%else%>
                             <td align="center">---</td>
@@ -479,7 +479,7 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas3!=0 %>
-                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if nota.disciplina_id==65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center"><%=nota.nota3%></td>
                         <%else%>
                             <td align="center">---</td>
@@ -517,7 +517,7 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas4!=0 %>
-                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if nota.disciplina_id==65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center"><%=nota.nota4%></td>
                         <%else%>
                             <td align="center">---</td>
@@ -558,7 +558,7 @@
 
 
                     <%if nota.aulas5 !=0 %>
-                        <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if nota.disciplina_id==65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center"><%=nota.nota5%></td>
                         <%else%>
                             <td align="center">---</td>
