@@ -132,7 +132,11 @@
                             <%else%>
                                 <%if (cont_dis+1)<=@notas_alu.size%>
                                     <% if @notas_alu[cont_dis].disciplina.curriculo=='D'%>
-                                        <%session[:nota_disciplina]=''%>
+                                         <%if @notas_alu[cont_dis].atribuicao.disciplina.disciplina=="INGLÊS"%>
+                                              <%session[:nota_disciplina]=@notas_alu[cont_dis].nota3 %>
+                                         <%else%>
+                                              <%session[:nota_disciplina]=''%>
+                                         <%end%>
                                     <%else%>
                                         <%session[:nota_disciplina]=@notas_alu[cont_dis].nota3 %>
                                     <%end%> <!-- 131 -->
