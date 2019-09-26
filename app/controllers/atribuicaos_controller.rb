@@ -364,7 +364,7 @@ class AtribuicaosController < ApplicationController
             if quantidade == 1
                 session[:matricula_id]= @matricula[0].id
             else if quantidade == 2
-                    sessio:aln[:matricula_id]= @matricula[1].id
+                    session[:matricula_id]= @matricula[1].id
                 else if quantidade == 3
                         session[:matricula_id]= @matricula[2].id
                     else if quantidade == 4
