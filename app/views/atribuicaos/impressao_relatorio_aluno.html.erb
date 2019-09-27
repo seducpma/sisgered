@@ -388,7 +388,7 @@
             <%end%>
       <th style="font-size: 8px"align="left"><%= nota.atribuicao.disciplina.disciplina %></th>
        <%if nota.aulas1 != 0 %>
-           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+           <%if (nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                <th style="font-size: 8px"align="center"><%=nota.nota1%></th>
            <%else%>
                <th style="font-size: 8px"align="center"></th>
@@ -426,7 +426,7 @@
            <th style="font-size: 8px"align="center">---</th>
       <%end%>
        <%if nota.aulas2!=0 %>
-           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+           <%if (nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                <th style="font-size: 8px"align="center"><%=nota.nota2%></th>
            <%else%>
                <th style="font-size: 8px"align="center"></th>
@@ -467,7 +467,7 @@
       <%end%>
 
        <%if nota.aulas3!=0 %>
-           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+           <%if (nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                <th style="font-size: 8px"align="center"><%=nota.nota3%></th>
            <%else%>
                <th style="font-size: 8px"align="center"></th>
@@ -508,7 +508,7 @@
       <%end%>
 
        <%if nota.aulas4!=0 %>
-           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+           <%if (nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                <th style="font-size: 8px"align="center"><%=nota.nota4%></th>
            <%else%>
                <th style="font-size: 8px"align="center"></th>
@@ -549,7 +549,7 @@
       <%end%>
 
        <%if nota.aulas5!=0 %>
-           <%if nota.disciplina_id=65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+           <%if(nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                <th style="font-size: 8px"align="center"><%=nota.nota5%></th>
            <%else%>
                <th style="font-size: 8px"align="center"></th>
