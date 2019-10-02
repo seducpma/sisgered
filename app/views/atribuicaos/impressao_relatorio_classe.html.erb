@@ -217,8 +217,12 @@
                                         <%if nota.faltas3 == 0 %>
                                             100 %
                                         <%else%>
-                                            <% if !nota.faltas3.nil? and !nota.aulas3.nil? %>
+                                            <% if !nota.faltas3.nil? and !nota.aulas3.nil?  and   nota.aulas3 != 0%>
                                                 <% frequencia3 =  (100-(nota.faltas3.to_f / nota.aulas3.to_f)*100).to_i %>
+                                            
+
+
+
                                                 <%if frequencia3 < 75 %>
                                                     <font color ="red"> <%= frequencia3%> % </font>
                                                 <%else%>
@@ -260,7 +264,7 @@
                                         <%if nota.faltas4 == 0 %>
                                             100 %
                                         <%else%>
-                                            <% if !nota.faltas4.nil? and !nota.aulas4.nil? %>
+                                            <% if !nota.faltas4.nil? and !nota.aulas4.nil?  and   nota.aulas4 != 0 %>
                                                 <% frequencia4 =  (100-(nota.faltas4.to_f / nota.aulas4.to_f)*100).to_i %>
                                                 <%if frequencia4 < 75 %>
                                                     <font color ="red"> <%= frequencia4%> % </font>
