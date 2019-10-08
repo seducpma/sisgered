@@ -29,7 +29,7 @@
 
          <% form_tag session_path do -%>
             <p align="center"><b><label for="login">Login</label></b>
-           &nbsp'<%= text_field_tag 'login','',:size => 10 %><br/>
+           &nbsp<%= text_field_tag 'login','',:size => 10 %><br/>
           <b><label for="password">Senha</label></b>
           <%= password_field_tag 'password','',:size => 10 %><br/><br/>
           <%= submit_tag 'Entrar' %></p>
@@ -43,9 +43,9 @@
   <tr>
    <td colspan="2" align="center">
         <font size="2"><b>ATENÇÃO</b></font><br/>
-        <%= link_to 'Não possui senha?', signup_path %>  <br/>
+        <%= link_to 'Esqueceu a senha?', new_password_path%><br/>
+        <%= link_to 'Não possui senha?', signup_path %><br/>
         <%= link_to 'Manual on-line', href= "https://docs.google.com/document/d/1KORwNkxV7ogNpc7EUyMxQHA4MMSSju_eOouI5cNABFE/edit?usp=sharing", :target => '_blank' %>
-       <!-- <%= link_to 'Esqueci a senha', new_password_path%>-->
    </td>
   </tr>
   <tr>

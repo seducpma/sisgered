@@ -18,14 +18,28 @@
                <td align="center">
                 <br/><br/>
                    <% form_tag url_for(:action => "atualiza", :id => params[:id]) do %>
-                         <b> Nova Senha</b>:
+                <table width="100%">
+                    <tr><td align="right"><b> Usuário: </b></td><td align="left"><%=@user.login %></td></tr>
+                    <tr><td align="right"><b>&nbsp</b></td><td align="left">&nbsp</td></tr>
+                    <tr><td align="right"><b>Nova Senha: </b></td><td align="left"><%=password_field_tag :password %></td></tr>
+                    <tr><td align="right"><b>Confirma Senha: </b></td><td align="left"><%=password_field_tag :password_confirmation %></td></tr>
+                    <tr><td align="right"><b>&nbsp</b></td><td align="left">&nbsp</td></tr>
+                    <tr><td colspan="2" align="center"><%=submit_tag "Salvar" %></td></tr>
+                </table>
+<!-- Como estava antes da alteração ###Alex
+                         <b> Usuário: </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=@user.login %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/><br/>
+                         <b> Nova Senha</b>:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                           <%= password_field_tag :password %><br /><br />
                           <b>Confirma senha:</b>
                           <%= password_field_tag :password_confirmation %><br /><br />
                           <%= submit_tag "Salvar" %>
+-->
                         <% end %>
                       <br/><br/>
                  </td>
+            </tr>
+            <tr>
+                <td align="center"><font size="4" style="color:red"><b><%=flash[:notice2]%></b></font></td>
             </tr>
          </table>
        </fieldset>
@@ -48,7 +62,3 @@
 </div>
 <br/>
 </div>
-
-
-
-
