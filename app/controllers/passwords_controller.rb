@@ -8,7 +8,7 @@ class PasswordsController < ApplicationController
 
   def create
     return unless request.post?
-    if @user=User.find_for_forget(params[:email])
+    if (@user=User.find_for_forget(params[:email]) and @user.size>0)
       if (@user.size==1)
         @user=User.find(id)
         flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
