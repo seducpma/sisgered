@@ -161,7 +161,8 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_forget(email)
-    find :first, :conditions => ['email = ? and activated_at IS NOT NULL', email]
+    #Comentei esta e colei alterando a prox.linha considerando email's com mais de 1 usuário ###Alex 09/10/2019# find :first, :conditions => ['email = ? and activated_at IS NOT NULL', email]
+    find :all, :conditions => ['email = ? and activated_at IS NOT NULL', email]
   end
 
 

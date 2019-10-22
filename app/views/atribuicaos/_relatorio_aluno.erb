@@ -130,6 +130,7 @@
                                     <%if nota.faltas1 == 0 %>
                                         <font size="1">100 %</font>
                                     <%else%>
+<!-- ###Alex 10/10/2019 Alteração % de Frequencia                                        <#% frequencia1 =  (100-(nota.faltas1.to_f / nota.aulas1.to_f)*100).to_i %>-->
                                         <% frequencia1 =  (100-(nota.faltas1.to_f / nota.aulas1.to_f)*100).to_i %>
                                         <%if frequencia1 < 75 %>
                                             <font color ="red" size="1"> <%= frequencia1%> % </font>

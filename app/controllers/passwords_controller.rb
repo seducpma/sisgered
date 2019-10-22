@@ -2,17 +2,43 @@ class PasswordsController < ApplicationController
   before_filter :login_required
   skip_before_filter :login_required, :only => [:atualiza,:new, :create,:edit,:update]
   layout 'login'
+
   def new
   end
 
   def create
-  return unless request.post?
-  if @user = User.find_for_forget(params[:email])
+    return unless request.post?
+    if @user=User.find_for_forget(params[:email])
+      if (@user.size==1)
+        @user=User.find(id)
+        flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
+      else
+        #lista_user="( "
+        lista_user=""
+        cont_user=0
+        user1=""
+        @user.each do |user|
+            if (cont_user >= 1)
+                lista_user+="|"
+                cont_user+=1
+            else
+                cont_user+=1
+                user1=user.login
+            end
+            lista_user+=user.login
+        end
+        #lista_user+=" )"
+        id=@user[0].id
+        @user=User.find(id)
+        msg="Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
+        msg+=" Foram encontrados "+cont_user.to_s+" usuários ("+lista_user+") será alterada a senha do usuário "+user1
+        flash[:notice]=msg
+      end
       @user.forgot_password
       ChamadoMailer.deliver_forgot_password(@user)
       @user.save
-      flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
-    redirect_to login_path
+#     flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
+      redirect_to login_path
     else
       flash[:notice] = "Nenhum usuário cadastrado com o e-mail informado."
       render :action => 'new'
