@@ -60,9 +60,6 @@
                         <%end%>
                     <%end%>
                 <%end%>
-
-
-
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <b>RA:</b>&nbsp&nbsp <%=h matricula.aluno.aluno_ra %></td>
             <% session[:aluno] = matricula.aluno.id %>
@@ -121,6 +118,7 @@
             </tr>
             <tr>
                 <%@notasB.each do |nota|%>
+                    <%compensacao=0%>
                     <%if nota.aluno_id == session[:aluno]%>
                         <td><%= nota.atribuicao.disciplina.disciplina %></td>
                         <%if nota.nota1.present? or nota.faltas1 != 0%>
@@ -155,7 +153,7 @@
                                  <%if nota.comp1 == 0 %>
                                          <td align="center"> 0</td>
                                 <%else%>
-                                     <td align="center"><%= nota.comp1 %></td>
+                                     <td align="center"><%compensacao = compensacao+ nota.comp1 %><%= nota.comp1 %></td>
                                 <%end%>
                             <%end%>
                         <%else%>
@@ -197,7 +195,7 @@
                                  <%if nota.comp2 == 0 %>
                                          <td align="center"> 0</td>
                                 <%else%>
-                                     <td align="center"><%= nota.comp2 %></td>
+                                     <td align="center"><%compensacao = compensacao+ nota.comp2 %><%= nota.comp2 %></td>
                                 <%end%>
 
                             <%end%>
@@ -241,7 +239,7 @@
                                  <%if nota.comp3 == 0 %>
                                          <td align="center"> 0</td>
                                 <%else%>
-                                     <td align="center"><%= nota.comp3 %></td>
+                                     <td align="center"><%compensacao = compensacao+ nota.comp3 %><%= nota.comp3 %></td>
                                 <%end%>
 
                             <%end%>
@@ -286,7 +284,7 @@
                                 <%if nota.comp4 == 0 %>
                                     <td align="center"> 0</td>
                                 <%else%>
-                                     <td align="center"><%= nota.comp4 %></td>
+                                     <td align="center"><%compensacao = compensacao+ nota.comp4 %><%= nota.comp4 %></td>
                                 <%end%>
 
                             <%end%>
@@ -320,6 +318,7 @@
                             <td align="center"></td>
                             <td align="center"></td>
                         <%else%>
+                            <% nota.faltas5  =(nota.faltas1) + (nota.faltas2) + (nota.faltas3) + (nota.faltas4) %>
                             <%if nota.aulas5 != 0%>
                                 <td align="center"><%= nota.faltas5 %></td>
                             <%else%>
@@ -327,11 +326,12 @@
                             <%end%>
 
                             <td align="center">
+                                <%  nota.aulas5 = nota.aulas1 + nota.aulas2 + nota.aulas3  + nota.aulas4  %>
                                 <%if nota.aulas5 !=0 %>
                                     <%if nota.faltas5 == 0 %>
                                         <font size="1"> 100 % </font>
                                     <%else%>
-                                        <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
+                                           <% frequencia5 =  (100-(((nota.faltas5.to_f - compensacao.to_f) / nota.aulas5.to_f)*100)).to_i %>
                                         <%if frequencia5 < 75 %>
                                             <font color ="red"<font size="1">  <%= frequencia5%> % </font>
                                         <%else%>
@@ -348,7 +348,7 @@
 
                                 <%end%>
                             </td>
-                             <td align="center"><%= nota.comp5 %></td>
+                             <td align="center"><%= compensacao %></td>
                         <%end%>
                       
                     </tr>
@@ -363,6 +363,7 @@
                 </tr>
             <%end%>
             <%if @notasD.present?%>
+                
                 <tr>
                     <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO DIVERSIFICADO </center> </b></td>
                     <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
@@ -377,6 +378,7 @@
             <tr>
                 <% total_aulas =0 %>
                 <%@notasD.each do |nota|%>
+                    <%compensacao = 0 %>
                     <% if nota.aulas1.nil? %>
                         <%  nota.aulas1= 0 %>
                     <%end%>
@@ -432,7 +434,7 @@
                         <%if nota.comp1 == 0 %>
                            <td align="center">  </td>
                         <%else%>
-                           <td align="center"><%= nota.comp1 %></td>
+                           <td align="center"><%compensacao = compensacao+ nota.comp1 %><%= nota.comp1 %></td>
                         <%end%>
                     <%else%>
                         <td align="center">---</td>
@@ -470,7 +472,7 @@
                         <%if nota.comp2 == 0 %>
                            <td align="center">  </td>
                         <%else%>
-                           <td align="center"><%= nota.comp2 %></td>
+                           <td align="center"><%compensacao = compensacao+ nota.comp2 %><%= nota.comp2 %></td>
                         <%end%>
                     <%else%>
                         <td align="center">---</td>
@@ -508,7 +510,7 @@
                         <%if nota.comp3 == 0 %>
                            <td align="center">  </td>
                         <%else%>
-                           <td align="center"><%= nota.comp3 %></td>
+                           <td align="center"><%compensacao = compensacao+ nota.comp3 %><%= nota.comp3 %></td>
                         <%end%>
                     <%else%>
                         <td align="center">---</td>
@@ -546,7 +548,7 @@
                         <%if nota.comp4 == 0 %>
                            <td align="center">  </td>
                         <%else%>
-                           <td align="center"><%= nota.comp4 %></td>
+                           <td align="center"><%compensacao = compensacao+ nota.comp4%><%= nota.comp4 %></td>
                         <%end%>
                     <%else%>
                         <td align="center">---</td>
@@ -563,7 +565,9 @@
                         <%else%>
                             <td align="center">---</td>
                         <%end%>
-                        <td align="center"><% if nota.aulas5 == 0 %>
+                        <td align="center">
+                            <% nota.faltas5  =(nota.faltas1) + (nota.faltas2) + (nota.faltas3) + (nota.faltas4) %>
+                            <% if nota.aulas5 == 0 %>
                                 ---
                             <%else%>
                                 <%= nota.faltas5 %>
@@ -576,7 +580,8 @@
                                 <%if nota.faltas5 == 0 %>
                                 <font size="1"> 100 % </font>
                                 <%else%>
-                                    <% frequencia5 =  (100-(nota.faltas5.to_f / nota.aulas5.to_f)*100).to_i %>
+                                    <%  nota.aulas5 = nota.aulas1 + nota.aulas2 + nota.aulas3  + nota.aulas4  %>
+                                    <% frequencia5 =  (100-(((nota.faltas5.to_f - compensacao.to_f) / nota.aulas5.to_f)*100)).to_i %>
                                     <%if frequencia5 < 75 %>
                                         <font color ="red" font size="1"> <%= frequencia5%> % </font>
                                     <%else%>
@@ -602,7 +607,9 @@
                     <% if  session[:num_classe]< 6   %>
                         * As disciplinas de núcleo comum NÃO possuem lançamentos de faltas (dias), somente a disciplina de PORTUGUÊS. <br/>
                         * As disciplinas que NÃO pertencem ao núcleo comum as faltas (aulas) devem possuir lançamentos.<br/>
-                        * COMP. = ausências compensadas.
+                        * COMP. = ausências compensadas. <b>A freqüência bimestral NÂO computa, em seu cálculo, as faltas compensadas.</b><br/>
+                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                             <b>A freqüência FINAL computa, em seus cálculos, as faltas compensadas.</b>
                     <%else%>
                         <%  %>
                     <%end%>
