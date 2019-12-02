@@ -1,0 +1,76 @@
+<table width="100%">
+  <tr>
+  <b><font size="3"> <center>DIAS DE ATIVIDADES PARA CÁLCULO DA FREQÜÊNCIA DA CRIANÇA </center><br/></font></b>
+  </tr>
+</table>
+<%if !@atribuicao_classe.empty?%>
+<fieldset>
+    <table width="100%">
+      <% for classe in @atribuicao_classe %>
+        <tr bgcolor="#F5F5F5" >
+          <td align="left" width="10%"><b>Unidade:</b></td>
+          <td align="left">  <%=h classe.classe.unidade.nome%> <%  session[:unidade]= classe.classe.unidade.nome %></td>
+          <td align="left" width="10%"><b> Ano Letivo:</b></td>
+          <td align="left"> <%=h classe.classe.classe_ano_letivo %>     <%  session[:classe]=  classe.classe.id%></td>
+        </tr>
+        <tr bgcolor="#F5F5F5">
+          <td align="left"><b>Classe:</b></td>
+          <td align="left">  <%=h classe.classe.classe_classe%></td>
+          <td align="left"><b>Horário:</b></td>
+          <td align="left">  <%=h classe.classe.horario %></td>
+        </tr>
+        <tr bgcolor="#F5F5F5" >
+          <td align="left"><b>Descrição:</b></td>
+          <td align="left" colspan="3"> <%=h classe.classe.classe_descricao %></td>
+        </tr>
+        <tr bgcolor="#F5F5F5">
+          <td valign="top"> <b> Professor:</b> </td>
+          <% cont=1 %>
+          <% cont1=1 %>
+          <td colspan="4">
+               <% for atrib in @atribuicao_classe %>
+                  <table width="100%">
+                    <tr bgcolor="#F5F5F5" >
+                      <td align="left" width="50%"> <%=h atrib.professor.nome%></td>
+                         <% session[:professor] = atrib.professor.nome %>
+                         <% session[:professor_id] = atrib.professor.id %>
+                         <% session[:classe] = atrib.classe.classe_classe %>
+                         <% session[:classe_id] = atrib.classe_id %>
+                         <% session[:ano] = atrib.ano_letivo %>
+                         <% session[:periodo] = atrib.classe.horario %>
+                         <% session[:id] = atrib.id %>
+                         
+                    </tr>
+                  </table>
+                  <% session[:atrib]=atrib %>
+                  <% cont= cont+1 %>
+  
+
+            <%end%>
+          </td>
+        </tr>
+      </table>
+  </fieldset>
+<table   width="100%">
+                <tr>
+                    <td colspan="5" align="right"><br/>
+                               <%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "lancar_faltas", :controller => :atribuicaos, :id => session[:atrib]}, :method => "get", :title => "Lançar Faltas" %>&nbsp&nbsp&nbsp
+
+                    </td>
+
+                </tr>
+
+            </table>
+    <%end%>
+
+  <%else%>
+    <br/>
+    <table  width="100%">
+      <tr>
+        <td align="center"><font size="3" color="red"><b> PROFESSOR NÃO POSSUI ATRIBUIÇÃO ou NÃO ENCONTRADO </b> </td>
+      </tr>
+    </table>
+  <%end%>
+
+
+

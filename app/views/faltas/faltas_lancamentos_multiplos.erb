@@ -1,0 +1,183 @@
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+    <div id="caixa_titulo">
+        <font size="3"><strong>LANÇAMENTO DE FALTAS  </strong></font><br/>
+    </div>
+    <div class="tabs1">
+        <%if @classe.present?%>
+            <fieldset>
+                <table width="100%" style="font-size: small">
+                    <%for classe in @classe %>
+                        <tr bgcolor="#F5F5F5" >
+                            <td align="left" width="10%"><b>Unidade:</b></td>
+                            <td align="left">  <%=h classe.unidade.nome%>    <%  session[:unidade]= classe.unidade.nome %></td>
+                            <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                            <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td align="left"><b>Classe:</b></td>
+                            <td align="left">  <%=h classe.classe_classe%></td>
+                            <td align="left"><b>Horário:</b></td>
+                            <td align="left">  <%=h classe.horario %></td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5" >
+                            <td align="left"><b>Descrição:</b></td>
+                            <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td valign="top"> <b> Professor(es):</b> </td>
+                            <% cont=1 %>
+                            <% cont1=1 %>
+                            <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                                    <table width="100%" >
+                                        <tr bgcolor="#F5F5F5" >
+                                            <td align="left" width="45%"> <%=h atrib.professor.nome%></td>
+                                            <td align="left"width="10%"><b> Disciplina:</b></td>
+                                            <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                                            <% session[:disciplina] = atrib.disciplina.disciplina %>
+                                            <% session[:professor] = atrib.professor.nome %>
+                                            <% session[:professor_id] = atrib.professor.id %>
+                                            <% session[:classe] = atrib.classe.classe_classe %>
+                                            <% session[:ano] = atrib.ano_letivo %>
+                                            <% session[:periodo] = atrib.classe.horario %>
+                                            <% session[:id] = atrib.id %>
+                                        </tr>
+
+                                    </table>
+                                    <% cont= cont+1 %>
+                                <%end%>
+                            </td>
+                        </tr>
+                       <tr bgcolor="#F5F5F5">
+                            <td colspan="3">
+                                <!--<a href="#" class="com_observacoes"><%#= radio_button_tag(:type_of, "1",  :checked => true) %></a><b>Visualisar Observações</b>
+                                <a href="#" class="sem_observacoes"><%#= radio_button_tag(:type_of, "2") %></a><b>Não Visualisar Observações</b>-->
+                            </td>
+
+                            <td align="right"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                        </tr>
+                    
+                    </table>
+                </fieldset>
+                <%end%>
+                <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="78%" colspan="3"><b> Alunos: </b></td>
+                        <td align="center"><b>1ºBim</b></td>
+                        <td align="center"><b>2ºBim</b></td>
+                        <td align="center"><b>3ºBim</b></td>
+                        <td align="center"><b>4ºBim</b></td>
+                        <td colspan="2" align="center"><b>Final</b></td>
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="4%"align="center"><b>Nº</b></td>
+                        <td width ="10%">&nbsp&nbsp<b>RA</b></td>
+                        <td width ="40%">&nbsp&nbsp<b>NOME</b></td>
+                        <td width ="45px"align="center"><font size="1"><b>Faltas</font></b></td>
+                        <td width ="45px"align="center"><font size="1"><b>Faltas</font></b></td>
+                        <td width ="45px"align="center"><font size="1"><b>Faltas</font></b></td>
+                        <td width ="45px"align="center"><b><font size="1">Faltas</font></b></td>
+                        <td width ="45px"align="center"><b><font size="1">Faltas</font></b></td>
+                        <td width ="40px"align="center"><b><font size="1">Freq.</font></b></td>
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td colspan="13"> <div id="notas_aluno">
+                                <% form_for :falta, :url => {:action => 'update_multiplas_faltas'} do -%>
+                                    <%@faltas.each do |falta|%>
+                                        <% fields_for "falta[]", falta do |f| %>
+                                            <tr bgcolor="#F5F5F5">
+                                                <td width ="4%" align="center"><%= falta.matricula.classe_num  %>  </td>
+                                                <td width ="10%" ><%= falta.aluno.aluno_ra  %></td>
+                                                <td width ="40%" align="left"><%= falta.matricula.aluno.aluno_nome %>
+                                                    <%if falta.matricula.status!="MATRICULADO"%>
+                                                        <%if falta.matricula.status=='TRANSFERIDO'%>
+                                                            <font color ="red"> (Transferido)</font>
+                                                        <%else if falta.matricula.status=='REMANEJADO' %>
+                                                                    <font color ="green"> (Remanejado)</font>
+                                                             <%else if falta.matricula.status=='*REMANEJADO' %>
+                                                                    <font color ="green"> (*Remanejado)</font>
+                                                                  <%else if falta.matricula.status == 'TRANSFERENCIA' %>
+                                                                            <font color ="blue"> (Transferência)</font>
+                                                                       <%else%>
+                                                                            <font color ="cyan"> (Outros)</font>
+                                                                       <%end%>
+                                                                  <%end%>
+                                                             <%end%>
+                                                        <%end%>
+                                                    <%end%>
+                                                </td>
+                                                <%if falta.faltas1.present? or falta.faltas1==0%>
+                                                    <td align="center"><%= f.text_field :faltas1 , :size => '1'%></td>
+                                                <%else%>
+                                                    <td align="center"><%= falta.faltas1%></td>
+                                                <%end%>
+                                                <%if falta.faltas2.present? or falta.faltas2==0%>
+<!-- para liberar pagar comentarios desta linha #--> <td align="center"><%= f.text_field :faltas2 , :size => '1'%></td>
+                                                <%else%>
+                                                    <td align="center"><%= falta.faltas2%></td>
+                                                <%end%>
+                                                <%if falta.faltas3.present? or falta.faltas3==0%>
+<!-- para liberar pagar comentarios desta linha #--> <td align="center"><%= f.text_field :faltas3 , :size => '1'%></td>
+                                                <%else%>
+                                                    <td align="center"><%= falta.faltas3%></td>
+                                                <%end%>
+                                                <%if falta.faltas4.present? or falta.faltas4==0%>
+<!-- para liberar pagar comentarios desta linha #--><td align="center"><%= f.text_field :faltas4 , :size => '1'%></td>
+                                                <%else%>
+                                                    <td align="center"><%= falta.faltas4%></td>
+                                                <%end%>
+                                                <%soma=0%>
+                                                <%if !falta.faltas1.nil?%>
+                                                    <%soma=soma+falta.faltas1.to_i%>
+                                                <%end%>
+                                                <%if !falta.faltas2.nil?%>
+                                                    <%soma=soma+falta.faltas2.to_i%>
+                                                <%end%>
+                                                <%if !falta.faltas3.nil?%>
+                                                    <%soma=soma+falta.faltas3.to_i%>
+                                                <%end%>
+                                                <%if !falta.faltas4.nil?%>
+                                                    <%soma=soma+falta.faltas4.to_i%>
+                                                <%end%>
+                                                <%falta.faltas5 = soma%>
+                                                <!--<#%nota.faltas5=nota.faltas4.to_i+nota.faltas3.to_i+nota.faltas2.to_i+nota.faltas1.to_i%>-->
+                                                <%=f.hidden_field :faltas5, {:value => falta.faltas5}%>
+                                                <%if !falta.faltas5.present? or falta.faltas5==0%>
+                                                      <td align="center"><!--<%#= f.text_field :faltas5 , :size => '1'%>--><%= falta.faltas5%></td>
+                                                      <td align="center"><!--<%#= f.text_field :faltas5 , :size => '1'%>--><%= falta.freq5%> %</td>
+                                                <%else%>
+                                                    <td align="center"><%= falta.faltas5%> </td>
+                                                    <td align="center"><%= falta.freq5%> % </td>
+                                                <%end%>
+                                            </tr>
+                                      <%end%>
+                                    <%end%>
+                                    <tr>
+                                        <td colspan="8" align="right">
+                                            <%= submit_tag 'Salvar' %>
+                                        </td>
+                                <%end%>
+
+                                        <td width ="40px" align="right">
+                                            <%= button_to 'Fechar', home_path, {:method => "get"}  %>
+                                        </td>
+
+                                    </tr>
+                            </div></td>
+                    </tr>
+                </table>
+            <%else%>
+                <br/>
+                <table  width="100%" style="font-size: small">
+                    <tr>
+                        <td align="center"><font size="3" color="red"><b> NÃO SELECIONADO ou NÃO ENCONTRADO</b> </td>
+                    </tr>
+                </table>
+            <%end%>
+            <table>
+                <tr>
+                    <td width="6%"align="left" ><%=button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                </tr>
+            </table>
+    </div>
+    </div>

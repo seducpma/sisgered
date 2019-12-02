@@ -93,8 +93,14 @@
       <table width="100%" align="left" >
           <tr>
               <td align="right"><%= submit_tag "REORDENAR", :class => "btn_filtrar" %></td>
-        </tr>
+   <%end%>
+          <% if current_user.has_role?('admin') %>
+               <td width="6%" align="right" ><%= button_to 'GERAR FALTAS (INF)', gerar_faltas_faltas_path, :title => "Gerar Faltas (Infantil)" %> </td>
+               <td width="6%" align="right" ><%= button_to 'GERAR NOTAS (FUND)', gerar_notas_classes_path, :title => "Gerar Notas (fundamental)" %> </td>
+          <%end%>
+          </tr>
+
        </table>
-          <% end %>
+
 
 

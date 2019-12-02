@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
+  map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
+
+  map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
 
   map.resources :funcionarios, :collection => { :consulta=>:get}
   map.resources :aulas_eventuals, :collection => { :index2=>:get,   :relatorio_eventual_mes_professor => :get,  :relatorio_eventual_mes_unidade => :get}
@@ -15,7 +17,7 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.resources :atribuicaos, :collection => { :consulta_classe=>:get, :relatorios_classe=>:get, :relatorios_anterior_classe=>:get, :lancar_notas => :get, :relatorio_classe => :get, :mapa_classe => :get, :mapa_classe_anterior => :get,:consulta_professor_classe=>:get, :historico_aluno=>:get, :historico => :get, :transferencia_aluno => :get, :transferenciaA=> :get,  :reserva_vaga=> :get,  :reserva_vagas=> :get,  :relatorio_observacoes=> :get, :editar_atribuicao=>:get, :aviso=>:get}
   map.resources :classes_professors
   map.resources :notas_alunos
-  map.resources :notas, :collection => { :lancar_notas => :get, :lancamentos_notas =>:get, :lancamentos_observacaos =>:get, :lancamentos_compensacao =>:get, :relatorio_classe => :get ,  :new1 => :get, :lancamento_aulas_compensadas => :get }
+  map.resources :notas, :collection => {:lancar_notas => :get, :lancamentos_notas =>:get, :lancamentos_observacaos =>:get, :lancamentos_compensacao =>:get, :relatorio_classe => :get ,  :new1 => :get, :lancamento_aulas_compensadas => :get }
   map.resources :classes_alunos
   map.resources :classes,:collection => { :editar_classe=>:get, :gerar_notas=>:get, :nucleo_basico =>:get, :consulta_classe_fone =>:get}
   map.resources :professors,:collection => { :consulta_classe=>:get,  :consulta_classe_anterior=>:get }
@@ -64,11 +66,17 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
   map.voltar_lancamento_notas '/voltar_lancamento_notas', :controller => 'notas', :action => 'voltar_lancamento_notas'
+  map.voltar_lancamento_faltas '/voltar_lancamento_faltas', :controller => 'faltas', :action => 'voltar_lancamento_faltas'
   map.notas_lancamentos '/notas_lancamentos', :controller => 'notas', :action => 'notas_lancamentos'
   #map.lancamentos_aulas_compensadas '/lancamentos_aulas_compensadas', :controller => 'notas', :action => 'lancamentos_aulas_compensadas'
   #map.aulas_compensadas '/aulas_compensadas', :controller => 'notas', :action => 'aulas_compensadas'
   map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :impressao_geral => :get, :status => :get, :update => :put}
 
+
+  map.relatorio_falta_classe '/relatorio_falta_classe', :controller => 'faltas', :action => 'relatorio_falta_classe'
+  map.relatorio_classe_falta '/relatorio_classe_falta', :controller => 'faltas', :action => 'relatorio_classe_falta'
+  map.relatorio_falta_unidade '/relatorio_falta_unidade', :controller => 'faltas', :action => 'relatorio_falta_unidade'
+  map.relatorio_unidade_falta '/relatorio_unidade_falta', :controller => 'faltas', :action => 'relatorio_unidade_falta'
 
 
 
@@ -106,6 +114,7 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.impressao_faltas_funcionario '/impressao_faltas_funcionario', :controller => 'aulas_faltas', :action => 'impressao_faltas_funcionario'
   map.impressao_eventuals '/impressao_eventuals', :controller => 'aulas_eventuals', :action => 'impressao_eventuals'
   map.impressao_eventuals_professor '/impressao_eventuals_professor', :controller => 'aulas_eventuals', :action => 'impressao_eventuals_professor'
+  map.impressao_relatorio_faltas_classe'/impressao_relatorio_faltas_classe', :controller => 'faltas', :action => 'impressao_relatorio_faltas_classe'
 
   #map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'arquivo_historico'
   map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'download_historico'
@@ -172,6 +181,9 @@ map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
   map.mapa_de_classe_anterior'/mapa_de_classe_anterior', :controller => 'atribuicaos', :action => 'mapa_de_classe_anterior'
   map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'
+  map.lancar_faltas_inf '/lancar_faltas_inf', :controller => 'faltas', :action => 'lancar_faltas_inf'
+  map.lancar_faltas_infantil '/lancar_faltas_infantil', :controller => 'faltas', :action => 'lancar_faltas_infantil'
+  map.lancar_faltas_editar_infantil '/lancar_editar_faltas_infantil', :controller => 'faltas', :action => 'lancar_faltas_editar_infantil'
   map.lancar_notas_alunos_atribuicaos '/lancar_notas_alunos_atribuicaos', :controller => 'atribuicaos', :action => 'lancar_notas_alunos_atribuicao'
   map.consulta_cadastro_aluno '/consulta_cadastro_aluno', :controller => 'alunos', :action => 'consulta_cadastro_aluno'
   map.atribuicao_lancamentos_notas'/atribuicao_lancamentos_notas', :controller => 'notas', :action => 'atribuicao_lancamentos_notas'

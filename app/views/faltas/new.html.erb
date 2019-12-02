@@ -1,0 +1,107 @@
+<h1>New falta</h1>
+
+<% form_for(@falta) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :aluno_id %><br />
+    <%= f.text_field :aluno_id %>
+  </p>
+  <p>
+    <%= f.label :matricula_id %><br />
+    <%= f.text_field :matricula_id %>
+  </p>
+  <p>
+    <%= f.label :atribuicao_id %><br />
+    <%= f.text_field :atribuicao_id %>
+  </p>
+  <p>
+    <%= f.label :professor_id %><br />
+    <%= f.text_field :professor_id %>
+  </p>
+  <p>
+    <%= f.label :unidade_id %><br />
+    <%= f.text_field :unidade_id %>
+  </p>
+  <p>
+    <%= f.label :classe %><br />
+    <%= f.text_field :classe %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.label :faltas1 %><br />
+    <%= f.text_field :faltas1 %>
+  </p>
+  <p>
+    <%= f.label :aulas1 %><br />
+    <%= f.text_field :aulas1 %>
+  </p>
+  <p>
+    <%= f.label :freq1 %><br />
+    <%= f.text_field :freq1 %>
+  </p>
+  <p>
+    <%= f.label :faltas2 %><br />
+    <%= f.text_field :faltas2 %>
+  </p>
+  <p>
+    <%= f.label :aulas2 %><br />
+    <%= f.text_field :aulas2 %>
+  </p>
+  <p>
+    <%= f.label :freq2 %><br />
+    <%= f.text_field :freq2 %>
+  </p>
+  <p>
+    <%= f.label :faltas3 %><br />
+    <%= f.text_field :faltas3 %>
+  </p>
+  <p>
+    <%= f.label :aulas3 %><br />
+    <%= f.text_field :aulas3 %>
+  </p>
+  <p>
+    <%= f.label :freq3 %><br />
+    <%= f.text_field :freq3 %>
+  </p>
+  <p>
+    <%= f.label :faltas4 %><br />
+    <%= f.text_field :faltas4 %>
+  </p>
+  <p>
+    <%= f.label :aulas4 %><br />
+    <%= f.text_field :aulas4 %>
+  </p>
+  <p>
+    <%= f.label :freq4 %><br />
+    <%= f.text_field :freq4 %>
+  </p>
+  <p>
+    <%= f.label :faltas5 %><br />
+    <%= f.text_field :faltas5 %>
+  </p>
+  <p>
+    <%= f.label :aulas5 %><br />
+    <%= f.text_field :aulas5 %>
+  </p>
+  <p>
+    <%= f.label :freq5 %><br />
+    <%= f.text_field :freq5 %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.label :ativo %><br />
+    <%= f.text_field :ativo %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', faltas_path %>

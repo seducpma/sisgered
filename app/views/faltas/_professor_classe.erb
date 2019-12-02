@@ -1,0 +1,16 @@
+<% if !@classe.empty?  %>
+
+   <%# if session[:numero]== 1  %>
+          <b>Classe:</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= @classe[0].classe_classe %> (<%= @classe[0].classe_ano_letivo %>)
+<!--
+   <%#else%>
+          <%#@classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')%>
+          <b>Classe:</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%#= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecionar -- ' %>
+                         <%#= observe_field 'classe_id',
+                          :with => :classe_id,
+                          :url => { :action => 'action_classe_id' }%>
+   <%#end%>
+-->
+<%else%>
+          <b>Este Professor NÃO possui classe atribuida no sistema.</b>
+<%end%>

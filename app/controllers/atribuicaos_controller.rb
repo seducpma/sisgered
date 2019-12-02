@@ -2,9 +2,6 @@ class AtribuicaosController < ApplicationController
 
     before_filter :load_professors
     before_filter :load_classes
-    #before_filter :load_disciplinas
-    #before_filter :load_iniciais
-
 
 
     def index
@@ -43,7 +40,6 @@ class AtribuicaosController < ApplicationController
 
 
     def edit
-
         if session[:flag_edit_atribuicao] == 1
             @atribuicao_anterior = Atribuicao.find(:all, :conditions=>['id =?', (params[:id])])
             session[:disciplina_id]=  @atribuicao_anterior[0].disciplina_id
@@ -54,13 +50,22 @@ class AtribuicaosController < ApplicationController
             t=0
 
         else
- 
+
             @atribuicao = Atribuicao.find(params[:id])
             @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
-            session[:flag_edit]=1
+            if current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_infantil')
+               session[:flag_edit]=1
+            end
         end
     end
 
+    def lancar_faltas
+
+
+            @atribuicao = Atribuicao.find(params[:id])
+            #@notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
+
+    end
 
 
 
@@ -116,77 +121,80 @@ class AtribuicaosController < ApplicationController
 
     def update
         @atribuicao = Atribuicao.find(params[:id])
-
-        if session[:flag_edit_atribuicao] == 1
-
-            session[:atribuicao]=params[:id]
-
-
-            respond_to do |format|
-                if @atribuicao.update_attributes(params[:atribuicao])
-                    @notas = Nota.find(:all, :conditions=> ['atribuicao_id=? and disciplina_id=?', @atribuicao.id, session[:disciplina_id]])
-                    for nota in @notas
-                        nota = Nota.find(nota.id)
-                        nota.disciplina_id=@atribuicao.disciplina_id
-                        nota.professor_id=@atribuicao.professor_id
-                        nota.save
-                    end
-                    flash[:notice] = 'Atribuição atualizada.'
-                    format.html { redirect_to( show_editar_path ) }
-                    format.xml  { head :ok }
-                else
-
-                    format.html { render :action => "edit" }
-                    format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
-                end
-
-            end
-        else
-            @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
-            respond_to do |format|
-                if @atribuicao.update_attributes(params[:atribuicao])
-                    #for outras_atribuicaos in @outras_atribuicaos
-                    #     outras_atribuicaos.aulas1= @atribuicao.aulas1
-                    #     outras_atribuicaos.save
-                    @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", @atribuicao.id,Time.now.year ])
-                    for nota in @notas
-                        nota = Nota.find(nota.id)
-                        nota.aulas1=@atribuicao.aulas1
-                        nota.aulas2=@atribuicao.aulas2
-                        nota.aulas3=@atribuicao.aulas3
-                        nota.aulas4=@atribuicao.aulas4
-                        nota.aulas5=@atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
-                        #nota.ac5 = nota.ac1+nota.ac2+nota.ac3+nota.ac4
-                        nota.save
-                    end
-                    #    end
-                    if  session[:flag_edit]== 1
-
-                        if ((@atribuicao.aulas1 < 1 ))
-                            format.html { redirect_to(aviso_atribuicaos_path) }
+          if session[:faltas_up]!= 1
+                if session[:flag_edit_atribuicao] == 1
+                   session[:atribuicao]=params[:id]
+                   respond_to do |format|
+                        if @atribuicao.update_attributes(params[:atribuicao])
+                            @notas = Nota.find(:all, :conditions=> ['atribuicao_id=? and disciplina_id=?', @atribuicao.id, session[:disciplina_id]])
+                            for nota in @notas
+                                nota = Nota.find(nota.id)
+                                nota.disciplina_id=@atribuicao.disciplina_id
+                                nota.professor_id=@atribuicao.professor_idvoltar_lancamento_faltas
+                                nota.save
+                            end
+                            flash[:notice] = 'Atribuição atualizada.'
+                            format.html { redirect_to( show_editar_path ) }
                             format.xml  { head :ok }
                         else
-                            flash[:notice] = 'SALVO COM SUCESSO!'
-                            format.html { redirect_to(voltar_lancamento_notas_path)}
+                            format.html { render :action => "edit" }
+                            format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
                         end
-                    else
-                        if ((@atribuicao.aulas1 < 1 ))
-                            format.html { redirect_to(aviso_atribuicaos_path) }
-                            format.xml  { head :ok }
-                        else
-                            flash[:notice] = 'SALVO COM SUCESSO!'
 
-                            format.html { redirect_to(@atribuicao) }
-                            format.xml  { head :ok }
-                        end
                     end
                 else
-                    format.html { render :action => "edit" }
-                    format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
+                    @outras_atribuicaos = Atribuicao.find(:all, :conditions => ["classe_id =? and professor_id=? and ano_letivo=? " , @atribuicao.classe_id, @atribuicao.professor_id, Time.now.year])
+                    respond_to do |format|
+                        if @atribuicao.update_attributes(params[:atribuicao])
+                            @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?", @atribuicao.id,Time.now.year ])
+                            for nota in @notas
+                                nota = Nota.find(nota.id)
+                                nota.aulas1=@atribuicao.aulas1
+                                nota.aulas2=@atribuicao.aulas2
+                                nota.aulas3=@atribuicao.aulas3
+                                nota.aulas4=@atribuicao.aulas4
+                                nota.aulas5=@atribuicao.aulas1 + @atribuicao.aulas2 + @atribuicao.aulas3 + @atribuicao.aulas4
+                                #nota.ac5 = nota.ac1+nota.ac2+nota.ac3+nota.ac4
+                                nota.save
+                            end
+                            if  session[:flag_edit]== 1
+                                if ((@atribuicao.aulas1 < 1 ))
+                                    format.html { redirect_to(aviso_atribuicaos_path) }
+                                    format.xml  { head :ok }
+                                else
+                                    flash[:notice] = 'SALVO COM SUCESSO!'
+                                    format.html { redirect_to(voltar_lancamento_notas_path)}
+                                end
+                            else
+                                if ((@atribuicao.aulas1 < 1 ))
+                                    format.html { redirect_to(aviso_atribuicaos_path) }
+                                    format.xml  { head :ok }
+                                else
+                                    flash[:notice] = 'SALVO COM SUCESSO!'
+                                    format.html { redirect_to(@atribuicao) }
+                                    format.xml  { head :ok }
+                                end
+                            end
+                        else
+                            format.html { render :action => "edit" }
+                            format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
+                        end
+                    end
                 end
-            end
-            #     end
-        end
+          else
+              respond_to do |format|
+                  if @atribuicao.update_attributes(params[:atribuicao])
+                     flash[:notice] = 'SALVO COM SUCESSO!'
+                     format.html { redirect_to(voltar_lancamento_faltas_path)}
+                  else
+                     format.html { render :action => "edit" }
+                     format.xml  { render :xml => @atribuicao.errors, :status => :unprocessable_entity }
+                  end
+               end
+
+
+            session[:faltas_up]= 0
+          end
         session[:flag_edit_atribuicao]=0
         session[:flag_edit_atribuicao]=0
         session[:flag_edit]=0
@@ -195,7 +203,7 @@ class AtribuicaosController < ApplicationController
 
 
 
-  
+
     def destroy
 
         @atribuicao = Atribuicao.find(params[:id])
@@ -266,8 +274,9 @@ class AtribuicaosController < ApplicationController
         session[:ano_nota]= Time.now.year
         @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
         session[:aluno] =params[:aluno_aluno_id]
-        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and ano_letivo=? and unidade_id=?', session[:aluno], session[:ano_nota], current_user.unidade_id])
-
+        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and ano_letivo=?', session[:aluno], session[:ano_nota]])
+        #@matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and ano_letivo=? and unidade_id=?', session[:aluno], session[:ano_nota], current_user.unidade_id])
+t=0
         @matriculas.each do |matricula|
             session[:classe]=matricula.classe_id
             session[:num]=matricula.classe_num
@@ -301,8 +310,17 @@ class AtribuicaosController < ApplicationController
                 end
             end
         end
-        @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =? AND matricula_id=?", params[:aluno_aluno_id], current_user.unidade_id, Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
-        @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D' and unidade_id =? AND notas.ano_letivo =? AND matricula_id=?", params[:aluno_aluno_id], current_user.unidade_id, Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+
+        w=params[:aluno_aluno_id]
+        w1= session[:matricula_id]
+        t=0
+
+        #@notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? AND notas.ano_letivo =? AND matricula_id=?", params[:aluno_aluno_id], current_user.unidade_id, Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+        #@notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D' and unidade_id =? AND notas.ano_letivo =? AND matricula_id=?", params[:aluno_aluno_id], current_user.unidade_id, Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+        @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' AND notas.ano_letivo =? AND matricula_id=?", params[:aluno_aluno_id], Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+        @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D' AND notas.ano_letivo =? AND matricula_id=?", params[:aluno_aluno_id], Time.now.year, session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
+
+
         @notas = @notasB+@notasD
         @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], Time.now.year,nil ] )
         render :partial => 'relatorio_aluno'
@@ -428,7 +446,7 @@ class AtribuicaosController < ApplicationController
             session[:num_classe]= classe.classe_classe[0,1].to_i
         end
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe_id]])
-       
+
         render :partial => 'relatorio_classe'
 
     end
@@ -520,8 +538,8 @@ class AtribuicaosController < ApplicationController
                         else if params[:type_of].to_i == 5
                                     page.replace_html 'mapa', :partial => 'mapa5'
                              end
-                        end 
-                    end 
+                        end
+                    end
               end
            end
         end
@@ -700,7 +718,7 @@ class AtribuicaosController < ApplicationController
         @report.add_row(["SECRETARIA DE EDUCAÇÃO"], 30).join_last_row_heading(0..6)
         @report.add_row(["Unidade de Ensino Fundamental"], 20).join_last_row_heading(0..6)
         @report.add_row(["HISTÓRICO ESCOLAR"], 20).join_last_row_heading(0..6)
-     
+
         @aluno.each do |aluno|
             session[:aluno] = aluno.aluno_nome
             @report.add_row(["Unidade de Ensino:", aluno.unidade.nome ])
@@ -758,7 +776,7 @@ class AtribuicaosController < ApplicationController
 
 
     def transferenciaA
-  
+
     end
 
     def transferencia_aluno
@@ -820,7 +838,7 @@ class AtribuicaosController < ApplicationController
 
     def consulta_observacoes
         render  'relatorios_observacoes'
-  
+
     end
 
     def consulta_atribuicao
@@ -888,7 +906,7 @@ class AtribuicaosController < ApplicationController
         @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id],  :order => 'classe_classe ASC'    )
         render :partial => 'selecao_mapa'
     end
-  
+
 
     def load_classes
 

@@ -1,0 +1,66 @@
+<table width="100%">
+     <% for classe in @classe %>
+       <tr bgcolor="#F5F5F5" >
+           <td align="left" width="10%"><b>Unidade:</b></td>
+           <td align="left">  <%=h classe.unidade.nome%></td>
+           <td align="left" width="18%"><b> Ano Letivo:</b></td>
+           <td align="left"> <%=h classe.classe_ano_letivo %> <% session[:classe_id] =  classe.id%></td>
+       </tr>
+       <tr bgcolor="#F5F5F5">
+           <td align="left"><b>Classe:</b></td>
+           <td align="left">  <%=h classe.classe_classe%></td>
+           <td align="left"><b>Horário:</b></td>
+           <td align="left">  <%=h classe.horario %></td>
+      </tr>
+        <tr bgcolor="#F5F5F5" >
+          <td align="left"><b>Descrição:</b></td>
+          <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+       </tr>
+   </table>
+  <%end%>
+<table width="100%">
+     <tr>
+       <td align="center"width ="5%"><b>Nº</b></td>
+       <td align="center"width ="5%"><b>RM</b></td>
+       <td width ="5%"><b>RA</b></td>
+       <td width ="60%"><b>NOME</b></td>
+       <td width ="5%"><b>SITUAÇÃO</b></td>
+       <td align="center"width ="10%"><b>NASC.</b></td>
+        <td align="center"width ="10%"><b>TRANSF</b></td>
+     </tr>
+   <% for matricula in @matriculas %>
+      <tr bgcolor="#F5F5F5">
+        <td align="center"> <%="#{ matricula.classe_num}"%> </td>
+        <td align="center"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
+        <td align="center"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
+        <td align="left"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+        <td align="left"> <%  if  matricula.status =="TRANSFERIDO"%>
+                              <font color ="red"> Transferido </font>
+                          <%else if  matricula.status =="TRANSFERENCIA"%>
+                                 <font color ="blue"> Transferência </font>
+                                 <%else if  matricula.status =="REMANEJADO"%>
+                                          <font color ="green"> Remanejado </font>
+                                       <%else if  matricula.status =="*REMANEJADO"%>
+                                                <font color ="green"> *Remanejado </font>
+                                             <%else if  matricula.status =="ABANDONO"%>
+                                                      <font color ="red"> Abandono</font>
+                                                  <%end%>
+                                           <%end%>
+                                       <%end%>
+                                 <%end%>
+                          <%end%>
+        </td>
+        <td align="left"> <%="#{ matricula.aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
+        <td align="left"><%  if  matricula.data_transferencia.nil?%>
+                         <%else%>
+                               <%="#{ matricula.data_transferencia.strftime("%d/%m/%Y")}"%> </td>
+                         <%end%>
+
+                      </tr>
+  <%end%>
+</table>
+<br/>
+        <b> OBS:</b>  &nbsp&nbsp<font color ="red"><u> Transferido</u></font> => Aluno enviado
+       &nbsp&nbsp&nbsp&nbsp<font color ="Blue"><u>Transferência</u></font> => Aluno recebido <br/>
+       &nbsp&nbsp&nbsp&nbsp<font color ="green"><u>Remanejado</u></font> => Entre classes (Saida)
+       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="green"><u>*Remanejado</u></font> => Entre classes (Entrada)

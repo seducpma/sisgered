@@ -1,0 +1,66 @@
+<h1>Listing faltas</h1>
+
+<table>
+  <tr>
+    <th>Aluno</th>
+    <th>Matricula</th>
+    <th>Atribuicao</th>
+    <th>Professor</th>
+    <th>Unidade</th>
+    <th>Classe</th>
+    <th>Ano letivo</th>
+    <th>Faltas1</th>
+    <th>Aulas1</th>
+    <th>Freq1</th>
+    <th>Faltas2</th>
+    <th>Aulas2</th>
+    <th>Freq2</th>
+    <th>Faltas3</th>
+    <th>Aulas3</th>
+    <th>Freq3</th>
+    <th>Faltas4</th>
+    <th>Aulas4</th>
+    <th>Freq4</th>
+    <th>Faltas5</th>
+    <th>Aulas5</th>
+    <th>Freq5</th>
+    <th>Obs</th>
+    <th>Ativo</th>
+  </tr>
+
+<% @faltas.each do |falta| %>
+  <tr>
+    <td><%=h falta.aluno_id %></td>
+    <td><%=h falta.matricula_id %></td>
+    <td><%=h falta.atribuicao_id %></td>
+    <td><%=h falta.professor_id %></td>
+    <td><%=h falta.unidade_id %></td>
+    <td><%=h falta.classe %></td>
+    <td><%=h falta.ano_letivo %></td>
+    <td><%=h falta.faltas1 %></td>
+    <td><%=h falta.aulas1 %></td>
+    <td><%=h falta.freq1 %></td>
+    <td><%=h falta.faltas2 %></td>
+    <td><%=h falta.aulas2 %></td>
+    <td><%=h falta.freq2 %></td>
+    <td><%=h falta.faltas3 %></td>
+    <td><%=h falta.aulas3 %></td>
+    <td><%=h falta.freq3 %></td>
+    <td><%=h falta.faltas4 %></td>
+    <td><%=h falta.aulas4 %></td>
+    <td><%=h falta.freq4 %></td>
+    <td><%=h falta.faltas5 %></td>
+    <td><%=h falta.aulas5 %></td>
+    <td><%=h falta.freq5 %></td>
+    <td><%=h falta.obs %></td>
+    <td><%=h falta.ativo %></td>
+    <td><%= link_to 'Show', falta %></td>
+    <td><%= link_to 'Edit', edit_falta_path(falta) %></td>
+    <td><%= link_to 'Destroy', falta, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New falta', new_falta_path %>

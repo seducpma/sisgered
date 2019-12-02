@@ -1,0 +1,112 @@
+
+    <table border="1" cellspacing="0" cellpadding="1" width="100%">
+        <tr>
+            <td rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+            <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                 <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+                 <center><font size="1"> Rua dos Professor, 40- Centro - Americana - SP  </font>
+                 <font size="1"> CEP:13.465-060 - Fone:3475-9700  </font></center>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right"><font size="2"><b>REGISTRO E CONTROLE DE FREQUÊNCIA - EDUCAÇÃO INFANTIL &nbsp&nbsp&nbsp&nbsp</b></font> </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr/>
+            </td>
+        </tr>
+    </table>
+
+
+
+<%@classes.each do |classes| %>
+      <% @classe = Classe.find(:all,:conditions =>['id = ?', classes.id])%>
+      <% @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?  and ano_letivo=?', classes.id,  Time.now.year]) %>
+      <% @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',classes.id], :order => 'classe_num ASC') %>
+      <% @faltas_alu=Falta.find(:all, :select => 'faltas.*,matriculas.classe_num as classe_num, matriculas.ano_letivo, matriculas.status as status',  :joins => "INNER JOIN matriculas ON matriculas.id = faltas.matricula_id", :conditions => ["matriculas.classe_id =? AND matriculas.ano_letivo=?", classes.id, Time.now.year]) %>
+
+   <%@classe.each do |classe| %>
+      <%  session[:classe]=  classe.id%>
+    <table border="1" cellspacing="0" cellpadding="1" width="100%">
+       <tr>
+           <td colspan="12"><br/>
+                <center><font size="3"><u><b><%=h classe.unidade.tipo.nome %>  <%=h classe.unidade.nome %></b></u>  </font></center>
+                <center><font size="1"><b><%=h classe.unidade.endereco%>, <%=h classe.unidade.num%> - Americana - SP  </b></font>
+                    <font size="1"></b><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></b></center>
+               <b> Sala: - <%=h classe.classe_classe%></b><br/>
+               <% cont=1%>
+                   <b>Professor(es):</b>
+                     <% for atrib in @atribuicao_classe %>
+                          <%if cont==1%>         
+                             <%= cont%>- <%=h atrib.professor.nome%> (<%=h atrib.disciplina.disciplina %>)<br/>
+                          <%else%>
+                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                             <%= cont%>- <%=h atrib.professor.nome%> (<%=h atrib.disciplina.disciplina %>)<br/>
+                          <%end%>
+
+                          <% cont= cont+1 %>
+                         <%end%>
+             
+          </td>
+      </tr>
+       <tr >
+             <td colspan="2"> </td>
+            <td width=" 10%" colspan="2" align="center"><b>1º Bimestre</b></td>
+            <td width=" 10%"colspan="2" align="center"><b>2º Bimestre</b></td>
+            <td width=" 10%" colspan="2" align="center"><b>3º Bimestre</b></td>
+            <td width=" 10%" colspan="2" align="center"><b>4º Bimestre</b></td>
+            <td width=" 10%" colspan="2" align="center"><b>FINAL</b></td>
+       </tr>
+        <tr >
+            <td align="center" width="2%"><b>Nº: </b> </td>
+            <td align="center" width="48%"><b> Nome: </b> </td>
+            <td width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></td>
+            <td width ="5%" align="center"><font size="1"><b>Freq.</b></font></td>
+            <td width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></td>
+            <td width ="5%" align="center"><font size="1"><b>Freq.</b></font></td>
+            <td width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></td>
+            <td width ="5%" align="center"><font size="1"><b>Freq.</b></font></td>
+            <td width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></td>
+            <td width ="5%" align="center"><font size="1"><b>Freq.</b></font></td>
+            <td width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></td>
+            <td width ="5%" align="center"><font size="1"><b>Freq.</b></font></td>
+
+       </tr>
+       <%@faltas_alu.each do |faltas_alu|%>
+       <tr>
+           <td align="center"><%= faltas_alu.classe_num %></td>
+           <td align="left" width="10%"><b><%= truncate(faltas_alu.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+               <%if faltas_alu.status == "MATRICULADO"%>
+                         <!-- No caso de matriculado, não imprime o status, pois é o status padrão -->
+                <%else%>
+                     <%if faltas_alu.status=="TRANSFERENCIA"%>
+                          <font color="blue"> (<%=  faltas_alu.status %>)</font>
+                     <%else%>
+                            <%if faltas_alu.status=="REMANEJADO" or faltas_alu.status=="*REMANEJADO"%>
+                                <font color="green"> (<%= faltas_alu.status %>)</font>
+                            <%else%>
+                                 <font color="red"> (<%= faltas_alu.status %>)</font>
+                            <%end%>
+                      <%end%>
+              <%end%> 
+          </td>
+          <td align="center"><%= faltas_alu.faltas1 %></td>
+          <td align="center"><%= faltas_alu.freq1 %>%</td>
+          <td align="center"><%= faltas_alu.faltas2 %></td>
+          <td align="center"><%= faltas_alu.freq2 %>%</td>
+          <td align="center"><%= faltas_alu.faltas3 %></td>
+          <td align="center"><%= faltas_alu.freq3 %>%</td>
+          <td align="center"><%= faltas_alu.faltas4 %></td>
+          <td align="center"><%= faltas_alu.freq4 %>%</td>
+          <td align="center"><%= faltas_alu.faltas5 %></td>
+          <td align="center"><%= faltas_alu.freq5 %>%</td>
+       </tr>
+       <%end%>
+    </table>
+   <%end%>
+<%end%>
+<br/><hr/><br/>
+

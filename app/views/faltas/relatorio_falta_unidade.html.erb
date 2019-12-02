@@ -1,0 +1,60 @@
+<% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') %>                         
+    <% @unidades = Unidade.find(:all, :conditions =>['(tipo_id = 2 or unidades.tipo_id = 5 or unidades.tipo_id = 8) AND desativada =0'],  :order => 'nome ASC') %>
+<%else%>
+    <% @unidades = Unidade.find(:all, :conditions =>['(tipo_id = 2 or unidades.tipo_id = 5 or unidades.tipo_id = 8) AND desativada =0 AND id=?', current_user.unidade_id],  :order => 'nome ASC') %>
+<%end%>
+<div id="interno2">
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CONTROLE DE FREQÜÊNCIA - Ensino Infantil</strong></font><br/>
+ </div>
+    <div class="tabs">
+    <% form_remote_tag :url =>relatorio_unidade_falta_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <fieldset>
+          <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td colspan="3"align="right"><font size="2"> <b class="label_busca3">Unidade:</b></font>
+               &nbsp&nbsp&nbsp<%= collection_select :unidade, :id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+           <td width=" 2%"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
+        </tr>
+       </table>
+       </fieldset>
+       <fieldset>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+          <tr>
+            <td>
+                <div id="relatorio"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %> <br><center><font color="red">Este processo pode demorar algum tempo - AGUARDE </font> </center></div></div>
+              <br/>
+            </td>
+          </tr>
+       </table>
+          <% end %>
+      </fieldset>
+
+
+       <br/>
+       <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_classe_path, :title => "Nova Consulta" %></td>
+     <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_classe_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
+
+
+
+
+
+
+
+
+

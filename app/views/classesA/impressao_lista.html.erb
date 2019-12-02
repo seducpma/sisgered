@@ -1,0 +1,84 @@
+<table frame="box" rules="all" width="100%" style="border-color: white">
+  <tr style="border-color: white">
+    <td rowspan="4" style="border-color: white"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td style="border-color: white"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+        <center><font size="1">Unidade Escolar:     <% for classe in @classe %> <%=h classe.unidade.nome %>   </font></center>
+
+    </td>
+  </tr>
+</table>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+
+   <tr  class ="invisible_to_print " style="border-color: white">
+     <td style="border-color: white" colspan="4"align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+
+        <tr  style="line-height:30%">
+           <td align="left" width="15%" style="font-size: 8px"><b>Unidade:</b></td>
+           <td align="left" style="font-size: 8px"><%=h classe.unidade.nome%></td>
+          <td align="left"width="15%" style="font-size: 8px"><b> Ano Letivo:</b></td>
+          <td colspan="7" align="left" style="font-size: 8px"> <%=h classe.classe_ano_letivo %></td>
+      </tr>
+
+      <tr style="line-height:30%">
+           <td align="left" style="font-size: 8px"><b>Classe:</b></td>
+           <td align="left" style="font-size: 8px">  <%=h classe.classe_classe%></td>
+           <td align="left" style="font-size: 8px"><b>Horário:</b></td>
+           <td align="left" style="font-size: 8px">  <%=h classe.horario%></td>
+
+      </tr>
+      <tr style="line-height:30%">
+          <td align="left" style="font-size: 8px"><b>Descrição:</b></td>
+          <td colspan="3" align="left" style="font-size: 8px">  <%=h classe.classe_descricao %></td>
+      </tr>
+         <% cont=1 %>
+         <% cont1=1 %>
+      <tr>
+        <td colspan="4">
+          <table  border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+               <tr style="line-height:30%">
+                 <td align="center"width ="2%" style="font-size: 8px"><b>Nº</b></td>
+                 <td width ="5%" style="font-size: 8px"><b>RM</b></td>
+                 <td width ="5%" style="font-size: 8px"><b>RA</b></td>
+                 <td width ="55%" style="font-size: 8px"><b>NOME</b></td>
+                 <td width ="5%" style="font-size: 8px"><b>SITUAÇÃO</b></td>
+                 <td align="center"width ="40%" style="font-size: 8px"><b>ASSINATURA</b></td>
+               </tr>
+             <% for matricula in @matriculas %>
+                <tr bgcolor="#F5F5F5" style="line-height:30%">
+                  <td align="center" style="font-size: 8px"> <%="#{ matricula.classe_num}"%> </td>
+                  <td align="center" style="font-size: 8px"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
+                  <td align="center" style="font-size: 8px"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
+                  <td align="left" style="font-size: 8px"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+                  <td align="left" style="font-size: 8px"> <%  if  matricula.status =="TRANSFERIDO"%>
+                                                                <font color ="red"> Transferido </font>
+                                                            <%else if  matricula.status =="TRANSFERENCIA"%>
+                                                                   <font color ="blue"> Transferência </font>
+                                                                   <%else if  matricula.status =="REMANEJADO"%>
+                                                                            <font color ="green"> Remanejado </font>
+                                                                         <%else if  matricula.status =="*REMANEJADO"%>
+                                                                                  <font color ="green"> *Remanejado </font>
+                                                                               <%else if  matricula.status =="ABANDONO"%>
+                                                                                        <font color ="red"> Abandono</font>
+                                                                                    <%end%>
+                                                                             <%end%>
+                                                                         <%end%>
+                                                                   <%end%>
+                                                            <%end%>
+                  </td>
+                  <td align="left">  </td>
+
+              </tr>
+            <%end%>
+          </table>
+
+
+
+
+
+        </td>
+      </tr>
+
+</table>
+<%end%>

@@ -1,0 +1,107 @@
+<%t=0%>
+        <div id="interno4">
+        <% title "ATRIBUICAOS".singularize %>
+        <div class="tabs">
+         <div id="caixa_titulo">
+             <font size="3"><strong>DIAS DE ATIVIDADES </strong></font><br/>
+         </div>
+              <div class="tabs">
+                    <% form_for (@atribuicao) do |f| %>
+                     <%= f.error_messages %>
+                      <fieldset><legend><font size=4>Atribuição</font></legend>
+                        <table width="100%">
+                           <tr bgcolor="#F5F5F5">
+                               <td colspan="5" align="center"><font color =" blue"><b> LANÇAMENTO DO NÚMERO DE DIAS DE ATIVIDADES (Educação Infantil)xxx</b></font></td>
+                          </tr>
+
+                           <tr bgcolor="#F5F5F5">
+                             <td colspan="5"> <b>Classe:</b>  <%=h @atribuicao.classe.classe_classe%> &nbsp&nbsp
+                             <b>Professor:</b> <%=h @atribuicao.professor.nome%></td>
+                          </tr>
+                          <tr bgcolor="#F5F5F5">
+                            <td  colspan=5"> <b>Disciplina:</b> &nbsp <%=h @atribuicao.disciplina.disciplina%></td>
+
+                          </tr>
+                              <tr bgcolor="#F5F5F5">
+                                <td width ="10%" align="center"><b><font color="red"> Lançar dias de atividades </font></b></td>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                     <td width ="3%" align="center"> <b>1º Bimestre <br/>Nº Dias:</b><%= f.text_field :aulas1 , :size => '2'%></td>
+                                  <%else%>
+                                    <td  width ="20%" align="center"> <b>1º Bimestre <br/>Nº Dias:</b>   <%if (@atribuicao.aulas1 != 0)%>
+<!--# and (@atribuicao.disciplina.id != 32 and @atribuicao.disciplina.id != 2 and @atribuicao.disciplina.id != 3 and @atribuicao.disciplina.id != 4 and @atribuicao.disciplina.id != 21 and @atribuicao.disciplina.id != 34)-->
+                                                                              <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas1%>--><%= f.text_field :aulas1 , :size => '3'%>
+                                                                            <%else%>
+       <!-- para liberar apagar o comentario desta linha-->           <%= f.text_field :aulas1 , :size => '3'%>
+                                                                            <%end%>
+                                   </td>
+                                 <%end%>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                     <td width ="3%" align="center"> <b>2º Bimestre <br/>Nº Dias:</b><%= f.text_field :aulas2 , :size => '2'%></td>
+                                  <%else%>
+                                    <td  width ="20%" align="center"><b>2º Bimestre <br/>Nº Dias:</b> <%if (@atribuicao.aulas2 != 0)%>
+                                                                            <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas2%> -->   <%= f.text_field :aulas2 , :size => '3'%>
+                                                                        <%else%>
+          <!-- para liberar apagar o comentario desta linha-->                <%= f.text_field :aulas2 , :size => '3'%>
+                                                                        <%end%>
+                                    </td>
+                                  <%end%>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                     <td width ="3%" align="center"> <b>3º Bimestre <br/>Nº Dias:</b><%= f.text_field :aulas3 , :size => '2'%></td>
+                                     <%t=0%>
+                                  <%else%>
+                                      <td width ="20%" align="center"><b>3º Bimestre <br/>Nº Dias:</b><%if (@atribuicao.aulas3 != 0)%>
+                                                                            <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas3%> -->   <%= f.text_field :aulas3 , :size => '3'%>
+
+                                                                        <%else%>
+         <!-- para liberar apagar o comentario desta linha-->               <%= f.text_field :aulas3 , :size => '3'%>
+
+                                                                        <%end%>
+                                     </td>
+
+                                 <%end%>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                     <td width ="3%" align="center"> <b>4º Bimestre <br/>Nº Dias:</b><%= f.text_field :aulas4 , :size => '2'%></td>
+                                  <%else%>
+                                      <td width ="20%" align="center"><b>4º Bimestre <br/>Nº Dias:</b><%if (@atribuicao.aulas4 != 0)%>
+                                                                            <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas4%>--><%= f.text_field :aulas4 , :size => '3'%>
+                                                                        <%else%>
+         <!-- para liberar apagar o comentario desta linha-->                       <%= f.text_field :aulas4 , :size => '3'%>
+                                                                        <%end%>
+                                     </td>
+                                 <%end%>
+
+                              </tr>
+
+                       </table>
+                      </fieldset>
+                <fieldset><legend><font size=4>ATENÇÃO</font></legend>
+                  <font color ="red">      <font color ="red"><b>APÓS CLICAR NO BOTÃO "SALVAR" - AGUARDE (Este processo pode demorar um pouco).</font></b>
+
+                </fieldset>
+                     <br/>
+
+                           <table width="100%" >
+                             <tr bgcolor="#F5F5F5">
+                               <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+                    <%end%>
+
+
+                             <%if current_user.has_role?('professor_infantil') or current_user.has_role?('admin') or current_user.has_role?('secretaria_infantil')%>
+                               <%if current_user.has_role?('admin') %>
+                                 <td><%= button_to 'Lançar Notas', {:controller => "faltas", :action => "voltar_lancamento_faltas", :method => "get"}  %></td>
+                               <%else%>
+                                 <td width="2%"><%= button_to 'Voltar',lancar_faltas_faltas_path, :method => :get %></td>
+                                 <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                                <%end%>
+
+                             <%else%>
+                                 <td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %>  </td>
+                             <%end%>
+                             </tr>
+                           </table>
+                      </font>
+              </div>
+          </div>
+        <br/>
+        </div>

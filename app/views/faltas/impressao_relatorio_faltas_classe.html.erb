@@ -1,0 +1,97 @@
+           
+<%@classe.each do |classe| %>
+
+<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+  <tr style="border-color: white">
+    <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+    <td style="border-color: white" ><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+                <center><font size="1">Unidade Escolar:  <%=h classe.unidade.nome %>  </font></center>
+                <center><font size="1"><%=h classe.unidade.endereco%>, <%=h classe.unidade.num%> - Americana - SP  </font>
+                    <font size="1"><%=h classe.unidade.CEP%> - <%=h classe.unidade.fone%>  </font></center>
+                <%  session[:classe]=  classe.id%>
+
+    </td>
+  </tr>
+  <tr style="border-color: white">
+    <td style="border-color: white" colspan="2" align="right"><font size="2"><b>EGISTRO E CONTROLE DE FREQUÊNCIA - EDUCAÇÃO INFANTIL &nbsp&nbsp&nbsp&nbsp</b></font></td>
+  </tr>
+ </table>
+
+ <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+    
+       <tr >
+            <th style="font-size: 8px" colspan="2"> </td>
+            <th style="font-size: 8px" width=" 10%" colspan="2" align="center"><b>1º Bimestre</b></th>
+            <th style="font-size: 8px" width=" 10%"colspan="2" align="center"><b>2º Bimestre</b></th>
+            <th style="font-size: 8px" width=" 10%" colspan="2" align="center"><b>3º Bimestre</b></th>
+            <th style="font-size: 8px" width=" 10%" colspan="2" align="center"><b>4º Bimestre</b></th>
+            <th style="font-size: 8px" width=" 10%" colspan="2" align="center"><b>FINAL</b></th>
+       </tr>
+        <tr >
+            <th style="font-size: 7px" align="center" width="2%"><b>Nº: </b> </th>
+            <th style="font-size: 7px" align="center" width="48%"><b> Nome: </b> </th>
+            <th style="font-size: 7px" width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center"><font size="1"><b>Freq.</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center"><font size="1"><b>Freq.</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center"><font size="1"><b>Freq.</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center"><font size="1"><b>Freq.</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></th>
+            <th style="font-size: 7px" width ="5%" align="center"><font size="1"><b>Freq.</b></font></th>
+
+       </tr>
+       <%@faltas_alu.each do |faltas_alu|%>
+       <tr>
+           <th style="font-size: 8px" align="center"><%= faltas_alu.classe_num %></th>
+           <th style="font-size: 8px" align="left" width="10%"><b><%= truncate(faltas_alu.aluno.aluno_nome,:length => 40,:omission => "...") %></b>
+               <%if faltas_alu.status == "MATRICULADO"%>
+                         <!-- No caso de matriculado, não imprime o status, pois é o status padrão -->
+                <%else%>
+                     <%if faltas_alu.status=="TRANSFERENCIA"%>
+                          <font color="blue"> (<%=  faltas_alu.status %>)</font>
+                     <%else%>
+                            <%if faltas_alu.status=="REMANEJADO" or faltas_alu.status=="*REMANEJADO"%>
+                                <font color="green"> (<%= faltas_alu.status %>)</font>
+                            <%else%>
+                                 <font color="red"> (<%= faltas_alu.status %>)</font>
+                            <%end%>
+                      <%end%>
+              <%end%>
+          </th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.faltas1 %></th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.freq1 %>%</th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.faltas2 %></th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.freq2 %>%</th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.faltas3 %></th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.freq3 %>%</th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.faltas4 %></th>
+          <th style="font-size: 8px"align="center"><%= faltas_alu.freq4 %>%</th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.faltas5 %></th>
+          <th style="font-size: 8px" align="center"><%= faltas_alu.freq5 %>%</th>
+       </tr>
+       <%end%>
+    <tr  style="border-color: white">
+        <th style="font-size: 8px" colspan="12">
+      <br/><br/><br/><br/><br/><br/>
+         &nbsp&nbsp&nbsp&nbsp&nbsp__________________________________________ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ________________________________________<br/>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Secretaria da Unidade Escolar       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Diretor da  Unidade Escolar    <br/>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
+         <br/><br/><br/><br/><br/><br/>
+         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b>
+      <br/><br/><br/><br/><br/><br/>
+    </t>
+  </tr>
+    </table>
+ <%end%>
+
+
+
+
+
+
+
+
+

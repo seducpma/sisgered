@@ -1,4 +1,4 @@
-<div id="interno1">
+<div id="interno2">
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -39,7 +39,9 @@
           <%end%>
            <% if (current_user.has_role?('admin'))%>
 <!--               <td align="right" ><%= button_to 'NÚCLEO BÁSICO', nucleo_basico_classes_path %> </td>-->
-               <td width="6%" align="right" ><%= button_to 'GERAR NOTAS', gerar_notas_classes_path, :title => "GerarNotas" %> </td>
+               <td width="6%" align="right" ><%= button_to 'GERAR FALTAS (TODAS INF)',  gerar_faltas_todas_faltas_path, :title => "Gerar Faltas (Infantil)" %> </td>
+<!--               <td width="6%" align="right" ><%= button_to 'GERAR FALTAS (INF)', gerar_faltas_faltas_path, :title => "Gerar Faltas (Infantil)" %> </td>
+               <td width="6%" align="right" ><%= button_to 'GERAR NOTAS (FUND)', gerar_notas_classes_path, :title => "Gerar Notas (fundamental)" %> </td>-->
           <%end%>
 
           </tr>
