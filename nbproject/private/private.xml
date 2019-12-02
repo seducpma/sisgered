@@ -6,12 +6,12 @@
             <line>231</line>
         </file>
         <file>
-            <url>app/views/atribuicaos/_mapa.erb</url>
-            <line>117</line>
-        </file>
-        <file>
             <url>app/controllers/notas_controller.rb</url>
             <line>41</line>
+        </file>
+        <file>
+            <url>app/views/atribuicaos/_mapa.erb</url>
+            <line>117</line>
         </file>
     </editor-bookmarks>
 </project-private>
