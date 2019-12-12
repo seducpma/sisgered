@@ -122,13 +122,55 @@ class MatriculasController < ApplicationController
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0], :order =>'disciplinas.ordem ASC ' )
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
-t=0
         render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classeRep'
        end
-
-
     end
+
+def matricular
+
+   @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
+   @classes_atual = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')
+
+end
+
+def matricular_alunos
+
+    session[:salvar_matricula]= 1
+     @alunos=session[:alunosM]
+
+       for aluno in @alunos
+
+           @matricula = Matricula.new
+
+           @matricula.classe_id = session[:classe]
+           @matricula.aluno_id = aluno.id
+           @matricula.ano_letivo = Time.now.year
+           @matricula.save
+
+       end
+
+end
+
+
+def matricula_aluno
+    @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
+   session[:classe_id]=(params[:matricula_classe_id])
+     render :partial => 'alunos_matricular'
+end
+
+def classe_id
+    session[:classe]= params[:matricula_classe_id]
+ end
+
+def alunos_matricula
+    @alunos=  Aluno.find(params[:aluno_ids])
+    w=session[:alunosM] = Aluno.find(params[:aluno_ids], :select => 'id')
+    @classe = Classe.find(:all, :conditions =>['id =?', session[:classe]])
+    @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe],0], :order =>'disciplinas.ordem ASC ' )
+
+
+end
 
     def create
         @matricula_anterior = Matricula.new(params[:matricula])

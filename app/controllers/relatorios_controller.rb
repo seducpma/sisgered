@@ -280,10 +280,11 @@ end
             end
             session[:relatorio_id]=params[:id]
             ###Alex 26/06/2019 10:27 - Com os PAs deu problema puxou todos porque o ID da classe é 0 - @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=? AND ano_letivo = ? ', @relatorio.atribuicao_id, Time.now.year] )
-            @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id] )
+
             #@professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN relatorios ON professors.id = relatorios.professor_id", :conditions => ['relatorios.id=?', session[:relatorio_id]])
-            w=@classe[0].classe_id
+
             if session[:type_of] == 4
+                 @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id] )
                  @matricula = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
                  @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id])
                  @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
@@ -291,6 +292,7 @@ end
 
                  session[:type_of] = 0
             else
+                @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id] )
                 @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
 
             end

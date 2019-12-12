@@ -1,0 +1,63 @@
+<div id="interno2">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>MATRICULAR ALUNO</strong></font><br/>
+ </div>
+      <div class="tabs">
+        <fieldset><legend><font size=4>Matrículas</font></legend>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
+            <tr>
+              <td colspan="2"><font color ="red" size ="3"><b><u>ATENÇÃO:</u> 1) Antes de matricular os alunos na classe, certifique-se que os TODOS os responsáveis já foram atribuidos às classes.<br/>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp  2) Se o o nome do aluno não constar a lista é necessário utilizar a opção CONSULTAR / ALUNO / SEDUC / e SALVAR a ficha do aluno, antes de matricula-lo.</b>
+
+                  <font></td>
+            </tr>
+           <tr>
+             <td width=" 10%"><b>Classe: </b></td>
+             <td><%= collection_select :matricula, :classe_id, @classes_atual, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </td>
+                       <%= observe_field :matricula_classe_id,
+                              :with => :matricula_classe_id,
+                              :update => "professores" ,
+                              :url => { :action => 'classe_id'}%>
+           </tr>
+            <tr>
+               <td valign="top"><b>Alunos: </b></td>
+               <td>
+                       <%form_tag alunos_matricula_matriculas_path, :method => :get do %>
+                       <%#form_tag selected_print_chamados_path, :method => :get do %>
+                               <% for aluno in @alunos_matricula %>
+                        <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
+                                    <tr>
+                                             <td width ="1px" align="center"><%= check_box_tag "aluno_ids[]",aluno.id %></td>
+                                             <td><%=h aluno.aluno_nome_dtn %></td>
+
+                                   </tr>
+                                 </table>
+                              <%end %>
+                            <table>
+                                <tr>
+                                   <td colspan="2" ><%= submit_tag "Confirmar", :class => "btn_filtrar" %>
+                                   </td>
+                               </tr>
+                           </table>
+                        <%end%>
+                </td>
+           </tr>
+         </table>
+         </fieldset>
+         <table>
+           <tr>
+              <% session[:matricula_transferencia] = 0%>
+              <td width="4%"></td>
+
+             <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
+
+    </div>
+</div>
+<br/>
+</div>
+
+

@@ -1,0 +1,83 @@
+<div id="interno2">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>MATRICULA ALUNO</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+
+        <fieldset><legend><font size=4>Matrícula Aluno</font></legend>
+
+            <table width="100%">
+                 <% for classe in @classe %>
+                   <tr bgcolor="#F5F5F5" >
+                       <td align="left" width="10%"><b>Unidade:</b></td>
+                       <td align="left">  <%=h classe.unidade.nome%></td>
+                       <td align="left" width="18%"><b> Ano Letivo:</b></td>
+                       <td align="left"> <%=h classe.classe_ano_letivo %> <% session[:classe_id] =  classe.id%></td>
+                   </tr>
+                   <tr bgcolor="#F5F5F5">
+                       <td align="left"><b>Classe:</b></td>
+                       <td align="left">  <%=h classe.classe_classe%></td>
+                       <td align="left"><b>Horário:</b></td>
+                       <td align="left">  <%=h classe.horario %></td>
+                  </tr>
+                    <tr bgcolor="#F5F5F5" >
+                      <td align="left"><b>Descrição:</b></td>
+                      <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+                   </tr>
+                   <tr bgcolor="#F5F5F5">
+                    <td valign="top"> <b> Professor(es):</b> </td>
+                    <% cont=1 %>
+                     <% cont1=1 %>
+                    <td colspan="4"> <% for atrib in @atribuicao_classe %>
+                                       <table width="100%">
+                                          <tr bgcolor="#F5F5F5" >
+                                             <td align="left" width="50%">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
+                                             <td align="left"width="10%"><b> Disciplina:</b></td>
+                                             <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                                                         <% if (current_user.has_role?('admin')or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
+                                                             <td  align="left" ><%= button_to'Excluir', { :action => "destroy_professor", :id =>atrib}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
+                                                         <%end%>
+
+                                         </tr>
+                                       </table>
+                                      <% cont= cont+1 %>
+                                     <%end%>
+                     </td>
+                  </tr>
+
+              <%end%>
+
+                 <tr>
+                   <td align="center"width ="1%"><b>Nº</b></td>
+                   <td width ="80%"><b>NOME</b></td>
+                   <td colspan="2"align="center"><b>DATA NASCIMENTO</b></td>
+                  
+                 </tr>
+                 <% for aluno in @alunos %>
+                    <tr bgcolor="#F5F5F5">
+                      <td align="center"> </td>
+                      <td align="left"> <%="#{ aluno.aluno_nome}"%> </td>
+                      <td colspan="2"align="CENTER"> <%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
+
+
+                     </tr>
+                <%end%>
+
+            </table>
+        <table width="100%">
+           <tr>
+
+
+             <td width =" 10%"><%= button_to 'MATRICULAR', matricular_alunos_matriculas_path %> </td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
+
+    </div>
+</div>
+<br/>
+</div>
+
