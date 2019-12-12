@@ -288,9 +288,9 @@ end
                  @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id])
                  @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
                  session[:type_of] = 0
-                 t=0
+
             else
-                t=0
+
                 @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id])
                 @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
 
