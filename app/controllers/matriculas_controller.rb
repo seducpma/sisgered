@@ -156,29 +156,31 @@ def matricular_alunos
 
         for aluno in @alunos
            @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=? AND status != "ABANDONO"',  session[:classe_id], Time.now.year, aluno])
+           @alunox= Aluno.find(:all, :conditions => ['id=?', aluno.id])
           # Se não existir matricula anterior= MATRICULA O ALUNO
            if (@matricula_anterior.empty?) or (session[:matricula_transferencia] == 1)
 
                @matricula = Matricula.new
                @matricula.classe_id = session[:classe]
-               @matricula.aluno_id = aluno.id
+               w=@matricula.aluno_id = aluno.id
                @matricula.ano_letivo = Time.now.year
+               @matricula.unidade_id =@alunox[0].unidade_id
                classe_num = (Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? ',  session[:classe], Time.now.year ]).count)
                @matricula.classe_num = classe_num + 1
                @matricula.save
 
                # gera as notas /faltas para o aluno
                @atribuicaos= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', session[:classe], Time.now.year])
-               t=0
+
                   for atrib in @atribuicaos
-                     w1=session[:classe]= atrib.classe_id
-                     w=session[:atribuicao]= atrib.id
-                     t=0
+                     session[:classe]= atrib.classe_id
+                     session[:atribuicao]= atrib.id
+
                      session[:professor]= atrib.professor_id
                      session[:disciplina]= atrib.disciplina_id
                         #aluno FUNDAMENTAS
                        if (current_user.unidade_id > 41  and  current_user.unidade_id < 52) or (current_user.unidade_id == 62)
-                           t=0
+                     
                            @nota = Nota.new(params[:nota])
                            @nota.aluno_id = @matricula.aluno_id
                            @nota.atribuicao_id= session[:atribuicao]
@@ -205,28 +207,32 @@ def matricular_alunos
                            @nota.save
 
                        else
-
-                           @falta = Falta.new(params[:falta])
-                           @falta.aluno_id = @matricula.aluno_id
-                           @falta.atribuicao_id= session[:atribuicao]
-                           @falta.matricula_id= @matricula.id
-                           @falta.professor_id= session[:professor]
-                           @falta.unidade_id= current_user.unidade_id
-                           @falta.disciplina_id = session[:disciplina]
-                           @falta.ano_letivo =  Time.now.year
-                           @falta.faltas1 = 0
-                           @falta.aulas1 = 0
-                           @falta.faltas2 = 0
-                           @falta.aulas2 = 0
-                           @falta.faltas3 = 0
-                           @falta.aulas3 = 0
-                           @falta.faltas4 = 0
-                           @falta.aulas4 = 0
-                           @falta.faltas5 = 0
-                           @falta.aulas5 = 0
-                           @falta.save
-                           t=0
-                       end
+                                   @falta = Falta.new
+                                   @falta.aluno_id = @matricula.aluno_id
+                                   @falta.save
+                                   @faltax = Falta.find(:last, :readonly => false)
+                                   if (@matricula.unidade.tipo_id == 1) or  (@matricula.unidade.tipo_id == 4)or (@matricula.unidade.tipo_id == 7)or (@matricula.unidade.tipo_id == 9)
+                                      @faltax.atribuicao_id= session[:atribuicao]
+                                   end
+                                   @faltax.matricula_id= @matricula.id
+                                   @faltax.professor_id= session[:professor]
+                                   @faltax.unidade_id= current_user.unidade_id
+                                   if (@matricula.unidade.tipo_id == 1) or  (@matricula.unidade.tipo_id == 4)or (@matricula.unidade.tipo_id == 7)or (@matricula.unidade.tipo_id == 9)
+                                    @faltax.disciplina_id = session[:disciplina]
+                                   end
+                                   @faltax.ano_letivo =  Time.now.year
+                                   @faltax.faltas1 = 0
+                                   @faltax.aulas1 = 0
+                                   @faltax.faltas2 = 0
+                                   @faltax.aulas2 = 0
+                                   @faltax.faltas3 = 0
+                                   @faltax.aulas3 = 0
+                                   @faltax.faltas4 = 0
+                                   @faltax.aulas4 = 0
+                                   @faltax.faltas5 = 0
+                                   @faltax.aulas5 = 0
+                                   @faltax.save
+                               end
                end  # fim @atribuicaos
            # salva status no ALUNO
 
@@ -234,7 +240,7 @@ def matricular_alunos
            @aluno.unidade_id =  current_user.unidade_id
            @aluno.aluno_status = nil  # nil status indica que o aluno MATICULADO
            @aluno.save
-           t=0
+           
       end    # FIM Se não existir matricula anterior= MATRICULA O ALUNO
 
    end  #  Fim do @aluns in  @alunos
@@ -257,7 +263,8 @@ end
                     session[:flagnum] = 0
                 else
                     @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
-                    if  @matricula_num.nil?
+                    t=0
+                    if  @matricula_num.nil? or @matricula_num.empty?
                         @matricula = Matricula.new(params[:matricula])
                         @matricula.classe_num = 1
                     else
@@ -280,6 +287,7 @@ end
                     session[:status_anterior] =  @matricula_anterior.status
                 end
                 @matricula_anterior_num_aluno = Matricula.find(:last, :conditions => ['classe_id =?', @matricula.classe_id])
+
                 if @matricula_anterior_num_aluno.nil?
                     @matricula.classe_num=1
                 else
@@ -342,31 +350,30 @@ end
                                     @nota.save
                                else
                                    @falta = Falta.new
-
-
-
                                    @falta.aluno_id = @matricula.aluno_id
                                    @falta.save
-                                   @faltas= Falta.all
                                    @faltax = Falta.find(:last, :readonly => false)
-                                  t=0
-                                   @falta.atribuicao_id= session[:atribuicao]
-                                   @falta.matricula_id= @matricula.id
-                                   @falta.professor_id= session[:professor]
-                                   @falta.unidade_id= current_user.unidade_id
-                                   @falta.disciplina_id = session[:disciplina]
-                                   @falta.ano_letivo =  Time.now.year
-                                   @falta.faltas1 = 0
-                                   @falta.aulas1 = 0
-                                   @falta.faltas2 = 0
-                                   @falta.aulas2 = 0
-                                   @falta.faltas3 = 0
-                                   @falta.aulas3 = 0
-                                   @falta.faltas4 = 0
-                                   @falta.aulas4 = 0
-                                   @falta.faltas5 = 0
-                                   @falta.aulas5 = 0
-                                   @falta.save
+                                   if (@matricula.unidade.tipo_id == 1) or  (@matricula.unidade.tipo_id == 4)or (@matricula.unidade.tipo_id == 7)or (@matricula.unidade.tipo_id == 9)
+                                      @faltax.atribuicao_id= session[:atribuicao]
+                                   end
+                                   @faltax.matricula_id= @matricula.id
+                                   @faltax.professor_id= session[:professor]
+                                   @faltax.unidade_id= current_user.unidade_id
+                                   if (@matricula.unidade.tipo_id == 1) or  (@matricula.unidade.tipo_id == 4)or (@matricula.unidade.tipo_id == 7)or (@matricula.unidade.tipo_id == 9)
+                                    @faltax.disciplina_id = session[:disciplina]
+                                   end
+                                   @faltax.ano_letivo =  Time.now.year
+                                   @faltax.faltas1 = 0
+                                   @faltax.aulas1 = 0
+                                   @faltax.faltas2 = 0
+                                   @faltax.aulas2 = 0
+                                   @faltax.faltas3 = 0
+                                   @faltax.aulas3 = 0
+                                   @faltax.faltas4 = 0
+                                   @faltax.aulas4 = 0
+                                   @faltax.faltas5 = 0
+                                   @faltax.aulas5 = 0
+                                   @faltax.save
                                end
                             end
                             flash[:notice] = 'MATRICULA SALVA COM SUCESSO'
