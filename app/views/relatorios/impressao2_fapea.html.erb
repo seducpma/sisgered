@@ -1,0 +1,86 @@
+<table class ="invisible_to_print ">
+  <tr>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+</table>
+            <% for relatorio in @relatorio %>
+              <table cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
+                <tr  style="border-color: white">
+                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                      <center><font size="2"> Unidade Escolar: <%=h relatorio.atribuicao.classe.unidade.nome %> </i></b><br/></center>
+                      <center><font size="2"><b><u>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</u></b></font></center>
+
+                  </td>
+                </tr>
+               </table>
+                <table cellspacing="0" cellpadding="0" width="100%" style="border-color: white">
+                 <tr   style="border-color: white">
+                   <td width=5%" align="left" style="border-color: white"><b>Aluno(a):</b></td>
+                   <td style="border-color: white"><%=h relatorio.aluno.aluno_nome %></td>
+                   <td width=10%" align="left" style="border-color: white"><b>Nascimento:</b></td>
+                   <td style="border-color: white"><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+
+                 </tr>
+                 <tr  style="border-color: white">
+                   <td valign="top"align="left" style="border-color: white"><b>Unidade:</b></td>
+                   <td style="border-color: white"><%=h relatorio.atribuicao.classe.unidade.nome %></td>
+                   <td valign="top" style="border-color: white"><b>Ano Letivo:</b></td>
+                   <td valign="top" style="border-color: white"><%=h relatorio.ano_letivo %>
+                     <% bimestre = relatorio.created_at.strftime("%m").to_i %>
+                   <% if  ( bimestre < 8 ) %>
+                     - 1º Semestre
+                   <% else %>
+                     - 2º Semestre
+                   <%end%>
+                   </td>
+                </tr>
+                <tr  style="border-color: white">
+                   <td width=5%" align="left" style="border-color: white"><b>Disciplina:</b></td>
+                   <td style="border-color: white"><%=h @classe[0].disc%></td>
+                   <td width=10%" align="left" style="border-color: white"><b>Classe:</b></td>
+                   <td style="border-color: white"><%=h @classe[0].classe_classe %></td>
+               </tr>
+
+
+                 <tr  style="border-color: white">
+                     <td align="left" style="border-color: white"><b>Dias Letivos:</b></td>
+                   <td colspan="3" style="border-color: white"><%=h relatorio.dias_letivos%> &nbsp&nbsp&nbsp&nbsp <b> Faltas: </b>&nbsp  <%=h relatorio.faltas%> &nbsp&nbsp&nbsp&nbsp <b> Frequência: </b>&nbsp  <%=h relatorio.frequencia%> %</td>
+                </tr>
+
+                 <tr  style="border-color: white">
+                   <td align="left" style="border-color: white"><b>Mãe / Pai:</b></td>
+                   <td colspan="3" style="border-color: white"><%=h relatorio.aluno.aluno_mae%> &nbsp&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp&nbsp  <%=h relatorio.aluno.aluno_pai%></td>
+                </tr>
+                 <tr  style="border-color: white">
+                   <td align="left" valign="top" style="border-color: white"><b>Professor(a):</b> </td>
+                   <td colspan="3" style="border-color: white"><% for professor in @professors %>
+                                      <%= professor.nome %> <br/>
+                                   <%end%>
+                   </td>
+                </tr>
+                 <tr  style="border-color: white">
+                   <th colspan="4"align="center" valign="top" style="border-color: white"><b>RELATÓRIO</b></th>
+                 </tr>
+                 <tr  style="border-color: white">
+                   <td colspan="4" style="border-color: white"><%= relatorio.observacao.gsub("\n","<br/>\n") %></td>
+                </tr>
+                <tr  style="border-color: white">
+                   <td colspan="5" style="border-color: white">
+                    <br/><br/><br/><br/><br/><br/>
+                       &nbsp&nbsp&nbsp&nbsp________________________________________ &nbsp&nbsp&nbsp&nbsp&nbsp ______________________________________<br/>
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Professor        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Responsável p/ Aluno    <br/>
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
+                       <br/><br/>
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b>
+                    <br/><br/><br/>
+                  </td>
+                </tr>
+              </table>
+
+<div style="page-break-after: always"></div>
+
+<%end%>
+
+

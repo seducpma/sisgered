@@ -19,9 +19,16 @@
         <table width="100%">
            <tr>
               
-            
+             
              <td width =" 10%"><%= button_to 'MATRICULAR (1 aluno)', new_matricula_path %> </td>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+          <table width="100%">
+           <tr>
+
+               <td colspan="3"> <font size="2" color="blue"> <b><u>OBSERVAÇÃO:</u> Quanto tratar-se de somente uma matrícula (transferência ou remanejamento) utilize o botão
+                            <u>MATRICULAR (1 aluno) </u>. Quanto tratar-se de matricular vários alunos na mesma classe utilize o botão <u>MATRICULAR (Vários alunos) </u>.</b>
+                           </td>
           </tr>
         </table>
 

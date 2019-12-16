@@ -248,15 +248,27 @@ def consulta_fapea
               else if params[:type_of].to_i == 4
                         session[:type_of] = 4
                          w= session[:classe_id]=params[:classe_id]
-
+                         w1= session[:semestre]= params[:semestre]
                          session[:tipo]=0
                            @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe_id]], :order => 'classe_num ASC')
                            @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
+                           @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
                            @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
-
-                            render :update do |page|
-                              page.replace_html 'relatorio', :partial => 'fapea_classe'
-                           end
+                           t=0
+                            if session[:semestre].to_i == 1
+                               render :update do |page|
+                                  page.replace_html 'relatorio', :partial => 'fapea_classe1'
+                               end
+                            else  if session[:semestre].to_i == 2
+                                       render :update do |page|
+                                          page.replace_html 'relatorio', :partial => 'fapea_classe2'
+                                       end
+                                 else
+                                       render :update do |page|
+                                          page.replace_html 'relatorio', :partial => 'fapea_classe'
+                                       end
+                                 end
+                            end
                       end
              end
         end
@@ -305,6 +317,45 @@ end
   end
 
 
+  def impressao_fapea1
+      t=0
+     @relatorio = Relatorio.find(:all, :conditions => ["id =?", params[:id]])
+            if session[:type_of] == 4
+                 @matricula = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+                 @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id])
+                 @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
+                 session[:type_of] = 0
+            else
+
+                @matricula = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+                @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id])
+
+                @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
+            end
+
+     render :layout => "impressao"
+
+  end
+
+   def impressao_fapea2
+     @relatorio = Relatorio.find(:all, :conditions => ["id =?", params[:id]])
+            if session[:type_of] == 4
+                 @matricula = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+                 @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id])
+                 @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
+                 session[:type_of] = 0
+            else
+                @matricula = Matricula.find(:all,:conditions =>['classe_id = ?', session[:classe_id]], :order => 'classe_num ASC')
+                @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id])
+                @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
+            end
+     render :layout => "impressao"
+
+   end
+
+
+
+
   def impressao_fapeaT
       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
       @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
@@ -312,6 +363,19 @@ end
      render :layout => "impressao"
   end
 
+  def impressao_fapeaT1
+      @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
+      @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
+      @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
+     render :layout => "impressao"
+  end
+
+  def impressao_fapeaT2
+      @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
+      @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
+      @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
+     render :layout => "impressao"
+  end
 
 def editar
 

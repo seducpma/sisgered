@@ -288,3 +288,7 @@ LETRA = {  'A'=> 'A',
            'E'=> 'E',
            ''=> '',
         }
+SEMESTRE = {'1º Semestre'=> '1',
+            '2º Semestre'=> '2',
+            'Anual'=> '3',
+        }

@@ -5,7 +5,8 @@ class Matricula < ActiveRecord::Base
   belongs_to :transf_unidade
   belongs_to :rem_classe
   has_many :notas, :dependent => :destroy
-
+  has_many :faltas, :dependent => :destroy
+  
   validates_presence_of :aluno_id, :classe_id
   
 
