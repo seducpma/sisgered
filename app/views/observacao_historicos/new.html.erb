@@ -38,6 +38,7 @@
                         </tr>
                         <tr>
                           <td width ="5%" align="center"><b>Ano:</b></td>
+
                           <%for i in 0..8 %>
                               <td width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%> </b> </td>
                           <%end%>
@@ -48,7 +49,7 @@
                                <%cargah_t=0%>
                                <%if !session[:cargah_b][i].nil?%>
                                      <%cargah_t=session[:cargah_b][i]%>
-                               <%end%>
+                                <%end%>
                                <%if !session[:cargah_d][i].nil?%>
                                    <%cargah_t=session[:cargah_d][i]+cargah_t%>
                                <%end%>
@@ -72,11 +73,14 @@
                  <tr bgcolor="#F5F5F5">
                    <td colspan="2"><b>Ano Letivo:</b>
                        <%= f.select :ano_letivo , options_for_select(@ano_letivo_nr.insert(0, '---')) %>
+                       <%= observe_field 'observacao_historico_ano_letivo',
+                                 :with => 'observacao_historico_ano_letivo',
+                                  :url => { :action => 'action_ano_letivo' } %>
                        &nbsp&nbsp <b> Série :</b>
-                       <%= f.select :observacao_historico, :classe , options_for_select(%w(--- 1 2 3 4 5 6 7 8 9),:include_blank => true)%>
-                          <%= observe_field :observacao_historico_classe,
-                                 :with => :observacao_historico_classe,
-                                  :url => { :action => 'jaexiste' } %></td>
+                       <%= f.select :classe , options_for_select(%w(--- 1 2 3 4 5 6 7 8 9),:include_blank => true)%>
+                          <%= observe_field 'observacao_historico_classe',
+                                 :with => 'observacao_historico_classe',
+                                  :url => { :action => 'jaexiste' } %>
 
 
                        &nbsp&nbsp <b> Carga Horária (Básico):</b>
@@ -97,13 +101,20 @@
                </table>
 
             </fieldset>
-                 <table width="100%" >
+          <table width="100%"  >
                    <tr bgcolor="#F5F5F5">
-                     <td width="2%"align="left"><div id='jaexiste'><%= f.submit 'Salvar' %></div></td>
+                       <td width="15%" align="left" ><div id='jaexiste'><%= f.submit 'Salvar' %></div></td>
 
           <%end%>
-
-                     <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                       <td align="left">
+                           <%if  session[:novaserie]== 1  %>
+                             <% session[:novaserie]= 0 %>
+                                <%= button_to 'Fechar', new_nota_path, {:method => "get"}  %>
+                           <%else%>
+                             <% session[:novaserie]= 0 %>
+                                <%= button_to 'Fechar', home_path, {:method => "get"}  %>
+                            <%end%>
+                        </td>
                    </tr>
                  </table>
             </font>

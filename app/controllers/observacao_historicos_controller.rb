@@ -3,17 +3,21 @@ class ObservacaoHistoricosController < ApplicationController
   # GET /observacao_historicos.xml
 
 
+def action_ano_letivo
+     session[:ano_letivo]= params[:observacao_historico_ano_letivo]
+end
+
 
   def jaexiste
-    w= session[:serie]=  params[:observacao_historico_classe]
-       w1= session[:aluno_id]
+     session[:serie]=  params[:observacao_historico_classe]
+    
+     @verifica1 = ObservacaoHistorico.find(:all, :conditions =>['classe =? AND aluno_id= ?',session[:serie], session[:aluno_id]])
+     @verifica2 = Matricula.find(:all, :conditions =>['aluno_id = ? AND ano_letivo =?',session[:aluno_id],session[:ano_letivo] ])
+     @verifica = @verifica2 + @verifica1
 
-    @verifica = ObservacaoHistorico.find(:all, :conditions =>['serie =? AND aluno_id= ?',session[:serie], session[:aluno_id]])
-
-       t=0
       if !@verifica.empty?  then
         render :update do |page|
-           page.replace_html 'jaexiste', :text => 'Esta SÉRIE já existe para este aluno'
+           page.replace_html 'jaexiste', :text => 'SÉRIE e/ou ANO LETIVO já existe'
            end
       end
   end

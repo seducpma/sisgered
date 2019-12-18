@@ -60,7 +60,7 @@
                                      &nbsp&nbsp&nbsp 1. Selecionar a SÉRIE  e ANO LETIVO  para habilitar o botão SALVAR. <br/>
                                      &nbsp&nbsp&nbsp 2. Se NÃO constar a série/ano letivo na lista é necessário cadastra SÉRIE e ANO  LETIVO.</br>
                                      &nbsp&nbsp&nbsp 3. SE NÃO constar a disciplinaé necessário cadastra a DISCIPLINA.<br/>
-                                       </font> <%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'Cadastrar SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}, :target => '_blank'%>
+                                       </font> <%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'Cadastrar SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}%>
                              </div></b></td>
 
           <%end%>
@@ -75,7 +75,8 @@
                  </table>
             </font>
     </div>
-<% session[:notadisciplina]= 1 %>  
+<% session[:notadisciplina]= 1 %>
+<% session[:novaserie]= 1 %> 
 </div>
 </div>
 <br/>
