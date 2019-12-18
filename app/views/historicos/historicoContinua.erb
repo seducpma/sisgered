@@ -100,22 +100,20 @@
                                 <legend><font size=3>Cadastrar</font></legend>
                                 <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
                                     <tr>
-                                        <td colspan="2"> <font COLOR="RED" >&nbsp<u><b>ATENÇÃO:</b></u>1) Para incluir observação no histórico utilize o botão <b>OBSERVAÇÃO</b>.<br/>
-                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir <b>Ano Letivo / Carga Horaria / Unidade de Ensino / Cidade</b> nas notas lançadas quando NÃO cursadas em
-                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  unidade da SEDUC, utilizar o botão <b>CARGA HORÁRIA</b>.<br/>
-                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para incluir nota em disciplinas que já constem no histórico utilize o botão <b>NOTA</b>.<br/>
-                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    4) Em caso de reprovação, lançar através do botão <b>Observação</b> o Ano e as informações necessárias.<br/>
-                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    5) Para incluir neste hitórico disciplinas que não constam utilize o botão <b>DISCIPLINA</b>. (CUIDADO PARA NÃ0 INCLUIR <br/>
-                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  DISCIPLINAS QUE JÁ EXISTAM)<br/>
-                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    6) Em caso de lançamento incorreto clique no ponto vermelho ( <%=image_tag("/stylesheets/images/ponto.png", :size => "7x7")%> ) ao lado da Nota ou do Ano Letivo para excluir os dados e
-                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  inclua novamente os dados corretos.<br/>
+                                        <td colspan="2"> <font COLOR="RED" size="3" >&nbsp<u><b>ATENÇÃO:</b></u>1) Para incluir observação no histórico utilize o botão <b>OBSERVAÇÕES</b>.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir  notas das séries e disciplinas NÂO cursadas em unidades da SEDUC utilizar o </br>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   botão <b>LANÇAR NOTAS</b>.</br>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para excluir nota clicar no pequeno botão  &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), :title => "Excluir" %> &nbsp que aparce ao lado direito da nota.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    <u>OBS</u>. Para excluir Disciplina é necessário excluir todas as notas antes.<br/>
+                                                <%session[:volta_historioco]=1%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td width ="24%" align="left"><%= link_to image_tag("/stylesheets/images/observacao.png"), "#inline_observacao", :class =>"inline" %>
-                                            <%= link_to image_tag("/stylesheets/images/horaria.png"), new_observacao_historico_path, :target => '_blank' %>
-                                            <%= link_to image_tag("/stylesheets/images/disciplina.png"),new_disciplina_path, :target => '_blank' %>
-                                            <%= link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, :target => '_blank' %>
+                                        <td width ="24%" align="left">
+                                           <%= link_to image_tag("/stylesheets/images/observacao1.png"), "#inline_observacao", :class =>"inline"%>
+                                            <%#=link_to image_tag("/stylesheets/images/anoletivo1.png"), new_observacao_historico_path, :target => '_blank'%>
+                                            <%#=link_to image_tag("/stylesheets/images/disciplina1.png"),new_disciplina_path, :target => '_blank'%>
+                                            <%=link_to image_tag("/stylesheets/images/nota1.png"), new_nota_path, :target => '_blank'%>
                                         </td>
                                     </tr>
                                 </table>

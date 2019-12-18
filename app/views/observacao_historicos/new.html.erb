@@ -22,7 +22,7 @@
                         </tr>
                  <%end%>
                  <tr bgcolor="#F5F5F5">
-                   <td colspan="2"><b>Série / Ano Letivo / Carga Horária TOtal já lançados:</b>
+                   <td colspan="2"><b>Série / Ano Letivo / Carga Horária Total já lançados:</b>
                      <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
                            <tr >
                            <td width ="5%" align="center"><b>Série:</b></td>
@@ -73,7 +73,12 @@
                    <td colspan="2"><b>Ano Letivo:</b>
                        <%= f.select :ano_letivo , options_for_select(@ano_letivo_nr.insert(0, '---')) %>
                        &nbsp&nbsp <b> Série :</b>
-                       <%= f.select :classe , options_for_select(%w(--- 1 2 3 4 5 6 7 8 9),:include_blank => true)%>
+                       <%= f.select :observacao_historico, :classe , options_for_select(%w(--- 1 2 3 4 5 6 7 8 9),:include_blank => true)%>
+                          <%= observe_field :observacao_historico_classe,
+                                 :with => :observacao_historico_classe,
+                                  :url => { :action => 'jaexiste' } %></td>
+
+
                        &nbsp&nbsp <b> Carga Horária (Básico):</b>
                        <%= f.text_field :carga_horaria_b , :size => '5'%>
                        &nbsp&nbsp <b> Carga Horária (Divers.):</b>
@@ -94,7 +99,7 @@
             </fieldset>
                  <table width="100%" >
                    <tr bgcolor="#F5F5F5">
-                     <td width="2%"align="left"><%= f.submit 'Salvar' %></td>
+                     <td width="2%"align="left"><div id='jaexiste'><%= f.submit 'Salvar' %></div></td>
 
           <%end%>
 

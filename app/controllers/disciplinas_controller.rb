@@ -4,9 +4,19 @@ class DisciplinasController < ApplicationController
 
     end
 
+  def jaexiste
+    w= session[:NovaDisciplina]=  params[:NovaDisciplina]
+                                t=0
+    @verifica = Disciplina.find(:all, :conditions =>['disciplina =?',session[:NovaDisciplina]])
+      if !@verifica.empty?  then
+      render :update do |page|
+        page.replace_html 'jaexiste', :text => 'Esta DISCIPLINA já existe no cadastro do sistema'
+    end
+    
 
+    end
+  end
     def create_discipina_nota
-
         @disciplina = Disciplina.new(params[:disciplina])
         @disciplina.disciplina=params[:NovaDisciplina]
         @disciplina.curriculo=params[:NovoCurriculo]
@@ -141,9 +151,16 @@ class DisciplinasController < ApplicationController
             if @disciplina.save
                 @nota.disciplina_id = @disciplina.id
                 @nota.save
-                flash[:notice] = 'Disciplina was successfully created.'
-                format.html { redirect_to(@disciplina) }
-                format.xml  { render :xml => @disciplina, :status => :created, :location => @disciplina }
+                flash[:notice] = 'Disciplina Cadastrada.'
+                if session[:salvar]==1
+                  session[:salvar]=0
+                  format.html { redirect_to new_nota_path }
+                  format.xml  { render :xml => @disciplina, :status => :created, :location => @disciplina }
+                else     
+                  session[:salvar]=0    
+                  format.html { redirect_to(@disciplina) }
+                  format.xml  { render :xml => @disciplina, :status => :created, :location => @disciplina }
+                end
             else
                 format.html { render :action => "new" }
                 format.xml  { render :xml => @disciplina.errors, :status => :unprocessable_entity }

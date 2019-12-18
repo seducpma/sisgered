@@ -1,4 +1,4 @@
-<div id="interno4">
+<div id="interno1">
 <% title "NOTAS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -14,20 +14,26 @@
                   <%if session[:cont_nome] = 1 %>
                          <tr bgcolor="#F5F5F5">
                            <td width =" 12%"><b>Aluno:</b></td>
-                           <td><%= session[:aluno_nome]%>  </td>
+                           <td colspan="2"><%= session[:aluno_nome]%>  </td>
                         </tr>
                  <%else%>
                          <tr bgcolor="#F5F5F5">
                            <td width =" 12%"><b>Aluno:</b></td>
-                           <td><%= f.collection_select :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
+                           <td colspan="2"><%= f.collection_select :aluno_id, @alunos, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %></td>
                         </tr>
                  <%end%>
                  <tr bgcolor="#F5F5F5">
                    <td width ="12%"><b>Disciplina:</b></td>
-                   <td><%= f.collection_select :disciplina_id, @disciplinasN, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
+                   <td colspan="2"><%= f.collection_select :disciplina_id, @disciplinasN, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                    <td></td>
+                    <td ><font color ="red" size="2"> <b>Se a disciplina não constar na lista,  favor cadastrar NOVA DISCIPLINA </b> </td>
+                                <td><%=link_to image_tag("/stylesheets/images/disciplina1.png"),new_disciplina_path%></td>
                 </tr>
                  <tr bgcolor="#F5F5F5">
-                   <td colspan="2" align="center">
+                     <td width="14%"> <b> Selecionar => </b></td>
+                     <td colspan="2" align="left">
                        <b>Série:</b>&nbsp
                        <%=f.collection_select :classe, @serie, :id, :cl_ano, :include_blank => '--- Selecione ---'  %>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -50,17 +56,26 @@
             </fieldset>
                  <table width="100%" >
                    <tr bgcolor="#F5F5F5">
-                         <td width="90%"align="left"><b><div id='oki'> Selecionar a SÉRIE  e ANO LETIVO  para habilitar o botão SALVAR. <br/>
-                                     <b> <font color =" red"> Se Não constar a série/ano letivo na lista é necessário cadastra SÉRIE e ANO  LETIVO</font> <%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'Cadastrar SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}, :target => '_blank'%>
+                         <td width="90%"align="left"><b><div id='oki'> <b> <font color ="red" size="2"><u>ATENÇÃO:</u> <br/>
+                                     &nbsp&nbsp&nbsp 1. Selecionar a SÉRIE  e ANO LETIVO  para habilitar o botão SALVAR. <br/>
+                                     &nbsp&nbsp&nbsp 2. Se NÃO constar a série/ano letivo na lista é necessário cadastra SÉRIE e ANO  LETIVO.</br>
+                                     &nbsp&nbsp&nbsp 3. SE NÃO constar a disciplinaé necessário cadastra a DISCIPLINA.<br/>
+                                       </font> <%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'Cadastrar SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}, :target => '_blank'%>
                              </div></b></td>
 
           <%end%>
-
+                     <%if session[:volta_historioco]== 1%>
+                             <%session[:volta_historioco]=0%>
+                           <td valign="bottom"align="right"><%= button_to 'Fechar', historicoContinua_path, {:method => "get"}  %></td>
+                     <%else%>
+                             <%session[:volta_historioco]=0%>
                              <td valign="bottom"align="right"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                     <%end%>
                    </tr>
                  </table>
             </font>
     </div>
+<% session[:notadisciplina]= 1 %>  
 </div>
 </div>
 <br/>

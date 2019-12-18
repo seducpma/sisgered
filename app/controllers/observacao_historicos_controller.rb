@@ -1,6 +1,23 @@
 class ObservacaoHistoricosController < ApplicationController
   # GET /observacao_historicos
   # GET /observacao_historicos.xml
+
+
+
+  def jaexiste
+    w= session[:serie]=  params[:observacao_historico_classe]
+       w1= session[:aluno_id]
+
+    @verifica = ObservacaoHistorico.find(:all, :conditions =>['serie =? AND aluno_id= ?',session[:serie], session[:aluno_id]])
+
+       t=0
+      if !@verifica.empty?  then
+        render :update do |page|
+           page.replace_html 'jaexiste', :text => 'Esta SÉRIE já existe para este aluno'
+           end
+      end
+  end
+
   def index
     @observacao_historicos = ObservacaoHistorico.all
 

@@ -16,42 +16,33 @@
                 <table width="100%" align="center" >
                     <tr bgcolor="#F5F5F5">
                         <td align="left" width ="10%" ><font size="2"> <b>Disciplina:</b></font></td>
-                        <td><%= text_field_tag :NovaDisciplina, params[:NovaDisciplina],  :size => '40' %></td>
+                        <td><%= text_field_tag :NovaDisciplina, params[:NovaDisciplina],  :size => '40' %>
+                        
+                        <%= observe_field :NovaDisciplina,
+                                 :with => :NovaDisciplina,
+                                  :url => { :action => 'jaexiste' } %></td>
                     </tr>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><font COLOR="RED" >&nbsp<u><b>ATENÇÃO:</b></u>&nbspCUIDADO PARA NÃ0 INCLUIR DISCIPLINAS QUE JÁ EXISTAM<br/>
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCASO A DISCIPLINA JÁ EXISTA, BASTA LANÇAR A NOTA<br/>
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCLICANDO NO BOTÃO ABAIXO.<br/>
-                                <table width="100%" align="center"><tr>
-                                    <td width ="100%" align="center"><%=link_to image_tag("/stylesheets/images/nota.png"), new_nota_path, :target => '_blank'%></td>
-                                </tr></table>
-                        </td>
-                    </tr>
+
                     <tr bgcolor="#F5F5F5">
-                        <td align="left"><font size="2"> <b>Tipo Curriculo:</b></font></td>
-                        <td><%= select_tag :NovoCurriculo,options_for_select([ "BÁSICO", "DIVERSIFICADO" ]) %>&nbsp&nbsp&nbsp&nbsp
+                        <td align="left"><font size="2"> <b>Tipo Curriculo:</b></font>
+                        <td><%= select_tag :NovoCurriculo,options_for_select([ "Selecionar", "BÁSICO", "DIVERSIFICADO" ], :include_blank => "--Selecionar--"  ) %>&nbsp&nbsp&nbsp&nbsp
                             <b>Ano Letivo:</b>
                             <%=  select_tag :NovoAnoLetivo, options_for_select(@ano_letivo.insert(0, '---')) %>
                     </tr>
                 </table>
            </fieldset>
-           <fieldset><legend><font size=4>Nota/Faltas</font></legend>
-               <table width="100%" align="center" >
-                   <tr bgcolor="#F5F5F5">
-                     <td colspan="2"align="left"><font size="2"> <b>Nota:</b></font>
-                         <%= select_tag :NovaNota,options_for_select(@NOTASH.insert(0, '---')) %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                         <b>Série:</b>&nbsp&nbsp<%= select_tag :NovaClasse, options_for_select(@serie.insert(0, '---')) %> º Ano
-                     </td>
-                   </tr>
-
-              </table>
-         </fieldset>
+          <%session[:salvar]=1%>
           <table>
                    <tr>
-                       <td><%= submit_tag "SALVAR", :class => "btn_filtrar" %>  </td>
+                       <td><div id='jaexiste'><%= submit_tag "SALVAR", :class => "btn_filtrar" %> </div> </td>
             <%end%>
+                   <%if  session[:notadisciplina]== 1   %>
+                       <% session[:notadisciplina]= 0 %>
+                       <td> <%= button_to 'Fechar', new_nota_path, {:method => "get"}  %></td>
+                   <%else%>
+                       <% session[:notadisciplina]= 0 %>
                        <td> <%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   <%end%>
                    </tr>
                  </table>
             </font>
