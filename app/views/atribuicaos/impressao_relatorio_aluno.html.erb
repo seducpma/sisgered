@@ -552,7 +552,8 @@
       <%end%>
        <% nota.faltas5  =(nota.faltas1) + (nota.faltas2) + (nota.faltas3) + (nota.faltas4) %>
        <%if nota.aulas5!=0 %>
-           <%if(nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+           <%#if(nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+           <%if(nota.disciplina_id==65 or nota.disciplina_id==8) %>
                <th style="font-size: 8px"align="center"><%=nota.nota5%></th>
            <%else%>
                <th style="font-size: 8px"align="center"></th>
