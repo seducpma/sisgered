@@ -299,8 +299,8 @@ display: none;
 
 
 
-<!-- Voltar essa linha para habilitar a Matricula, deixei liberado somente para Administrador ###Alex 15/01/2020       <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%> -->
-                      <% if (current_user.has_role?('admin'))%>
+                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%> 
+                      
 
                                     <li><%= link_to "Matricula", aviso_matriculas_path %></li>
 
