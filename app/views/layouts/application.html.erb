@@ -299,7 +299,8 @@ display: none;
 
 
 
-                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%> 
+<!-- ###Alex Problema pegou uma classe do infantil novamente, vou verificar 17/01/20 12:37                        <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%> -->
+                        <% if (current_user.has_role?('admin') )%>
                       
 
                                     <li><%= link_to "Matricula", aviso_matriculas_path %></li>
