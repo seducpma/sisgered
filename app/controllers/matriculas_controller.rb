@@ -101,11 +101,9 @@ class MatriculasController < ApplicationController
         end
     end
 
-
     def show_reprovado
     @matricula = Matricula.find(session[:id_reprovado])
    end
-
 
     def reprovados_consultar
         session[:aluno_id]=params[:aluno][:id]
@@ -114,7 +112,6 @@ class MatriculasController < ApplicationController
             page.replace_html 'classe_alunos', :partial => 'alunos_reprovados'
         end
     end
-
 
     def consulta_reprovados1
        session[:classe_id]=params[:classe][:id]
@@ -129,9 +126,9 @@ class MatriculasController < ApplicationController
 def matricular
    @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
    @classes_atual = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe')
-   
+   t1=current_user.unidade_id
+   t0=0
 end
-
 
 def matricula_aluno
     @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
@@ -143,17 +140,15 @@ def classe_id
     session[:classe]= params[:matricula_classe_id]
      @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
     render :partial => 'alunos'
-
-
-
-
-
-
- end
+    t1=session[:classe]
+    t0=0
+end
 
 def alunos_matricula
     @alunos=  Aluno.find(params[:aluno_ids])
     w=session[:alunosM] = Aluno.find(params[:aluno_ids], :select => 'id')
+    t1=session[:classe]
+    t0=0
     @classe = Classe.find(:all, :conditions =>['id =?', session[:classe]])
     @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe],0], :order =>'disciplinas.ordem ASC ' )
 end
@@ -173,6 +168,7 @@ def matricular_alunos
                w=@matricula.aluno_id = aluno.id
                @matricula.ano_letivo = Time.now.year
                @matricula.unidade_id =@alunox[0].unidade_id
+               ###Alex 20/01/20 Na hora de matricular o aluno está rodando o SQL a cada aluno para achar o último na classe neste ponto só precisaria incrementar o contador.
                classe_num = (Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? ',  session[:classe], Time.now.year ]).count)
                @matricula.classe_num = classe_num + 1
                @matricula.save
@@ -181,7 +177,7 @@ def matricular_alunos
                @atribuicaos= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', session[:classe], Time.now.year])
 
                   for atrib in @atribuicaos
-                     session[:classe]= atrib.classe_id
+###Alex Porque mudar a session[:classe]? session[:classe]= atrib.classe_id
                      session[:atribuicao]= atrib.id
 
                      session[:professor]= atrib.professor_id
@@ -283,7 +279,7 @@ end
                 end
                 @matricula.ano_letivo = Time.now.year
                 @matricula.unidade_id= current_user.unidade_id
-                session[:classe_id]= @matricula.classe_id
+###Alex Porque mudar a session[:classe]? session[:classe_id]= @matricula.classe_id
                 #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["atribuicaos.classe_id =? ",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
                 @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
                 if @matricula_anterior.present?
