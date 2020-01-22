@@ -145,8 +145,9 @@ def classe_id
 end
 
 def alunos_matricula
-    @alunos=  Aluno.find(params[:aluno_ids])
-    w=session[:alunosM] = Aluno.find(params[:aluno_ids], :select => 'id')
+    ###Alex 21/01/20 17:12 acrescentei na linha de baixo no :select o aluno_nome e o :order, pois não estava ordenando na hora de montar a lista para matricular e ficava fora da ordem alfabética
+    @alunos=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
+    w=session[:alunosM] = Aluno.find(params[:aluno_ids], :select => 'id', :order => 'aluno_nome ASC')
     t1=session[:classe]
     t0=0
     @classe = Classe.find(:all, :conditions =>['id =?', session[:classe]])
@@ -156,13 +157,11 @@ end
 def matricular_alunos
     classe_num = 0
     @alunos=session[:alunosM]
-
         for aluno in @alunos
            @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=? AND status != "ABANDONO"',  session[:classe_id], Time.now.year, aluno])
-           @alunox= Aluno.find(:all, :conditions => ['id=?', aluno.id])
+           @alunox=Aluno.find(:all, :conditions => ['id=?', aluno.id])
           # Se não existir matricula anterior= MATRICULA O ALUNO
-           if (@matricula_anterior.empty?) or (session[:matricula_transferencia] == 1)
-
+           if (@matricula_anterior.empty?) or (session[:matricula_transferencia]==1)
                @matricula = Matricula.new
                @matricula.classe_id = session[:classe]
                w=@matricula.aluno_id = aluno.id
