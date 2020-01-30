@@ -270,14 +270,18 @@ NUM = { '  1'=> '1',
            'EJA'=>'EJA',
         }
 
-NUMI = { '  BI'=> 'BI',
+NUMI = {   'BI'=> 'BI',
            'BII'=> 'BII',
            'MI'=> 'MI',
            'MII' => 'MII',
-           'MULTS' => 'MULTS',
            'NI'=> 'NI',
            'NII'=> 'NII',
            'PA'=> 'PA',
+           'BB(multis.)'=> 'BB',
+           'BM(multis.)'=> 'BM',
+           'MM(multis.)'=> 'MM',
+           'MU(multis.)'=> 'MU',
+           'PR(multis.)'=> 'PR',
 
         }
 
