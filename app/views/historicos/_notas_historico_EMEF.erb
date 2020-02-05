@@ -186,20 +186,24 @@
           <tr>
     
         <!--  DISCIPLINAS DE NOTAS CIÊNCIAS HUMANAS -->
-        <% if @disciplinasB3.count < 5 %>
-          <% session[:quant3_linhas] = @disciplinasB3.count + 1   %>
+        <%#notas=@notasB3.count%>
+        <%#disc=@disciplinasB3.count%>
+        <%#t0=0%>
+
+        <%if @disciplinasB3.count < 5 %>
+            <%# session[:quant3_linhas] = @notasB3.count %>
+            <% session[:quant3_linhas] = @disciplinasB3.count + 1   %>
         <%else%>
-         <% session[:quant3_linhas] = @disciplinasB3.count    %>
+             <%session[:quant3_linhas] = @disciplinasB3.count    %>
         <%end%>
+        <%t=session[:quant3_linhas]%>
 
-
-
-       <td width="20px" rowspan=<%= session[:quant3_linhas]%>> <font size="1"> Ciências_Humanas <%=session[:quant3_linhas]%> </font> </td>
+       <td width="20px" rowspan=<%= session[:quant3_linhas]%>> <font size="1"> Ciências_Humanas  </font> </td>
         <%while session[:contnota3] < session[:contnotaBTot3] %>
 
         <tr>
             <td align="left"><font size="1"><%=@notasB3[session[:contnota3]].disciplina.disciplina %>  </font> </td>
-             <%disciplina_atual=@notasB3[session[:contnota3]].disciplina.id%>
+            <%disciplina_atual=@notasB3[session[:contnota3]].disciplina.id%>
             <%for i in 0..8%>
                 <%if session[:contnota3]>(session[:contnotaBTot3]-1)%>
                     <%acertoHTML=0%>
@@ -449,9 +453,9 @@
 <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#DCDCAA">
     <tr>
         <td colspan="4"><font color ="red"> <b><u> ATENÇÃO: </u>  &nbsp
-            1) Caso o Histórico esteja desalinhado ou com trabulação errada, é devido a erro de lançamento das notas.<br/>
+            1) Caso o Histórico esteja desalinhado ou com tabulação errada, é devido a erro de lançamento de notas.<br/>
                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            2) Caso haja lançamento clique no botão vermelho  <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7")%>  para excluir. (Notas lançadas pelo professor NÃO poderão <br/> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ser excluidas nem alteradas.<br/>
+            2) Caso haja erro de lançamentos clique no botão vermelho  <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7")%>  para excluir. (Notas lançadas pelo professor NÃO poderão <br/> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ser excluidas nem alteradas).<br/>
                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             3) Havendo dúvidas, favor entrar em contato com a Informática SEDUC informando o nome do aluno e a disciplina <br/>
                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
