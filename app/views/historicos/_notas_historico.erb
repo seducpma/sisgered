@@ -160,7 +160,9 @@
         </tr>
         <%session[:contnota]=0%>
         <%while session[:contnota]<session[:contnotaDTot]%>
+
             <tr>
+
                 <td align="left"><%=@notasD[session[:contnota]].disciplina.disciplina%></td>
                 <%disciplina_atual=@notasD[session[:contnota]].disciplina.id%>
                 <%for i in 0..8%>
@@ -182,10 +184,10 @@
                                     <%  session[:cidade][i]=@notasD[acertoHTML].matricula.unidade.cidade %>
                                 <%else%>
                                     <% if @carga_horaria.present? %>
-                                        <%session[:cargah_d][i]=@carga_horaria[0].carga_horaria_d %>
+                                        <%session[:cargah_d][i]=@carga_horaria[0].carga_horaria_d%>
                                         <%  session[:escola][i]=@carga_horaria[0].escola %>
                                         <%  session[:cidade][i]=@carga_horaria[0].cidade %>
-                                        <%  session[:exclui][i]=@carga_horaria[0].id %>
+                                        <%  session[:exclui][i]=@carga_horaria[0].id%>
                                     <%end%>
                                 <%end%>
                             <%end%>

@@ -55,7 +55,11 @@
                                     <td><%=h aluno.unidade.autorizacao%></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" align="center"><br/><b>DADOS DO ALUNOS</b></td>
+                                    <td colspan="2" align="center"><br/><b>Histórico Escolar - Ensino Fundamental
+                                    <%if session[:ult_cl_rede_per]=="INTEGRAL"%>
+                                        &nbsp- Integral
+                                    <%end%>
+                                        </b></td>
                                 </tr>
                             </table>
                             <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
@@ -100,7 +104,10 @@
                                     </td>
                                 </tr>
                             </table>
+
+                            <%#PARCIAL PARA IMPRESSÃO DAS NOTAS DO HISTÓRICO%>
                             <div id="dados_historico">  <%= render :partial => 'notas_historico_EMEF'%></div>
+
                             <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
                                 <tr>
                                     <td colspan="2"></td>
@@ -124,7 +131,7 @@
                                     </tr>
                                     <tr>
                                         <td width ="24%" align="left">
-                                           <%= link_to image_tag("/stylesheets/images/observacao1.png"), "#inline_observacao", :class =>"inline"%>
+                                            <%= link_to image_tag("/stylesheets/images/observacao1.png"), "#inline_observacao", :class =>"inline"%>
                                             <%#=link_to image_tag("/stylesheets/images/anoletivo1.png"), new_observacao_historico_path, :target => '_blank'%>
                                             <%#=link_to image_tag("/stylesheets/images/disciplina1.png"),new_disciplina_path, :target => '_blank'%>
                                             <%=link_to image_tag("/stylesheets/images/nota1.png"), new_nota_path, :target => '_blank'%>
@@ -142,8 +149,8 @@
             <br/>
             <table>
                 <tr>
-                    <td width="6%" align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %> </td>
-                    <td width="6%" align="left"><%= button_to 'Nova Consulta', historico_path, :title => "Nova Consulta" %></td>
+                    <td width="6%" align="left"   ><%= button_to 'Fechar', home_path, {:method => "get"}  %> </td>
+                    <td width="6%" align="left"   ><%= button_to 'Nova Consulta', historico_path, :title => "Nova Consulta" %></td>
                     <td colspan="10"align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_historico_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
                 </tr>
             </table>
@@ -151,4 +158,6 @@
     </div>
     <br/>
 </div>
+
+<%#*PARCIAL DAS OBSERVAÇÕES DO HISTÓRICO%>
 <%= render "form_observacao" %>

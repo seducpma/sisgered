@@ -8,20 +8,14 @@ class ApplicationController < ActionController::Base
   
    before_filter :set_current_user
 
-    ## LEMBRETE <++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   ## LEMBRETE <++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
    #  para liberar notas bimestre è necessàrio:
    #    1) ALTERAR  atribuicaos - edit
    #    2) ALTERAR  notas - edit
    #    3) ALTERAR  notas - lacamentos miltiplos
 
-    #verofocar tabém a questão de FALTAS NULL pois ocorre erro se totaluzação das faltas qdo houver faltas NULL
-
-
-
-
-
-
+   # verificar tabém a questão de FALTAS NULL pois ocorre erro se totalização das faltas qdo. houver faltas NULL
 
 
     def set_current_user
@@ -80,7 +74,6 @@ PROFISSAO = { 'DESEMPREGADO'=> 'DESEMPREGADO',
 
 SEXO = { 'MASCULINO'=> 'MASCULINO',
          'FEMININO' => 'FEMININO'
-
         }
 
 CIVIL = { 'Solteiro'=> 'Solteiro',

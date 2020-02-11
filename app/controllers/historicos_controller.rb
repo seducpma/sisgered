@@ -21,7 +21,7 @@ class HistoricosController < ApplicationController
         @disciplinas = @disciplinasD + @disciplinasB
         @notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
         @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id] , Time.now.year], :order => 'notas.ano_letivo ASC')
-        @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
+        @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]])
         @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
         @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5', :conditions => ['aluno_id =? and classe IS NULL AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
         @ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
@@ -160,7 +160,7 @@ class HistoricosController < ApplicationController
 
 
     def historico
-           if  (params[:aluno_id].present?)
+        if  (params[:aluno_id].present?)
             @aluno = Aluno.find(:all, :select => 'id, aluno_nome, aluno_mae, aluno_pai, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', params[:aluno_id]])
             for aluno in @aluno
                 session[:unidade_id]= aluno.unidade_id
@@ -172,73 +172,79 @@ class HistoricosController < ApplicationController
             @tipo_unidade=Unidade.find(:all, :conditions=> ["id=?",@aluno[0].unidade_id])
             @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
             @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
-           # @disciplinasB = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
+            # @disciplinasB = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
             #@disciplinasB1 = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" AND (ordem_curriculo =10 or ordem_curriculo =11  or ordem_curriculo =12) ) ORDER BY ordem_curriculo ASC")
             #@disciplinasB2 = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" AND ordem_curriculo =13)  ORDER BY ordem_curriculo ASC")
             #@disciplinasB3 = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" AND (ordem_curriculo =14 or ordem_curriculo =15  or ordem_curriculo =16   or ordem_curriculo =17)) ORDER BY ordem_curriculo ASC")
             #@disciplinasB4 = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" AND ordem_curriculo =18)  ORDER BY ordem_curriculo ASC")
-            @disciplinasB = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"'")
+            @disciplinasB  = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"'")
             @disciplinasB1 = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND (ordem_curriculo =10 or ordem_curriculo =11  or ordem_curriculo =12) AND notas.ativo is NULL ORDER BY di.ordem_curriculo,  notas.disciplina_id, notas.ano_letivo")
             @disciplinasB2 = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND (di.ordem_curriculo =13) AND notas.ativo is NULL ORDER BY di.ordem_curriculo,  notas.disciplina_id, notas.ano_letivo")
             @disciplinasB3 = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND (di.ordem_curriculo =14 or di.ordem_curriculo =15  or di.ordem_curriculo =16   or ordem_curriculo =17) AND notas.ativo is NULL ORDER BY di.ordem_curriculo,  notas.disciplina_id, notas.ano_letivo")
             @disciplinasB4 = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND (di.ordem_curriculo =18) AND notas.ativo is NULL ORDER BY di.ordem_curriculo,  notas.disciplina_id, notas.ano_letivo")
-            
 
             #@disciplinasD = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'D' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
-            @disciplinasD = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"'")
-            @notasB = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND notas.ativo is NULL ORDER BY notas.disciplina_id, notas.ano_letivo")
+            ###Alex 05-02-2020-Cópia segurança Alex @disciplinasD = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"'")
+            @disciplinasD  = Nota.find_by_sql("SELECT DISTINCT di.disciplina, notas.disciplina_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL)                              AND notas.ativo is NULL ORDER BY di.ordem_curriculo,  notas.disciplina_id, notas.ano_letivo")
+            @notasB  = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND notas.ativo is NULL ORDER BY notas.disciplina_id, notas.ano_letivo")
             @notasB1 = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND (di.ordem_curriculo =10 or di.ordem_curriculo =11  or di.ordem_curriculo =12) AND notas.ativo is NULL  ORDER BY di.ordem_curriculo,  notas.disciplina_id, notas.ano_letivo")
             @notasB2 = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND (di.ordem_curriculo =13) AND notas.ativo is NULL ORDER BY di.ordem_curriculo , notas.disciplina_id, notas.ano_letivo")
             @notasB3 = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND (di.ordem_curriculo =14 or di.ordem_curriculo =15  or di.ordem_curriculo =16   or ordem_curriculo =17) AND notas.ativo is NULL ORDER BY di.ordem_curriculo,  notas.disciplina_id, notas.ano_letivo")
             @notasB4 = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND (di.ordem_curriculo =18) AND notas.ativo is NULL ORDER BY di.ordem_curriculo , notas.disciplina_id, notas.ano_letivo")
-            @notasD = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND notas.ativo is NULL ORDER BY notas.disciplina_id, notas.ano_letivo")
-           w1=session[:contnotaBTot]=(@notasB.count)
-           w2= session[:contnotaBTot1]=(@notasB1.count)
-           w3= session[:contnotaBTot2]=(@notasB2.count)
-           w4= session[:contnotaBTot3]=(@notasB3.count)
-           w5= session[:contnotaBTot4]=(@notasB4.count)
-           w6= session[:contnotaDTot]=(@notasD.count)
+            @notasD  = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND notas.ativo is NULL ORDER BY notas.disciplina_id, notas.ano_letivo")
+            session[:contnotaBTot] =(@notasB.count)
+            session[:contnotaBTot1]=(@notasB1.count)
+            session[:contnotaBTot2]=(@notasB2.count)
+            session[:contnotaBTot3]=(@notasB3.count)
+            session[:contnotaBTot4]=(@notasB4.count)
+            session[:contnotaDTot] =(@notasD.count)
             @disciplinas = @disciplinasD + @disciplinasB
             @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id] , Time.now.year], :order => 'notas.ano_letivo ASC')
-            @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
+            #@matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]])
+            @matricula = Matricula.find(:last, :joins => [:notas], :conditions => ["(matriculas.aluno_id = ?) AND (matriculas.reprovado='0' OR notas.matricula_id IS NULL) AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO' OR notas.matricula_id is NULL)", session[:aluno_id]])
+            session[:ult_cl_rede]=@matricula.classe.classe_classe[0,1].to_i
+            session[:ult_cl_rede_per]=@matricula.classe.horario
+            if session[:ult_cl_rede]<6
+                session[:ult_coluna]=4
+            else
+                session[:ult_coluna]=8
+            end
             @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
             @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND ano_letivo<?', session[:aluno_id],Time.now.year], :order => 'ano_letivo ASC')
-            w7=session[:ano]= @ano_inicial.ano_letivo
-            w8=session[:classe]= @ano_inicial.classe
-
-            t=0
+            session[:ano]= @ano_inicial.ano_letivo
+            session[:classe]= @ano_inicial.classe
         end
 
     end
 
     def historicoContinua
-            @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
-            for aluno in @aluno
-                session[:unidade_id]= aluno.unidade_id
-                session[:aluno_id]= aluno.id
-                session[:aluno_nome] = aluno.aluno_nome
-            end
-            @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
-            @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
-            @disciplinasB = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
-            @disciplinasD = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'D' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
-            @notasB = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
-            @notasD = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
-            #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
-            #@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", 2015, session[:aluno_id]])
-            session[:contnotaBTot]=(@notasB.count)
-            session[:contnotaDTot]=(@notasD.count)
-            @disciplinas = @disciplinasD + @disciplinasB
-            #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
-            #@notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
-            @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id], Time.now.year], :order => 'notas.ano_letivo ASC')
-            @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
-            @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
-            @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND notas.ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
-            session[:ano]= @ano_inicial.ano_letivo
-            session[:classe]= @ano_inicial.classe
-#  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
-#@ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
+        @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
+        for aluno in @aluno
+            session[:unidade_id]= aluno.unidade_id
+            session[:aluno_id]= aluno.id
+            session[:aluno_nome] = aluno.aluno_nome
+        end
+        @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
+        @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
+        @disciplinasB = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
+        @disciplinasD = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'D' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
+        @notasB = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
+        @notasD = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
+        #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+        #@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", 2015, session[:aluno_id]])
+        session[:contnotaBTot]=(@notasB.count)
+        session[:contnotaDTot]=(@notasD.count)
+        @disciplinas = @disciplinasD + @disciplinasB
+        #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+        #@notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
+        @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id], Time.now.year], :order => 'notas.ano_letivo ASC')
+        @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
+        @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
+        @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND notas.ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        session[:ano]= @ano_inicial.ano_letivo
+        session[:classe]= @ano_inicial.classe
+        #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+        #@ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
 
 =begin Comentado para colar o conteúdo inteiro da "def historico" para cá e ver se funciona normalmente
         @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
@@ -292,34 +298,34 @@ class HistoricosController < ApplicationController
     end
 
     def impressao_historico
-            @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
-            for aluno in @aluno
-                session[:unidade_id]= aluno.unidade_id
-                session[:aluno_id]= aluno.id
-                session[:aluno_nome] = aluno.aluno_nome
-            end
-            @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
-            @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
-            @disciplinasB = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
-            @disciplinasD = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'D' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
-            @notasB = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
-            @notasD = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
-            #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
-            #@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", 2015, session[:aluno_id]])
-            session[:contnotaBTot]=(@notasB.count)
-            session[:contnotaDTot]=(@notasD.count)
-            @disciplinas = @disciplinasD + @disciplinasB
-            #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
-            #@notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
-            @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id] , Time.now.year], :order => 'notas.ano_letivo ASC')
-            @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
-            @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
-            @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
-            session[:ano]= @ano_inicial.ano_letivo
-            session[:classe]= @ano_inicial.classe
-            w=@notas_ano = Nota.find(:last, :joins => "left JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id left JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? and notas.atribuicao_id is not null and  notas.matricula_id is not null",  session[:aluno_id], session[:unidade_id_port]])
-t=0
-            render :layout => "impressao"
+        @aluno = Aluno.find(:all, :select => 'id, aluno_nome, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', session[:aluno_id]])
+        for aluno in @aluno
+            session[:unidade_id]= aluno.unidade_id
+            session[:aluno_id]= aluno.id
+            session[:aluno_nome] = aluno.aluno_nome
+        end
+        @historico_aluno = ObservacaoHistorico.find(:all, :conditions => ['aluno_id=?', session[:aluno_id]])
+        @unidade = Unidade.find(:all, :select => 'nome',:conditions => ['id =?', session[:unidade_id]])
+        @disciplinasB = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'B' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
+        @disciplinasD = Disciplina.find_by_sql("SELECT DISTINCT (disciplinas.id), disciplinas.disciplina FROM `disciplinas` INNER JOIN notas ON disciplinas.id = notas.disciplina_id WHERE (disciplinas.curriculo = 'D' AND notas.aluno_id ="+session[:aluno_id].to_s+" )")
+        @notasB = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
+        @notasD = Nota.find_by_sql("SELECT notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM `notas` JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id WHERE notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'D' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) ORDER BY notas.disciplina_id, notas.ano_letivo")
+        #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+        #@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND carga_horaria_d IS NOT NULL", 2015, session[:aluno_id]])
+        session[:contnotaBTot]=(@notasB.count)
+        session[:contnotaDTot]=(@notasD.count)
+        @disciplinas = @disciplinasD + @disciplinasB
+        #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
+        #@notasD= Nota.find(:all, :joins => [:disciplina], :conditions=> ['aluno_id=? AND disciplinas.curriculo=?', session[:aluno_id], "D"], :order => 'ano_letivo ASC')
+        @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id] , Time.now.year], :order => 'notas.ano_letivo ASC')
+        @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
+        @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
+        @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        session[:ano]= @ano_inicial.ano_letivo
+        session[:classe]= @ano_inicial.classe
+        w=@notas_ano = Nota.find(:last, :joins => "left JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id left JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? and notas.atribuicao_id is not null and  notas.matricula_id is not null",  session[:aluno_id], session[:unidade_id_port]])
+        t=0
+        render :layout => "impressao"
     end
 =begin Comentado para colar o conteúdo inteiro da "def historico" para cá e ver se funciona normalmente
         w4=session[:aluno_id]
@@ -505,8 +511,8 @@ t=0
         @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')
         @alunos2 = Aluno.find(:all,:select => 'id, aluno_nome',  :conditions =>['unidade_id=? AND aluno_status is null', current_user.unidade_id],:order => 'aluno_nome')
         #@alunos1 = Classe.find(:all,:select => 'alunos.id, alunos.aluno_nome',  :joins =>  [:matriculas, :alunos] , :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND  matriculas.aluno_id = alunos.id AND classes.classe.classe != "EJA" ' , current_user.unidade_id],:order => 'aluno_nome')
-       #Não lembro porque coloquei ano letivo neste select @alunos_nome
-       #portanto estou mantendo uma cópia a seguir e criando outra linha sem o ano_letivo logo em seguida também
+        #Não lembro porque coloquei ano letivo neste select @alunos_nome
+        #portanto estou mantendo uma cópia a seguir e criando outra linha sem o ano_letivo logo em seguida também
         #@alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND classes.classe_ano_letivo=?', current_user.unidade_id, Time.now.year], :order => 'aluno_nome ASC')
         @alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA"', current_user.unidade_id], :order => 'aluno_nome ASC')
         @alunos1 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND classes.classe_ano_letivo=?', current_user.unidade_id, Time.now.year], :order => 'aluno_nome ASC')

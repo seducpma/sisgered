@@ -26,10 +26,12 @@
         <td width ="5px" align="center"><b>3º Ano</b></td>
         <td width ="5px" align="center"><b>4º Ano</b></td>
         <td width ="5px" align="center"><b>5º Ano</b></td>
-        <td width ="5px" align="center"><b>6º Ano</b></td>
-        <td width ="5px" align="center"><b>7º Ano</b></td>
-        <td width ="5px" align="center"><b>8º Ano</b></td>
-        <td width ="5px" align="center"><b>9º Ano </b></td>
+        <%if session[:ult_cl_rede]>5%>
+            <td width ="5px" align="center"><b>6º Ano</b></td>
+            <td width ="5px" align="center"><b>7º Ano</b></td>
+            <td width ="5px" align="center"><b>8º Ano</b></td>
+            <td width ="5px" align="center"><b>9º Ano </b></td>
+        <%end%>
     </tr>
     <%session[:contnota]=0%>
     <%session[:contnota1]=0%>
@@ -77,13 +79,13 @@
         <%end%>
     <%end%>
     <tr>
-        <%for i in 0..8 %>
+        <%for i in 0..session[:ult_coluna] %>
             <td width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%></b></td>
         <%end%>
     </tr>
     <tr>
-        <% session[:quant1_linhas] = @disciplinasB.count + 4%>
-        <td rowspan=<%= session[:quant1_linhas]%> ><div class="textovertical"><font size="1"><b>Base Nascional Comum</b></div></font></td>
+        <% session[:quant1_linhas] = @disciplinasB.count + 3%>
+        <td rowspan=<%= session[:quant1_linhas]%> ><div class="textovertical"><font size="1"><b>Base Nacional Comum</b></div></font></td>
 
 
                 <!--  DISCIPLINAS DE NOTAS DE LINGUAGEM -->
@@ -93,7 +95,7 @@
         <tr>
             <td align="left"><font size="1"><%=@notasB1[session[:contnota1]].disciplina.disciplina %></font> </td>
              <%disciplina_atual=@notasB1[session[:contnota1]].disciplina.id%>
-            <%for i in 0..8%>
+            <%for i in 0..session[:ult_coluna] %>
                 <%if session[:contnota1]>(session[:contnotaBTot1]-1)%>
                     <%acertoHTML=0%>
                 <%else%>
@@ -106,15 +108,16 @@
                         <%else%>
                             <%@carga_horaria1=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB1[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                             <%=@notasB1[acertoHTML].nota5%>
+                            <!-- Alimenta os vetores da BASE NACIONAL que depois serão impressos -->
                             <% if !@carga_horaria1.present? and !@notasB1[acertoHTML].matricula_id.nil? %>
-                                <%session[:cargah_b][i]=1000 %>
-                                <% session[:escola][i]= @notasB1[acertoHTML].matricula.unidade.nome %>
-                                <% session[:cidade][i]= @notasB1[acertoHTML].matricula.unidade.cidade %>
+                                <%session[:cargah_b][i]=1000%>
+                                <% session[:escola][i]= @notasB1[acertoHTML].matricula.unidade.nome%>
+                                <% session[:cidade][i]= @notasB1[acertoHTML].matricula.unidade.cidade%>
                             <%else%>
                                 <% if @carga_horaria1.present? %>
-                                    <%session[:cargah_b][i]=@carga_horaria1[0].carga_horaria_b %>
-                                    <%  session[:escola][i]=@carga_horaria1[0].escola %>
-                                    <%  session[:cidade][i]=@carga_horaria1[0].cidade %>
+                                    <%session[:cargah_b][i]=@carga_horaria1[0].carga_horaria_b%>
+                                    <%  session[:escola][i]=@carga_horaria1[0].escola%>
+                                    <%  session[:cidade][i]=@carga_horaria1[0].cidade%>
                                     <%  session[:exclui][i]=@carga_horaria1[0].id%>
                                 <%end%>
                             <%end%>
@@ -133,7 +136,6 @@
                     <td align="center">---</td>
                 <%end%>
             <%end%>
-
         </tr>
         <%end%>
 
@@ -142,7 +144,7 @@
         <%while session[:contnota2] < session[:contnotaBTot2] %>
          <td align="left"><font size="1"><%=@notasB2[session[:contnota2]].disciplina.disciplina %></font> </td>
              <%disciplina_atual=@notasB2[session[:contnota2]].disciplina.id%>
-            <%for i in 0..8%>
+            <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota2]>(session[:contnotaBTot2]-1)%>
                     <%acertoHTML=0%>
                 <%else%>
@@ -153,7 +155,7 @@
                         <%if (@notasB2[acertoHTML].nota5.nil? or @notasB2[acertoHTML].nota5.empty?) and (@notasB2[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
                         <%else%>
-                            <%@carga_horaria2=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB1[acertoHTML].ano_letivo, session[:aluno_id]]) %>
+                            <%@carga_horaria2=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB2[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                             <%=@notasB2[acertoHTML].nota5%>
                             <% if !@carga_horaria2.present? and !@notasB2[acertoHTML].matricula_id.nil? %>
                                 <%session[:cargah_b][i]=1000 %>
@@ -190,21 +192,22 @@
         <%#disc=@disciplinasB3.count%>
         <%#t0=0%>
 
-        <%if @disciplinasB3.count < 5 %>
+        <%#if @disciplinasB3.count < 5 %>
             <%# session[:quant3_linhas] = @notasB3.count %>
-            <% session[:quant3_linhas] = @disciplinasB3.count + 1   %>
-        <%else%>
-             <%session[:quant3_linhas] = @disciplinasB3.count    %>
-        <%end%>
-        <%t=session[:quant3_linhas]%>
+            <%# session[:quant3_linhas] = @disciplinasB3.count + 1   %>
+        <%#else%>
+             <%#session[:quant3_linhas] = @disciplinasB3.count    %>
+        <%#end%>
+        <%#t=session[:quant3_linhas]%>
+        <%session[:quant3_linhas]=@disciplinasB3.count + 1%>
 
-       <td width="20px" rowspan=<%= session[:quant3_linhas]%>> <font size="1"> Ciências_Humanas  </font> </td>
+       <td width="20px" rowspan=<%= session[:quant3_linhas]%>> <font size="1"> Ciências Humanas  </font> </td>
         <%while session[:contnota3] < session[:contnotaBTot3] %>
 
         <tr>
             <td align="left"><font size="1"><%=@notasB3[session[:contnota3]].disciplina.disciplina %>  </font> </td>
             <%disciplina_atual=@notasB3[session[:contnota3]].disciplina.id%>
-            <%for i in 0..8%>
+            <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota3]>(session[:contnotaBTot3]-1)%>
                     <%acertoHTML=0%>
                 <%else%>
@@ -215,7 +218,7 @@
                         <%if (@notasB3[acertoHTML].nota5.nil? or @notasB3[acertoHTML].nota5.empty?) and (@notasB3[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
                         <%else%>
-                            <%@carga_horaria3=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB1[acertoHTML].ano_letivo, session[:aluno_id]]) %>
+                            <%@carga_horaria3=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB3[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                             <%=@notasB3[acertoHTML].nota5%>
                             <% if !@carga_horaria3.present? and !@notasB3[acertoHTML].matricula_id.nil? %>
                                 <%session[:cargah_b][i]=1000 %>
@@ -234,8 +237,6 @@
                             &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasB3[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
                         <%end%>
                         <%if @notasB3[session[:contnota3]].disciplina_id == 1 and !@notasB3[session[:contnota3]].matricula_id.nil?%>
-
-
                           <%session[:unidade_id_port] = @notasB3[session[:contnota3]].unidade_id%>
                         <%end%>
                     </td>
@@ -249,11 +250,11 @@
         <%end%>
 
         <!--  DISCIPLINAS DE NOTAS DE CIẼNCIAS N -->
-        <td width="20px" ><font size="1">Ciências_da_Natureza</font> </td>
+        <td width="20px"><font size="1">Ciências da Natureza</font> </td>
         <%while session[:contnota4] < session[:contnotaBTot4] %>
          <td align="left"><font size="1"><%=@notasB4[session[:contnota4]].disciplina.disciplina %></font> </td>
              <%disciplina_atual=@notasB4[session[:contnota4]].disciplina.id%>
-            <%for i in 0..8%>
+            <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota4]>(session[:contnotaBTot4]-1)%>
                     <%acertoHTML=0%>
                 <%else%>
@@ -264,7 +265,7 @@
                         <%if (@notasB4[acertoHTML].nota5.nil? or @notasB4[acertoHTML].nota5.empty?) and (@notasB4[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
                         <%else%>
-                            <%@carga_horaria4=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB1[acertoHTML].ano_letivo, session[:aluno_id]]) %>
+                            <%@carga_horaria4=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB4[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                             <%=@notasB4[acertoHTML].nota5%>
                             <% if !@carga_horaria4.present? and !@notasB4[acertoHTML].matricula_id.nil? %>
                                 <%session[:cargah_b][i]=1000 %>
@@ -297,7 +298,7 @@
     </tr>
     <tr bgcolor =" #DCDCDC">
         <td colspan="2"><b> Carga Horária</b></td>
-        <%for i in 0..8%>
+        <%for i in 0..session[:ult_coluna]%>
             <%if session[:cargah_b][i]==0%>
                 <td align="center">---</td>
             <%else%>
@@ -312,63 +313,78 @@
 
     <%if @disciplinasD.count != 0%>
      <tr>
-       <% session[:quant4_linhas] = @disciplinasD.count + 1   %>
-        <td  align="center" rowspan=<%= session[:quant4_linhas]+1%>><font size="1"><b>Parte Diverficada</b></font></td>
+       <% session[:quant4_linhas] = @disciplinasD.count %>
+       <%t0=0%>
+        <td  align="center" rowspan=<%=session[:quant4_linhas]+1%>><font size="1"><b>Parte Diverficada</b></font></td>
         <!--  DISCIPLINAS DE NOTAS DE LINGUAGEM -->
 
        <!--  DISCIPLINAS DE NOTAS DE OFICINAS -->
-       
-               <% session[:quant4_linhas] = session[:quant4_linhas] %>
-
-       
-        <td width="20px" rowspan="<%= session[:quant4_linhas]%>"><font size="1">Oficinas</font></td>
+        <%if session[:quant4_linhas]==1 %>
+            <td width="20px"><font size="1">Oficinas</font></td>
+        <%else%>
+            <td width="20px" rowspan="<%=session[:quant4_linhas]%>"><font size="1">Oficinas</font></td>
+        <%end%>
         <%  acerto = 0 %>
-        <%while session[:contnota]< session[:contnotaDTot]%>
+        <%while session[:contnota]<session[:contnotaDTot]%>
          <% acerto = acerto + 1 %>
-         <tr>
+         <%if acerto>1%>
+            <tr>
+         <%end%>
             <td align="left"><font size="1"><%=@notasD[session[:contnota]].disciplina.disciplina %></font> </td>
-             <%disciplina_atual=@notasD[session[:contnota]].disciplina.id%>
-            <%for i in 0..8%>
-                <%if session[:contnota]>(session[:contnotaDTot]-1)%>
-                    <%acertoHTML = 0%>
-                <%else%>
-                    <%acertoHTML = session[:contnota]%>
-                <%end%>
-                <%if (((@notasD[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota]==acertoHTML) and (disciplina_atual==@notasD[acertoHTML].disciplina.id))%>
-                    <td align="center">
-                        <%if (@notasD[acertoHTML].nota5.nil? or @notasD[acertoHTML].nota5.empty?) and (@notasD[acertoHTML].ano_letivo==Time.now.year)%>
-                            ---
-                        <%else%>
-                            <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasD[acertoHTML].ano_letivo, session[:aluno_id]]) %>
-                            <%=@notasD[acertoHTML].nota5%>
-                            <% if !@carga_horaria.present? and !@notasD[acertoHTML].matricula_id.nil? %>
-                                <%session[:cargah_b][i]=1000 %>
-                                <% session[:escola][i]= @notasD[acertoHTML].matricula.unidade.nome %>
-                                <% session[:cidade][i]= @notasD[acertoHTML].matricula.unidade.cidade %>
+                 <%disciplina_atual=@notasD[session[:contnota]].disciplina.id%>
+                 <%for i in 0..session[:ult_coluna]%>
+                    <%if session[:contnota]>(session[:contnotaDTot]-1)%>
+                        <%acertoHTML=0%>
+                    <%else%>
+                        <%acertoHTML=session[:contnota]%>
+                    <%end%>
+                    <%if (((@notasD[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota]==acertoHTML) and (disciplina_atual==@notasD[acertoHTML].disciplina.id))%>
+                        <td align="center">
+                            <%if ((@notasD[acertoHTML].nota5.nil? or @notasD[acertoHTML].nota5.empty?) and (@notasD[acertoHTML].ano_letivo==Time.now.year))%>
+                                ---
                             <%else%>
-                                <% if @carga_horaria.present? %>
-                                    <%session[:cargah_b][i]=@carga_horaria[0].carga_horaria_b %>
-                                    <%  session[:escola][i]=@carga_horaria[0].escola %>
-                                    <%  session[:cidade][i]=@carga_horaria[0].cidade %>
-                                    <%  session[:exclui][i]=@carga_horaria[0].id%>
+                                <%@carga_horaria=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasD[acertoHTML].ano_letivo, session[:aluno_id]]) %>
+                                <%=@notasD[acertoHTML].nota5%>
+                                <% if !@carga_horaria.present? and !@notasD[acertoHTML].matricula_id.nil?%>
+                                    <%if session[:ult_cl_rede_per]=="INTEGRAL"%>
+                                        <%if i<4%>
+                                            <%session[:cargah_d][i]=480%>  <!-- Carga horária Diversificada do 1º ao 5º ano-->
+                                        <%else%>
+                                            <%session[:cargah_d][i]=400%>  <!-- Carga horária Diversificada do 6º ao 9º ano-->
+                                        <%end%>
+                                    <%else%>
+                                        <%if i<5%>
+                                            <%session[:cargah_d][i]=80%>   <!-- Carga horária Diversificada do 1º ao 5º ano-->
+                                        <%else%>
+                                            <%session[:cargah_d][i]=120%>  <!-- Carga horária Diversificada do 6º ao 9º ano-->
+                                        <%end%>
+                                    <%end%>
+                                    <%  session[:escola][i]=@notasD[acertoHTML].matricula.unidade.nome%>
+                                    <%  session[:cidade][i]=@notasD[acertoHTML].matricula.unidade.cidade%>
+                                <%else%>
+                                    <% if @carga_horaria.present? %>
+                                        <%session[:cargah_d][i]=@carga_horaria[0].carga_horaria_d%>
+                                        <%  session[:escola][i]=@carga_horaria[0].escola %>
+                                        <%  session[:cidade][i]=@carga_horaria[0].cidade %>
+                                        <%  session[:exclui][i]=@carga_horaria[0].id%>
+                                    <%end%>
                                 <%end%>
                             <%end%>
-                        <%end%>
-                        <%if @notasD[acertoHTML].matricula_id.nil?%>
-                            &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasD[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
-                        <%end%>
-                        <%if @notasD[session[:contnota]].disciplina_id == 1 and !@notasD[session[:contnota]].matricula_id.nil?%>
-
-                          <%session[:unidade_id_port] = @notasD[session[:contnota]].unidade_id%>
-                        <%end%>
-                    </td>
-                    <%session[:contnota]=session[:contnota]+1%>
-                <%else%>
-                    <td align="center">---</td>
+                            <%if @notasD[acertoHTML].matricula_id.nil?%>
+                                &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasD[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
+                            <%end%>
+                            <%if @notasD[session[:contnota]].disciplina_id == 1 and !@notasD[session[:contnota]].matricula_id.nil?%>
+                              <%session[:unidade_id_port] = @notasD[session[:contnota]].unidade_id%>
+                            <%end%>
+                        </td>
+                        <%session[:contnota]=session[:contnota]+1%>
+                    <%else%>
+                        <td align="center">---</td>
+                    <%end%>
                 <%end%>
-            <%end%>
-
-          </tr>
+         <%if acerto>1%>
+            </tr>
+         <%end%>
 
         <%end%>
 
@@ -387,18 +403,30 @@
    
     <tr bgcolor =" #DCDCDC">
         <td colspan="2"><b> Carga Horária</b></td>
-        <%for i in 0..8%>
-            <%if session[:cargah_b][i]==0%>
-                <td align="center">---</td>
-            <%else%>
-                <td align="center"> <%if session[:ano_letivoh][i].to_i > 2015  %>
-                                          1080 
-                                    <%else%>
-                                          1120
-                                    <%end%>
+        <%for i in 0..session[:ult_coluna]%>
+                <%if session[:cargah_d][i]==0%>
+                    <td align="center">---</td>
+                <%else%>
+                    <td align="center"> <%= session[:cargah_d][i] %>  </td>
 
-                </td>
-            <%end%>
+                <%end%>
+        <%end%>
+    </tr>
+    <tr bgcolor =" #DCDCDC">
+        <td colspan="3"><b> Carga Horária Total</b></td>
+        <%for i in 0..session[:ult_coluna]%>
+                <%cargah_t=0%>
+                <%if !session[:cargah_b][i].nil?%>
+                    <%cargah_t=session[:cargah_b][i]%>
+                <%end%>
+                <%if !session[:cargah_d][i].nil?%>
+                    <%cargah_t=session[:cargah_d][i]+cargah_t%>
+                <%end%>
+                <%if cargah_t==0%>
+                    <td align="center">---</td>
+                <%else%>
+                    <td align="center"> <%= cargah_t %>  </td>
+                <%end%>
         <%end%>
     </tr>
     <% if acerto == 1 %>
@@ -409,7 +437,6 @@
     <tr><td colspan="12">&nbsp&nbsp&nbsp&nbsp</td></tr>
 </table>
 
-
 <%else%>
     <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
         <tr>
@@ -417,10 +444,6 @@
         </tr>
     </table>
 <%end%>
-
-
-
-
 
 <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
     <tr>
@@ -442,6 +465,7 @@
                     <%if session[:exclui][i]!=0%>
                         &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:controller => "observacao_historicos", :action => "destroy", :id => session[:exclui][i]}, :confirm => "Confirma exclusão?", :method => "delete",:title => "Excluir" %>
                     <%end%>
+                    <%t0=0%>
                 </td>
                 <td> <%= session[:escola][i] %> </td>
                 <td> <%= session[:cidade][i] %> </td>
@@ -450,17 +474,19 @@
     <%end%>
 <table>
 <br/>
+
 <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#DCDCAA">
     <tr>
-        <td colspan="4"><font color ="red"> <b><u> ATENÇÃO: </u>  &nbsp
+        <td colspan="4" align="right" valign="top" ><font color ="red"> <b><u> ATENÇÃO</u>:   &nbsp
+          <td>
             1) Caso o Histórico esteja desalinhado ou com tabulação errada, é devido a erro de lançamento de notas.<br/>
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            2) Caso haja erro de lançamentos clique no botão vermelho  <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7")%>  para excluir. (Notas lançadas pelo professor NÃO poderão <br/> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ser excluidas nem alteradas).<br/>
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            3) Havendo dúvidas, favor entrar em contato com a Informática SEDUC informando o nome do aluno e a disciplina <br/>
-                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-               onde ocorre o erro.<br/><font></td>
+               <%#*&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp%>
+            2) Caso haja erro de lançamentos clique no botão vermelho  <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7")%>  para excluir. (Notas lançadas pelo professor NÃO poderão <br/> <%#&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp%>&nbsp&nbsp&nbsp ser excluidas nem alteradas).<br/>
+               <%#*&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp%>
+                 3) Havendo dúvidas, favor entrar em contato com a Informática SEDUC informando o nome do aluno e a disciplina <br/>
+               <%#*&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp%>
+               &nbsp&nbsp&nbsp onde ocorre o erro.<br/><font>
+          </td>
+        </td>
     </tr>
 </table>
-
-
