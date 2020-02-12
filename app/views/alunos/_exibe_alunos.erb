@@ -1,0 +1,16 @@
+
+ <table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td width =" 10%"></td>
+            <td> <b> Aluno nome</b></td>
+            <td width =" 20%" align="center"> <b> Nascimento</b></td>
+        </tr>
+         <% for aluno in @alunos %>
+         <tr bgcolor="#F5F5F5" >
+            <td align="center"> <%= link_to  image_tag('/stylesheets/images/selecionar.png', :title => 'Selecionar')  , {:action => "consulta_cadastro_aluno", :id =>aluno}, :method => "get", :title => "Selelcionar"%></td>
+            <td align="left">&nbsp&nbsp&nbsp <%= aluno.aluno_nome%> </td>
+            <td align="center"><%= aluno.aluno_nascimento.strftime("%d/%m/%Y")%> </td>
+         </tr>
+         <%end%>
+         <%session[:cadastro]=1%>
+    </table>

@@ -101,6 +101,10 @@ class AlunosController < ApplicationController
     
     end
 
+
+
+
+
     def mesmo_nome
         session[:nome] = params[:aluno_aluno_nome]
         t=session[:nome]
@@ -316,59 +320,31 @@ class AlunosController < ApplicationController
 
 
     def consulta_cadastro_aluno
-  
-        session[:aluno_id]=params[:aluno][:aluno_id]
-
-        #@socioeconomico = Socioeconomico.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
-        #@saude = Saude.find(:all,:conditions => ["aluno_id = ?", params[:aluno][:aluno_id]])
-        @aluno = Aluno.find(:all, :select=> "aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id ", :conditions => ['id =? ', params[:aluno][:aluno_id]])
-        @matriculas = Matricula.find(:all,:conditions => ['aluno_id =?', params[:aluno][:aluno_id]])
-        @matriculas_ano_atual = Matricula.find(:all, :select =>"unidade_id, classe_id, ano_letivo", :conditions => ['aluno_id =? and ano_letivo=?', params[:aluno][:aluno_id], Time.now.year])
-        render :update do |page|
-            page.replace_html 'cadastro', :partial => 'exibe_cadastro'
+        if session[:alunos]==1
+            @alunos = Aluno.find(:all,  :conditions => ['aluno_nome like ? ',  params[:search_prof].to_s + "%"])
+            session[:cadastro]=0
+        else
+            w=params[:search_prof]
+            @aluno = Aluno.find(:all, :select=> "aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id ", :conditions => ['id =? ', params[:id]])
+            @matriculas = Matricula.find(:all,:conditions => ['aluno_id =?', params[:id]])
+            @matriculas_ano_atual = Matricula.find(:all, :select =>"unidade_id, classe_id, ano_letivo", :conditions => ['aluno_id =? and ano_letivo=?', params[:id], Time.now.year])
+            session[:alunos]=0
+            session[:cadastro]=1
         end
+            if session[:alunos]==1
+                session[:alunos]=0
+                render :update do |page|
+                    page.replace_html 'alunoscad', :partial => 'exibe_alunos'
+                end
+            else
+                session[:cadastro]=0
+                render  :partial => 'exibe_cadastro', :layout => 'application'
+
+
+
+            end
     end
-
-    #  def load_alunos
-    #       @alunos_matriculas = Matricula.find(:all,:select => "aluno_id", :conditions => ['ano_letivo=?', Time.now.year])
-    #       @alunos_todos =  Aluno.find(:all,  :conditions => ['(aluno_status != "EGRESSO" or aluno_status is null) and (alunos.id NOT IN (?))', @alunos_matriculas ],:order => "aluno_nome")
-    #  @alunos_todos = Aluno.find_by_sql("SELECT a.id, a.aluno_nome FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null) AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+"))")
-
-
-    #     @alunos1 = Aluno.find_by_sql("SELECT * FROM alunos  WHERE unidade_id= "+(current_user.unidade_id).to_s+" AND`id` NOT IN
-    #                    (SELECT matriculas.aluno_id FROM matriculas INNER JOIN alunos ON alunos.id = matriculas.aluno_id WHERE matriculas.ano_letivo = "+(Time.now.year).to_s+" AND matriculas.status <> 'TRANSFERIDO' AND alunos.unidade_id = "+(current_user.unidade_id).to_s+") AND aluno_status  is null
-    #                     ORDER BY aluno_nome ASC") %>
-
-    #
     
-    #t=0
-    #if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-
-    #@alunos =  Aluno.find(:all,:order => "aluno_nome")
-    #@alunosRA =  Aluno.find(:all,:order => "aluno_ra")
-    #@alunosRM =  Aluno.find(:all,:order => "aluno_rm")
-    #if current_user.has_role?('admin')
-    #    @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
-    #else
-    #    @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
-    # end
-    #@disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
-    #else
-
-    #@alunos =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_nome")
-    #@alunosRA =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_ra")
-    #@alunosRM =  Aluno.find(:all, :conditions=> ['unidade_id = ? AND aluno_status is null', current_user.unidade_id],:order => "aluno_rm")
-    #if current_user.has_role?('admin')
-    #    @alunos1 = Aluno.find(:all,:order => 'aluno_nome ASC' )
-    #else
-    #    @alunos1 = Aluno.find(:all, :conditions => ['unidade_id =?',current_user.unidade_id],:order => 'aluno_nome ASC' )
-    #end
-    #@disciplinas = Disciplina.find(:all, :order => 'ordem ASC')
-
-       
-    #end
-    #  end
-
     def continuar
         @aluno = Aluno.find(:all, :conditions =>['id=?',  session[:aluno_id]])
         @saude = Saude.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])

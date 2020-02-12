@@ -5,16 +5,16 @@
      <font size="3"><strong>CADASTRO DE ALUNO DA SECRETARIA EDUCAÇÃO DE AMERICANA</strong></font><br/>
  </div>
     <div class="tabs">
-      
+
       <% @alunos_todos = Aluno.find(:all, :select => "id, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn", :conditions=>["aluno_status != 'EGRESSO' or aluno_status is null"], :order => "aluno_nome ASC") %>
        <% form_remote_tag :url => consulta_cadastro_aluno_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
           <fieldset>
             <% @disciplina = Disciplina.find(:all) %>
             <table width="100%" align="center" bgcolor="#DCDCDC" >
                <tr>
-                 <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
-                    <%= collection_select :aluno, :aluno_id, @alunos_todos, :id, :aluno_nome_dtn, :include_blank => ' -- Selecione -- ' %>
-                      <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+                 <td colspan="2"align="right"><font size="2"> Digitar o primeiro Nome do aluno:</b></font>
+                     <%= text_field_tag :search_prof, params[:search_prof], :class=> "txt_busca" %>
+                     <%= submit_tag "Filtrar", :class => "btn_filtrar" %>
 
                  </td>
                </tr>
@@ -25,7 +25,8 @@
             <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
               <tr>
                 <td>
-                    <div id="cadastro"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+                    <div id="alunoscad"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+                    <div id="cadastrocad"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
                 </td>
               </tr>
            </table>
@@ -37,7 +38,7 @@
        <table >
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-    
+
     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
          <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
          <td width="6%"align="left"><%= button_to '    Cadastrar    ', new_aluno_path, :title => "Cadastrar" %></td>
@@ -45,20 +46,19 @@
          <td align="left"><%= button_to 'Visualizar Ficha', continuar_path, :title => "Continuar" %></td>
     <%else%>
          <td align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
-         
+
     <%end%>
 
     </tr>
   </table>
  </div>
 
-
+   <%session[:alunos]=1%>
 
 </div>
 
 <br/>
 </div>
-
 
 
 

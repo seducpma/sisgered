@@ -1,73 +1,135 @@
-    <table width ="100%" bgcolor="#DCDCDC">
-      <tr >
-        <td with ="40%"> <b><u>Aluno:</u></b> <b>Nome</b></td>
-        <td with ="5%"><b>Nascimento</b></td>
-        <td with ="5%"><b>RG</b></td>
-        <td with ="40%"><b>Mãe</b></td>
-      </tr>
-      <% @aluno.each do |aluno| %>
-        <tr  bgcolor="#F5F5F5" >
-            <td align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=h aluno.aluno_nome %></td>
-            <td align="left"><%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
-            <td align="left">  <%=h aluno.aluno_RG%></td>
-            <td align="left"><%=h aluno.aluno_mae %></td>
-        </tr>
-        <% session[:aluno] = aluno.id %>
-        <tr>
-           <td with ="40%"><b><u>Matrículas:</u> Unidade</b></td>
-           <td with ="5%"><b>Ano Letivo</b></td>
-           <td with ="5%"><b>Classe</b></td>
-           <td with ="40%"><b>Status</b></td>
-        </tr>
-          <% for matricula in @matriculas %>
-           <tr bgcolor="#F5F5F5" >
-             <td align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <%=h matricula.unidade.nome%></td>
-             <td align="left"> <%=h matricula.ano_letivo %><%  session[:classe]=  matricula.classe.id%></td>
-             <td align="left">  <%=h matricula.classe.classe_classe%> - <%=h matricula.classe.horario %></td>
-               <% if  matricula.status =="MATRICULADO" %>
-                   <td align="left" colspan="3"> Matriculado</td>
-               <%else%>
-                  <td align="left" colspan="3"> <%=h matricula.status %>
-                    <%if matricula.status == 'TRANSFERIDO'%>
-                        <%if !matricula.para.nil?%>
-                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Para:&nbsp&nbsp</b><%=h matricula.para %>
-                        <%end%>
-<!--TRANSFERIDO PARA.nil?  ESCOLAS-->
-  
-<!--TRASNFERIDO ESCOLAS-->
-                <%end%>
-                    <%if matricula.status == 'TRANSFERENCIA'%>
-                        <%if !matricula.procedencia.nil?%>
-                            &nbsp&nbsp&nbsp&nbsp&nbsp <b>Procedencia:&nbsp&nbsp</b><%=h matricula.procedencia %>
-                        <%end%>
-                    <%end%>
-               </td>
-              <%end%>
-            </tr>
-          <%end%>
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                     <tr>
-                       <td align="LEFT" ><%= button_to '', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get"%></td>
-                       <%  if @matriculas_ano_atual.empty? %>
-                            <td colspan="7"align="RIGHT"><%= button_to 'Importar Ficha', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get", :title => "Editar"%></td>
-                       <%end%>
-                    </tr>
-                 <%end%>
+ <font size="3">
+<div id="interno2">
+<% title "CONSULTA_FICHA".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CADASTRO DE ALUNO DA SECRETARIA EDUCAÇÃO DE AMERICANA</strong></font><br/>
+ </div>
+    <div class="tabs">
 
-       <%end%>
-    </table>
-    <%  if @matriculas_ano_atual.empty? %>
-           <font size ="3" color ="red"><u><b>ATENÇÃO:</b></u> Para que o cadastro (ficha) do aluno fique disponivel para matricula na sua unidade é necessário clicar
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp no botão <b>IMPORTAR FICHA</b>, e na próxima tela, após confirmar os dados do aluno clicar no botão <b>SALVAR  </b>   </font>
-    <%  else %>
-          <font size ="3" color ="red"><u><b>ATENÇÃO:</b></u> Este aluno já possui matricula na unidade escolar
-            <% for matricula in  @matriculas_ano_atual %>
-              <%=h matricula.unidade.nome%>, classe:<%=h matricula.classe.classe_classe%>, Ano Letivo: <%=h matricula.ano_letivo%>.
-            <%end%>
-              <br/>
-                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Utilize no menu a opção <b> CADASTRAR / TRANSFÊRENCIA </b> se quiser transferi-lo para sua unidade     </font>
+      <% @alunos_todos = Aluno.find(:all, :select => "id, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn", :conditions=>["aluno_status != 'EGRESSO' or aluno_status is null"], :order => "aluno_nome ASC") %>
+       <% form_remote_tag :url => consulta_cadastro_aluno_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+          <fieldset>
+            <% @disciplina = Disciplina.find(:all) %>
+            <table width="100%" align="center" bgcolor="#DCDCDC" >
+               <tr>
+                 <td colspan="2"align="right"><font size="2"> Digitar o primeiro Nome do aluno:</b></font>
+                     <%= text_field_tag :search_prof, params[:search_prof], :class=> "txt_busca" %>
+                     <%= submit_tag "Filtrar", :class => "btn_filtrar" %>
+
+                 </td>
+               </tr>
+              </table>
+
+           </fieldset>
+          <fieldset>
+            <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+              <tr>
+                <td>
+                    <div id="alunoscad">
+                            <table width ="100%" bgcolor="#DCDCDC">
+                              <tr >
+                                <td with ="40%"> <b><u>Aluno:</u></b> <b>Nome</b></td>
+                                <td with ="5%"><b>Nascimento</b></td>
+                                <td with ="5%"><b>RG</b></td>
+                                <td with ="40%"><b>Mãe</b></td>
+                              </tr>
+                              <% @aluno.each do |aluno| %>
+                                <tr  bgcolor="#F5F5F5" >
+                                    <td align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=h aluno.aluno_nome %></td>
+                                    <td align="left"><%=h aluno.aluno_nascimento.strftime("%d/%m/%Y")%></td>
+                                    <td align="left">  <%=h aluno.aluno_RG%></td>
+                                    <td align="left"><%=h aluno.aluno_mae %></td>
+                                </tr>
+                                <% session[:aluno] = aluno.id %>
+                                <tr>
+                                   <td with ="40%"><b><u>Matrículas:</u> Unidade</b></td>
+                                   <td with ="5%"><b>Ano Letivo</b></td>
+                                   <td with ="5%"><b>Classe</b></td>
+                                   <td with ="40%"><b>Status</b></td>
+                                </tr>
+                                  <% for matricula in @matriculas %>
+                                   <tr bgcolor="#F5F5F5" >
+                                     <td align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <%=h matricula.unidade.nome%></td>
+                                     <td align="left"> <%=h matricula.ano_letivo %><%  session[:classe]=  matricula.classe.id%></td>
+                                     <td align="left">  <%=h matricula.classe.classe_classe%> - <%=h matricula.classe.horario %></td>
+                                       <% if  matricula.status =="MATRICULADO" %>
+                                           <td align="left" colspan="3"> Matriculado</td>
+                                       <%else%>
+                                          <td align="left" colspan="3"> <%=h matricula.status %>
+                                            <%if matricula.status == 'TRANSFERIDO'%>
+                                                <%if !matricula.para.nil?%>
+                                                    &nbsp&nbsp&nbsp&nbsp&nbsp <b>Para:&nbsp&nbsp</b><%=h matricula.para %>
+                                                <%end%>
+                        <!--TRANSFERIDO PARA.nil?  ESCOLAS-->
+
+                        <!--TRASNFERIDO ESCOLAS-->
+                                        <%end%>
+                                            <%if matricula.status == 'TRANSFERENCIA'%>
+                                                <%if !matricula.procedencia.nil?%>
+                                                    &nbsp&nbsp&nbsp&nbsp&nbsp <b>Procedencia:&nbsp&nbsp</b><%=h matricula.procedencia %>
+                                                <%end%>
+                                            <%end%>
+                                       </td>
+                                      <%end%>
+                                    </tr>
+                                  <%end%>
+                                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                                             <tr>
+                                               <td align="LEFT" ><%= button_to '', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get"%></td>
+                                               <%  if @matriculas_ano_atual.empty? %>
+                                                    <td colspan="7"align="RIGHT"><%= button_to 'IMPORTAR FICHA para sua unidade', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get", :title => "Editar"%></td>
+                                               <%end%>
+                                            </tr>
+                                         <%end%>
+
+                               <%end%>
+                            </table>
+                            <%  if @matriculas_ano_atual.empty? %>
+                                   <font size ="3" color ="red"><u><b>ATENÇÃO:</b></u> Para que o cadastro (ficha) do aluno fique disponivel para matricula na sua unidade é necessário clicar
+                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp no botão <b>IMPORTAR FICHA</b>, e na próxima tela, após confirmar os dados do aluno clicar no botão <b>SALVAR  </b>   </font>
+                            <%  else %>
+                                  <font size ="3" color ="red"><u><b>ATENÇÃO:</b></u> Este aluno já possui matricula na unidade escolar
+                                    <% for matricula in  @matriculas_ano_atual %>
+                                      <%=h matricula.unidade.nome%>, classe:<%=h matricula.classe.classe_classe%>, Ano Letivo: <%=h matricula.ano_letivo%>.
+                                    <%end%>
+                                      <br/>
+                                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Utilize no menu a opção <b> CADASTRAR / TRANSFÊRENCIA </b> se quiser transferi-lo para sua unidade     </font>
+                            <%end%>
+
+
+                        </div>
+                </td>
+              </tr>
+           </table>
+          <% end %>
+
+      </fieldset>
+
+       <br/>
+       <table >
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+         <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
+         <td width="6%"align="left"><%= button_to '    Cadastrar    ', new_aluno_path, :title => "Cadastrar" %></td>
+         <td width="6%"align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_ficha_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+         <td align="left"><%= button_to 'Visualizar Ficha', continuar_path, :title => "Continuar" %></td>
+    <%else%>
+         <td align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
+
     <%end%>
 
+    </tr>
+  </table>
+ </div>
 
+   <%session[:alunos]=1%>
 
+</div>
 
+<br/>
+</div>
+
+</font>
