@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1">
         <file>
-            <url>app/views/historicos/_notas_historico.erb</url>
-            <line>27</line>
-            <line>232</line>
-        </file>
-        <file>
             <url>app/views/atribuicaos/_mapa.erb</url>
             <line>117</line>
+        </file>
+        <file>
+            <url>public/javascripts/application.js</url>
+            <line>407</line>
+        </file>
+        <file>
+            <url>app/views/alunos/consulta_cadastro.html.erb</url>
+            <line>15</line>
+        </file>
+        <file>
+            <url>app/controllers/alunos_controller.rb</url>
+            <line>308</line>
         </file>
         <file>
             <url>app/controllers/notas_controller.rb</url>
             <line>41</line>
         </file>
+        <file>
+            <url>app/views/historicos/_notas_historico.erb</url>
+            <line>27</line>
+            <line>232</line>
+        </file>
     </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/home/seduc/sisgered/app/views/historicos/historico.html.erb</file>
+        <file>file:/home/seduc/sisgered/app/views/historicos/_notas_historico_EMEF.erb</file>
+        <file>file:/home/seduc/sisgered/app/views/layouts/application.html.erb</file>
+        <file>file:/home/seduc/sisgered/app/controllers/historicos_controller.rb</file>
+        <file>file:/home/seduc/sisgered/app/views/alunos/consulta_cadastro.html.erb</file>
+        <file>file:/home/seduc/sisgered/app/controllers/alunos_controller.rb</file>
+        <file>file:/home/seduc/sisgered/app/views/alunos/_exibe_alunos.erb</file>
+        <file>file:/home/seduc/sisgered/public/javascripts/application.js</file>
+    </open-files>
 </project-private>

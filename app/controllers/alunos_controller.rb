@@ -28,7 +28,6 @@ class AlunosController < ApplicationController
         end
     end
 
-
     def edit
         @aluno = Aluno.find(params[:id])
         t=(params[:id])
@@ -101,10 +100,6 @@ class AlunosController < ApplicationController
     
     end
 
-
-
-
-
     def mesmo_nome
         session[:nome] = params[:aluno_aluno_nome]
         t=session[:nome]
@@ -126,7 +121,6 @@ class AlunosController < ApplicationController
 
     def impressao_alunos
         @aluno = Aluno.find(:all,:conditions => ["id = ?",  session[:aluno]])
-       
         render :layout => "impressao"
     end
 
@@ -138,9 +132,7 @@ class AlunosController < ApplicationController
     def verifica_dados_aluno
         @dados = Pessoa.find(params[:aluno_pessoa_id])
         render :partial => 'exibe_dados_aluno'
-
     end
-
 
     def verifica_dados_responsavel
         @dados = Pessoa.find(params[:aluno_aluno_responsavel_pessoa_id])
@@ -151,16 +143,12 @@ class AlunosController < ApplicationController
         @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
         @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
         @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
-
         render :update do |page|
             page.replace_html 'ficha', :partial => 'dados_ficha_cadastral'
         end
-
     end
 
     def lista_aluno_nome
-
-
         @aluno = Aluno.find(:all,:conditions =>['id = ?', params[:aluno_aluno_id]])
         @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
         @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
@@ -182,7 +170,6 @@ class AlunosController < ApplicationController
         render :partial =>  'dados_ficha_cadastral'
     end
 
-
     def nome_classe
         session[:de_para]= 0
         @classe = Classe.find(:all, :joins => "inner join matriculas on classes.id = matriculas.classe_id", :conditions =>['matriculas.aluno_id =?', params[:aluno_aluno_id]])
@@ -195,13 +182,11 @@ class AlunosController < ApplicationController
         @saude = Saude.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
         @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', params[:aluno_aluno_id]])
         @matriculas = Matricula.find(:all, :conditions => ['aluno_id =?', params[:aluno_aluno_id]])
-
         @aluno.each do |aluno|
 
         end
             
         render  :partial => 'exibe_aluno_classe'
-         
     end
 
 
@@ -321,10 +306,9 @@ class AlunosController < ApplicationController
 
     def consulta_cadastro_aluno
         if session[:alunos]==1
-            @alunos = Aluno.find(:all,  :conditions => ['aluno_nome like ? ',  params[:search_prof].to_s + "%"])
+            @alunos = Aluno.find(:all, :select => "id, aluno_nome, aluno_nascimento, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",  :conditions => ['aluno_nome like ? ',  params[:search_prof].to_s + "%"], :order => "aluno_nome")
             session[:cadastro]=0
         else
-            w=params[:search_prof]
             @aluno = Aluno.find(:all, :select=> "aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id ", :conditions => ['id =? ', params[:id]])
             @matriculas = Matricula.find(:all,:conditions => ['aluno_id =?', params[:id]])
             @matriculas_ano_atual = Matricula.find(:all, :select =>"unidade_id, classe_id, ano_letivo", :conditions => ['aluno_id =? and ano_letivo=?', params[:id], Time.now.year])
@@ -339,9 +323,6 @@ class AlunosController < ApplicationController
             else
                 session[:cadastro]=0
                 render  :partial => 'exibe_cadastro', :layout => 'application'
-
-
-
             end
     end
     

@@ -664,6 +664,7 @@ border-right: double;
     margin:0 auto;
     background-color:White;
     width:950px;
+/*    width:1500px;*/
 
 }
 
@@ -713,12 +714,12 @@ border-right: double;
     margin-left: 80px;
     font-size:12px;
 }
+
 #interno2{
     width:95%;
     margin-top: 20px;
     margin-left: 30px;
     font-size:12px;
-
 }
 
 #interno3{
@@ -727,12 +728,14 @@ border-right: double;
     margin-left: 200px;
     font-size:12px;
 }
+
 #interno4{
     width:65%;
     margin-top: 20px;
-    margin-left: 200px;
+    margin-left: 170px;
     font-size:12px;
 }
+
 #interno5{
     width:42%;
     margin-top: 20px;
@@ -752,9 +755,7 @@ border-right: double;
     margin-top: 20px;
     margin-left: 30px;
     font-size:12px;
-    
 }
-
 
 #principal2{
     float:right;

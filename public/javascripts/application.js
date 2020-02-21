@@ -405,6 +405,11 @@ jQuery(document).ready(function( $ ){
 
     });
 
+    $(".btn_filtrar").click(function ()
+    {
+        $(".dig_nome").hide();
+    });
+
     $(".ra_filtro").click(function ()
     {
         $(".consulta_ra").show();

@@ -1,15 +1,27 @@
+<table>
+    <tr>
+<td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
 
+<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+     <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
+     <td align="left"><%= button_to '    Cadastrar    ', new_aluno_path, :title => "Cadastrar" %></td>
+<%else%>
+     <td align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
+<%end%>
+</tr>
+
+</table>
  <table border="1" cellspacing="0" cellpadding="1" width="100%" >
         <tr bgcolor="#DCDCDC" >
             <td width =" 10%"></td>
-            <td> <b> Aluno nome</b></td>
-            <td width =" 20%" align="center"> <b> Nascimento</b></td>
+            <td> <b>&nbsp&nbsp&nbsp Nome do Aluno</b></td>
+<!--            <%#*<td width =" 20%" align="center"> <b> Nascimento</b></td>%>-->
         </tr>
          <% for aluno in @alunos %>
          <tr bgcolor="#F5F5F5" >
-            <td align="center"> <%= link_to  image_tag('/stylesheets/images/selecionar.png', :title => 'Selecionar')  , {:action => "consulta_cadastro_aluno", :id =>aluno}, :method => "get", :title => "Selelcionar"%></td>
-            <td align="left">&nbsp&nbsp&nbsp <%= aluno.aluno_nome%> </td>
-            <td align="center"><%= aluno.aluno_nascimento.strftime("%d/%m/%Y")%> </td>
+            <td align="center"> <%= link_to  image_tag('/stylesheets/images/selecionar.png', :title => 'Selecionar'), {:action => "consulta_cadastro_aluno", :id => aluno}, :method => "get", :title => "Selecionar"%></td>
+            <td align="left">&nbsp&nbsp&nbsp <%= aluno.aluno_nome_dtn%> </td>
+<!--            <%#*<td align="center"><%= aluno.aluno_nascimento.strftime("%d/%m/%Y")%> </td>%>-->
          </tr>
          <%end%>
          <%session[:cadastro]=1%>
