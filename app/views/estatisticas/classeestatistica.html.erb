@@ -1,0 +1,51 @@
+<div id="interno2">
+<% title "CRIANÇAS", :id =>"crianças" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>CLASSES SEDUC</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <% form_remote_tag :url => classeestatistica_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>        <table width="100%" align="center" bgcolor="#DCDCDC" >
+        <table width="100%">
+          <tr>
+            <td>
+              <%   if current_user.unidade_id == 53 or current_user.unidade_id == 52   or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')  or current_user.has_role?('pedagogo')%>
+                  <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Infantil
+                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "2") %></a>Fundamental
+                  <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "3") %></a>SEDUC
+              <%else if current_user.unidade.tipo_id == 1 or current_user.unidade.tipo_id == 4 or current_user.unidade.tipo_id == 7 %>
+                        <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "2" ) %></a>Unidades do Ensino Fundamental  <font color="red"> &nbsp&nbsp&nbsp <b><== SELECIONAR ESTE BOTÃO </b></font>
+                      <%else if current_user.unidade.tipo_id == 2 or current_user.unidade.tipo_id == 5 or current_user.unidade.tipo_id == 8 %>
+                        <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Unidades da Educação Infantil  <font color="red"> &nbsp&nbsp&nbsp <b><== SELECIONAR ESTE BOTÃO </b></font>
+                        
+                              <%end%>
+                     <%end%>
+              <%end%>
+
+            </td>
+
+         </tr>
+         <tr>
+             <td><div class="consulta" style="display:none"><%= render "classe_infantil" %> </div>
+                 <div class="consulta_unidade" style="display:none"><%= render "classe_fundamental" %></div>
+                  <div class="consulta_professor" style="display:none"><%= render "classe_seduc" %></div>
+           </td>
+        </tr>
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="estatistica"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <div id="estatistica_classe"> </div>
+    <br/>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Consultar', classeestatistica_path, :title => "Consultar" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+
+

@@ -1,8 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
-
   map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
-
   map.resources :funcionarios, :collection => { :consulta=>:get}
   map.resources :aulas_eventuals, :collection => { :index2=>:get,   :relatorio_eventual_mes_professor => :get,  :relatorio_eventual_mes_unidade => :get}
   map.resources :eventuals
@@ -47,7 +45,11 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.resources :estatisticas
 
+
+  map.estatisticaclasse'/estatisticaclasse', :controller => 'estatisticas', :action => 'estatisticaclasse'
+  map.classeestatistica '/classeestatistica', :controller => 'estatisticas', :action => 'classeestatistica'
 
 
   map.new_continua  '/new_continua', :controller => 'saudes', :action => 'new_continua'

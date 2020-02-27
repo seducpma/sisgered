@@ -22,33 +22,6 @@
     - &orange cf5910
   :bar_colors: [ *yellow, *blue, *green, *red, *purple, *orange ]
   :background: *white
-:thirty8signals:
-  :colors:
-    - &green 339933
-    - &purple a020f0
-    - &blue 336699
-    - &yellow 00ff00
-    - &red ff0000
-    - &orange cf5910
-    - &magenta ff00ff
-    - &darkgray 2f4f4f
-  :bar_colors: [ *yellow, *blue, *green, *red, *purple, *orange, *magenta, *darkgray ]
-  :background: *white
-:thirty10signals:
-  :colors:
-    - &green 339933
-    - &purple a020f0
-    - &blue 336699
-    - &yellow 00ff00
-    - &red ff0000
-    - &orange cf5910
-    - &magenta ff00ff
-    - &darkgray 2f4f4f
-    - &violetred ff82ab
-    - &brown 8b1a1a
-    - &snow4 8b8989
-  :bar_colors: [ *yellow, *blue, *green, *red, *purple, *orange, *magenta, *darkgray, *violetred, *brown, *snow4 ]
-  :background: *white
 :pastel:
   :colors:
     - &blue a9dada

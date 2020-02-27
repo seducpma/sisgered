@@ -1,0 +1,22 @@
+      <fieldset>
+          <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td align="right" width=" 30%"><font size="2"> <b> Ano Letivo:</b></font>
+             <%= select_tag :ano_letivoF, options_for_select(@ano.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Todos--')) %> &nbsp&nbsp
+                     <%= observe_field 'ano_letivoF',
+                          :with => :ano_letivoF,
+                          :url => { :action => 'classesF_estatistica_ano' },
+                          :update => "classe_unidadeF" %>
+            </td>
+            <td width="60%" align="left"><font size="2">
+                 <div id="classe_unidadeF"> <b>Unidade: </b><font color="red">&nbsp&nbsp&nbsp&nbsp<b></u>&nbsp Selecionar  primeiro o ano </b></font> </div>
+            </td>
+
+          <td align="right">
+            <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+          </td>
+        </tr>
+
+       </table>
+       </fieldset>
+

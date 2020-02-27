@@ -1,0 +1,72 @@
+<div id="interno2">
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>RELATÓRIO CLASSES / MATRICULADOS  - <%= session[:ano]%> </strong></font><br/>
+   </div>
+  <div class="tabs">
+ <fieldset>
+     <%t=0%>
+   <legend><font size=2><b>CLASSES  <%= session[:ano]%></b></font></legend>
+   <table bgcolor="#DCDCDC" width="50%"align="center">
+         <tr bgcolor="#DCDCDC" >
+            <td >
+              <table bgcolor="#DCDCDC" width="100%"align="center" >
+                    <tr bgcolor="#F5F5F5" >
+                        <th width="50%">Classe </th>
+                        <th width="25%">Quantidade</th>
+                        <th width="25%">Matriculados</th>
+                    </tr>
+               </table>
+            </td>
+         </tr>
+         <tr>
+             <td valign="top">
+                 <table bgcolor="#DCDCDC" width="100%"align="center" >
+                     <%total=0%>
+                    <%i=0%>
+                    <% for classe_ano in  @classes %>
+                       <tr bgcolor="#F5F5F5" >
+                         <td  width="50%"><font size="2" ><b> <%= classe_ano.nr_classe%></b>  </td>
+                         <td  width="25%" align="center"> <%= classe_ano.quant%> </td>
+                         <td  width="25%" align="center"> <%= session[:qt_mat][i]%> </td>
+                         <%i=i+1%>
+                         <%total=total    +classe_ano.quant.to_i%>
+                         
+                                                         
+                       </tr>
+                     <%end%>
+                      <tr bgcolor="#F5F5F5" >
+                        <th width="50%"> TOTAL </th>
+                        <th width="25%"><%=total%></th>
+                        <th width="25%"><%=session[:total_mat]%></th>
+                       </tr>
+                 </table>
+             </td>
+         </tr>
+           
+    <tr>
+              <% if @static_graph.present?%>
+                     <td colspan="5" align="center" ><div class="tela"><%= @static_graph%></div></td>
+              <%end%>
+    </tr>
+        <tr>
+              <% if @static_graph2.present?%>
+                     <td colspan="5" align="center" ><div class="tela"><%= @static_graph2%></div></td>
+              <%end%>
+    </tr>
+        <tr>
+              <% if @static_graph3.present?%>
+                     <td colspan="5" align="center" ><div class="tela"><%= @static_graph3%></div></td>
+              <%end%>
+    </tr>
+   </table>
+ </fieldset>
+
+ </div>
+ </div>
+  <br/>
+</div>
+
+
+
+

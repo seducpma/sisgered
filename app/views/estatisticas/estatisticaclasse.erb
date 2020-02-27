@@ -1,0 +1,67 @@
+
+
+<div id="interno2">
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>RELATÓRIO CLASSES / MATRICULADOS </strong></font><br/>
+   </div>
+  <div class="tabs">
+ <fieldset>
+   <legend><font size=2><b>CLASSES</b></font></legend>
+   <table bgcolor="#DCDCDC" width="99%"align="center">
+         <tr bgcolor="#DCDCDC" >
+            <td width="100%">
+              <table bgcolor="#DCDCDC" width="100%"align="center" >
+                    <tr bgcolor="#F5F5F5" >
+                        <th width="15%">Classe</th>
+                        <th width="5%">Matriculados</th>
+                    </tr>
+               </table>
+            </td>
+         </tr>
+         <tr>
+             <td valign="top">
+                 <table bgcolor="#DCDCDC" width="100%"align="center" >
+                    <% for classe_ano in @classe_ano %>
+                       <tr bgcolor="#F5F5F5" >
+                         <td  width="70%"><font size="2"><b><%= classe_ano.classe_classe %></b></td>
+                         <td  width="30%" align="center"> -- </td>
+                                                         
+                       </tr>
+                     <%end%>
+
+                 </table>
+             </td>
+
+         </tr>
+         <tr>
+             <td colspan="8"> <br/><hr><br/></td>
+         </tr>
+<!--         <tr>
+
+              <% #if @static_graph.present?%>
+                     <td colspan="8" align="center" ><div class="tela"><%#= @static_graph%></div></td>
+              <%#end%>
+          </tr>
+          <%# session[:geral] = 0 %>
+-->
+<%t=0%>
+   </table>
+ </fieldset>
+    <table>
+          <tr>
+                  <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                  <td><b><%#= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+
+
+            </tr>
+     </table>
+
+ </div>
+ </div>
+  <br/>
+</div>
+
+
+
+
