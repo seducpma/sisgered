@@ -13,7 +13,6 @@ class Classe < ActiveRecord::Base
 
   HORARIO = %w(--Selecionar-- MATUTINO VESPERTINO NOTURNO INTEGRAL)
 
-
   def caps_look
     if !self.classe_descricao.nil?
       self.classe_descricao.upcase!

@@ -15,7 +15,7 @@
          <tr>
            <td colspan="3">
                <% if (current_user.unidade.tipo.id == 2)or (current_user.unidade.tipo.id == 5) or (current_user.unidade.tipo.id == 8) %>
-                 <b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUMI).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %>
+                 <b>Classe: </b><%= select_tag :num, options_for_select(NUMI).sort %><%= select_tag :letra, options_for_select(LETRA).sort %>
                <%else if (current_user.unidade.tipo.id == 1)or (current_user.unidade.tipo.id == 4) or (current_user.unidade.tipo.id ==7) %>
                          <b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUM).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %>
                      <%end%>
@@ -35,16 +35,10 @@
       <tr>
             <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
 <%end%>
-            <td width="4%"align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-            <td><%= button_to 'Cadastrar Classe', new_class_path  %></td>
-            
-    
-  
-
+            <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+<!--            <td><%#= button_to 'Cadastrar Classe', new_class_path  %></td> -->
          </tr>
        </table>
-    
-    
   </font>
 
 
