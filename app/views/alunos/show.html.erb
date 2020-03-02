@@ -339,7 +339,8 @@
 
         <table width="100%" >
             <tr>
-                <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consulta_ficha_alunos_path, :title => "Nova Consulta" %></td>
+<!-- ###Alex 02/03/2020 mudei para ir para Consulta>Alunos>SEDUC na linha abaixo            <td width="6%"align="left" ><%#= button_to 'Nova Consulta' ,consulta_ficha_alunos_path, :title => "Nova Consulta" %></td> -->
+                <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil'))%>
                     <td width="6%"align="left"><%= button_to 'Novo Cadastro' ,new_aluno_path, :title => "Novo Cadastro" %></td>
                 <% end %>
