@@ -394,19 +394,91 @@ class AtribuicaosController < ApplicationController
             @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D'and unidade_id =? AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], current_user.unidade_id, session[:ano_nota] , session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
             @notas = @notasB+@notasD
             @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], session[:ano_nota],nil ] )
+             @total_mediasN= Nota.find(:all, :select => " atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=? AND disciplinas.curriculo = 'B'",  session[:classe_id]])
+             @total_mediasF= Nota.find(:all, :select => " atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=?",  session[:classe_id]])
+#            @total_medias= Nota.find(:all, :select => "notas.ano_letivo, atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=?", session[:classe_id] ])
+                session[:total_notas1]=0
+                session[:total_faltas1]=0
+                session[:total_notas2]=0
+                session[:total_faltas2]=0
+                session[:total_notas3]=0
+                session[:total_faltas3]=0
+                session[:total_notas4]=0
+                session[:total_faltas4]=0
+                session[:total_notas5]=0
+                session[:total_faltas5]=0
+                for i in 0..(@total_mediasN.count-1)
+                    session[:total_notas1]=session[:total_notas1]+@total_mediasN[i].nota1.to_i
+                    session[:total_notas2]=session[:total_notas2]+@total_mediasN[i].nota2.to_i
+                    session[:total_notas3]=session[:total_notas3]+@total_mediasN[i].nota3.to_i
+                    session[:total_notas4]=session[:total_notas4]+@total_mediasN[i].nota4.to_i
+                    session[:total_notas5]=session[:total_notas5]+@total_mediasN[i].nota5.to_i
+                end
+                for i in 0..(@total_mediasF.count-1)
+                    session[:total_faltas1]=session[:total_faltas1]+@total_mediasF[i].faltas1.to_i
+                    session[:total_faltas2]=session[:total_faltas2]+@total_mediasF[i].faltas2.to_i
+                    session[:total_faltas3]=session[:total_faltas3]+@total_mediasF[i].faltas3.to_i
+                    session[:total_faltas4]=session[:total_faltas4]+@total_mediasF[i].faltas4.to_i
+                    session[:total_faltas5]=session[:total_faltas5]+@total_mediasF[i].faltas5.to_i
+                end
+                session[:total_notas1]=(session[:total_notas1].to_f/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas1]=(session[:total_faltas1]/@total_mediasF.count.to_f).round(1)
+                session[:total_notas2]=(session[:total_notas2]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas2]=(session[:total_faltas2]/@total_mediasF.count.to_f).round(1)
+                session[:total_notas3]=(session[:total_notas3]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas3]=(session[:total_faltas3]/@total_mediasF.count.to_f).round(1)
+                session[:total_notas4]=(session[:total_notas4]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas4]=(session[:total_faltas4]/@total_mediasF.count.to_f).round(1)
+                session[:total_notas5]=(session[:total_notas5]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas5]=(session[:total_faltas5]/@total_mediasF.count.to_f).round(1)
+
             render :update do |page|
                 page.replace_html 'relatorio', :partial => 'relatorio_aluno'
             end
         else if params[:type_of].to_i == 2
-
-
                 session[:classe_id] = params[:classe][:id]
                 session[:ano_nota] = params[:ano_letivo]
-
                 @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status = "MATRICULADO" or status = "TRANSFERENCIA" or status = "*REMANEJADO")', params[:classe][:id]], :order =>'classe_num')
                 @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
                 @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
+                @total_mediasN= Nota.find(:all, :select => " atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=? AND disciplinas.curriculo = 'B'",  params[:classe][:id]])
+                @total_mediasF= Nota.find(:all, :select => " atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=?",  params[:classe][:id]])
+                #@total_medias= Nota.find(:all, :select => "notas.ano_letivo, atribuicaos.classe_id, notas.id, notas.nota5 'nota5' , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id", :conditions => ["atribuicaos.classe_id=? AND notas.id = 322122",  params[:classe][:id]])
 
+                session[:total_notas1]=0
+                session[:total_faltas1]=0
+                session[:total_notas2]=0
+                session[:total_faltas2]=0
+                session[:total_notas3]=0
+                session[:total_faltas3]=0
+                session[:total_notas4]=0
+                session[:total_faltas4]=0
+                session[:total_notas5]=0
+                session[:total_faltas5]=0
+                for i in 0..(@total_mediasN.count-1)
+                    session[:total_notas1]=session[:total_notas1]+@total_mediasN[i].nota1.to_i
+                    session[:total_notas2]=session[:total_notas2]+@total_mediasN[i].nota2.to_i
+                    session[:total_notas3]=session[:total_notas3]+@total_mediasN[i].nota3.to_i
+                    session[:total_notas4]=session[:total_notas4]+@total_mediasN[i].nota4.to_i
+                    session[:total_notas5]=session[:total_notas5]+@total_mediasN[i].nota5.to_i
+                end
+                for i in 0..(@total_mediasF.count-1)
+                    session[:total_faltas1]=session[:total_faltas1]+@total_mediasF[i].faltas1.to_i
+                    session[:total_faltas2]=session[:total_faltas2]+@total_mediasF[i].faltas2.to_i
+                    session[:total_faltas3]=session[:total_faltas3]+@total_mediasF[i].faltas3.to_i
+                    session[:total_faltas4]=session[:total_faltas4]+@total_mediasF[i].faltas4.to_i
+                    session[:total_faltas5]=session[:total_faltas5]+@total_mediasF[i].faltas5.to_i
+                end
+                session[:total_notas1]=(session[:total_notas1]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas1]=(session[:total_faltas1]/@total_mediasF.count.to_f).round(1)
+                session[:total_notas2]=(session[:total_notas2]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas2]=(session[:total_faltas2]/@total_mediasF.count.to_f).round(1)
+                session[:total_notas3]=(session[:total_notas3]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas3]=(session[:total_faltas3]/@total_mediasF.count.to_f).round(1)
+                session[:total_notas4]=(session[:total_notas4]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas4]=(session[:total_faltas4]/@total_mediasF.count.to_f).round(1)
+                session[:total_notas5]=(session[:total_notas5]/@total_mediasN.count.to_f).round(1)
+                session[:total_faltas5]=(session[:total_faltas5]/@total_mediasF.count.to_f).round(1)
                 render :update do |page|
                     page.replace_html 'relatorio', :partial => 'relatorio_classe'
                 end
