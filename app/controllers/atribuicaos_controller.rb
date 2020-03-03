@@ -1133,13 +1133,13 @@ t=0
 
     def boletim_anterior
         if current_user.unidade_id == 53 or current_user.unidade_id == 52
-           @alunos_boletim=Matricula.find(:all,:select=>"alunos.id, CONCAT(alunos.aluno_nome, ' |53-52| ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.ano_letivo=?", params[:ano_letivo1]],:order => 'alunos.aluno_nome ASC')
+           @alunos_boletim=Matricula.find(:all,:select=>"alunos.id, CONCAT(alunos.aluno_nome, ' |  ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.ano_letivo=?", params[:ano_letivo1]],:order => 'alunos.aluno_nome ASC')
         else
-          #alunos_boletim=Matricula.find(:all,:select=>"alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,Time.now.year],:order => 'alunos.aluno_nome ASC')
-          @alunos_boletim=Matricula.find(:all,:select=>"alunos.id, CONCAT(alunos.aluno_nome, ' |OUTROS| ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,params[:ano_letivo1]],:order => 'alunos.aluno_nome ASC')
+         
+          @alunos_boletim=Matricula.find(:all,:select=>"alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,params[:ano_letivo1]],:order => 'alunos.aluno_nome ASC')
         end
 
-       # @alunos_boletim=Matricula.find(:all,:select=>"alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",:joins=> "left join alunos ON alunos.id=matriculas.aluno_id",:conditions=>["matriculas.unidade_id=? AND matriculas.ano_letivo=?",current_user.unidade_id,params[:ano_letivo1]],:order => 'alunos.aluno_nome ASC')
+       
         render :partial => 'alunos_boletim_anterior'
     end
 
