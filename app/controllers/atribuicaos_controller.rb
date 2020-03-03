@@ -393,7 +393,7 @@ class AtribuicaosController < ApplicationController
     end
 
     def relatorios_anterior_classe
-        @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',  :conditions =>["classe_ano_letivo !=?", Time.now.year],:order => 'classe_ano_letivo DESC')
+        #@ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',  :conditions =>["classe_ano_letivo !=?", Time.now.year],:order => 'classe_ano_letivo DESC')
         if params[:type_of].to_i == 1
             session[:aluno] = params[:aluno][:id]
             session[:ano_nota] = params[:ano_letivo1]
