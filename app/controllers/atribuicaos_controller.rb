@@ -426,13 +426,24 @@ class AtribuicaosController < ApplicationController
                     end
                 end
             end
+w1=session[:aluno]
+w2= session[:ano_nota]
+w3= session[:matricula_id]
+t=0
+
+
             @notasB = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'B' AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], session[:ano_nota], session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
             @notasD = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.aluno_id =?  AND disciplinas.curriculo = 'D' AND notas.ano_letivo =? AND notas.ativo is NULL AND matricula_id=?", session[:aluno], session[:ano_nota] , session[:matricula_id]],:order =>'disciplinas.ordem ASC ')
             @notas = @notasB+@notasD
             @observacao2 = ObservacaoNota.find(:all, :conditions =>['aluno_id =? AND ano_letivo =? AND nota_id is ?', session[:aluno], session[:ano_nota],nil ] )
              @total_mediasN= Nota.find(:all, :select => " atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=? AND disciplinas.curriculo = 'B'",  session[:classe_id]])
              @total_mediasF= Nota.find(:all, :select => " atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=?",  session[:classe_id]])
-#            @total_medias= Nota.find(:all, :select => "notas.ano_letivo, atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=?", session[:classe_id] ])
+#             @total_medias= Nota.find(:all, :select => "notas.ano_letivo, atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=?", session[:classe_id] ])
+         if @notasB.empty?
+             render :update do |page|
+                  page.replace_html 'relatorio', :partial => 'sem_notas'
+               end
+         else
                 session[:total_notas1]=0
                 session[:total_faltas1]=0
                 session[:total_notas2]=0
@@ -468,9 +479,10 @@ class AtribuicaosController < ApplicationController
                 session[:total_notas5]=(session[:total_notas5]/@total_mediasN.count.to_f).round(1)
                 session[:total_faltas5]=(session[:total_faltas5]/@total_mediasF.count.to_f).round(1)
 
-            render :update do |page|
-                page.replace_html 'relatorio', :partial => 'relatorio_aluno'
-            end
+               render :update do |page|
+                  page.replace_html 'relatorio', :partial => 'relatorio_aluno'
+               end
+        end
         else if params[:type_of].to_i == 2
                 session[:classe_id] = params[:classe][:id]
                 session[:ano_nota] = params[:ano_letivo]

@@ -1,0 +1,126 @@
+
+   <% @aluno.each do |aluno| %>
+    <table width="100%" >
+        <tr>
+            <td rowspan="2"><br/>
+                <% if !aluno.photo_file_name.nil? %>
+                    <center> <%= image_tag aluno.photo.url(:original) %> </center>
+                <%end%>
+            </td>
+            <td><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+
+                <center><font size="1">Unidade Escolar:  <%=h session[:un_nome] %>  </font></center>
+                <center><font size="1"><%=h session[:un_end]%>, <%=h session[:un_end_nr]%> - Americana - SP  </font>
+                    <font size="1"><%=h session[:un_end_cep]%> - <%=h session[:un_end_fone]%>  </font></center>
+
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="22" align="right"><font size="2"><b>BOLETIM DE FREQUÊNCIA E RENDIMENTO ESCOLAR &nbsp&nbsp&nbsp&nbsp</b></font>
+            </td>
+        </tr>
+    </table>
+    <table border="1" cellspacing="0" cellpadding="1" width="100%">
+        <tr>
+
+            <td><b>Nº</b> <%= session[:num] %> &nbsp&nbsp&nbsp<b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %> &nbsp&nbsp
+
+                <%  if  session[:status] =="TRANSFERIDO"%>
+                    <font color ="red"> (Transferido) </font>
+                <%else if  session[:status] =="REMANEJADO"%>
+                        <font color ="red"> (Remanejado) </font>
+                    <%else if  session[:status] =="ABANDONO"%>
+                            <font color ="red"> (Abandono)</font>
+                        <%else if  session[:status] =="TRANSFERENCIA"%>
+                                <font color ="blue"> (Transferência)</font>
+                            <%else  if  session[:status] =="*REMANEJADO"%>
+                                    <font color ="blue"> (*Remanejado)</font>
+                                <%end%>
+                            <%end%>
+                        <%end%>
+                    <%end%>
+                <%end%>
+
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %></td>
+            <% session[:aluno] = aluno.id %>
+        <%end%>
+    </tr>
+    <tr bgcolor="#F5F5F5">
+        <% for classe in @classe %>
+
+            <td ><b>Classe:</b>&nbsp&nbsp <%=h classe.classe_classe%>&nbsp&nbsp&nbsp
+                    <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+                       - <%= classe.unidade.nome%>
+                    <%  else %>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <%  end %>
+
+
+                <b>Período:</b>&nbsp&nbsp <%=h classe.horario %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <b>Ano Letivo:</b> &nbsp&nbsp<%=h classe.classe_ano_letivo %></td>
+            <%  session[:classe]=  classe.id%>
+        </tr>
+    <%end%>
+    <% @aluno.each do |aluno| %>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%">
+            <tr cellspacing="2" cellpadding="2" >
+                <td width=" 20" rowspan="2" align="center"><b>Disciplina</b></td>
+                <td width=" 15%" colspan="4" align="center"><b>1º Bimestre</b></td>
+                <td width=" 15%"colspan="4" align="center" bgcolor="#E7E7E7"><b>2º Bimestre</b></td>
+                <td width=" 15%" colspan="4" align="center"><b>3º Bimestre</b></td>
+                <td width=" 15%" colspan="4" align="center" bgcolor="#E7E7E7"><b>4º Bimestre</b></td>
+                <td width=" 15%" colspan="4" align="center"><b>FINAL</b></td>
+            </tr>
+            <tr>
+                <td width = px align="center" ><font size="1"><b>Nota</b></font></td>
+                <td width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></td>
+                <td width ="5%" align="center"><font size="1"><b>Freq.</b></font></td>
+                <td width ="5%" align="center"><font size="1"><b>Comp.*</b></font></td>
+                <td width ="5%" align="center" bgcolor="#E7E7E7"><font size="1" ><b>Nota</b></font></td>
+                <td width ="5%" align="center" bgcolor="#E7E7E7"><font size="1"><b>Faltas*</b></font></td>
+                <td width ="5%" align="center" bgcolor="#E7E7E7"><font size="1"><b>Freq.</b></font></td>
+                <td width ="5%" align="center" bgcolor="#E7E7E7"><font size="1"><b>Comp.*</b></font></td>
+                <td width ="5%" align="center" ><font size="1"><b>Nota</b></font></td>
+                <td width ="5%" align="center" ><font size="1"><b>Faltas*</font></b></td>
+                <td width ="5%" align="center"><font size="1"><b>Freq.</b></font></td>
+                <td width ="5%" align="center"><font size="1"><b>Comp.*</b></font></td>
+                <td width ="5%" align="center" bgcolor="#E7E7E7"><font size="1"><b>Nota</b></font></td>
+                <td width ="5%" align="center" bgcolor="#E7E7E7"><font size="1"><b>Faltas*</b></font></td>
+                <td width ="5%" align="center" bgcolor="#E7E7E7"><font size="1"><b>Freq.</b></font></td>
+                <td width ="5%" align="center" bgcolor="#E7E7E7"><font size="1"><b>Comp.*</b></font></td>
+                <td width ="5%" align="center" ><font size="1"><b>Nota</b></font></td>
+                <td width ="5%" align="center" ><font size="1"><b>Faltas*</b></font></td>
+                <td width ="6%" align="center"><font size="1"><b>Freq.</b></font></td>
+                <td width ="5%" align="center"><font size="1"><b>Comp.*</b></font></td>
+                <% session[:obs] = 0 %>
+            </tr>
+            <tr>
+                <td bgcolor="#DCDCDC"> <b><center>CURRÍCULO BÁSICO </center> </b></td>
+                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+                <td bgcolor="#DCDCDC"></td><td bgcolor="#DCDCDC"></td>
+            </tr>
+            <tr>
+                <td colspan="22" align="center" ><br/> <font size="3"color =" red"> <b>ALUNO SEM NOTAS DEVIDAMENTE LANÇADAS </b></font></td>
+           </tr>
+
+        </table>
+        <table  width="100% ">
+            <tr>
+                <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td><td>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                    <td align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_relatorio_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+                <%end%>
+            </tr>
+        </table>
+    <%end%>
+</table>
