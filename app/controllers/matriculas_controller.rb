@@ -267,7 +267,7 @@ end
                 else
                     @matricula_num = Matricula.find(:last, :conditions => ['classe_id =?', params[:matricula][:classe_id]])
                     t=0
-                    if  @matricula_num.nil? or @matricula_num.empty?
+                    if  @matricula_num.nil? 
                         @matricula = Matricula.new(params[:matricula])
                         @matricula.classe_num = 1
                     else
