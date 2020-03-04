@@ -87,8 +87,21 @@
        &nbsp&nbsp&nbsp&nbsp<font color ="green"><u>Remanejado</u></font> => Entre classes (Saida)
        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color ="green"><u>*Remanejado</u></font> => Entre classes (Entrada)
 
-  </div>
+
+<br/>
+        <table width="100%">
+            <tr>
+                <td colspan="3"><hr/></td>
+            </tr>
+           <tr>
+
+             <td width =" 10%"><%= button_to 'MATRICULAR (Vários alunos)', matricular_matriculas_path %> </td>
+             <td width =" 10%"><%= button_to 'MATRICULAR (1 aluno)', new_matricula_path %> </td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+          </table width="100%">
+
 </div>
 <br/>
+  </div>
 </div>
-
