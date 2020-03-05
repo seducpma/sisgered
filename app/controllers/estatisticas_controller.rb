@@ -39,7 +39,7 @@ class EstatisticasController < ApplicationController
   session[:ano]=params[:ano_letivo]
   session[:unidade] = params[:unidade]
        
-        if (params[:type_of].to_i == 1)
+        if (params[:type_of].to_i == 1)   #OPÇÃO ENSINO INFANTIL
           session[:todos_infantil] = 1
           session[:todos_fundamental] = 0
           if params[:ano_letivo] != '--Todos--'
@@ -101,13 +101,12 @@ class EstatisticasController < ApplicationController
                   end
               end
           else
+# ENSINO INFANTIL SEDUC   -TODOS -  -TODOS -  -TODOS -  -TODOS -  -TODOS -  -TODOS -  -TODOS -  -TODOS -
              ano_a=(Time.now.year)-4
              ano_b=(Time.now.year)-3
              ano_c=(Time.now.year)-2
              ano_d=(Time.now.year)-1
              ano_e=(Time.now.year)
-
-# ENSINO INFANTIL SEDUC
 
              @classesIa= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8) and classes.unidade_id=?' ,ano_a, params[:unidade]], :group=>'nr_classe' )
              @classesIb= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8) and classes.unidade_id=?' ,ano_b, params[:unidade]], :group=>'nr_classe' )
@@ -257,13 +256,13 @@ class EstatisticasController < ApplicationController
 
           end
 
-       else if params[:type_of].to_i == 2
+       else if params[:type_of].to_i == 2    #OPÇÃO ENSINO FUNDAMENTAL
            session[:todos_fundamental] = 1
            session[:todos_infantil] = 0
            t=0
           if params[:ano_letivoF] != '--Todos--'
-             @classes = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? and classes.unidade_id=? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4  OR unidades.tipo_id = 7)' , params[:ano_letivoF], params[:unidadeF]], :group=>'nr_classe' )
-             @matriculas = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN matriculas  ON  matriculas.classe_id = classes.id", :select => "COUNT(*) as qt_mat, left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe ",:conditions=> ['classes.classe_ano_letivo =? and classes.unidade_id=? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4 OR unidades.tipo_id = 7) AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")'  , params[:ano_letivoF], params[:unidadeF]], :group=>'nr_classe')
+             @classes = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['unidades.desativada= 0 AND classes.classe_ano_letivo =? and classes.unidade_id=? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4  OR unidades.tipo_id = 7)' , params[:ano_letivoF], params[:unidadeF]], :group=>'nr_classe' )
+             @matriculas = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN matriculas  ON  matriculas.classe_id = classes.id", :select => "COUNT(*) as qt_mat, left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe ",:conditions=> ['unidades.desativada= 0 AND classes.classe_ano_letivo =? and classes.unidade_id=? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4 OR unidades.tipo_id = 7) AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")'  , params[:ano_letivoF], params[:unidadeF]], :group=>'nr_classe')
               @qt_cl=[0,0]
               @qt_mat=[0,0]
               @cl=[0,0]
@@ -317,18 +316,19 @@ class EstatisticasController < ApplicationController
                    :format => 'image_tag',
                    :labels => @mat,
                    :bar_colors => '0A0EEA')
-t=0
+
                   render :update do |page|
                      page.replace_html 'estatistica_classe', :partial => 'estatisticaclasse'
                   end
                 end
              else
+#ENSINO FUNDAMENTAL   -TODOS - -TODOS - -TODOS - -TODOS - -TODOS - -TODOS - -TODOS - -TODOS - -TODOS -
                  ano_a=(Time.now.year)-4
                  ano_b=(Time.now.year)-3
                  ano_c=(Time.now.year)-2
                  ano_d=(Time.now.year)-1
                  ano_e=(Time.now.year)
-              
+   
                  @classesFa= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4  OR unidades.tipo_id = 7) and classes.unidade_id=? ' ,ano_a, params[:unidadeF]], :group=>'nr_classe' )
                  @classesFb= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4  OR unidades.tipo_id = 7) and classes.unidade_id=?' ,ano_b, params[:unidadeF]], :group=>'nr_classe' )
                  @classesFc= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4  OR unidades.tipo_id = 7) and classes.unidade_id=?' ,ano_c, params[:unidadeF]], :group=>'nr_classe' )
@@ -343,86 +343,45 @@ t=0
                  @clf_cle=[0,0,0,0,0,0,0,0,0,0,0]
 t=0
                   for i in 0..(@classesFa.count-1)
-    #                   mult=0
+
                        for n in 0..10
                           if @classesFa[i].nr_classe==@clf[n]
                               @clf_cla[n]=@classesFa[i].quant.to_i
-    #                      else
-    #                          if mult==0 and (  @classesFa[i].nr_classe=='EJA' or @classesFa[i].nr_classe=='EJA A' or
-    #                                            @classesFa[i].nr_classe=='MM' or @classesFa[i].nr_classe=='MS' or
-    #                                            @classesFa[i].nr_classe=='MU' or @classesFa[i].nr_classe=='MULTISSERIADA' or
-    #                                            @classesFa[i].nr_classe=='MULTS' or @classesFa[i].nr_classe=='PR')
-    #                              @clf_cla[7]=@clf_cla[7]+@classesFa[i].quant.to_i
-    #                              mult=1
-    #                          end
                           end
                        end
                   end
 
                   for i in 0..(@classesFb.count-1)
-    #                   mult=0
+
                        for n in 0..10
                           if @classesFb[i].nr_classe==@clf[n]
                               @clf_clb[n]=@classesFb[i].quant.to_i
-    #                      else
-    #                          if mult==0 and (@classesFb[i].nr_classe=='BB' or @classesFb[i].nr_classe=='BM' or
-    #                              @classesFb[i].nr_classe=='MM' or @classesFb[i].nr_classe=='MS' or
-    #                              @classesFb[i].nr_classe=='MU' or @classesFb[i].nr_classe=='MULTISSERIADA' or
-    #                              @classesFb[i].nr_classe=='MULTS' or @classesFb[i].nr_classe=='PR')
-    #                              @clf_clb[7]=@clf_clb[7]+@classesIb[i].quant.to_i
-    #                              mult=1
-    #                          end
                           end
                        end
                   end
 
                   for i in 0..(@classesFc.count-1)
-    #                   mult=0
+
                        for n in 0..10
                          if @classesFc[i].nr_classe==@clf[n]
                               @clf_clc[n]=@classesFc[i].quant.to_i
-    #                      else
-    #                          if mult==0 and (@classesFc[i].nr_classe=='BB' or @classesFc[i].nr_classe=='BM' or
-    #                              @classesFc[i].nr_classe=='MM' or @classesFc[i].nr_classe=='MS' or
-    #                              @classesFc[i].nr_classe=='MU' or @classesFc[i].nr_classe=='MULTISSERIADA' or
-    #                              @classesFc[i].nr_classe=='MULTS' or @classesFc[i].nr_classe=='PR')
-    #                              @cl_clc[7]=@cl_clc[7]+@classesIc[i].quant.to_i
-    #                              mult=1
-    #                          end
                           end
                        end
                   end
 
                   for i in 0..(@classesFd.count-1)
-    #                   mult=0
+
                        for n in 0..10
                           if @classesFd[i].nr_classe==@clf[n]
                               @clf_cld[n]=@classesFd[i].quant.to_i
-    #                      else
-    #                          if mult==0 and (@classesFd[i].nr_classe=='BB' or @classesFd[i].nr_classe=='BM' or
-    #                              @classesFd[i].nr_classe=='MM' or @classesFd[i].nr_classe=='MS' or
-    #                              @classesFd[i].nr_classe=='MU' or @classesFd[i].nr_classe=='MULTISSERIADA' or
-    #                              @classesFd[i].nr_classe=='MULTS' or @classesFd[i].nr_classe=='PR')
-    #                              @clf_cld[7]=@clf_cld[7]+@classesFd[i].quant.to_i
-    #                              mult=1
-    #                          end
                           end
                        end
                   end
 
                   for i in 0..(@classesFe.count-1)
-    #                   mult=0
                        for n in 0..10
                           if @classesFe[i].nr_classe==@clf[n]
                               @clf_cle[n]=@classesFe[i].quant.to_i
-    #                      else
-    #                          if mult==0 and (@classesFe[i].nr_classe=='BB' or @classesFe[i].nr_classe=='BM' or
-    #                              @classesFe[i].nr_classe=='MM' or @classesFe[i].nr_classe=='MS' or
-    #                              @classesFe[i].nr_classe=='MU' or @classesFe[i].nr_classe=='MULTISSERIADA' or
-    #                              @classesFe[i].nr_classe=='MULTS' or @classesFe[i].nr_classe=='PR')
-    #                              @clf_cle[7]=@clf_cle[7]+@classesFe[i].quant.to_i
-    #                              mult=1
-    #                          end
                           end
                        end
                   end
@@ -430,22 +389,22 @@ t=0
                    clf_maior=0
                    for n in 0..10
                       if @clf_cla[n]>clf_maior
-                          clf_maior=@clf_cla[n]
+                          w1=clf_maior=@clf_cla[n]
                       end
                       if @clf_clb[n]>clf_maior
-                          clf_maior=@clf_clb[n]
+                          w2=clf_maior=@clf_clb[n]
                       end
                       if @clf_clc[n]>clf_maior
-                          clf_maior=@clf_clc[n]
+                          w3=clf_maior=@clf_clc[n]
                       end
                       if @clf_cld[n]>clf_maior
-                          clf_maior=@clf_cld[n]
+                          w4=clf_maior=@clf_cld[n]
                       end
                       if @clf_cle[n]>clf_maior
-                          clf_maior=@clf_cle[n]
+                          w5=clf_maior=@clf_cle[n]
                       end
                    end
-
+t=0
               unidade= Unidade.find(params[:unidadeF]).nome
               session[:input] = params[:unidadeF]
                   ano = params[:ano_letivo]
@@ -470,19 +429,19 @@ t=0
                           :axis_with_label => 'x,y,r,t',
                           :legend => @clf,
                            # :bg => {:color => 'F5F5F5', :type => 'stripes', :angle => 90},
-                           :axis_labels => [[ano_a,ano_b,ano_c,ano_d,ano_e],[0,5,10,15,20,25,30,35,40]],
+                           :axis_labels => [[ano_a,ano_b,ano_c,ano_d,ano_e]],
                            :axis_range => [[0,clf_maior]],
                            :axis_with_labels => ['x', 'y']
                            )
 
-
+t=0
                           render :update do |page|
                              page.replace_html 'estatistica_classe', :partial => 'estatisticaclasse_seduc'
                           end
 
 
              end
-          else if params[:type_of].to_i == 3
+          else if params[:type_of].to_i == 3  #OPÇÃO SEDUC
               session[:todos_infantil] = 1
               session[:todos_fundamental] = 1
              ano_a=(Time.now.year)-4
@@ -491,7 +450,7 @@ t=0
              ano_d=(Time.now.year)-1
              ano_e=(Time.now.year)
 
-# ENSINO INFANTIL SEDUC
+# ENSINO INFANTIL SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC
 
              @classesIa= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8) ' ,ano_a], :group=>'nr_classe' )
              @classesIb= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8)' ,ano_b], :group=>'nr_classe' )
@@ -636,7 +595,7 @@ t=0
                        )
 
 
-# ENSINO FUNDAMENTAL SEDUC
+# ENSINO FUNDAMENTAL     SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC
 
              @classesFa= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4  OR unidades.tipo_id = 7) ' ,ano_a], :group=>'nr_classe' )
              @classesFb= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4  OR unidades.tipo_id = 7)' ,ano_b], :group=>'nr_classe' )
@@ -652,86 +611,43 @@ t=0
              @clf_cle=[0,0,0,0,0,0,0,0,0,0,0]
 
               for i in 0..(@classesFa.count-1)
-#                   mult=0
+
                    for n in 0..10
                       if @classesFa[i].nr_classe==@clf[n]
                           @clf_cla[n]=@classesFa[i].quant.to_i
-#                      else
-#                          if mult==0 and (  @classesFa[i].nr_classe=='EJA' or @classesFa[i].nr_classe=='EJA A' or
-#                                            @classesFa[i].nr_classe=='MM' or @classesFa[i].nr_classe=='MS' or
-#                                            @classesFa[i].nr_classe=='MU' or @classesFa[i].nr_classe=='MULTISSERIADA' or
-#                                            @classesFa[i].nr_classe=='MULTS' or @classesFa[i].nr_classe=='PR')
-#                              @clf_cla[7]=@clf_cla[7]+@classesFa[i].quant.to_i
-#                              mult=1
-#                          end
                       end
                    end
               end
 
               for i in 0..(@classesFb.count-1)
-#                   mult=0
+
                    for n in 0..10
                       if @classesFb[i].nr_classe==@clf[n]
                           @clf_clb[n]=@classesFb[i].quant.to_i
-#                      else
-#                          if mult==0 and (@classesFb[i].nr_classe=='BB' or @classesFb[i].nr_classe=='BM' or
-#                              @classesFb[i].nr_classe=='MM' or @classesFb[i].nr_classe=='MS' or
-#                              @classesFb[i].nr_classe=='MU' or @classesFb[i].nr_classe=='MULTISSERIADA' or
-#                              @classesFb[i].nr_classe=='MULTS' or @classesFb[i].nr_classe=='PR')
-#                              @clf_clb[7]=@clf_clb[7]+@classesIb[i].quant.to_i
-#                              mult=1
-#                          end
                       end
                    end
               end
 
               for i in 0..(@classesFc.count-1)
-#                   mult=0
                    for n in 0..10
                      if @classesFc[i].nr_classe==@clf[n]
                           @clf_clc[n]=@classesFc[i].quant.to_i
-#                      else
-#                          if mult==0 and (@classesFc[i].nr_classe=='BB' or @classesFc[i].nr_classe=='BM' or
-#                              @classesFc[i].nr_classe=='MM' or @classesFc[i].nr_classe=='MS' or
-#                              @classesFc[i].nr_classe=='MU' or @classesFc[i].nr_classe=='MULTISSERIADA' or
-#                              @classesFc[i].nr_classe=='MULTS' or @classesFc[i].nr_classe=='PR')
-#                              @cl_clc[7]=@cl_clc[7]+@classesIc[i].quant.to_i
-#                              mult=1
-#                          end
                       end
                    end
               end
 
               for i in 0..(@classesFd.count-1)
-#                   mult=0
                    for n in 0..10
                       if @classesFd[i].nr_classe==@clf[n]
                           @clf_cld[n]=@classesFd[i].quant.to_i
-#                      else
-#                          if mult==0 and (@classesFd[i].nr_classe=='BB' or @classesFd[i].nr_classe=='BM' or
-#                              @classesFd[i].nr_classe=='MM' or @classesFd[i].nr_classe=='MS' or
-#                              @classesFd[i].nr_classe=='MU' or @classesFd[i].nr_classe=='MULTISSERIADA' or
-#                              @classesFd[i].nr_classe=='MULTS' or @classesFd[i].nr_classe=='PR')
-#                              @clf_cld[7]=@clf_cld[7]+@classesFd[i].quant.to_i
-#                              mult=1
-#                          end
                       end
                    end
               end
 
               for i in 0..(@classesFe.count-1)
-#                   mult=0
                    for n in 0..10
                       if @classesFe[i].nr_classe==@clf[n]
                           @clf_cle[n]=@classesFe[i].quant.to_i
-#                      else
-#                          if mult==0 and (@classesFe[i].nr_classe=='BB' or @classesFe[i].nr_classe=='BM' or
-#                              @classesFe[i].nr_classe=='MM' or @classesFe[i].nr_classe=='MS' or
-#                              @classesFe[i].nr_classe=='MU' or @classesFe[i].nr_classe=='MULTISSERIADA' or
-#                              @classesFe[i].nr_classe=='MULTS' or @classesFe[i].nr_classe=='PR')
-#                              @clf_cle[7]=@clf_cle[7]+@classesFe[i].quant.to_i
-#                              mult=1
-#                          end
                       end
                    end
               end
