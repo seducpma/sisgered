@@ -341,7 +341,7 @@ class EstatisticasController < ApplicationController
                  @clf_clc=[0,0,0,0,0,0,0,0,0,0,0]
                  @clf_cld=[0,0,0,0,0,0,0,0,0,0,0]
                  @clf_cle=[0,0,0,0,0,0,0,0,0,0,0]
-t=0
+
                   for i in 0..(@classesFa.count-1)
 
                        for n in 0..10
@@ -404,7 +404,7 @@ t=0
                           w5=clf_maior=@clf_cle[n]
                       end
                    end
-t=0
+
               unidade= Unidade.find(params[:unidadeF]).nome
               session[:input] = params[:unidadeF]
                   ano = params[:ano_letivo]
@@ -434,7 +434,6 @@ t=0
                            :axis_with_labels => ['x', 'y']
                            )
 
-t=0
                           render :update do |page|
                              page.replace_html 'estatistica_classe', :partial => 'estatisticaclasse_seduc'
                           end
@@ -568,7 +567,6 @@ t=0
                       cl_maior=@cl_cle[n]
                   end
                end
-
               unidade= 'SEDUC'
               session[:input] = 'SEDUC'
               @graph3 = open_flash_chart_object(800,350,"/estatistica/classes_infantil?unidade=#{session[:input]}",false,'/')
@@ -594,7 +592,176 @@ t=0
                        :axis_with_labels => ['x', 'y']
                        )
 
+# grafico geral  LINES
 
+             @matriculasIa = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN matriculas  ON  matriculas.classe_id = classes.id", :select => "COUNT(*) as qt_mat, left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe ",:conditions=> ['unidades.desativada=0 AND classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5 OR unidades.tipo_id = 8) AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")'  , ano_a], :group=>'nr_classe')
+             @matriculasIb = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN matriculas  ON  matriculas.classe_id = classes.id", :select => "COUNT(*) as qt_mat, left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe ",:conditions=> ['unidades.desativada=0 AND classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5 OR unidades.tipo_id = 8) AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")'  , ano_b], :group=>'nr_classe')
+             @matriculasIc = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN matriculas  ON  matriculas.classe_id = classes.id", :select => "COUNT(*) as qt_mat, left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe ",:conditions=> ['unidades.desativada=0 AND classes.classe_ano_letivo =?  AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5 OR unidades.tipo_id = 8) AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")'  , ano_c], :group=>'nr_classe')
+             @matriculasId = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN matriculas  ON  matriculas.classe_id = classes.id", :select => "COUNT(*) as qt_mat, left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe ",:conditions=> ['unidades.desativada=0 AND classes.classe_ano_letivo =?  AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5 OR unidades.tipo_id = 8) AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")'  , ano_d], :group=>'nr_classe')
+             @matriculasIe = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN matriculas  ON  matriculas.classe_id = classes.id", :select => "COUNT(*) as qt_mat, left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe ",:conditions=> ['unidades.desativada=0 AND classes.classe_ano_letivo =?  AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5 OR unidades.tipo_id = 8) AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")'  , ano_e], :group=>'nr_classe')
+
+             @classesIa= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8) ' ,ano_a], :group=>'nr_classe' )
+             @classesIb= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8)' ,ano_b], :group=>'nr_classe' )
+             @classesIc= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8)' ,ano_c], :group=>'nr_classe' )
+             @classesId= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8)' ,ano_d], :group=>'nr_classe' )
+             @classesIe= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 2 OR unidades.tipo_id = 5  OR unidades.tipo_id = 8)' ,ano_e], :group=>'nr_classe' )
+
+t=0
+
+             @quant_matIa=[0,0,0,0,0,0,0,0]
+             @quant_matIb=[0,0,0,0,0,0,0,0]
+             @quant_matIc=[0,0,0,0,0,0,0,0]
+             @quant_matId=[0,0,0,0,0,0,0,0]
+             @quant_matIe=[0,0,0,0,0,0,0,0]
+
+             @mat=[0,0]
+              totalMat=0
+              session[:total_mat]=0
+
+
+              for i in 0..(@matriculasIa.count-1)
+                   mult=0
+                   for n in 0..6
+                      if @matriculasIa[i].nr_classe==@cl[n]
+                           @quant_matIa[n]=@matriculasIa[i].qt_mat.to_i
+                     else
+                          if mult==0 and (  @classesIa[i].nr_classe=='BB' or @classesIa[i].nr_classe=='BM' or
+                                            @classesIa[i].nr_classe=='MM' or @classesIa[i].nr_classe=='MS' or
+                                            @classesIa[i].nr_classe=='MU' or @classesIa[i].nr_classe=='MULTISSERIADA' or
+                                            @classesIa[i].nr_classe=='MULTS' or @classesIa[i].nr_classe=='PR')
+                                 if !@matriculasIa[i].nil?
+                                   @quant_matIa[7]=@quant_matIa[7]+@matriculasIa[i].qt_mat.to_i
+                                 end
+                              mult=1
+                          end
+                      end
+                   end
+              end
+
+               for i in 0..(@matriculasIb.count-1)
+                   mult=0
+                   for n in 0..6
+                      if @matriculasIb[i].nr_classe==@cl[n]
+                           @quant_matIb[n]=@matriculasIb[i].qt_mat.to_i
+                      else
+                          if mult==0 and (  @classesIb[i].nr_classe=='BB' or @classesIb[i].nr_classe=='BM' or
+                                            @classesIb[i].nr_classe=='MM' or @classesIb[i].nr_classe=='MS' or
+                                            @classesIb[i].nr_classe=='MU' or @classesIb[i].nr_classe=='MULTISSERIADA' or
+                                            @classesIb[i].nr_classe=='MULTS' or @classesIb[i].nr_classe=='PR')
+                                 if !@matriculasIb[i].nil?
+                                   @quant_matIb[7]=@quant_matIb[7]+@matriculasIb[i].qt_mat.to_i
+                                 end
+                              mult=1
+                          end
+                      end
+                   end
+              end
+
+             for i in 0..(@matriculasIc.count-1)
+                   mult=0
+                   for n in 0..6
+                      if @matriculasIc[i].nr_classe==@cl[n]
+                           @quant_matIc[n]=@matriculasIc[i].qt_mat.to_i
+                     else
+                          if mult==0 and (  @classesIc[i].nr_classe=='BB' or @classesIc[i].nr_classe=='BM' or
+                                            @classesIc[i].nr_classe=='MM' or @classesIc[i].nr_classe=='MS' or
+                                            @classesIc[i].nr_classe=='MU' or @classesIc[i].nr_classe=='MULTISSERIADA' or
+                                            @classesIc[i].nr_classe=='MULTS' or @classesIc[i].nr_classe=='PR')
+                                 if !@matriculasIc[i].nil?
+                                   @quant_matIc[7]=@quant_matIc[7]+@matriculasIc[i].qt_mat.to_i
+                                 end
+                              mult=1
+                          end
+                      end
+                   end
+              end
+
+              for i in 0..(@matriculasId.count-1)
+                   mult=0
+                   for n in 0..6
+                      if @matriculasId[i].nr_classe==@cl[n]
+                           @quant_matId[n]=@matriculasId[i].qt_mat.to_i
+                     else
+                          if mult==0 and (  @classesId[i].nr_classe=='BB' or @classesId[i].nr_classe=='BM' or
+                                            @classesId[i].nr_classe=='MM' or @classesId[i].nr_classe=='MS' or
+                                            @classesId[i].nr_classe=='MU' or @classesId[i].nr_classe=='MULTISSERIADA' or
+                                            @classesId[i].nr_classe=='MULTS' or @classesId[i].nr_classe=='PR')
+                                 if !@matriculasId[i].nil?
+                                   @quant_matId[7]=@quant_matId[7]+@matriculasId[i].qt_mat.to_i
+                                 end
+                              mult=1
+                          end
+                      end
+                   end
+              end
+
+              for i in 0..(@matriculasIe.count-1)
+                   mult=0
+                   for n in 0..6
+                      if @matriculasIe[i].nr_classe==@cl[n]
+                           @quant_matIe[n]=@matriculasIe[i].qt_mat.to_i
+                     else
+                          if mult==0 and (  @classesIe[i].nr_classe=='BB' or @classesIe[i].nr_classe=='BM' or
+                                            @classesIe[i].nr_classe=='MM' or @classesIe[i].nr_classe=='MS' or
+                                            @classesIe[i].nr_classe=='MU' or @classesIe[i].nr_classe=='MULTISSERIADA' or
+                                            @classesIe[i].nr_classe=='MULTS' or @classesIe[i].nr_classe=='PR')
+                                 if !@matriculasIe[i].nil?
+                                   @quant_matIe[7]=@quant_matIe[7]+@matriculasIe[i].qt_mat.to_i
+                                 end
+                              mult=1
+                          end
+                      end
+                   end
+              end
+
+
+
+               quant_maior=0
+               for n in 0..6
+                  if @quant_matIa[n]>quant_maior
+                      quant_maior=@quant_matIa[n]
+                  end
+                  if @quant_matIb[n]>quant_maior
+                      quant_maior=@quant_matIb[n]
+                  end
+                  if @quant_matIc[n]>quant_maior
+                      quant_maior=@quant_matIc[n]
+                  end
+                  if @quant_matIc[n]>quant_maior
+                      quant_maior=@quant_matIc[n]
+                  end
+                  if @quant_matId[n]>quant_maior
+                      quant_maior=@quant_matId[n]
+                  end
+                  if @quant_matIe[n]>quant_maior
+                      quant_maior=@quant_matIe[n]
+                  end
+               end
+
+                 @graph5 = open_flash_chart_object(800,350,"/estatistica/classes_infantil?unidade=#{session[:input]}",false,'/')
+                 @static_graph5 = Gchart.line(
+                   :data => [[@quant_matIa[0], @quant_matIb[0], @quant_matIc[0], @quant_matId[0], @quant_matIe[0]],
+                             [@quant_matIb[1], @quant_matIb[1], @quant_matIc[1], @quant_matId[1], @quant_matIe[1]],
+                             [@quant_matIa[2], @quant_matIb[2], @quant_matIc[2], @quant_matId[2], @quant_matIe[2]],
+                             [@quant_matIa[3], @quant_matIb[3], @quant_matIc[3], @quant_matId[3], @quant_matIe[3]],
+                             [@quant_matIa[4], @quant_matIb[4], @quant_matIc[4], @quant_matId[4], @quant_matIe[4]],
+                             [@quant_matIa[5], @quant_matIb[5], @quant_matIc[5], @quant_matId[5], @quant_matIe[5]],
+                             [@quant_matIa[6], @quant_matIb[6], @quant_matIc[6], @quant_matId[6], @quant_matIe[6]]],
+
+                      :title => "Nº DE MATRÍCULAS - CLASSE EDUCAÇÃO INFANTIL - #{unidade}" ,
+                       :grid_lines => ['25,6'],
+                      :size => '800x350',
+                      :format => 'image_tag',
+                      :theme => :thirty8signals,
+                      :axis_with_label => 'x,y,r,t',
+                      :legend => @cl,
+                       # :bg => {:color => 'F5F5F5', :type => 'stripes', :angle => 90},
+                       :axis_labels => [[ano_a,ano_b,ano_c,ano_d,ano_e],],
+                       :axis_range => [[0,quant_maior]],
+                       :axis_with_labels => ['x', 'y']
+                       )
+
+t=0
 # ENSINO FUNDAMENTAL     SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC SEDUC
 
              @classesFa= Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id", :select => "COUNT(*) as quant,  left( classes.classe_classe, locate( ' ', classes.classe_classe ) -1 ) AS nr_classe, classes.* ",:conditions=> ['classes.classe_ano_letivo =? AND (unidades.tipo_id = 1 OR unidades.tipo_id = 4  OR unidades.tipo_id = 7) ' ,ano_a], :group=>'nr_classe' )
