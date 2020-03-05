@@ -262,6 +262,89 @@
                      <td colspan="5" align="center" ><div class="tela"><%= @static_graph4%></div></td>
               <%end%>
     </tr>
+    <tr>
+      <td> <hr/></td>
+    </tr>
+         <tr>
+             <td valign="top">
+                 <table bgcolor="#DCDCDC" width="100%"align="center" >
+
+                       <tr bgcolor="#F5F5F5" >
+                         <td  width="18%" ><font size="2" ><b> &nbsp&nbsp&nbsp&nbsp ANO &nbsp&nbsp&nbsp&nbsp  / &nbsp&nbsp&nbsp&nbsp CLASSE&nbsp&nbsp&nbsp&nbsp </b></td>
+                           <td width="8%" align="center"> <font color =#00FF00> <b> 1ºANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#27408B> <b> 2ºANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#008B45> <b> 3ºANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#FF0000> <b> 4ºANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#A020F0> <b> 5ºANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#CF5910> <b> 6ºANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#FF00FF> <b> 7ºANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#2f4f4f> <b> 8ºANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#ff82ab> <b> 9ANO </b></font></td>
+                           <td width="8%" align="center"> <font color =#8b1a1a> <b> AEE </b></font></td>
+                           <td width="8%" align="center"> <font color =#8b8989> <b> EJA </b></font></td>
+                            <td width="10%" align="center"> <b> Total Salas </b></td>
+
+                         </tr>
+
+                     <%total1=0%>
+                       <tr bgcolor="#F5F5F5" >
+                         <td width="30%"  ><b>&nbsp&nbsp <%=(Time.now.year)-4%> </b></td>
+                         <% for cla in  @quant_matFa %>
+                           <td align="center"> <%= cla%> </td>
+                             <%total1=total1 + cla %>
+                          <%end%>
+                            <td width="10%" align="center"> <b> <%= total1%> </b></td>
+                       </tr>
+
+                    <%total2=0%>
+                        <tr bgcolor="#F5F5F5" >
+                         <td width="30%"  ><b>&nbsp&nbsp <%=(Time.now.year)-3%> </b></td>
+                         <% for clb in  @quant_matFb %>
+                              <td align="center"> <%= clb%> </td>
+                             <%total2=total2 + clb %>
+                          <%end%>
+                            <td width="10%" align="center"> <b> <%= total2%> </b></td>
+                       </tr>
+
+                    <%total3=0%>
+                       <tr bgcolor="#F5F5F5" >
+                         <td width="30%"  ><b>&nbsp&nbsp <%=(Time.now.year)-2%> </b></td>
+                         <% for clc in  @quant_matFc %>
+                           <td align="center"> <%= clc%> </td>
+                          <%total3=total3 + clc %>
+                          <%end%>
+                            <td width="10%" align="center"> <b> <%= total3%> </b></td>
+                       </tr>
+
+                   <%total4=0%>
+                       <tr bgcolor="#F5F5F5" >
+                         <td width="30%"  ><b>&nbsp&nbsp <%=(Time.now.year)-1%> </b></td>
+                         <% for cld in  @quant_matFd %>
+                           <td align="center"> <%= cld%> </td>
+                          <%total4=total4 + cld %>
+                          <%end%>
+                            <td width="10%" align="center"> <b> <%= total4%> </b></td>
+                       </tr>
+
+                  <%total5=0%>
+                       <tr bgcolor="#F5F5F5" >
+                         <td width="30%"  ><b>&nbsp&nbsp <%=(Time.now.year) %> </b></td>
+                         <% for cle in  @quant_matFe %>
+                           <td align="center"> <%= cle%> </td>
+                          <%total5=total5 + cle %>
+                          <%end%>
+                            <td width="10%" align="center"> <b> <%= total5%> </b></td>
+                       </tr>
+
+                 </table>
+             </td>
+         </tr>
+
+      <tr>
+              <% if @static_graph6.present?%>
+                     <td colspan="5" align="center" ><div class="tela"><%= @static_graph6%></div></td>
+              <%end%>
+    </tr>
    </table>
  </fieldset>
 <% todos_fundamental = 0 %>
