@@ -114,7 +114,7 @@ class MatriculasController < ApplicationController
     end
 
     def consulta_reprovados1
-       session[:classe_id]=params[:classe][:id]
+       session[:classe_matr]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0], :order =>'disciplinas.ordem ASC ' )
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
@@ -132,12 +132,12 @@ end
 
 def matricula_aluno
     @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
-   session[:classe_id]=(params[:matricula_classe_id])
+   session[:classe_matr]=(params[:matricula_classe_id])
      render :partial => 'alunos_matricular'
 end
 
 def classe_id
-    session[:classe]= params[:matricula_classe_id]
+    session[:classe_matr]= params[:matricula_classe_id]
      @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
     render :partial => 'alunos'
     t1=session[:classe]
@@ -147,36 +147,34 @@ end
 def alunos_matricula
     ###Alex 21/01/20 17:12 acrescentei na linha de baixo no :select o aluno_nome e o :order, pois não estava ordenando na hora de montar a lista para matricular e ficava fora da ordem alfabética
     @alunos=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
-    w=session[:alunosM] = Aluno.find(params[:aluno_ids], :select => 'id', :order => 'aluno_nome ASC')
-    t1=session[:classe]
-    t0=0
-    @classe = Classe.find(:all, :conditions =>['id =?', session[:classe]])
-    @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe],0], :order =>'disciplinas.ordem ASC ' )
+    session[:alunosM] = Aluno.find(params[:aluno_ids], :select => 'id', :order => 'aluno_nome ASC')
+    @classe = Classe.find(:all, :conditions =>['id =?', session[:classe_matr]])
+    @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe_matr],0], :order =>'disciplinas.ordem ASC ' )
 end
 
 def matricular_alunos
     classe_num = 0
     @alunos=session[:alunosM]
         for aluno in @alunos
-           @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=? AND status != "ABANDONO"',  session[:classe_id], Time.now.year, aluno])
+           @matricula_anterior = Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? AND aluno_id=? AND status != "ABANDONO"',  session[:classe_matr], Time.now.year, aluno])
            @alunox=Aluno.find(:all, :conditions => ['id=?', aluno.id])
           # Se não existir matricula anterior= MATRICULA O ALUNO
            if (@matricula_anterior.empty?) or (session[:matricula_transferencia]==1)
                @matricula = Matricula.new
-               @matricula.classe_id = session[:classe]
+               @matricula.classe_id = session[:classe_matr]
                w=@matricula.aluno_id = aluno.id
                @matricula.ano_letivo = Time.now.year
                @matricula.unidade_id =@alunox[0].unidade_id
                ###Alex 20/01/20 Na hora de matricular o aluno está rodando o SQL a cada aluno para achar o último na classe neste ponto só precisaria incrementar o contador.
-               classe_num = (Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? ',  session[:classe], Time.now.year ]).count)
+               classe_num = (Matricula.find(:all, :conditions => ['classe_id =? AND ano_letivo=? ',  session[:classe_matr], Time.now.year ]).count)
                @matricula.classe_num = classe_num + 1
                @matricula.save
 
                # gera as notas /faltas para o aluno
-               @atribuicaos= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', session[:classe], Time.now.year])
+               @atribuicaos= Atribuicao.find(:all,  :conditions => ['classe_id =? AND ano_letivo=?', session[:classe_matr], Time.now.year])
 
                   for atrib in @atribuicaos
-###Alex Porque mudar a session[:classe]? session[:classe]= atrib.classe_id
+###Alex Porque mudar a session[:classe_matr]? session[:classe_matr]= atrib.classe_id
                      session[:atribuicao]= atrib.id
 
                      session[:professor]= atrib.professor_id
@@ -224,6 +222,7 @@ def matricular_alunos
                                     @faltax.disciplina_id = session[:disciplina]
                                    end
                                    @faltax.ano_letivo =  Time.now.year
+                                   @faltax.classe_id = session[:classe_matr]
                                    @faltax.faltas1 = 0
                                    @faltax.aulas1 = 0
                                    @faltax.faltas2 = 0
@@ -248,9 +247,9 @@ def matricular_alunos
 
    end  #  Fim do @aluns in  @alunos
 #apresentação na tela
-@matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
-@classe = Classe.find(:all, :conditions =>['id =?', session[:classe_id]])
-@atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0], :order =>'disciplinas.ordem ASC ' )
+@matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_matr]], :order => 'classe_num ASC')
+@classe = Classe.find(:all, :conditions =>['id =?', session[:classe_matr]])
+@atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe_matr],0], :order =>'disciplinas.ordem ASC ' )
 end
     def create
         @matricula_anterior = Matricula.new(params[:matricula])
@@ -278,7 +277,7 @@ end
                 end
                 @matricula.ano_letivo = Time.now.year
                 @matricula.unidade_id= current_user.unidade_id
-###Alex Porque mudar a session[:classe]? session[:classe_id]= @matricula.classe_id
+###Alex Porque mudar a session[:classe_matr]? session[:classe_matr]= @matricula.classe_id
                 #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["atribuicaos.classe_id =? ",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
                 @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
                 if @matricula_anterior.present?
@@ -319,10 +318,10 @@ end
                             end
                         end
                         if (@matricula.status != '*REMANEJADO') and (@matricula.status != 'TRANSFERENCIA')
-                            @atribuicaos = Atribuicao.find(:all, :conditions=> ['classe_id =?',session[:classe_id]])
+                            @atribuicaos = Atribuicao.find(:all, :conditions=> ['classe_id =?',session[:classe_matr]])
                            # gera as notas /faltas para o aluno
                             for atrib in @atribuicaos
-                                session[:classe]= atrib.classe_id
+                                session[:classe_matr]= atrib.classe_id
                                 session[:atribuicao]= atrib.id
                                 session[:professor]= atrib.professor_id
                                 session[:disciplina]= atrib.disciplina_id
@@ -365,6 +364,7 @@ end
                                    if (@matricula.unidade.tipo_id == 1) or  (@matricula.unidade.tipo_id == 4)or (@matricula.unidade.tipo_id == 7)or (@matricula.unidade.tipo_id == 9)
                                     @faltax.disciplina_id = session[:disciplina]
                                    end
+                                   @faltax.classe_id = session[:classe_matr]
                                    @faltax.ano_letivo =  Time.now.year
                                    @faltax.faltas1 = 0
                                    @faltax.aulas1 = 0
@@ -381,7 +381,7 @@ end
                             end
                             flash[:notice] = 'MATRICULA SALVA COM SUCESSO'
                             if @matricula.status =="MATRICULADO"
-                                @matriculas = Matricula.find(:all, :conditions => ['classe_id =? and ano_letivo =?', session[:classe_id],Time.now.year], :order => 'classe_num ASC')
+                                @matriculas = Matricula.find(:all, :conditions => ['classe_id =? and ano_letivo =?', session[:classe_matr],Time.now.year], :order => 'classe_num ASC')
                                 session[:classe_new1]= @matriculas.last.classe.id
                                 format.html { render :action => "show_classe" }
 
@@ -584,7 +584,7 @@ end
 
     def show_classe
 
-        @matriculas = Matricula.find(:all, :conditions => ['classe_id =?', session[:classe_id]], :order => 'classe_num')
+        @matriculas = Matricula.find(:all, :conditions => ['classe_id =?', session[:classe_matr]], :order => 'classe_num')
 
 
 
