@@ -307,6 +307,7 @@ class AlunosController < ApplicationController
     def consulta_cadastro_aluno
         if session[:alunos]==1
             @alunos = Aluno.find(:all, :select => "id, aluno_nome, aluno_nascimento, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn",  :conditions => ['aluno_nome like ? ',  params[:search_prof].to_s + "%"], :order => "aluno_nome")
+            session[:aluno_cons]=params[:search_prof]
             session[:cadastro]=0
         else
             @aluno = Aluno.find(:all, :select=> "aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id ", :conditions => ['id =? ', params[:id]])

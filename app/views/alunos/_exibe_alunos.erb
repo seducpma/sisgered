@@ -8,6 +8,7 @@
 <%else%>
      <td align="left"><%= button_to 'Nova Consulta', consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>
 <%end%>
+     <td align="left">Nome consultado: |<b><%=session[:aluno_cons]%></b>|
 </tr>
 
 </table>
