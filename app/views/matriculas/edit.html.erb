@@ -13,7 +13,9 @@
               <br/>
               <table width="100%" align="center" bgcolor="#F5F5F5">
                   <%  @classes = Classe.find(:all, :conditions =>['unidade_id=?', current_user.unidade_id],:order => 'classe_classe') %>
-                  <tr> <td></td> </tr>
+                  <tr><td align="center" colspan="4"><font color="red" id="pisca1">ESTA OPÇÃO NÃO DEVE SER USADA PARA TRANSFERÊNCIAS OU REMANEJAMENTO<br/></font></td></tr>
+                  <tr><td  align="center" colspan="4"><font color="red">Para transferir ou remanejar utilize a opção [CADASTRAR] no meu principal</font></td> </tr>
+                  <tr><td colspan="4"><hr/></td></tr>
                   <%if (@matricula.status =="MATRICULADO") %>
                     <tr>
                       <td><b>Aluno: </b></td>
@@ -86,11 +88,6 @@ em relação a antiga! 27/04/2017 18:52 ###ALEX
                               </tr>
                           </table>
                         </fieldset>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                        <font color ="red"><u><b> OBS:</b></u> Para remanejar aluno utilize a opção do menu CADASTRAR / REMANEJAMENTO </font>
                     </td>
                   </tr>
             </table>
