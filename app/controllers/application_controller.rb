@@ -284,7 +284,6 @@ LETRA = {  'A'=> 'A',
            'C' => 'C',
            'D' => 'D',
            'E'=> 'E',
-           ''=> '',
         }
 SEMESTRE = {'1º Semestre'=> '1',
             '2º Semestre'=> '2',
