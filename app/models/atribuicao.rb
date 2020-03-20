@@ -4,6 +4,7 @@ class Atribuicao < ActiveRecord::Base
   belongs_to :professor
   has_many :notas
   has_many :relatorios
+  has_many :conteudos
   before_save :atribui
 
     validates_presence_of :classe_id

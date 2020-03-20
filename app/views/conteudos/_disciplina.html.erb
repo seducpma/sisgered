@@ -1,0 +1,8 @@
+<%@disciplinas1 = Disciplina.find(:all, :joins => "inner join atribuicaos on disciplinas.id = atribuicaos.disciplina_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )    %>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <b>Disciplina:</b> <%= select_tag :disciplina_id, options_for_select(@disciplinas1.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %></td>
+
+        <%= observe_field 'disciplina_id',
+                         :update => "dados_classe",
+                         :url    => { :action => 'disciplina' },
+                         :with   => 'disciplina_id' %>
