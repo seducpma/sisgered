@@ -1,0 +1,43 @@
+<h1>New conteudo</h1>
+
+<% form_for(@conteudo) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :classe_id %><br />
+    <%= f.text_field :classe_id %>
+  </p>
+  <p>
+    <%= f.label :professor_id %><br />
+    <%= f.text_field :professor_id %>
+  </p>
+  <p>
+    <%= f.label :atribuicao_id %><br />
+    <%= f.text_field :atribuicao_id %>
+  </p>
+  <p>
+    <%= f.label :conteudo %><br />
+    <%= f.text_field :conteudo %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.label :inicio %><br />
+    <%= f.date_select :inicio %>
+  </p>
+  <p>
+    <%= f.label :fim %><br />
+    <%= f.date_select :fim %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', conteudos_path %>

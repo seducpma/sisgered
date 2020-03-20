@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  classe_id: 
+  professor_id: 
+  atribuicao_id: 
+  conteudo: MyString
+  ano_letivo: 1
+  inicio: 2020-03-20
+  fim: 2020-03-20
+  obs: MyString
+
+two:
+  classe_id: 
+  professor_id: 
+  atribuicao_id: 
+  conteudo: MyString
+  ano_letivo: 1
+  inicio: 2020-03-20
+  fim: 2020-03-20
+  obs: MyString

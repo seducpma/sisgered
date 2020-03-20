@@ -1,0 +1,43 @@
+<p>
+  <b>Classe:</b>
+  <%=h @conteudo.classe_id %>
+</p>
+
+<p>
+  <b>Professor:</b>
+  <%=h @conteudo.professor_id %>
+</p>
+
+<p>
+  <b>Atribuicao:</b>
+  <%=h @conteudo.atribuicao_id %>
+</p>
+
+<p>
+  <b>Conteudo:</b>
+  <%=h @conteudo.conteudo %>
+</p>
+
+<p>
+  <b>Ano letivo:</b>
+  <%=h @conteudo.ano_letivo %>
+</p>
+
+<p>
+  <b>Inicio:</b>
+  <%=h @conteudo.inicio %>
+</p>
+
+<p>
+  <b>Fim:</b>
+  <%=h @conteudo.fim %>
+</p>
+
+<p>
+  <b>Obs:</b>
+  <%=h @conteudo.obs %>
+</p>
+
+
+<%= link_to 'Edit', edit_conteudo_path(@conteudo) %> |
+<%= link_to 'Back', conteudos_path %>

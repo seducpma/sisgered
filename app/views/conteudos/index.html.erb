@@ -1,0 +1,34 @@
+<h1>Listing conteudos</h1>
+
+<table>
+  <tr>
+    <th>Classe</th>
+    <th>Professor</th>
+    <th>Atribuicao</th>
+    <th>Conteudo</th>
+    <th>Ano letivo</th>
+    <th>Inicio</th>
+    <th>Fim</th>
+    <th>Obs</th>
+  </tr>
+
+<% @conteudos.each do |conteudo| %>
+  <tr>
+    <td><%=h conteudo.classe_id %></td>
+    <td><%=h conteudo.professor_id %></td>
+    <td><%=h conteudo.atribuicao_id %></td>
+    <td><%=h conteudo.conteudo %></td>
+    <td><%=h conteudo.ano_letivo %></td>
+    <td><%=h conteudo.inicio %></td>
+    <td><%=h conteudo.fim %></td>
+    <td><%=h conteudo.obs %></td>
+    <td><%= link_to 'Show', conteudo %></td>
+    <td><%= link_to 'Edit', edit_conteudo_path(conteudo) %></td>
+    <td><%= link_to 'Destroy', conteudo, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New conteudo', new_conteudo_path %>

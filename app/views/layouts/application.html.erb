@@ -469,7 +469,7 @@ display: none;
 
                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')or current_user.has_role?('professor_fudamental'))%>
                 <li><a class="item-primary" href="#;">LANÇAMENTOS</a>
-                       <ul style="width:108px;">
+                  <ul style="width:108px;">
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('professor_fundamental'))%>
                      <li><%= link_to "Alterações",lancamentos_notas_notas_path %></li>
                   <%end%>
@@ -482,7 +482,9 @@ display: none;
 
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
                      <li><%= link_to "Notas/Faltas",lancar_notas_notas_path %></li>
-
+                  <%end%>
+                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
+                     <li><%= link_to "Conteúdos",lancar_notas_notas_path %></li>
                   <%end%>
   <!--                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
                      <li><%= link_to "Histórico",new_nota_path %></li>
@@ -551,22 +553,7 @@ display: none;
    <div id="principal">
      <div id="conteudo">
         <%= yield  %>
-         <table>
-                               <tr>
-                               <td colspan="2" > <font size ="5" color="red"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b><u>ATENÇÃO</b></u></font><br/>
-                                   <font size ="4" > <b>Em virtude <%= link_to("Decreto Municipal2.410, de 18/03/2020", "http://www.americana.sp.gov.br/download/diarioOficial/9x36p9jylq.pdf")%>,
-                                                        A Secretaria de Educação passará a atender das 12:00 as 17:00 horas, pelo telefone 3475-9700 ou mediante agendamento individual realizado através do e-mail:<br/>
-                                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp atendimento@seducpma.com  <br/>
-                                                        Os portões parmanecerão fechados e serão liberados somente à pessoa no horário agendado, NÃO SERÃO ATENDIDAS PESSOA SEM AGENDAMENTO SOLICITADO.
-</b></font><br/>
-                                     </td>
-                              </tr>
 
-                                <tr>
-                                    <td align="center">         <%= link_to image_tag("/stylesheets/images/diario.png", :size => "150x150"), "https://docs.google.com/spreadsheets/d/1yUfkdxLCNbogrhYc9sSenVb2LRNFmtJ2t8-LZKbsVmI/edit#gid=0", :title => "Agenda Atendimento"%>     </td>
-                                  <td>         <%= link_to image_tag("/stylesheets/images/agenda.png", :size => "150x150"), "https://docs.google.com/spreadsheets/d/1yUfkdxLCNbogrhYc9sSenVb2LRNFmtJ2t8-LZKbsVmI/edit#gid=0", :title => "Agenda Atendimento"%>     </td>
-                              </tr>
-</table>
      </div>
    </div>
 
