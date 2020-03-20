@@ -5,22 +5,9 @@ class ConteudosController < ApplicationController
 
 
    def load_dados_iniciais
-#       unidade=  current_user.unidade_id
-#       if (current_user.unidade_id > 41  and  current_user.unidade_id < 52)
-#         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id > 41 AND id <52'], :order => 'nome ASC')
-#         @unidade_procedencia = Unidade.find(:all,:conditions =>['id = ?', current_user.unidade_id], :order => 'nome ASC')
-#         @disciplinas= Disciplina.find(:all, :conditions =>['curriculo != "I" and ano_letivo =? ', (Time.now.year)], :order =>'disciplina'  )
-#       else
-#         @unidade_procedencia1 = Unidade.find(:all,:conditions =>['id < 40  OR id >51'], :order => 'nome ASC')
-#         @unidade_procedencia = Unidade.find(:all, :order => 'nome ASC')
-#         @disciplinas= Disciplina.find(:all, :conditions =>['curriculo =? and ano_letivo =? ', 'I', (Time.now.year)], :order =>'disciplina'  )
-#       end
-#       @alunos2 = Aluno.find(:all, :select => 'alunos.id, alunos.aluno_nome', :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id INNER JOIN classes ON classes.id = matriculas.classe_id INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id", :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND atribuicaos.professor_id =?', current_user.unidade_id, current_user.professor_id ],:order => 'alunos.aluno_nome')       #@alunos3 = Aluno.find(:all, :joins => "INNER JOIN matriculas ON alunos.id = matriculas.aluno_id", :conditions =>['alunos.unidade_id=? AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA")  ', current_user.unidade_id],:order => 'alunos.aluno_nome')
-
 
        if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('Supervisão')
           @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
- #         @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null'],:order => 'alunos.aluno_nome ASC')
        else if current_user.has_role?('professor_infantil')
              @professor_unidade = Professor.find(:all, :conditions => ['id = ?  AND desligado = 0', (current_user.professor_id)],:order => 'nome ASC')
               else if  current_user.has_role?('direcao_infantil')   or    current_user.has_role?('secretaria_infantil') or    current_user.has_role?('pedagogo')
@@ -40,16 +27,17 @@ class ConteudosController < ApplicationController
 def classe
     w=session[:professor_id]=params[:conteudo_professor_id]
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
-
-   if @atribuicao.count > 1
-
-       render :partial => 'disciplina'
-
-   else
-       session[:cont_atribuicao_id]=@atribuicao[0].id
-       session[:cont_classe_id]= @atribuicao[0].classe_id
-       render :partial => 'dados_classe'
-   end
+    if @atribuicao.empty? or @atribuicao.nil?
+      render :partial => 'aviso'
+    else
+       if @atribuicao.count > 1
+           render :partial => 'disciplina'
+       else
+           session[:cont_atribuicao_id]=@atribuicao[0].id
+           session[:cont_classe_id]= @atribuicao[0].classe_id
+           render :partial => 'dados_classe'
+       end
+    end
   end
 
 
@@ -65,7 +53,7 @@ end
   def index
     @conteudos = Conteudo.all
 
-    respond_to do |format|
+                    respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @conteudos }
     end
