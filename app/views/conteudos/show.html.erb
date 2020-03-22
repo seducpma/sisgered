@@ -26,7 +26,7 @@
       </tr>
        <tr bgcolor="#F5F5F5">
          <td  valign="top" align="left"><b>Conteúdo:</b></td>
-         <td colspan="3"><%= @conteudo.conteudo %></td>
+         <td colspan="3"><%= @conteudo.conteudo.gsub("\n","<br/>\n") %></td>
       </tr>
        <tr bgcolor="#F5F5F5">
          <td  valign="top" align="left"><b>Obs:</b></td>

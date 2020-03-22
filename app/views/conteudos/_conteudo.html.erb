@@ -1,0 +1,75 @@
+    <%if @conteudos.present?%>
+      <!--<%session[:imprimir_todos]=1%>-->
+
+        <fieldset><legend><font  size=3><b> CONTEÚDOS LANÇADOS 
+              </b></font></legend>
+              <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                <tr bgcolor="#F5F5F5" style="border-color: white">
+                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                      <center><font size="2"> Unidade Escolar: <%=h @conteudos[0].atribuicao.classe.unidade.nome %> </i></b><br/></center>
+                      <center><font size="2"><b><u>LANÇAMENTOS DE CONTEÚDO PROGRAMÁTICOS</u></b></font></center>
+                  </td>
+                </tr>
+               </table>
+            <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+              <%cont = 0%>
+              <% for conteudo in @conteudos %>
+
+                 <tr bgcolor="#F5F5F5">
+                   <td width=8%" align="center"><b>Classe:</b></td>
+                   <td width=8% > <%=h conteudo.atribuicao.classe.classe_classe %>  - <%=h conteudo.atribuicao.classe.classe_ano_letivo %></td>
+                   <td width=10%" align="center"><b>Unidade:</b></td>
+                   <td> <%=h conteudo.atribuicao.classe.unidade.nome %></td>
+                   <td width=8%" align="center"><b>Período:</b></td>
+                   <td colspan="3"> De <%=h conteudo.inicio.strftime("%d/%m/%Y") %> à <%=h conteudo.fim.strftime("%d/%m/%Y") %>   </td>
+                </tr>
+
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Conteúdo:</b></td>
+                   <td colspan="4"> <%=   conteudo.conteudo.gsub("\n","<br/>\n") %></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Obs:</b></td>
+                   <td colspan="4"> <%=   conteudo.obs%></td>
+                </tr>
+                <tr bgcolor="#DCDCDC">
+                   <td></td>
+                   <td align="left" valign="top"><b>Professor:</b></td>
+                   <td colspan="4"> <%=   conteudo.professor.nome%></td>
+                </tr>
+                <tr bgcolor="#C1C1C1" valign="top"><td colspan="6"> &nbsp&nbsp&nbsp</td></tr>
+                <%cont = cont + 1%>
+            <%end%>
+                 <tr bgcolor="#F5F5F5">
+                   <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
+                   <td colspan="2" > <u>Professores:</u><% contP = 0%><br/>
+                                        <% for professor in @conteudos_professor %>
+                                           &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
+                                      <%end%>
+                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> professores
+
+                   </td>
+                   <td colspan="2" > <u>Classes:</u><% contC = 0%><br/>
+                                        <% for classe in @conteudos_classe %>
+                                           &nbsp&nbsp <%= contC+1%>) <%= classe.classe.classe_classe %> &nbsp - &nbsp <%= classe.classe.horario %><% contC = contC +1 %> <br/>
+                                      <%end%>
+                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contC%> classes
+                   </td>
+                 </tr>
+             </table>
+           </fieldset>
+
+
+         <%else%>
+              <br/>
+              <table  width="100%">
+                    <tr>
+                      <td align="center"><font size="3" color="red"><b> LANÇAMENTO DE CONTEÚDO NÃO ENCONTRADO </b> </td>
+                    </tr>
+              </table>
+         <%end%>
+
