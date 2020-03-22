@@ -5,7 +5,7 @@ class ConteudosController < ApplicationController
 
 
    def load_dados_iniciais
-
+ session[:usuario_id]=current_user.unidade_id
        if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('Supervisão')
           @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
        else if current_user.has_role?('professor_infantil')
@@ -215,7 +215,7 @@ t=0
             @conteudos_professor = Conteudo.find(:all, :select => "conteudos.professor_id, count( conteudos.id ) as conta",:joins => "INNER JOIN professors ON conteudos.professor_id = professors.id ", :conditions =>  ["inicio >=? AND fim <=? ", session[:dataI], session[:dataF]], :group => 'professor_id', :order => 'professors.nome ASC' )
             @conteudos_classe = Conteudo.find(:all, :select => "conteudos.classe_id, count( conteudos.id ) as conta",:joins => "INNER JOIN classes ON conteudos.classe_id = classes.id ", :conditions =>  ["inicio >=? AND fim <=? ", session[:dataI], session[:dataF]], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
         else
-            @conteudos = Conteudo.find(:all, :conditions =>  ["inicio >=? AND fim <=? AND unidade_id = ? ", session[:dataI], session[:dataF],current_user.unidade_id], :order => 'classe_id ASC')
+            @conteudos = Conteudo.find(:all, :joins =>:'classe', :conditions =>  ["inicio >=? AND fim <=? AND unidade_id = ? ", session[:dataI], session[:dataF],current_user.unidade_id], :order => 'classe_id ASC')
             @conteudos_professor = Conteudo.find(:all, :select => "conteudos.professor_id, count( conteudos.id ) as conta",:joins => "INNER JOIN professors ON conteudos.professor_id = professors.id ", :conditions =>  ["inicio >=? AND fim <=? AND unidade_id = ? ", session[:dataI], session[:dataF],current_user.unidade_id], :group => 'professor_id', :order => 'professors.nome ASC' )
             @conteudos_classe = Conteudo.find(:all, :select => "conteudos.classe_id, count( conteudos.id ) as conta",:joins => "INNER JOIN classes ON conteudos.classe_id = classes.id ", :conditions =>  ["inicio >=? AND fim <=? AND unidade_id = ? ", session[:dataI], session[:dataF],current_user.unidade_id], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
         end
