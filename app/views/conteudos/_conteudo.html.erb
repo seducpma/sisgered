@@ -39,7 +39,7 @@
                 <tr bgcolor="#DCDCDC">
                    <td></td>
                    <td align="left" valign="top"><b>Professor:</b></td>
-                   <td colspan="4"> <%=   conteudo.professor.nome%></td>
+                   <td colspan="4"> <%=   conteudo.professor.nome%> - ??</td>
                 </tr>
                 <tr bgcolor="#C1C1C1" valign="top"><td colspan="6"> &nbsp&nbsp&nbsp</td></tr>
                 <%cont = cont + 1%>
@@ -50,14 +50,14 @@
                                         <% for professor in @conteudos_professor %>
                                            &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
                                       <%end%>
-                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> professores
+                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> professor <%else%> professores  <%end%>
 
                    </td>
                    <td colspan="2" > <u>Classes:</u><% contC = 0%><br/>
                                         <% for classe in @conteudos_classe %>
                                            &nbsp&nbsp <%= contC+1%>) <%= classe.classe.classe_classe %> &nbsp - &nbsp <%= classe.classe.horario %><% contC = contC +1 %> <br/>
                                       <%end%>
-                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contC%> classes
+                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contC%> <% if contC == 1%> Classe <%else%> classes  <%end%>
                    </td>
                  </tr>
              </table>

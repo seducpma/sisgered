@@ -1,0 +1,14 @@
+<table width="100%" align="center">
+   <tr>
+     <td  align="right"><font size="2"><b>Unidade:</b></font>
+          &nbsp&nbsp&nbsp<%= select_tag :unidade_cont, options_for_select(@unidades.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar--')) %>
+          &nbsp&nbsp&nbsp <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+
+     </td>
+     <td>
+       
+     </td>
+
+   </tr>
+  </table>
+
