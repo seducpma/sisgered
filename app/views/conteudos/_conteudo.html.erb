@@ -18,8 +18,8 @@
               <% for conteudo in @conteudos %>
 
                  <tr bgcolor="#F5F5F5">
-                   <td width=8%" align="center"><b>Classe:</b></td>
-                   <td width=8% > <%=h conteudo.atribuicao.classe.classe_classe %>  - <%=h conteudo.atribuicao.classe.classe_ano_letivo %></td>
+                   <td width=5%" align="center"><b>Classe:</b></td>
+                   <td width=10% > <%=h conteudo.atribuicao.classe.classe_classe %>  - <%=h conteudo.atribuicao.classe.classe_ano_letivo %></td>
                    <td width=10%" align="center"><b>Unidade:</b></td>
                    <td> <%=h conteudo.atribuicao.classe.unidade.nome %></td>
                    <td width=8%" align="center"><b>Período:</b></td>
@@ -39,7 +39,7 @@
                 <tr bgcolor="#DCDCDC">
                    <td></td>
                    <td align="left" valign="top"><b>Professor:</b></td>
-                   <td colspan="4"> <%=   conteudo.professor.nome%> - ??</td>
+                   <td colspan="4"> <%=   conteudo.professor.nome%> &nbsp - &nbsp <%=  conteudo.atribuicao.disciplina.disciplina %></td>
                 </tr>
                 <tr bgcolor="#C1C1C1" valign="top"><td colspan="6"> &nbsp&nbsp&nbsp</td></tr>
                 <%cont = cont + 1%>
