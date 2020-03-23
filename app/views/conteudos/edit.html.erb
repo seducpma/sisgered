@@ -1,44 +1,86 @@
-<h1>Editing conteudo</h1>
 
-<% form_for(@conteudo) do |f| %>
-  <%= f.error_messages %>
 
-  <p>
-    <%= f.label :classe_id %><br />
-    <%= f.text_field :classe_id %>
-  </p>
-  <p>
-    <%= f.label :professor_id %><br />
-    <%= f.text_field :professor_id %>
-  </p>
-  <p>
-    <%= f.label :atribuicao_id %><br />
-    <%= f.text_field :atribuicao_id %>
-  </p>
-  <p>
-    <%= f.label :conteudo %><br />
-    <%= f.text_field :conteudo %>
-  </p>
-  <p>
-    <%= f.label :ano_letivo %><br />
-    <%= f.text_field :ano_letivo %>
-  </p>
-  <p>
-    <%= f.label :inicio %><br />
-    <%= f.date_select :inicio %>
-  </p>
-  <p>
-    <%= f.label :fim %><br />
-    <%= f.date_select :fim %>
-  </p>
-  <p>
-    <%= f.label :obs %><br />
-    <%= f.text_field :obs %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANCAMENTOS DE CONTEÚDOS MINISTRADOS</strong></font><br/>
+ </div>
+      <div class="tabs">
 
-<%= link_to 'Show', @conteudo %> |
-<%= link_to 'Back', conteudos_path %>
+          <% form_for (@conteudo) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4"><b>LANÇAMENTO DE CONTEÚDO </b></td>
+                  </tr>
+
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><b>Período referente  &nbsp&nbsp&nbsp De: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
+               &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
+             </td>
+
+        </tr>
+                <tr bgcolor="#F5F5F5">
+                   <td width =" 5%"><b>Professor(a):</b></td>
+                   <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                      <%= observe_field 'conteudo_professor_id',
+                         :update => "dados_classe",
+                         :url    => { :action => 'classe' },
+                         :with   => 'conteudo_professor_id' %>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="disciplina"> </div></td>
+                </tr
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="dados_classe"></div></td>
+                </tr >
+                 <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Conteúdo:</b></td>
+                  <td colspan="5">
+
+
+
+  <%= f.text_area(:conteudo, :cols=> "86", :rows=>"10", :id=>"contador") %><br/>
+<script>
+        $(document).on("keydown", "#contador", function () {
+            var caracteresRestantes = 2000  ;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+            $(".caracteres").text(caracteresRestantes);
+
+        });
+
+</script>
+  <b><span class="caracteres">2000</span> Caracteres Restantes </b>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> Para digitar o conteúdo ministrado utIlize SOMENTE texto sem qualquer tipo formação. <br/>
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp >>  UTLIZE SOMENTE TEXTO  <<   </b>
+
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+</div>
+

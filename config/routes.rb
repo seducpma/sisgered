@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :conteudos, :collection => { :consultas=>:get}
+  map.resources :conteudos, :collection => { :consultas=>:get, :editar=>:get}
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
   map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
   map.resources :funcionarios, :collection => { :consulta=>:get}
@@ -141,6 +141,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editar_transferencia_aluno '/editar_transferencia_aluno', :controller => 'transferencias', :action => 'editar_transferencia_aluno'
   map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'
   map.editar_atribuicao_classe '/editar_atribuicao_classe', :controller => 'atribuicaos', :action => 'editar_atribuicao_classe'
+  map.editar_conteudo '/editar_conteudo', :controller => 'conteudos', :action => 'editar_conteudo'
   map.show_editar '/show_editar', :controller => 'atribuicaos', :action => 'show_editar'
   map.new2_obs_notas '/new2_obs_notas', :controller => 'observacao_notas', :action => 'new2'
 
