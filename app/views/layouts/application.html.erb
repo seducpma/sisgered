@@ -394,6 +394,9 @@ display: none;
                         <li><%= link_to "Conteúdo Lançados",editar_conteudos_path %></li>
                    <%end%>
 
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                        <li><%= link_to "Editar Faltas Inf.",lancar_faltas_editar_faltas_path %></li>
+                        <%end%>
 
 
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
@@ -482,10 +485,8 @@ display: none;
                      <li><%= link_to "Alterações",lancamentos_notas_notas_path %></li>
                   <%end%>
                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
-                     <li><%= link_to "Faltas",lancar_faltas_inf_faltas_path %></li>
-                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                        <li><%= link_to "Editar",lancar_faltas_editar_faltas_path %></li>
-                        <%end%>
+                     <li><%= link_to "Faltas Inf.",lancar_faltas_inf_faltas_path %></li>
+                     <li><%= link_to "Conteúdo Inf.",new_conteudo_path %></li>
                  <%end%>
 
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
@@ -493,7 +494,7 @@ display: none;
 
                   <%end%>
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
-                     <li><%= link_to "Conteúdo",new_conteudo_path %></li>
+                     <li><%= link_to "Conteúdo Fund.",new_conteudo_path %></li>
 
                   <%end%>
 

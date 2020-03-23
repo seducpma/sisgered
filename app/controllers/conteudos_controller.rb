@@ -107,7 +107,7 @@ end
     @conteudo.disciplina_id= session[:cont_disciplina_id]
     @conteudo.classe_id= session[:cont_classe_id]
     @conteudo.atribuicao_id= session[:cont_atribuicao_id]
-    @conteudo.atribuicao_id.ano_letivo =  Time.now.year
+    @conteudo.ano_letivo =  Time.now.year
     respond_to do |format|
       if @conteudo.save
         flash[:notice] = 'Conteudo was successfully created.'

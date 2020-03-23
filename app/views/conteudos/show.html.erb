@@ -11,14 +11,20 @@
        <tr bgcolor="#F5F5F5">
          <td align="left"><b>Classe:</b></td>
          <td><%=h @conteudo.classe.classe_classe %></td>
-         <td width ="5%"><b>Disciplina:</b></td>
-         <td> <%=h @conteudo.disciplina.disciplina%>  </td>
+
+         <% if !@conteudo.disciplina.nil? %>
+            <td width ="5%"><b>Disciplina:</b></td>
+             <td> <%=h @conteudo.disciplina.disciplina%>  </td>
+         <%else%>
+             <td></td>
+             <td></td>
+         <%end%>
       </tr>
        <tr bgcolor="#F5F5F5">
          <td  align="left"><b>Unidade:</b></td>
          <td><%=h @conteudo.classe.unidade.nome %></td>
-         <td width ="10%"> <b>Ano Letivo:</b></td>
-         <td><%=h @conteudo.ano_letivo %></td>
+         <td width ="16%"> <b>Ano Letivo:</b></td>
+         <td width ="16%"><%=h @conteudo.ano_letivo %></td>
       </tr>
        <tr bgcolor="#F5F5F5">
          <td ><b>Período</b> </td>
