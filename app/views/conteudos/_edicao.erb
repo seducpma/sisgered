@@ -1,4 +1,4 @@
-
+<% if !@conteudos.empty? %>
  <table border="1" cellspacing="0" cellpadding="1" width="100%" >
         <tr bgcolor="#DCDCDC" >
             <td width =" 8%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
@@ -19,3 +19,12 @@
          </tr>
          <%end%>
     </table>
+<%else%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td ><br/><font size="4" color="red"> NÃO EXISTE LANÇAMENTOS PARA ESTA CLASSE <br/></td>
+
+        </tr>
+    </table>
+<
+<%end%>

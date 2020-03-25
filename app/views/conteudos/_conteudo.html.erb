@@ -21,18 +21,18 @@
                    <td width=5%" align="center"><b>Classe:</b></td>
                    <td width=10% > <%=h conteudo.atribuicao.classe.classe_classe %>  - <%=h conteudo.atribuicao.classe.classe_ano_letivo %></td>
                    <td width=10%" align="center"><b>Unidade:</b></td>
-                   <td> <%=h conteudo.atribuicao.classe.unidade.nome %></td>
+                   <td width=20%> <%=h conteudo.atribuicao.classe.unidade.nome %></td>
                    <td width=8%" align="center"><b>Período:</b></td>
                    <td colspan="3"> De <%=h conteudo.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
                                                                                          <% if (session[:dataF].to_date < conteudo.fim) or  (session[:dataF].to_date != conteudo.fim)%>
                                                                                                <% if (session[:dataFF] != conteudo.fim)%>
-                                                                                                      <font color ="red"><%=h conteudo.fim.strftime("%d/%m/%Y") %>(ATENÇÃO data final diferente)</font>
+                                                                                                    <font color ="red"><%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
                                                                                                <%else%>
-                                                                                                      <font color ="red"> <%=h conteudo.fim.strftime("%d/%m/%Y") %>(ATENÇÃO data final diferente)</font>
+                                                                                                      <font color ="red"> <%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
                                                                                                <%end%>
 
                                                                                           <%else%>
-                                                                                               <%=h conteudo.fim.strftime("%d/%m/%Y") %>
+                                                                                               <%=h conteudo.fim.strftime("%d/%m/%Y") %> 
                                                                                           <%end%>
                                                                                      <%else%>
                                                                                           <%=h conteudo.fim.strftime("%d/%m/%Y") %>
