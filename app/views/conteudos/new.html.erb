@@ -49,7 +49,7 @@
   <%= f.text_area(:conteudo, :cols=> "86", :rows=>"10", :id=>"contador") %><br/>
 <script>
         $(document).on("keydown", "#contador", function () {
-            var caracteresRestantes = 2000  ;
+            var caracteresRestantes = 5000  ;
             var caracteresDigitados = parseInt($(this).val().length);
             var caracteresRestantes = caracteresRestantes - caracteresDigitados;
 
@@ -58,7 +58,7 @@
         });
 
 </script>
-  <b><span class="caracteres">2000</span> Caracteres Restantes </b>
+  <b><span class="caracteres">5000</span> Caracteres Restantes </b>
                   </td>
                 </tr>
                 <tr>
