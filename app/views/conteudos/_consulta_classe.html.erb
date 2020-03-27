@@ -1,11 +1,18 @@
-
-<table width="100%" align="center" >
+<table width="100%"   >
    <tr>
      <td  widht="10%" align="right"><font size="2"><b>Classe:</b></font>
-          &nbsp&nbsp&nbsp<%= select_tag :classe_id, options_for_select(@classe_ano.collect { |ff| [ff.classe_unidade, ff.id] }.insert(0, '--Selecionar--')) %>
-          &nbsp&nbsp&nbsp <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+          <%= select_tag :classe_id, options_for_select(@classe_ano.collect { |ff| [ff.classe_unidade, ff.id] }.insert(0, '--Selecionar--')) %>
+                            <%= observe_field 'classe_id',
+                          :with => :classe_id,
+                          :url => { :action => 'classe_disciplina' },
+                          :update => "classe_disciplina" %>
+    </td>
+     <td  widht="60%" align="right"><div id="classe_disciplina"> <b>Disciplina:</b><font color="red">&nbsp&nbsp&nbsp&nbsp<b></u>&nbsp Selecionar  primeiro a classe </b></font> </div></td>
+
+          <td> <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
 
      </td>
+
 
 
    </tr>
