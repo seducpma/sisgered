@@ -14,9 +14,9 @@
 
          <tr>
            <td colspan="3">
-               <% if (current_user.unidade.tipo.id == 2)or (current_user.unidade.tipo.id == 5) or (current_user.unidade.tipo.id == 8) %>
+               <% if (current_user.unidade.tipo.id == 2)or (current_user.unidade.tipo.id == 5) or (current_user.unidade.tipo.id == 8 or current_user.has_role?('admin')) %>
                  <b>Classe: </b><%= select_tag :num, options_for_select(NUMI).sort %><%= select_tag :letra, options_for_select(LETRA).sort %>
-               <%else if (current_user.unidade.tipo.id == 1)or (current_user.unidade.tipo.id == 4) or (current_user.unidade.tipo.id ==7) %>
+               <%else if (current_user.unidade.tipo.id == 1)or (current_user.unidade.tipo.id == 4) or (current_user.unidade.tipo.id ==7 or current_user.has_role?('admin') ) %>
                          <b>Classe: </b><%= select_tag :num, options_for_select(AulasFalta::NUM).sort %><%= select_tag :letra, options_for_select(AulasFalta::LETRA).sort %>
                      <%end%>
                <%end%>

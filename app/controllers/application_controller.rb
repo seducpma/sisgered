@@ -264,6 +264,7 @@ NUM = { '  1'=> '1',
         }
 
 NUMI = {  '--Selecionar--'=>'',
+       'AEE'=> 'AEE',
        'BI'=> 'BI',
        'BII'=> 'BII',
        'MI'=> 'MI',

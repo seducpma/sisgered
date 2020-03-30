@@ -8,7 +8,7 @@
                   <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
                   <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                       <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
-                      <center><font size="2"> Unidade Escolar: <%=h @conteudos[0].atribuicao.classe.unidade.nome %> </i></b><br/></center>
+                      <%if !@conteudos[0].atribuicao_id.nil?%><center><font size="2"> Unidade Escolar: <%=h @conteudos[0].atribuicao.classe.unidade.nome %> </i></b><br/></center><%end%>
                       <center><font size="2"><b><u>LANÇAMENTOS DE CONTEÚDO PROGRAMÁTICOS</u></b></font></center>
                   </td>
                 </tr>
@@ -18,26 +18,50 @@
               <% for conteudo in @conteudos %>
 
                  <tr bgcolor="#F5F5F5">
-                   <td width=5%" align="center"><b>Classe:</b></td>
-                   <td width=10% > <%=h conteudo.atribuicao.classe.classe_classe %>  - <%=h conteudo.atribuicao.classe.classe_ano_letivo %></td>
-                   <td width=10%" align="center"><b>Unidade:</b></td>
-                   <td width=20%> <%=h conteudo.atribuicao.classe.unidade.nome %></td>
-                   <td width=8%" align="center"><b>Período:</b></td>
-                   <td colspan="3"> De <%=h conteudo.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
-                                                                                         <% if (session[:dataF].to_date < conteudo.fim) or  (session[:dataF].to_date != conteudo.fim)%>
-                                                                                               <% if (session[:dataFF] != conteudo.fim)%>
-                                                                                                    <font color ="red"><%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
-                                                                                               <%else%>
-                                                                                                      <font color ="red"> <%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
-                                                                                               <%end%>
+                   <%if !@conteudos[0].atribuicao_id.nil?%>
+                       <td width=5%" align="center"><b>Classe:</b></td>
+                       <td width=10% > <%=h conteudo.atribuicao.classe.classe_classe %>  - <%=h conteudo.atribuicao.classe.classe_ano_letivo %></td>
+                       <td width=10%" align="center"><b>Unidade:</b></td>
+                       <td width=20%> <%=h conteudo.atribuicao.classe.unidade.nome %></td>
+                       <td width=8%" align="center"><b>Período:</b></td>
+                       <td colspan="3"> De <%=h conteudo.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
+                                                                                             <% if (session[:dataF].to_date < conteudo.fim) or  (session[:dataF].to_date != conteudo.fim)%>
+                                                                                                   <% if (session[:dataFF] != conteudo.fim)%>
+                                                                                                        <font color ="red"><%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
+                                                                                                   <%else%>
+                                                                                                          <font color ="red"> <%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
+                                                                                                   <%end%>
 
-                                                                                          <%else%>
-                                                                                               <%=h conteudo.fim.strftime("%d/%m/%Y") %> 
-                                                                                          <%end%>
-                                                                                     <%else%>
-                                                                                          <%=h conteudo.fim.strftime("%d/%m/%Y") %>
-                                                                                     <%end%>
-                   </td>
+                                                                                              <%else%>
+                                                                                                   <%=h conteudo.fim.strftime("%d/%m/%Y") %>
+                                                                                              <%end%>
+                                                                                         <%else%>
+                                                                                              <%=h conteudo.fim.strftime("%d/%m/%Y") %>
+                                                                                         <%end%>
+                       </td>
+
+                   <%else%>
+                       <td width=5%" align="center"><b>Classe:</b></td>
+                       <td width=10%  align="center"> ----- </td>
+                       <td width=10%" align="center"><b>Unidade:</b></td>
+                       <td width=20%> <%=h conteudo.professor.nome %></td>
+                       <td width=8%" align="center"><b>Período:</b></td>
+                       <td colspan="3"> De <%=h conteudo.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
+                                                                                             <% if (session[:dataF].to_date < conteudo.fim) or  (session[:dataF].to_date != conteudo.fim)%>
+                                                                                                   <% if (session[:dataFF] != conteudo.fim)%>
+                                                                                                        <font color ="red"><%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
+                                                                                                   <%else%>
+                                                                                                          <font color ="red"> <%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
+                                                                                                   <%end%>
+
+                                                                                              <%else%>
+                                                                                                   <%=h conteudo.fim.strftime("%d/%m/%Y") %>
+                                                                                              <%end%>
+                                                                                         <%else%>
+                                                                                              <%=h conteudo.fim.strftime("%d/%m/%Y") %>
+                                                                                         <%end%>
+                       </td>
+                  <%end%>
                 </tr>
 
                  <tr bgcolor="#F5F5F5">
@@ -53,27 +77,48 @@
                 <tr bgcolor="#DCDCDC">
                    <td></td>
                    <td align="left" valign="top"><b>Professor:</b></td>
-                   <td colspan="4"> <%=   conteudo.professor.nome%> &nbsp - &nbsp <%=  conteudo.atribuicao.disciplina.disciplina %></td>
+                   <td colspan="4"> <%=   conteudo.professor.nome%> &nbsp - &nbsp <%if !@conteudos[0].atribuicao_id.nil?%>
+                                                                                         <%=  conteudo.atribuicao.disciplina.disciplina %>
+                                                                                   <%else%>
+                                                                                            <%=  conteudo.professor.funcao2 %>
+                                                                                   <%end%>
+                   </td>
                 </tr>
                 <tr bgcolor="#C1C1C1" valign="top"><td colspan="6"> &nbsp&nbsp&nbsp</td></tr>
                 <%cont = cont + 1%>
             <%end%>
-                 <tr bgcolor="#F5F5F5">
-                   <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
-                   <td colspan="2" > <u>Professores:</u><% contP = 0%><br/>
-                                        <% for professor in @conteudos_professor %>
-                                           &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
-                                      <%end%>
-                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> professor <%else%> professores  <%end%>
+                 <%if !@conteudos[0].atribuicao_id.nil?%>
+                     <tr bgcolor="#F5F5F5">
+                       <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
+                       <td colspan="2" > <u>Professores:</u><% contP = 0%><br/>
+                                            <% for professor in @conteudos_professor %>
+                                               &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
+                                          <%end%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> professor <%else%> professores  <%end%>
 
-                   </td>
-                   <td colspan="2" > <u>Classes:</u><% contC = 0%><br/>
-                                        <% for classe in @conteudos_classe %>
-                                           &nbsp&nbsp <%= contC+1%>) <%= classe.classe.classe_classe %> &nbsp - &nbsp <%= classe.classe.horario %><% contC = contC +1 %> <br/>
-                                      <%end%>
-                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contC%> <% if contC == 1%> Classe <%else%> classes  <%end%>
-                   </td>
-                 </tr>
+                       </td>
+
+                       <td colspan="2" valign="top" > <u>Classes:</u><% contC = 0%><br/>
+                                            <% for classe in @conteudos_classe %>
+                                               &nbsp&nbsp <%= contC+1%>) <%= classe.classe.classe_classe %> &nbsp - &nbsp <%= classe.classe.horario %><% contC = contC +1 %> <br/>
+                                          <%end%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contC%> <% if contC == 1%> Classe <%else%> classes  <%end%>
+                       </td>
+                     </tr>
+                 <%else%>
+                    <tr bgcolor="#F5F5F5">
+                       <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
+                       <td colspan="4" > <% contP = 0%>
+                                            <% for professor in @conteudos_professor %>
+                                               &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
+                                          <%end%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> profissional <%else%> profissionais  <%end%>
+
+                       </td>
+
+                     </tr>
+
+                 <%end%>
              </table>
            </fieldset>
 
