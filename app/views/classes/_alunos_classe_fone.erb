@@ -36,7 +36,7 @@
         <td align="left"> <% if matricula.aluno.aluno_responsavel.nil? or  matricula.aluno.aluno_responsavel =='' %>
                               <%= truncate(matricula.aluno.aluno_mae,:length => 26,:omission => "...") %>
                           <%else%>
-                              <%= truncate(matricula.aluno.aluno_responsave,:length => 26,:omission => "...") %>
+                              <%= truncate(matricula.aluno.aluno_responsavel,:length => 26,:omission => "...") %>
                           <%end%>
         </td>
         <td align="left">  <%="#{ matricula.aluno.aluno_fone_cel}"%>  </td>

@@ -5,7 +5,9 @@ class ConteudosController < ApplicationController
    def load_dados_iniciais
      session[:cont_usuario_user_id]=current_user.unidade_id
      session[:cont_professor_user_id]=current_user.professor_id
-       if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')
+       if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')
+          @pedagogos = Professor.find(:all, :conditions => ['desligado = 0 AND (funcao2="PEDAGOGO" OR funcao2="PROF. COORDENADOR" or funcao2="DIRETOR ED. BÁSICA")'],:order => 'nome ASC')
+          t=0
           @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
           @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC')
           @unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 1 or tipo_id = 2 or tipo_id = 3 or tipo_id = 4 or  tipo_id = 5  or tipo_id = 7 or tipo_id = 8)'  ], :order => 'nome ASC')
@@ -14,6 +16,7 @@ class ConteudosController < ApplicationController
              @classe_ano = Classe.find(:all, :select  ,:select => "distinct(classes.id), (classe_classe)  as classe_unidade", :joins => "INNER JOIN  atribuicaos  ON  classes.id = atribuicaos.classe_id", :conditions => ['classes.classe_ano_letivo = ? AND atribuicaos.professor_id = ?' , Time.now.year,current_user.professor_id ], :order => 'classes.classe_classe ASC')
              @unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 2 or  tipo_id = 5  or tipo_id = 8)'  ], :order => 'nome ASC')
               else if  current_user.has_role?('direcao_infantil')   or    current_user.has_role?('secretaria_infantil') or    current_user.has_role?('pedagogo')
+                  @pedagogos = Professor.find(:all, :conditions => ['desligado = 0 AND (funcao2="PEDAGOGO" OR funcao2="PROF. COORDENADOR" or funcao2="DIRETOR ED. BÁSICA")'],:order => 'nome ASC')
                    @professor_unidade = Professor.find(:all, :conditions => ['unidade_id = ?  AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
                    @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND unidades.id = ?' , Time.now.year,current_user.unidade_id ], :order => 'classes.classe_classe ASC')
                    @unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 2 or  tipo_id = 5  or tipo_id = 8)'  ], :order => 'nome ASC')
@@ -24,8 +27,7 @@ class ConteudosController < ApplicationController
                          @unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 1 or  tipo_id = 4 or tipo_id = 7 or tipo_id = 8)'  ], :order => 'nome ASC')
                          t=0
                           else if  current_user.has_role?('direcao_fundamental')   or    current_user.has_role?('secretaria_fundamental') or    current_user.has_role?('pedagogo')
-
-
+                               @pedagogos = Professor.find(:all, :conditions => ['desligado = 0 AND (funcao2="PEDAGOGO" OR funcao2="PROF. COORDENADOR" or funcao2="DIRETOR ED. BÁSICA")'],:order => 'nome ASC')
                                @professor_unidade = Professor.find(:all, :conditions => ['unidade_id = ?  AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
                                 @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND unidades.id = ?' , Time.now.year,current_user.unidade_id ], :order => 'classes.classe_classe ASC')
                                 @unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)'  ], :order => 'nome ASC')
@@ -54,6 +56,16 @@ def classe
     end
   end
 
+
+def atividade_direcao
+      session[:professor_id] = params[:conteudo_professor_id]
+    @professor = Professor.find(:all, :conditions => ["id = ? AND desligado = 0", session[:professor_id]])
+    if @professor.empty? or @professor.nil?
+      render :partial => 'aviso2'
+    else
+            render :partial => 'atividade_direcao'
+     end
+end
 
 def disciplina
  w=session[:cont_disciplina_id] =  params[:disciplina_id]
@@ -85,11 +97,28 @@ end
     end
   end
 
+
+   def show_direcao
+     w= session[:new_id]
+     t=0
+    @conteudo = Conteudo.find(:all, :conditions => ["id = ?", session[:new_id]])
+                              t=0
+
+  end
+
   # GET /conteudos/new
   # GET /conteudos/new.xml
   def new
     @conteudo = Conteudo.new
 
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @conteudo }
+    end
+  end
+ def new_direcao
+    @conteudo = Conteudo.new
+    session[:new_direcao]=1
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @conteudo }
@@ -120,9 +149,16 @@ end
     @conteudo.ano_letivo =  Time.now.year
     respond_to do |format|
       if @conteudo.save
-        flash[:notice] = 'Conteudo was successfully created.'
-        format.html { redirect_to(@conteudo) }
-        format.xml  { render :xml => @conteudo, :status => :created, :location => @conteudo }
+        w0=session[:new_id]=@conteudo.id
+        flash[:notice] = 'Salvo com sucesso.'
+        if session[:new_direcao]==1
+           session[:new_direcao]=0
+           format.html { redirect_to(show_direcao_path) }
+        else
+           format.html { redirect_to(@conteudo) }
+           format.xml  { render :xml => @conteudo, :status => :created, :location => @conteudo }
+
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @conteudo.errors, :status => :unprocessable_entity }

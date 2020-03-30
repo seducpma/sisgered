@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :conteudos, :collection => { :consultas=>:get, :editar=>:get}
+  map.resources :conteudos, :collection => { :consultas=>:get, :editar=>:get, :new_direcao => :get}
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
   map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
   map.resources :funcionarios, :collection => { :consulta=>:get}
@@ -205,6 +205,7 @@ ActionController::Routing::Routes.draw do |map|
   map.relatorios_eventuals'/relatorios_eventuals', :controller => 'aulas_eventuals', :action => 'relatorios_eventuals'
 
   map.historico_aviso '/historico_aviso', :controller => 'notas', :action => 'aviso'
+  map.show_direcao '/show_direcao', :controller => 'conteudos', :action => 'show_direcao'
 
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
   map.matriculas_saidas '/matriculas_saidas', :controller => 'matriculas', :action => 'matriculas_saidas'
