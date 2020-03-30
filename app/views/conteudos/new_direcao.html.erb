@@ -1,0 +1,82 @@
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANCAMENTOS ATIVIDADES PEDAGÓGICAS / ADMINISTRATIVAS</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+          <% form_for (@conteudo) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4"><b>LANÇAMENTO </b></td>
+                  </tr>
+
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><b>Período referente  &nbsp&nbsp&nbsp De: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
+               &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
+             </td>
+
+        </tr>
+                <tr bgcolor="#F5F5F5">
+                   <td width =" 5%"><b>Nome:</b></td>
+                   <td><%= f.collection_select  :professor_id, @pedagogos, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                      <%= observe_field 'conteudo_professor_id',
+                         :update => "dados",
+                         :url    => { :action => 'atividade_direcao' },
+                         :with   => 'conteudo_professor_id' %>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="dados"></div></td>
+                </tr >
+                 <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Atividades:</b></td>
+                  <td colspan="5">
+
+
+
+  <%= f.text_area(:conteudo, :cols=> "86", :rows=>"20", :id=>"contador") %><br/>
+<script>
+        $(document).on("keydown", "#contador", function () {
+            var caracteresRestantes = 5000  ;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+            $(".caracteres").text(caracteresRestantes);
+
+        });
+
+</script>
+  <b><span class="caracteres">5000</span> Caracteres Restantes </b>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> Para digitar o conteúdo ministrado utilize SOMENTE texto sem qualquer tipo formação. <br/>
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp >>  UTILIZE SOMENTE TEXTO  <<   </b>
+
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+</div>
+
+

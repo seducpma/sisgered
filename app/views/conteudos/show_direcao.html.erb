@@ -1,0 +1,47 @@
+<div id="interno3">
+<% title "RELATORIO" %>
+<div class ="tabs">
+   <fieldset><legend><font  size=3><b>ATIVIDADE LANÇADA</b></font></legend>
+    <table width="100%">
+       <tr bgcolor="#F5F5F5">
+         <td width=5%" align="left" valign="top"><b>Nome:</b></td>
+         <td colspan="3"><%=h @conteudo.professor.nome %></td>
+
+       </tr>
+       <tr bgcolor="#F5F5F5">
+         <td align="left"><b>Função:</b></td>
+         <td><%=h @conteudo.professor.funcao%></td>
+         <td  align="left"><b>Unidade:</b></td>
+         <td><%=h @conteudo.classe.unidade.nome %></td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td ><b>Período</b> </td>
+         <td colspan="3">  De <%=h @conteudo.inicio.strftime("%d/%m/%Y")%> à  <%=h @conteudo.fim.strftime("%d/%m/%Y")%>  </td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td  valign="top" align="left"><b>Atividade:</b></td>
+         <td colspan="3"><%= @conteudo.conteudo.gsub("\n","<br/>\n") %></td>
+      </tr>
+       <tr bgcolor="#F5F5F5">
+         <td  valign="top" align="left"><b>Obs:</b></td>
+         <td colspan="3"><%= @conteudo.obs %></td>
+      </tr>
+
+  </table>
+</fieldset>
+  <table width="100%" >
+         <tr>
+            <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+             <td colspan="10"align="left" ><%#= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>@relatorio}, :title => "Imprimir esta FAPEA"%></b></td>
+               </tr>
+
+
+         <br/>
+  </table>
+
+
+
+</div>
+<br/>
+</div>
+
