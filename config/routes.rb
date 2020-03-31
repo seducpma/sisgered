@@ -142,6 +142,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'
   map.editar_atribuicao_classe '/editar_atribuicao_classe', :controller => 'atribuicaos', :action => 'editar_atribuicao_classe'
   map.editar_conteudo '/editar_conteudo', :controller => 'conteudos', :action => 'editar_conteudo'
+  map.editar_direcao_conteudo '/editar_direcao_conteudo', :controller => 'conteudos', :action => 'editar_direcao_conteudo'
   map.show_editar '/show_editar', :controller => 'atribuicaos', :action => 'show_editar'
   map.new2_obs_notas '/new2_obs_notas', :controller => 'observacao_notas', :action => 'new2'
 
