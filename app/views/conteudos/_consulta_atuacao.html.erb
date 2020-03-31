@@ -1,7 +1,7 @@
 <table width="100%"  >
    <tr>
      <td   align="right"><font size="2"><b>Atuação:</b></font>
-          <%= select_tag :atuacao, options_for_select(["PEDADOGO", "SUPERVISÃO", "COORDEMADOR", "DIRETOR FUNDAMENTAL" ,"DIRETOR INFANIL"]) %>
+          <%= select_tag :atuacao, options_for_select(["---SELECIONAR---", "PEDAGOGO", "SUPERVISÃO", "COORDEMADOR", "DIREÇÃO FUNDAMENTAL" ,"DIREÇÃO INFANIL"]) %>
                             <%= observe_field 'atuacao',
                           :with => :atuacao,
                           :url => { :action => 'atuacao' },

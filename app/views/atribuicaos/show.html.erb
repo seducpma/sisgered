@@ -44,8 +44,11 @@
   <table width="100%" >
          <tr>
             <% if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')%>
+                <td width="6%"align="left" ><%= button_to 'Atribuicao', new_atribuicao_path, :title => "Atribuição"%></td>
                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
-                     <td width="6%"align="left" ><%= button_to 'Lançar Notas', {:action => "edit", :id =>@atribuicao}, :method => "get", :title => "Lançar"%></td>
+                     
+                      <td width="6%"align="left" ><%= button_to 'Lançar Notas', {:action => "edit", :id =>@atribuicao}, :method => "get", :title => "Lançar"%></td>
+                     
                      <%t=0%>
                 <%end%>
                 <td width="4%"><%= button_to 'Lançar Notas', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>

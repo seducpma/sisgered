@@ -13,7 +13,7 @@
               <a href="#" class="filtro_fapeac"><%= radio_button_tag(:type_of, "4") %></a>Atuação <b><font color =" blue">*</font></b>
 
               <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
-                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Professor <b><font color =" blue">*</font></b>
+                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Nome <b><font color =" blue">*</font></b>
                      <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC') or   current_user.has_role?('supervisao') or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')%>
                                <a href="#" class="filtro_fapea"><%= radio_button_tag(:type_of, "2") %></a>Unidade<font color =" blue">*</font>
                      <%end%>
@@ -26,7 +26,7 @@
              <td colspan="2"><div class="consulta" style="display:none"> <%= render "consulta_data" %> </div>
              <div class="consulta_classe_fapea" style="display:none"> <%= render "consulta_atuacao" %> </div>
              <div class="consulta_fapea" style="display:none"> <%= render "consulta_unidade" %> </div>
-             <div class="consulta_nome_fapea" style="display:none"> <%= render "consulta_professor" %> </div>
+             <div class="consulta_nome_fapea" style="display:none"> <%= render "consulta_nome" %> </div>
 
            </td>
          </tr>
