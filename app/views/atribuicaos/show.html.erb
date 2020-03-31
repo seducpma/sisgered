@@ -21,7 +21,7 @@
        </tr>
        <tr bgcolor="#F5F5F5">
            <td align="left"><b>Disciplina:</b></td>
-           <td colspan="3"align="left"><%=h @atribuicao.disciplina.disciplina%></td>
+           <td colspan="3"align="left"><%if !@atribuicao.disciplina_id.nil?%> <%=h @atribuicao.disciplina.disciplina%><%end%></td>
        </tr>
        <%if current_user.unidade_id > 40  and  current_user.unidade_id < 52 %>
            <tr bgcolor="#F5F5F5">
