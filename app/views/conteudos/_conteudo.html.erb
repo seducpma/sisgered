@@ -87,14 +87,14 @@
                 <tr bgcolor="#C1C1C1" valign="top"><td colspan="6"> &nbsp&nbsp&nbsp</td></tr>
                 <%cont = cont + 1%>
             <%end%>
-                 <%if !@conteudos[0].atribuicao_id.nil?%>
+                 <%if  @conteudos_classe[0].classe.classe_classe !='PEDAGOGO' and @conteudos_classe[0].classe.classe_classe !='COORDENACAO' and @conteudos_classe[0].classe.classe_classe !='SUPERVISAO' and @conteudos_classe[0].classe.classe_classe !='DIRECAO FUNDAMENTAL' and @conteudos_classe[0].classe.classe_classe !='DIRECAO INFANTIL' %>
                      <tr bgcolor="#F5F5F5">
                        <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
-                       <td colspan="2" > <u>Professores:</u><% contP = 0%><br/>
+                       <td colspan="3" > <u>Profissionais:</u><% contP = 0%><br/>
                                             <% for professor in @conteudos_professor %>
                                                &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
                                           <%end%>
-                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> professor <%else%> professores  <%end%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> profissionai <%else%> profisssionais  <%end%>
 
                        </td>
 

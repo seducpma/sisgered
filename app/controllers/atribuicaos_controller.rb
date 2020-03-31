@@ -1055,7 +1055,8 @@ t=0
                 end
             end
         else
-            @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ?', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
+            #@classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ?', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
+            @classes = Classe.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 )and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
             #@classes_boletim_anterior = Classe.find(:all, :conditions => ['unidade_id = ?', current_user.unidade_id ], :order => 'classe_ano_letivo ASC, classe_classe ASC')
             if current_user.professor_id.nil?
                 if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62

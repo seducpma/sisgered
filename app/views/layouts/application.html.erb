@@ -348,7 +348,7 @@ display: none;
                            <ul>
                               <li><%= link_to "Conteúdos Professor",consultas_conteudos_path %></li>
                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
-                                  <!-- <li><%= link_to "Pedagogo/Direçao.",consultas_direcao_conteudos_path %></li>-->
+                                   <li><%= link_to "Pedagogo/Direçao.",consultas_direcao_conteudos_path %></li>
                                  <%end%>
                            </ul>
                          </li>
@@ -514,7 +514,7 @@ display: none;
                      <li><%= link_to "Observação/Nota",lancamentos_observacaos_notas_path %></li>
                   <%end%>
                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')  or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))%>
-                     <!--<li><%= link_to "Pedagogo/Direção.",new_direcao_conteudos_path %></li>-->
+                     <li><%= link_to "Pedagogo/Direção.",new_direcao_conteudos_path %></li>
                   <%end%>
 
 <!--
