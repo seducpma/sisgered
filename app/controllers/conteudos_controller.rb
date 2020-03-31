@@ -6,7 +6,7 @@ class ConteudosController < ApplicationController
      session[:cont_usuario_user_id]=current_user.unidade_id
      session[:cont_professor_user_id]=current_user.professor_id
        if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')
-          @pedagogos = Professor.find(:all, :conditions => ['desligado = 0 AND (funcao2="PEDAGOGO" OR funcao2="PROF. COORDENADOR" or funcao2="DIRETOR ED. BÁSICA")'],:order => 'nome ASC')
+          @pedagogos = Professor.find(:all, :joins=> 'INNER JOIN atribuicaos ON atribuicaos.professor_id = professors.id INNER JOIN classes ON atribuicaos.classe_id = classes.id',:conditions => ['desligado = 0 AND (classes.classe_classe="PEDAGOGO" OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="SUPERVISÃO"  OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="DIREÇÃO FUNDAMENTAL" OR classes.classe_classe="DIREÇÃO INFANTIL")'],:order => 'nome ASC')
           @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
           @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC')
           @unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 1 or tipo_id = 2 or tipo_id = 3 or tipo_id = 4 or  tipo_id = 5  or tipo_id = 7 or tipo_id = 8)'  ], :order => 'nome ASC')
@@ -27,7 +27,7 @@ class ConteudosController < ApplicationController
                          @unidades = Unidade.find(:all, :joins => "INNER JOIN  users  ON  unidades.id = users.unidade_id", :select => 'distinct(unidades.id), nome' , :conditions => ['desativada = 0 and (tipo_id = 1 or  tipo_id = 4  or tipo_id = 7) and users.unidade_id=?', current_user.unidade_id  ], :order => 'nome ASC')
                          t=0
                           else if  current_user.has_role?('direcao_fundamental')   or    current_user.has_role?('secretaria_fundamental') or    current_user.has_role?('pedagogo')
-                               @pedagogos = Professor.find(:all, :conditions => ['desligado = 0 AND (funcao2="PEDAGOGO" OR funcao2="PROF. COORDENADOR" or funcao2="DIRETOR ED. BÁSICA")'],:order => 'nome ASC')
+                               @pedagogos = Professor.find(:all, :joins=> 'INNER JOIN atribuicaos ON atribuicaos.professor_id = professors.id INNER JOIN classes ON atribuicaos.classe_id = classes.id',:conditions => ['desligado = 0 AND (classes.classe_classe="PEDAGOGO" OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="SUPERVISÃO"  OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="DIREÇÃO FUNDAMENTAL" OR classes.classe_classe="DIREÇÃO INFANTIL")'],:order => 'nome ASC')
                                @professor_unidade = Professor.find(:all, :conditions => ['unidade_id = ?  AND desligado = 0', (current_user.unidade_id)],:order => 'nome ASC')
                                 @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND unidades.id = ?' , Time.now.year,current_user.unidade_id ], :order => 'classes.classe_classe ASC')
                                 @unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)'  ], :order => 'nome ASC')
@@ -688,7 +688,7 @@ t=0
                      end
             end
             render :update do |page|
-                page.replace_html 'relatorio', :partial => 'conteudo'
+                page.replace_html 'relatorio', :partial => 'conteudo_direcao'
             end
 
     else if params[:type_of].to_i == 1
@@ -768,19 +768,15 @@ t=0
              else
                   @dataF = Conteudo.find(:last, :joins =>:classe, :conditions =>  ["inicio >=? AND (fim >=?  or fim <?) AND classes.unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],session[:dataF], current_user.unidade_id, Time.now.year] , :order => 'classe_id ASC')
                   session[:dataF]=params[:conteudo][:fim][6,4]+'-'+params[:conteudo][:fim][3,2]+'-'+params[:conteudo][:fim][0,2]
-       #           session[:dataFF]=@dataF.fim
-       #            if session[:dataFF] < session[:dataF].to_date
-       #                @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["inicio >=? AND (fim >=?  or fim <?) AND classes.unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],session[:dataF], current_user.unidade_id, Time.now.year] , :order => 'classe_id ASC')
-       #            else
-                  @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["inicio >=? AND fim <?) AND classes.unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],session[:dataF], current_user.unidade_id, Time.now.year] , :order => 'classe_id ASC')
-                  @conteudos = Conteudo.find(:all, :joins =>[:atribuicao, :classe, :professor], :conditions =>  ["inicio >=? AND fim <=?  AND (classes.classe_classe = 'PEDAGOGO' or classes.classe_classe = 'SUPERVISAO' or  classes.classe_classe = 'COORDENACAO' or classes.classe_classe = 'DIRECAO FUNDAMENTAL' or classes.classe_classe = 'DIRECAO INFANTIL') AND conteudos.ano_letivo=? ", session[:dataI], session[:dataF],  Time.now.year], :order => 'professors.nome ASC')
-        #           end
-                @conteudos_professor = Conteudo.find(:all, :select => "conteudos.professor_id, count( conteudos.id ) as conta",:joins => "INNER JOIN professors ON conteudos.professor_id = professors.id", :conditions =>  ["inicio >=? AND fim <=? AND unidade_id = ?  AND ano_letivo = ? ", session[:dataI], session[:dataF],current_user.unidade_id, Time.now.year], :group => 'professor_id', :order => 'professors.nome ASC' )
-                @conteudos_classe = Conteudo.find(:all, :select => "conteudos.classe_id, count( conteudos.id ) as conta",:joins => "INNER JOIN classes ON conteudos.classe_id = classes.id ", :conditions =>  ["inicio >=? AND fim <=? AND unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],current_user.unidade_id, Time.now.year], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
+                  #@conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["inicio >=? AND fim <?) AND classes.unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],session[:dataF], current_user.unidade_id, Time.now.year] , :order => 'classe_id ASC')
+                  @conteudos = Conteudo.find(:all, :joins =>[:atribuicao, :classe, :professor], :conditions =>  ["inicio >=? AND fim <=?  AND (classes.classe_classe = 'PEDAGOGO' or classes.classe_classe = 'SUPERVISAO' or  classes.classe_classe = 'COORDENACAO' or classes.classe_classe = 'DIRECAO FUNDAMENTAL' or classes.classe_classe = 'DIRECAO INFANTIL')AND conteudos.unidade_id =? AND conteudos.ano_letivo=? ", session[:dataI], session[:dataF],  current_user.unidade_id, Time.now.year], :order => 'professors.nome ASC')
+                  @conteudos_professor = Conteudo.find(:all, :select => "conteudos.professor_id, count( conteudos.id ) as conta",:joins =>[:atribuicao, :classe, :professor], :conditions =>  ["inicio >=? AND fim <=?  AND (classes.classe_classe = 'PEDAGOGO' or classes.classe_classe = 'SUPERVISAO' or  classes.classe_classe = 'COORDENACAO' or classes.classe_classe = 'DIRECAO FUNDAMENTAL' or classes.classe_classe = 'DIRECAO INFANTIL')AND conteudos.unidade_id =? AND conteudos.ano_letivo=? ", session[:dataI], session[:dataF],  current_user.unidade_id, Time.now.year], :order => 'professors.nome ASC')
+                    @conteudos_classe = Conteudo.find(:all,:joins =>[:atribuicao, :classe, :professor], :conditions =>  ["inicio >=? AND fim <=?  AND (classes.classe_classe = 'PEDAGOGO' or classes.classe_classe = 'SUPERVISAO' or  classes.classe_classe = 'COORDENACAO' or classes.classe_classe = 'DIRECAO FUNDAMENTAL' or classes.classe_classe = 'DIRECAO INFANTIL')AND conteudos.unidade_id =? AND conteudos.ano_letivo=? ", session[:dataI], session[:dataF],  current_user.unidade_id, Time.now.year], :order => 'professors.nome ASC')
+
              end
         end
         render :update do |page|
-            page.replace_html 'relatorio', :partial => 'conteudo'
+            page.replace_html 'relatorio', :partial => 'conteudo_direcao'
         end
         else  if params[:type_of].to_i == 2
                         session[:cons_data]=0
@@ -828,9 +824,9 @@ t=0
                         #session[:aulas_falta_unidade_id] = params[:aulas_falta][:unidade_id]
                         #if (session[:verifica_unidade_id]=='52')
 #                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo'))
-                            @conteudos= Conteudo.find(:all, :joins =>[:classe], :select => "conteudos.professor_id, count( conteudos.id ) as conta", :conditions =>  ["professors.unidade_id = ? and  conteudos.ano_letivo=?", session[:cont_unidade_id], Time.now.year], :group => 'professor_id', :order => 'professors.nome ASC' )
-                            @conteudos_professor = Conteudo.find(:all, :joins =>[:professor, :classe], :select => "conteudos.professor_id, count( conteudos.id ) as conta", :conditions =>  ["classes.unidade_id = ? and  classes.classe_ano_letivo=?", session[:cont_unidade_id], Time.now.year], :group => 'professor_id', :order => 'professors.nome ASC' )
-                            @conteudos_classe = Conteudo.find(:all, :joins =>[:professor, :classe], :select => "conteudos.classe_id, count( conteudos.id ) as conta", :conditions =>  ["classes.unidade_id = ?", session[:cont_unidade_id]], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
+                            @conteudos= Conteudo.find(:all, :joins =>[:classe, :professor], :conditions =>  ["professors.unidade_id = ? and  conteudos.ano_letivo=? and (classes.classe_classe='PEDAGOGO' or classes.classe_classe='SUPERVISÃO' or classes.classe_classe='DIRECAO FUNDAMENTAL' or classes.classe_classe='DIRECAO INFANTIL') " , session[:cont_unidade_id], Time.now.year], :order => 'professors.nome ASC' )
+                            @conteudos_professor = Conteudo.find(:all, :joins =>[:professor, :classe], :select => "conteudos.professor_id, count( conteudos.id ) as conta",:conditions =>  ["professors.unidade_id = ? and  conteudos.ano_letivo=?", session[:cont_unidade_id], Time.now.year], :group => 'professor_id', :order => 'professors.nome ASC' )
+                            @conteudos_classe = Conteudo.find(:all, :joins =>[:professor, :classe], :select => "conteudos.classe_id, count( conteudos.id ) as conta", :conditions =>  ["professors.unidade_id = ? and  conteudos.ano_letivo=?", session[:cont_unidade_id], Time.now.year], :group => 'professor_id', :order => 'professors.nome ASC' )
 t=0
  #                       else if (current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental'))
  #                              w1=current_user.unidade_id
@@ -845,17 +841,23 @@ t=0
  #                            end
  #                       end
                         render :update do |page|
-                            page.replace_html 'relatorio', :partial => 'conteudo'
+                            page.replace_html 'relatorio', :partial => 'conteudo_direcao'
                         end
               else if params[:type_of].to_i == 4
                         w=session[:atuacao]
-                            @conteudos= Conteudo.find(:all, :joins =>[:classe, :professor], :conditions =>  ["classes.classe_classe = ? and  conteudos.ano_letivo=?", session[:atuacao], Time.now.year], :group => 'conteudos.professor_id', :order => 'professors.nome ASC' )
-                            @conteudos_professor = Conteudo.find(:all, :joins =>[:classe, :professor], :conditions =>  ["classes.classe_classe = ? and  conteudos.ano_letivo=?", session[:atuacao], Time.now.year], :group => 'conteudos.professor_id', :order => 'professors.nome ASC' )
+                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo'))
+                            @conteudos= Conteudo.find(:all, :joins =>[:classe, :professor], :conditions =>  ["classes.classe_classe = ? and  conteudos.ano_letivo=?", session[:atuacao], Time.now.year], :order => 'professors.nome ASC' )
+                            @conteudos_professor = Conteudo.find(:all, :joins =>[:classe, :professor], :select => "conteudos.professor_id, count( conteudos.id ) as conta",:conditions =>  ["classes.classe_classe = ? and  conteudos.ano_letivo=?", session[:atuacao], Time.now.year], :group => 'conteudos.professor_id', :order => 'professors.nome ASC' )
                             @conteudos_classe= Conteudo.find(:all, :joins =>[:classe, :professor], :conditions =>  ["classes.classe_classe = ? and  conteudos.ano_letivo=?", session[:atuacao], Time.now.year], :group => 'conteudos.professor_id', :order => 'professors.nome ASC' )
-            
+                        else
+                            @conteudos= Conteudo.find(:all, :joins =>[:classe, :professor], :conditions =>  ["classes.classe_classe = ? and  conteudos.ano_letivo=?  AND conteudos.unidade_id=?", session[:atuacao], Time.now.year, current_user.unidade_id], :order => 'professors.nome ASC' )
+                            @conteudos_professor = Conteudo.find(:all, :joins =>[:classe, :professor], :select => "conteudos.professor_id, count( conteudos.id ) as conta", :conditions =>  ["classes.classe_classe = ? and  conteudos.ano_letivo=?  AND conteudos.unidade_id=?", session[:atuacao], Time.now.year, current_user.unidade_id], :order => 'professors.nome ASC' )
+                            @conteudos_classe= Conteudo.find(:all, :joins =>[:classe, :professor], :conditions =>  ["classes.classe_classe = ? and  conteudos.ano_letivo=?  AND conteudos.unidade_id=?", session[:atuacao], Time.now.year, current_user.unidade_id], :order => 'professors.nome ASC' )
+
+                       end
 
                             render :update do |page|
-                                page.replace_html 'relatorio', :partial => 'conteudo'
+                                page.replace_html 'relatorio', :partial => 'conteudo_direcao'
                             end
 
 
