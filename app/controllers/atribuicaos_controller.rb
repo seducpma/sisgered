@@ -1055,9 +1055,13 @@ t=0
                 end
             end
         else
-            #@classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ?', current_user.unidade_id, Time.now.year], :order => 'classe_classe ASC')
-            @classes = Classe.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 )and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
-            #@classes_boletim_anterior = Classe.find(:all, :conditions => ['unidade_id = ?', current_user.unidade_id ], :order => 'classe_ano_letivo ASC, classe_classe ASC')
+         if current_user.unidade_id == 1
+               @classes = Classe.find(:all, :conditions => ['(unidade_id = ? )and classe_ano_letivo = ?  and (id != 3078 or id != 3079 or id != 3080 or id != 3081 or id != 3082)', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
+            else
+               @classes = Classe.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 )and classe_ano_letivo = ?  ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
+            end
+           # @classes = Classe.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 )and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
+           t=0
             if current_user.professor_id.nil?
                 if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62
                     # Alterei a linha anterior para que o JONAS ID. 62 também fique na condição 24/04/2017 ###ALEX

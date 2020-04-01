@@ -45,7 +45,11 @@ class ClassesController < ApplicationController
   def create
     @classe = Classe.new(params[:classe])
 
-    session[:classe]= params[:num]+" "+params[:letra]
+      if current_user.unidade_id != 1 
+         session[:classe]= params[:num]+" "+params[:letra]
+      else
+        session[:classe]= @classe.classe_classe
+      end
     @verifica = Classe.find(:all,  :select => 'id', :conditions => ['classe_classe =? AND classe_ano_letivo=? AND unidade_id=?',session[:classe], @classe.classe_ano_letivo,current_user.unidade_id])
     @classe.classe_classe = session[:classe]
     t=0
