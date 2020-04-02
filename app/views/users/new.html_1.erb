@@ -50,10 +50,20 @@
                         <td colspan="3"><br/></td>
                       </tr>
                       <tr>
-                           <td align="left" valign="top"><b>Nome:</b></td>
-                           <td colspan="2" align="left"><%= f.collection_select :professor_id, Professor.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %>
-                                 </br><b><i><font  color="red" size="2" >Se seu nome não consta na lista favor entrar em contato com o diretor(a) de sua unidade escolar ou com o setor de informática SEDUC.</font></i></b></td>
+                        <td colspan="3">
+                          <fieldset><legend><b>SOMENTE PARA PROFESSORES OU RESPONSÁVEIS POR DISCIPLINAS</b></legend>
+                            <table>
+                              <tr>
+                                <td colspan="3" align="center"><font  color="blue" size="2" ><b>Professores e Responsáveis por disciplinas necessitam ser previamente cadastrados no sistema, favor selelcionar seu nome. </b></font></td>
+                              </tr>
+                              <td align="left" valign="top"><b>Professor ou <br/>
+                                    Responsável:</b></td>
+                                <td colspan="2" align="left"><%= f.collection_select :professor_id, Professor.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %>
+                                 </br><b><i><font  color="red" size="2" >Se seu nome não consta na lista favor entrar em contato com o diretor(a) de sua unidade escolar.</font></i></b></td>
 
+                            </table>
+                          </fieldset>
+                        </td>
                       </tr>
 
 
