@@ -25,7 +25,7 @@
   <% for atrib in @atribuicao_classe %>
     <tr bgcolor="#F5F5F5" >
       <td align="left" ><%=h atrib.professor.nome%></td>
-      <td align="left"> <%=h atrib.disciplina.disciplina %></td>
+      <td align="left"> <%if !atrib.disciplina_id.nil?%><%=h atrib.disciplina.disciplina %><%end%></td>
       <td align="center"> <%=h atrib.classe.classe_ano_letivo %></td>
        
 
