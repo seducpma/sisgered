@@ -52,6 +52,19 @@ class SessionsController < ApplicationController
     redirect_back_or_default('/')
   end
 
+
+
+ def manual_professor
+    send_file("#{RAILS_ROOT}/public/documentos/professor.pdf" , :type=>"pdf")
+  end
+
+ def manual_direcao
+    send_file("#{RAILS_ROOT}/public/documentos/direcao.pdf" , :type=>"pdf")
+  end
+
+
+
+
 protected
 
   def note_failed_signin

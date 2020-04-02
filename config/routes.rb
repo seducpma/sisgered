@@ -209,6 +209,10 @@ ActionController::Routing::Routes.draw do |map|
   map.historico_aviso '/historico_aviso', :controller => 'notas', :action => 'aviso'
   map.show_direcao '/show_direcao', :controller => 'conteudos', :action => 'show_direcao'
 
+  map.manual_professor'/manual_professor', :controller => 'sessions', :action => 'manual_professor'
+  map.manual_direcao'/manual_direcao', :controller => 'sessions', :action => 'manual_direcao'
+
+
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
   map.matriculas_saidas '/matriculas_saidas', :controller => 'matriculas', :action => 'matriculas_saidas'
   map.matriculas_saidas_seduc '/matriculas_saidas_seduc', :controller => 'matriculas', :action => 'matriculas_saidas_seduc'
