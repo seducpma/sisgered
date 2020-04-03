@@ -168,9 +168,9 @@ def consulta_classe_aluno
        session[:classe_id]=params[:classe][:id]
        
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
-       @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0], :order =>'disciplinas.ordem ASC ' )
+        @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0], :order =>'disciplinas.ordem ASC ' )
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
-
+t=0
         render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe'
        end
