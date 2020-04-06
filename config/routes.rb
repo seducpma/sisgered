@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get}
+  map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get}
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
   map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
   map.resources :funcionarios, :collection => { :consulta=>:get}
@@ -208,6 +208,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.historico_aviso '/historico_aviso', :controller => 'notas', :action => 'aviso'
   map.show_direcao '/show_direcao', :controller => 'conteudos', :action => 'show_direcao'
+  map.show_mqa '/show_mqa', :controller => 'conteudos', :action => 'show_mqa'
 
   map.manual_professor'/manual_professor', :controller => 'sessions', :action => 'manual_professor'
   map.manual_direcao'/manual_direcao', :controller => 'sessions', :action => 'manual_direcao'

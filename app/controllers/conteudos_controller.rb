@@ -106,11 +106,12 @@ end
 
 
    def show_direcao
-  @conteudo = Conteudo.find(session[:new_id])
-    
-  
+     @conteudo = Conteudo.find(session[:new_id])
   end
 
+ def show_mqa
+     @conteudo = Conteudo.find(session[:new_id])
+  end
   # GET /conteudos/new
   # GET /conteudos/new.xml
   def new
@@ -121,6 +122,7 @@ end
       format.xml  { render :xml => @conteudo }
     end
   end
+
  def new_direcao
     @conteudo = Conteudo.new
     session[:new_direcao]=1
@@ -129,6 +131,16 @@ end
       format.xml  { render :xml => @conteudo }
     end
   end
+
+  def new_mqa
+    @conteudo = Conteudo.new
+    session[:new_mqa]=1
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @conteudo }
+    end
+  end
+
 
   # GET /conteudos/1/edit
   def edit
@@ -167,10 +179,15 @@ end
         if session[:new_direcao]==1
            session[:new_direcao]=0
            format.html { redirect_to(show_direcao_path) }
-        else
-           format.html { redirect_to(@conteudo) }
-           format.xml  { render :xml => @conteudo, :status => :created, :location => @conteudo }
+        else if session[:new_mqa]=1
+               session[:new_mqa]=0
+               format.html { redirect_to(show_mqa_path) }
+               format.xml  { render :xml => @conteudo, :status => :created, :location => @conteudo }
+             else
+               format.html { redirect_to(@conteudo) }
+               format.xml  { render :xml => @conteudo, :status => :created, :location => @conteudo }
 
+             end
         end
       else
         format.html { render :action => "new" }
@@ -222,6 +239,14 @@ t=0
 
        session[:atuacao]=params[:atuacao]
 
+  end
+
+
+  def mqa
+    t=0
+    w= params[:conteudo_professor_id]
+       @professors = Professor.find(:all, :select => 'id, nome, unidade_id, obs', :conditions=> ['id =?', params[:conteudo_professor_id]])
+   render :partial => 'mqa_profissional'
   end
 
 

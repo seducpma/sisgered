@@ -540,6 +540,12 @@ display: none;
                      <li><%= link_to "Compensação",lancamentos_compensacao_notas_path %></li>
                   <%end%>
 -->
+
+<!--                 <li><%= link_to "Relatórios MQA",new_mqa_conteudos_path %></li>-->
+
+
+
+
                  <% if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_fundamental') %>
                      <li><a class="item-primary" href="#;">Reprovação</a>
                               <ul>
