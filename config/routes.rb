@@ -214,6 +214,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.manual_professor'/manual_professor', :controller => 'sessions', :action => 'manual_professor'
   map.manual_direcao'/manual_direcao', :controller => 'sessions', :action => 'manual_direcao'
+  map.manual_mqa'/manual_mqa', :controller => 'sessions', :action => 'manual_mqa'
 
 
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'

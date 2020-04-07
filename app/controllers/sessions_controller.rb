@@ -62,6 +62,10 @@ class SessionsController < ApplicationController
     send_file("#{RAILS_ROOT}/public/documentos/direcao.pdf" , :type=>"pdf")
   end
 
+   def manual_mqa
+    send_file("#{RAILS_ROOT}/public/documentos/mqa.pdf" , :type=>"pdf")
+  end
+
 
 
 
