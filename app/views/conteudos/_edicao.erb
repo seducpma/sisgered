@@ -9,8 +9,18 @@
         </tr>
          <% for edicao in @conteudos %>
          <tr bgcolor="#F5F5F5" >
-            <td align="left">&nbsp <%= edicao.classe.classe_classe%> </td>
-            <td align="left">&nbsp <%= edicao.atribuicao.disciplina.disciplina%> </td>
+            <td align="left">&nbsp <%if !edicao.classe_id.nil? %>
+                                      <%= edicao.classe.classe_classe%>
+                                    <%else%>
+                                        MQA
+                                    <%end%>
+              </td>
+            <td align="left">&nbsp <%if !edicao.atribuicao_id.nil? %>
+                                        <%= edicao.atribuicao.disciplina.disciplina%>
+                                                <%else%>
+                                        <%= edicao.professor.obs %>
+                                    <%end%>
+            </td>
             <td align="left">&nbsp <%= edicao.professor.nome%> </td>
             <td align="left"> De <%= edicao.inicio.strftime("%d/%m/%Y") %>   <%= edicao.fim.strftime("%d/%m/%Y")%></td>
            <td align="center"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "edit", :id => edicao}, :method => "get", :title => "Selecionar"%></td>

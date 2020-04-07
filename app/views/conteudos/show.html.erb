@@ -9,20 +9,23 @@
 
        </tr>
        <tr bgcolor="#F5F5F5">
-         <td align="left"><b>Classe:</b></td>
-         <td><%=h @conteudo.classe.classe_classe %></td>
-
+         <%if !@conteudo.classe_id.nil? %>
+                  <td align="left"><b>Classe:</b></td>
+                  <td><%=h @conteudo.classe.classe_classe %></td>
+            <%else%>
+                  <td align="left" colspan="2"><b>Mão Que Acolhem</b></td>
+            <%end%>
          <% if !@conteudo.disciplina.nil? %>
             <td width ="5%"><b>Disciplina:</b></td>
              <td> <%=h @conteudo.disciplina.disciplina%>  </td>
          <%else%>
-             <td></td>
-             <td></td>
+             <td><b>Atuação:</b></td>
+             <td><%=h @conteudo.professor.obs%></td>
          <%end%>
       </tr>
        <tr bgcolor="#F5F5F5">
          <td  align="left"><b>Unidade:</b></td>
-         <td><%=h @conteudo.professor.unidade.tipo.nome %> <%=h @conteudo.classe.unidade.nome %></td>
+         <td><%=h @conteudo.professor.unidade.tipo.nome %> <%if !@conteudo.classe_id.nil? %> <%=h @conteudo.classe.unidade.nome %> <%end%></td>
          <td width ="16%"> <b>Ano Letivo:</b></td>
          <td width ="16%"><%=h @conteudo.ano_letivo %></td>
       </tr>

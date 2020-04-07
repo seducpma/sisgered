@@ -402,6 +402,7 @@ jQuery(document).ready(function( $ ){
         $(".consulta_rm").hide();
         $(".consulta_fapea").hide();
         $(".consulta_nome_fapea").hide();
+        $(".consulta_nome_mqa").hide();
 
     });
 
@@ -448,6 +449,7 @@ jQuery(document).ready(function( $ ){
         $(".consulta_fapea").show();
         $(".consulta").hide();
         $(".consulta_nome_fapea").hide();
+         $(".consulta_nome_mqa").hide();
         $(".consulta_classe_fapea").hide();
     });
 
@@ -455,9 +457,11 @@ jQuery(document).ready(function( $ ){
     {
         $(".consulta_classe_fapea").show();
         $(".consulta_nome_fapea").hide();
+            $(".consulta_nome_mqa").hide();
         $(".consulta").hide();
         $(".consulta_fapea").hide();
         $(".consulta_nome_fapea").hide();
+            $(".consulta_nome_mqa").hide();
     });
 
 
@@ -552,6 +556,7 @@ jQuery(document).ready(function( $ ){
         $(".txt_busca2").show();
         $(".label_busca2").show();
         $(".consulta_nome_fapea").show();
+         $(".consulta_nome_mqa").hide();
         $(".consulta_classe_fapea").hide();
         $(".consulta_professor").hide();
         $(".consulta").hide();
@@ -577,7 +582,12 @@ jQuery(document).ready(function( $ ){
           
     });
 
-   
+  $(".filtro_unidade").click(function()
+    {$(".consulta_nome_mqa").show();
+     $(".consulta_classe_fapea").hide();
+     $(".consulta").hide();
+
+    });
 
 
 

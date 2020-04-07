@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get}
+  map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get,:consultas_mqa =>:get, :editar_mqa=>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get}
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
   map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
   map.resources :funcionarios, :collection => { :consulta=>:get}
@@ -143,6 +143,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editar_atribuicao_classe '/editar_atribuicao_classe', :controller => 'atribuicaos', :action => 'editar_atribuicao_classe'
   map.editar_conteudo '/editar_conteudo', :controller => 'conteudos', :action => 'editar_conteudo'
   map.editar_direcao_conteudo '/editar_direcao_conteudo', :controller => 'conteudos', :action => 'editar_direcao_conteudo'
+  map.editar_mqa_conteudo '/editar_mqa_conteudo', :controller => 'conteudos', :action => 'editar_mqa_conteudo'
   map.show_editar '/show_editar', :controller => 'atribuicaos', :action => 'show_editar'
   map.new2_obs_notas '/new2_obs_notas', :controller => 'observacao_notas', :action => 'new2'
 
@@ -179,7 +180,8 @@ ActionController::Routing::Routes.draw do |map|
   #map.consulta_relatorios '/consulta_relatorios', :controller => 'relatorios', :action => 'consulta_relatorios'
   map.consulta_fapea '/consulta_fapea', :controller => 'relatorios', :action => 'consulta_fapea'
   map.consulta_conteudo '/consulta_conteudo', :controller => 'conteudos', :action => 'consulta_conteudo'
-    map.consulta_direcao_conteudo '/consulta_direcao_conteudo', :controller => 'conteudos', :action => 'consulta_direcao_conteudo'
+  map.consulta_direcao_conteudo '/consulta_direcao_conteudo', :controller => 'conteudos', :action => 'consulta_direcao_conteudo'
+  map.consulta_mqa_conteudo '/consulta_mqa_conteudo', :controller => 'conteudos', :action => 'consulta_mqa_conteudo'
 
   map.editar_relatorio '/editar_relatorios', :controller => 'relatorios', :action => 'editar'
   map.consulta_observacoes '/consulta_observacoes', :controller => 'relatorios', :action => 'consulta_observacoes'

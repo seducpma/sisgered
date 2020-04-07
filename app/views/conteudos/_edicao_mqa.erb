@@ -1,0 +1,31 @@
+<% if !@conteudos.empty? %>
+ <table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td width =" 8%"> <b>&nbsp&nbsp&nbsp Atuação</b></td>
+            <td width =" 10%"><b>&nbsp&nbsp&nbsp Unidade</b></td>
+            <td><b>&nbsp&nbsp&nbsp Professor</b></td>
+            <td <b>&nbsp&nbsp&nbsp Período Relatado</b></td>
+             <td </td>
+
+        </tr>
+         <% for edicao in @conteudos %>
+         <tr bgcolor="#F5F5F5" >
+            <td align="left">&nbsp <%= edicao.professor.obs%> </td>
+            <td align="left">&nbsp <%= edicao.unidade.nome%> </td>
+            <td align="left">&nbsp <%= edicao.professor.nome%> </td>
+            <td align="left"> De <%= edicao.inicio.strftime("%d/%m/%Y") %>   <%= edicao.fim.strftime("%d/%m/%Y")%></td>
+           <td align="center"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "edit_direcao", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
+           
+
+         </tr>
+         <%end%>
+    </table>
+<%else%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td ><br/><font size="4" color="red"> NÃO EXISTE LANÇAMENTOS PARA ESTA CLASSE <br/></td>
+
+        </tr>
+    </table>
+<
+<%end%>

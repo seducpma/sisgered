@@ -1,0 +1,47 @@
+<div id="interno2">
+<% title "FAPEA", :id =>"FAPEA" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>CONSULTA RELATÓRIOS LANÇADOS MÃOS QUE ACOLHEM</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <% form_remote_tag :url => consulta_mqa_conteudo_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Data
+             
+
+              
+                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Nome <b><font color =" blue">*</font></b>
+              
+            </td>
+          </tr>
+
+         <tr>
+            <td colspan="2"><div class="consulta" style="display:none"> <%= render "consulta_data" %> </div>
+             
+
+             <div class="consulta_nome_mqa" style="display:none"> <%= render "consulta_nome_mqa" %> </div>
+
+           </td>
+
+         </tr>
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="relatorio"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <br/>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Nova Consulta', consultas_direcao_conteudos_path, :title => "Nova Consulta" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+
