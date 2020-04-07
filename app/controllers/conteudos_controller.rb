@@ -3,8 +3,8 @@ class ConteudosController < ApplicationController
   # GET /conteudos.xml
      before_filter :load_dados_iniciais
    def load_dados_iniciais
-     #[:cont_usuario_user_id]= current_user.unidade_id
-     #session[:cont_professor_user_id]= current_user.professor_id
+     session[:cont_usuario_user_id]= current_user.unidade_id
+     session[:cont_professor_user_id]= current_user.professor_id
        if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')
           @pedagogos = Professor.find(:all, :select => 'distinct(professors.nome) as nome, professors.id as id ',:joins=> 'INNER JOIN atribuicaos ON atribuicaos.professor_id = professors.id INNER JOIN classes ON atribuicaos.classe_id = classes.id',:conditions => ['desligado = 0 AND (classes.classe_classe="PEDAGOGO" OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="SUPERVISÃO"  OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="DIREÇÃO FUNDAMENTAL" OR classes.classe_classe="DIREÇÃO INFANTIL")'],:order => 'nome ASC')
           @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
