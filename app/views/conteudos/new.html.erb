@@ -27,7 +27,7 @@
                 <tr bgcolor="#F5F5F5">
                    <td width =" 5%"><b>Professor(a):</b></td>
                    <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <br/>
-                <font color="red"> <b><u> Se professor</u> apos selecinar seu nome aguarde para selelcionar a disciplina e classe.</b> </td>
+                <font color="red"> <b><u> Se professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.</b> </td>
                       <%= observe_field 'conteudo_professor_id',
                          :update => "dados_classe",
                          :url    => { :action => 'classe' },
