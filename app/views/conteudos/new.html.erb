@@ -25,9 +25,11 @@
 
         </tr>
                 <tr bgcolor="#F5F5F5">
-                   <td width =" 5%"><b>Professor(a):</b></td>
+                  <td width =" 5%" valign="top"><b>Professor(a):</b></td>
                    <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <br/>
-                <font color="red"> <b><u> Se professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.</b> </td>
+                <font color="red"> <b><u> Se professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.<br/>
+                  <u> Professor de Ciclo Básico: </u> Lançar relatório disciplina a disciplina, NÃO lançar todas as disciplinas num relatório só.</b>
+                </td>
                       <%= observe_field 'conteudo_professor_id',
                          :update => "dados_classe",
                          :url    => { :action => 'classe' },
