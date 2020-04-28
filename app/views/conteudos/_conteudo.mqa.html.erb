@@ -42,7 +42,7 @@
 
                    <%else%>
                        <td width=5%" align="center"><b>Atuação:</b></td>
-                       <td width=10%  align="center"> <%=h conteudo.professor.obs %> </td>
+                       <td width=10%  align="center"> <%=h conteudo.professor.obs_interno %> </td>
                        <td width=10%" align="center"><b>Unidade:</b></td>
                        <td width=20%> <%=h conteudo.unidade.nome %></td>
                        <td width=8%" align="center"><b>Período:</b></td>
@@ -93,7 +93,7 @@
                        <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
                        <td colspan="5" > <u>Profissionais:</u><% contP = 0%><br/>
                                             <% for professor in @conteudos_professor %>
-                                               &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> (<%=h professor.professor.obs %>) <br/>
+                                               &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> (<%=h professor.professor.obs_interno %>) <br/>
                                           <%end%>
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> profissionai <%else%> profisssionais  <%end%>
 

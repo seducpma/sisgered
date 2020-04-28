@@ -10,7 +10,7 @@
         </tr>
          <% for edicao in @conteudos %>
          <tr bgcolor="#F5F5F5" >
-            <td align="left">&nbsp <%= edicao.professor.obs%> </td>
+            <td align="left">&nbsp <%= edicao.professor.obs_interno%> </td>
             <td align="left">&nbsp <%= edicao.unidade.nome%> </td>
             <td align="left">&nbsp <%= edicao.professor.nome%> </td>
             <td align="left"> De <%= edicao.inicio.strftime("%d/%m/%Y") %>   <%= edicao.fim.strftime("%d/%m/%Y")%></td>
