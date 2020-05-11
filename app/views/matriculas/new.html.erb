@@ -9,7 +9,7 @@
          <%= f.error_messages %>
         <fieldset><legend><font size=4>Matrícula Aluno</font></legend>
              <%@alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")%>
-            <% @classes_atual = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=?',  current_user.unidade_id, Time.now.year], :order => 'classe_classe') %>
+            <% @classes_atual = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=? and sala != 52' ,  current_user.unidade_id, Time.now.year], :order => 'classe_classe') %>
         <table>
             <tr>
               <td colspan="2"><font color ="red" size ="3"><b><u>ATENÇÃO:</u> 1) Antes de matricular os alunos na classe, certifique-se que os TODOS os responsáveis já foram atribuidos às classes.<br/>
