@@ -87,7 +87,8 @@
                 <tr bgcolor="#C1C1C1" valign="top"><td colspan="6"> &nbsp&nbsp&nbsp</td></tr>
                 <%cont = cont + 1%>
             <%end%>
-                 <%if  @conteudos_classe[0].classe.classe_classe !='PEDAGOGO' and @conteudos_classe[0].classe.classe_classe !='COORDENACAO' and @conteudos_classe[0].classe.classe_classe !='SUPERVISAO' and @conteudos_classe[0].classe.classe_classe !='DIRECAO FUNDAMENTAL' and @conteudos_classe[0].classe.classe_classe !='DIRECAO INFANTIL' %>
+                <%if !@conteudos_classe[0].nil?%>
+                 <%if  (@conteudos_classe[0].classe.classe_classe !='PEDAGOGO' and @conteudos_classe[0].classe.classe_classe !='COORDENACAO' and @conteudos_classe[0].classe.classe_classe !='SUPERVISAO' and @conteudos_classe[0].classe.classe_classe !='DIRECAO FUNDAMENTAL' and @conteudos_classe[0].classe.classe_classe !='DIRECAO INFANTIL') or !@conteudos_classe[0].nil? %>
                      <tr bgcolor="#F5F5F5">
                        <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
                        <td colspan="3" > <u>Profissionais:</u><% contP = 0%><br/>
@@ -119,6 +120,7 @@
                      </tr>
 
                  <%end%>
+                <%end%>
              </table>
            </fieldset>
 
