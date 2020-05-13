@@ -2,9 +2,10 @@
 <table width="100%">
     <tr bgcolor="#F5F5F5" >
       <td align="center"width="5%"><b> Classe</b></td>
-      <td align="left" width="40%"><b>Professor</b></td>
-      <td align="left"width="30%"><b> Disciplina</b></td>
-      <td align="center"width="8%"><b> Ano Letivo</b> </td>
+      <td align="left" width="35%"><b>Professor</b></td>
+      <td align="left"width="25%"><b> Disciplina</b></td>
+       <td align="left"width="25%"><b> Unidade</b></td>
+      <td align="center"width="5%"><b> Ano Letivo</b> </td>
 
     </tr>
   <% for atrib in @atribuicao_classe %>
@@ -12,6 +13,7 @@
       <td align="center" ><%=h atrib.classe.classe_classe%></td>
       <td align="left" ><%=h atrib.professor.nome%></td>
       <td align="left"> <%=h atrib.disciplina.disciplina %></td>
+      <td align="left"> <%= truncate(atrib.classe.unidade.nome,:length => 25,:omission => "...") %></td>
       <td align="center"> <%=h atrib.classe.classe_ano_letivo %> </td>
        
 
