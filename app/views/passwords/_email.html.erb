@@ -8,25 +8,37 @@
        <font size="5"><strong>ESQUECEU A SENHA?</strong></font></br>
      </td>
    </tr>
-      <%  session[:mais_email] = 0 %>
+<%  session[:mais_email] = 1 %>
    <tr bgcolor="#DCDCDC"  width="100%">
      <td>
        <fieldset><legend><font  size=3></font></legend>
          <table width="100%">
             <tr bgcolor="#F5F5F5">
                <td align="center">
-                <br/><br/>
-                    <% form_tag url_for(:action => 'create') do %>
-                      <b>Digite e-mail cadastrado no sistema</b>
-                      <%= text_field_tag :email, "", :size => 50 %>
-                     <%= submit_tag 'Enviar' %>
-                    <% end %>
+                <br/><br/> <font size ="3">
+                O e_mail <b><%= session[:email]%> </b> possui vários usuário, selelcione o usuário que deseja alterar a senha
+
                     <br/>
-                    <font size="3" style="color:blue">Logo após <b>Enviar</b>, procure a mensagem na <b>CAIXA DE ENTRADA</b>, <b>LIXO ELETRÔNICO</b> ou <b>SPAM</b><br/>
+                    
+                 </td>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+
+                 <td  widht="10%" align="center"><font size="2"><b>Usuário - Unidade:</b></font>
+                    <% form_tag url_for(:action => 'create') do %>
+                      <%= select_tag :user_id, options_for_select(@user_email.collect { |ff| ['Usuário: ' + ff.login  + ' - '+ ff.unidade.nome, ff.id]  }.insert(0, '--Selecionar--')) %>
+
+                    <%= submit_tag 'Enviar' %>
+                                    <br/>
+                    <font size="3" style="color:blue">Logo após <b>Selecionar o Usário - Unidade</b>, procure a mensagem na <b>CAIXA DE ENTRADA</b>, <b>LIXO ELETRÔNICO</b> ou <b>SPAM</b><br/>
                                                      do e-mail informado</b> para localizar a mensagem e continuar o procedimento.</font>
                       <br/><br/>
                  </td>
-            </tr>
+
+
+        <% end %>
+
+                </tr>
             <tr>
 <!-- <td align="center"><font size="4" style="color:red"><b><%#=flash[:notice2]%></b></font></td> -->
             </tr>
@@ -48,8 +60,6 @@
  </table>
 
 
-</div>
-<br/>
-</div>
+
 
 

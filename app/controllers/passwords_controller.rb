@@ -7,41 +7,53 @@ class PasswordsController < ApplicationController
   end
 
   def create
-    return unless request.post?
-    if (@user=User.find_for_forget(params[:email]) and @user.size>0)
-      if (@user.size==1)
-        @user=User.find(id)
-        flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
-      else
-        #lista_user="( "
-        lista_user=""
-        cont_user=0
-        user1=""
-        @user.each do |user|
-            if (cont_user >= 1)
-                lista_user+="|"
-                cont_user+=1
-            else
-                cont_user+=1
-                user1=user.login
-            end
-            lista_user+=user.login
-        end
-        #lista_user+=" )"
-        id=@user[0].id
-        @user=User.find(id)
-        msg="Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
-        msg+=" Foram encontrados "+cont_user.to_s+" usuários ("+lista_user+") será alterada a senha do usuário "+user1
-        flash[:notice]=msg
-      end
-      @user.forgot_password
-      ChamadoMailer.deliver_forgot_password(@user)
-      @user.save
-#     flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
-      redirect_to login_path
+
+     w1= session[:mais_email]
+    if session[:mais_email] == 1
+       session[:email]= params[:user_id]
+        @user_email= User.find(:all, :conditions=> ['id =? AND activated_at is not null', session[:email]])
+         params[:email]= @user_email[0].email
     else
-      flash[:notice] = "Nenhum usuário cadastrado com o e-mail informado."
-      render :action => 'new'
+        session[:email]=params[:email]
+         @user_email= User.find(:all, :conditions=> ['email =? AND  	activated_at is not null', session[:email]])
+    end
+    if @user_email.count > 1
+         render  :partial => 'email', :layout => "layouts/login"
+
+    else
+        return unless request.post?
+        if (@user=User.find_for_forget(params[:email]) and @user.size>0)
+
+            #lista_user="( "
+            lista_user=""
+            cont_user=0
+            user1=""
+            @user.each do |user|
+                if (cont_user >= 1)
+                    lista_user+="|"
+                    cont_user+=1
+                else
+                    cont_user+=1
+                    user1=user.login
+                end
+                lista_user+=user.login
+            end
+            #lista_user+=" )"
+            id=@user[0].id
+            @user=User.find(id)
+            msg="Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
+            msg+=" Foram encontrados "+cont_user.to_s+" usuários ("+lista_user+") será alterada a senha do usuário "+user1
+            flash[:notice]=msg
+
+          @user.forgot_password
+          ChamadoMailer.deliver_forgot_password(@user)
+          @user.save
+    #     flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
+          redirect_to login_path
+        else
+          flash[:notice] = "Nenhum usuário cadastrado com o e-mail informado."
+          render :action => 'new'
+        end
     end
   end
 
