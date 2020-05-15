@@ -16,17 +16,17 @@
             <tr bgcolor="#F5F5F5">
                <td align="center">
                 <br/><br/> <font size ="3">
-                O e_mail <b><%= session[:email]%> </b> possui vários usuário, selelcione o usuário que deseja alterar a senha
+                O e_mail <b><%= session[:email]%> </b> possui vários usuários, selelcione o usuário que deseja alterar a senha<b>
 
                     <br/>
                     
                  </td>
             </tr>
             <tr bgcolor="#F5F5F5">
-
-                 <td  widht="10%" align="center"><font size="2"><b>Usuário - Unidade:</b></font>
-                    <% form_tag url_for(:action => 'create') do %>
-                      <%= select_tag :user_id, options_for_select(@user_email.collect { |ff| ['Usuário: ' + ff.login  + ' - '+ ff.unidade.nome, ff.id]  }.insert(0, '--Selecionar--')) %>
+       <% form_tag url_for(:action => 'create') do %>
+                 <td  widht="10%" align="center"><font size="2"><b>Usuário:</b></font>
+             
+                      <%= select_tag :user_id, options_for_select(@user_email.collect { |ff| [ ff.login  + ' - '+ ff.unidade.nome, ff.id]  }.insert(0, '--Selecionar--')) %>
 
                     <%= submit_tag 'Enviar' %>
                                     <br/>
