@@ -12,18 +12,18 @@ class PasswordsController < ApplicationController
     if session[:mais_email] == 1
        session[:email]= params[:user_id]
         @user_email= User.find(:all, :conditions=> ['id =? AND activated_at is not null', session[:email]])
-         params[:email]= @user_email[0].email
-    else
-        session[:email]=params[:email]
-         @user_email= User.find(:all, :conditions=> ['email =? AND  	activated_at is not null', session[:email]])
-    end
+        id=session[:email]
+        w=params[:email]= @user_email[0].email
+      else
+           @user_email= User.find(:all, :conditions=> ['email =? AND  	activated_at is not null', params[:email]])
+         w=session[:email]= @user_email[0].id
+      end
     if @user_email.count > 1
-         render  :partial => 'email', :layout => "layouts/login"
-
+           render  :partial => 'email', :layout => "layouts/login"
     else
         return unless request.post?
-        if (@user=User.find_for_forget(params[:email]) and @user.size>0)
-
+        #if (@user=User.find_for_forget(params[:email]) and @user.size>0 )
+           if (@user=User.find(:all, :conditions=> ['id =? AND  	activated_at is not null', session[:email]]))
             #lista_user="( "
             lista_user=""
             cont_user=0
@@ -36,13 +36,14 @@ class PasswordsController < ApplicationController
                     cont_user+=1
                     user1=user.login
                 end
+               # lista_user+=user.login
                 lista_user+=user.login
             end
             #lista_user+=" )"
             id=@user[0].id
             @user=User.find(id)
             msg="Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
-            msg+=" Foram encontrados "+cont_user.to_s+" usuários ("+lista_user+") será alterada a senha do usuário "+user1
+            #msg+=" Foi encontrado o usuários "+cont_user.to_s+".  será alterada a senha do usuário ("+lista_user+")"
             flash[:notice]=msg
 
           @user.forgot_password
@@ -56,6 +57,10 @@ class PasswordsController < ApplicationController
         end
     end
   end
+
+
+
+
 
   def edit
     if params[:id].nil?
@@ -94,7 +99,8 @@ class PasswordsController < ApplicationController
     @user.password_confirmation = params[:password_confirmation]
     @user.password = params[:password]
     @user.reset_password
-        flash[:notice] = @user.save ? "A senha foi alterada com sucesso!" : "ERRO: A senha não foi alterada."
+        #flash[:notice] = @user.save ? "A senha foi alterada com sucesso!" : "ERRO: A senha não foi alterada."
+        flash[:notice] = @user.save "A senha foi alterada com sucesso!"
       else
         flash[:notice2] = "ERRO: As senhas estão diferentes repita o processo."
         render :action => 'edit', :id => params[:id]

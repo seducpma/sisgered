@@ -21,7 +21,9 @@
                 <table width="100%">
                     <tr><td align="right"><b> Usuário: </b></td><td align="left"><%=@user.login %></td></tr>
                     <tr><td align="right"><b>&nbsp</b></td><td align="left">&nbsp</td></tr>
-                    <tr><td align="right"><b>Nova Senha: </b></td><td align="left"><%=password_field_tag :password %></td></tr>
+                    <tr><td colspan="2"align="center"><b><i><font  color="red" size="2" >Escolha uma senha com no mínimo 8 <b>DÍGITOS</b></font></i></b></td></tr>
+                    <tr><td align="right"><b>Nova Senha: </b></td><td align="left"><%=password_field_tag :password %>   </tr>
+                    
                     <tr><td align="right"><b>Confirma Senha: </b></td><td align="left"><%=password_field_tag :password_confirmation %></td></tr>
                     <tr><td align="right"><b>&nbsp</b></td><td align="left">&nbsp</td></tr>
                     <tr><td colspan="2" align="center"><%=submit_tag "Salvar" %></td></tr>
