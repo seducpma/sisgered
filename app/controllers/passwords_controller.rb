@@ -42,7 +42,7 @@ class PasswordsController < ApplicationController
             #lista_user+=" )"
             id=@user[0].id
             @user=User.find(id)
-            msg="Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
+            msg="Um link foi enviado para o email cadastrado para efetuar a troca da senha."
             #msg+=" Foi encontrado o usuários "+cont_user.to_s+".  será alterada a senha do usuário ("+lista_user+")"
             flash[:notice]=msg
 
