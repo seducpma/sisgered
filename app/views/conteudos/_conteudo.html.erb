@@ -1,7 +1,7 @@
     <%if @conteudos.present?%>
       <!--<%session[:imprimir_todos]=1%>-->
 
-        <fieldset><legend><font  size=3><b> CONTEÚDOS LANÇADOSxxxx
+        <fieldset><legend><font  size=3><b> CONTEÚDOS LANÇADOS
               </b></font></legend>
               <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                 <tr bgcolor="#F5F5F5" style="border-color: white">
@@ -22,7 +22,7 @@
                        <td width=5%" align="center"><b>Classe:</b></td>
                        <td width=10% > <%=h conteudo.atribuicao.classe.classe_classe %> <%if !@conteudos[0].disciplina_id.nil?%> - <%=h conteudo.atribuicao.classe.classe_ano_letivo %><%end%></td>
                        <td width=10%" align="center"><b>Unidade:</b></td>
-                       <td width=20%> <%=h conteudo.atribuicao.classe.unidade.nome %></td>
+                       <td width=20%> <%=h conteudo.unidade.nome %></td>
                        <td width=8%" align="center"><b>Período:</b></td>
                        <td colspan="3"> De <%=h conteudo.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
                                                                                              <% if (session[:dataF].to_date < conteudo.fim) or  (session[:dataF].to_date != conteudo.fim)%>
