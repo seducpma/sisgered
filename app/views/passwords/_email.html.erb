@@ -15,10 +15,10 @@
          <table width="100%">
             <tr bgcolor="#F5F5F5">
                <td align="center">
-                <br/><br/> <font size ="3">
-                Este e_mail possui vários usuários, selecione o usuário que deseja alterar a senha<b>
+                 <br/><br/> <font size ="4"><b>
+                Este e-mail possui vários usuários, selecione o usuário que deseja alterar a senha</b>
 
-                    <br/>
+                    <br/>  <br/>
                     
                  </td>
             </tr>
@@ -29,7 +29,7 @@
                       <%= select_tag :user_id, options_for_select(@user_email.collect { |ff| [ ff.login  + ' - '+ ff.unidade.nome, ff.id]  }.insert(0, '--Selecionar--')) %>
 
                     <%= submit_tag 'Enviar' %>
-                                    <br/>
+                                    <br/><br/><br/>
                                     <font size="3" style="color:blue">Após <b>Selecionar o Usário</b>, e clicar no botão <b> Enviar</b> , procure na <b>CAIXA DE ENTRADA</b>, <b>LIXO ELETRÔNICO</b> ou <b>SPAM</b>
                                                      do e-mail informado</b>  mensagem enviada para continuar o procedimento e alteração de senha.</font>
                       <br/><br/>

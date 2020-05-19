@@ -95,7 +95,7 @@ class UsersController < ApplicationController
       flash[:error] = "SENHA OU USUÁRIO NÃO AUTORIZADO, FAVOR ENTRAR EM CONTATO COM A SEDUC."
       redirect_back_or_default('/')
     else
-      flash[:error]  = "SENHA OU USUÁRIO NÃO AUTORIZADO, VERIFIQUE A VALIDAÇÃO EM SEU E_MAIL OU ENTRE EM CONTATO COM A SEDUC."
+      flash[:error]  = "SENHA OU USUÁRIO NÃO AUTORIZADO, VERIFIQUE A VALIDAÇÃO EM SEU E-MAIL OU ENTRE EM CONTATO COM A SEDUC."
       redirect_back_or_default('/')
     end
   end

@@ -100,7 +100,7 @@ class PasswordsController < ApplicationController
     @user.password = params[:password]
     @user.reset_password
         #flash[:notice] = @user.save ? "A senha foi alterada com sucesso!" : "ERRO: A senha não foi alterada."
-        flash[:notice] = @user.save "A senha foi alterada com sucesso!"
+        flash[:notice] = "A senha foi alterada com sucesso!"
       else
         flash[:notice2] = "ERRO: As senhas estão diferentes repita o processo."
         render :action => 'edit', :id => params[:id]
