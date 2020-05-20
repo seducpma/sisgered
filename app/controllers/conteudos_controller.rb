@@ -242,10 +242,15 @@ t=0
 
     def atuacao
 
-       session[:atuacao]=params[:atuacao]
-
+   w=    session[:atuacao]=params[:atuacao]
+t=0
   end
 
+   def atuacao_ed
+
+   w=    session[:atuacao]=params[:atuacao]
+t=0
+        end
 
   def mqa
     t=0
