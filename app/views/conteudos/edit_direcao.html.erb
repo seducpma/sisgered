@@ -71,6 +71,10 @@
                      <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
           <%end%>
                        <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('direcao_infantil')or current_user.has_role?('direcao_fundamental'))%>
+                              <td  align="right" ><%= link_to  image_tag('/stylesheets/images/excluir1.png', :title => 'Excluir'),  { :action => "destroy", :id => session[:exclusao_id]}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
+                       <%end%>
+
                    </tr>
                  </table>
             </font>

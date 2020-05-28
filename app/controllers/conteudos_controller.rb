@@ -146,11 +146,15 @@ end
   # GET /conteudos/1/edit
   def edit
     @conteudo = Conteudo.find(params[:id])
+    session[:exclusao_id]= params[:id]
   end
 
   def edit_direcao
     @conteudo = Conteudo.find(params[:id])
+    session[:exclusao_id]= params[:id]
   end
+
+
   def editar
   end
 
@@ -225,7 +229,7 @@ end
     @conteudo.destroy
 
     respond_to do |format|
-      format.html { redirect_to(conteudos_url) }
+      format.html { redirect_to(home_path) }
       format.xml  { head :ok }
     end
   end
