@@ -1,6 +1,7 @@
 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
      <%#@nome = Conteudo.find(:all, :joins => [:professor],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=?', Time.now.year  ],:order => 'professors.nome')%>
      <%@nome = Conteudo.find(:all, :joins => [:professor, :classe],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? and   (classes.classe_classe="PEDAGOGO" or classes.classe_classe="SUPERVISÃO" or classes.classe_classe="DIRECAO FUNDAMENTAL" or classes.classe_classe="DIRECAO INFANTIL")', Time.now.year  ],:order => 'professors.nome')%>
+    <%t=0%>
 <%else%>
       <%@nome = Conteudo.find(:all, :joins => [:professor, :classe],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=? and   (classes.classe_classe="PEDAGOGO" or classes.classe_classe="SUPERVISÃO" or classes.classe_classe="DIRECAO FUNDAMENTAL" or classes.classe_classe="DIRECAO INFANTIL")', Time.now.year, current_user.unidade_id  ],:order => 'professors.nome')%>
 <%t=0%>
