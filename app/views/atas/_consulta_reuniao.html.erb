@@ -1,0 +1,20 @@
+<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
+     <%@ata = Ata.find(:all, :select => 'distinct(titulo)')%>
+    <%t=0%>
+<%else%>
+    <%@ata = Ata.find(:all, :select => 'distinct(titulo)')%>
+<%t=0%>
+<%end%>
+<table width="100%" align="center">
+   <tr>
+     <td  align="right"><font size="2"><b>Tipo de reunião:</b></font>
+          &nbsp&nbsp&nbsp<%= select_tag :titulo, options_for_select(@ata.collect { |ff| [ff.titulo, ff.titulo] }.insert(0, '--Selecionar--')) %>
+          &nbsp&nbsp&nbsp <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+
+     </td>
+     <td>
+
+     </td>
+
+   </tr>
+  </table>

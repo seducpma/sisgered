@@ -1,0 +1,52 @@
+<table class ="invisible_to_print ">
+  <tr>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+</table>
+            <% for ata in @ata %>
+              <table cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
+                <tr  style="border-color: white">
+                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                      <center><font size="2"> Unidade Escolar: <%= ata.unidade.tipo.nome %> <%=h ata.unidade.nome %> </i></b><br/></center>
+                      <center><font size="2"><b><u>ATA DA REUNIÃO DE <%= ata.titulo%> DE <%= ata.data.strftime("%d de %B de %Y")%></u></b></font></center>
+
+                  </td>
+                </tr>
+               </table>
+                <table cellspacing="0" cellpadding="0" width="100%" style="border-color: white">
+                 <tr   style="border-color: white">
+                   <td colspan="4"  style="border-color: white"><%= ata.ata.gsub("\n","<br/>\n") %>
+
+                   </td>
+
+                 </tr>
+                <tr  style="border-color: white">
+                   <td colspan="5" style="border-color: white">
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b><br/><br/>
+                       <b>Nome </b>: <u><%= ata.moderador%> - Moderador(a) </u> &nbsp - ________________________________<br/><br/>
+                       
+                       <b>Nome </b>: <u> <%= ata.secretario%> - Secretário(a) </u> &nbsp - ________________________________
+                       
+
+                  </td>
+                </tr>
+
+                <tr  style="border-color: white">
+                   <td colspan="5" style="border-color: white">
+                    <br/><br/><b><u>Presentes:</u></b><br/><br/>
+                                        
+                    <% for i in 0..(ata.quant.to_i)%>
+                        <%=i+1%>)<b>Nome </b>:___________________________________________  <b>Assinatura:________________________________</b><br/><br/>
+                    <%end%>
+                      
+                  </td>
+                </tr>
+              </table>
+
+<div style="page-break-after: always"></div>
+
+<%end%>
+
+

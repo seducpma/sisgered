@@ -1,0 +1,24 @@
+<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
+     <% if (current_user.has_role?('pedagogo')) %>
+        <%@unidades = Unidade.find(:all, :select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0'],:order => 'unidades.nome')%>
+        <%#@unidades = Ata.find(:all, :joins => [:unidade, :atribuicao, :classe],:select => 'distinct(unidades.nome), unidades.id',  :conditions =>['atribuicaos.unidade_id = ? and atribuicaos.ano_letivo=?'],:order => 'unidades.nome ASC')%>
+     <%else%>
+        <%@unidades = Ata.find(:all, :joins => [:unidade],:select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0'],:order => 'unidades.nome ASC')%>
+     <%end%>
+<%else%>
+     <%@unidades = Ata.find(:all, :joins => [:unidade],:select => 'distinct(unidades.nome), unidades.id',  :conditions =>['atas.unidade_id=?',  current_user.unidade_id],:order => 'atas.data DESC')%>
+<%end%>
+<table width="100%" align="center">
+   <tr>
+     <td  align="right"><font size="2"><b>Unidade:</b></font>
+          &nbsp&nbsp&nbsp<%= select_tag :unidade, options_for_select(@unidades.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar--')) %>
+          &nbsp&nbsp&nbsp <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+
+     </td>
+     <td>
+       
+     </td>
+
+   </tr>
+  </table>
+

@@ -1,4 +1,4 @@
-class ProfessorsController < ApplicationController
+  class ProfessorsController < ApplicationController
   
      before_filter :load_unidades
      before_filter :load_professors

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  titulo: MyString
+  unidade: 
+  ata: MyText
+  data: 2020-06-09
+  obs: MyString
+
+two:
+  titulo: MyString
+  unidade: 
+  ata: MyText
+  data: 2020-06-09
+  obs: MyString

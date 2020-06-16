@@ -1,0 +1,28 @@
+<h1>Listing atas</h1>
+
+<table>
+  <tr>
+    <th>Titulo</th>
+    <th>Unidade</th>
+    <th>Ata</th>
+    <th>Data</th>
+    <th>Obs</th>
+  </tr>
+
+<% @atas.each do |ata| %>
+  <tr>
+    <td><%=h ata.titulo %></td>
+    <td><%=h ata.unidade %></td>
+    <td><%=h ata.ata %></td>
+    <td><%=h ata.data %></td>
+    <td><%=h ata.obs %></td>
+    <td><%= link_to 'Show', ata %></td>
+    <td><%= link_to 'Edit', edit_ata_path(ata) %></td>
+    <td><%= link_to 'Destroy', ata, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New ata', new_ata_path %>

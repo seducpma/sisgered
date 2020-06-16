@@ -1,0 +1,57 @@
+
+
+              <%if @atas.present?%>
+                <!--<%session[:imprimir_todos]=1%>-->
+
+                  <fieldset><legend><font  size=3><b> CONTEÚDOS LANÇADOS
+                        </b></font></legend>
+                        <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                          <tr bgcolor="#F5F5F5" style="border-color: white">
+                            <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                            <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                                <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+
+                                <center><font size="2"><b><u>ATAS REUNIÕES</u></b></font></center>
+                            </td>
+                          </tr>
+                         </table>
+            <div class="tabs">
+              <table bgcolor="#DCDCDC" width="100%">
+                  <tr bgcolor="#DCDCDC" >
+                      <th width="200">Reunião</th>
+                      <th width="200">Data</th>
+                      <th width="200">Unidade</th>
+                      <th colspan="3"></th>
+                  </tr>
+                     <%$t=0%>
+                     <% @atas.each do |ata| %>
+                     <%$t = $t+1%>
+                       <tr bgcolor="#F5F5F5">
+                          <td align="left"><%=h ata.titulo%></td>
+                          <td align="left"><%=h ata.data.strftime("%d de %B de %Y")%></td>
+                          <td align="left"><%=h ata.unidade.tipo.nome%> <%=h ata.unidade.nome%></td>
+                          <td align="center"><%= button_to('Visualizar ata', {:action => "show", :id =>ata},:method => "get", :title => "Visualizar") %></td>
+                       </tr>
+                      <% end %>
+               </table>
+               <table bgcolor="#DCDCDC" width="100%">
+                <tr >
+                  <td colspan="3" align="right"><b>TOTAL DE ATAS: </b>
+                      <font color ="red "size="2"><b><%=$t %></b></font>
+                    </td>
+                </tr>
+              </table>
+            </div>
+           </fieldset>
+
+
+         <%else%>
+              <br/>
+              <%t=0%>
+              <table  width="100%">
+                    <tr>
+                      <td align="center"><font size="3" color="red"><b> LANÇAMENTO DE CONTEÚDO NÃO ENCONTRADO </b> </td>
+                    </tr>
+              </table>
+         <%end%>
+

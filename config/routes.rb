@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :atas ,:collection => { :consultas=>:get}
+
   map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get,:consultas_mqa =>:get, :editar_mqa=>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get}
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
   map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
@@ -122,7 +124,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_eventuals '/impressao_eventuals', :controller => 'aulas_eventuals', :action => 'impressao_eventuals'
   map.impressao_eventuals_professor '/impressao_eventuals_professor', :controller => 'aulas_eventuals', :action => 'impressao_eventuals_professor'
   map.impressao_relatorio_faltas_classe'/impressao_relatorio_faltas_classe', :controller => 'faltas', :action => 'impressao_relatorio_faltas_classe'
-
+  map.impressao_ata '/impressao_ata', :controller => 'atas', :action => 'impressao'
   #map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'arquivo_historico'
   map.download_historico '/download_historico', :controller => 'atribuicaos', :action => 'download_historico'
   map.download_historico '/download_historico', :controller => 'historicos', :action => 'arquivo_historico'
@@ -186,6 +188,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editar_relatorio '/editar_relatorios', :controller => 'relatorios', :action => 'editar'
   map.consulta_observacoes '/consulta_observacoes', :controller => 'relatorios', :action => 'consulta_observacoes'
   map.consulta_atribuicao '/consulta_atribuicao', :controller => 'atribuicaos', :action => 'consulta_atribuicao'
+  map.consulta_ata '/consulta_ata', :controller => 'atas', :action => 'consulta_ata'
 
   map.historico'/historico', :controller => 'historicos', :action => 'historico'
   map.historicoContinua'/historicoContinua', :controller => 'historicos', :action => 'historicoContinua'

@@ -1,0 +1,56 @@
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>ATA DE REUNIÃO</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+
+                 <tr bgcolor="#F5F5F5">
+                   <td width ="11%" valign="top"><b><b>Reunião de:</b></td>
+                   <td ><%=h @ata.titulo%></td>
+                   <td width ="5%" ><b>Data: </b> </td>
+                       <td ><%=h @ata.data.strftime("%d de %B de %Y")%>  </td>
+                 </tr>
+                  <tr bgcolor="#F5F5F5">
+                       <td ><b>Unidade:</b></td>
+                       <td  colspan="3"><%=h @ata.unidade.tipo.nome %> <%=h @ata.unidade.nome %>
+                       &nbsp&nbsp&nbsp&nbsp&nbsp Número de presentes: <%=  @ata.quant%> pessoas
+                       </td>
+                       
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                       <td ><b>Moderador:</b></td>
+                       <td ><%=h @ata.moderador%> </td>
+                       <td ><b>Secretario:</b></td>
+                       <td ><%=h @ata.secretario %></td>
+
+
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                    <td colspan="4"><%= @ata.ata.gsub("\n","<br/>\n") %></td>
+                </tr>
+
+
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                      <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                       <td colspan="10"align="left" ><%= button_to 'Imprimir', {:controller =>"atas", :action => "impressao", :id =>@ata}, :title => "Imprimir esta FAPEA"%></b></td>
+               </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+</div>

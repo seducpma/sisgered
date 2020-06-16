@@ -10,4 +10,5 @@ class Unidade < ActiveRecord::Base
   has_many :transferencias
   has_many :notas
   has_many :conteudos
+  has_many :atas
 end

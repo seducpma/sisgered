@@ -1,0 +1,45 @@
+<div id="interno2">
+<% title "FAPEA", :id =>"FAPEA" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>ATAS DE REUNIÕES</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <% form_remote_tag :url => consulta_ata_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Data
+              <a href="#" class="filtro_fapeac"><%= radio_button_tag(:type_of, "2") %></a>Reunião
+               <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC') or   current_user.has_role?('supervisao')%>
+                        <a href="#" class="filtro_fapea"><%= radio_button_tag(:type_of, "3") %></a>Unidade
+               <%end%>
+ 
+            </td>
+          </tr>
+
+         <tr>
+             <td colspan="2"><div class="consulta" style="display:none"> <%= render "consulta_data" %> </div>
+             <div class="consulta_classe_fapea" style="display:none"> <%= render "consulta_reuniao" %> </div>
+             <div class="consulta_fapea" style="display:none"> <%= render "consulta_unidade" %> </div>
+
+           </td>
+         </tr>
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="atas"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <br/>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Nova Consulta', consultas_atas_path, :title => "Nova Consulta" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+
