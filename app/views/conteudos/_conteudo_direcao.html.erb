@@ -1,135 +1,45 @@
-    <%if @conteudos.present?%>
-      <!--<%session[:imprimir_todos]=1%>-->
+ 
 
-        <fieldset><legend><font  size=3><b> CONTEÚDOS LANÇADOS 
-              </b></font></legend>
-              <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
-                <tr bgcolor="#F5F5F5" style="border-color: white">
-                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
-                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
-                      <%if !@conteudos[0].atribuicao_id.nil?%><center><font size="2"> Unidade Escolar: <%=h @conteudos[0].unidade.nome %> </i></b><br/></center><%end%>
-                      <center><font size="2"><b><u>LANÇAMENTOS DE CONTEÚDO PROGRAMÁTICOS</u></b></font></center>
-                  </td>
-                </tr>
-               </table>
-            <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
-              <%cont = 0%>
-              <% for conteudo in @conteudos %>
-
-                 <tr bgcolor="#F5F5F5">
-                   <%if !@conteudos[0].atribuicao_id.nil?%>
-                       <td width=5%" align="center"><b>Classe:</b></td>
-                       <td width=10% > <%=h conteudo.atribuicao.classe.classe_classe %> <%if !@conteudos[0].disciplina_id.nil?%> - <%=h conteudo.atribuicao.classe.classe_ano_letivo %><%end%></td>
-                       <td width=10%" align="center"><b>Unidade:</b></td>
-                       <td width=20%> <%=h conteudo.unidade.nome %></td>
-                       <td width=8%" align="center"><b>Período:</b></td>
-                       <td colspan="3"> De <%=h conteudo.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
-                                                                                             <% if (session[:dataF].to_date < conteudo.fim) or  (session[:dataF].to_date != conteudo.fim)%>
-                                                                                                   <% if (session[:dataFF] != conteudo.fim)%>
-                                                                                                        <font color ="red"><%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
-                                                                                                   <%else%>
-                                                                                                          <font color ="red"> <%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
-                                                                                                   <%end%>
-
-                                                                                              <%else%>
-                                                                                                   <%=h conteudo.fim.strftime("%d/%m/%Y") %>
-                                                                                              <%end%>
-                                                                                         <%else%>
-                                                                                              <%=h conteudo.fim.strftime("%d/%m/%Y") %>
-                                                                                         <%end%>
-                       </td>
-
-                   <%else%>
-                       <td width=5%" align="center"><b>Classe:</b></td>
-                       <td width=10%  align="center"> ----- </td>
-                       <td width=10%" align="center"><b>Unidade:</b></td>
-                       <td width=20%> <%=h conteudo.unidade.nome %></td>
-                       <td width=8%" align="center"><b>Período:</b></td>
-                       <td colspan="3"> De <%=h conteudo.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
-                                                                                             <% if (session[:dataF].to_date < conteudo.fim) or  (session[:dataF].to_date != conteudo.fim)%>
-                                                                                                   <% if (session[:dataFF] != conteudo.fim)%>
-                                                                                                        <font color ="red"><%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
-                                                                                                   <%else%>
-                                                                                                          <font color ="red"> <%=h conteudo.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
-                                                                                                   <%end%>
-
-                                                                                              <%else%>
-                                                                                                   <%=h conteudo.fim.strftime("%d/%m/%Y") %>
-                                                                                              <%end%>
-                                                                                         <%else%>
-                                                                                              <%=h conteudo.fim.strftime("%d/%m/%Y") %>
-                                                                                         <%end%>
-                       </td>
-                  <%end%>
-                </tr>
-
-                 <tr bgcolor="#F5F5F5">
-                   <td></td>
-                   <td align="left" valign="top"><b>Conteúdo:</b></td>
-                   <td colspan="4"> <%=   conteudo.conteudo.gsub("\n","<br/>\n") %></td>
-                </tr>
-                 <tr bgcolor="#F5F5F5">
-                   <td></td>
-                   <td align="left" valign="top"><b>Obs:</b></td>
-                   <td colspan="4"> <%=   conteudo.obs%></td>
-                </tr>
-                <tr bgcolor="#DCDCDC">
-                   <td></td>
-                   <td align="left" valign="top"><b>Professor:</b></td>
-                   <td colspan="4"> <%=   conteudo.professor.nome%> &nbsp - &nbsp <%if !@conteudos[0].disciplina_id.nil?%>
-                                                                                         <%=  conteudo.atribuicao.disciplina.disciplina %>
-                                                                                   <%else%>
-                                                                                            <%=  conteudo.professor.funcao2 %>
-                                                                                   <%end%>
-                   </td>
-                </tr>
-                <tr bgcolor="#C1C1C1" valign="top"><td colspan="6"> &nbsp&nbsp&nbsp</td></tr>
-                <%cont = cont + 1%>
-            <%end%>
-                 <%if  @conteudos_classe[0].classe.classe_classe !='PEDAGOGO' and @conteudos_classe[0].classe.classe_classe !='COORDENACAO' and @conteudos_classe[0].classe.classe_classe !='SUPERVISAO' and @conteudos_classe[0].classe.classe_classe !='DIRECAO FUNDAMENTAL' and @conteudos_classe[0].classe.classe_classe !='DIRECAO INFANTIL' %>
-                     <tr bgcolor="#F5F5F5">
-                       <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
-                       <td colspan="3" > <u>Profissionais:</u><% contP = 0%><br/>
-                                            <% for professor in @conteudos_professor %>
-                                               &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
-                                          <%end%>
-                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> profissionai <%else%> profissionais  <%end%>
-
-                       </td>
-
-                       <td colspan="2" valign="top" > <u>Classes:</u><% contC = 0%><br/>
-                                            <% for classe in @conteudos_classe %>
-                                               &nbsp&nbsp <%= contC+1%>) <%= classe.classe.classe_classe %> &nbsp - &nbsp <%= classe.classe.horario %><% contC = contC +1 %> <br/>
-                                          <%end%>
-                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contC%> <% if contC == 1%> Classe <%else%> classes  <%end%>
-                       </td>
-                     </tr>
-                 <%else%>
-                    <tr bgcolor="#F5F5F5">
-                       <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
-                       <td colspan="4" > <% contP = 0%>
-                                            <% for professor in @conteudos_professor %>
-                                               &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
-                                          <%end%>
-                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> profissional <%else%> profissionais  <%end%>
-
-                       </td>
-
-                     </tr>
-
-                 <%end%>
-             </table>
-           </fieldset>
+<% if !@conteudos.empty? %>
+ <table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td width =" 8%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
+            <td width =" 10%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
+            <td><b>&nbsp&nbsp&nbsp Professor</b></td>
+            <td <b>&nbsp&nbsp&nbsp Período</b></td>
+            <td></td>
+        </tr>
+         <% for conteudo in @conteudos %>
+         <tr bgcolor="#F5F5F5" >
+            <td align="left">&nbsp <%if !conteudo.classe_id.nil? %>
+                                      <%= conteudo.classe.classe_classe%>
+                                    <%else%>
+                                        MQA
+                                    <%end%>
+              </td>
+            <td align="left">&nbsp <%if !conteudo.atribuicao_id.nil? %>
+                                       <%if !conteudo.disciplina_id.nil?%>
+                                          <%= conteudo.atribuicao.disciplina.disciplina%>
+                                       <%end%>
+                                    <%else%>
+                                        <%= conteudo.professor.obs_interno %>
+                                    <%end%>
+            </td>
+            <td align="left">&nbsp <%= conteudo.professor.nome%> </td>
+            <td align="left"> De <%= conteudo.inicio.strftime("%d/%m/%Y") %>   <%= conteudo.fim.strftime("%d/%m/%Y")%></td>
+           <td align="center"> <%= button_to('Visualizar', {:action => "show", :id =>conteudo},:method => "get", :title => "Visualizar") %>
+<%#= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "show", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
 
 
-         <%else%>
-              <br/>
-              <%t=0%>
-              <table  width="100%">
-                    <tr>
-                      <td align="center"><font size="3" color="red"><b> LANÇAMENTO DE CONTEÚDO NÃO ENCONTRADO </b> </td>
-                    </tr>
-              </table>
+         </tr>
          <%end%>
+    </table>
+<%else%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td ><br/><font size="4" color="red"> NÃO EXISTE LANÇAMENTOS PARA ESTA CLASSE <br/></td>
 
+        </tr>
+    </table>
+
+ <%end%>

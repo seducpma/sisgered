@@ -156,7 +156,9 @@ end
   # POST /conteudos.xml
   def create
     @conteudo = Conteudo.new(params[:conteudo])
-    @conteudo.disciplina_id= session[:cont_disciplina_id]
+    if ( current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental') ) 
+         @conteudo.disciplina_id= session[:cont_disciplina_id]
+    end
     @conteudo.classe_id= session[:cont_classe_id]
     @conteudo.atribuicao_id= session[:cont_atribuicao_id]
     @conteudo.ano_letivo =  Time.now.year
@@ -670,12 +672,13 @@ t=0
                         else if (current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental'))
                                w1=current_user.unidade_id
                                 w2=current_user.professor_id
-                                #@conteudos = Conteudo.find_by_sql("SELECT * FROM conteudos WHERE (day(created_at) = "+(Time.now.day).to_s+" AND month(created_at) = "+(Time.now.month).to_s+" AND year(created_at)="+(Time.now.year).to_s+" AND classe_id="+session[:cont_classe_id].to_s+" ) ORDER BY classe_id")
+                                #@conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? and professor_id=?", session[:cont_classe_id],current_user.professor_id] , :order => 'inicio DESC, classe_id ASC')
+                                @conteudos = Conteudo.find_by_sql("SELECT * FROM conteudos WHERE (day(created_at) = "+(Time.now.day).to_s+" AND month(created_at) = "+(Time.now.month).to_s+" AND year(created_at)="+(Time.now.year).to_s+" AND classe_id="+session[:cont_classe_id].to_s+" ) ORDER BY classe_id")
 
 
                 #  ^^  para limitar edição até fina do dia
 
-                                @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? and professor_id=?", session[:cont_classe_id],current_user.professor_id] , :order => 'inicio DESC, classe_id ASC')
+                                
                                 @conteudos_professor = Conteudo.find(:all, :select => "conteudos.professor_id, count( conteudos.id ) as conta",:joins => "INNER JOIN professors ON conteudos.professor_id = professors.id", :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :group => 'professor_id', :order => 'professors.nome ASC' )
                                 @conteudos_classe = Conteudo.find(:all, :select => "conteudos.classe_id, count( conteudos.id ) as conta",:joins => "INNER JOIN classes ON conteudos.classe_id = classes.id ", :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
                              else

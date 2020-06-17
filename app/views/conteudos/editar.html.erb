@@ -7,6 +7,14 @@
   <div class="tabs">
     <% form_remote_tag :url => editar_conteudo_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <table width="100%" align="center" bgcolor="#DCDCDC" >
+        <%if current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental') %>
+         <tr>
+           <td colspan="2"> <hr/><font color="red"><b><u>ATENÇÃO:</u> Professores só podem editar e alterar relatórios até as 23:59 do dia que foi feito, apartir do dia seguinte somente gestor ou pedagogo podem alterar relatório gravado. <br/> Nesta tela aparecem somente os relatórios que podem ser editados para visualizar todos os relatórios existentes utilize a opção CONSULTAR.
+
+               </b></font><hr/><br/>
+           </td>
+         </tr>
+         <%end%>
           <tr>
             <td>
               <!--<a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Data-->
@@ -29,6 +37,8 @@
              <div class="consulta_nome_fapea" style="display:none"> <%= render "consulta_professor" %> </div>
 
            </td>
+        </tr>
+
         </table>
     <% end %>
     <br/>
