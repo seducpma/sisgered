@@ -1,0 +1,84 @@
+
+
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>VALIAÇÃO RELATÓRIOS LANÇADOS</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+          <% form_for (@conteudo) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4"><b>LANÇAMENTO DE ATIVIDADES </b></td>
+                  </tr>
+
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><b>Período referente  &nbsp&nbsp&nbsp De: </b>   <%=h @conteudo.inicio.strftime("%d/%m/%Y")%> &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%=h @conteudo.inicio.strftime("%d/%m/%Y")%>
+             </td>
+
+        </tr>
+                <tr bgcolor="#F5F5F5">
+                   <td width =" 5%"><b>Nome:</b></td>
+                   <td><%= @conteudo.professor.nome %>  - <%= @conteudo.professor.obs_interno %></td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="disciplina"> </div></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Conteúdo:</b></td>
+                  <td colspan="5">
+
+
+
+   <%=h @conteudo.conteudo %><br/>
+                   <tr>
+                     <td colspan="2"  >
+                       <fieldset><legend><font  size=2><b> Validação </b></font></legend>
+                          <table>
+                               <tr>
+                                 <td colspan="2"><b>Este Relatório de Lançamento de Conteúdo foi lido e validado:&nbsp&nbsp </b>SIM <%= f.check_box :validacao %>
+
+                                 </td>
+                               </tr>
+                           </table>
+                          </fieldset>
+
+                     </td>
+                   </tr>
+ 
+                <tr>
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> Este relátorio deverá ser validado pelo superior hieraquico de quem o fez, será registrido o usuário logado na data que foi clicado na caixa SIM. <br/>
+
+
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('direcao_infantil')or current_user.has_role?('direcao_fundamental'))%>
+                              <td  align="right" ><%= link_to  image_tag('/stylesheets/images/excluir1.png', :title => 'Excluir'),  { :action => "destroy", :id => session[:exclusao_id]}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
+                       <%end%>
+
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+</div>
+
+

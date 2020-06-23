@@ -6,8 +6,9 @@
             <td width =" 8%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
             <td width =" 10%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
             <td><b>&nbsp&nbsp&nbsp Professor</b></td>
-            <td <b>&nbsp&nbsp&nbsp Período</b></td>
-            <td></td>
+            <td width =" 22%"> <b>&nbsp&nbsp&nbsp Período </b></td>
+            <td align="center"width =" 5%"> <b>Validação</b></td>
+           <td width =" 5%"> </td>
         </tr>
          <% for conteudo in @conteudos %>
          <tr bgcolor="#F5F5F5" >
@@ -17,14 +18,15 @@
                                         MQA
                                     <%end%>
               </td>
-            <td align="left">&nbsp <%if !conteudo.atribuicao_id.nil? %>
+            <td align="left">&nbsp <%if !conteudo.disciplina_id.nil? %>
                                         <%= conteudo.disciplina.disciplina%>
                                                 <%else%>
                                         <%= conteudo.professor.obs_interno %>
                                     <%end%>
             </td>
             <td align="left">&nbsp <%= conteudo.professor.nome%> </td>
-            <td align="left"> De <%= conteudo.inicio.strftime("%d/%m/%Y") %>   <%= conteudo.fim.strftime("%d/%m/%Y")%></td>
+            <td align="left"> De <%= conteudo.inicio.strftime("%d/%m/%Y") %> à  <%= conteudo.fim.strftime("%d/%m/%Y")%></td>
+            <td align="center">&nbsp <%if conteudo.validacao == 1%> <font color="blue"> VALIDADO </font> <%else%> <font color="red"> AGUARDANDO </font><%end%> </td>
            <td align="center"> <%= button_to('Visualizar', {:action => "show", :id =>conteudo},:method => "get", :title => "Visualizar") %>
 <%#= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "show", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
 

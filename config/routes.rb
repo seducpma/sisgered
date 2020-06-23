@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :atas ,:collection => { :consultas=>:get}
 
-  map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get,:consultas_mqa =>:get, :editar_mqa=>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get}
+  map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get,:consultas_mqa =>:get, :editar_mqa=>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get, :validacao => :get}
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
   map.resources :aulas_faltas, :collection => { :relatorio_falta_mes=>:get, :index2=>:get , :index3=>:get,  :relatorio_falta_mes_professor => :get , :relatorio_falta_mes_funcionario => :get}
   map.resources :funcionarios, :collection => { :consulta=>:get}
@@ -146,6 +146,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editar_conteudo '/editar_conteudo', :controller => 'conteudos', :action => 'editar_conteudo'
   map.editar_direcao_conteudo '/editar_direcao_conteudo', :controller => 'conteudos', :action => 'editar_direcao_conteudo'
   map.editar_mqa_conteudo '/editar_mqa_conteudo', :controller => 'conteudos', :action => 'editar_mqa_conteudo'
+  map.validacao_conteudo '/validacao_conteudo', :controller => 'conteudos', :action => 'validacao_conteudo'
   map.show_editar '/show_editar', :controller => 'atribuicaos', :action => 'show_editar'
   map.new2_obs_notas '/new2_obs_notas', :controller => 'observacao_notas', :action => 'new2'
 

@@ -4,8 +4,9 @@
             <td width =" 8%"> <b>&nbsp&nbsp&nbsp Atuação</b></td>
             <td width =" 10%"><b>&nbsp&nbsp&nbsp Unidade</b></td>
             <td><b>&nbsp&nbsp&nbsp Professor</b></td>
-            <td <b>&nbsp&nbsp&nbsp Período Relatado</b></td>
-             <td </td>
+            <td width =" 22%"> <b>&nbsp&nbsp&nbsp Período </b></td>
+            <td align="center"width =" 5%"> <b>Validação</b></td>
+           <td width =" 5%"> </td>
 
         </tr>
          <% for edicao in @conteudos %>
@@ -13,7 +14,8 @@
             <td align="left">&nbsp <%= edicao.classe.classe_classe%> </td>
             <td align="left">&nbsp <%= edicao.unidade.nome%> </td>
             <td align="left">&nbsp <%= edicao.professor.nome%> </td>
-            <td align="left"> De <%= edicao.inicio.strftime("%d/%m/%Y") %>   <%= edicao.fim.strftime("%d/%m/%Y")%></td>
+            <td align="left"> De <%= edicao.inicio.strftime("%d/%m/%Y") %>  à <%= edicao.fim.strftime("%d/%m/%Y")%></td>
+            <td align="center">&nbsp <%if edicao.validacao == 1%> <font color="blue"> VALIDADO </font> <%else%> <font color="red"> AGUARDANDO </font><%end%> </td>
            <td align="center"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "edit_direcao", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
            
 

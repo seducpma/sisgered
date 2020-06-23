@@ -426,7 +426,8 @@ display: none;
                            <ul>
                               <li><%= link_to "Professor",editar_conteudos_path %></li>
                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
-                                   <li><li><%= link_to "Pedagogo/Direção",editar_direcao_conteudos_path %></li></li>
+                                   <li><%= link_to "Pedagogo/Direção",editar_direcao_conteudos_path %></li>
+                                   <li><%= link_to "Validação",validacao_conteudos_path %></li>
                                  <%end%>
                                   <% if (current_user.unidade_id == 52 or current_user.unidade_id == 60 or current_user.unidade_id  == 53  )%>
                                             <li><%= link_to "Mãos Que Acolhem",editar_mqa_conteudos_path %>  </li>

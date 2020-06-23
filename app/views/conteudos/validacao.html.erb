@@ -1,0 +1,51 @@
+<div id="interno2">
+<% title "FAPEA", :id =>"FAPEA" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>VALIAÇÃO RELATÓRIOS LANÇADOS</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <% form_remote_tag :url => validacao_conteudo_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+             
+              <a href="#" class="filtro_fapeac"><%= radio_button_tag(:type_of, "4") %></a>Atuação <b><font color =" blue">*</font></b>
+
+              <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('secretaria_fundamental')%>
+                  <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Nome <b><font color =" blue">*</font></b>
+                     <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC') or   current_user.has_role?('supervisao')%>
+                               <a href="#" class="filtro_fapea"><%= radio_button_tag(:type_of, "2") %></a>Unidade<font color =" blue">*</font>
+                     <%end%>
+              <%end%>
+              &nbsp&nbsp&nbsp&nbsp(<font color =" blue"><b>* Ano Letivo atual</b></font>)
+            </td>
+          </tr>
+
+         <tr>
+           <td>
+             <div class="consulta_classe_fapea" style="display:none"> <%= render "consulta_atuacao" %> </div>
+             <div class="consulta_fapea" style="display:none"> <%= render "consulta_unidade" %> </div>
+             <div class="consulta_nome_fapea" style="display:none"> <%= render "consulta_nome" %> </div>
+             </td>
+           </tr>
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="relatorio"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <br/>
+
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+     <td align="left"><%= button_to 'Nova Consulta', editar_direcao_conteudos_path, :title => "Nova Consulta" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
+</div>
+
+
+

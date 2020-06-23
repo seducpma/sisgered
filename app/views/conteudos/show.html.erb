@@ -83,6 +83,7 @@
                    <td align="left" valign="top"><b>Obs:</b></td>
                    <td colspan="4"> <%=   @conteudo.obs%></td>
                 </tr>
+
                 <tr bgcolor="#DCDCDC">
                    <td></td>
                    <td align="left" valign="top"><b>Professor:</b></td>
@@ -91,6 +92,20 @@
                                                                                    <%else%>
                                                                                             <%=  @conteudo.professor.funcao2 %>
                                                                                    <%end%>
+                   </td>
+                </tr>
+
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Validação:</b></td>
+                   <td colspan="4"><% if @conteudo.validacao == 1 %>
+                                        <% if  !@conteudo.validado_em.nil? %>
+                                            <font color ="blue"><b> VALIDADO &nbsp&nbsp por <%=  @conteudo.validado_por%> &nbsp&nbsp  em <%=h @conteudo.validado_em.strftime("%d/%m/%Y - %H:%M ") %></b>
+                                        <%end%>
+                                  <%else%>
+                                         <font color ="red"> AGUARDANDO VALIDAÇÃO <font>
+                                  <%end%>
+
                    </td>
                 </tr>
                <tr bgcolor="#C1C1C1" >
