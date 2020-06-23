@@ -19,7 +19,9 @@
                                     <%end%>
               </td>
             <td align="left">&nbsp <%if !conteudo.atribuicao_id.nil? %>
-                                        <%= conteudo.atribuicao.disciplina.disciplina%>
+                                       <%if !conteudo.atribuicao.disciplina_id.nil? %>
+                                          <%= conteudo.atribuicao.disciplina.disciplina%>
+                                        <%end%>
                                                 <%else%>
                                         <%= conteudo.professor.obs_interno %>
                                     <%end%>
