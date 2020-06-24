@@ -19,7 +19,7 @@
                                     <%end%>
               </td>
             <td align="left">&nbsp <%if !conteudo.disciplina_id.nil? %>
-                                       <%if !conteudo.atribuicao.disciplina_id.nil? or !conteudo.atribuicao.disciplina_id.present?%>
+                                       <%if !conteudo.atribuicao.disciplina.nil? or !conteudo.atribuicao.disciplina.present?%>
                                           <%= conteudo.atribuicao.disciplina.disciplina%>
                                         <%end%>
                                                 <%else%>
