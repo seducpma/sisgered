@@ -13,15 +13,15 @@
          <% for conteudo in @conteudos %>
          <tr bgcolor="#F5F5F5" >
             <td align="left">&nbsp <%if !conteudo.classe_id.nil? %>
-                                      <%= conteudo.classe.classe_classe%>
+                                     a<%= conteudo.classe.classe_classe%>
                                     <%else%>
-                                        MQA
+                                      MQA
                                     <%end%>
               </td>
             <td align="left">&nbsp <%if !conteudo.disciplina_id.nil? %>
-                                        <%= conteudo.disciplina.disciplina%>
+                                     b<%= conteudo.disciplina.disciplina%>
                                                 <%else%>
-                                        <%= conteudo.professor.obs_interno %>
+                                      c  <%= conteudo.professor.obs_interno %>
                                     <%end%>
             </td>
             <td align="left">&nbsp <%= conteudo.professor.nome%> </td>
