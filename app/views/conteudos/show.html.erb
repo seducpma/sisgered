@@ -94,20 +94,21 @@
                                                                                    <%end%>
                    </td>
                 </tr>
-
+<!--
                  <tr bgcolor="#F5F5F5">
                    <td></td>
                    <td align="left" valign="top"><b>Validação:</b></td>
-                   <td colspan="4"><% if @conteudo.validacao == 1 %>
-                                        <% if  !@conteudo.validado_em.nil? %>
-                                            <font color ="blue"><b> VALIDADO &nbsp&nbsp por <%=  @conteudo.validado_por%> &nbsp&nbsp  em <%=h @conteudo.validado_em.strftime("%d/%m/%Y - %H:%M ") %></b>
-                                        <%end%>
-                                  <%else%>
+                   <td colspan="4"><%# if @conteudo.validacao == 1 %>
+                                        <%# if  !@conteudo.validado_em.nil? %>
+                                            <font color ="blue"><b> VALIDADO &nbsp&nbsp por <%#=  @conteudo.validado_por%> &nbsp&nbsp  em <%#=h @conteudo.validado_em.strftime("%d/%m/%Y - %H:%M ") %></b>
+                                        <%#end%>
+                                  <%#else%>
                                          <font color ="red"> AGUARDANDO VALIDAÇÃO <font>
-                                  <%end%>
+                                  <%#end%>
 
                    </td>
                 </tr>
+-->
                <tr bgcolor="#C1C1C1" >
                   <td colspan="6"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Este lançamento só pode ser editado e alterado até às 23:59 do dia que foi feito.<br/>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após este data e hora somente o gestor ou pedagogo da unidade poderão fazer alterações.
