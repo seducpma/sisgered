@@ -748,6 +748,7 @@ end
                     @conteudos_classe = Conteudo.find(:all, :select => "conteudos.classe_id, count( conteudos.id ) as conta",:joins => "INNER JOIN classes ON conteudos.classe_id = classes.id ", :conditions =>  ["professor_id=?     AND ano_letivo = ?", session[:cont_professor], Time.now.year], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
                      end
             end
+            t=0
             render :update do |page|
                 page.replace_html 'relatorio', :partial => 'conteudo_direcao'
             end
