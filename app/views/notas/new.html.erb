@@ -23,16 +23,16 @@
                         </tr>
                  <%end%>
                  <tr bgcolor="#F5F5F5">
-                   <td width ="12%"><b>Disciplina:</b></td>
+                   <td><b>Disciplina:</b></td>
                    <td colspan="2"><%= f.collection_select :disciplina_id, @disciplinasN, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
                 </tr>
                 <tr bgcolor="#F5F5F5">
-                    <td></td>
-                    <td ><font color ="red" size="2"> <b>Se a disciplina não constar na lista,  favor cadastrar NOVA DISCIPLINA </b> </td>
+
+                  <td colspan="2"><font color ="red" size="2"> <b>Se a disciplina não constar na lista,  favor cadastrar NOVA DISCIPLINA </b> </td>
                                 <td><%=link_to image_tag("/stylesheets/images/disciplina1.png"),new_disciplina_path%></td>
                 </tr>
                  <tr bgcolor="#F5F5F5">
-                     <td width="14%"> <b> Selecionar => </b></td>
+                     <td > <b> Selecionar:  </b></td>
                      <td colspan="2" align="left">
                        <b>Série:</b>&nbsp
                        <%=f.collection_select :classe, @serie, :id, :cl_ano, :include_blank => '--- Selecione ---'  %>
@@ -49,6 +49,10 @@
                            :url    => { :action => 'botao' },
                            :with   => 'nota_ano_letivo' %>
                    </td>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" ><font color ="red" size="2"> <b>Se NÃO constar a série/ano letivo é necessário cadastrar SÉRIE e ANO  LETIVO.</b> </td>
+                      <td width="10%"><%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}%></td>
+                    </tr>
                 </tr>
 
                </table>
@@ -58,8 +62,8 @@
                    <tr bgcolor="#F5F5F5">
                          <td width="90%"align="left"><b><div id='oki'> <b> <font color ="red" size="2"><u>ATENÇÃO:</u> <br/>
                                      &nbsp&nbsp&nbsp 1. Selecionar a SÉRIE  e ANO LETIVO  para habilitar o botão SALVAR. <br/>
-                                     &nbsp&nbsp&nbsp 2. Se NÃO constar a série/ano letivo na lista é necessário cadastra SÉRIE e ANO  LETIVO.</br>
-                                     &nbsp&nbsp&nbsp 3. SE NÃO constar a disciplinaé necessário cadastra a DISCIPLINA.<br/>
+                                     &nbsp&nbsp&nbsp 2. Se NÃO constar a série/ano letivo na lista é necessário cadastrar SÉRIE e ANO  LETIVO.<br/>
+                                     &nbsp&nbsp&nbsp 3. SE NÃO constar a disciplina é  necessário cadastrar a DISCIPLINA.<br/>
                                        </font> <%= link_to  image_tag('/stylesheets/images/serie.png', :title => 'Cadastrar SÉRIE/ANO LETIVO') ,{:controller =>"observacao_historicos", :action => "new"}%>
                              </div></b></td>
 

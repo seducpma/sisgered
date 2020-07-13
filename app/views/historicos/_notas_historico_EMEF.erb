@@ -110,7 +110,7 @@
                                     <% session[:cidade][i]= @notasB1[acertoHTML].matricula.unidade.cidade%>
                                 <%else%>
                                     <% if @carga_horaria1.present? %>
-                                        <%session[:cargah_b][i]=@carga_horaria1[0].carga_horaria_b%>
+                                        <%  session[:cargah_b][i]=@carga_horaria1[0].carga_horaria_b%>
                                         <%  session[:escola][i]=@carga_horaria1[0].escola%>
                                         <%  session[:cidade][i]=@carga_horaria1[0].cidade%>
                                         <%  session[:exclui][i]=@carga_horaria1[0].id%>
@@ -304,7 +304,7 @@
     <tr>
         <td colspan="12"></td>
     </tr>
-
+     <% session[:quant4_linhas] = @disciplinasD.count %>
     <%if (@disciplinasD.count!=0) or (@disciplinasD1.count!=0)%>
         <tr>
             <td  align="center" rowspan=<%=session[:quant4_linhas]+1%>><font size="1"><b>Parte Diverficada</b></font></td>
@@ -425,35 +425,40 @@
                                          <!-- <%#session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%> Mudei o comando para 2 linhas acima ###Alex 16/01/2019 -->
             <%end%>
         <%end%>
+     <tr>
+       <td> </td><td> </td>
+            <%for i in 0..session[:ult_coluna]%>
+                    <td align="center">  </td>
+            <%end%>
+        </tr>
 
-        <tr bgcolor =" #DCDCDC">
+   <!--     <tr bgcolor =" #DCDCDC">
             <td colspan="2"><b> Carga Horária</b></td>
-            <%for i in 0..session[:ult_coluna]%>
-                <%if session[:cargah_d][i]==0%>
+            <#%for i in 0..session[:ult_coluna]%>
+                <#%if session[:cargah_d][i]==0%>
                     <td align="center">---</td>
-                <%else%>
-                    <td align="center"> <%= session[:cargah_d][i] %>  </td>
+                <#%else%>
+                    <td align="center"> <#%= session[:cargah_d][i] %>  </td>
 
-                <%end%>
-            <%end%>
+                <#%end%>
+            <#%end%>
         </tr>
-        <tr bgcolor =" #DCDCDC">
-            <td colspan="3"><b> Carga Horária Total</b></td>
-            <%for i in 0..session[:ult_coluna]%>
-                <%cargah_t=0%>
-                <%if !session[:cargah_b][i].nil?%>
-                    <%cargah_t=session[:cargah_b][i]%>
-                <%end%>
-                <%if !session[:cargah_d][i].nil?%>
-                    <%cargah_t=session[:cargah_d][i]+cargah_t%>
-                <%end%>
-                <%if cargah_t==0%>
-                    <td align="center">---</td>
-                <%else%>
-                    <td align="center"> <%= cargah_t %>  </td>
-                <%end%>
+   -->
+     <tr bgcolor =" #DCDCDC">
+        <td colspan="3"><b> Carga Horária Total</b></td>
+        <%for i in 0..session[:ult_coluna]%>
+            <%if session[:cargah_b][i]==0%>
+                <td align="center">---</td>
+            <%else%>
+                <td align="center">  <% if i>3 %>
+                                       <%= session[:cargah_b][i] +120 %>
+                                     <%else%>
+                                        <%= session[:cargah_b][i]+80 %>
+                                     <%end%>
+                </td>
             <%end%>
-        </tr>
+        <%end%>
+    </tr>
         <% if acerto == 1 %>
             <tr><td colspan="12">&nbsp&nbsp&nbsp&nbsp</td></tr>
     <%end%>
