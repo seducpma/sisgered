@@ -16,14 +16,21 @@
              <table width="100%">
 
                  <tr bgcolor="#F5F5F5">
-                   <td width ="8%" valign="top"><b>Reunião de:</b></td>
-                   <td colspan="3">   <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO") %></a>Conselho &nbsp&nbsp&nbsp
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "DIRETORES / GESTORES") %></a>Diretores/Gestores &nbsp&nbsp&nbsp
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "PAIS") %></a>Pais &nbsp&nbsp&nbsp
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "PEDAGOGOS") %></a>Pedagogos &nbsp&nbsp&nbsp
+                   <td width ="8%" valign="top"><b>Reunião:</b></td>
+                   <td colspan="3">   <a href="#" ><%= radio_button_tag(:tipo_reuniao, "ATRIBUIÇÃO DE PROFESSORES") %></a>Atribuição dos Professores &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO DE ALIMENTAÇÃO ESCOLAR") %></a>Conselho de Alimentação Escolar (CAE) <br/>
+
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO MUNICIPAL DE EDUCAÇÃO") %></a>Conselho Municipal de Educação (CME) &nbsp&nbsp&nbsp&nbsp
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO ESCOLA COMUNIDADE") %></a>Conselho Escola Comunidade (CEC) &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <br/>
+                                      
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO DO FUNDEB") %></a> FUNDEB &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "DIRETORES / GESTORES") %> </a> Diretores & Gestores &nbsp&nbsp&nbsp
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "SUPERVISÃO") %></a>Supervisão &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "PEDAGÓGICA") %></a>Pedagógica &nbsp&nbsp&nbsp <br/>
+
                                       <a href="#" ><%= radio_button_tag(:tipo_reuniao, "PROFESSORES") %></a> Professores &nbsp&nbsp&nbsp
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "SUPERVISORES") %></a>Supervisores <br/>
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "outros") %></a>Outros <%= f.text_field :titulo, :size=>"20"%>
+
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "outros") %></a>Outros <%= f.text_field :titulo, :size=>"50"%>
   
   
   
@@ -35,8 +42,8 @@
         <tr bgcolor="#F5F5F5">
              <td ><b>Data: </b> </td>
                  <td><%= f.date_select(:data, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-1)%></td>
-                 <td align="right"><b>Presentes:</b></td>
-                 <td ><%= f.text_field :quant, :size=>"1"%> pessoas </td>
+                 <td align="right" valign="top"><b>Presentes:</b></td>
+                 <td ><%= f.text_field :quant, :size=>"1"%> pessoas presentes <br/> <font size="2" color="red"><b><u>ATENÇÃO</u> - Número de pessoas presentes.</b></td>
                  
 
 
@@ -104,7 +111,7 @@
                    </tr>
                  </table>
             </font>
-
+<% session[:impressao]=1%>
     </div>
 </div>
 <br/>

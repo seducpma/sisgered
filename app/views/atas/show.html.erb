@@ -11,46 +11,72 @@
 
             <fieldset>
              <legend><font size=4></font></legend>
-             <table width="100%">
 
-                 <tr bgcolor="#F5F5F5">
-                   <td width ="11%" valign="top"><b><b>Reunião de:</b></td>
-                   <td ><%=h @ata.titulo%></td>
-                   <td width ="5%" ><b>Data: </b> </td>
-                       <td ><%=h @ata.data.strftime("%d de %B de %Y")%>  </td>
+<table class ="invisible_to_print ">
+  <tr>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to 'Imprimir', {:controller =>"atas", :action => "impressao", :id =>@ata}, :title => "Imprimir"%></b></td>
+  </tr>
+</table>
+
+              <table cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
+                <tr  style="border-color: white"  bgcolor=white>
+                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                      <center><font size="2"> Unidade Escolar: <%= @ata.unidade.tipo.nome %> <%=h @ata.unidade.nome %> </i></b><br/></center>
+                      <center><font size="2"><b><u>ATA DA REUNIÃO DE <%= @ata.titulo%> DE <%= @ata.data.strftime("%d de %B de %Y")%></u></b></font></center>
+
+                  </td>
+                </tr>
+               </table>
+                <table cellspacing="0" cellpadding="0" width="100%" style="border-color: white">
+                 <tr   style="border-color: white"  bgcolor=white>
+                   <td colspan="4"  style="border-color: white"><%= @ata.ata.gsub("\n","<br/>\n") %>
+
+                   </td>
+
                  </tr>
-                  <tr bgcolor="#F5F5F5">
-                       <td ><b>Unidade:</b></td>
-                       <td  colspan="3"><%=h @ata.unidade.tipo.nome %> <%=h @ata.unidade.nome %>
-                       &nbsp&nbsp&nbsp&nbsp&nbsp Número de presentes: <%=  @ata.quant%> pessoas
-                       </td>
-                       
-                 </tr>
-                 <tr bgcolor="#F5F5F5">
-                       <td ><b>Moderador:</b></td>
-                       <td ><%=h @ata.moderador%> </td>
-                       <td ><b>Secretario:</b></td>
-                       <td ><%=h @ata.secretario %></td>
+                <tr  style="border-color: white" bgcolor=white>
+                   <td colspan="5" style="border-color: white">
+                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b><br/><br/>
+                       <b>Nome </b>: <u><%= @ata.moderador%> - Moderador(a) </u> &nbsp - (assinatura)<br/><br/>
+
+                       <b>Nome </b>: <u> <%= @ata.secretario%> - Secretário(a) </u> &nbsp - (assinatura)
 
 
-                 </tr>
-                 <tr bgcolor="#F5F5F5">
-                    <td colspan="4"><%= @ata.ata.gsub("\n","<br/>\n") %></td>
+                  </td>
                 </tr>
 
+                <tr  style="border-color: white" bgcolor=white>
+                   <td colspan="5" style="border-color: white">
+                    <br/><br/><b><u>Presentes:</u></b>  &nbsp - (assinaturas)<br/><br/>
 
+
+                  </td>
+                </tr>
               </table>
-            </fieldset>
-           <br/>
-                 <table width="100%" >
-                   <tr>
-                      <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-                       <td colspan="10"align="left" ><%= button_to 'Imprimir', {:controller =>"atas", :action => "impressao", :id =>@ata}, :title => "Imprimir esta FAPEA"%></b></td>
-               </tr>
-                 </table>
-            </font>
+             
+                <table class ="invisible_to_print ">
+                  <tr>
+                    <% if session[:impressao]==0 %>
+                        <td width ="2%" align="left" class ="invisible_to_print "><%= button_to 'Imprimir', {:controller =>"atas", :action => "impressao", :id =>@ata}, :title => "Imprimir"%></b></td>
+                        <%session[:impressao]=0%>
+                    <%else%>
+                        <td width ="2%" align="left" class ="invisible_to_print "><%= button_to 'Imprimir', {:controller =>"atas", :action => "impressao", :id =>@ata}, :title => "Imprimir"%></b></td>
+                        <td align="left" ><%= button_to 'Corrigir', {:action => "edit", :id =>@ata}, :method => "get", :title => "Editar"%></td>
 
-    </div>
+                    <%end%>
+                  </tr>
+                  
+                </table>
+             
+
+<div style="page-break-after: always"></div>
+
+
+   </div>
 </div>
 <br/>
 </div>
+
+

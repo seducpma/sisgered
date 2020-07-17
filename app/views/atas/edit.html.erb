@@ -1,32 +1,105 @@
-<h1>Editing ata</h1>
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>ATA DE REUNIÃO</strong></font><br/>
+ </div>
+  <div class="tabs"></div>
+          <% form_for (@ata) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-<% form_for(@ata) do |f| %>
-  <%= f.error_messages %>
+            <fieldset>
+             <legend><font size=4></font></legend>
+              <table cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
+                <tr  style="border-color: white" bgcolor=white>
+                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                      <center><font size="2"> Unidade Escolar: <%= @ata.unidade.tipo.nome %> <%=h @ata.unidade.nome %> </i></b><br/></center>
+                      <center><font size="2"><b><u>ATA DA REUNIÃO DE <%= @ata.titulo%> DE <%= @ata.data.strftime("%d de %B de %Y")%></u></b></font></center>
 
-  <p>
-    <%= f.label :titulo %><br />
-    <%= f.text_field :titulo %>
-  </p>
-  <p>
-    <%= f.label :unidade %><br />
-    <%= f.text_field :unidade %>
-  </p>
-  <p>
-    <%= f.label :ata %><br />
-    <%= f.text_area :ata %>
-  </p>
-  <p>
-    <%= f.label :data %><br />
-    <%= f.date_select :data %>
-  </p>
-  <p>
-    <%= f.label :obs %><br />
-    <%= f.text_field :obs %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+                  </td>
+                </tr>
+               </table>
 
-<%= link_to 'Show', @ata %> |
-<%= link_to 'Back', atas_path %>
+             <table width="100%">
+
+                 <tr  bgcolor=white>
+                   <td width ="8%" valign="top"><b>Reunião:</b></td>
+                   <td colspan="3">  <%= @ata.titulo%> </td>
+                 </tr>
+
+        <tr  bgcolor=white>
+             <td ><b>Data: </b> </td>
+                 <td ><%=h @ata.data.strftime("%d de %B de %Y")%>  </td>
+                 <td align="right" valign="top"><b>Presentes:</b></td>
+                 <td ><%= f.text_field :quant, :size=>"1"%> pessoas presentes <br/> <font size="2" color="red"><b><u>ATENÇÃO</u> - Número de pessoas presentes.</b></td>
+        </tr>
+                <tr  bgcolor=white>
+                   <td width =" 5%"><b>Unidade:</b></td>
+                   <td colspan="3"><%= f.collection_select  :unidade_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+                   </td>
+               </tr>
+                <tr bgcolor=white>
+                   <td width =" 5%"><b>Moderador:</b></td>
+                   <td ><%= f.text_field :moderador, :size=>"35"%></td>
+                   <td ><b>Secretário:</b></td>
+                   <td ><%= f.text_field :secretario, :size=>"35"%></td>                </tr>
+
+                 <tr  bgcolor=white>
+                   <td valign="top"><b>Ata:</b></td>
+                  <td colspan="3">
+                       <%= f.text_area(:ata, :cols=> "86", :rows=>"20", :id=>"contador") %><br/>
+<script>
+        $(document).on("keydown", "#contador", function () {
+            var caracteresRestantes = 10000  ;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+            $(".caracteres").text(caracteresRestantes);
+
+        });
+
+</script>
+  <b><span class="caracteres">10000</span> Caracteres Restantes </b>
+                  </td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Observações:</b></td>
+                   <td colspan="3"><%= f.text_field :obs, :size=>"87" %></td>
+                 </tr>
+                <tr>
+                  <td colspan="4"><font color="red" size=""><b><u> ATENÇÃO: </u> Ao digitar a ata utilize SOMENTE texto sem qualquer tipo formação.
+                      &nbsp&nbsp&nbsp&nbsp >>  UTILIZE SOMENTE TEXTO  <<  <br/>
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                      Se desejar aumentar o tamanho da tela  (zoom) clicar as teclas CLRT +  ou  CLRT - para diminuir </b>
+
+                  </td>
+                </tr>
+
+
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                  <tr>
+                    <td colspan="2 align="left">
+                       <font size="4" color="red"><b><u>ATENÇÃO</u> - Leia antes de clicar no botão SALVAR, pois após salvar NÃO poderão ser feitas alterações nem edições na ATA e no arquivo, pois trata-se de documento e arquivo oficial.</b>
+                       </td>
+                 </tr>
+                   <tr>
+                     <td width="4%"align="left">
+
+                       <b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+<% session[:impressao]=1%>
+    </div>
+</div>
+<br/>
+

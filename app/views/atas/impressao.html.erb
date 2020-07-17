@@ -1,6 +1,7 @@
 <table class ="invisible_to_print ">
   <tr>
     <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+     <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
   </tr>
 </table>
             <% for ata in @ata %>
@@ -48,5 +49,10 @@
 <div style="page-break-after: always"></div>
 
 <%end%>
-
-
+<table class ="invisible_to_print ">
+  <tr>
+    <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+     <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+  </tr>
+</table>
+<% session[:impressao]=0%>

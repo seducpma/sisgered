@@ -1,5 +1,14 @@
-<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
-     <%@ata = Ata.find(:all, :select => 'distinct(titulo)')%>
+<% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil')) %>
+    <%  if (current_user.has_role?('pedagogo')or current_user.has_role?('supervisao'))%>
+       <%@ata = Ata.find(:all, :select => 'distinct(titulo)', :conditions =>  ["(titulo NOT like ?) and (titulo NOT like ?)and (titulo NOT like ?) and (titulo NOT like ?)  ",'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR','CONSELHO MUNICIPAL DE EDUCAÇÃO', 'CONSELHO DO FUNDEB' , 'DIRETORES'+'%'], :order => 'data DESC')%>
+                                           
+    <%   else  if (current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))%>
+       <%@ata = Ata.find(:all, :select => 'distinct(titulo)', :conditions =>  ["(titulo NOT like ?) and (titulo NOT like ?)and (titulo NOT like ?) and (titulo NOT like ?)  ",'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR','CONSELHO MUNICIPAL DE EDUCAÇÃO', 'CONSELHO DO FUNDEB' , 'PEDAGÓGICA'+'%'], :order => 'data DESC')%>
+         <%   else   %>>
+            <%@ata = Ata.find(:all, :select => 'distinct(titulo)')%>
+         <%  end  %>
+   <%  end  %>
+     
     <%t=0%>
 <%else%>
     <%@ata = Ata.find(:all, :select => 'distinct(titulo)')%>
