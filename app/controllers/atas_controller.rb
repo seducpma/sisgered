@@ -111,7 +111,7 @@ before_filter :load_dados_iniciais
              if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') )
                  @atas = Ata.find(:all, :conditions =>  ["data between ? and ? ", session[:dataI].to_s, session[:dataF].to_s], :order => 'data DESC')
              else  # ifcurrent_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil')
-                @atas = Ata.find(:all, :conditions =>  ["data between ? and ?  and unidade_id=? ", session[:dataI].to_s, session[:dataF].to_s, current_user_unidade_id], :order => 'data DESC')
+                @atas = Ata.find(:all, :conditions =>  ["data between ? and ?  and unidade_id=? ", session[:dataI].to_s, session[:dataF].to_s, current_user.unidade_id], :order => 'data DESC')
              end
         else
             @atas = Ata.find(:all, :conditions =>  ["data between ? and ? and unidade_id =? ", session[:dataI].to_s, session[:dataF].to_s, current_user.unidade_id], :order => 'data DESC')
