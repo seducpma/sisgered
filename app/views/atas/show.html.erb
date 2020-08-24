@@ -63,7 +63,7 @@
                         <%session[:impressao]=0%>
                     <%else%>
                         <td width ="2%" align="left" class ="invisible_to_print "><%= button_to 'Imprimir', {:controller =>"atas", :action => "impressao", :id =>@ata}, :title => "Imprimir"%></b></td>
-                        <td align="left" ><%= button_to 'Corrigir', {:action => "edit", :id =>@ata}, :method => "get", :title => "Editar"%></td>
+                        <td align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@ata}, :method => "get", :title => "Editar"%></td>
 
                     <%end%>
                   </tr>

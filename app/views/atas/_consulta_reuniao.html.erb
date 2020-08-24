@@ -3,7 +3,8 @@
        <%@ata = Ata.find(:all, :select => 'distinct(titulo)', :conditions =>  ["(titulo NOT like ?) and (titulo NOT like ?)and (titulo NOT like ?) and (titulo NOT like ?)  ",'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR','CONSELHO MUNICIPAL DE EDUCAÇÃO', 'CONSELHO DO FUNDEB' , 'DIRETORES'+'%'], :order => 'data DESC')%>
                                            
     <%   else  if (current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))%>
-       <%@ata = Ata.find(:all, :select => 'distinct(titulo)', :conditions =>  ["(titulo NOT like ?) and (titulo NOT like ?)and (titulo NOT like ?) and (titulo NOT like ?)  ",'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR','CONSELHO MUNICIPAL DE EDUCAÇÃO', 'CONSELHO DO FUNDEB' , 'PEDAGÓGICA'+'%'], :order => 'data DESC')%>
+         <%#@ata = Ata.find(:all, :select => 'distinct(titulo)', :conditions =>  ["(titulo NOT like ?) and (titulo NOT like ?)and (titulo NOT like ?) and (titulo NOT like ?)  ",'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR','CONSELHO MUNICIPAL DE EDUCAÇÃO', 'CONSELHO DO FUNDEB' , 'PEDAGÓGICA'+'%'], :order => 'data DESC')%>
+          <%@ata = Ata.find(:all, :select => 'distinct(titulo)', :conditions =>  ["(titulo NOT like ?) and (titulo NOT like ?)and (titulo NOT like ?) and (unidade_id =?) ",'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR','CONSELHO MUNICIPAL DE EDUCAÇÃO', 'CONSELHO DO FUNDEB', current_user.unidade_id ], :order => 'data DESC')%>
          <%   else   %>>
             <%@ata = Ata.find(:all, :select => 'distinct(titulo)')%>
          <%  end  %>

@@ -1,7 +1,8 @@
 class Ata < ActiveRecord::Base
   belongs_to :unidade
-  validates_presence_of :titulo, :quant
+  validates_presence_of :titulo, :quant, :unidade_id
   before_save  :maiusculo
+
 
 
  def maiusculo

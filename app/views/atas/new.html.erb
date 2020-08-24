@@ -17,20 +17,25 @@
 
                  <tr bgcolor="#F5F5F5">
                    <td width ="8%" valign="top"><b>Reunião:</b></td>
-                   <td colspan="3">   <a href="#" ><%= radio_button_tag(:tipo_reuniao, "ATRIBUIÇÃO DE PROFESSORES") %></a>Atribuição dos Professores &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   <td colspan="3"><% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "ATRIBUIÇÃO DE PROFESSORES") %></a>Atribuição dos Professores &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                       <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO DE ALIMENTAÇÃO ESCOLAR") %></a>Conselho de Alimentação Escolar (CAE) <br/>
-
+                                   <%end%>
                                       <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO MUNICIPAL DE EDUCAÇÃO") %></a>Conselho Municipal de Educação (CME) &nbsp&nbsp&nbsp&nbsp
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO ESCOLA COMUNIDADE") %></a>Conselho Escola Comunidade (CEC) &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <br/>
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO DE CLASSE") %></a> Conselho de Classe &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <br/>
+
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO ESCOLA COMUNIDADE") %></a>Conselho Escola Comunidade (CEC) &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
                                       
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSELHO DO FUNDEB") %></a> FUNDEB &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "DIRETORES / GESTORES") %> </a> Diretores & Gestores &nbsp&nbsp&nbsp
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "SUPERVISÃO") %></a>Supervisão &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "PEDAGÓGICA") %></a>Pedagógica &nbsp&nbsp&nbsp <br/>
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "CONSEÇHO DO FUNDEB") %></a>FUNDEB &nbsp&nbsp&nbsp&nbsp&nbsp
+                                      
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "DIRETORES / GESTORES") %> </a> Diretores & Gestores &nbsp&nbsp&nbsp<br/>
+                                      
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "SUPERVISÃO") %></a>Supervisão 
 
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "PROFESSORES") %></a> Professores &nbsp&nbsp&nbsp
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "PEDAGÓGICA") %></a>Pedagógica 
 
-                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "outros") %></a>Outros <%= f.text_field :titulo, :size=>"50"%>
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "PROFESSORES") %></a> Professores 
+                                      <a href="#" ><%= radio_button_tag(:tipo_reuniao, "outros") %></a>Outros <%= f.text_field :titulo, :size=>"30"%>
   
   
   
@@ -38,7 +43,13 @@
   
   <%#= f.text_field :titulo, :size=>"87", :value =>'Descreva o tipo de reunião como por exemplo: Reunião de Pais ou Reunião Conselho de Classe , etc...' %></td>
                  </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td colspan="6"><font size="1" color="red"><b><u>ATENÇÃO:</u> 1) Já existe uma opção CONSELHO DE CLASSE, favor utilizar opção OUTROS para reuniões que não existam nas opções anteriores.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) No campo OBSERVAÇÃO escreva numa frase o assint basico da reunião: Ex. "Conselho do 5º ao 9º ano do 1º Bim/2020"</font>
+                       </b>
 
+                   </td>
+                 </tr>
         <tr bgcolor="#F5F5F5">
              <td ><b>Data: </b> </td>
                  <td><%= f.date_select(:data, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-1)%></td>
@@ -51,7 +62,11 @@
         </tr>
                 <tr bgcolor="#F5F5F5">
                    <td width =" 5%"><b>Unidade:</b></td>
-                   <td colspan="3"><%= f.collection_select  :unidade_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+                   <td colspan="3">
+                               <% if (current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil')) %>
+                                     <%@unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and id=?' , current_user.unidade_id ], :order => 'nome ASC')%>
+                               <%end%>
+                                <%= f.collection_select  :unidade_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>
                    </td>
 
                 </tr>

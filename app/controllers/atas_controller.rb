@@ -108,7 +108,11 @@ before_filter :load_dados_iniciais
         session[:anoI]=params[:ata][:inicio][6,4]
         session[:anoF]=params[:ata][:fim][6,4]
         if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))
-            @atas = Ata.find(:all, :conditions =>  ["data between ? and ? ", session[:dataI].to_s, session[:dataF].to_s], :order => 'data DESC')
+             if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') )
+                 @atas = Ata.find(:all, :conditions =>  ["data between ? and ? ", session[:dataI].to_s, session[:dataF].to_s], :order => 'data DESC')
+             else  # ifcurrent_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil')
+                @atas = Ata.find(:all, :conditions =>  ["data between ? and ?  and unidade_id=? ", session[:dataI].to_s, session[:dataF].to_s, current_user_unidade_id], :order => 'data DESC')
+             end
         else
             @atas = Ata.find(:all, :conditions =>  ["data between ? and ? and unidade_id =? ", session[:dataI].to_s, session[:dataF].to_s, current_user.unidade_id], :order => 'data DESC')
         end
@@ -120,7 +124,11 @@ before_filter :load_dados_iniciais
 
         else if params[:type_of].to_i == 2
                     if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))
-                        @atas = Ata.find(:all, :conditions =>  ["titulo = ?  ",params[:titulo]], :order => 'data DESC')
+                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))
+                           @atas = Ata.find(:all, :conditions =>  ["titulo = ?  ",params[:titulo]], :order => 'data DESC')
+                        else #   if ( current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))
+                          @atas = Ata.find(:all, :conditions =>  ["titulo = ? and unidade_id =? ",params[:titulo], current_user.unidade_id], :order => 'data DESC')
+                        end
                     else
                         @atas = Ata.find(:all, :conditions =>  ["titulo = ? and unidade_id =?",params[:titulo],current_user.unidade_id], :order => 'data DESC')
                     end
