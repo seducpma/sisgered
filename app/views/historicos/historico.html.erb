@@ -33,7 +33,7 @@
                                     </td>
                                     <td><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                                         <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
-                                        <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center><br/>
+                                        <center><font size="2"> Unidade de Ensino Fundamental<br/></center><br/>
                                         <center><font size="2"><b><u>HISTÓRICO ESCOLAR</u> &nbsp&nbsp&nbsp&nbsp</b></font></center><br/>
                                     </td>
                                 </tr>
@@ -94,6 +94,12 @@
                                         <td><b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
                                     </tr>
                                 <%end%>
+                                    <tr>
+                                      <td colspan="3"><b>Filiação:</b>&nbsp&nbsp <%=h aluno.aluno_mae%>
+                                        <% if aluno.aluno_pai.present? %> e  <%=h aluno.aluno_pai %> <%end%>
+                                      </td>
+                                    </tr>
+
                             </table>
                             <table cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
                                 <tr>
@@ -106,7 +112,7 @@
                             </table>
 
                             <%#PARCIAL PARA IMPRESSÃO DAS NOTAS DO HISTÓRICO%>
-                            <div id="dados_historico">  <%= render :partial => 'notas_historico_EMEF'%></div>
+                            <div id="dados_historico">  <%= render :partial => 'notas_historico'%></div>
 
                             <%if !@notasB.empty?%>
 
