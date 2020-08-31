@@ -44,11 +44,12 @@
      <tr>
        <td colspan="3" align="justify">
                <b>DECLARO</b>, para fins de transferência, que o(a)  aluno(a)<b> <%=h aluno.aluno.aluno_nome %></b>  R.A.: <b><%=h aluno.aluno.aluno_ra%></b>,
-               <% if (aluno.present?)  %>
+               <% if ( aluno.aluno.aluno_RG.present?)  %>
                   e RG: <b><%=h aluno.aluno.aluno_RG %></b> emitido em <b><%=h aluno.aluno.aluno_emissaoRG %></b> ,
                <%end%>
                
-               , encontra-se devidamente matriculado nesta unidade escolar na <b>classe</b>
+               encontra-se devidamente matriculado nesta unidade escolar na <b>classe</b>
+
                <%if (current_user.unidade.tipo_id == 1) or (current_user.unidade.tipo_id == 4) or (current_user.unidade.tipo_id == 7) or (current_user.unidade.tipo_id == 9)%>
                  <b><%= session[:classe]%></b>
                <%else%>
@@ -72,7 +73,7 @@
                      <%end%>
                <%end%>
 
-               , e nesta data solicitou sua transferência para outra unidade de Ensino
+               e nesta data solicitou sua transferência para outra unidade de Ensino
                <%if (current_user.unidade.tipo_id == 1) or (current_user.unidade.tipo_id == 4) or (current_user.unidade.tipo_id == 7) or (current_user.unidade.tipo_id == 9)%>
                     Fundamental
               <%else%>
@@ -81,11 +82,12 @@
 
 
                , estando apto(a) a frequentar:
+
                <% if  session[:classe]== "EJA" %>               
                    <b> EJA </b> - Ensino de Jovens e Adultos
                <%else%>
                      <%if (current_user.unidade.tipo_id == 1) or (current_user.unidade.tipo_id == 4) or (current_user.unidade.tipo_id == 7) or (current_user.unidade.tipo_id == 9)%>
-
+                   <b><%= session[:classe][0,1]%>º ano </b> do Ensino Fundamental de 9 anos.
                      <%else%>
                            <%if  session[:classe][0,3] == 'BI '%>
                              <b> Berçario I </b> do Ensino Infantil.
