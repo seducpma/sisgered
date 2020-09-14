@@ -2,11 +2,12 @@
     <% title "CONSULTA_FICHA".singularize %>
     <div class="tabs">
         <div id="caixa_titulo">
-            <font size="3"><strong>HISTÓRICO ESCOLAR</strong></font><br/>
+            <font size="3"><strong>HISTÓRICO ESCOLARXX</strong></font><br/>
         </div>
         <div class="tabs">
             <%form_tag historico_path, :method => 'get' do %>
                 <fieldset>
+<%@alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND matriculas.ano_letivo<? AND alunos.unidade_id = ? ', current_user.unidade_id, Time.now.year, current_user.unidade_id], :order => 'aluno_nome ASC') %>
                     <table width="100%" align="center" bgcolor="#DCDCDC" >
                         <tr>
                             <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
