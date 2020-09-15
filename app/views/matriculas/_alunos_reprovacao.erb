@@ -1,12 +1,17 @@
 <table width="100%">
+  <tr><td colspan="9"><font color="blue">
+     &nbsp&nbsp&nbsp&nbsp <b><u>ATENÇÃO:</u></b> Para confirma reprovação, clicar no botão &nbsp&nbsp <img src="/stylesheets/images/confirmar.png"   alt=""   />  &nbsp&nbsp à direita da matricula do aluno.<font>
+    </td>
+
+  </tr>
      <tr>
        <td align="center"width ="5%"><b>Nº</b></td>
        <td align="center"width ="5%"><b>RM</b></td>
        <td width ="5%"><b>RA</b></td>
-       <td width ="40%"><b>NOME</b></td>
-       <td width ="10%"><b>CLASSE</b></td>
+       <td width ="30%"><b>NOME</b></td>
+       <td width ="5%"><b>CLASSE</b></td>
        <td width ="5%"><b>ANO</b></td>
-       <td width ="20%"><b>UNIDADE</b></td>
+       <td width ="30%"><b>UNIDADE</b></td>
        <td width ="5%"><b>SITUAÇÃO</b></td>
        <td> </td>
        <td> </td>
@@ -65,7 +70,7 @@
 
          
               <td align="left">
-                <%= link_to  image_tag('/stylesheets/images/confirmar.png', :title => 'Confirmar Reprovação'), {:controller =>"matriculas", :action => "edit_reprovacao", :id =>matricula}, :method => "get", :title => "Editar"%>
+                <%= link_to  image_tag('/stylesheets/images/confirmar.png', :title => 'Confirmar Reprovação'), {:controller =>"matriculas", :action => "edit_reprovacao", :id =>matricula} , :confirm => 'Confirma REPROVAÇÃO DO ALUNO?',:method => "get", :title => "Editar"%>
               </td>
       </tr>
   <%end%>

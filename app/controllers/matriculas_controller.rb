@@ -89,6 +89,11 @@ class MatriculasController < ApplicationController
         respond_to do |format|
             if @matricula.update_attributes(params[:matricula])
                @matricula.save
+               @observacao_historico = ObservacaoHistorico.new
+                session[:ano_letivo]= @matricula.ano_letivo
+                w=@observacao_historico.observacao = 'REPROVADO no ano letivo - ' +session[:ano_letivo].to_s
+                w1=@observacao_historico.aluno_id = @matricula.aluno_id
+                @observacao_historico.save
                 flash[:notice] = 'ALUNO REPROVADO'
                     format.html { redirect_to(show_reprovado_path) }
                     format.xml  { head :ok }
