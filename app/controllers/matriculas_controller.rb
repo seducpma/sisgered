@@ -620,8 +620,9 @@ end
     end
 
      def reprovacao_aluno
-       session[:aluno_id]=params[:aluno][:id]
-        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? AND ano_letivo =?', params[:aluno][:id],Time.now.year ], :order => 'classe_num ASC')
+        session[:aluno_id]=params[:aluno][:id]
+### Alex comentando para permitir, ao invés de matriculas somente do ano corrente, qualquer ano - 2020-09-15 ###        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? AND ano_letivo =?', params[:aluno][:id],Time.now.year ], :order => 'classe_num ASC')
+        @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ?', params[:aluno][:id]], :order => 'ano_letivo ASC')
         render :update do |page|
             page.replace_html 'classe_alunos', :partial => 'alunos_reprovacao'
         end
