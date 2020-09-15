@@ -101,11 +101,13 @@
                                 <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
                                     <tr>
                                         <td colspan="2"> <font COLOR="RED" size="3" >&nbsp<u><b>ATENÇÃO:</b></u>&nbsp&nbsp&nbsp&nbsp&nbsp 1) Para incluir observação no histórico utilize o botão <b>OBSERVAÇÕES</b>.<br/>
-                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir  notas das séries e disciplinas NÂO cursadas em unidades da SEDUC utilizar o </br>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    2) Para incluir  notas das séries e disciplinas NÃO cursadas em unidades da SEDUC utilizar o </br>
                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   botão <b>LANÇAR NOTAS</b>.</br>
-                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para excluir nota clicar no pequeno botão  &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), :title => "Excluir" %> &nbsp que aparce ao lado direito da nota.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para excluir nota, clicar no pequeno botão  &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), :title => "Excluir" %> &nbsp que está ao lado direito da nota.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    4) Para excluir ano letivo é necessário exluir todas as notas<br/>
+
                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    <u>OBS</u>. Para excluir Disciplina é necessário excluir todas as notas antes.<br/>
-                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    4) O botão  &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), :title => "Excluir" %> &nbsp não aparcerá na impressão.<br/>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    5) O botão  &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), :title => "Excluir" %> &nbsp não aparcerá na impressão.<br/>
                                                 <%session[:volta_historioco]=1%>
                                         </td>
                                     </tr>
