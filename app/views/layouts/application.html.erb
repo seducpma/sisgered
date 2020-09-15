@@ -579,7 +579,7 @@ display: none;
                  <% if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_fundamental') %>
                      <li><a class="item-primary" href="#;">Reprovação</a>
                               <ul>
-                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo') )%>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_fundamental') )%>
                                      <li><%= link_to "Reprovar",reprovacao_path %></li>
                                   <%end%>
                                 <li><%= link_to "Reprovados",consulta_reprovados_path%></li>
