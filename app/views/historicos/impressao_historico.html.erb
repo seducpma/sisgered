@@ -209,7 +209,8 @@
                             <%=Time.now.year%>  </b>,
                          <%else%>
                             <%if ultimo_ano == 9 or ultimo_ano == 5 %>
-                                <%=(@notas_ano.matricula.ano_letivo)%> 
+                             <%@ultima_portugues=  Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["notas.aluno_id =? AND atribuicaos.disciplina_id = 1  AND notas.ativo is NULL AND (nota5 <> 'SN' AND nota5 <> 'TR' AND nota5 <> 'RM' AND nota5 <> 'F' AND nota5 <> 'NF' AND nota5 <> 'ABN')",session[:aluno_id]  ],:order =>'notas.ano_letivo DESC ')%>
+                               <%=(@ultima_portugues[0].ano_letivo)%>
                             <%else%>
                                <% if @notas_ano.matricula.ano_letivo == Time.now.year %>
                                     <%=(@notas_ano.matricula.ano_letivo) - 1%>
