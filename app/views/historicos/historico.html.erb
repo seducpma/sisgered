@@ -127,6 +127,16 @@
                                         <td colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
                                     </tr>
                                 </table>
+
+                            <%end%>
+                        </fieldset>
+                    <%end%>
+                <%else%>
+                    <br/>
+                    <font color="red"> <center><b><u>ATENÇÃO:</u></b> ESTE PROCESSO PODE DEMORAR .... FAVOR AGUARDAR, APÓS CLICAR NO BOTÃO VISUALIZAR !</center></font>
+                <%end%>
+            <%end%>
+              <%if @matricula.present?%>
                              <fieldset>
                                 <legend><font size=3>Cadastrar</font></legend>
                                 <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
@@ -136,7 +146,7 @@
                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   botão <b>LANÇAR NOTAS</b>.</br>
                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    3) Para excluir nota, clicar no pequeno botão  &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), :title => "Excluir" %> &nbsp que está ao lado direito da nota.<br/>
                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    4) Para excluir ano letivo é necessário exluir todas as notas<br/>
-                                                
+
                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    <u>OBS</u>. Para excluir Disciplina é necessário excluir todas as notas antes.<br/>
                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    5) O botão  &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), :title => "Excluir" %> &nbsp não aparcerá na impressão.<br/>
                                                 <%session[:volta_historioco]=1%>
@@ -152,14 +162,8 @@
                                     </tr>
                                 </table>
                             </fieldset>
-                            <%end%>
-                        </fieldset>
-                    <%end%>
-                <%else%>
-                    <br/>
-                    <font color="red"> <center><b><u>ATENÇÃO:</u></b> ESTE PROCESSO PODE DEMORAR .... FAVOR AGUARDAR, APÓS CLICAR NO BOTÃO VISUALIZAR !</center></font>
-                <%end%>
-            <%end%>
+               <%end%>
+
             <br/>
             <table>
                 <tr>

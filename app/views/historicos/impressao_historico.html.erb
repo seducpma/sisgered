@@ -192,20 +192,35 @@
                         <%else%>
                             <%= @notas_ano.matricula.aluno.aluno_nome %> </b>
                     <%end%>
-                    concluiu o<b>
+
+<% ultimo_ano = (session[:classe_anos].max) %>
+
+<!--CONCLUIU-->      concluiu o<b>
 
 
-                        <%= (session[:classe_anos].max) %>
- 
+                          <%= (session[:classe_anos].max) %>
+
 
 
                         º ano</b> do Ensino Fundamental de 9 anos no ano letivo de <b>
-
+<!-- ANO CONCLUSÂO-->
 
                         <% if @notas_ano.nil? %>
                             <%=Time.now.year%>  </b>,
                          <%else%>
-                            <%=(@notas_ano.matricula.ano_letivo) - 1%></b>,
+                            <%if ultimo_ano == 9 or ultimo_ano == 5 %>
+                                <%=(@notas_ano.matricula.ano_letivo)%> 
+                            <%else%>
+                               <% if @notas_ano.matricula.ano_letivo == Time.now.year %>
+                                    <%=(@notas_ano.matricula.ano_letivo) - 1%>
+                               <%else%>
+                                  <%=(@notas_ano.matricula.ano_letivo)%>yy
+                               <%end%>
+                            <%end%>
+
+
+                               </b>,
+
                         <%end%>
 
                     <% if (session[:classe_anos].max+1)<10 %>
@@ -252,4 +267,3 @@
         </tr>
     </table>
 <%end%>
-</table>
