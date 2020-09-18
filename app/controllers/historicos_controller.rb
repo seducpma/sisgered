@@ -23,7 +23,8 @@ class HistoricosController < ApplicationController
         @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id] , Time.now.year], :order => 'notas.ano_letivo ASC')
         @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]])
         @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-        @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5', :conditions => ['aluno_id =? and classe IS NULL AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        # Alex 2020-09-18 teste - Não mantive a linha só deixei para localizar a alteração caso precise copiar a linha antiga novamente
+        @anos_letivos = Nota.find(:all, :select => 'notas.id, notas.ano_letivo, notas.matricula_id, notas.disciplina_id, notas.nota5, notas.classe', :joins =>[:matricula], :conditions => ["notas.aluno_id =? AND notas.classe IS NULL AND notas.ano_letivo<? AND (matriculas.reprovado='0') AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO' OR notas.matricula_id is NULL)", session[:aluno_id], Time.now.year], :order => "notas.ano_letivo ASC")
         @ano_final = Nota.find(:last, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
         respond_to do |format|
             format.html { redirect_to(historicoContinua_path) }
@@ -80,7 +81,8 @@ class HistoricosController < ApplicationController
             @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
             @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
             @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-            @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5', :conditions => ['aluno_id =? and classe IS NULL AND ano_letivo<?', session[:aluno_id],Time.now.year], :order => 'ano_letivo ASC')
+            # Alex 2020-09-18 teste - @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, disciplina_id, nota5', :conditions => ['aluno_id =? and classe IS NULL AND ano_letivo<?', session[:aluno_id],Time.now.year], :order => 'ano_letivo ASC')
+            @anos_letivos = Nota.find(:all, :select => 'notas.id, notas.ano_letivo, notas.matricula_id, notas.disciplina_id, notas.nota5, notas.classe', :joins =>[:matricula], :conditions => ["notas.aluno_id =? AND notas.classe IS NULL AND notas.ano_letivo<? AND (matriculas.reprovado='0') AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO' OR notas.matricula_id is NULL)", session[:aluno_id], Time.now.year], :order => "notas.ano_letivo ASC")
             render :update do |page|
                 page.replace_html 'dados_historico', :partial => "notas_historico"
             end
@@ -110,7 +112,8 @@ class HistoricosController < ApplicationController
             @disciplinasD = Disciplina.find(:all, :conditions =>['curriculo = "D"'],:order => 'ordem ASC' )
             @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
             @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-            @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5', :conditions => ['aluno_id =? and classe IS NULL AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+            # Alex 2020-09-18 teste - @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, disciplina_id, nota5', :conditions => ['aluno_id =? and classe IS NULL AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+            @anos_letivos = Nota.find(:all, :select => 'notas.id, notas.ano_letivo, notas.matricula_id, notas.disciplina_id, notas.nota5, notas.classe', :joins =>[:matricula], :conditions => ["notas.aluno_id =? AND notas.classe IS NULL AND notas.ano_letivo<? AND (matriculas.reprovado='0') AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO' OR notas.matricula_id is NULL)", session[:aluno_id], Time.now.year], :order => "notas.ano_letivo ASC")
             render :update do |page|
                 page.replace_html 'dados_historico', :partial => "notas_historico"
             end
@@ -237,7 +240,8 @@ session[:id_classe_teste]=(@matricula.classe.id).to_s+" | "+@matricula.classe.cl
                 session[:ult_coluna]=8
             end
             @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
-            @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND ano_letivo<?', session[:aluno_id],Time.now.year], :order => 'ano_letivo ASC')
+            # Alex 2020-09-18 teste - @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, disciplina_id, nota5, classe', :conditions => ['aluno_id =? AND ano_letivo<?', session[:aluno_id],Time.now.year], :order => 'ano_letivo ASC')
+            @anos_letivos = Nota.find(:all, :select => 'notas.id, notas.ano_letivo, notas.matricula_id, notas.disciplina_id, notas.nota5, notas.classe', :joins =>[:matricula], :conditions => ["notas.aluno_id =? AND notas.classe IS NULL AND notas.ano_letivo<? AND (matriculas.reprovado='0') AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO' OR notas.matricula_id is NULL)", session[:aluno_id], Time.now.year], :order => "notas.ano_letivo ASC")
             session[:ano]= @ano_inicial.ano_letivo
             session[:classe]= @ano_inicial.classe
         end
@@ -302,7 +306,8 @@ session[:id_classe_teste]=(@matricula.classe.id).to_s+" | "+@matricula.classe.cl
         @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id], Time.now.year], :order => 'notas.ano_letivo ASC')
         @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
         @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
-        @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND notas.ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        # Alex 2020-09-18 teste - @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, disciplina_id, nota5, classe', :conditions => ['aluno_id =? AND notas.ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        @anos_letivos = Nota.find(:all, :select => 'notas.id, notas.ano_letivo, notas.matricula_id, notas.disciplina_id, notas.nota5, notas.classe', :joins =>[:matricula], :conditions => ["notas.aluno_id =? AND notas.classe IS NULL AND notas.ano_letivo<? AND (matriculas.reprovado='0') AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO' OR notas.matricula_id is NULL)", session[:aluno_id], Time.now.year], :order => "notas.ano_letivo ASC")
         session[:ano]= @ano_inicial.ano_letivo
         session[:classe]= @ano_inicial.classe
         #  Comentado abaixo para ser excluído caso não se ache necessidade alguma das linhas 31/10/2017 ###Alex
@@ -416,7 +421,8 @@ session[:id_classe_teste]=(@matricula.classe.id).to_s+" | "+@matricula.classe.cl
         @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id] , Time.now.year], :order => 'notas.ano_letivo ASC')
         @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
         @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
-        @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        # Alex 2020-09-18 teste - @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5, classe', :conditions => ['aluno_id =? AND ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        @anos_letivos = Nota.find(:all, :select => 'notas.id, notas.ano_letivo, notas.matricula_id, notas.disciplina_id, notas.nota5, notas.classe', :joins =>[:matricula], :conditions => ["notas.aluno_id =? AND notas.classe IS NULL AND notas.ano_letivo<? AND (matriculas.reprovado='0') AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO' OR notas.matricula_id is NULL)", session[:aluno_id], Time.now.year], :order => "notas.ano_letivo ASC")
         session[:ano]= @ano_inicial.ano_letivo
         session[:classe]= @ano_inicial.classe
         w=@notas_ano = Nota.find(:last, :joins => "left JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id left JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? and notas.atribuicao_id is not null and  notas.matricula_id is not null",  session[:aluno_id], session[:unidade_id_port]])
@@ -479,7 +485,8 @@ session[:id_classe_teste]=(@matricula.classe.id).to_s+" | "+@matricula.classe.cl
         @notasDisciplinasD= Nota.find(:all, :select =>'notas.id',:joins => [:disciplina], :conditions=> ['aluno_id=? AND notas.ano_letivo <?', session[:aluno_id] , Time.now.year], :order => 'notas.ano_letivo ASC')
         @matricula = Matricula.find(:last, :conditions => ['aluno_id = ? AND unidade_id = ?', session[:aluno_id],session[:unidade_id]] )
         @ano_inicial = Nota.find(:first, :conditions => ['aluno_id =?',session[:aluno_id]], :order => 'ano_letivo ASC')
-        @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, nota5', :conditions => ['aluno_id =? and classe IS NULL and ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        # Alex 2020-09-18 teste - @anos_letivos = Nota.find(:all, :select => 'id, ano_letivo, matricula_id, disciplina_id, nota5', :conditions => ['aluno_id =? and classe IS NULL and ano_letivo<?', session[:aluno_id], Time.now.year], :order => 'ano_letivo ASC')
+        @anos_letivos = Nota.find(:all, :select => 'notas.id, notas.ano_letivo, notas.matricula_id, notas.disciplina_id, notas.nota5, notas.classe', :joins =>[:matricula], :conditions => ["notas.aluno_id =? AND notas.classe IS NULL AND notas.ano_letivo<? AND (matriculas.reprovado='0') AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO' OR notas.matricula_id is NULL)", session[:aluno_id], Time.now.year], :order => "notas.ano_letivo ASC")
         @ano_final = Nota.find(:last, :conditions => ['aluno_id =? and classe is null',session[:aluno_id]], :order => 'ano_letivo ASC')
         @notas_ano = Nota.find(:last, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["disciplinas.id=1 AND notas.aluno_id =?  AND disciplinas.curriculo = 'B' and unidade_id =? ",  session[:aluno_id], session[:unidade_id]])
      
