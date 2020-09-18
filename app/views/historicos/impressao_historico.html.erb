@@ -111,44 +111,7 @@
 
 
 
-<table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
-    <tr style="line-height: 2px; border-color: black"  bgcolor =" #DCDCD">
-        <th style="font-size: 8px; border-color: black "align="center" colspan="4"><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <b>ESTUDOS REALIZADOS</b><br/><br/></th>
-    </tr>
-    <tr style="line-height: 4px; border-color: black">
-        <th width=" 8%" align="center" style="font-size: 8px; border-color: black"><b>Período </b></th>
-        <th width=" 10%" align="center"style="font-size: 8px; border-color: black"><b>Ano Letivo </b></th>
-        <th width=" 50%" align="center"style="font-size: 8px; border-color: black"><b>Unidade de Ensino</b></th>
-        <th width=" 32%" align="center"style="font-size: 8px; border-color: black"><b>Municipio/Estado</b></th>
-    </tr>
-    <%for i in 0..8 %>
-        <tr  style="line-height: 4px; border-color: black">
-            <%if session[:classe_anos][i]!=0%>
-                <th align="center"style="font-size: 8px; border-color: black"><%=session[:classe_anos][i]%>º Ano </th>
-                <th width ="5%" align="center"style="font-size: 8px; border-color: black"> <%=session[:ano_letivoh][i]%></th>
-                <th style="font-size: 8px; border-color: black"> <%= session[:escola][i] %> </th>
-                <th style="font-size: 8px; border-color: black"> <%= session[:cidade][i] %> </th>
-            <%end%>
-        </tr>
-    <%end%>
-    <tr  style="line-height: 4px; border-color: black">
-        <th align="center"style="font-size: 8px" colspan="5"></th>
-    </tr>
-    <tr  style="line-height: 8px; border-color: black">
-        <th align="left"style="font-size: 8px" width="12%" valign="top"><b>Observação:</b></th>
-        <th align="left"style="font-size: 8px" colspan="4" valign="top">
-            <% c=0 %>
-            <% @historico_aluno.each do |obs|%>
-                <%  if  (!obs.observacao.nil?) %>
-                    <b><%= c=c+1%>.</b> <%="#{obs.observacao}" %>  -
-                    <b>Data: </b> <%=  obs.created_at.strftime("%d/%m/%Y")%> - <%=  obs.quem %>
-                    <br/>
-                <%end%>
-            <%end%>
-        </th>
-    </tr>
-</table>
+
 
 
 
