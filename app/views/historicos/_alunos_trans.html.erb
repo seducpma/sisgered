@@ -1,0 +1,14 @@
+                 <%@alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND matriculas.ano_letivo=?  AND matriculas.unidade_id = ?  AND matriculas.status="TRANSFERIDO"', current_user.unidade_id, Time.now.year,  current_user.unidade_id], :order => 'aluno_nome ASC') %>
+                    <table width="100%" align="center" bgcolor="#DCDCDC" >
+                        <tr>
+                            <td colspan="2"align="right"><font size="2"> <b>Aluno Transferido:</b></font>
+                                <%= select_tag :aluno_id_trans, options_for_select(@alunos_nome.collect { |ff| [(ff.aluno_nome+' | '+ff.aluno_nascimento.strftime("%d/%m/%Y")), ff.id] }.insert(0, '--Selecionar--')) %>
+                               <%#= collection_select :aluno, :aluno_id, @alunos_nome, :id, :aluno_nome, :include_blank => ' -- Selecione -- ' %>
+                            </td>
+                            <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                    </table>

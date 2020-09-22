@@ -85,6 +85,12 @@ class MatriculasController < ApplicationController
     def edit_reprovacao
         session[:id_reprovado]=params[:id]
         @matricula = Matricula.find(params[:id])
+        session[:ano_letivo]=@matricula.ano_letivo
+    end
+
+    def edit_reprovacao_anterior
+        session[:id_reprovado]=params[:id]
+        @matricula = Matricula.find(params[:id])
         @matricula.reprovado = 1
         respond_to do |format|
             if @matricula.update_attributes(params[:matricula])
@@ -552,9 +558,14 @@ end
                 flash[:notice] = 'SALVO COM SUCESSO'
                 if session[:alterar_direcionamento_editar] == 0
                     session[:botao_show] = 0
-                    format.html { redirect_to(@matricula) }
+                    if session[:editar_reprocao]==1
+                      format.html { redirect_to(show_reprovado_path) }
+                    else
+                       format.html { redirect_to(@matricula) }
+                    end
                     format.xml  { head :ok }
                     session[:alterar_direcionamento_editar]= 1
+                    session[:editar_reprocao]= 0
                 else
                     format.html { render editar_classe_classes_path, :layout => "application"}
                     format.xml  { head :ok }

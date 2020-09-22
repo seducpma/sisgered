@@ -163,6 +163,28 @@ class HistoricosController < ApplicationController
 
 
     def historico
+    if params[:type_of].to_i == 1
+                  w1=params[:aluno_id]=params[:aluno_id_mat]
+                  t=0
+    else if params[:type_of].to_i == 2
+                w2=params[:aluno_id]=params[:aluno_id_trans]
+                 t=0
+       else if params[:type_of].to_i == 3
+                 w3=params[:aluno_id]=params[:aluno_id_ex]
+                  t=0
+            else if params[:type_of].to_i == 4
+
+                 else if params[:type_of].to_i == 5
+
+                      else if params[:type_of].to_i == 6
+
+                          end
+                      end
+                 end
+
+            end
+       end
+    end
         if  (params[:aluno_id].present?)
             @aluno = Aluno.find(:all, :select => 'id, aluno_nome, aluno_mae, aluno_pai, unidade_id, aluno_ra, aluno_nascimento, aluno_certidao_nascimento, aluno_livro, aluno_folha, aluno_naturalidade, aluno_nacionalidade, aluno_chegada_brasil, aluno_RNE, aluno_validade_estrangeiro, aluno_RG, 	aluno_emissaoRG, 	aluno_CPF, 	aluno_emissaoCPF, photo_file_name,	photo_content_type,	photo_file_size',:conditions => ['id =?', params[:aluno_id]])
             for aluno in @aluno

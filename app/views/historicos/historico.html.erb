@@ -7,20 +7,41 @@
         <div class="tabs">
             <%form_tag historico_path, :method => 'get' do %>
                 <fieldset>
-<%#@alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND matriculas.ano_letivo<? AND alunos.unidade_id = ? ', current_user.unidade_id, Time.now.year, current_user.unidade_id], :order => 'aluno_nome ASC') %>
-<%@alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND matriculas.ano_letivo<=? AND matriculas.unidade_id = ? ', current_user.unidade_id, Time.now.year, current_user.unidade_id], :order => 'aluno_nome ASC') %>
+                     <table width="100%" align="center" bgcolor="#DCDCDC" >
+                      <tr>
+                        <td>
+                          <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Alunos Matriculados (Ano letivo atual)
+                          <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "2") %></a>Alunos Transferidos (Ano letivo atual)
+                          <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "3") %></a>Ex-Alunos (Matriculados nos anos letivo anteriores)
+
+                        </td>
+                     </tr>
+                     <tr>
+                       <td><div class="consulta" style="display:none"> <%= render "alunos_mat" %> </div> <!-- criado arquivo  alunos_mat.html.erb no sistema -->
+                           <div class="consulta_unidade" style="display:none"> <%= render "alunos_ex" %> </div> <!-- criado arquivo alunos_ex.html.erb no sistema -->
+                           <div class="consulta_professor" style="display:none"> <%= render "alunos_trans" %> </div>
+                       </td>
+                     </tr>
+                    </table>
+
+
+
+<!--
+            <%#@alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND matriculas.ano_letivo<? AND alunos.unidade_id = ? ', current_user.unidade_id, Time.now.year, current_user.unidade_id], :order => 'aluno_nome ASC') %>
+<%#@alunos_nome = Aluno.find(:all,:select => 'distinct(alunos.id), aluno_nome, aluno_nascimento',:joins => "INNER JOIN matriculas ON alunos.id=matriculas.aluno_id INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.unidade_id=? AND classes.classe_classe!="EJA" AND matriculas.ano_letivo<=? AND matriculas.unidade_id = ? ', current_user.unidade_id, Time.now.year, current_user.unidade_id], :order => 'aluno_nome ASC') %>
                     <table width="100%" align="center" bgcolor="#DCDCDC" >
                         <tr>
                             <td colspan="2"align="right"><font size="2"> <b>Nome:</b></font>
-                                <%= select_tag :aluno_id, options_for_select(@alunos_nome.collect { |ff| [(ff.aluno_nome+' | '+ff.aluno_nascimento.strftime("%d/%m/%Y")), ff.id] }.insert(0, '--Selecionar--')) %>
+                                <%#= select_tag :aluno_id, options_for_select(@alunos_nome.collect { |ff| [(ff.aluno_nome+' | '+ff.aluno_nascimento.strftime("%d/%m/%Y")), ff.id] }.insert(0, '--Selecionar--')) %>
                             </td>
-                            <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
+                            <td align="right"> <%#= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
                         </tr>
                         <tr>
                             <td colspan="2">
                             </td>
                         </tr>
                     </table>
+-->
                 </fieldset>
 <!-- Ponto onde fica igual ao historicoContinua -->
                 <%if @aluno.present?%>
