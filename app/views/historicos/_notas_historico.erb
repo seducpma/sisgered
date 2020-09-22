@@ -75,6 +75,7 @@
             <%end%>
         <%end%>
         <%if probl_matr==0%>
+<%t0=0%>
             <%for historico_aluno in @historico_aluno%>
                 <%session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
                 <%if !session[:ano_nota_lançada].empty?%>
@@ -99,50 +100,62 @@
                 <% session[:quant2_linhas] = @disciplinasB1.count + 1%>
                 <td width="20px" rowspan=<%= session[:quant2_linhas]%>><font size="1">Linguagem</font> </td>
                 <%while session[:contnota1] < session[:contnotaBTot1] %>
-                <tr>
+                    <tr>
                     <td align="left"><font size="1"><%=@notasB1[session[:contnota1]].disciplina.disciplina %></font> </td>
+<%t0=0%>
                     <%disciplina_atual=@notasB1[session[:contnota1]].disciplina.id%>
                     <%for i in 0..session[:ult_coluna] %>
                         <%if session[:contnota1]>(session[:contnotaBTot1]-1)%>
+<%t0=0%>
                             <%acertoHTML=0%>
                         <%else%>
+<%t0=0%>
                             <%acertoHTML=session[:contnota1]%>
-                        <%end%>
+                        <%end%> <! if Linha 107>
                         <%if (((@notasB1[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota1]==acertoHTML) and (disciplina_atual==@notasB1[acertoHTML].disciplina.id))%>
+<%t0=0%>
                             <td align="center">
                                 <%if (@notasB1[acertoHTML].nota5.nil? or @notasB1[acertoHTML].nota5.empty?) and (@notasB1[acertoHTML].ano_letivo==Time.now.year)%>
+<%t0=0%>
                                     ---
                                 <%else%>
+<%t0=0%>
                                     <%@carga_horaria1=ObservacaoHistorico.find(:all, :conditions => ["ano_letivo =? AND aluno_id=? AND (carga_horaria_b IS NOT NULL OR carga_horaria_d IS NOT NULL)", @notasB1[acertoHTML].ano_letivo, session[:aluno_id]]) %>
                                     <%=@notasB1[acertoHTML].nota5%>
                                     <!-- Alimenta os vetores da BASE NACIONAL que depois serão impressos -->
                                     <% if !@carga_horaria1.present? and !@notasB1[acertoHTML].matricula_id.nil? %>
+<%t0=0%>
                                         <%session[:cargah_b][i]=1000%>
                                         <% session[:escola][i]= @notasB1[acertoHTML].matricula.unidade.nome%>
                                         <% session[:cidade][i]= @notasB1[acertoHTML].matricula.unidade.cidade%>
                                     <%else%>
+<%t0=0%>
                                         <% if @carga_horaria1.present? %>
+<%t0=0%>
                                             <%  session[:cargah_b][i]=@carga_horaria1[0].carga_horaria_b%>
                                             <%  session[:escola][i]=@carga_horaria1[0].escola%>
                                             <%  session[:cidade][i]=@carga_horaria1[0].cidade%>
                                             <%  session[:exclui][i]=@carga_horaria1[0].id%>
                                         <%end%>
-                                    <%end%>
-                                <%end%>
+                                    <%end%> <! if Linha 123>
+                                <%end%> <! if Linha 115>
                                 <%if @notasB1[acertoHTML].matricula_id.nil?%>
+<%t0=0%>
                                     &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:action => "destroy_nota", :id =>@notasB1[acertoHTML].id}, :confirm => 'Confirma exclusão?', :method => "delete",:title => "Excluir" %>
                                 <%end%>
                                 <%if @notasB1[session[:contnota1]].disciplina_id == 1 and !@notasB1[session[:contnota1]].matricula_id.nil?%>
+<%t0=0%>
                                     <%session[:unidade_id_port] = @notasB1[session[:contnota1]].unidade_id%>
                                 <%end%>
                             </td>
                             <%session[:contnota1]=session[:contnota1]+1%>
-                        <%else%>
+                        <%else%> <! if Linha 112>
+<%t0=0%>
                             <td align="center">---</td>
-                        <%end%>
-                    <%end%>
-                </tr>
-            <%end%>
+                        <%end%> <! if Linha 112>
+                    <%end%> <! for Linha 106>
+                    </tr>
+                <%end%> <! while Linha 102>
 
             <!--  DISCIPLINAS DE NOTAS DE MATEMATICA -->
             <td width="20px" ><font size="1">Matemática</font> </td>
@@ -474,8 +487,9 @@
         <%end%>
         <tr><td colspan="12" align="right"><font size="1" >Oficinas: <b>F = Frequentes / NF = Não Frequentou</b>&nbsp&nbsp</td></font></tr>
         <%else%>
-            <%###         ### TELA DE ERRO QUANDO TEM 2 PORTUGUÊS NA MESMA "SÉRIE" SE POSSÍVEL MOSTRAR A VARIÁVEL probl_matr NA TELA###%>
-            <%t0=0%> <%### SE ENTRAR AQUI É PORQUE PEGOU O ERRO%>
+<%t0=0%>
+            <%### SE ENTRAR AQUI É PORQUE PEGOU O ERRO E NÃO VAI FAZER NADA E VAI PARA NO PRÓXIMO IF DA %>
+            <%### VARIÁVEL probl_mat E COLOCA A MENSAGEM DE ERRO QUANDO TEM 2 PORTUGUÊS NA MESMA "SÉRIE" ###%>
         <%end%>
     </table>
 
@@ -529,8 +543,9 @@
             </table>
         </table>
     <%else%>
-        <%###         ### TELA DE ERRO QUANDO TEM 2 PORTUGUÊS NA MESMA "SÉRIE" SE POSSÍVEL MOSTRAR A VARIÁVEL probl_matr NA TELA###%>
-        <%t0=0%> <%### SE ENTRAR AQUI É PORQUE PEGOU O ERRO%>
+<%t0=0%>
+        <%### SE ENTRAR AQUI É PORQUE PEGOU O ERRO E COLOCA A MENSAGEM %>
+        <%### DE ERRO QUANDO TEM 2 PORTUGUÊS NA MESMA "SÉRIE" ###%>
         <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
             <tr>
                 <td width ="80%" align="center" ><font COLOR="RED" size="3" id="pisca1"><b><%=probl_matr%></b><font></td></tr>
