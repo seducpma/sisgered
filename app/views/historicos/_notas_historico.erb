@@ -63,7 +63,11 @@
             <%end%>
             <!--<%#session[:ano_letivoh][classe.to_i-1]=@ano_inicial.ano_letivo%>-->
             <%if ano_letivo.disciplina_id==1%>
-                <%session[:qt_ling_port][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=session[:qt_ling_port][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]+1%>
+                <%if ano_letivo.matricula.nil?%>
+                    <%session[:qt_ling_port][(ano_letivo.classe.to_i)-1]=session[:qt_ling_port][(ano_letivo.classe.to_i)-1]+1%>
+                <%else%>
+                    <%session[:qt_ling_port][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=session[:qt_ling_port][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]+1%>
+                <%end%>
             <%end%>
         <%end%>
 
@@ -154,6 +158,7 @@
                             <td align="center">---</td>
                         <%end%> <! if Linha 112>
                     <%end%> <! for Linha 106>
+<%t0=0%>
                     </tr>
                 <%end%> <! while Linha 102>
 
