@@ -12,7 +12,7 @@ end
      session[:serie]=  params[:observacao_historico_classe]
     
      @verifica1 = ObservacaoHistorico.find(:all, :conditions =>['classe =? AND aluno_id= ?',session[:serie], session[:aluno_id]])
-     @verifica2 = Matricula.find(:all, :conditions =>['aluno_id = ? AND ano_letivo =?',session[:aluno_id],session[:ano_letivo] ])
+     @verifica2 = Matricula.find(:all, :conditions =>["aluno_id = ? AND ano_letivo =? AND (matriculas.status='MATRICULADO' OR matriculas.status='TRANSFERENCIA' OR matriculas.status='*REMANEJADO')",session[:aluno_id],session[:ano_letivo] ])
      @verifica = @verifica2 + @verifica1
 
       if !@verifica.empty?  then

@@ -22,10 +22,12 @@
         <td style="font-size: 8px" width ="5px" align="center"><b>3ºAno</b></td>
         <td style="font-size: 8px" width ="5px" align="center"><b>4ºAno</b></td>
         <td style="font-size: 8px" width ="5px" align="center"><b>5ºAno</b></td>
-        <td style="font-size: 8px" width ="5px" align="center"><b>6ºAno</b></td>
-        <td style="font-size: 8px" width ="5px" align="center"><b>7ºAno</b></td>
-        <td style="font-size: 8px" width ="5px" align="center"><b>8ºAno</b></td>
-        <td style="font-size: 8px" width ="5px" align="center"><b>9ºAno </b></td>
+        <%if session[:ult_cl_rede]>5%>
+                <td style="font-size: 8px" width ="5px" align="center"><b>6ºAno</b></td>
+                <td style="font-size: 8px" width ="5px" align="center"><b>7ºAno</b></td>
+                <td style="font-size: 8px" width ="5px" align="center"><b>8ºAno</b></td>
+                <td style="font-size: 8px" width ="5px" align="center"><b>9ºAno </b></td>
+        <%end%>
     </tr>
     <%session[:contnota]=0%>
     <%session[:contnota1]=0%>
@@ -73,7 +75,7 @@
         <%end%>
     <%end%>
     <tr style="line-height: 9px; border-color: white">
-        <%for i in 0..8 %>
+        <%for i in 0..session[:ult_coluna] %>
             <td style="font-size: 8px" width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%></b></td>
         <%end%>
     </tr>
@@ -90,7 +92,7 @@
         <tr style="line-height: 9px; border-color: white">
             <td style="font-size: 8px" align="left"><%=@notasB1[session[:contnota1]].disciplina.disciplina %> </td>
              <%disciplina_atual=@notasB1[session[:contnota1]].disciplina.id%>
-            <%for i in 0..8%>
+            <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota1]>(session[:contnotaBTot1]-1)%>
                     <%acertoHTML=0%>
                 <%else%>
@@ -135,7 +137,7 @@
         <%while session[:contnota2] < session[:contnotaBTot2] %>
          <td style="font-size: 8px" align="left"><%=@notasB2[session[:contnota2]].disciplina.disciplina %> </td>
              <%disciplina_atual=@notasB2[session[:contnota2]].disciplina.id%>
-            <%for i in 0..8%>
+            <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota2]>(session[:contnotaBTot2]-1)%>
                     <%acertoHTML=0%>
                 <%else%>
@@ -196,7 +198,7 @@
         <tr style="line-height: 9px; border-color: white">
             <td style="font-size: 8px" align="left"><%=@notasB3[session[:contnota3]].disciplina.disciplina %>  </td>
             <%disciplina_atual=@notasB3[session[:contnota3]].disciplina.id%>
-            <%for i in 0..8%>
+            <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota3]>(session[:contnotaBTot3]-1)%>
                     <%acertoHTML=0%>
                 <%else%>
@@ -241,7 +243,7 @@
         <%while session[:contnota4] < session[:contnotaBTot4] %>
          <td style="font-size: 8px"align="left"><%=@notasB4[session[:contnota4]].disciplina.disciplina %> </td>
              <%disciplina_atual=@notasB4[session[:contnota4]].disciplina.id%>
-            <%for i in 0..8%>
+            <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota4]>(session[:contnotaBTot4]-1)%>
                     <%acertoHTML=0%>
                 <%else%>
@@ -282,7 +284,7 @@
     <tr style="line-height: 9px; border-color: white" >
 
          <td style="font-size: 8px" colspan="2"><b> Carga Horária</b></td>
-        <%for i in 0..8%>
+        <%for i in 0..session[:ult_coluna]%>
             <%if session[:cargah_b][i]==0%>
                 <td style="font-size: 8px" align="center">---</td>
             <%else%>
@@ -316,7 +318,7 @@
          <%end%>
             <td style="font-size: 8px" align="left"><%=@notasD[session[:contnota]].disciplina.disciplina %></td>
                  <%disciplina_atual=@notasD[session[:contnota]].disciplina.id%>
-                 <%for i in 0..8%>
+                 <%for i in 0..session[:ult_coluna]%>
                     <%if session[:contnota]>(session[:contnotaDTot]-1)%>
                         <%acertoHTML=0%>
                     <%else%>
@@ -377,7 +379,7 @@
    
     <tr style="line-height: 9px; border-color: white" >
         <td style="font-size: 8px" colspan="2"><b> Carga Horária</b></td>
-        <%for i in 0..8%>
+        <%for i in 0..session[:ult_coluna]%>
                 <%if session[:cargah_d][i]==0%>
                     <td style="font-size: 8px" align="center">---</td>
                 <%else%>
@@ -388,7 +390,7 @@
     </tr>
     <tr style="line-height: 9px; border-color: white" >
         <td style="font-size: 8px" colspan="3"><b> Carga Horária Total</b></td>
-        <%for i in 0..8%>
+        <%for i in 0..session[:ult_coluna]%>
                 <%cargah_t=0%>
                 <%if !session[:cargah_b][i].nil?%>
                     <%cargah_t=session[:cargah_b][i]%>
@@ -437,7 +439,7 @@
         <td style="font-size: 8px" width=" 60%" align="center"><b>Unidade de Ensino</b></td>
         <td style="font-size: 8px" width=" 22%" align="center"><b>Municipio/Estado</b></td>
     </tr>
-    <%for i in 0..8 %>
+    <%for i in 0..session[:ult_coluna] %>
          <tr style="line-height: 8px; border-color: white" >
             <%if session[:classe_anos][i]!=0%>
                 <td style="font-size: 8px" align="center"><%=session[:classe_anos][i]%>ºAno </td>

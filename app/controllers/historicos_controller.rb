@@ -244,18 +244,29 @@ class HistoricosController < ApplicationController
             #@notas_por = Nota.find_by_sql("SELECT notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5, notas.matricula_id FROM notas JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id INNER JOIN atribuicaos at ON at.id=notas.atribuicao_id LEFT JOIN classes cl ON cl.id=at.classe_id WHERE notas.disciplina_id=1 AND notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL)  AND notas.ativo is NULL AND atribuicaos.disciplina_id=1  ORDER BY notas.disciplina_id DESC, notas.ano_letivo DESC")
             
             i=0
-            while ( i <@notas_por.count) do
+            while (i<@notas_por.count) do
                 if !(@notas_por[i].nota5).nil?
-                    @matricula=Nota.find_by_sql("SELECT ma.id 'matr_id', notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5 FROM notas JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id LEFT JOIN atribuicaos at ON at.id=notas.atribuicao_id LEFT JOIN classes cl ON cl.id=at.classe_id WHERE notas.matricula_id="+@notas_por[i].matricula_id.to_s+" AND notas.disciplina_id=1 AND notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo = 'B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND notas.ativo is NULL ORDER BY notas.disciplina_id DESC, notas.ano_letivo DESC")
-                    session[:matr_id]=@matricula[0].matr_id
-                    @matricula=Matricula.find(@matricula[0].matr_id)
+#                    @matricula=Nota.find_by_sql("SELECT ma.id 'matr_id', notas.unidade_id, notas.id, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5 FROM notas JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id LEFT JOIN atribuicaos at ON at.id=notas.atribuicao_id LEFT JOIN classes cl ON cl.id=at.classe_id WHERE ((notas.matricula_id="+@notas_por[i].matricula_id.to_s+" OR notas.matricula_id IS NULL) AND notas.disciplina_id=1 AND notas.aluno_id = "+session[:aluno_id].to_s+" AND di.curriculo='B' AND notas.ano_letivo<'"+Time.now.year.to_s+"' AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND notas.ativo is NULL) ORDER BY notas.disciplina_id DESC, notas.ano_letivo DESC")
+                    @matricula=Nota.find_by_sql("SELECT ma.id 'matr_id', notas.unidade_id, notas.id, notas.classe ntclasse, di.disciplina, notas.disciplina_id, notas.ano_letivo, notas.nota5 FROM notas JOIN disciplinas di ON di.id = notas.disciplina_id LEFT JOIN matriculas ma ON ma.id = notas.matricula_id LEFT JOIN atribuicaos at ON at.id=notas.atribuicao_id LEFT JOIN classes cl ON cl.id=at.classe_id WHERE notas.id="+@notas_por[i].id.to_s+" AND (ma.reprovado='0' OR notas.matricula_id IS NULL) AND (ma.status='MATRICULADO' OR ma.status='TRANSFERENCIA' OR ma.status='*REMANEJADO' OR notas.matricula_id is NULL) AND notas.ativo is NULL ORDER BY notas.disciplina_id DESC, notas.ano_letivo DESC")
+                    if !(@matricula[0].matr_id).nil?
+#                        @matricula=Matricula.find(:first, :conditions => ['id=?',@matricula[0].matr_id])
+                        @matricula=Matricula.find(@matricula[0].matr_id)
+                        session[:matr_id]=@matricula.id
+                    else
+                        session[:matr_id]="nota digitada"
+                    end
                     i=@notas_por.count
                 end
             end
-t0=0
-            session[:ult_cl_rede]=@matricula.classe.classe_classe[0,1].to_i
-            session[:ult_cl_rede_per]=@matricula.classe.horario
-session[:id_classe_teste]=(@matricula.classe.id).to_s+" | "+@matricula.classe.classe_classe+" | "+@matricula.classe.horario
+            if (session[:matr_id]!="nota digitada")
+                session[:ult_cl_rede]=@matricula.classe.classe_classe[0,1].to_i
+                session[:ult_cl_rede_per]=@matricula.classe.horario
+                       session[:id_classe_teste]=(@matricula.classe.id).to_s+" | "+@matricula.classe.classe_classe+" | "+@matricula.classe.horario
+            else
+                session[:ult_cl_rede]=@matricula[0].ntclasse.to_i
+                session[:ult_cl_rede_per]="NÃO INFORMADO"
+                       session[:id_classe_teste]="Nota Digitada | "+@matricula[0].ntclasse.to_s+" | Sem Horário"
+            end
             if session[:ult_cl_rede]<6
                 session[:ult_coluna]=4
             else
