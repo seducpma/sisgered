@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required 
 
   def index
   end
@@ -25,6 +25,12 @@ class HomeController < ApplicationController
 def download_classificacao
     send_file("#{RAILS_ROOT}/public/documentos/classificacao.doc" , :type=>"text/msword")
   end
+
+
+def protocolo_covid
+  send_file("#{RAILS_ROOT}/public/documentos/protocolo.pdf" , :type=>"pdf")
+end
+
 
 protected
 
