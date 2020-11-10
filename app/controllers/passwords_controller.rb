@@ -7,48 +7,33 @@ class PasswordsController < ApplicationController
   end
 
   def create
-
-     w1= session[:mais_email]
-    if session[:mais_email] == 1
+    w1=session[:mais_email]
+    session[:email_dig]=params[:email]
+    if session[:mais_email]==1
        session[:email]= params[:user_id]
         @user_email= User.find(:all, :conditions=> ['id =? AND activated_at is not null', session[:email]])
         id=session[:email]
         w=params[:email]= @user_email[0].email
-      else
-           @user_email= User.find(:all, :conditions=> ['email =? AND  	activated_at is not null', params[:email]])
-         w=session[:email]= @user_email[0].id
-      end
+    else
+        @user_email=User.find(:all, :conditions=> ['email=? AND activated_at is not null', params[:email]])
+        if @user_email.count > 0
+            w=session[:email]=@user_email[0].id
+        end
+    end
     if @user_email.count > 1
-           render  :partial => 'email', :layout => "layouts/login"
+        render  :partial => 'email', :layout => "layouts/login"
     else
         return unless request.post?
         #if (@user=User.find_for_forget(params[:email]) and @user.size>0 )
-           if (@user=User.find(:all, :conditions=> ['id =? AND  	activated_at is not null', session[:email]]))
-            #lista_user="( "
-            lista_user=""
-            cont_user=0
-            user1=""
-            @user.each do |user|
-                if (cont_user >= 1)
-                    lista_user+="|"
-                    cont_user+=1
-                else
-                    cont_user+=1
-                    user1=user.login
-                end
-               # lista_user+=user.login
-                lista_user+=user.login
-            end
-            #lista_user+=" )"
-            id=@user[0].id
-            @user=User.find(id)
+        #if (@user=User.find(:all, :conditions=> ['id =? AND activated_at is not null', session[:email]]))
+        if @user_email.count==1
             msg="Um link foi enviado para o email cadastrado para efetuar a troca da senha."
             #msg+=" Foi encontrado o usuários "+cont_user.to_s+".  será alterada a senha do usuário ("+lista_user+")"
             flash[:notice]=msg
-
-          @user.forgot_password
-          ChamadoMailer.deliver_forgot_password(@user)
-          @user.save
+          @user_email=User.find(@user_email[0].id)
+          @user_email.forgot_password
+          ChamadoMailer.deliver_forgot_password(@user_email)
+          @user_email.save
     #     flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
           redirect_to login_path
         else
@@ -57,10 +42,6 @@ class PasswordsController < ApplicationController
         end
     end
   end
-
-
-
-
 
   def edit
     if params[:id].nil?
