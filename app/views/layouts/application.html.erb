@@ -297,7 +297,7 @@ display: none;
 
                       <%end%>
                      <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('professor_infantil') or current_user.has_role?('SEDUC') or current_user.has_role?('Supervisão')%>
-                           <li><%= link_to "FAPEA", new_relatorio_path %></li>
+                           <li><%= link_to "FAPEA / Memorial", new_relatorio_path %></li>
                      <%end%>
 
                     <% if (current_user.has_role?('admin'))%> <!-- or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>-->
@@ -359,7 +359,7 @@ display: none;
                           </ul>
                        </li>
                      <% if (current_user.has_role?('admin')  or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_infantil') or  current_user.has_role?('SEDUC') or current_user.has_role?('Supervisão'))%>
-                         <li><%= link_to "FAPEA",consultas_relatorios_path %></li>
+                         <li><%= link_to "FAPEA / Memorial",consultas_relatorios_path %></li>
                      <%end%>
                          <li><a class="item-primary" href="#;">Lançamentos</a>
 
@@ -447,7 +447,7 @@ display: none;
 
 
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
-                       <li><%= link_to "FAPEA",editar_relatorios_path %></li>
+                       <li><%= link_to "FAPEA / Memorial",editar_relatorios_path %></li>
 
                    <%end%>
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil'))%>

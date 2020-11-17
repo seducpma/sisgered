@@ -16,7 +16,11 @@
                   <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                       <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
                       <center><font size="2"> Unidade Escolar: <%=h relatorio.atribuicao.classe.unidade.nome %> </i></b><br/></center>
-                      <center><font size="2"><b><u>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</u></b></font></center>
+                      <%if relatorio.ano_letivo  == Time.now.year  %>
+                          <center><font size="2"><b><u> MEMORIAL AS EXPERIÊNCIAS EDUCATIVAS</u></b></font></center>
+                      <%else%>
+                          <center><font size="2"><b><u>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</u></b></font></center>
+                      <%end%>
                   </td>
                 </tr>
                </table>
@@ -74,7 +78,9 @@
                 <tr>
 
                   <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil')%>
-                    <td   align="left" ><%= button_to 'Excluir', relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir" %></a></td>
+                   <%if relatorio.ano_letivo  == Time.now.year  %>
+                      <td   align="left" ><%= button_to 'Excluir', relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir" %></a></td>
+                    <%end%>
                   <%end%>
                   <td  align="left" ><%= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>relatorio}, :title => "Imprimir esta FAPEA"%></td> </td>
                </tr>
