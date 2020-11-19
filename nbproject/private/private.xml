@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1">
         <file>
-            <url>app/views/historicos/_notas_historico_EMEF.erb</url>
-            <line>348</line>
+            <url>app/controllers/historicos_controller.rb</url>
+            <line>205</line>
         </file>
         <file>
             <url>app/views/atribuicaos/_mapa.erb</url>
             <line>117</line>
         </file>
         <file>
-            <url>app/views/historicos/_notas_historico.erb</url>
-            <line>27</line>
-            <line>232</line>
+            <url>app/controllers/passwords_controller.rb</url>
+            <line>33</line>
+        </file>
+        <file>
+            <url>app/views/historicos/_notas_historico_EMEF.erb</url>
+            <line>348</line>
         </file>
         <file>
             <url>app/views/alunos/consulta_cadastro.html.erb</url>
             <line>16</line>
         </file>
         <file>
-            <url>app/controllers/passwords_controller.rb</url>
-            <line>33</line>
-        </file>
-        <file>
-            <url>app/controllers/historicos_controller.rb</url>
-            <line>205</line>
-        </file>
-        <file>
             <url>app/controllers/notas_controller.rb</url>
             <line>41</line>
+        </file>
+        <file>
+            <url>app/views/historicos/_notas_historico.erb</url>
+            <line>131</line>
+            <line>137</line>
+            <line>183</line>
+            <line>188</line>
+            <line>247</line>
+            <line>252</line>
+            <line>294</line>
+            <line>299</line>
+            <line>414</line>
+            <line>419</line>
+            <line>512</line>
+            <line>537</line>
         </file>
     </editor-bookmarks>
 </project-private>

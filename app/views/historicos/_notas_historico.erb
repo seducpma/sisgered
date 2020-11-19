@@ -510,7 +510,7 @@
                 <td width=" 60%" align="center"><b>Unidade de Ensino</b></td>
                 <td width=" 22%" align="center"><b>Municipio/Estado</b></td>
             </tr>
-            <%@carga_h_dig=ObservacaoHistorico.find(:all, :conditions => ["aluno_id=?", session[:aluno_id]]) %>
+            <%@carga_h_dig=ObservacaoHistorico.find(:all, :conditions => ["aluno_id=? AND (classe IS NOT NULL AND ano_letivo IS NOT NULL)", session[:aluno_id]]) %>
             <%for carga_h_dig in @carga_h_dig%>
                 <%flag=0%>
                 <%for i in 0..8 %>
@@ -518,7 +518,9 @@
                         <%if session[:ano_letivoh][i]==''%>
                             <%session[:ano_letivoh][i]=carga_h_dig.ano_letivo%>
                         <%end%>
-                        <%t0=0%>
+                        <%session[:classe_anos][i]=carga_h_dig.classe %>
+                        <%session[:escola][i]=carga_h_dig.escola %>
+                        <%session[:cidade][i]=carga_h_dig.cidade %>
                         <%session[:exclui][i]=carga_h_dig.id%>
                         <%flag=1%>
                     <%end%>
@@ -533,7 +535,6 @@
                             <%if session[:exclui][i]!=0%>
                                 &nbsp <%= link_to image_tag("/stylesheets/images/ponto.png", :size => "7x7"), {:controller => "observacao_historicos", :action => "destroy", :id => session[:exclui][i]}, :confirm => "Confirma exclusão?", :method => "delete",:title => "Excluir" %>
                             <%end%>
-                            <%t0=0%>
                         </td>
                         <td> <%= session[:escola][i] %> </td>
                         <td> <%= session[:cidade][i] %> </td>
