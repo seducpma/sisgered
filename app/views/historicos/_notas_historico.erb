@@ -510,7 +510,7 @@
                 <td width=" 60%" align="center"><b>Unidade de Ensino</b></td>
                 <td width=" 22%" align="center"><b>Municipio/Estado</b></td>
             </tr>
-            <%@carga_h_dig=ObservacaoHistorico.find(:all, :conditions => ["aluno_id=? AND (classe IS NOT NULL AND ano_letivo IS NOT NULL)", session[:aluno_id]]) %>
+            <%@carga_h_dig=ObservacaoHistorico.find(:all, :conditions => ["aluno_id=? AND classe IS NOT NULL", session[:aluno_id]]) %>
             <%for carga_h_dig in @carga_h_dig%>
                 <%flag=0%>
                 <%for i in 0..8 %>
