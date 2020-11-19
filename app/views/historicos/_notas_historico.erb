@@ -510,9 +510,23 @@
                 <td width=" 60%" align="center"><b>Unidade de Ensino</b></td>
                 <td width=" 22%" align="center"><b>Municipio/Estado</b></td>
             </tr>
+            <%@carga_h_dig=ObservacaoHistorico.find(:all, :conditions => ["aluno_id=?", session[:aluno_id]]) %>
+            <%for carga_h_dig in @carga_h_dig%>
+                <%flag=0%>
+                <%for i in 0..8 %>
+                    <%if (flag==0) and ((session[:ano_letivoh][i]==carga_h_dig.ano_letivo) or (session[:ano_letivoh][i]==''))%>
+                        <%if session[:ano_letivoh][i]==''%>
+                            <%session[:ano_letivoh][i]=carga_h_dig.ano_letivo%>
+                        <%end%>
+                        <%t0=0%>
+                        <%session[:exclui][i]=carga_h_dig.id%>
+                        <%flag=1%>
+                    <%end%>
+                <%end%>
+            <%end%>
             <%for i in 0..8 %>
                 <tr bgcolor="#F5F5F5">
-                    <%if session[:classe_anos][i]!=0%>
+                    <%if session[:ano_letivoh][i]!=''%>
                         <td align="center"><%=session[:classe_anos][i]%>º Ano </td>
                         <td width ="5%" align="center" >
                             <%=session[:ano_letivoh][i] %>
