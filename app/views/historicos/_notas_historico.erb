@@ -43,6 +43,7 @@
         <%session[:qt_matematica]=[0, 0, 0, 0, 0, 0, 0, 0, 0]%>
 
         <%for ano_letivo in @anos_letivos%>
+        <%t0=0%>
             <%if ano_letivo.classe.nil?%>
                 <%if (!ano_letivo.nota5.nil? and !ano_letivo.nota5.empty?)%>
                     <%if ano_letivo.matricula.nil?%>
@@ -79,17 +80,17 @@
             <%end%>
         <%end%>
         <%if probl_matr==0%>
-            <%for historico_aluno in @historico_aluno%>
-                <%session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
-                <%if !session[:ano_nota_lançada].empty?%>
-                    <%session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
-                    <%if session[:ano_letivoh][session[:ano_nota_lançada]-1].nil?%>
-                        <%session[:ano_letivoh][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
-                        <%session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
-                    <%end%>
+            <%#for historico_aluno in @historico_aluno%>
+                <%#session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
+                <%#if !session[:ano_nota_lançada].empty?%>
+                    <%#session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
+                    <%#if session[:ano_letivoh][session[:ano_nota_lançada]-1].nil?%>
+                        <%#session[:ano_letivoh][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
+                        <%#session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
+                    <%#end%>
                                 <!-- <%#session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%> Mudei o comando para 2 linhas acima ###Alex 16/01/2019 -->
-                <%end%>
-            <%end%>
+                <%#end%>
+            <%#end%>
             <tr>
                 <%for i in 0..session[:ult_coluna] %>
                     <td width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%></b></td>
@@ -428,18 +429,20 @@
                     <%end%>
                     </tr>
                 <%end%>
-
-            <%for historico_aluno in @historico_aluno%>
-                <%session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
-                <%if !session[:ano_nota_lançada].empty?%>
-                    <%session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
-                    <%if session[:ano_letivoh][session[:ano_nota_lançada]-1].nil?%>
-                        <%session[:ano_letivoh][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
-                        <%session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
-                    <%end%>
+<!--
+            <%#for historico_aluno in @historico_aluno%>
+                <%#session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
+                <%#if !session[:ano_nota_lançada].empty?%>
+                    <%#session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
+                    <%#if session[:ano_letivoh][session[:ano_nota_lançada]-1].nil?%>
+                        <%#session[:ano_letivoh][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
+                        <%#session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
+                    <%#end%>
                                              <!-- <%#session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%> Mudei o comando para 2 linhas acima ###Alex 16/01/2019 -->
-                <%end%>
-            <%end%>
+                <%#end%>
+            <%#end%>
+-->
+<%t0=0%>
          <tr>
            <td> </td><td> </td>
                 <%for i in 0..session[:ult_coluna]%>
@@ -498,17 +501,18 @@
             </tr>
             <%@carga_h_dig=ObservacaoHistorico.find(:all, :conditions => ["aluno_id=? AND classe IS NOT NULL", session[:aluno_id]]) %>
             <%for carga_h_dig in @carga_h_dig%>
-                <%jachou=0%>
+                <%jaachou=0%>
                 <%for i in 0..8 %>
-                    <%if (jachou==0) and ((session[:ano_letivoh][i]==carga_h_dig.ano_letivo) or (session[:ano_letivoh][i]==''))%>
+                    <%if (jaachou==0) and ((session[:ano_letivoh][i]==carga_h_dig.ano_letivo) or
+                              ((session[:ano_letivoh][i]=='') and (carga_h_dig.classe.to_i==(i+1))))%>
                         <%if session[:ano_letivoh][i]==''%>
                             <%session[:ano_letivoh][i]=carga_h_dig.ano_letivo%>
                         <%end%>
-                        <%session[:classe_anos][i]=carga_h_dig.classe %>
+                        <%session[:classe_anos][i]=carga_h_dig.classe.to_i %>
                         <%session[:escola][i]=carga_h_dig.escola %>
                         <%session[:cidade][i]=carga_h_dig.cidade %>
                         <%session[:exclui][i]=carga_h_dig.id%>
-                        <%jachou=1%>
+                        <%jaachou=1%>
                     <%end%>
                 <%end%>
             <%end%>
