@@ -548,6 +548,16 @@ w5=@nota.faltas5
     end
 
 
+    def classe_professor
+      w1= params[:professor_id]
+       @professor = Professor.find(:all, :conditions => ['id=?', params[:professor_id]])
+       unidade= @professor[0].unidade_id
+       @unidade = Unidade.find(:all, :conditions => ['id=?', unidade])
+       w = session[:unidade]= @unidade[0].nome
+
+    end
+
+
     def load_classes
         @NOTASH = ["SN","10.0","9.5","9.0","8.5","8.0","7.5","7.0","6.5","6.0","5.5","5.0","4.5","4.0","3.5","3.0","2.5","2.0","1.5","1.0","0.5","0.0","A","B","C","D","E","TR","RM","F","NF","ABN","I","P","S","DS","DP","DI"]
         @NOTASB1 = [nil,"SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
@@ -557,7 +567,10 @@ w5=@nota.faltas5
         @NOTASB5 = [nil,"SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
         if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))
             if (current_user.unidade_id == 53 or current_user.unidade_id == 52)
-                @classes = Classe.find(:all, :order => 'classe_classe ASC')
+
+                #@classes = Classe.find(:all, :order => 'classe_classe ASC')
+                @classes = Classe.find(:all, :select => 'classes.id, classe_classe as classe, classe_ano_letivo, CONCAT(classe_classe," - ",unidades.nome) as classe_classe', :joins => :unidade, :conditions=>['classe_ano_letivo=?', Time.now.year], :order => 'classe_classe ASC')
+                  #@serie=ObservacaoHistorico.find(:all, :select => 'id, classe, ano_letivo, CONCAT(classe,"º série (",ano_letivo,")") as cl_ano', :conditions => ["aluno_id=? AND classe IS NOT NULL", session[:aluno_id]], :order => 'classe')
             else
                 @classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')
             end
