@@ -15,7 +15,7 @@
                   <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
                   <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                       <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
-                      <center><font size="2"> Unidade Escolar: <%=h relatorio.atribuicao.classe.unidade.nome %> </i></b><br/></center>
+                      <center><font size="2"> Unidade Escolar: <%=h relatorio.atribuicao.classe.unidade.nome %> <%if relatorio.atribuicao.classe.unidade.id != current_user.unidade_id%> (Transferido para <%=current_user.unidade.nome %>) <%end%> </i></b><br/></center>
                       <%if relatorio.ano_letivo  == Time.now.year  %>
                           <center><font size="2"><b><u> MEMORIAL AS EXPERIÊNCIAS EDUCATIVAS</u></b></font></center>
                       <%else%>

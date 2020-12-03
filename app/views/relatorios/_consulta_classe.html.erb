@@ -2,19 +2,19 @@
         <%  @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_classe", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC') %>
 
 <% else %>
-       <%  @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , Time.now.year, current_user.unidade_id]    )%>
+       <%  @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , Time.now.year, current_user.unidade_id], :order => 'classe_classe'    )%>
     <%end%>
 
 
 
 
 <table width="100%" align="center" >
-   <tr>
+   <tr><!--
         <td widht="90%" align="right"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <b>Semestre:</b></font>
                   &nbsp&nbsp&nbsp<%= select_tag :semestre, options_for_select(SEMESTRE).sort %>
         </td>
-     
+     -->
      <td  widht="10%" align="right"><font size="2"><b>Classe:</b></font>
           &nbsp&nbsp&nbsp<%= select_tag :classe_id, options_for_select(@classe_ano.collect { |ff| [ff.classe_classe, ff.id] }.insert(0, '--Selecionar--')) %>
           &nbsp&nbsp&nbsp <%= submit_tag "Visualizar", :class => "btn_filtrar" %>

@@ -168,16 +168,36 @@ class RelatoriosController < ApplicationController
   end
 
   def fapea_ano
-      if current_user.has_role?('admin') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_fudamental') or current_user.has_role?('supervisao')
+    t=0
+      if current_user.has_role?('admin')or current_user.has_role?('SEDUC')  or current_user.has_role?('supervisao')
         @fapea_ano = Relatorio.find(:all, :joins => :aluno, :conditions=> ['ano_letivo =? and alunos.unidade_id=?' , params[:ano_letivo], current_user.unidade_id])
         ###Alex - mudei no SQL de cima para puxar só da unidade, para diminuir a lista neste momento - AlexML - 25/06/19 12:11 - @fapea_ano = Relatorio.find(:all, :conditions=> ['ano_letivo =?' , params[:ano_letivo]])
         @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND ano_letivo=?', params[:ano_letivo] ],:order => 'alunos.aluno_nome ASC')
       else
         @fapea_ano = Relatorio.find(:all, :joins=> :aluno, :conditions=> ['ano_letivo =? and alunos.unidade_id=?' , params[:ano_letivo], current_user.unidade_id])
         if  current_user.has_role?('professor_infantil')
-           @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND relatorios.ano_letivo=?', current_user.unidade_id, params[:ano_letivo] ],:order => 'alunos.aluno_nome')
+         #  @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.unidade_id=? AND alunos.aluno_status is null AND relatorios.ano_letivo=?', current_user.unidade_id, params[:ano_letivo] ],:order => 'alunos.aluno_nome')
+        #session[:professor_id]=params[:relatorio_professor_id]
+            @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", current_user.professor_id, Time.now.year ])
+            cont_cl=0
+            for atribuicao in @atribuicao
+                @aluno= Matricula.find(:all, :select => 'alunos.id, alunos.aluno_nome',:joins =>:aluno  ,:conditions=>['matriculas.classe_id=? AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")AND ano_letivo =? ', atribuicao.classe_id, Time.now.year], :order => 'alunos.aluno_nome ASC')
+                t=0
+                if cont_cl==0
+                  @alunosRel=@aluno
+                  cont_cl=cont_cl+1
+                else
+                  @alunosRel=@alunosRel + @aluno
+                  cont_cl=cont_cl+1
+                end
+            end
+
+
+
+
         else
-           @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND relatorios.ano_letivo=?',  params[:ano_letivo] ],:order => 'alunos.aluno_nome')
+          # @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nomes), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND relatorios.ano_letivo=? and alunos.unidade_id=?',  params[:ano_letivo],  current_user.unidade_id ],:order => 'alunos.aluno_nome')
+            @alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id,  alunos.unidade_id, matriculas.unidade_id, matriculas.ano_letivo, matriculas.id as matriculas_id', :joins => "JOIN `alunos` ON `alunos`.id = `relatorios`.aluno_id JOIN matriculas ON alunos.id = matriculas.aluno_id",  :conditions =>['alunos.aluno_status is null AND relatorios.ano_letivo=? and alunos.unidade_id=? AND matriculas.ano_letivo =? AND matriculas.unidade_id = alunos.unidade_id AND matriculas.unidade_id =?',  params[:ano_letivo],  current_user.unidade_id , params[:ano_letivo],current_user.unidade_id],:order => 'alunos.aluno_nome')
         end
     end
    render :partial => 'selecao_nome'
@@ -210,14 +230,13 @@ def consulta_fapea
      
     else if params[:type_of].to_i == 1
                  if ( params[:aluno_fapea1].present?)
-                 session[:aluno_imp]= params[:aluno_fapea1]
+                 w4=session[:aluno_imp]= params[:aluno_fapea1]
                  session[:ano_imp]=params[:ano_letivo]
                  session[:tipo]=1
                   @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", params[:aluno_fapea1], params[:ano_letivo]])
                   @matricula = Matricula.find(:all, :conditions => ["aluno_id =? and ano_letivo =? AND (status != 'REMANEJADO')", params[:aluno_fapea1], params[:ano_letivo]], :order => ["id DESC"])
                   ###Alex 26/06/2019 10:27 - Com os PAs deu problema puxou todos porque o ID da classe é 0 - @classe = Atribuicao.find(:all, :select=> 'classe_id', :conditions => ['id=?', @relatorios[0].atribuicao_id] )
                   @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matricula[0].classe_id] )
-
                   ###Alex 26/06/2019 10:20 - Não sei para que é estou comentando - @classe[0].classe_id
                   @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
                   session[:impressao]= 1
@@ -249,27 +268,27 @@ def consulta_fapea
               else if params[:type_of].to_i == 4
                         session[:type_of] = 4
                          w= session[:classe_id]=params[:classe_id]
-                         w1= session[:semestre]= params[:semestre]
+                         #w1= session[:semestre]= params[:semestre]
                          session[:tipo]=0
                            @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status != "REMANEJADO")', params[:classe_id]], :order => 'classe_num ASC')
-                           @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
-                           @classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
+                           #@classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
+                           @classe = Atribuicao.find(:all, :joins => "INNER JOIN `classes` ON `classes`.id = `atribuicaos`.classe_id INNER JOIN `disciplinas` ON `disciplinas`.id = `atribuicaos`.disciplina_id INNER JOIN matriculas ON classes.id = matriculas.classe_id", :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['atribuicaos.classe_id=?', session[:classe_id]])
                            @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
                            t=0
-                            if session[:semestre].to_i == 1
-                               render :update do |page|
-                                  page.replace_html 'relatorio', :partial => 'fapea_classe1'
-                               end
-                            else  if session[:semestre].to_i == 2
-                                       render :update do |page|
-                                          page.replace_html 'relatorio', :partial => 'fapea_classe2'
-                                       end
-                                 else
+                            #if session[:semestre].to_i == 1  # desativado semestre
+                            #   render :update do |page|
+                            #      page.replace_html 'relatorio', :partial => 'fapea_classe1'
+                            #   end
+                            #else  if session[:semestre].to_i == 2
+                            #           render :update do |page|
+                            #              page.replace_html 'relatorio', :partial => 'fapea_classe2'
+                            #           end
+                            #     else
                                        render :update do |page|
                                           page.replace_html 'relatorio', :partial => 'fapea_classe'
                                        end
-                                 end
-                            end
+                             #    end
+                            #end
                       end
              end
         end

@@ -7,7 +7,8 @@
   <% for matricula in @matriculas %>
       <%session[:imprimir_todos]=1%>
       <%  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =?", matricula.aluno_id, Time.now.year])%>
-      <% for relatorio in @relatorios %>
+      <%if @relatorios.present?%>
+        <% for relatorio in @relatorios %>
         <fieldset><legend><font  size=3><b> FAPEA -
                    <% bimestre = relatorio.created_at.strftime("%m").to_i %>
                    <% if  ( bimestre < 8 ) %>
@@ -31,6 +32,7 @@
                  <tr bgcolor="#F5F5F5">
                    <td width=5%" align="left"><b>Aluno(a):</b></td>
                    <td  width=50%"><%=h relatorio.aluno.aluno_nome %> <%  session[:relatorio_id]= relatorio.id%> </td>
+                   <%t=0%>
                    <td width=10%" align="left"><b>Nascimento:</b></td>
                    <td colspan="2"><%=h relatorio.aluno.aluno_nascimento.strftime("%d/%m/%Y") %>   </td>
 
@@ -88,5 +90,13 @@
              </table>
            </fieldset>
           <%end%>
+       <%else%>
+              <br/>
+              <table  width="100%">
+                    <tr>
+                      <td align="center"><font size="3" color="red"><b>  NÃO HÁ RELATÓRIO LANÇADO para aluno <%=matricula.aluno.aluno_nome%> </b> </td>
+                    </tr>
+              </table>
+       <%end%>
 
   <%end%>
