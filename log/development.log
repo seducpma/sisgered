@@ -22590,3 +22590,1153 @@ Processing RelatoriosController#consulta_fapea (for 127.0.0.1 at 2020-12-03 14:1
   [4;36;1mProfessor Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
 Rendered relatorios/_fapea (116.9ms)
 Completed in 370ms (View: 117, DB: 99) | 200 OK [http://localhost/consulta_fapea?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ano_letivo=--Selecionar--&classe_id=--Selecionar--&aluno=25428&aluno_fapea=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607012369345]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2020-12-04 13:29:18) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 15:29:18' AND ends_at >= '2020-12-04 15:29:18') [0m
+  [4;36;1mroles_users Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=8) [0m
+  [4;36;1mUnidade Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 76ms (View: 52, DB: 5) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2020-12-04 13:30:21) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 15:30:21' AND ends_at >= '2020-12-04 15:30:21') [0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.4ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.5ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 156ms (View: 132, DB: 5) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#transferencia (for 127.0.0.1 at 2020-12-04 13:30:28) [GET]
+  [4;35;1mUser Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.2ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (1.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (((id > 41 AND id <52) OR id = 62) AND id != 45) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 45) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (58.9ms)[0m   [0;1mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=45 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2020) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (4.7ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 45 and classe_ano_letivo = 2020 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mMatricula Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+Rendering template within layouts/application
+Rendering matriculas/transferencia
+  [4;35;1mClasse Load (2.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =45 and classe_ano_letivo=2020) ORDER BY classe_classe[0m
+  [4;36;1mUnidade Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mClasse Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered matriculas/_consulta_seduc (28.1ms)
+  [4;36;1mAluno Load (44.4ms)[0m   [0;1mSELECT id, CONCAT(aluno_nome, '-',date_format(aluno_nascimento, '%d/%m/%y')) AS aluno_nome_dtn FROM `alunos` WHERE (aluno_status is not null AND aluno_status != 'EGRESSO') ORDER BY aluno_nome ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id =45 and classe_ano_letivo=2020) ORDER BY classe_classe[0m
+  [4;36;1mAluno Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered matriculas/_consulta_outras (124.4ms)
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =45 and classe_ano_letivo=2020) ORDER BY classe_classe[0m
+Rendered matriculas/_consulta_outras1 (90.1ms)
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 15:30:28' AND ends_at >= '2020-12-04 15:30:28') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 473ms (View: 295, DB: 118) | 200 OK [http://localhost/matriculas/transferencia]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#unidade_transferencia (for 127.0.0.1 at 2020-12-04 13:30:34) [POST]
+  Parameters: {"matricula_procedencia"=>"PRAIA AZUL (PROF. MILTON SANTOS )", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (((id > 41 AND id <52) OR id = 62) AND id != 45) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 45) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=45 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2020) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 45 and classe_ano_letivo = 2020 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.7ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`nome` = 'PRAIA AZUL (PROF. MILTON SANTOS )') LIMIT 1[0m
+  [4;36;1mAluno Load (57.1ms)[0m   [0;1mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y'), ' | ', cl.classe_classe) AS aluno_nome_dtn FROM `alunos` inner join matriculas mat on alunos.id=mat.aluno_id LEFT JOIN classes cl on mat.classe_id=cl.id WHERE (alunos.unidade_id =47 AND mat.ano_letivo =2020) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` WHERE (id =45) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (2.4ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id =45) ORDER BY classe_classe[0m
+  [4;35;1mAluno Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Rendered matriculas/_selecao_alunos (94.4ms)
+Completed in 219ms (View: 96, DB: 66) | 200 OK [http://localhost/matriculas/unidade_transferencia]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#matricula_aluno_classe (for 127.0.0.1 at 2020-12-04 13:30:37) [POST]
+  Parameters: {"aluno_id"=>"", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSituacaoAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mSituacaoAluno Load (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (((id > 41 AND id <52) OR id = 62) AND id != 45) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 45) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=45 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2020) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 45 and classe_ano_letivo = 2020 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mMatricula Load (58.7ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id ='' AND ano_letivo = 2020) [0m
+Rendered matriculas/_classe_aluno (1.7ms)
+Completed in 190ms (View: 9, DB: 61) | 200 OK [http://localhost/matriculas/matricula_aluno_classe]
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#editar_ficha (for 127.0.0.1 at 2020-12-04 14:31:38) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering alunos/editar_ficha
+  [4;35;1mAluno Load (34.3ms)[0m   [0mSELECT id, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` WHERE (unidade_id = 45 AND ( aluno_status is null or aluno_status = "SEM_MATRICULA")) ORDER BY aluno_nome[0m
+  [4;36;1mAluno Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:31:38' AND ends_at >= '2020-12-04 16:31:38') [0m
+  [4;36;1mroles_users Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;36;1mUnidade Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 199ms (View: 78, DB: 38) | 200 OK [http://localhost/alunos/editar_ficha]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#aviso (for 127.0.0.1 at 2020-12-04 14:32:34) [GET]
+  [4;35;1mUser Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (((id > 41 AND id <52) OR id = 62) AND id != 45) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 45) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=45 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2020) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 45 and classe_ano_letivo = 2020 ) ORDER BY classe_classe ASC[0m
+Rendering template within layouts/application
+Rendering matriculas/aviso
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:32:34' AND ends_at >= '2020-12-04 16:32:34') [0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 144ms (View: 30, DB: 3) | 200 OK [http://localhost/matriculas/aviso]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#new (for 127.0.0.1 at 2020-12-04 14:32:36) [POST]
+  Parameters: {"authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSituacaoAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mSituacaoAluno Load (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (((id > 41 AND id <52) OR id = 62) AND id != 45) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 45) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (5.7ms)[0m   [0mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=45 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2020) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 45 and classe_ano_letivo = 2020 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mMatricula Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+Rendering template within layouts/application
+Rendering matriculas/new
+  [4;36;1mAluno Load (14598.9ms)[0m   [0;1mSELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = 45 AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = 2020 AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome[0m
+  [4;35;1mClasse Load (1.3ms)[0m   [0mSELECT id, classe_classe FROM `classes` WHERE (unidade_id =45 and classe_ano_letivo=2020 and sala != 52) ORDER BY classe_classe[0m
+  [4;36;1mClasse Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mAluno Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:32:51' AND ends_at >= '2020-12-04 16:32:51') [0m
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 14789ms (View: 64, DB: 14615) | 200 OK [http://localhost/matriculas/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#consulta_cadastro (for 127.0.0.1 at 2020-12-04 14:43:57) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering alunos/consulta_cadastro
+  [4;36;1mAluno Load (277.1ms)[0m   [0;1mSELECT id, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` WHERE (aluno_status != 'EGRESSO' or aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;35;1mDisciplina Load (0.4ms)[0m   [0mSELECT * FROM `disciplinas` [0m
+  [4;36;1mroles_users Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:43:58' AND ends_at >= '2020-12-04 16:43:58') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 685ms (View: 383, DB: 280) | 200 OK [http://localhost/alunos/consulta_cadastro]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#consulta_cadastro_aluno (for 127.0.0.1 at 2020-12-04 14:44:11) [GET]
+  Parameters: {"search_prof"=>"ARTHUR GOMES DE GODOI TEIXEIRA", "_"=>"1607100251699", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (26.8ms)[0m   [0;1mSELECT id, aluno_nome, aluno_nascimento, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` WHERE (aluno_nome like 'ARTHUR GOMES DE GODOI TEIXEIRA%' ) ORDER BY aluno_nome[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAluno Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Rendered alunos/_exibe_alunos (23.9ms)
+Completed in 176ms (View: 27, DB: 30) | 200 OK [http://localhost/consulta_cadastro_aluno?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&search_prof=ARTHUR+GOMES+DE+GODOI+TEIXEIRA&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607100251699]
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#consulta_cadastro_aluno (for 127.0.0.1 at 2020-12-04 14:44:14) [GET]
+  Parameters: {"id"=>"4526", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT aluno_nome, aluno_nascimento, aluno_RG, aluno_mae, id FROM `alunos` WHERE (id ='4526' ) [0m
+  [4;35;1mMatricula Load (44.3ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id ='4526') [0m
+  [4;36;1mMatricula Load (17.0ms)[0m   [0;1mSELECT unidade_id, classe_id, ano_letivo FROM `matriculas` WHERE (aluno_id ='4526' and ano_letivo=2020) [0m
+Rendering template within layouts/application
+  [4;35;1mAluno Load (248.6ms)[0m   [0mSELECT id, CONCAT(aluno_nome, ' | ',date_format(aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` WHERE (aluno_status != 'EGRESSO' or aluno_status is null) ORDER BY aluno_nome ASC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` [0m
+  [4;35;1mAluno Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mMatricula Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mUnidade Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+  [4;35;1mClasse Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 166) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 957) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 1551) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 1862) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 2506) [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 42) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 2506) [0m
+Rendered alunos/_exibe_cadastro (562.8ms)
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:44:15' AND ends_at >= '2020-12-04 16:44:15') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 740ms (View: 393, DB: 316) | 200 OK [http://localhost/alunos/consulta_cadastro_aluno/4526]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#continuar (for 127.0.0.1 at 2020-12-04 14:44:25) [POST]
+  Parameters: {"authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id=NULL) [0m
+  [4;35;1mSaude Load (22.4ms)[0m   [0mSELECT * FROM `saudes` WHERE (aluno_id = 4526) [0m
+  [4;36;1mSocioeconomico Load (15.2ms)[0m   [0;1mSELECT * FROM `socioeconomicos` WHERE (aluno_id = 4526) [0m
+Rendering template within layouts/application
+Rendering alunos/continuar
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:44:26' AND ends_at >= '2020-12-04 16:44:26') [0m
+  [4;36;1mroles_users Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;36;1mUnidade Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 202ms (View: 47, DB: 41) | 200 OK [http://localhost/continuar]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#aviso (for 127.0.0.1 at 2020-12-04 14:44:33) [GET]
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mSituacaoAluno Load (0.1ms)[0m   [0mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (((id > 41 AND id <52) OR id = 62) AND id != 45) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 45) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=45 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2020) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 45 and classe_ano_letivo = 2020 ) ORDER BY classe_classe ASC[0m
+Rendering template within layouts/application
+Rendering matriculas/aviso
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:44:33' AND ends_at >= '2020-12-04 16:44:33') [0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 133ms (View: 25, DB: 4) | 200 OK [http://localhost/matriculas/aviso]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MatriculasController#new (for 127.0.0.1 at 2020-12-04 14:44:36) [POST]
+  Parameters: {"authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mSituacaoAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `situacao_alunos` [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `situacao_alunos` [0m
+  [4;36;1mSituacaoAluno Load (0.0ms)[0m   [0;1mSELECT * FROM `situacao_alunos` WHERE (id = 2) [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (((id > 41 AND id <52) OR id = 62) AND id != 45) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 45) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `alunos` INNER JOIN matriculas ON alunos.id = matriculas.aluno_id WHERE (alunos.unidade_id=45 AND (matriculas.status = "MATRICULADO" OR matriculas.status = "*REMANEJADO" OR matriculas.status = "TRANSFERENCIA") AND matriculas.ano_letivo =2020) ORDER BY alunos.aluno_nome[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 45 and classe_ano_letivo = 2020 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mMatricula Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+Rendering template within layouts/application
+Rendering matriculas/new
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = 45 AND ( id NOT IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = 2020 AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT id, classe_classe FROM `classes` WHERE (unidade_id =45 and classe_ano_letivo=2020 and sala != 52) ORDER BY classe_classe[0m
+  [4;36;1mClasse Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mAluno Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:44:36' AND ends_at >= '2020-12-04 16:44:36') [0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 185ms (View: 62, DB: 10) | 200 OK [http://localhost/matriculas/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#certeza (for 127.0.0.1 at 2020-12-04 14:59:44) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering alunos/certeza
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:59:44' AND ends_at >= '2020-12-04 16:59:44') [0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 54ms (View: 31, DB: 3) | 200 OK [http://localhost/alunos/certeza]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#new (for 127.0.0.1 at 2020-12-04 14:59:47) [POST]
+  Parameters: {"authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+Rendering template within layouts/application
+Rendering alunos/new
+Rendered alunos/_form (51.3ms)
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 16:59:47' AND ends_at >= '2020-12-04 16:59:47') [0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;36;1mUnidade Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 185ms (View: 83, DB: 4) | 200 OK [http://localhost/alunos/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#mesmo_nome (for 127.0.0.1 at 2020-12-04 14:59:54) [POST]
+  Parameters: {"aluno_aluno_nome"=>"GABRIEL ISAC DA SILVA GARCIA ", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (125.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`aluno_nome` = 'GABRIEL ISAC DA SILVA GARCIA ') LIMIT 1[0m
+Completed in 226ms (View: 2, DB: 128) | 200 OK [http://localhost/alunos/mesmo_nome]
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#create (for 127.0.0.1 at 2020-12-04 14:59:59) [POST]
+  Parameters: {"aluno"=>{"aluno_emissaoRG"=>"", "aluno_parente"=>"", "aluno_contato2_fone"=>"", "aluno_validade_estrangeiro(1i)"=>"2020", "aluno_endereco_mae"=>"", "aluno_nome"=>"GABRIEL ISAC DA SILVA GARCIA ", "aluno_email_pai"=>"", "aluno_reside_com"=>"", "aluno_ra"=>"", "aluno_obs"=>"", "aluno_autoriza_ativ_fisica"=>"NÃO", "aluno_local_trabalho_responsavel"=>"", "aluno_contato4"=>"", "aluno_contato1_fone"=>"", "aluno_RG"=>"", "aluno_contato4_fone"=>"", "aluno_certidao_nascimento"=>"", "aluno_naturalidade"=>"", "aluno_fone_responsavel"=>"", "aluno_sexo"=>"MASCULINO", "aluno_nome_responsavel"=>"", "aluno_autoriza_imagem"=>"NÃO", "aluno_contato6_fone"=>"", "aluno_RNE"=>"", "aluno_cidade_mae"=>"", "aluno_contato1"=>"", "aluno_mae"=>"", "aluno_livro"=>"", "aluno_cidade"=>"", "aluno_folha"=>"", "aluno_contato3_fone"=>"", "aluno_fone_mae"=>"", "aluno_bairro"=>"", "aluno_contato6"=>"", "aluno_fone_fixo"=>"", "aluno_fluor"=>"NÃO", "aluno_email"=>"", "aluno_vai_embora_so"=>"NÃO", "aluno_parente_responsavel"=>"", "aluno_fone_cel"=>"", "aluno_nis"=>"", "aluno_contato3"=>"", "aluno_num"=>"", "aluno_endereco_pai"=>"", "aluno_email_responsavel"=>"", "aluno_cidade_responsavel"=>"", "aluno_nome_beneficiario"=>"", "aluno_chegada_brasil(3i)"=>"4", "aluno_chegada_brasil(2i)"=>"12", "aluno_inep"=>"", "aluno_emissaoCPF"=>"", "aluno_vai_embora"=>"NÃO", "aluno_profissao_responsavel"=>"", "aluno_acompanhante"=>"", "aluno_chegada_brasil(1i)"=>"2020", "aluno_endereco_responsavel"=>"", "aluno_bolsa_familia"=>"NÃO", "aluno_autoriza_ativ_extraclasse"=>"NÃO", "aluno_especial"=>"NÃO", "aluno_cidade_pai"=>"", "aluno_pai"=>"", "aluno_email_mae"=>"", "aluno_rm"=>"", "aluno_emergencial"=>"NÃO", "aluno_nacionalidade"=>"BRASILEIRO", "aluno_CPF"=>"", "aluno_odontologico"=>"NÃO", "aluno_contato5"=>"", "aluno_endereco"=>"", "aluno_fone_pai"=>"", "aluno_cep"=>"", "aluno_contato2"=>"", "aluno_classificacao"=>"", "aluno_renda_cidada"=>"NÃO", "aluno_nascimento(3i)"=>"4", "aluno_fone_trabalho_responsavel"=>"", "aluno_nascimento(2i)"=>"12", "aluno_condicao_profissao_responsavel"=>"", "aluno_complemento"=>"", "aluno_nascimento(1i)"=>"2020", "aluno_responsavel"=>"", "aluno_conjuge"=>"", "aluno_contato5_fone"=>"", "aluno_validade_estrangeiro(3i)"=>"4", "aluno_validade_estrangeiro(2i)"=>"12", "aluno_restricao"=>"NÃO"}, "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY=", "commit"=>"Salvar"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAluno Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`aluno_nome` = 'GABRIEL ISAC DA SILVA GARCIA ') LIMIT 1[0m
+  [4;36;1mAluno Load (124.9ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`aluno_nascimento` = '2020-12-04') LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mAluno Create (1.9ms)[0m   [0;1mINSERT INTO `alunos` (`aluno_emissaoRG`, `aluno_parente`, `aluno_contato2_fone`, `created_at`, `aluno_endereco_mae`, `aluno_nome`, `aluno_email_pai`, `aluno_reside_com`, `aluno_ra`, `aluno_obs`, `aluno_autoriza_ativ_fisica`, `photo_file_name`, `aluno_endereco_trabalho_responsavel`, `aluno_local_trabalho_responsavel`, `aluno_contato4`, `aluno_RG`, `aluno_contato1_fone`, `mesma_unidade`, `aluno_contato4_fone`, `aluno_certidao_nascimento`, `aluno_naturalidade`, `aluno_fone_responsavel`, `aluno_sexo`, `aluno_nome_responsavel`, `aluno_validade_estrangeiro`, `aluno_autoriza_imagem`, `aluno_contato6_fone`, `aluno_RNE`, `aluno_cidade_mae`, `aluno_contato1`, `aluno_nascimento`, `photo_file_size`, `aluno_mae`, `aluno_livro`, `photo_content_type`, `aluno_cidade`, `aluno_folha`, `unidade_anterior`, `aluno_fone_mae`, `aluno_contato3_fone`, `aluno_bairro`, `aluno_contato6`, `aluno_fone_fixo`, `aluno_fluor`, `aluno_email`, `aluno_vai_embora_so`, `aluno_parente_responsavel`, `aluno_chegada_brasil`, `aluno_fone_cel`, `aluno_autoriza_passeio`, `transferido`, `aluno_nis`, `aluno_num`, `aluno_contato3`, `aluno_endereco_pai`, `aluno_email_responsavel`, `aluno_cidade_responsavel`, `updated_at`, `aluno_nome_beneficiario`, `aluno_inep`, `aluno_emissaoCPF`, `aluno_vai_embora`, `aluno_profissao_responsavel`, `aluno_acompanhante`, `aluno_nacionalidade`, `aluno_rm`, `aluno_email_mae`, `aluno_pai`, `aluno_cidade_pai`, `aluno_especial`, `aluno_bolsa_familia`, `aluno_endereco_responsavel`, `aluno_autoriza_ativ_extraclasse`, `aluno_emergencial`, `aluno_brasil_carinhoso`, `aluno_status`, `aluno_CPF`, `aluno_endereco`, `aluno_contato5`, `aluno_odontologico`, `aluno_cep`, `aluno_fone_pai`, `aluno_condicao_profissao_responsavel`, `aluno_contato2`, `aluno_fone_trabalho_responsavel`, `aluno_classificacao`, `aluno_renda_cidada`, `aluno_conjuge`, `unidade_id`, `aluno_responsavel`, `aluno_complemento`, `trans_in`, `aluno_restricao`, `aluno_contato5_fone`) VALUES('', '', '', '2020-12-04 16:59:59', '', 'GABRIEL ISAC DA SILVA GARCIA ', '', '', '', '', 'NÃO', NULL, NULL, '', '', '', '', 0, '', '', '', '', 'MASCULINO', '', NULL, 'NÃO', '', '', '', '', '2020-12-04', NULL, '', '', NULL, '', '', NULL, '', '', '', '', '', 'NÃO', '', 'NÃO', '', NULL, '', NULL, NULL, NULL, '', '', '', '', '', '2020-12-04 16:59:59', '', NULL, '', 'NÃO', '', '', 'BRASILEIRO', '', '', '', '', 'NÃO', 'NÃO', '', 'NÃO', 'NÃO', NULL, 'SEM_MATRICULA', '', '', '', 'NÃO', '', '', '', '', '', '', 'NÃO', '', 45, '', '', 0, 'NÃO', '')[0m
+[paperclip] Saving attachments.
+  [4;35;1mSQL (37.1ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/alunos/26831
+Completed in 211ms (DB: 166) | 302 Found [http://localhost/alunos]
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AlunosController#show (for 127.0.0.1 at 2020-12-04 14:59:59) [GET]
+  Parameters: {"id"=>"26831"}
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mAluno Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26831) [0m
+Rendering template within layouts/application
+Rendering alunos/show
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-04 17:00:00' AND ends_at >= '2020-12-04 17:00:00') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;36;1mUnidade Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 154ms (View: 49, DB: 5) | 200 OK [http://localhost/alunos/26831]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2020-12-07 10:25:20) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:25:20' AND ends_at >= '2020-12-07 12:25:20') [0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.5ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 236ms (View: 116, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consultas (for 127.0.0.1 at 2020-12-07 10:25:28) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.9ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering atas/consultas
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atas/_consulta_data (16.1ms)
+  [4;36;1mAta Load (36.0ms)[0m   [0;1mSELECT distinct(titulo) FROM `atas` WHERE ((titulo NOT like 'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR') and (titulo NOT like 'CONSELHO MUNICIPAL DE EDUCAÇÃO')and (titulo NOT like 'CONSELHO DO FUNDEB') and (titulo NOT like 'DIRETORES%') ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+Rendered atas/_consulta_reuniao (53.9ms)
+  [4;36;1mUnidade Load (0.7ms)[0m   [0;1mSELECT distinct(unidades.nome), unidades.id FROM `unidades` WHERE (desativada = 0) ORDER BY unidades.nome[0m
+  [4;35;1mUnidade Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered atas/_consulta_unidade (11.2ms)
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:25:28' AND ends_at >= '2020-12-07 12:25:28') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 222ms (View: 85, DB: 42) | 200 OK [http://localhost/atas/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:25:38) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "titulo"=>"CONSELHO 2BIMESTRE 1 AO 5 ANO", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY=", "_"=>"1607343938127", "type_of"=>"2", "unidade"=>"--Selecionar--"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.2ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (20.2ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'CONSELHO 2BIMESTRE 1 AO 5 ANO' ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;36;1mTipo Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.2ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+Rendered atas/_atas (20.6ms)
+Completed in 152ms (View: 27, DB: 25) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=CONSELHO+2%C2%9ABIMESTRE+1%C2%9A+AO+5%C2%9A+ANO&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607343938127]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:25:45) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "titulo"=>"PROFESSORES", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY=", "_"=>"1607343945545", "type_of"=>"2", "unidade"=>"--Selecionar--"}
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (18.3ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'PROFESSORES' ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;36;1mTipo Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.2ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mTipo Load (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+Rendered atas/_atas (90.3ms)
+Completed in 142ms (View: 90, DB: 26) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=PROFESSORES&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607343945545]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:25:56) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "titulo"=>"CONSELHO DE CLASSE", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY=", "_"=>"1607343956311", "type_of"=>"2", "unidade"=>"--Selecionar--"}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (22.8ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'CONSELHO DE CLASSE' ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;36;1mTipo Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mTipo Load (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 43) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 62) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 49) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 7) [0m
+Rendered atas/_atas (34.5ms)
+Completed in 170ms (View: 37, DB: 29) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=CONSELHO+DE+CLASSE&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607343956311]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2020-12-07 10:27:38) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:27:38' AND ends_at >= '2020-12-07 12:27:39') [0m
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 465ms (View: 375, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consultas (for 127.0.0.1 at 2020-12-07 10:27:44) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering atas/consultas
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atas/_consulta_data (3.0ms)
+  [4;36;1mAta Load (0.1ms)[0m   [0;1mSELECT distinct(titulo) FROM `atas` WHERE ((titulo NOT like 'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR') and (titulo NOT like 'CONSELHO MUNICIPAL DE EDUCAÇÃO')and (titulo NOT like 'CONSELHO DO FUNDEB') and (titulo NOT like 'DIRETORES%') ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+Rendered atas/_consulta_reuniao (18.3ms)
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT distinct(unidades.nome), unidades.id FROM `unidades` WHERE (desativada = 0) ORDER BY unidades.nome[0m
+  [4;35;1mUnidade Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered atas/_consulta_unidade (21.8ms)
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:27:44' AND ends_at >= '2020-12-07 12:27:44') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 269ms (View: 211, DB: 5) | 200 OK [http://localhost/atas/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:27:50) [GET]
+  Parameters: {"titulo"=>"CONSELHO 2BIMESTRE 1 AO 5 ANO", "_"=>"1607344070275", "ata"=>{"inicio"=>"", "fim"=>""}, "type_of"=>"2", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY=", "unidade"=>"--Selecionar--"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2020-12-07 10:28:43) [GET]
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:28:43' AND ends_at >= '2020-12-07 12:28:43') [0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 426ms (View: 348, DB: 3) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consultas (for 127.0.0.1 at 2020-12-07 10:28:47) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering atas/consultas
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atas/_consulta_data (4.4ms)
+  [4;36;1mAta Load (0.3ms)[0m   [0;1mSELECT distinct(titulo) FROM `atas` WHERE ((titulo NOT like 'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR') and (titulo NOT like 'CONSELHO MUNICIPAL DE EDUCAÇÃO')and (titulo NOT like 'CONSELHO DO FUNDEB') and (titulo NOT like 'DIRETORES%') ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+Rendered atas/_consulta_reuniao (29.5ms)
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.nome), unidades.id FROM `unidades` WHERE (desativada = 0) ORDER BY unidades.nome[0m
+  [4;35;1mUnidade Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered atas/_consulta_unidade (22.7ms)
+  [4;36;1mInformativo Load (1.2ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:28:47' AND ends_at >= '2020-12-07 12:28:47') [0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 295ms (View: 233, DB: 7) | 200 OK [http://localhost/atas/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:28:53) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "type_of"=>"2", "_"=>"1607344132771", "titulo"=>"CONSELHO 2BIMESTRE 1 AO 5 ANO", "unidade"=>"--Selecionar--", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (0.9ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'CONSELHO 2BIMESTRE 1 AO 5 ANO' and unidade_id =45 ) ORDER BY data DESC[0m
+Rendered atas/_atas (4.2ms)
+Completed in 2503ms (View: 12, DB: 3) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=CONSELHO+2%C2%9ABIMESTRE+1%C2%9A+AO+5%C2%9A+ANO&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607344132771]
+  [4;35;1mUnidade Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:29:00) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "type_of"=>"2", "_"=>"1607344140603", "titulo"=>"REUNIÃO PEDAGÓGICA ON-LINE", "unidade"=>"--Selecionar--", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (1.0ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'REUNIÃO PEDAGÓGICA ON-LINE' and unidade_id =45 ) ORDER BY data DESC[0m
+Rendered atas/_atas (0.4ms)
+Completed in 2282ms (View: 3, DB: 4) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=REUNI%C3%83O+PEDAG%C3%93GICA+ON-LINE&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607344140603]
+  [4;35;1mUnidade Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:29:08) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "type_of"=>"2", "_"=>"1607344148460", "titulo"=>"PROFESSORES", "unidade"=>"--Selecionar--", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (0.6ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'PROFESSORES' and unidade_id =45 ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;36;1mTipo Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+Rendered atas/_atas (48.9ms)
+Completed in 1924ms (View: 51, DB: 7) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=PROFESSORES&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607344148460]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#show (for 127.0.0.1 at 2020-12-07 10:29:18) [GET]
+  Parameters: {"id"=>"75"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mAta Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mAta Load (0.3ms)[0m   [0;1mSELECT * FROM `atas` WHERE (`atas`.`id` = 75) [0m
+Rendering template within layouts/application
+Rendering atas/show
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mTipo Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `tipos`[0m
+  [4;36;1mTipo Load (0.0ms)[0m   [0;1mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:29:18' AND ends_at >= '2020-12-07 12:29:18') [0m
+  [4;36;1mroles_users Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 309ms (View: 159, DB: 5) | 200 OK [http://localhost/atas/75]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#edit (for 127.0.0.1 at 2020-12-07 10:29:35) [GET]
+  Parameters: {"id"=>"75"}
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mAta Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mAta Load (0.1ms)[0m   [0;1mSELECT * FROM `atas` WHERE (`atas`.`id` = 75) [0m
+Rendering template within layouts/application
+Rendering atas/edit
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mTipo Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `tipos`[0m
+  [4;36;1mTipo Load (0.2ms)[0m   [0;1mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:29:35' AND ends_at >= '2020-12-07 12:29:35') [0m
+  [4;36;1mroles_users Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 288ms (View: 218, DB: 7) | 200 OK [http://localhost/atas/75/edit]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2020-12-07 10:29:44) [GET]
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:29:44' AND ends_at >= '2020-12-07 12:29:44') [0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 135ms (View: 76, DB: 3) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consultas (for 127.0.0.1 at 2020-12-07 10:30:48) [GET]
+  [4;36;1mUser Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering atas/consultas
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atas/_consulta_data (1.8ms)
+  [4;36;1mAta Load (0.1ms)[0m   [0;1mSELECT distinct(titulo) FROM `atas` WHERE ((titulo NOT like 'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR') and (titulo NOT like 'CONSELHO MUNICIPAL DE EDUCAÇÃO')and (titulo NOT like 'CONSELHO DO FUNDEB') and (titulo NOT like 'DIRETORES%') ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+Rendered atas/_consulta_reuniao (16.5ms)
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.nome), unidades.id FROM `unidades` WHERE (desativada = 0) ORDER BY unidades.nome[0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered atas/_consulta_unidade (19.8ms)
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:30:48' AND ends_at >= '2020-12-07 12:30:48') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 244ms (View: 108, DB: 4) | 200 OK [http://localhost/atas/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:31:01) [GET]
+  Parameters: {"ata"=>{"fim"=>"07-12-2020", "inicio"=>"01-10-2020"}, "type_of"=>"1", "_"=>"1607344261603", "titulo"=>"--Selecionar--", "unidade"=>"--Selecionar--", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (1.2ms)[0m   [0;1mSELECT * FROM `atas` WHERE (data between '2020-10-01' and '2020-12-07' and unidade_id=45 ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;36;1mTipo Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.1ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+Rendered atas/_atas (58.0ms)
+Completed in 240ms (View: 139, DB: 8) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=1&ata%5Binicio%5D=01-10-2020&ata%5Bfim%5D=07-12-2020&titulo=--Selecionar--&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607344261603]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2020-12-07 10:33:23) [GET]
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:33:23' AND ends_at >= '2020-12-07 12:33:23') [0m
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 267ms (View: 89, DB: 5) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consultas (for 127.0.0.1 at 2020-12-07 10:33:27) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering atas/consultas
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atas/_consulta_data (1.7ms)
+  [4;36;1mAta Load (0.1ms)[0m   [0;1mSELECT distinct(titulo) FROM `atas` WHERE ((titulo NOT like 'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR') and (titulo NOT like 'CONSELHO MUNICIPAL DE EDUCAÇÃO')and (titulo NOT like 'CONSELHO DO FUNDEB') and (titulo NOT like 'DIRETORES%') ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+Rendered atas/_consulta_reuniao (14.6ms)
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT distinct(unidades.nome), unidades.id FROM `unidades` WHERE (desativada = 0 and id=45) ORDER BY unidades.nome[0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered atas/_consulta_unidade (26.0ms)
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:33:27' AND ends_at >= '2020-12-07 12:33:27') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 255ms (View: 193, DB: 4) | 200 OK [http://localhost/atas/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:33:33) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "type_of"=>"3", "_"=>"1607344412883", "titulo"=>"--Selecionar--", "unidade"=>"45", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (0.9ms)[0m   [0;1mSELECT * FROM `atas` WHERE (unidade_id = '45' and (titulo NOT like 'CONSELHO%') and (titulo NOT like 'DIRETORES%') ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;36;1mTipo Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.1ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+Rendered atas/_atas (141.1ms)
+Completed in 313ms (View: 148, DB: 5) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=3&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=--Selecionar--&unidade=45&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607344412883]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consultas (for 127.0.0.1 at 2020-12-07 10:34:34) [GET]
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering atas/consultas
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.3ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atas/_consulta_data (1.9ms)
+  [4;36;1mAta Load (0.9ms)[0m   [0;1mSELECT distinct(titulo) FROM `atas` [0m
+  [4;35;1mAta Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+Rendered atas/_consulta_reuniao (15.5ms)
+  [4;36;1mAta Load (0.4ms)[0m   [0;1mSELECT distinct(unidades.nome), unidades.id FROM `atas` INNER JOIN `unidades` ON `unidades`.id = `atas`.unidade_id WHERE (atas.unidade_id=45) ORDER BY atas.data DESC[0m
+Rendered atas/_consulta_unidade (7.7ms)
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:34:35' AND ends_at >= '2020-12-07 12:34:35') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 232ms (View: 89, DB: 5) | 200 OK [http://localhost/atas/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consultas (for 127.0.0.1 at 2020-12-07 10:36:09) [GET]
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering atas/consultas
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.3ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atas/_consulta_data (1.8ms)
+  [4;36;1mAta Load (0.9ms)[0m   [0;1mSELECT distinct(titulo) FROM `atas` WHERE ((titulo NOT like 'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR') and (titulo NOT like 'CONSELHO MUNICIPAL DE EDUCAÇÃO')and (titulo NOT like 'CONSELHO DO FUNDEB') and (unidade_id =45) ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+Rendered atas/_consulta_reuniao (20.1ms)
+  [4;36;1mAta Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.nome), unidades.id FROM `atas` INNER JOIN `unidades` ON `unidades`.id = `atas`.unidade_id WHERE (atas.unidade_id=45) ORDER BY atas.data DESC[0m
+Rendered atas/_consulta_unidade (3.1ms)
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:36:09' AND ends_at >= '2020-12-07 12:36:09') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 241ms (View: 99, DB: 5) | 200 OK [http://localhost/atas/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consultas (for 127.0.0.1 at 2020-12-07 10:36:15) [GET]
+  [4;36;1mUser Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering atas/consultas
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Rendered atas/_consulta_data (1.8ms)
+  [4;36;1mAta Load (0.1ms)[0m   [0;1mSELECT distinct(titulo) FROM `atas` WHERE ((titulo NOT like 'CONSELHO CONSELHO DE ALIMENTAÇÃO ESCOLAR') and (titulo NOT like 'CONSELHO MUNICIPAL DE EDUCAÇÃO')and (titulo NOT like 'CONSELHO DO FUNDEB') and (unidade_id =45) ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+Rendered atas/_consulta_reuniao (20.1ms)
+  [4;36;1mAta Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.nome), unidades.id FROM `atas` INNER JOIN `unidades` ON `unidades`.id = `atas`.unidade_id WHERE (atas.unidade_id=45) ORDER BY atas.data DESC[0m
+Rendered atas/_consulta_unidade (4.9ms)
+  [4;35;1mInformativo Load (0.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:36:15' AND ends_at >= '2020-12-07 12:36:15') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=45) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 250ms (View: 103, DB: 4) | 200 OK [http://localhost/atas/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:36:22) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "type_of"=>"2", "_"=>"1607344582462", "titulo"=>"CONSELHO ESCOLA COMUNIDADE", "unidade"=>"--Selecionar--", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (0.5ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'CONSELHO ESCOLA COMUNIDADE' and unidade_id =45 ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;36;1mTipo Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+Rendered atas/_atas (33.5ms)
+Completed in 194ms (View: 35, DB: 4) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=CONSELHO+ESCOLA+COMUNIDADE&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607344582462]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:36:26) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "type_of"=>"2", "_"=>"1607344586374", "titulo"=>"PROFESSORES", "unidade"=>"--Selecionar--", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (0.2ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'PROFESSORES' and unidade_id =45 ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;36;1mTipo Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.1ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+Rendered atas/_atas (33.9ms)
+Completed in 118ms (View: 34, DB: 7) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=PROFESSORES&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607344586374]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#consulta_ata (for 127.0.0.1 at 2020-12-07 10:36:31) [GET]
+  Parameters: {"ata"=>{"fim"=>"", "inicio"=>""}, "type_of"=>"2", "_"=>"1607344590832", "titulo"=>"PEDAGÓGICA", "unidade"=>"--Selecionar--", "authenticity_token"=>"yN7mIYemBqqeqXNEOvtG/v0cRe1HunlwRLABhPDyiVY="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mAta Load (0.8ms)[0m   [0;1mSELECT * FROM `atas` WHERE (titulo = 'PEDAGÓGICA' and unidade_id =45 ) ORDER BY data DESC[0m
+  [4;35;1mAta Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;36;1mTipo Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `tipos`[0m
+  [4;35;1mTipo Load (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+Rendered atas/_atas (136.8ms)
+Completed in 299ms (View: 144, DB: 5) | 200 OK [http://localhost/consulta_ata?authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&type_of=2&ata%5Binicio%5D=&ata%5Bfim%5D=&titulo=PEDAG%C3%93GICA&unidade=--Selecionar--&authenticity_token=yN7mIYemBqqeqXNEOvtG%2Fv0cRe1HunlwRLABhPDyiVY%3D&_=1607344590832]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#show (for 127.0.0.1 at 2020-12-07 10:36:42) [GET]
+  Parameters: {"id"=>"101"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mAta Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mAta Load (0.4ms)[0m   [0;1mSELECT * FROM `atas` WHERE (`atas`.`id` = 101) [0m
+Rendering template within layouts/application
+Rendering atas/show
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mTipo Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `tipos`[0m
+  [4;36;1mTipo Load (0.1ms)[0m   [0;1mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:36:43' AND ends_at >= '2020-12-07 12:36:43') [0m
+  [4;36;1mroles_users Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 249ms (View: 168, DB: 7) | 200 OK [http://localhost/atas/101]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtasController#show (for 127.0.0.1 at 2020-12-07 10:37:16) [GET]
+  Parameters: {"id"=>"101"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 ) ORDER BY nome ASC[0m
+  [4;35;1mAta Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `atas`[0m
+  [4;36;1mAta Load (0.1ms)[0m   [0;1mSELECT * FROM `atas` WHERE (`atas`.`id` = 101) [0m
+Rendering template within layouts/application
+Rendering atas/show
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 45) [0m
+  [4;35;1mTipo Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `tipos`[0m
+  [4;36;1mTipo Load (0.1ms)[0m   [0;1mSELECT * FROM `tipos` WHERE (`tipos`.`id` = 4) [0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2020-12-07 12:37:16' AND ends_at >= '2020-12-07 12:37:16') [0m
+  [4;36;1mroles_users Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.4ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.5ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=45) [0m
+Completed in 183ms (View: 95, DB: 7) | 200 OK [http://localhost/atas/101]

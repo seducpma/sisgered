@@ -1,6 +1,6 @@
 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
      <% if (current_user.has_role?('pedagogo')) %>
-        <%@unidades = Unidade.find(:all, :select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0'],:order => 'unidades.nome')%>
+        <%@unidades = Unidade.find(:all, :select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0 and id=?',current_user.unidade_id ],:order => 'unidades.nome')%>
         <%#@unidades = Ata.find(:all, :joins => [:unidade, :atribuicao, :classe],:select => 'distinct(unidades.nome), unidades.id',  :conditions =>['atribuicaos.unidade_id = ? and atribuicaos.ano_letivo=?'],:order => 'unidades.nome ASC')%>
      <%else%>
         <%@unidades = Ata.find(:all, :joins => [:unidade],:select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0'],:order => 'unidades.nome ASC')%>

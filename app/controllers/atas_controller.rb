@@ -124,7 +124,7 @@ before_filter :load_dados_iniciais
 
         else if params[:type_of].to_i == 2
                     if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))
-                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))
+                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') )
                            @atas = Ata.find(:all, :conditions =>  ["titulo = ?  ",params[:titulo]], :order => 'data DESC')
                         else #   if ( current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))
                           @atas = Ata.find(:all, :conditions =>  ["titulo = ? and unidade_id =? ",params[:titulo], current_user.unidade_id], :order => 'data DESC')
@@ -138,7 +138,7 @@ before_filter :load_dados_iniciais
              else if params[:type_of].to_i == 3
                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))
                          if (current_user.has_role?('pedagogo')or current_user.has_role?('supervisao'))
-                                @atas = Ata.find(:all, :conditions =>  ["unidade_id = ? and (titulo NOT like ?) and (titulo NOT like ?)  ",params[:unidade],'CONSELHO'+'%', 'DIRETORES'+'%'], :order => 'data DESC')
+                             @atas = Ata.find(:all, :conditions =>  ["unidade_id = ? and (titulo NOT like ?) and (titulo NOT like ?)  ",params[:unidade],'CONSELHO'+'%', 'DIRETORES'+'%'], :order => 'data DESC')
                           else 
                               @atas = Ata.find(:all, :conditions =>  ["unidade_id = ?  ",params[:unidade]], :order => 'data DESC')
                           end
