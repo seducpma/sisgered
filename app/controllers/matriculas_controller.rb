@@ -288,7 +288,8 @@ end
                 end
                 @matricula.ano_letivo = Time.now.year
                 @matricula.unidade_id= current_user.unidade_id
-###Alex Porque mudar a session[:classe_matr]? session[:classe_matr]= @matricula.classe_id
+###Alex Porque mudar a session[:classe_matr]?   ISSO ESTÀ ERRADO   7/12/20
+                session[:classe_matr]= @matricula.classe_id
                 #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["atribuicaos.classe_id =? ",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
                 @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
                 if @matricula_anterior.present?
@@ -299,8 +300,8 @@ end
                 if !@matricula_anterior.nil?
                     session[:status_anterior] =  @matricula_anterior.status
                 end
-                @matricula_anterior_num_aluno = Matricula.find(:last, :conditions => ['classe_id =?', @matricula.classe_id])
-
+                @matricula_anterior_num_aluno = Matricula.find(:last, :conditions => ['classe_id =?', @matricula.classe_id],:order => 'classe_num ASC')
+t=0
                 if @matricula_anterior_num_aluno.nil?
                     @matricula.classe_num=1
                 else
