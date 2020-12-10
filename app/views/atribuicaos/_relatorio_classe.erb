@@ -685,7 +685,7 @@
                 </tr>
             <%end%>
 
-
+<!--
             <tr cellspacing="2" cellpadding="2" >
                 <td  rowspan="1" align="center"><b><font size="1">Estatíticas / Médias</font></b></td>
                 <td  colspan="4" align="center"><b><font size="1"> 1º Bimestre</font></b></td>
@@ -694,35 +694,35 @@
                 <td  colspan="4" align="center"bgcolor="#E7E7E7"><b><font size="1"> 4º Bimestre</font></b></td>
                 <td  colspan="4" align="center"><b><font size="1"> FINAL</font></b></td>
             </tr>
-           <tr>
+          <tr>
                <td align="right"><font size="1"> Aluno&nbsp&nbsp&nbsp </font></td>
-               <td align="left" colspan="2"><font size="1"><b> Nota:   <%= session[:Nmedia1] = ((session[:Nmedia1].to_f/@notasB.count).to_f).round(1) %></b></font></td>
-               <td align="left" colspan="2"><font size="1"><b> Faltas: <%= session[:Fmedia1]= ((session[:Fmedia1].to_f/@notasB.count).to_f).round(1) %></b></font></td>
-               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1"><b> Nota:   <%= session[:Nmedia2]= ((session[:Nmedia2].to_f/@notasB.count).to_f).round(1) %></b></font></td>
-               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1"><b> Faltas: <%= session[:Fmedia2]= ((session[:Fmedia2].to_f/@notasB.count).to_f).round(1) %></b></font></td>
-               <td align="left" colspan="2"><font size="1"><b> Nota:   <%= session[:Nmedia3]= ((session[:Nmedia3].to_f/@notasB.count).to_f).round(1)%></b></font></td>
-               <td align="left" colspan="2"><font size="1"><b> Faltas: <%= session[:Fmedia3]=((session[:Fmedia3].to_f/@notasB.count).to_f).round(1) %></b></font></td>
-               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1" ><b> Nota:   <%= session[:Nmedia4]= ((session[:Nmedia4].to_f/@notasB.count).to_f).round(1) %></b></font></td>
-               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1"><b> Faltas: <%= session[:Fmedia4]= ((session[:Fmedia4].to_f/@notasB.count).to_f).round(1) %></b></font></td>
-               <td align="left" colspan="2"><font size="1"><b>Nota:   <%= session[:NmediaF]=((session[:NmediaF].to_f/@notasB.count).to_f).round(1) %></b></font></td>
-               <td align="left" colspan="2"><font size="1"><b> Faltas: <%= session[:FmediaF]=((session[:FmediaF].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b> Nota:   <%#= session[:Nmedia1] = ((session[:Nmedia1].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b> Faltas: <%#= session[:Fmedia1]= ((session[:Fmedia1].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1"><b> Nota:   <%#= session[:Nmedia2]= ((session[:Nmedia2].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1"><b> Faltas: <%#= session[:Fmedia2]= ((session[:Fmedia2].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b> Nota:   <%#= session[:Nmedia3]= ((session[:Nmedia3].to_f/@notasB.count).to_f).round(1)%></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b> Faltas: <%#= session[:Fmedia3]=((session[:Fmedia3].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1" ><b> Nota:   <%#= session[:Nmedia4]= ((session[:Nmedia4].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1"><b> Faltas: <%#= session[:Fmedia4]= ((session[:Fmedia4].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b>Nota:   <%#= session[:NmediaF]=((session[:NmediaF].to_f/@notasB.count).to_f).round(1) %></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b> Faltas: <%#= session[:FmediaF]=((session[:FmediaF].to_f/@notasB.count).to_f).round(1) %></b></font></td>
            </tr>
 
            <tr>
                <td align="right"><font size="1"> Média Classe&nbsp&nbsp&nbsp </font></td>
-               <td align="left" colspan="2"><font size="1"><b> Nota: <%=session[:total_notas1]%> </b>  </font> </td>
-               <td align="left" colspan="2"><font size="1"><b> Falta: <%=session[:total_faltas1]%></b>  </font> </td>
-               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1" ><b> Nota: <%=session[:total_notas2]%></b>  </font> </td>
-               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1" ><b> Faltas: <%=session[:total_faltas2]%></b></font></td>
-               <td align="left" colspan="2"><font size="1"><b> Nota: <%=session[:total_notas3]%></b> </font> </td>
-               <td align="left" colspan="2"><font size="1"><b> Faltas: <%=session[:total_faltas3]%></b> </font></td>
-               <td align="left" colspan="2" bgcolor="#E7E7E7"><font size="1"><b> Nota: <%=session[:total_notas4]%></b> </font> </td>
-               <td align="left" colspan="2" bgcolor="#E7E7E7"><font size="1"><b> Faltas: <%=session[:total_faltas4]%></b></font></td>
-               <td align="left" colspan="2"><font size="1"><b> Nota: <%=session[:total_notas5]%></b> </font> </td>
-               <td align="left" colspan="2"><font size="1"><b> Faltas: <%=session[:total_faltas5]%></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b> Nota: <%#=session[:total_notas1]%> </b>  </font> </td>
+               <td align="left" colspan="2"><font size="1"><b> Falta: <%#=session[:total_faltas1]%></b>  </font> </td>
+               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1" ><b> Nota: <%#=session[:total_notas2]%></b>  </font> </td>
+               <td align="left" colspan="2"bgcolor="#E7E7E7"><font size="1" ><b> Faltas: <%#=session[:total_faltas2]%></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b> Nota: <%#=session[:total_notas3]%></b> </font> </td>
+               <td align="left" colspan="2"><font size="1"><b> Faltas: <%#=session[:total_faltas3]%></b> </font></td>
+               <td align="left" colspan="2" bgcolor="#E7E7E7"><font size="1"><b> Nota: <%#=session[:total_notas4]%></b> </font> </td>
+               <td align="left" colspan="2" bgcolor="#E7E7E7"><font size="1"><b> Faltas: <%#=session[:total_faltas4]%></b></font></td>
+               <td align="left" colspan="2"><font size="1"><b> Nota: <%#=session[:total_notas5]%></b> </font> </td>
+               <td align="left" colspan="2"><font size="1"><b> Faltas: <%#=session[:total_faltas5]%></b></font></td>
 
            </tr>
-
+-->
         </table>
     </table>
 

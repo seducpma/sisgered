@@ -614,7 +614,7 @@
              </th>
         </tr>
 
-     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
+     <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
          <tr>
            <th style="font-size: 8px"colspan="23" align="left"><b>Observações:</b></th>
          </tr>
@@ -645,23 +645,23 @@
                  </th>
               </tr>
             <%end%>
-   <%end%>
+   <%#end%>
 
-     <% if (current_user.has_role?('secretaria_fundamental'))%>
-         <tr>
+     <%# if (current_user.has_role?('secretaria_fundamental'))%>
+   <!--      <tr>
            <th style="font-size: 8px"colspan="23" align="left"><b>Observações:</b></th>
          </tr>
-          <%@observacao2.each do |observacao| %>
+          <%#@observacao2.each do |observacao| %>
               <tr>
-                   <th style="font-size: 8px" align="right" valign="top"><%= observacao.quem %>&nbsp&nbsp</th>
-                   <th style="font-size: 8px" align="left" colspan="15"><%= observacao.observacao %> -
-                                   <b>Data: </b> <%  if !observacao.data.nil?  %>
-                                                    <%=  observacao.data.strftime("%d/%m/%Y")%>
-                                                 <%end%>
+                   <th style="font-size: 8px" align="right" valign="top"><%#= observacao.quem %>&nbsp&nbsp</th>
+                   <th style="font-size: 8px" align="left" colspan="15"><%#= observacao.observacao %> -
+                                   <b>Data: </b> <%#  if !observacao.data.nil?  %>
+                                                    <%#=  observacao.data.strftime("%d/%m/%Y")%>
+                                                 <%#end%>
                  </th>
               </tr>
-            <%end%>
-
+            <%#end%>
+-->
             <tr style="border-color: white">
                 <th style="font-size: 7px" rowspan="1" align="center"><b>Estatíticas / Médias</b></th>
                 <th style="font-size: 7px" colspan="4" align="center"><b> 1º Bimestre</font></b></th>
@@ -699,6 +699,6 @@
 
            </tr>
 
-   <%end%>
+   <%#end%>
 </table>
 <%end%>
