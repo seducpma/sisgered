@@ -148,7 +148,7 @@ class RelatoriosController < ApplicationController
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
     cont_cl=0
     for atribuicao in @atribuicao
-        @aluno= Matricula.find(:all, :select => 'alunos.ids, alunos.aluno_nome',:joins =>:aluno  ,:conditions=>['matriculas.classe_id=? AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")AND ano_letivo =? ', atribuicao.classe_id, Time.now.year], :order => 'alunos.aluno_nome ASC')
+        @aluno= Matricula.find(:all, :select => 'alunos.id, alunos.aluno_nome',:joins =>:aluno  ,:conditions=>['matriculas.classe_id=? AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")AND ano_letivo =? ', atribuicao.classe_id, Time.now.year], :order => 'alunos.aluno_nome ASC')
         t=0
         if cont_cl==0
           @alunos2=@aluno
@@ -158,7 +158,7 @@ class RelatoriosController < ApplicationController
           cont_cl=cont_cl+1
         end
     end
-
+t=0
        render :partial => 'aluno_classe'
   end
 
