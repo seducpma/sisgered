@@ -158,7 +158,7 @@ class RelatoriosController < ApplicationController
           cont_cl=cont_cl+1
         end
     end
-t=0
+
        render :partial => 'aluno_classe'
   end
 
