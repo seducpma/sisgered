@@ -15,7 +15,11 @@
             <td align="left">&nbsp <%if !conteudo.classe_id.nil? %>
                                      <%= conteudo.classe.classe_classe%>
                                     <%else%>
-                                      MQA
+                                      <%if conteudo.unidade_id == 52%>
+                                         SEDUC
+                                      <%else%>
+                                         MQA
+                                      <%end%>
                                     <%end%>
               </td>
             <td align="left">&nbsp <%if !conteudo.disciplina_id.nil? %>
