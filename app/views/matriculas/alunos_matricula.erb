@@ -2,7 +2,7 @@
 <% title "MATRICULAS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>MATRICULA ALUNO</strong></font><br/>
+     <font size="3"><strong>MATRICULAR ALUNO(S)</strong></font><br/>
  </div>
       <div class="tabs">
 
@@ -28,7 +28,7 @@
                       <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
                    </tr>
                    <tr bgcolor="#F5F5F5">
-                    <td valign="top"> <b> Professor(es):</b> </td>
+ <!--                   <td valign="top"> <b> Professor(es):</b> </td>
                     <% cont=1 %>
                      <% cont1=1 %>
                     <td colspan="4"> <% for atrib in @atribuicao_classe %>
@@ -46,20 +46,22 @@
                                       <% cont= cont+1 %>
                                      <%end%>
                      </td>
+ -->
+
                   </tr>
 
               <%end%>
 
                  <tr>
-                   <td align="center"width ="1%"><b>Nº</b></td>
-                   <td width ="80%"><b>NOME</b></td>
+                   
+                   <td colspan="2" width ="80%"><b>NOME</b></td>
                    <td colspan="2"align="center"><b>DATA NASCIMENTO</b></td>
                   
                  </tr>
                  <% for aluno in @alunos %>
                     <tr bgcolor="#F5F5F5">
-                      <td align="center"> </td>
-                      <td align="left"> <%="#{ aluno.aluno_nome}"%> </td>
+                      
+                      <td colspan="2"align="left"> <%="#{ aluno.aluno_nome}"%> </td>
                       <td colspan="2"align="CENTER"> <%="#{ aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
 
 

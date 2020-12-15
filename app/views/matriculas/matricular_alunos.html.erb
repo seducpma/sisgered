@@ -80,6 +80,8 @@
 
                       </tr>
   <%end%>
+
+                      <%= link_to "Classe",editar_classe_classes_path %>
 </table>
 <br/>
         <b> OBS:</b>  &nbsp&nbsp<font color ="red"><u> Transferido</u></font> => Aluno enviado
@@ -98,6 +100,7 @@
              <td width =" 10%"><%= button_to 'MATRICULAR (Vários alunos)', matricular_matriculas_path %> </td>
              <td width =" 10%"><%= button_to 'MATRICULAR (1 aluno)', new_matricula_path %> </td>
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+             <td width =" 10%"><%= button_to 'EDITAR (REORDENAR)', editar_classe_classes_path %> </td>
           </tr>
           </table width="100%">
 

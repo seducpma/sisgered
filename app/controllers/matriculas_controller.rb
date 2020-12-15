@@ -281,7 +281,8 @@ end
                         @matricula = Matricula.new(params[:matricula])
                         @matricula.classe_num = 1
                     else
-                        session[:numero]=@matricula_num.classe_num
+                        x2=session[:numero]=@matricula_num.classe_num
+                        t=0
                         @matricula = Matricula.new(params[:matricula])
                         @matricula.classe_num = session[:numero]+1
                     end
@@ -289,7 +290,7 @@ end
                 @matricula.ano_letivo = Time.now.year
                 @matricula.unidade_id= current_user.unidade_id
 ###Alex Porque mudar a session[:classe_matr]?   ISSO ESTÀ ERRADO   7/12/20
-                session[:classe_matr]= @matricula.classe_id
+               x1= session[:classe_matr]= @matricula.classe_id
                 #@notas = Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["atribuicaos.classe_id =? ",  params[:classe][:id]],:order =>'disciplinas.ordem ASC')
                 @matricula_anterior = Matricula.find(:last, :conditions => ['aluno_id =?', @matricula.aluno_id])
                 if @matricula_anterior.present?
@@ -303,7 +304,7 @@ end
                 @matricula_anterior_num_aluno = Matricula.find(:last, :conditions => ['classe_id =?', @matricula.classe_id],:order => 'classe_num ASC')
 t=0
                 if @matricula_anterior_num_aluno.nil?
-                    @matricula.classe_num=1
+                    @matricula.classe_num = 1
                 else
                     @matricula.classe_num= (@matricula_anterior_num_aluno.classe_num) +1
                 end
