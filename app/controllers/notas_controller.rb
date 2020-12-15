@@ -451,7 +451,7 @@ w5=@nota.faltas5
             session[:classe_id]
             session[:disc_id]
             session[:atrib_id]
-            @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo = ?",  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year],:order => 'matriculas.classe_num ASC')
+            @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo = ? AND notas.ativo is NULL",  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year],:order => 'matriculas.classe_num ASC')
         end
         respond_to do |format|
             format.html # index.html.erb
