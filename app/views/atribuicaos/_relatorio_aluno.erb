@@ -283,11 +283,11 @@
                         <%if nota.disciplina_id==65 and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center"><%=nota.nota5%><% session[:NmediaF]=  session[:NmediaF] + nota.notaF.to_i %></td>
                         <%else%>
-                            <%if nota.ano_letivo==2019%>  <!-- para acertar aluno espepcifico -->
+                            <%#if nota.ano_letivo==2019%>  <!-- para acertar aluno espepcifico -->
                                 <td align="center"><%=nota.nota5%><% session[:NmediaF]=  session[:NmediaF] + nota.nota5.to_i %></td>
-                            <%else%>
-                                <td align="center">---</td>
-                           <%end%>
+                            <%#else%>
+                               <!-- <td align="center">---</td>-->
+                           <%#end%>
                         <%end%>
                         <td align="center">
                             <% nota.faltas5  =(nota.faltas1) + (nota.faltas2) + (nota.faltas3) + (nota.faltas4) %>
