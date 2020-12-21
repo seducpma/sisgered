@@ -6,7 +6,118 @@
      <font size="3"><strong>ATRIBUIÇÃO AULAS</strong></font><br/>
  </div>
       <div class="tabs">
-      <%= render :partial => 'form' %>
+            <% form_for (@atribuicao) do |f| %>
+             <%= f.error_messages %>
+                 <% if current_user.professor_id.nil?  %>
+                     <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
+                       <%   @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I' AND nao_disciplina = 0"]) %>
+                     <% else %>
+                       <%   @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I'AND id !=2 AND nao_disciplina = 0"],:order => 'ordem ASC') %>
+                     <% end %>
+
+                 <% else %>
+                     <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
+                         <% if current_user.unidade_id == 52 %>
+                              <%  @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I' AND id !=2 AND nao_disciplina = 0"],:order => 'ordem ASC') %>
+                         <%else%>
+                             <%  @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'AND nao_disciplina = 0"]) %>
+                         <%end%>
+                     <%  else %>
+                         <%  @disciplinas = Disciplina.find(:all, :conditions =>  ["id !=2 AND nao_disciplina = 0"],:order => 'ordem, disciplina ASC') %>
+                     <%  end %>
+                 <%  end %>
+
+              <fieldset><legend><font size=4>Atribuição</font></legend>
+                       <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+                           <% @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC') %>
+                      <%  else %>
+                           <%  @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54 or diversas_unidades = 1) AND desligado = 0   ', (current_user.unidade_id)],:order => 'nome ASC')%>
+                     <%  end %>
+
+
+                <table width="100%">
+                   <tr bgcolor="#F5F5F5">
+                     <td width =" 8%"><b>Classe:</b></td>
+                     <td><%= f.collection_select :classe_id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
+                     <td width =" 12%"><b>Professor:</b></td>
+                     <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+
+                  </tr>
+
+                   <tr bgcolor="#F5F5F5">
+                     <td valign="top" ><font color ="red"><b>ATENÇÃO</b></font></td>
+                     <td  colspan="3"><font size="3" color ="red">1) É necessário cadastrar e-mail do professor. <br/>
+                         2) O email dever ser &nbsp&nbsp <b> ......@gmail.com.br </b>&nbsp&nbsp . ex: <b><i>fulano_nome@gmail.com.br </i></b> .  <br/>
+                         3) Se o professor não possuir gmail é necessário criar um na plataforma gmail. <font size="1"><b> <%= link_to("(Clique aqui para criar um gmail)", "https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" , :title => "Link gmail", :target => "_blank")%></font></b>
+                     </td>
+                     </tr>
+                   <tr bgcolor="#F5F5F5">
+                     <td width =" 8%"><b>email:</b></td>
+                     <td colspan="3"><%= f.text_field :email, :size=>"64" %>
+                     <%= observe_field 'atribuicao_email',
+                           :update => "oki",
+                           :url    => { :action => 'salvar_email' },
+                           :with   => 'atribuicao_email' %>
+
+                     </td>
+
+                  </tr>
+
+
+
+
+                    <%if current_user.unidade_id != 1 %>  <!-- id 1 = TEMPO DE VIVER -->
+                       <tr bgcolor="#F5F5F5">
+                          <td ><b>Disciplina:</b></td>
+                          <td colspan="3"><%= f.collection_select :disciplina_id, @disciplinas, :id, :disciplina, :include_blank => ' -- Selecione -- ' %></td>
+
+                       </tr>
+                    <%end%>
+                  <% if session[:flag_edit_atribuicao] != 1 %>
+                    <tr>
+                      <td colspan="4">
+                         <font color="gray"> <u><b>Obs:</u> 1) Se o nome do professor NÃO constar na lista, favor entrar em contato com a Informática/SEDUC.<br/>
+                           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Para habilitar o BOTÃO SALVR é <b>obrigatório digitar um email para o professor.</b>
+                         </font> </b>
+                       </td>
+                    </tr>
+                  <%end%>
+               </table>
+              </fieldset>
+             <br/>
+
+                   <table width="100%" >
+                     <tr bgcolor="#F5F5F5">
+                       <td width="4%"align="left"><b><div id='oki'>Necessita email do professor</div></b></td>
+
+            <%end%>
+                     <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+
+
+
+                     </tr>
+                   </table>
+
+
+              </font>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
 <br/>

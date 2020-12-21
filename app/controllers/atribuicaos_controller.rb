@@ -1154,4 +1154,13 @@ t=0
         render :partial => 'alunos_boletim_anterior'
     end
 
+
+   def salvar_email
+        session[:email] = params[:atribuicao_email]
+        t=session[:email]
+w=0
+
+        render :partial => 'salvar'
+
+   end
 end
