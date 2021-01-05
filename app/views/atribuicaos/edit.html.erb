@@ -61,6 +61,11 @@
                                        <td colspan="2"><b>Professor(substituido):</b>&nbsp <%= @atribuicao.professor.nome %> <br/>
                                      <b>pelo Professor(novo):</b>&nbsp&nbsp <%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
                                   </tr>
+                                                     <tr bgcolor="#F5F5F5">
+                     <td width =" 8%"><b>email Professor:</b></td>
+                     <td colspan="3"><%= f.text_field :email, :size=>"64" %></td>
+
+                  </tr>
                                   <% if session[:flag_edit_atribuicao] != 1 %>
                                     <tr>
                                       <td colspan="4">

@@ -54,7 +54,7 @@
                    <tr bgcolor="#F5F5F5">
                      <td width =" 8%"><b>email:</b></td>
                      <td colspan="3"><%= f.text_field :email, :size=>"64" %>
-                     <%= observe_field 'atribuicao_email',
+                     <%#= observe_field 'atribuicao_email',
                            :update => "oki",
                            :url    => { :action => 'salvar_email' },
                            :with   => 'atribuicao_email' %>
@@ -88,7 +88,10 @@
 
                    <table width="100%" >
                      <tr bgcolor="#F5F5F5">
-                       <td width="4%"align="left"><b><div id='oki'>Necessita email do professor</div></b></td>
+                       <td width="4%"align="left"><b><div id='oki'>
+                                   <!--Necessita email do professor -->
+                                    <%= submit_tag 'Salvar', :class => "btn_filtrar" %>
+                               </div></b></td>
 
             <%end%>
                      <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
