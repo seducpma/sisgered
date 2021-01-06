@@ -8,26 +8,27 @@
     <% form_remote_tag :url => mapa_de_classe_anterior_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
         <%  @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',:order => 'classe_ano_letivo ASC')%>
-       <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <table width="100%" align="center" bgcolor="#DCDCDC"  >
           <tr>
-              <td valign="middle">
-              <%= radio_button_tag(:type_of, "1") %>1º Bim.
-              <%= radio_button_tag(:type_of, "2") %>2º Bim.
-              <%= radio_button_tag(:type_of, "3") %>3º Bim.
-              <%= radio_button_tag(:type_of, "4") %>4º Bim.
-              <%= radio_button_tag(:type_of, "5") %>Final
+              <td valign="middle" colspan="3">
+              <%= radio_button_tag(:type_of, "1") %> 1º Bim.
+              <%= radio_button_tag(:type_of, "2") %> 2º Bim.
+              <%= radio_button_tag(:type_of, "3") %> 3º Bim.
+              <%= radio_button_tag(:type_of, "4") %> 4º Bim.
+              <%= radio_button_tag(:type_of, "5") %> Final
 
             </td>
-
-            <td align="right"><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
+          </tr>
+          <tr>
+              <td align="left" width="25%" ><font size="2"> <b class="label_busca3">Ano Letivo:</b></font>
              <%= select_tag :ano_letivo_mapa, options_for_select(@ano_boletim.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
                      <%= observe_field 'ano_letivo_mapa',
                           :with => :ano_letivo,
                           :url => { :action => 'mapa_classe_ano' },
                           :update => "classes_ano" %>
             </td>
-            <td width="25%" align="right"><font size="2">
-                 <div id="classes_ano"> <b class="label_busca3">Classe:</b><font color="red">&nbsp&nbsp&nbsp&nbsp<b></u>&nbsp Selecionar o ano</b></font> </div>
+            <td width="70%" align="left"><font size="2">
+                 <div id="classes_ano"> <b class="label_busca3">&nbsp&nbsp Classe:</b><font color="red">&nbsp&nbsp&nbsp&nbsp<b></u>&nbsp Selecionar o ano</b></font> </div>
             </td>
 
           <td align="right">

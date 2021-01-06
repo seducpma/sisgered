@@ -25,8 +25,16 @@
               <%= radio_button_tag(:type_of, "5") %>Final
 
             </td>
+          </tr>
+          <%if  (current_user.unidade_id == 52)%>
+             <% @classes = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.*, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_classe", :conditions => ['classes.classe_ano_letivo = ? AND (unidades.tipo_id = 1 OR  unidades.tipo_id = 4 or unidades.tipo_id = 7) ' ,  Time.now.year ], :order => 'classes.classe_classe ASC')%>
+           <%end%>
 
-            <td colspan="2"align="right"><font size="2"> <b class="label_busca3">Classe:</b></font>
+          <tr>
+            <td colspan="2"align="leftt"><font size="2"> <b class="label_busca3">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        Classe:</b></font>
                &nbsp&nbsp&nbsp
                 <%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %>
                <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
