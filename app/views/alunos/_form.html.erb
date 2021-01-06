@@ -3,7 +3,7 @@
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-<font color ="red"  size="4"align="left"><b> Quando a resposta for diferente de NÃO, favor especificar </b></font>
+<!--<font color ="red"  size="4"align="left"><b> Quando a resposta for diferente de NÃO, favor especificar </b></font>-->
   <fieldset><legend><font size=4>Dados alunos</font></legend>
     <table width="100%">
        <tr bgcolor="#F5F5F5">
@@ -325,10 +325,15 @@
   
        <table width="100%" >
          <tr bgcolor="#F5F5F5">
-           <td width="90%"align="left"><b><div id='oki'> <b> <font color ="red" size="2"><u>ATENÇÃO:</u> <br/>
+
+              <td width="90%"align="left"><b><%= f.submit 'Salvar' %>
+                      <!--<div id='oki'> <b> <font color ="red" size="2"><u>ATENÇÃO:</u> <br/>
                                      &nbsp&nbsp&nbsp 1. Selecionar a SÉRIE  e ANO LETIVO  para habilitar o botão SALVAR. <br/>
-                                      </div></b></td>
-            
+                                      </div>
+                      --></b></td>
+
+
+
 <%end%>
 <!-- ###Alex 02/03/2020 mudei para ir para Consulta>Alunos>SEDUC na linha abaixo            <td width="6%"align="left" ><%#= button_to 'Nova Consulta' ,consultas_criancas_path, :title => "Nova Consulta" %></td> -->
             <td width="6%"align="left" ><%= button_to 'Nova Consulta' ,consulta_cadastro_alunos_path, :title => "Nova Consulta" %></td>

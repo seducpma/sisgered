@@ -71,6 +71,7 @@ class AlunosController < ApplicationController
     def update
     
         @aluno = Aluno.find(params[:id])
+        w=current_user.unidade_id
         @aluno.unidade_id = current_user.unidade_id
         @aluno.aluno_status = nil
         respond_to do |format|
