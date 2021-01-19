@@ -148,9 +148,9 @@
                 <font size="2"><br/>
                     O sr(a) diretor(a) da Unidade Educacional <b>
                         <% if @notas_ano.nil? %>
-                            <%= current_user.unidade.nome%>
+                           <%= current_user.unidade.tipo.nome %>"<%= current_user.unidade.nome%>"
                         <%else%>
-                            <%= @notas_ano.matricula.unidade.nome%>
+                           <%= current_user.unidade.tipo.nome %> "<%= @notas_ano.matricula.unidade.nome%>"
                         <%end%>
 
                     </b> de acordo com o art. 24 VII da Lei Federal nº 9.394/96,
