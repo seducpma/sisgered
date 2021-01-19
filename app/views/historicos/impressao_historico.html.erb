@@ -70,17 +70,22 @@
         </tr>
         <tr style="line-height: 2px; border-color: white">
             <td style="font-size: 8px; border-color: white" colspan="3"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %>
+
+           
+
+
+            </td>
         </tr>
-        <% if (aluno.aluno_certidao_nascimento.present?)  %>
+        <%# if (aluno.aluno_certidao_nascimento.present?)  %>
             <tr style="line-height: 2px; border-color: white">
                 <td style="font-size: 8px; border-color: white" colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
                 </td>
             </tr>
-        <%end%>
+        <%#end%>
         <tr style="line-height: 2px; border-color: white">
             <td style="font-size: 8px; border-color: white" colspan="3"><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
@@ -192,7 +197,7 @@
 
                         <b><%=(session[:classe_anos].max+1)%>º ano</b>
 
-                        do ENSINO FUNDAMENTAL.
+                        do ENSINO FUNDAMENTAL de 9 anos.
                     <%else%>
                         estando apto(a) ao proseguimento dos estudos no 1º ano do ENSINO MÉDIO.
                     <%end%>
