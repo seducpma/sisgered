@@ -86,6 +86,9 @@ class MatriculasController < ApplicationController
         session[:id_reprovado]=params[:id]
         @matricula = Matricula.find(params[:id])
         session[:ano_letivo]=@matricula.ano_letivo
+
+
+             tttttttt=0
     end
 
     def edit_reprovacao_anterior
@@ -561,6 +564,24 @@ t=0
                 if session[:alterar_direcionamento_editar] == 0
                     session[:botao_show] = 0
                     if session[:editar_reprocao]==1
+
+                       w=@matricula.reprovado
+                       t=0
+                     if @matricula.reprovado == '1'
+                          @observacao_historico = ObservacaoHistorico.new
+                          @observacao_historico.aluno_id= @matricula.aluno_id
+                          @observacao_historico. observacao= "Aluno reprovado em "+ @matricula.ano_letivo.to_s
+                          @observacao_historico.save
+                     else
+                         @observacao_historico = ObservacaoHistorico.find(:all, :conditions=> ['aluno_id =? and observacao like ?', @matricula.aluno_id, "Aluno reprovado em "+ @matricula.ano_letivo.to_s])
+                         @observacao_historico.destroy
+                    end
+
+
+
+
+
+t=0
                       format.html { redirect_to(show_reprovado_path) }
                     else
                        format.html { redirect_to(@matricula) }
