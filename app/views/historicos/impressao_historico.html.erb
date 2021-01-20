@@ -122,7 +122,15 @@
                                     </tr>
                                     <tr style="line-height: 2px; border-color: white">
                                         <td style="font-size: 8px; border-color: white" align="CENTER" valign="top"><b>Observação:</b></td>
-                                        <td style="font-size: 8px; border-color: white" colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
+                                        <td style="font-size: 8px; border-color: white" colspan="4" valign="top">
+                                               <% c=0 %>
+                                                <% @historico_aluno.each do |obs|%>
+                                                       <%  if  (!obs.observacao.nil?) %>
+                                                           <b><%= c=c+1%>.</b>&nbsp <%="#{obs.observacao}" %><br/>
+                                                       <%end%>
+                                                <%end%>
+
+                                        </td>
                                     </tr>
                                 </table>
 

@@ -574,7 +574,6 @@ t=0
                           @observacao_historico.save
                      else
                          @observacao_historico = ObservacaoHistorico.find(:all, :conditions=> ['aluno_id =? and observacao like ?', @matricula.aluno_id, "Aluno reprovado em "+ @matricula.ano_letivo.to_s],:readonly => false)
-
                         id = @observacao_historico[0].id
                         @observacao_historico = ObservacaoHistorico.find(id)
                          @observacao_historico.destroy
