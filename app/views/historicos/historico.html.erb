@@ -110,13 +110,13 @@
                                         <td colspan="2"></td>
                                     <%end%>
                                 </tr>
-                                <% if (aluno.aluno_RG.present?)  %>
+                                <%# if (aluno.aluno_RG.present?)  %>
                                     <tr>
                                         <td ><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
                                         <td><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %></td>
                                         <td><b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
                                     </tr>
-                                <%end%>
+                                <%#end%>
                                     <tr>
                                       <td colspan="3"><b>Filiação:</b>&nbsp&nbsp <%=h aluno.aluno_mae%>
                                         <% if aluno.aluno_pai.present? %> e  <%=h aluno.aluno_pai %> <%end%>

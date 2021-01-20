@@ -66,7 +66,7 @@
             <td style="font-size: 8px; border-color: white"><%=h aluno.unidade.autorizacao%></td>
         </tr>
         <tr style="line-height: 3px; border-color: white">
-            <td style="font-size: 8px; border-color: white" colspan="2" align="center"><br/><b><u>DADOS DO ALUNOS</u></b></td>
+            <td style="font-size: 8px; border-color: white" colspan="2" align="center"><br/><b><u>DADOS DO ALUNO</u></b></td>
         </tr>
         <tr style="line-height: 2px; border-color: white">
             <td style="font-size: 8px; border-color: white" colspan="3"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
@@ -78,14 +78,14 @@
 
             </td>
         </tr>
-        <%# if (aluno.aluno_certidao_nascimento.present?)  %>
+        <% if (aluno.aluno_certidao_nascimento.present?)  %>
             <tr style="line-height: 2px; border-color: white">
                 <td style="font-size: 8px; border-color: white" colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
                 </td>
             </tr>
-        <%#end%>
+        <%end%>
         <tr style="line-height: 2px; border-color: white">
             <td style="font-size: 8px; border-color: white" colspan="3"><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
@@ -95,13 +95,13 @@
                 <td  style="font-size: 8px; border-color: white" colspan="2"></td>
             <%end%>
         </tr>
-        <% if (aluno.aluno_RG.present?)  %>
+        <%# if (aluno.aluno_RG.present?)  %>
             <tr style="line-height: 2px; border-color: white">
                 <td style="font-size: 8px; border-color: white"><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
                 <td style="font-size: 8px; border-color: white" colspan="2"><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %>
                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
             </tr>
-        <%end%>
+        <%#end%>
 
         <tr style="line-height: 11px; border-color: white">
             <td style="font-size: 8px; border-color: white" colspan="4"><br/><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b><br/>
