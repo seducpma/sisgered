@@ -70,7 +70,7 @@
         </tr>
         <tr style="line-height: 2px; border-color: white">
             <td style="font-size: 8px; border-color: white" colspan="3"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> &nbsp&nbsp - &nbsp&nbsp <b>RM:</b>&nbsp&nbsp <%=h aluno.aluno_rm %> <% session[:aluno] = aluno.id %>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %>
 
            
@@ -114,7 +114,19 @@
     <div id="dados_historico">  <%= render :partial => 'impressao_notas_historico'%></div>
 <%end%>
 
+                            <%if !@notasB.empty?%>
 
+                                <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
+                                    <tr style="line-height: 2px; border-color: white">
+                                       <td style="font-size: 8px; border-color: white" colspan="2"></td>
+                                    </tr>
+                                    <tr style="line-height: 2px; border-color: white">
+                                        <td style="font-size: 8px; border-color: white" align="CENTER" valign="top"><b>Observação:</b></td>
+                                        <td style="font-size: 8px; border-color: white" colspan="4" valign="top"> <div id="dados"> <%= render :partial => 'observacoes'  %></div></td>
+                                    </tr>
+                                </table>
+
+                            <%end%>
 
 
 

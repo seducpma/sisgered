@@ -80,7 +80,7 @@
                                 <tr>
                                     <td colspan="2" align="center"><br/><b>Histórico Escolar - Ensino Fundamental
                                     <%if session[:ult_cl_rede_per]=="INTEGRAL"%>
-                                        - Integral ### <%=session[:id_classe_teste]%> ### <%=%>
+                                        - Integral 
                                     <%end%>
                                         </b></td>
                                 </tr>
@@ -90,7 +90,7 @@
                                     <td ><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
                                         <%session[:cont_nome] = 1 %> <%session[:aluno_id] = aluno.id%> <%session[:aluno_nome] = aluno.aluno_nome%>
                                     </td>
-                                    <td><b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> <% session[:aluno] = aluno.id %></td>
+                                    <td><b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %>  &nbsp&nbsp - &nbsp&nbsp <b>RM:</b>&nbsp&nbsp <%=h aluno.aluno_rm %>   <% session[:aluno] = aluno.id %>     </td>
                                     <td colspan="2"><b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %></td>
                                 </tr>
                                 <%if (aluno.aluno_certidao_nascimento.present?)%>
