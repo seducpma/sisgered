@@ -803,10 +803,13 @@ border-right: double;
 
 #principal2{
     float:right;
-    width:945px;
-    height:auto;
-    overflow: auto;
-    margin:0;
+    width:1450px;
+    
+    
+
+    margin-top: 20px;
+
+    margin-right: 20px;
     background-image:url(Imagens/principal_body.jpg);
     background-repeat:repeat;
     font-size:12px;

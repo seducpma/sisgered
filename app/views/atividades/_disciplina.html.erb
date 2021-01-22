@@ -4,6 +4,6 @@
       <b>Disciplina:</b> <%= select_tag :disciplina_id, options_for_select(@disciplinas1.collect { |ff| [ff.disciplina_classe, ff.atri_id] }.insert(0, '--Selecionar--')) %></td>
 
         <%= observe_field 'disciplina_id',
-                         :update => "",
+                         :update => "dados_classe1",
                          :url    => { :action => 'disciplina' },
                          :with   => 'disciplina_id' %>

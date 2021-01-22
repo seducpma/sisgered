@@ -61,7 +61,11 @@ class AtividadesController < ApplicationController
   # POST /atividades.xml
   def create
     @atividade = Atividade.new(params[:atividade])
-
+    @atividade.classe_id= session[:ativ_classe_id]
+    @atividade.atribuicao_id= session[:ativ_atribuicao_id]
+    @atividade.ano_letivo =  Time.now.year
+    @atividade.unidade_id =  current_user.unidade_id
+    @atividade.user_id =  current_user.id
     respond_to do |format|
       if @atividade.save
         flash[:notice] = 'Atividade was successfully created.'
@@ -121,13 +125,13 @@ class AtividadesController < ApplicationController
   end
 
   def disciplina
-    t=0
- w=session[:cont_disciplina_id] =  params[:disciplina_id]
- t=0
+
+ w=session[:ativ_disciplina_id] =  params[:disciplina_id]
+
  @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
- w1=session[:cont_classe_id]= @atribuicao[0].classe_id
- w2=session[:cont_atribuicao_id]=@atribuicao[0].id
- w3=session[:cont_disciplina_id]=@atribuicao[0].disciplina_id
+ w1=session[:ativ_classe_id]= @atribuicao[0].classe_id
+ w2=session[:ativ_atribuicao_id]=@atribuicao[0].id
+ w3=session[:ativ_disciplina_id]=@atribuicao[0].disciplina_id
  t=0
 
         render :partial => 'dados_classe'
