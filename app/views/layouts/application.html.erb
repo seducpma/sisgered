@@ -188,7 +188,7 @@ display: none;
               <li><a class="item-primary" href="#">SISGERED</a>
                 <ul style="width:108px;">
                   <li><%= link_to 'Inicio', root_path %></li>
-                  
+
                      <li><a class="item-primary" href="#;">Manual on_line</a>
                          <ul>
                              <li><%= link_to 'SISGERED', href= "https://docs.google.com/document/d/1KORwNkxV7ogNpc7EUyMxQHA4MMSSju_eOouI5cNABFE/edit?usp=sharing", :target => '_blank' %></li>
@@ -269,14 +269,34 @@ display: none;
               </li>
             <%end%>
 -->
-              <li><span class="divider divider-vert" ></span></li>
-              <% if (current_user.has_role?('admin') )%>
-              <li><a class="item-primary" href="#;">ATIVIDADES</a>
-                 <ul style="width:108px;">
-                                <li><%= link_to "Cadastrar", new_atividade_path%> </li>
-                 <%end%>
-                 </ul>
-              </li>
+
+
+
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('professor_fundamental'))%>
+          <li><a class="item-primary" href="#;">ATIVIDADES</a>
+                             <ul>
+                                 <li><a class="item-primary" href="#;">Cadastrar</a>
+                                     <ul>
+                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('professor_fundamental'))%>
+                                            <li><%= link_to "Atividade",new_atividade_path %></li>
+                                          <%end%>
+
+                                     </ul>
+                                 </li>
+                                  <li><a class="item-primary" href="#;">Consultar</a>
+                                     <ul>
+                                         <% if (current_user.has_role?('admin')or current_user.has_role?('SEDUC'))%>
+                                            <li><%= link_to "Funcionarios",consulta_professor_eventual_path %></li>
+                                          <%end%>
+                                        <li><%= link_to "Professores/Responsáveis",consulta_professor_eventual_path %></li>
+                                     </ul>
+                                 </li>
+                             </ul>
+                         </li>
+      <%end%>
+
+
+
 
 
               <li><span class="divider divider-vert" ></span></li>
@@ -381,7 +401,7 @@ display: none;
                              <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')  or current_user.unidade_id == 60  )%>
                                    <li><%= link_to "Mãos Que Acolhem",consultas_mqa_conteudos_path %></li>
                              <%end%>
-   
+
 
 
                            </ul>
@@ -426,7 +446,7 @@ display: none;
                         <li><%= link_to "Aluno",editar_ficha_alunos_path %></li>
                         <li><%= link_to "Atribuição",editar_atribuicao_atribuicaos_path %></li>
                         <li><%= link_to "Classe",editar_classe_classes_path %></li>
-                        
+
                    <%end%>
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')or current_user.has_role?('professor_fudamental'))%>
                          <li><a class="item-primary" href="#;">Lançamentos</a>
@@ -445,7 +465,7 @@ display: none;
                            </ul>
                          </li>
 
-                        
+
                   <%end%>
 
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
@@ -545,7 +565,7 @@ display: none;
                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
                      <li><%= link_to "Faltas Inf.",lancar_faltas_inf_faltas_path %></li>
                      <% if (current_user.unidade_id == 60) and  ( current_user.has_role?('professor_infantil'))%>
-                        
+
                      <%else%>
                         <li><%= link_to "Conteúdo Inf.",new_conteudo_path %></li>
 
@@ -628,7 +648,7 @@ display: none;
                  </ul>
               </li>
               <%end%>
-                     <li><a class="item-primary" href="#;">MANUAIS</a>
+<!--                     <li><a class="item-primary" href="#;">MANUAIS</a>
                          <ul>
                              <li><%= link_to 'SISGERED', href= "https://docs.google.com/document/d/1KORwNkxV7ogNpc7EUyMxQHA4MMSSju_eOouI5cNABFE/edit?usp=sharing", :target => '_blank' %></li>
                             <li><%= link_to "Professor", manual_professor_path%></li>
@@ -636,13 +656,19 @@ display: none;
                             <li><%= link_to "Mãos Que Acolhem", manual_mqa_path%></li>
 
                          </ul>
-                     </li>
+                     </li>-->
         </ul>
      </div>
    </div>
    <div id="principal">
      <div id="conteudo">
-
+       <table width="100%" border="2">
+         <tr>
+           <td width ="100%" align="center">
+             <b><font size="4" color="blue"><%= "#{ link_to "Clique para dowload -  PROTOCOLO RETORNO ATIVIDADES PRESENCIAIS", protocolo_covid_path}"%> </font></b>
+            </td>
+         </tr>
+     </table>
         <%= yield  %>
 
      </div>
