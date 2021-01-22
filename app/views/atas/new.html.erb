@@ -1,4 +1,4 @@
-<div id="interno1">
+<div id="interno11">
 <% title "ALUNOS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -74,12 +74,12 @@
                    <td width =" 5%"><b>Moderador:</b></td>
                    <td ><%= f.text_field :moderador, :size=>"35"%></td>
                    <td ><b>Secretário:</b></td>
-                   <td ><%= f.text_field :secretario, :size=>"35"%></td>                </tr>
+                   <td ><%= f.text_field :secretario, :size=>"34"%></td>                </tr>
 
                  <tr bgcolor="#F5F5F5">
                    <td valign="top"><b>Ata:</b></td>
                   <td colspan="3">
-                       <%= f.text_area(:ata, :cols=> "86", :rows=>"20", :id=>"contador") %><br/>
+                       <%= f.text_area(:ata, :cols=> "83", :rows=>"20", :id=>"contador") %><br/>
 <script>
         $(document).on("keydown", "#contador", function () {
             var caracteresRestantes = 10000  ;
@@ -96,7 +96,7 @@
                 </tr>
                 <tr bgcolor="#F5F5F5">
                    <td valign="top"><b>Observações:</b></td>
-                   <td colspan="3"><%= f.text_field :obs, :size=>"87" %></td>
+                   <td colspan="3"><%= f.text_field :obs, :size=>"84" %></td>
                  </tr>
                 <tr>
                   <td colspan="4"><font color="red" size=""><b><u> ATENÇÃO: </u> Ao digitar a ata utilize SOMENTE texto sem qualquer tipo formação.

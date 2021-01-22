@@ -1,0 +1,99 @@
+<div id="interno1">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTOS DE ATIVIDADES PEDAGÓGICAS</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+          <% form_for (@atividade) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4"><b>LANÇAMENTO DE ATIVIDADES PEDAGÓGICAS / VIVÊNCIA </b></td>
+                  </tr>
+
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><b>Período referente  &nbsp&nbsp&nbsp De: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
+               &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
+             </td>
+
+        </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td width =" 5%" valign="top"><b>Professor(a):</b></td>
+                   <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <br/>
+                <font color="red"> <b><u> Se professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.<br/>
+
+                </td>
+                      <%= observe_field 'atividade_professor_id',
+                         :update => "dados_classe",
+                         :url    => { :action => 'classe' },
+                         :with   => 'atividade_professor_id' %>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="disciplina"> </div></td>
+                </tr
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="dados_classe"></div></td>
+                </tr >
+                <tr>
+                  <td colspan="4">
+                    <table width=" 100%" border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                      <tr bgcolor="#F5F5F5">
+                          <td colspan="2">
+                          <font color="green"><b><u>ATENÇÃO:</u> Faça o registro das atividades desenvolvidas de forma sucinta que contemple os seguintes
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      elementos:</br>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. Título datividade. <br/>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. Rescrição resumida da atividade. <br/>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Componente curricular/campo de experiêncipa a que se refere a atividade em questão. <br/>
+
+                            </b>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                    <td><b> Atividade:</b></td>
+                    <td> <%= f.text_field(:descricao) %></td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                    <td colspan="2"><b> Componente Curricular:</b> &nbsp&nbsp <%= f.text_field :componente, :size=>"40" %> </td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                     <td colspan="2"><b>Descrição Atividade </b>&nbsp&nbsp <%= f.text_field :descricao, :size=>"86" %></td>
+                 </tr>
+
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formação.<br/>
+                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este lançamento <b>NÃO</b> poderá ser mais editado ou alterado.<br/>
+
+                        </td>
+                </tr>
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+<%session[:new_mqa]=0%>
+</div>
+
+
+
+
+

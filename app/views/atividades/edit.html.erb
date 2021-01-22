@@ -1,0 +1,72 @@
+<h1>Editing atividade</h1>
+
+<% form_for(@atividade) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :classe_id %><br />
+    <%= f.text_field :classe_id %>
+  </p>
+  <p>
+    <%= f.label :professor_id %><br />
+    <%= f.text_field :professor_id %>
+  </p>
+  <p>
+    <%= f.label :atribuicao_id %><br />
+    <%= f.text_field :atribuicao_id %>
+  </p>
+  <p>
+    <%= f.label :disciplina_id %><br />
+    <%= f.text_field :disciplina_id %>
+  </p>
+  <p>
+    <%= f.label :unidade_id %><br />
+    <%= f.text_field :unidade_id %>
+  </p>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :atividade %><br />
+    <%= f.text_field :atividade %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.date_select :ano_letivo %>
+  </p>
+  <p>
+    <%= f.label :descricao %><br />
+    <%= f.text_field :descricao %>
+  </p>
+  <p>
+    <%= f.label :inicio %><br />
+    <%= f.date_select :inicio %>
+  </p>
+  <p>
+    <%= f.label :fim %><br />
+    <%= f.date_select :fim %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.label :validacao %><br />
+    <%= f.text_field :validacao %>
+  </p>
+  <p>
+    <%= f.label :validado_por %><br />
+    <%= f.text_field :validado_por %>
+  </p>
+  <p>
+    <%= f.label :validado_em %><br />
+    <%= f.date_select :validado_em %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @atividade %> |
+<%= link_to 'Back', atividades_path %>

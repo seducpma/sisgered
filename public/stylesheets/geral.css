@@ -663,7 +663,7 @@ border-right: double;
 #contents{
     margin:0 auto;
     background-color:White;
-    width:950px;
+    width:1500px;
 /*    width:1500px;*/
 
 }
@@ -680,11 +680,11 @@ border-right: double;
 
 #principal{
     float: right;
-    width:950px;
+    width:1500px;
     height:auto;
     overflow: auto;
     margin:0;
-    background-image:url(Imagens/principal_body.jpg);
+    background-image:url(Imagens/principal_body1.jpg);
     background-repeat:repeat;
     font-size:2px;
 
@@ -708,31 +708,75 @@ border-right: double;
 
 }
 
-#interno1{
+#interno111{
     width:80%;
     margin-top: 20px;
     margin-left: 80px;
     font-size:12px;
 }
 
-#interno2{
+
+#interno211{
     width:95%;
     margin-top: 20px;
     margin-left: 30px;
     font-size:12px;
 }
 
-#interno3{
+#interno611{
+    width:50%;
+    margin-top: 20px;
+    margin-left: 200px;
+    font-size:12px;
+}
+
+#interno311{
     width:55%;
     margin-top: 20px;
     margin-left: 200px;
     font-size:12px;
 }
 
-#interno4{
+#interno411{
     width:65%;
     margin-top: 20px;
     margin-left: 170px;
+    font-size:12px;
+}
+
+
+#interno1{
+    width:50%;
+    margin-top: 20px;
+    margin-left: 400px;
+    font-size:12px;
+}
+
+#interno11{
+    width:55%;
+    margin-top: 20px;
+    margin-left: 350px;
+    font-size:12px;
+}
+
+#interno2{
+    width:60%;
+    margin-top: 20px;
+    margin-left: 300px;
+    font-size:12px;
+}
+
+#interno3{
+    width:55%;
+    margin-top: 20px;
+    margin-left: 350px;
+    font-size:12px;
+}
+
+#interno4{
+    width:48%;
+    margin-top: 20px;
+    margin-left: 400px;
     font-size:12px;
 }
 
@@ -744,9 +788,9 @@ border-right: double;
 }
 
 #interno6{
-    width:50%;
+    width:35%;
     margin-top: 20px;
-    margin-left: 200px;
+    margin-left: 450px;
     font-size:12px;
 }
 

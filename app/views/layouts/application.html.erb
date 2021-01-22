@@ -269,7 +269,14 @@ display: none;
               </li>
             <%end%>
 -->
-
+              <li><span class="divider divider-vert" ></span></li>
+              <% if (current_user.has_role?('admin') )%>
+              <li><a class="item-primary" href="#;">ATIVIDADES</a>
+                 <ul style="width:108px;">
+                                <li><%= link_to "Cadastrar", new_atividade_path%> </li>
+                 <%end%>
+                 </ul>
+              </li>
 
 
               <li><span class="divider divider-vert" ></span></li>
@@ -635,13 +642,7 @@ display: none;
    </div>
    <div id="principal">
      <div id="conteudo">
-       <table width="100%" border="2">
-         <tr>
-           <td width ="100%" align="center">
-             <b><font size="4" color="blue"><%= "#{ link_to "Clique para dowload -  PROTOCOLO RETORNO ATIVIDADES PRESENCIAIS", protocolo_covid_path}"%> </font></b>
-            </td>
-         </tr>
-     </table>
+
         <%= yield  %>
 
      </div>
