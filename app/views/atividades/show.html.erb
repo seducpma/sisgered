@@ -1,78 +1,182 @@
-<p>
-  <b>Classe:</b>
-  <%=h @atividade.classe_id %>
-</p>
-
-<p>
-  <b>Professor:</b>
-  <%=h @atividade.professor_id %>
-</p>
-
-<p>
-  <b>Atribuicao:</b>
-  <%=h @atividade.atribuicao_id %>
-</p>
-
-<p>
-  <b>Disciplina:</b>
-  <%=h @atividade.disciplina_id %>
-</p>
-
-<p>
-  <b>Unidade:</b>
-  <%=h @atividade.unidade_id %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%=h @atividade.user_id %>
-</p>
-
-<p>
-  <b>Atividade:</b>
-  <%=h @atividade.atividade %>
-</p>
-
-<p>
-  <b>Ano letivo:</b>
-  <%=h @atividade.ano_letivo %>
-</p>
-
-<p>
-  <b>Descricao:</b>
-  <%=h @atividade.descricao %>
-</p>
-
-<p>
-  <b>Inicio:</b>
-  <%=h @atividade.inicio %>
-</p>
-
-<p>
-  <b>Fim:</b>
-  <%=h @atividade.fim %>
-</p>
-
-<p>
-  <b>Obs:</b>
-  <%=h @atividade.obs %>
-</p>
-
-<p>
-  <b>Validacao:</b>
-  <%=h @atividade.validacao %>
-</p>
-
-<p>
-  <b>Validado por:</b>
-  <%=h @atividade.validado_por %>
-</p>
-
-<p>
-  <b>Validado em:</b>
-  <%=h @atividade.validado_em %>
-</p>
 
 
-<%= link_to 'Edit', edit_atividade_path(@atividade) %> |
-<%= link_to 'Back', atividades_path %>
+
+
+
+<div id="interno2">
+<% title "ATIVIDADE PEDAGOGICA" %>
+<div class ="tabs">
+<%if @atividade.present?%>
+      <!--<%session[:imprimir_todos]=1%>-->
+
+        <fieldset><legend><font  size=3><b> ATIVIDADE PEDAGÓGICA
+              </b></font></legend>
+
+            <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+              <%cont = 0%>
+                 <tr bgcolor="#F5F5F5">
+                   <%if !@atividade.atribuicao_id.nil?%>
+                       <td width=5%" align="center"><b>Classe:</b></td>
+                       <td width=10% align="CENTER" > <%=h @atividade.atribuicao.classe.classe_classe %> <%if !@atividade.disciplina_id.nil?%> - <%=h @atividade.atribuicao.classe.classe_ano_letivo %><%end%></td>
+                       <td width=10%" align="center"><b>Unidade:</b></td>
+                       <td width=20%> <%=h @atividade.unidade.nome %></td>
+                       <td width=8%" align="center"><b>Período:</b></td>
+                       <td colspan="3"> De <%=h @atividade.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
+                                                                                             <% if (session[:dataF].to_date < @atividade.fim) or  (session[:dataF].to_date != @atividade.fim)%>
+                                                                                                   <% if (session[:dataFF] != @atividade.fim)%>
+                                                                                                        <font color ="red"><%=h @atividade.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
+                                                                                                   <%else%>
+                                                                                                          <font color ="red"> <%=h @atividade.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
+                                                                                                   <%end%>
+
+                                                                                              <%else%>
+                                                                                                   <%=h @atividade.fim.strftime("%d/%m/%Y") %>
+                                                                                              <%end%>
+                                                                                         <%else%>
+                                                                                              <%=h @atividade.fim.strftime("%d/%m/%Y") %>
+                                                                                         <%end%>
+                       </td>
+
+                   <%else%>
+                       <td width=5%" align="center"><b>Classe:</b></td>
+                       <td width=10%  align="center"> ----- </td>
+                       <td width=10%" align="center"><b>Unidade:</b></td>
+                       <td width=20%> <%=h @atividade.professor_id %></td>
+                       <td width=8%" align="center"><b>Período:</b></td>
+                       <td colspan="3"> De <%=h @atividade.inicio.strftime("%d/%m/%Y") %> à <% if session[:cons_data]== 1%>
+                                                                                             <% if (session[:dataF].to_date < @atividade.fim) or  (session[:dataF].to_date != @atividade.fim)%>
+                                                                                                   <% if (session[:dataFF] != @atividade.fim)%>
+                                                                                                        <font color ="red"><%=h @atividade.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
+                                                                                                   <%else%>
+                                                                                                          <font color ="red"> <%=h @atividade.fim.strftime("%d/%m/%Y") %> (<b>ATENÇÃO</b> data final diferente)</font>
+                                                                                                   <%end%>
+
+                                                                                              <%else%>
+                                                                                                   <%=h @atividade.fim.strftime("%d/%m/%Y") %>
+                                                                                              <%end%>
+                                                                                         <%else%>
+                                                                                              <%=h @atividade.fim.strftime("%d/%m/%Y") %>
+                                                                                         <%end%>
+                       </td>
+                  <%end%>
+                </tr>
+
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Atividade:</b></td>
+                   <td colspan="4"> <%=   @atividade.atividade %></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Componete Curricular:</b></td>
+                   <td colspan="4"> <%=   @atividade.componente%></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Descrição Atividade:</b></td>
+                   <td colspan="4"> <%=   @atividade.descricao%></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Obs:</b></td>
+                   <td colspan="4"> <%=   @atividade.obs%></td>
+                </tr>
+
+                <tr bgcolor="#DCDCDC">
+                   <td></td>
+                   <td align="left" valign="top"><b>Professor:</b></td>
+                   <td colspan="4"> <%=   @atividade.professor.nome%> &nbsp - &nbsp <%if !@atividade.disciplina_id.nil?%>
+                                                                                         <%=  @atividade.atribuicao.disciplina.disciplina %>
+                                                                                   <%else%>
+                                                                                            <%=  @atividade.professor.funcao2 %>
+                                                                                   <%end%>
+                   </td>
+                </tr>
+<!--
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Validação:</b></td>
+                   <td colspan="4"><%# if @conteudo.validacao == 1 %>
+                                        <%# if  !@conteudo.validado_em.nil? %>
+                                            <font color ="blue"><b> VALIDADO &nbsp&nbsp por <%#=  @conteudo.validado_por%> &nbsp&nbsp  em <%#=h @conteudo.validado_em.strftime("%d/%m/%Y - %H:%M ") %></b>
+                                        <%#end%>
+                                  <%#else%>
+                                         <font color ="red"> AGUARDANDO VALIDAÇÃO <font>
+                                  <%#end%>
+
+                   </td>
+                </tr>
+-->
+               <tr bgcolor="#C1C1C1" >
+                  <td colspan="6"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Este lançamento NÃO pode ser editado.<br/>
+                        
+                        </td>
+                </tr>
+                <%cont = cont + 1%>
+            <%end%>
+                <%if !@atividade_classe.nil?%>
+                 <%if  (@atividade_classe.classe.classe_classe !='PEDAGOGO' and @atividade_classe.classe.classe_classe !='COORDENACAO' and @atividade_classe[0].classe.classe_classe !='SUPERVISAO' and @atividade_classe.classe.classe_classe !='DIRECAO FUNDAMENTAL' and @atividade_classe.classe.classe_classe !='DIRECAO INFANTIL') or !@atividade_classe.nil? %>
+                     <tr bgcolor="#F5F5F5">
+                       <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
+                       <td colspan="3" > <u>Profissionais:</u><% contP = 0%><br/>
+                                            <% for professor in @atividade_professor %>
+                                               &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
+                                          <%end%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> profissionai <%else%> profissionais  <%end%>
+
+                       </td>
+
+                       <td colspan="2" valign="top" > <u>Classes:</u><% contC = 0%><br/>
+                                            <% for classe in @atividade_classe %>
+                                               &nbsp&nbsp <%= contC+1%>) <%= classe.classe.classe_classe %> &nbsp - &nbsp <%= classe.classe.horario %><% contC = contC +1 %> <br/>
+                                          <%end%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contC%> <% if contC == 1%> Classe <%else%> classes  <%end%>
+                       </td>
+                     </tr>
+                 <%else%>
+                    <tr bgcolor="#F5F5F5">
+                       <td colspan="2" align="center" valign="top">Total Lançamentos: <%= cont%></td>
+                       <td colspan="4" > <% contP = 0%>
+                                            <% for professor in @atividade_professor %>
+                                               &nbsp&nbsp <%= contP+1%>) <%= professor.professor.nome %><% contP = contP +1 %> <br/>
+                                          <%end%>
+                                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TOTAL: <%=contP%> <% if contP == 1%> profissional <%else%> profissionais  <%end%>
+
+                       </td>
+
+                     </tr>
+
+                 <%end%>
+
+             </table>
+           </fieldset>
+
+
+
+              <br/>
+              <%t=0%>
+              <table  width="100%">
+                    <tr>
+                      <td align="center"><font size="3" color="red"><b> LANÇAMENTO DE CONTEÚDO NÃO ENCONTRADO </b> </td>
+                    </tr>
+              </table>
+         <%end%>
+
+  <table width="100%" >
+         <tr>
+            <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+             <td colspan="10"align="left" ><%#= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>@relatorio}, :title => "Imprimir esta FAPEA"%></b></td>
+               </tr>
+
+
+         <br/>
+  </table>
+
+
+
+</div>
+<br/>
+</div>
+
+
+

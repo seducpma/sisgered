@@ -1,8 +1,8 @@
 class Atividade < ActiveRecord::Base
-  belongs_to :classe_id
-  belongs_to :professor_id
-  belongs_to :atribuicao_id
-  belongs_to :disciplina_id
-  belongs_to :unidade_id
-  belongs_to :user_id
+  belongs_to :classe
+  belongs_to :professor
+  belongs_to :atribuicao
+  belongs_to :disciplina
+  belongs_to :unidade
+  belongs_to :user
 end

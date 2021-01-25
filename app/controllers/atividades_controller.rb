@@ -60,9 +60,12 @@ class AtividadesController < ApplicationController
   # POST /atividades
   # POST /atividades.xml
   def create
+
     @atividade = Atividade.new(params[:atividade])
+
     @atividade.classe_id= session[:ativ_classe_id]
     @atividade.atribuicao_id= session[:ativ_atribuicao_id]
+    @atividade.disciplina_id =session[:ativ_disciplina_id]
     @atividade.ano_letivo =  Time.now.year
     @atividade.unidade_id =  current_user.unidade_id
     @atividade.user_id =  current_user.id
@@ -110,6 +113,7 @@ class AtividadesController < ApplicationController
   def classe
 
      w=session[:professor_id]=params[:atividade_professor_id]
+     t=0
      @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
    if @atribuicao.empty? or @atribuicao.nil?
       render :partial => 'aviso'
@@ -126,14 +130,11 @@ class AtividadesController < ApplicationController
 
   def disciplina
 
- w=session[:ativ_disciplina_id] =  params[:disciplina_id]
-
+ session[:ativ_disciplina_id] =  params[:disciplina_id]  # <<<<<< ATENÇÂO esta escrito disciplina_id mas é atribuicao_id <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
- w1=session[:ativ_classe_id]= @atribuicao[0].classe_id
- w2=session[:ativ_atribuicao_id]=@atribuicao[0].id
- w3=session[:ativ_disciplina_id]=@atribuicao[0].disciplina_id
- t=0
-
+ session[:ativ_classe_id]= @atribuicao[0].classe_id
+ session[:ativ_atribuicao_id]=@atribuicao[0].id
+ session[:ativ_disciplina_id]=@atribuicao[0].disciplina_id
         render :partial => 'dados_classe'
 end
 

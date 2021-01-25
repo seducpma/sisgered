@@ -177,22 +177,42 @@ class NotasController < ApplicationController
 #            if @nota.escola =='    Favor digitar o Nome da Escola - Cidade - Estado'
  #               @nota.escola = ' '
 #            end
-            respond_to do |format|
-                if @nota.save
-                    session[:cont_nome]=0
-                    flash[:notice] = 'SALVO COM SUCESSO.'
-                    session[:classe]= @nota.classe
-                    session[:nota_id]= @nota.id
-                    session[:aluno_id]=@nota.aluno_id
-                    session[:disciplina_id]= @nota.disciplina_id
-                    session[:ano_letivo]= @nota.ano_letivo
-#                    session[:escola]= @nota.escola
-                    format.html { redirect_to(@nota) }
-                    format.xml  { render :xml => @nota, :status => :created, :location => @nota }
-                else
-                    format.html { render :action => "new" }
-                    format.xml  { render :xml => @nota.errors, :status => :unprocessable_entity }
-                end
+
+            w1= session[:classe]
+            session[:disc]= @nota.disciplina.disciplina
+            session[:alu]= @nota.aluno.aluno_nome
+            session[:ano] =@nota.ano_letivo
+            session[:clas] = @nota.classe
+            session[:nota] = @nota.nota5
+             
+            @existe_lancamento=Nota.find(:all, :select => 'id,aluno_id', :conditions => ['aluno_id =? and disciplina_id=? and ano_letivo=? and classe =? ', @nota.aluno_id, @nota.disciplina_id, @nota.ano_letivo, @nota.classe])
+t=0
+            if !@existe_lancamento.present?
+
+                    respond_to do |format|
+                        if @nota.save
+                            session[:cont_nome]=0
+                            flash[:notice] = 'SALVO COM SUCESSO.'
+                            session[:classe]= @nota.classe
+                            session[:nota_id]= @nota.id
+                            session[:aluno_id]=@nota.aluno_id
+                            session[:disciplina_id]= @nota.disciplina_id
+                            session[:ano_letivo]= @nota.ano_letivo
+        #                    session[:escola]= @nota.escola
+                            format.html { redirect_to(@nota) }
+                            format.xml  { render :xml => @nota, :status => :created, :location => @nota }
+                        else
+                            format.html { render :action => "new" }
+                            format.xml  { render :xml => @nota.errors, :status => :unprocessable_entity }
+                        end
+                    end
+
+            else
+                 respond_to do |format|
+                #flash[:notice] = 'CADASTRADO COM SUCESSO.'
+                format.html { redirect_to(aviso_atividades_path) }
+                format.xml  { head :ok }
+            end
             end
         end
     end
