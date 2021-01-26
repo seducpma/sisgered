@@ -1,12 +1,17 @@
+<%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+
+   <%@unidades = Unidade.find(:all,   :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7)' ],:order => 'nome ASC')%>
+
+<%else%>
+      <%@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and unidade_id =?' ,Time.now.year, current_user.unidade],:order => 'atividade ASC')%>
+<%end%>
+
+
 <table width="100%" align="center" >
    <tr>
      <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Unidade:
         <%= collection_select :unidade,:id, @unidades, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %></b></font>
-          <%= observe_field 'unidade_id',
-               :update => "professores",
-               :url    => { :action => 'lista_professor_unidade' },
-               :with   => 'unidade_id' %>
-         
+         <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
      </td>
    </tr>
   </table>

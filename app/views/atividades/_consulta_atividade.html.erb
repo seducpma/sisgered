@@ -1,28 +1,19 @@
-<table width="100%" align="center" >
-   <tr>
-     <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Atividade:
-        <%= collection_select :unidade,:id, @unidades, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %></b></font>
-          <%= observe_field 'unidade_id',
-               :update => "professores",
-               :url    => { :action => 'lista_professor_unidade' },
-               :with   => 'unidade_id' %>
-         
-     </td>
-   </tr>
-  </table>
+<%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+
+   <%@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=?',Time.now.year],:order => 'atividade ASC')%>
+
+<%else%>
+      <%@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and unidade_id =?' ,Time.now.year, current_user.unidade],:order => 'atividade ASC')%>
+<%end%>
 
 
-       <table width="100%" align="center" bgcolor="#DCDCDC">
+
+<table width="100%" align="center" bgcolor="#DCDCDC">
           <tr>
-            <td align= "right"><font size="2"><b class="label_busca3">Datas:  Inicial:</b></font>&nbsp
-                <%= datepicker_tag(:conteudo, :inicio,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
-
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-               <font size="2"><b class="label_busca3">Final:</b></font>&nbsp
-                <%= datepicker_tag(:conteudo, :fim,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
-         </td>
-          <td width ="14%" align="right">
-            <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+            <td align="right" width ="48%"><font size="2"> <b class="label_busca2">Digitar termo para busca:
+                    
+                    <%= text_field_tag :search, params[:search]%>
+<%= submit_tag "Visualizar", :class => "btn_filtrar" %>
           </td>
         </tr>
 

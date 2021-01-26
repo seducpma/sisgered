@@ -403,7 +403,9 @@ jQuery(document).ready(function( $ ){
         $(".consulta_fapea").hide();
         $(".consulta_nome_fapea").hide();
         $(".consulta_nome_mqa").hide();
-          $(".consulta_classe").hide();
+        $(".consulta_classe").hide();
+        $(".consulta_disciplina").hide();
+        $(".consulta_data").hide();
 
     });
 
@@ -537,6 +539,7 @@ jQuery(document).ready(function( $ ){
 
     });
 
+
     $(".filtro_unidade_status").click(function ()
     {
         $(".consulta_unidade").show();
@@ -580,7 +583,9 @@ jQuery(document).ready(function( $ ){
         $(".txt_busca").hide();
         $(".consulta_nome").hide();
         $(".consulta_fapea").hide();
-          $(".consulta_classe").hide();
+        $(".consulta_classe").hide();
+        $(".consulta_disciplina").hide();
+        $(".consulta_data").hide();
           
     });
 
@@ -641,7 +646,9 @@ jQuery(document).ready(function( $ ){
         $(".consulta1").hide();
         $(".consulta_unidade").hide();
         $(".consulta_data").hide();
-         $(".consulta_classe").hide();
+        $(".consulta_classe").hide();
+        $(".consulta_disciplina").hide();
+        $(".consulta_data").hide();
 
     });
     $(".filtro_classe").click(function ()
@@ -653,7 +660,9 @@ jQuery(document).ready(function( $ ){
         $(".consulta1").hide();
         $(".consulta_unidade").hide();
         $(".consulta_data").hide();
-
+        $(".consulta_professor").hide();
+        $(".consulta_disciplina").hide();
+        $(".consulta_data").hide();
 
     });
 
@@ -667,7 +676,10 @@ jQuery(document).ready(function( $ ){
         $(".consulta_empresa").hide();
         $(".consulta_obreiro").hide();
         $(".consulta_2").hide();
-
+        $(".consulta_classe").hide();
+        $(".consulta_unidade").hide();
+        $(".consulta_professor").hide();
+        $(".consulta_disciplina").hide();
 
     });
 
@@ -731,6 +743,10 @@ jQuery(document).ready(function( $ ){
         $(".consulta_professor_nome1").hide();
         $(".consulta_periodo").hide();
         $(".consulta_classe1").hide();
+        $(".consulta").hide();
+        $(".consulta_unidade").hide();
+        $(".consulta_data").hide();
+
     });
 
 

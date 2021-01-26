@@ -1,12 +1,34 @@
-<table width="100%" align="center" >
+ <%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+    <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC')%>
+
+
+<%else%>
+      <%@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and unidade_id =?' ,Time.now.year, current_user.unidade],:order => 'atividade ASC')%>
+<%end%>
+
+
+
+
+
+
+
+
+<table width="100%"   >
    <tr>
-     <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Classe:
-        <%= collection_select :unidade,:id, @unidades, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %></b></font>
-          <%= observe_field 'unidade_id',
-               :update => "professores",
-               :url    => { :action => 'lista_professor_unidade' },
-               :with   => 'unidade_id' %>
+     <td  widht="20%" align="right"><font size="2"><b>Classe:</b></font>
+          <%= select_tag :classe_id, options_for_select(@classe_ano.collect { |ff| [ff.classe_unidade, ff.id] }.insert(0, '--Selecionar--')) %>
+                            <%= observe_field 'classe_id',
+                          :with => :classe_id,
+                          :url => { :action => 'classe_disciplina' },
+                          :update => "classe_disciplina" %>
+    </td>
+     <td  widht="60%" align="right"><div id="classe_disciplina"> <b>Disciplina:</b><font color="red">&nbsp&nbsp&nbsp&nbsp<b></u>&nbsp Selecionar  primeiro a classe </b></font> </div></td>
+
+          <td> <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
 
      </td>
+
+
+
    </tr>
   </table>

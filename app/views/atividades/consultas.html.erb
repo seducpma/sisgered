@@ -1,4 +1,4 @@
-<div id="interno2">
+<div id="interno7">
 <% title "PROFESSORES", :id =>"professors" %>
  <div class="tabs">
    <div id="caixa_titulo">
@@ -6,17 +6,15 @@
    </div>
   <div class="tabs">
     <% form_remote_tag :url => consultaatividade_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
-         <table width="100%" align="center" bgcolor="#DCDCDC" >
+         <table width="100%" align="center" bgcolor="#DCDCDC"  >
           <tr>
             <td>
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Atividade
-              
-              <a href="#" class="filtro_classe"><%= radio_button_tag(:type_of, "3") %></a>Classe
-              <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "4") %></a>Professor
-              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "2") %></a>Unidade
-
-            <!--  <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "6") %></a>Função
-              <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "3") %></a>Todos-->
+              <a href="#" class="filtro_classe"><%= radio_button_tag(:type_of, "2") %></a>Classe
+              <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "3") %></a>Professor
+              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "4") %></a>Unidade
+              <a href="#" class="filtro_disciplina"><%= radio_button_tag(:type_of, "5") %></a>Disciplina
+              <a href="#" class="filtro_data"><%= radio_button_tag(:type_of, "6") %></a>Data
             </td>
          </tr>
          <tr>
@@ -24,6 +22,8 @@
                <div class="consulta_classe" style="display:none"> <%= render "consulta_classe" %> </div>
                <div class="consulta_unidade" style="display:none"> <%= render "consulta_unidade" %> </div>
                <div class="consulta_professor" style="display:none"> <%= render "consulta_professor" %> </div>
+               <div class="consulta_disciplina" style="display:none"> <%= render "consulta_disciplina" %> </div>
+               <div class="consulta_data" style="display:none"> <%= render "consulta_data" %> </div>
            </td>
          </tr>
 

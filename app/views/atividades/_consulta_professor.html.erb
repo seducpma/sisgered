@@ -1,8 +1,19 @@
+<%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+
+   <%@professors = Professor.find(:all,:select => 'distinct(professors.nome), professors.id',  :joins => "INNER JOIN  atribuicaos   ON  professors.id = atribuicaos.professor_id INNER JOIN  classes  ON  classes.id = atribuicaos.classe_id  INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id ", :conditions =>['professors.desligado=  0 and classes.classe_ano_letivo = ? and (tipos.id = 1 or tipos.id = 4  or tipos.id = 7)',Time.now.year ],:order => 'nome ASC')%>
+
+<%else%>
+      <%@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and unidade_id =?' ,Time.now.year, current_user.unidade],:order => 'atividade ASC')%>
+<%end%>
+
+
 <table width="100%" align="center" >
    <tr>
      <td colspan="2"align="right"><font size="2"> <b class="label_busca3">
-        Função/Cargo: </b><%= select_tag :search, options_for_select(CARGO).sort, :include_blank => '-- Selecionar --' %>
-     
+        Professor: </b><%= collection_select :professor,:id, @professors, :id, :nome, :include_blank => ' -- Selecionar -- '  %></font>
+
+
+
          <%= submit_tag "Filtrar", :class => "btn_filtrar" %>
      </td>
    </tr>
