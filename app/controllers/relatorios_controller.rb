@@ -149,7 +149,6 @@ class RelatoriosController < ApplicationController
     cont_cl=0
     for atribuicao in @atribuicao
         @aluno= Matricula.find(:all, :select => 'alunos.id, alunos.aluno_nome',:joins =>:aluno  ,:conditions=>['matriculas.classe_id=? AND (matriculas.status ="MATRICULADO" OR matriculas.status ="TRANSFERENCIA" OR matriculas.status ="*REMANEJADO")AND ano_letivo =? ', atribuicao.classe_id, Time.now.year], :order => 'alunos.aluno_nome ASC')
-        t=0
         if cont_cl==0
           @alunos2=@aluno
           cont_cl=cont_cl+1

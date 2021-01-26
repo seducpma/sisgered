@@ -139,4 +139,51 @@ class AtividadesController < ApplicationController
 end
 
 
+  def consultaatividade
+
+    if params[:type_of].to_i == 3
+
+          @professors = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC')
+      render :update do |page|
+         page.replace_html 'professores', :partial => "professores"
+      end
+    else if params[:type_of].to_i == 2
+                @professors = Professor.find(:all, :conditions=> ["desligado = 0"],:order => 'nome ASC')
+            render :update do |page|
+               page.replace_html 'professores', :partial => "professores"
+             end
+       else if params[:type_of].to_i == 4
+                    @professors = Professor.find(:all, :conditions=> ["desligado = 1"],:order => 'nome ASC')
+               render :update do |page|
+                  page.replace_html 'professores', :partial => "professores"
+               end
+            else if params[:type_of].to_i == 1
+
+                         @professors = Professor.find(:all,:conditions => ["nome like ?", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+                     render :update do |page|
+                          page.replace_html 'professores', :partial => "professores"
+                     end
+                 else if params[:type_of].to_i == 5
+
+                         render :update do |page|
+                           page.replace_html 'professores', :partial => "professores"
+                          end
+                      else if params[:type_of].to_i == 6
+
+                                   @professors = Professor.find( :all,:conditions => ["funcao like ? AND desligado = 0", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
+                               render :update do |page|
+                                      page.replace_html 'professores', :partial => "professores"
+                               end
+                             end
+                      end
+                 end
+
+            end
+       end
+    end
+
+end
+
+def consultas
+end
 end

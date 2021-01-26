@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :atividades, :collection => { :aviso=>:get}
+  map.resources :atividades, :collection => { :aviso=>:get, :consultas=> :get}
   map.resources :atas ,:collection => { :consultas=>:get}
   map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get,:consultas_mqa =>:get, :editar_mqa=>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get, :validacao => :get}
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
@@ -153,9 +153,9 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_professor_eventual '/consulta_professor_eventual', :controller => 'eventuals', :action => 'consultas'
   map.consulta_unidade '/consulta_unidade', :controller => 'unidades', :action => 'consulta_unidade'
   map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
-  map.saida_transf '/saida_transf', :controller => 'matriculas', :action => 'saida_transf'
+    map.saida_transf '/saida_transf', :controller => 'matriculas', :action => 'saida_transf'
   map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
-
+  map.consultaatividade '/consultaatividade', :controller => 'atividades', :action => 'consultaatividade'
   map.consulta_ficha_cadastral '/consulta_ficha_cadastral', :controller => 'alunos', :action => 'consulta_ficha_cadastral'
   map.consulta_classe_aluno '/consulta_classe_aluno', :controller => 'classes', :action => 'consulta_classe_aluno'
   map.consulta_classe_fone1 '/consulta_classe_fone1', :controller => 'classes', :action => 'consulta_classe_fone1'

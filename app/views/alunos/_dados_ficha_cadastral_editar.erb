@@ -500,6 +500,15 @@
                     Nome pessoa(s) autorizadas: <b>  <%=h aluno.aluno_acompanhante %> </b></td>
                 <td>  <%=h aluno.aluno_vai_embora %></td>
             </tr>
+            <tr>
+                <td><br/>   </td>
+            </tr>
+            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil') or current_user.has_role?('pedagogo'))%>
+                <tr>
+                    <td align="LEFT" ><%= button_to '', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get"%></td>
+                    <td colspan="7"align="RIGHT"><%= button_to 'Editar', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get", :title => "Editar"%></td>
+                </tr>
+            <%end%>
         </table>
     </fieldset>
     <% session[:aluno] = aluno.id %>
