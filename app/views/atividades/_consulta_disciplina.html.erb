@@ -1,23 +1,18 @@
-<%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
-
-<%@disciplinas = Disciplina.find(:all, :select => 'distinct(disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN  atividades   ON  disciplinas.id = atividades.disciplina_id ", :conditions =>['atividades.ano_letivo= ? ',Time.now.year,  ],:order => 'disciplina ASC')%>
-<%else%>
-    <%if  current_user.has_role?('secretaria_infantil') or   current_user.has_role?('direcao_infantil')%>
-
-
-    <%else%>
-       <%if  current_user.has_role?('professor_infantil')%>
-
+<%if  current_user.has_role?('admin') or   current_user.has_role?('SEDUC')  or    current_user.has_role?('supervisao')%>
+   <%@disciplinas = Disciplina.find(:all, :select => 'distinct(disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN  atividades   ON  disciplinas.id = atividades.disciplina_id ", :conditions =>['atividades.ano_letivo= ? ',Time.now.year,  ],:order => 'disciplina ASC')%>
+<%else if current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+           <%@disciplinas = Disciplina.find(:all, :select => 'distinct(disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN  atividades   ON  disciplinas.id = atividades.disciplina_id ", :conditions =>['atividades.ano_letivo= ? and atividades.unidade_id=? ', Time.now.year, current_user.unidade_id   ],:order => 'disciplinas.disciplina ASC')%>
+  
+       <%else%>
+          <%@disciplinas = Disciplina.find(:all, :select => 'distinct(disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN  atividades   ON  disciplinas.id = atividades.disciplina_id ", :conditions =>['atividades.ano_letivo= ? and atividades.professor_id=? ', Time.now.year, current_user.professor_id   ],:order => 'disciplinas.disciplina ASC')%>
        <%end%>
-
-   <%end%>
 <%end%>
 
 
 
-      <table width="100%" align="center" bgcolor="#DCDCDC">
+          <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
-            <td align="right"><font size="2"> <b class="label_busca2">Disciplina
+            <td align="right"><font size="2"> <b>Disciplina:</b>
                     <%= collection_select :disciplina,:id, @disciplinas, :id, :disciplina, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %></b></font>
             </td>
           <td width ="8%" align="right">

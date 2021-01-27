@@ -272,25 +272,21 @@ display: none;
 
 
 
-    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('professor_fundamental'))%>
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao'))%>
           <li><a class="item-primary" href="#;">ATIVIDADES</a>
                              <ul>
-                                 <li><a class="item-primary" href="#;">Cadastrar</a>
-                                     <ul>
-                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('professor_fundamental'))%>
-                                            <li><%= link_to "Atividade",new_atividade_path %></li>
+
+                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo'))%>
+                                            <li><%= link_to "Cadastrar",new_atividade_path %></li>
                                           <%end%>
 
-                                     </ul>
-                                 </li>
-                                  <li><a class="item-primary" href="#;">Consultar</a>
-                                     <ul>
-                                         <% if (current_user.has_role?('admin')or current_user.has_role?('SEDUC'))%>
-                                            <li><%= link_to "Consulta",consultas_atividades_path %></li>
+                                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo'))%>
+                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo'))%>
+                                            <li><%= link_to "Editar",consultas_atividades_path %></li>
                                           <%end%>
-                                      
-                                     </ul>
-                                 </li>
+
+                                 <%end%>
+                                            <li><%= link_to "Consultar",consultas_atividades_path %></li>
                              </ul>
                          </li>
       <%end%>

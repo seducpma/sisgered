@@ -1,10 +1,13 @@
-<%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
-
+<%if  current_user.has_role?('admin') or   current_user.has_role?('SEDUC')    or   current_user.has_role?('supervisao')%>
    <%@unidades = Unidade.find(:all,   :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7)' ],:order => 'nome ASC')%>
-
-<%else%>
-      <%@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and unidade_id =?' ,Time.now.year, current_user.unidade],:order => 'atividade ASC')%>
+<%else if current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+          <%@unidades = Unidade.find(:all,  :select=> 'distinct(unidades.nome), unidades.id', :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id INNER JOIN  atividades  ON  unidades.id = atividades.unidade_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7) and atividades.unidade_id=? ', current_user.unidade_id ],:order => 'unidades.nome ASC')%>
+       <%else%>
+          <%@unidades = Unidade.find(:all,  :select=> 'distinct(unidades.nome), . unidades_id',   :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id INNER JOIN  atividades  ON  unidades.id = atividades.unidade_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7) and atividades.professor_id=? ', current_user.professor_id ],:order => 'unidades.nome ASC')%>
+       <%end%>
 <%end%>
+
+
 
 
 <table width="100%" align="center" >

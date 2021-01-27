@@ -1,10 +1,11 @@
-<%if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
-
-   <%@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=?',Time.now.year],:order => 'atividade ASC')%>
-
-<%else%>
-      <%@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and unidade_id =?' ,Time.now.year, current_user.unidade],:order => 'atividade ASC')%>
-<%end%>
+<%#if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+   <%#@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=?',Time.now.year],:order => 'atividade ASC')%>
+<%#else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+            <%#@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and unidade_id =?' ,Time.now.year, current_user.unidade_if],:order => 'atividade ASC')%>
+       <%#else%>
+            <%#@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and professor_id =?' ,Time.now.year, current_user.professor_id],:order => 'atividade ASC')%>
+       <%#end%>
+<%#end%>
 
 
 
