@@ -27,7 +27,7 @@
                 <tr bgcolor="#F5F5F5">
                   <td width =" 5%" valign="top"><b>Professor(a):</b></td>
                    <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <br/>
-                <font color="red"> <b><u> Se professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.<br/>
+                <font color="red"><font size="4"id="pisca1" > <b><u> ATENÇÃO</u> após selecionar nome do professor nome aguarde para selecionar a disciplina e classe.</font><br/>
 
                 </td>
                       <%= observe_field 'atividade_professor_id',
