@@ -1,0 +1,38 @@
+<h1>Listing atividade_avaliacaos</h1>
+
+<table>
+  <tr>
+    <th>Atividade</th>
+    <th>Classe</th>
+    <th>Professor</th>
+    <th>Atribuicao</th>
+    <th>Disciplina</th>
+    <th>Unidade</th>
+    <th>User</th>
+    <th>Avaliacao</th>
+    <th>Ano letivo</th>
+    <th>Obs</th>
+  </tr>
+
+<% @atividade_avaliacaos.each do |atividade_avaliacao| %>
+  <tr>
+    <td><%=h atividade_avaliacao.atividade_id %></td>
+    <td><%=h atividade_avaliacao.classe_id %></td>
+    <td><%=h atividade_avaliacao.professor_id %></td>
+    <td><%=h atividade_avaliacao.atribuicao_id %></td>
+    <td><%=h atividade_avaliacao.disciplina_id %></td>
+    <td><%=h atividade_avaliacao.unidade_id %></td>
+    <td><%=h atividade_avaliacao.user_id %></td>
+    <td><%=h atividade_avaliacao.avaliacao %></td>
+    <td><%=h atividade_avaliacao.ano_letivo %></td>
+    <td><%=h atividade_avaliacao.obs %></td>
+    <td><%= link_to 'Show', atividade_avaliacao %></td>
+    <td><%= link_to 'Edit', edit_atividade_avaliacao_path(atividade_avaliacao) %></td>
+    <td><%= link_to 'Destroy', atividade_avaliacao, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New atividade_avaliacao', new_atividade_avaliacao_path %>

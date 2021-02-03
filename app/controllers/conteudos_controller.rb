@@ -283,6 +283,7 @@ t=0
         #w1=session[:professor_id]=params[:conteudo][:professor_id]
         session[:dia_final]=params[:diaF]
         session[:mesF]=params[:mesF]
+        w=session[:Ix]=params[:conteudo][:inicio]
         session[:dataI]=params[:conteudo][:inicio][6,4]+'-'+params[:conteudo][:inicio][3,2]+'-'+params[:conteudo][:inicio][0,2]
         session[:dataF]=params[:conteudo][:fim][6,4]+'-'+params[:conteudo][:fim][3,2]+'-'+params[:conteudo][:fim][0,2]
         session[:mes]=params[:conteudo][:fim][3,2]

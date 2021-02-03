@@ -1,0 +1,243 @@
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+    <div id="caixa_titulo">
+        <font size="3"><strong>LANÇAMENTO DE NOTAS </strong></font><br/>
+    </div>
+    <div class="tabs1">
+        <%if @classe.present?%>
+            <fieldset>
+                <table width="100%" style="font-size: small">
+                    <%for classe in @classe %>
+                        <tr bgcolor="#F5F5F5" >
+                            <td align="left" width="10%"><b>Unidade:</b></td>
+                            <td align="left">  <%=h classe.unidade.nome%>    <%  session[:unidade]= classe.unidade.nome %></td>
+                            <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                            <td align="left"> <%=h classe.classe_ano_letivo %>     <%  session[:classe]=  classe.id%></td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td align="left"><b>Classe:</b></td>
+                            <td align="left">  <%=h classe.classe_classe%></td>
+                            <td align="left"><b>Horário:</b></td>
+                            <td align="left">  <%=h classe.horario %></td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5" >
+                            <td align="left"><b>Descrição:</b></td>
+                            <td align="left" colspan="3"> <%=h classe.classe_descricao %></td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td valign="top"> <b> Professor(es):</b> </td>
+                            <% cont=1 %>
+                            <% cont1=1 %>
+                            <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                                    <table width="100%" >
+                                        <tr bgcolor="#F5F5F5" >
+                                            <td align="left" width="45%"> <%=h atrib.professor.nome%></td>
+                                            <td align="left"width="10%"><b> Disciplina:</b></td>
+                                            <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                                            <% session[:disciplina] = atrib.disciplina.disciplina %>
+                                            <% session[:professor] = atrib.professor.nome %>
+                                            <% session[:professor_id] = atrib.professor.id %>
+                                            <% session[:classe] = atrib.classe.classe_classe %>
+                                            <% session[:ano] = atrib.ano_letivo %>
+                                            <% session[:periodo] = atrib.classe.horario %>
+                                            <% session[:id] = atrib.id %>
+                                        </tr>
+
+                                    </table>
+                                    <% cont= cont+1 %>
+                                <%end%>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td colspan="3">
+                                <a href="#" class="com_observacoes"><%= radio_button_tag(:type_of, "1",  :checked => true) %></a><b>Visualisar Observações</b>
+                                <a href="#" class="sem_observacoes"><%= radio_button_tag(:type_of, "2") %></a><b>Não Visualisar Observações</b>
+                            </td>
+
+<!--                            <td align="right"><%#= button_to 'Fechar', home_path, {:method => "get"}  %></td>-->
+                        </tr>
+                    
+                    </table>
+                </fieldset>
+                <%end%>
+                <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="78%" colspan="3"><b> Alunos: </b></td>
+                        <td colspan="2" align="center"><b>1ºBim</b></td>
+                        <td colspan="2" align="center"><b>2ºBim</b></td>
+                        <td colspan="2" align="center"><b>3ºBim</b></td>
+                        <td colspan="2" align="center"><b>4ºBim</b></td>
+                        <td colspan="2" align="center"><b>Final</b></td>
+
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="4%"align="center"><b>Nº</b></td>
+                        <td width ="10%">&nbsp&nbsp<b>RA</b></td>
+                        <td width ="40%">&nbsp&nbsp<b>NOME</b></td>
+                        <td width ="45px" align="center"><font size="1"><b>Nota</b></font></td>
+                        <td width ="45px"align="center"><font size="1"><b>Faltas</font></b></td>
+                        <td width ="45px" align="center"><font size="1"><b>Nota</font></b></td>
+                        <td width ="45px"align="center"><font size="1"><b>Faltas</font></b></td>
+                        <td width ="45px" align="center"><font size="1"><b>Nota</font></b></td>
+                        <td width ="45px"align="center"><font size="1"><b>Faltas</font></b></td>
+                        <td width ="45px" align="center"><font size="1"><b>Nota</font></b></td>
+                        <td width ="45px"align="center"><b><font size="1">Faltas</font></b></td>
+                        <td width ="45px" align="center"><font size="1"><b>Nota</font></b></td>
+                        <td width ="45px"align="center"><b><font size="1">Faltas</font></b></td>
+
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td colspan="13"> <div id="notas_aluno">
+                                <% form_for :nota, :url => {:action => 'update_multiplas_notas'} do -%>
+                                    <%@notas.each do |nota|%>
+                                        <% fields_for "nota[]", nota do |f| %>
+                                            <tr bgcolor="#F5F5F5">
+                                                <td width ="4%" align="center"><%= nota.matricula.classe_num  %>  </td>
+                                                <td width ="10%" ><%= nota.aluno.aluno_ra  %></td>
+                                                <td width ="40%" align="left"><%= nota.matricula.aluno.aluno_nome %>
+                                                    <%if nota.matricula.status!="MATRICULADO"%>
+                                                        <%if nota.matricula.status=='TRANSFERIDO'%>
+                                                            <font color ="red"> (Transferido)</font>
+                                                        <%else if nota.matricula.status=='REMANEJADO' %>
+                                                                    <font color ="green"> (Remanejado)</font>
+                                                             <%else if nota.matricula.status=='*REMANEJADO' %>
+                                                                    <font color ="green"> (*Remanejado)</font>
+                                                                  <%else if nota.matricula.status == 'TRANSFERENCIA' %>
+                                                                            <font color ="blue"> (Transferência)</font>
+                                                                       <%else%>
+                                                                            <font color ="cyan"> (Outros)</font>
+                                                                       <%end%>
+                                                                  <%end%>
+                                                             <%end%>
+                                                        <%end%>
+                                                    <%end%>
+                                                </td>
+                                                <%if !nota.nota1.present? or nota.nota1=='SN'%>
+                                                    <td align="center"><%= f.select :nota1 , options_for_select(@NOTASB1) %></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.nota1%> </td>
+                                                <%end%>
+                                                <%if !nota.faltas1.present? or nota.faltas1==0%>
+                                                    <td align="center"><%= f.text_field :faltas1 , :size => '1'%></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.faltas1%></td>
+                                                <%end%>
+                                                <%if !nota.nota2.present? or nota.nota2=='SN'%>
+<!-- para liberar pagar comentarios desta linha #--> <td align="center"><%= f.select :nota2 , options_for_select(@NOTASB2) %></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.nota2%> </td>
+                                                <%end%>
+                                                <%if !nota.faltas2.present? or nota.faltas2==0%>
+<!-- para liberar pagar comentarios desta linha #--> <td align="center"><%= f.text_field :faltas2 , :size => '1'%></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.faltas2%></td>
+                                                <%end%>
+                                                <%if !nota.nota3.present? or nota.nota3=='SN'%>
+<!-- para liberar pagar comentarios desta linha #--> <td align="center"><%= f.select :nota3 , options_for_select(@NOTASB3) %></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.nota3%> </td>
+                                                <%end%>
+                                                <%if !nota.faltas3.present? or nota.faltas3==0%>
+<!-- para liberar pagar comentarios desta linha #--> <td align="center"><%= f.text_field :faltas3 , :size => '1'%></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.faltas3%></td>
+                                                <%end%>
+
+                                                <%if !nota.nota4.present? or nota.nota4=='SN'%>
+<!-- para liberar pagar comentarios desta linha # --><td align="center"><%= f.select :nota4 , options_for_select(@NOTASB4) %></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.nota4%> </td>
+                                                <%end%>
+                                                <%if !nota.faltas4.present? or nota.faltas4==0%>
+<!-- para liberar pagar comentarios desta linha #--><td align="center"><%= f.text_field :faltas4 , :size => '1'%></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.faltas4%></td>
+                                                <%end%>
+                                                <%soma=0%>
+                                                <%if !nota.faltas1.nil?%>
+                                                    <%soma=soma+nota.faltas1.to_i%>
+                                                <%end%>
+                                                <%if !nota.faltas2.nil?%>
+                                                    <%soma=soma+nota.faltas2.to_i%>
+                                                <%end%>
+                                                <%if !nota.faltas3.nil?%>
+                                                    <%soma=soma+nota.faltas3.to_i%>
+                                                <%end%>
+                                                <%if !nota.faltas4.nil?%>
+                                                    <%soma=soma+nota.faltas4.to_i%>
+                                                <%end%>
+                                                <%nota.faltas5 = soma%>
+                                                <!--<#%nota.faltas5=nota.faltas4.to_i+nota.faltas3.to_i+nota.faltas2.to_i+nota.faltas1.to_i%>-->
+                                                <%=f.hidden_field :faltas5, {:value => nota.faltas5}%>
+                                                <%if !nota.nota5.present? or nota.nota5=='SN'%>
+<!-- para liberar pagar comentarios desta linha # --> <td align="center"><%= f.select :nota5 , options_for_select(@NOTASB5) %></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.nota5%> </td>
+                                                <%end%>
+                                                <%if !nota.faltas5.present? or nota.faltas5==0%>
+                                                      <td align="center"><!--<%#= f.text_field :faltas5 , :size => '1'%>--><%= nota.faltas5%></td>
+                                                <%else%>
+                                                    <td align="center"><%= nota.faltas5%></td>
+                                                <%end%>
+                                            </tr>
+                                            <% if nota.observacao_notas.present? %>
+                                                <%   t=session[:obs_id]=nota.observacao_notas.id   %>
+                                                <tr bgcolor="#DCDCDC" class="visualiza">
+                                                    <td class="visualiza"></td>
+                                                    <td align="right"valign="top" class="visualiza"><u> Observações:</u></td>
+                                                    <td colspan="13"  class="visualiza" >
+                                                        <% c=0 %>
+                                                        <table cellspacing="0" cellpadding="1" width="100%" style="border-color: #F5F5F5" class="visualiza">
+                                                            <% @obs= ObservacaoNota.find(:all, :conditions =>["nota_id=?",nota])%>
+                                                            <% @obs.each do |obs|%>
+                                                                <tr style="border-color: #F5F5F5" class="visualiza">
+                                                                    <td  style="border-color: white"colspan="3" class="visualiza"><b><%= c=c+1%>. </b><%=obs.observacao %> -
+                                                                        Data:  <%  if !obs.data.nil?  %>
+                                                                            <%=  obs.data.strftime("%d/%m/%Y")%><br/>
+                                                                        </td>
+                                                                        <td  style="border-color: #F5F5F5" width ="5%" align="center" class="visualiza"><%if (nota.matricula.status!="MATRICULADO" and nota.matricula.status=='TRANSFERIDO')%>
+                                                                                <font color ="red"> -----
+                                                                                <%else%>
+                                                                                    <%= link_to  image_tag('/stylesheets/images/excluir.png', :title => 'Excluir'), {:controller =>"observacao_notas", :action => "destroy", :id =>obs}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%>
+                                                                                <%end%>
+                                                                         </td>
+                                                                    </tr>
+                                                                <%end%>
+                                                            <%end%>
+                                                        </table>
+
+                                                    </td>
+                                                </tr>
+                                            <%end%>
+                                            <% cont1=cont1+1 %>
+                                      <%end%>
+                                    <%end%>
+                                    <tr>
+                                        <td colspan="13" align="right">
+                                            <%= submit_tag 'Salvar' %>
+                                        </td>
+                                <%end%>
+<!--
+                                        <td colspan="2" align="right">
+                                            <%#= button_to 'Fechar', home_path, {:method => "get"}  %>
+                                        </td>
+-->
+                                    </tr>
+                            </div></td>
+                    </tr>
+                </table>
+            <%else%>
+                <br/>
+                <table  width="100%" style="font-size: small">
+                    <tr>
+                        <td align="center"><font size="3" color="red"><b> NÃO SELECIONADO ou NÃO ENCONTRADO</b> </td>
+                    </tr>
+                </table>
+            <%end%>
+            <table>
+                <tr>
+<!--                    <td width="6%"align="left" ><%#=button_to 'Fechar', home_path, {:method => "get"}  %></td>-->
+                </tr>
+            </table>
+    </div>
+    </div>

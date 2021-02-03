@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  atividade_id: 
+  classe_id: 
+  professor_id: 
+  atribuicao_id: 
+  disciplina_id: 
+  unidade_id: 
+  user_id: 
+  avaliacao: MyString
+  ano_letivo: 2021-01-28
+  obs: MyString
+
+two:
+  atividade_id: 
+  classe_id: 
+  professor_id: 
+  atribuicao_id: 
+  disciplina_id: 
+  unidade_id: 
+  user_id: 
+  avaliacao: MyString
+  ano_letivo: 2021-01-28
+  obs: MyString

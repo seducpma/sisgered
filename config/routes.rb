@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :atividades, :collection => { :aviso=>:get, :consultas=> :get}
+  map.resources :atividade_avaliacaos
+
+  map.resources :atividades, :collection => { :aviso=>:get, :consultas=> :get,  :avaliacao=>:get}
   map.resources :atas ,:collection => { :consultas=>:get}
   map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get,:consultas_mqa =>:get, :editar_mqa=>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get, :validacao => :get}
   map.resources :faltas, :collection => { :lancar_faltas => :get, :lancar_faltas_inf => :get, :gerar_faltas=>:get,  :gerar_faltas_todas=>:get, :lancar_faltas_editar => :get}
@@ -50,7 +52,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.resources :estatisticas
 
-
+  map.editar_avaliacao_atividades'/estatisticaclasse', :controller => 'atividade_avaliacaos', :action => 'editar_avaliacao_atividades'
   map.estatisticaclasse'/estatisticaclasse', :controller => 'estatisticas', :action => 'estatisticaclasse'
   map.classeestatistica '/classeestatistica', :controller => 'estatisticas', :action => 'classeestatistica'
 
@@ -65,8 +67,12 @@ ActionController::Routing::Routes.draw do |map|
   map.new_disciplinanota '/new_disciplinanota', :controller => 'disciplinas', :action => 'new_disciplinanota'
   map.create_discipina_nota '/create_discipina_nota', :controller => 'disciplinas', :action => 'create_discipina_nota'
 
-
-  #map.teste '/teste', :controller => 'disciplinas', :action => 'teste'
+  map.editar_avaliacoes'/editar_avaliacoes', :controller => 'atividades', :action => 'editar_avaliacoes'
+  map.editar_avaliacao'/editar_avaliacao', :controller => 'atividades', :action => 'editar_avaliacao'
+  map.consultar_avaliacoes '/consultar_avaliacoes', :controller => 'atividades', :action => 'consultar_avaliacoes'
+  map.consulta_avaliacaos '/consulta_avaliacaos', :controller => 'atividades', :action => 'avaliacao_consulta'
+  map.validar_atividades '/validar_atividades', :controller => 'atividades', :action => 'valiadar_atividades'
+  map.validar_atividades2 '/validar_atividades2', :controller => 'atividades', :action => 'avaliar_atividades'
   map.alterar '/alterar', :controller => 'alteracaos', :action => 'alterar'
   map.altera_status 'altera_status', :controller => 'alteracaos', :action => 'alterar_classe'
   map.alteracao_status 'alteracao_status', :controller => 'criancas', :action => 'alteraracao_status'
@@ -139,6 +145,7 @@ ActionController::Routing::Routes.draw do |map|
   map.reprovacao '/reprovacao', :controller => 'matriculas', :action => 'reprovacao'
   map.reprovacao_aluno '/reprovacao_aluno', :controller => 'matriculas', :action => 'reprovacao_aluno'
   map.show_reprovado '/show_reprovado', :controller => 'matriculas', :action => 'show_reprovado'
+  map.show_atividades '/show_atividades', :controller => 'atividades', :action => 'show_avaliacao_atividades'
   map.editar_ficha_cadastral '/editar_ficha_cadastral', :controller => 'alunos', :action => 'editar_ficha_cadastral'
   map.editar_transferencia_aluno '/editar_transferencia_aluno', :controller => 'transferencias', :action => 'editar_transferencia_aluno'
   map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'

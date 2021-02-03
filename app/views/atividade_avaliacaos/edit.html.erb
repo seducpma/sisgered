@@ -1,0 +1,128 @@
+
+<div id="interno3">
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+    <div id="caixa_titulo">
+        <font size="3"><strong>AVALIAÇÃO DE ATIVIDADES PEDAGOGICAS</strong></font><br/>
+    </div>
+    <div class="tabs1">
+
+            <fieldset>
+                <table width="100%" style="font-size: small">
+                         <tr bgcolor="#F5F5F5">
+                            <td valign="top"> <b> Professor:</b> </td>
+                            <% cont=1 %>
+                            <% cont1=1 %>
+                            <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                                    <table width="100%" >
+                                        <tr bgcolor="#F5F5F5" >
+                                            <td align="left" width="45%"> <%=h atrib.professor.nome%></td>
+                                            <td align="left"width="10%"><b> Disciplina:</b></td>
+                                            <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                                            <% session[:disciplina] = atrib.disciplina.disciplina %>
+                                            <% session[:professor] = atrib.professor.nome %>
+                                            <% session[:professor_id] = atrib.professor.id %>
+                                            <% session[:classe] = atrib.classe.classe_classe %>
+                                            <% session[:ano] = atrib.ano_letivo %>
+                                            <% session[:periodo] = atrib.classe.horario %>
+                                            <% session[:id] = atrib.id %>
+                                        </tr>
+
+                                    </table>
+                                    <% cont= cont+1 %>
+                                <%end%>
+                            </td>
+                        </tr>
+
+                        <tr bgcolor="#F5F5F5" >
+                            <td align="left" width="10%"><b>Unidade:</b></td>
+                            <td align="left">  <%=h  @atividade_avaliacao.unidade.nome%>    <%  session[:unidade]=  @atividade_avaliacao.unidade.nome %></td>
+                            <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                            <td align="left"> <%=h  @atividade_avaliacao.ano_letivo %>     <%  session[:classe]=   @atividade_avaliacao.classe_id%></td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td align="left"><b>Classe:</b></td>
+                            <td align="left">  <%=h  @atividade_avaliacao.classe.classe_classe%></td>
+                            <td align="left"><b>Horário:</b></td>
+                            <td align="left">  <%=h  @atividade_avaliacao.classe.horario %></td>
+                        </tr>
+                    </table>
+                </fieldset>
+                  <table  border="1" frame="box" rules="all" width="100%" style="font-size: small" >
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="80%" colspan="3"><b> Alunos: </b> </td>
+
+                                 <td align="center" ><b> <%= link_to  truncate(@atividade_avaliacao.atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %>\</dt>
+
+
+
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="5%"align="center"><b>Nº</b></td>
+                        <td width ="10%">&nbsp&nbsp<b>RA</b></td>
+                        <td width ="65%">&nbsp&nbsp<b>NOME</b></td>
+                        <td align="center" colspan="2"></td>
+
+
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td colspan="13"> <div id="atividades_aluno">
+                                <% form_for(@atividade_avaliacao) do |f| %>
+
+                                            <tr bgcolor="#F5F5F5">
+                                                <td width ="4%" align="center"><%= @atividade_avaliacao.matricula.classe_num  %>  </td>
+                                                <td width ="10%" ><%= @atividade_avaliacao.matricula.aluno.aluno_ra  %></td>
+                                                <td width ="40%" align="left"><%= @atividade_avaliacao.aluno.aluno_nome %>
+                                                  <%if @atividade_avaliacao.matricula.status!="MATRICULADO"%>
+                                                        <%if @atividade_avaliacao.matricula.status=='TRANSFERIDO'%>
+                                                            <font color ="red"> (Transferido)</font>
+                                                        <%else if @atividade_avaliacao.matricula.status=='REMANEJADO' %>
+                                                                    <font color ="green"> (Remanejado)</font>
+                                                             <%else if@atividade_avaliacaomatricula.status=='*REMANEJADO' %>
+                                                                    <font color ="green"> (*Remanejado)</font>
+                                                                  <%else if @atividade_avaliacao.matricula.status == 'TRANSFERENCIA' %>
+                                                                            <font color ="blue"> (Transferência)</font>
+                                                                       <%else%>
+                                                                            <font color ="cyan"> (Outros)</font>
+                                                                       <%end%>
+                                                                  <%end%>
+                                                             <%end%>
+                                                        <%end%>
+                                                    <%end%>
+                                                </td>
+
+
+                                                        
+                                                            <td align="center"><%#= f.collection_select  :avaliacao, @Avaliacao, :include_blank => ' xxx ' %>
+
+                                                                                <%= f.select :avaliacao , options_for_select(@Avaliacao), :include_blank => @atividade_avaliacao.avaliacao %>
+
+                                                                                <%#= f.select :avaliacao , options_for_select(@Avaliacao).insert(0, @atividade_avaliacao.avaliacao),0 %></td>
+                                                        
+                                                                             <%#= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1),0) %>
+                                            </tr>
+
+                                            <% cont1=cont1+1 %>
+
+                                    
+                                    <tr>
+                                        <td colspan="13" align="right">
+                                            <%= submit_tag 'Salvar' %>
+                                        </td>
+                                <%end%>
+
+                                    </tr>
+                            </div></td>
+                    </tr>
+                </table>
+
+            <table>
+                <tr>
+                   <td width="6%"align="left" ><%=button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                </tr>
+            </table>
+    </div>
+    </div>
+</div>
+

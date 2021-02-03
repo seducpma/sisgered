@@ -11,4 +11,5 @@ class Unidade < ActiveRecord::Base
   has_many :notas
   has_many :conteudos
   has_many :atas
+  has_many :atividade
 end

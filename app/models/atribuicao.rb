@@ -5,6 +5,7 @@ class Atribuicao < ActiveRecord::Base
   has_many :notas
   has_many :relatorios
   has_many :conteudos
+  has_many :atividade_validacaos
   before_save :atribui
 
     validates_presence_of :classe_id

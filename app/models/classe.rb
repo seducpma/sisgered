@@ -6,6 +6,7 @@ class Classe < ActiveRecord::Base
   has_many :atribuicaos
   has_many :transferencias
   has_many :conteudos
+  has_many :atividade_validacaos
 
   before_save :caps_look
   before_save :atribui_unidade

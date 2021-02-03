@@ -1,0 +1,140 @@
+<style type="text/css">
+    .textovertical {
+        -webkit-transform:rotate(270deg);
+        -moz-transform:rotate(270deg);
+        -o-transform: rotate(270deg);
+    }
+</style>
+<div id="interno7">
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+    <div id="caixa_titulo">
+        <font size="3"><strong>AVALIAÇÃO DE ATIVIDADES PEDAGOGICAS</strong></font><br/>
+    </div>
+    <div class="tabs1">
+        <%if  @atividade_avaliacao.present?%>
+            <fieldset>
+                <table width="100%" style="font-size: small">
+                         <tr bgcolor="#F5F5F5">
+                            <td valign="top"> <b> Professor:</b> </td>
+                            <% cont=1 %>
+                            <% cont1=1 %>
+                            <td colspan="4">  <% for atrib in @atribuicao_classe %>
+                                    <table width="100%" >
+                                        <tr bgcolor="#F5F5F5" >
+                                            <td align="left" width="45%"> <%=h atrib.professor.nome%></td>
+                                            <td align="left"width="10%"><b> Disciplina:</b></td>
+                                            <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
+                                            <% session[:disciplina] = atrib.disciplina.disciplina %>
+                                            <% session[:professor] = atrib.professor.nome %>
+                                            <% session[:professor_id] = atrib.professor.id %>
+                                            <% session[:classe] = atrib.classe.classe_classe %>
+                                            <% session[:ano] = atrib.ano_letivo %>
+                                            <% session[:periodo] = atrib.classe.horario %>
+                                            <% session[:id] = atrib.id %>
+                                        </tr>
+
+                                    </table>
+                                    <% cont= cont+1 %>
+                                <%end%>
+                            </td>
+                        </tr>
+
+                        <tr bgcolor="#F5F5F5" >
+                            <td align="left" width="10%"><b>Unidade:</b></td>
+                            <td align="left">  <%=h  @atividade_avaliacao[0].unidade.nome%>    <%  session[:unidade]=  @atividade_avaliacao[0].unidade.nome %></td>
+                            <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                            <td align="left"> <%=h  @atividade_avaliacao[0].ano_letivo %>     <%  session[:classe]=   @atividade_avaliacao[0].classe_id%></td>
+                        </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td align="left"><b>Classe:</b></td>
+                            <td align="left">  <%=h  @atividade_avaliacao[0].classe.classe_classe%></td>
+                            <td align="left"><b>Horário:</b></td>
+                            <td align="left">  <%=h  @atividade_avaliacao[0].classe.horario %></td>
+                        </tr>
+                    </table>
+                </fieldset>
+                  <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="78%" colspan="3"><b> Alunos: </b> <br/><br/><br/><br/><br/><br/></td>
+                        <%@atividades.each do |atividade| %>
+                                 <td align="center" ><div class="textovertical"><b> <%= link_to  truncate(atividade.atividade ,:length => 15,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b></div></td>
+
+                         <%end%>
+                        <td colspan="10"></td>
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="4%"align="center"><b>Nº</b></td>
+                        <td width ="10%">&nbsp&nbsp<b>RA</b></td>
+                        <td width ="40%">&nbsp&nbsp<b>NOME</b></td>
+                        <%@atividades.each do |atividade| %>
+                                 <td align="center" colspan="2"></b></div></td>
+                         <%end%>
+
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td colspan="13"> <div id="atividades_aluno">
+                                <% form_for :atividade, :url => {:action => 'update_multiplas_atividades'} do -%>
+                                    <%@atividade_avaliacao.each do |atividade|%>
+                                        <% fields_for "atividade[]", atividade do |f| %>
+                                            <tr bgcolor="#F5F5F5">
+                                                <td width ="4%" align="center"><%= atividade.matricula.classe_num  %>  </td>
+                                                <td width ="10%" ><%= atividade.matricula.aluno.aluno_ra  %></td>
+                                                <td width ="40%" align="left"><%= atividade.aluno.aluno_nome %>
+                                                  <%if atividade.matricula.status!="MATRICULADO"%>
+                                                        <%if atividade.matricula.status=='TRANSFERIDO'%>
+                                                            <font color ="red"> (Transferido)</font>
+                                                        <%else if atividade.matricula.status=='REMANEJADO' %>
+                                                                    <font color ="green"> (Remanejado)</font>
+                                                             <%else if atividade.matricula.status=='*REMANEJADO' %>
+                                                                    <font color ="green"> (*Remanejado)</font>
+                                                                  <%else if atividade.matricula.status == 'TRANSFERENCIA' %>
+                                                                            <font color ="blue"> (Transferência)</font>
+                                                                       <%else%>
+                                                                            <font color ="cyan"> (Outros)</font>
+                                                                       <%end%>
+                                                                  <%end%>
+                                                             <%end%>
+                                                        <%end%>
+                                                    <%end%>
+                                                </td>
+                                                 <%@atividades.each do |ativ| %>
+                                                        <%if !atividade.avaliacao.present?%>
+                                                            <td align="center"><%= f.select :avaliacao , options_for_select(@Avaliacao) %></td>
+                                                        <%else%>
+                                                            <td align="center"><%= atividade.avaliacao%> </td>
+                                                        <%end%>
+                                               <%end%>
+                                            </tr>
+
+                                            <% cont1=cont1+1 %>
+                                      <%end%>
+                                    <%end%>
+                                    <tr>
+                                        <td colspan="13" align="right">
+                                            <%= submit_tag 'Salvar' %>
+                                        </td>
+                                <%end%>
+
+                                    </tr>
+                            </div></td>
+                    </tr>
+                </table>
+
+            <%else%>
+                <br/>
+                <table  width="100%" style="font-size: small">
+                    <tr>
+                        <td align="center"><font size="3" color="red"><b> NÃO SELECIONADO ou NÃO ENCONTRADO</b> </td>
+                    </tr>
+                </table>
+            <%end%>
+            <table>
+                <tr>
+                   <td width="6%"align="left" ><%=button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                </tr>
+            </table>
+    </div>
+    </div>
+</div>
+

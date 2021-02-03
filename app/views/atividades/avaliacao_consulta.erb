@@ -1,0 +1,126 @@
+<%if  current_user.has_role?('admin') 	 or   current_user.has_role?('SEDUC')  %>
+   <%@professors = Professor.find(:all,:select => 'distinct(professors.nome), professors.id',  :joins => "INNER JOIN  atribuicaos   ON  professors.id = atribuicaos.professor_id INNER JOIN  classes  ON  classes.id = atribuicaos.classe_id  INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id ", :conditions =>['professors.desligado=  0 and classes.classe_ano_letivo = ? and (tipos.id = 1 or tipos.id = 4  or tipos.id = 7)',Time.now.year ],:order => 'nome ASC')%>
+   <%@disciplinas = Disciplina.find(:all, :select => 'distinct(disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN  atividades   ON  disciplinas.id = atividades.disciplina_id ", :conditions =>['atividades.ano_letivo= ? ',Time.now.year,  ],:order => 'disciplina ASC')%>
+   <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC')%>
+<%else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+        <%@professors = Professor.find(:all,:select => 'distinct(professors.nome), professors.id',  :joins => "INNER JOIN  atividades   ON  professors.id = atividades.professor_id  INNER JOIN  atribuicaos   ON  professors.id = atribuicaos.professor_id INNER JOIN  classes  ON  classes.id = atribuicaos.classe_id  INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id ", :conditions =>['professors.desligado=  0 and classes.classe_ano_letivo = ? and (tipos.id = 1 or tipos.id = 4  or tipos.id = 7)AND  atividades.unidade_id =?',Time.now.year,  current_user.unidade_id ],:order => 'professors.nome ASC,  atividades.inicio DESC')%>
+         <%@disciplinas = Disciplina.find(:all, :select => 'distinct(disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN  atividades   ON  disciplinas.id = atividades.disciplina_id ", :conditions =>['atividades.ano_letivo= ? and atividades.unidade_id=? ', Time.now.year, current_user.unidade_id   ],:order => 'disciplinas.disciplina ASC')%>
+         <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.unidade_id =?' , Time.now.year, current_user.unidade_id ], :order => 'classes.classe_classe ASC, atividades.inicio DESC')%>
+
+       <%else%>
+          <%@professors = Professor.find(:all,:select => 'distinct(professors.nome), professors.id',  :joins => "INNER JOIN  atividades   ON  professors.id = atividades.professor_id INNER JOIN  atribuicaos   ON  professors.id = atribuicaos.professor_id INNER JOIN  classes  ON  classes.id = atribuicaos.classe_id  INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id ", :conditions =>['professors.desligado=  0 and classes.classe_ano_letivo = ? and (tipos.id = 1 or tipos.id = 4  or tipos.id = 7)AND  atividades.professor_id =?',Time.now.year,  current_user.professor_id ],:order => 'professors.nome ASC,  atividades.inicio DESC')%>
+          <%@disciplinas = Disciplina.find(:all, :select => 'distinct(disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN  atividades   ON  disciplinas.id = atividades.disciplina_id ", :conditions =>['atividades.ano_letivo= ? and atividades.professor_id=? ', Time.now.year, current_user.professor_id   ],:order => 'disciplinas.disciplina ASC')%>
+          <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.professor_id =?' , Time.now.year, current_user.professor_id ], :order => 'classes.classe_classe ASC,  atividades.inicio DESC')%>
+       <%end%>
+<%end%>
+
+
+
+
+
+<div id="interno7">
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>CONSULTA AVALIAÇÕES ATIVIDADES PEDAGOGICAS</strong></font><br/>
+     <%session[:flag_edit_atribuicao]=0%>
+ </div>
+    <div class="tabs">
+    
+    <% form_remote_tag :url => consultar_avaliacoes_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <fieldset>
+          <table width="100%" align="center" bgcolor="#DCDCDC"  >
+          <tr>
+            <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Professor:</b></font>
+               &nbsp&nbsp&nbsp<%= collection_select :professor, :id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+        </tr>
+          <tr>
+            <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Classe:</b></font>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= collection_select :classe, :id, @classe_ano, :id, :classe_unidade, :include_blank => ' -- Selecione -- ' %> 
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b class="label_busca3">Disciplina:</b></font>
+               &nbsp&nbsp<%= select_tag :disciplina, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %></td>
+
+          </tr>
+          <tr>
+              
+            <td colspan="3"align="right"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                 <b class="label_busca3">Período das atividades: &nbsp&nbsp&nbsp Inicio:</b></font>&nbsp
+                <%= datepicker_tag(:atividade, :inicio,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <font size="2"><b class="label_busca3">Fim:</b></font>&nbsp
+                <%= datepicker_tag(:atividade, :fim,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+         </td>
+       </tr>
+
+       </table>
+       </fieldset>
+      <fieldset>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
+          <tr>
+            <td>
+                <div id="atividades"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+              <br/>
+            </td>
+          </tr>
+       </table>
+          <% end %>
+
+      </fieldset>
+
+<!--   <% form_remote_tag :url => consultar_avaliacoes_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+         <table width="100%" align="center" bgcolor="#DCDCDC"  >
+          <tr>
+            <td>
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Atividade
+              <a href="#" class="filtro_classe"><%= radio_button_tag(:type_of, "2") %></a>Classe
+              <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "3") %></a>Professor
+              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "4") %></a>Unidade
+              <a href="#" class="filtro_disciplina"><%= radio_button_tag(:type_of, "5") %></a>Disciplina
+              <a href="#" class="filtro_data"><%= radio_button_tag(:type_of, "6") %></a>Data
+            </td>
+         </tr>
+         <tr>
+           <td><div class="consulta" style="display:none"> <%= render "consulta_atividade" %> </div>
+               <div class="consulta_classe" style="display:none"> <%= render "consulta_classe" %> </div>
+               <div class="consulta_unidade" style="display:none"> <%= render "consulta_unidade" %> </div>
+               <div class="consulta_professor" style="display:none"> <%= render "consulta_professor" %> </div>
+               <div class="consulta_disciplina" style="display:none"> <%= render "consulta_disciplina" %> </div>
+               <div class="consulta_data" style="display:none"> <%= render "consulta_data" %> </div>
+           </td>
+         </tr>
+
+
+
+
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="atividades"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+-->
+    <br/>
+   <table>
+    <tr>
+
+
+                     <td width =" 10%"><%= button_to "Nova Consulta",consulta_avaliacaos_path %></td>
+
+
+
+
+
+     <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>

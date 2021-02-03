@@ -8,6 +8,8 @@ class Aluno < ActiveRecord::Base
   has_many :relatorios
   has_and_belongs_to_many :classes
   has_many :notas
+  has_many :atividade_avaliacaos
+   
   has_attached_file :photo, :styles => {:original=> "180x180>" },
                     :url => "/photos/:class/:id.:extension",
                     :path => ":rails_root/public/photos/:class/:id.:extension"
