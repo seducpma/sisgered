@@ -5,7 +5,7 @@ class AtividadesController < ApplicationController
  before_filter :load_dados_iniciais
 
   def load_dados_iniciais
-      @Avaliacao = [nil,"SN","10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","TR","RM","F","NF","ABN"]
+      @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
 
     if current_user.has_role?('admin') or current_user.has_role?('SEDUC') 
           @pedagogos = Professor.find(:all, :select => 'distinct(professors.nome) as nome, professors.id as id ',:joins=> 'INNER JOIN atribuicaos ON atribuicaos.professor_id = professors.id INNER JOIN classes ON atribuicaos.classe_id = classes.id',:conditions => ['desligado = 0 AND (classes.classe_classe="PEDAGOGO" OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="SUPERVISÃO"  OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="DIREÇÃO FUNDAMENTAL" OR classes.classe_classe="DIREÇÃO INFANTIL")'],:order => 'nome ASC')

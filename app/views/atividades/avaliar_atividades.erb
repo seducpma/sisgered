@@ -56,18 +56,14 @@
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small" >
                     <tr bgcolor="#F5F5F5">
-                        <td width ="80%" colspan="3"><b> Alunos: </b> </td>
-                        
-                                 <td align="center" ><b> <%= link_to  truncate(@atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %>\</dt>
-                                                         
-                                 
-                        
+                        <td width ="70%" colspan="3"><b> Alunos: </b> </td>
+                        <td align="center" ><b> <%= link_to  truncate(@atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %></td>
                         <td colspan="2"></td>
                     </tr>
                     <tr bgcolor="#F5F5F5">
                         <td width ="5%"align="center"><b>Nº</b></td>
                         <td width ="10%">&nbsp&nbsp<b>RA</b></td>
-                        <td width ="65%">&nbsp&nbsp<b>NOME</b></td>
+                        <td width ="60%">&nbsp&nbsp<b>NOME</b></td>
                         <td align="center" colspan="2"></td>
                         
 

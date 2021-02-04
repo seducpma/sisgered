@@ -1,4 +1,4 @@
-<div id="interno1">
+<div id="interno3">
 <% title "ALUNOS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -49,11 +49,10 @@
                     <table width=" 100%" border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                       <tr bgcolor="#F5F5F5">
                           <td colspan="2">
-                          <font color="green"><b><u>ATENÇÃO:</u> Faça o registro das atividades desenvolvidas de forma sucinta que contemple os seguintes
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      elementos:</br>
+                          <font color="green"><b><u>ATENÇÃO:</u> Faça o registro das atividades desenvolvidas de forma sucinta que contemple os seguintes elementos:</br>
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. Título da atividade. <br/>
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. Rescrição resumida da atividade. <br/>
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Componente curricular/campo de experiêncipa a que se refere a atividade em questão. <br/>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. Componente curricular da atividade. <br/>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Rescrição resumida da atividade. <br/>
 
                             </b>
                         </td>
@@ -63,18 +62,21 @@
                 </tr>
                 <tr bgcolor="#F5F5F5">
                     <td><b> Atividade:</b></td>
-                    <td> <%= f.text_field :atividade, :size=>"40" %></td>
+                    <td> <%= f.text_field :atividade, :size=>"84" %></td>
                 </tr>
                 <tr bgcolor="#F5F5F5">
-                    <td colspan="2"><b> Componente Curricular:</b> &nbsp&nbsp <%= f.text_field :componente, :size=>"40" %> </td>
+                    <td colspan="2"><b> Componente Curricular:</b> &nbsp&nbsp&nbsp <%= f.text_field :componente, :size=>"72" %> </td>
                  </tr>
                  <tr bgcolor="#F5F5F5">
-                     <td colspan="2"><b>Descrição Atividade: </b>&nbsp&nbsp <%= f.text_field :descricao, :size=>"66" %></td>
+                     <td colspan="2"><b>Descrição Atividade: </b>&nbsp&nbsp <%= f.text_field :descricao, :size=>"75" %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                     <td colspan="2"><b>Observações:  </b>&nbsp&nbsp <%= f.text_field :descricao, :size=>"80" %></td>
                  </tr>
 
                 <tr bgcolor="#F5F5F5">
                   <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formação.<br/>
-                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este lançamento <b>NÃO</b> poderá ser mais editado ou alterado.<br/>
+                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este registro somente poderá ser editado ou alterado pelo pegadodo ou gestor da unidade.<br/>
 
                         </td>
                 </tr>

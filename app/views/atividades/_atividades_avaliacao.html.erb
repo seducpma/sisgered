@@ -5,9 +5,9 @@
         <tr bgcolor="#DCDCDC" >
             <td align="CENTER"width =" 5%"> <b> Classe</b></td>
             <td width =" 10%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
-            <td width =" 20%"><b>&nbsp&nbsp&nbsp Professor</b></td>
+            <td width =" 23%"><b>&nbsp&nbsp&nbsp Professor</b></td>
             <td width =" 45%"><b>&nbsp&nbsp&nbsp Atividade</b></td>
-            <td width =" 25%"> <b>&nbsp&nbsp&nbsp Período</b></td>
+            <td width =" 22%"> <b>&nbsp&nbsp&nbsp Período</b></td>
             <td width =" 25%"> <b>&nbsp&nbsp&nbsp </b></td>
            
 
@@ -18,10 +18,10 @@
             <td align="CENTER"><%= atividade.classe.classe_classe%></td>
             <td align="left"> <%= atividade.disciplina.disciplina%></td>
             <td align="left"><%= atividade.professor.nome%><br/>
-                <font size="1" color="gray">(<%= atividade.unidade.nome%>)</font>
+                <font size="1" color="gray">(<%= truncate(atividade.unidade.nome, :lenght =>50, :omission =>"...") %>)</font>
             </td>
             <td align="left" >&nbsp <%= atividade.atividade%> </td>
-            <td align="left"> De <%= atividade.inicio.strftime("%d/%m/%Y") %> à  <%= atividade.fim.strftime("%d/%m/%Y")%></td>
+            <td align="left"> de <%= atividade.inicio.strftime("%d/%m/%Y") %> à  <%= atividade.fim.strftime("%d/%m/%Y")%></td>
             <td align="center"> <%= link_to  image_tag('/stylesheets/images/valida.png', :title => 'Avaliar'), { :controller=> 'atividades', :action => "avaliar_atividades", :id =>atividade}, :method => "get", :title => "AvaliarEditar"%></td>
          </tr>
          <%end%>

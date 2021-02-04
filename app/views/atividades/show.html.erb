@@ -19,7 +19,7 @@
                        <td width=5%" align="center"><b>Classe:</b></td>
                        <td width=10% align="CENTER" > <%=h @atividade.atribuicao.classe.classe_classe %> <%if !@atividade.disciplina_id.nil?%> - <%=h @atividade.atribuicao.classe.classe_ano_letivo %><%end%></td>
                        <td width=10%" align="center"><b>Unidade:</b></td>
-                       <td width=20%> <%=h @atividade.unidade.nome %></td>
+                       <td width=45%> <%=h @atividade.unidade.nome %></td>
                        <td width=8%" align="center"><b>Período:</b></td>
                        <td colspan="3"> De <%=h @atividade.inicio.strftime("%d/%m/%Y") %> à <%=h @atividade.fim.strftime("%d/%m/%Y") %>
                        </td>
