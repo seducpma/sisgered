@@ -26,7 +26,7 @@
      <%session[:flag_edit_atribuicao]=0%>
  </div>
     <div class="tabs">
-    
+<!--
     <% form_remote_tag :url => consultar_avaliacoes_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
           <table width="100%" align="center" bgcolor="#DCDCDC"  >
@@ -68,8 +68,8 @@
           <% end %>
 
       </fieldset>
-
-<!--   <% form_remote_tag :url => consultar_avaliacoes_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+-->
+   <% form_remote_tag :url => consultar_avaliacoes_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
          <table width="100%" align="center" bgcolor="#DCDCDC"  >
           <tr>
             <td>
@@ -99,7 +99,7 @@
     <br/>
     <hr/>
     <div id="atividades"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
--->
+
     <br/>
    <table>
     <tr>
