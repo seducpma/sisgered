@@ -4,7 +4,7 @@ class AtividadeAvaliacaosController < ApplicationController
    before_filter :load_iniciais
 
   def load_iniciais
-        @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
+        @Avaliacao = [nil,"xxx", "yyy", "10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
   end
   def index
     @atividade_avaliacaos = AtividadeAvaliacao.all
