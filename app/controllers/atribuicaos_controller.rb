@@ -285,6 +285,7 @@ class AtribuicaosController < ApplicationController
         else
            @matriculas = Matricula.find(:all,:conditions =>['aluno_id = ? and ano_letivo=? and unidade_id=?', session[:aluno], session[:ano_nota], current_user.unidade_id])
         end
+        t0=0
         @matriculas.each do |matricula|
             session[:classe]=matricula.classe_id
             session[:num]=matricula.classe_num
@@ -412,6 +413,12 @@ class AtribuicaosController < ApplicationController
                 session[:num]=matricula.classe_num
                 session[:status]=matricula.status
                 session[:matricula_id]= matricula.id
+
+                session[:un_nome]=matricula.unidade.nome
+                session[:un_end]=matricula.unidade.endereco
+                session[:un_end_nr]=matricula.unidade.num
+                session[:un_end_cep]=matricula.unidade.CEP
+                session[:un_end_fone]=matricula.unidade.fone
             end
             @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
             @classe.each do |classe|
