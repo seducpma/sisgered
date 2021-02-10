@@ -3,7 +3,7 @@
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
     <div id="caixa_titulo">
-        <font size="3"><strong>AVALIAÇÃO DE ATIVIDADES PEDAGOGICAS</strong></font><br/>
+        <font size="3"><strong>DEVOLUTIVA DE ATIVIDADES PEDAGOGICAS [2]</strong></font><br/>
     </div>
     <div class="tabs1">
 
@@ -16,6 +16,7 @@
                             <td colspan="4">  <% for atrib in @atribuicao_classe %>
                                     <table width="100%" >
                                         <tr bgcolor="#F5F5F5" >
+                                            <%t0=0%>
                                             <td align="left" width="45%"> <%=h atrib.professor.nome%></td>
                                             <td align="left"width="10%"><b> Disciplina:</b></td>
                                             <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
@@ -27,7 +28,6 @@
                                             <% session[:periodo] = atrib.classe.horario %>
                                             <% session[:id] = atrib.id %>
                                         </tr>
-
                                     </table>
                                     <% cont= cont+1 %>
                                 <%end%>

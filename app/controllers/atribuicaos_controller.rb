@@ -295,6 +295,7 @@ class AtribuicaosController < ApplicationController
             session[:un_end_nr]=matricula.unidade.num
             session[:un_end_cep]=matricula.unidade.CEP
             session[:un_end_fone]=matricula.unidade.fone
+            t0=0
         end
 
         @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])

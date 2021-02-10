@@ -184,23 +184,16 @@ display: none;
      <img src="/stylesheets/images/nav-bg-l.jpg" alt="" class="float-left" />
      <img src="/stylesheets/images/nav-bg-r.jpg" alt="" class="float-right" />
             <ul id="nav-container" class="nav-container">
-
               <li><a class="item-primary" href="#">SISGERED</a>
                 <ul style="width:108px;">
                   <li><%= link_to 'Inicio', root_path %></li>
-
                      <li><a class="item-primary" href="#;">Manual on_line</a>
                          <ul>
-                             <li><%= link_to 'SISGERED', href= "https://docs.google.com/document/d/1KORwNkxV7ogNpc7EUyMxQHA4MMSSju_eOouI5cNABFE/edit?usp=sharing", :target => '_blank' %></li>
+                            <li><%= link_to 'SISGERED', href= "https://docs.google.com/document/d/1KORwNkxV7ogNpc7EUyMxQHA4MMSSju_eOouI5cNABFE/edit?usp=sharing", :target => '_blank' %></li>
                             <li><%= link_to "Professor", manual_professor_path%></li>
                             <li><%= link_to "Pedagogo/Direção", manual_direcao_path%></li>
-
                          </ul>
                      </li>
-
-
-
-
                   <li><%= link_to 'Sair', logout_path,:confirm => "Tem certeza que deseja fazer logout?" %></li>
                 </ul>
               </li>
@@ -276,29 +269,29 @@ display: none;
           <li><a class="item-primary" href="#;">ATIVIDADES</a>
                              <ul>
 
-                                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental'))%>
+                                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental'))%>
                                         <li><%= link_to "Cadastrar",new_atividade_path %></li>
                                     <%end%>
 
-                           <!--         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental'))%>
-                                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental'))%>
-                                                <li><%= link_to "Editar",consultas_atividades_path %></li>
-                                              <%end%>
-                                     <%end%>
+                           <!--     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental'))%>
+                                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental'))%>
+                                            <li><%= link_to "Editar",consultas_atividades_path %></li>
+                                        <%end%>
+                                    <%end%>
                               -->
                                     <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') %>
                                          <li><a class="item-primary" href="#;">Consultar</a>
                                             <ul>
                                                 <li><%= link_to "Atividades",consultas_atividades_path %></li>
-                                                <li><%= link_to "Avaliações",consulta_avaliacaos_path %></li>
+                                                <li><%= link_to "Devolutiva",consulta_avaliacaos_path %></li>
                                             </ul>
                                          </li>
                                     <%end%>
 
                                      <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') %>
-                                         <li><a class="item-primary" href="#;">Avaliação</a>
+                                         <li><a class="item-primary" href="#;">Devolutiva</a>
                                             <ul>
-                                               <li><%= link_to "Avaliar",avaliacao_atividades_path %></li>
+                                               <li><%= link_to "Registrar",avaliacao_atividades_path %></li>
                                                <li><%= link_to "Editar",editar_avaliacao_path %></li>
                                             </ul>
                                         </li>
@@ -678,7 +671,7 @@ display: none;
        <table width="100%" border="2">
          <tr>
            <td width ="100%" align="center">
-             <b><font size="4" color="blue"><%= "#{ link_to "Clique para dowload -  PROTOCOLO RETORNO ATIVIDADES PRESENCIAIS", protocolo_covid_path}"%> </font></b>
+             <b><font size="4" color="blue"><%= "#{ link_to "Clique para download -  PROTOCOLO RETORNO ATIVIDADES PRESENCIAIS", protocolo_covid_path}"%> </font></b>
             </td>
          </tr>
      </table>

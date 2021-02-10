@@ -9,7 +9,7 @@
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
     <div id="caixa_titulo">
-        <font size="3"><strong>AVALIAÇÃO DE ATIVIDADES PEDAGOGICAS</strong></font><br/>
+        <font size="3"><strong>DEVOLUTIVA DE ATIVIDADES PEDAGOGICAS [11]</strong></font><br/>
     </div>
     <div class="tabs1">
         <%if   @atividade_avaliacao_alunos.present?%>
@@ -17,6 +17,12 @@
                 <table width="100%" style="font-size: small">
                          <tr bgcolor="#F5F5F5">
                             <td valign="top"> <b> Professor:</b> </td>
+                            <%@professor=Professor.find(@atividade_avaliacao_alunos[0].professor_id)%>
+                            <%@disciplina=Disciplina.find(@atividade_avaliacao_alunos[0].disciplina_id)%>
+                            <%t0=0%>
+                            <td align="left" width="45%"> <%=h @professor.nome%></td>
+                            <td valign="top"> <b> Disciplina:</b> </td>
+                            <td align="left" width="45%"> <%=h @disciplina.disciplina%></td>
                             <% cont=1 %>
                             <% cont1=1 %>
                             <td colspan="4">  <% for atrib in @atribuicao_classe %>
@@ -33,7 +39,6 @@
                                             <% session[:periodo] = atrib.classe.horario %>
                                             <% session[:id] = atrib.id %>
                                         </tr>
-
                                     </table>
                                     <% cont= cont+1 %>
                                 <%end%>
