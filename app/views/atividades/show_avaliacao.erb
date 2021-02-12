@@ -26,9 +26,7 @@
                                             <td align="left" width="45%"> <%=h @atividade[0].professor.nome%></td>
                                             <td align="left"width="10%"><b> Disciplina:</b></td>
                                             <td align="left" width="30%"> <%=h @atividade[0].disciplina.disciplina %></td>
-
                                         </tr>
-
                                     </table>
                                     <% cont= cont+1 %>
                                 <%#end%>
@@ -56,7 +54,6 @@
                                  <td align="center" ><div class="textovertical"><b> <%#= link_to  truncate(atividade.atividade ,:length => 14,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b></div>
                                                                                     <%= link_to (atividade.atividade),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b></div>
                                   </td>
-
                          <%end%>
 
                     </tr>
@@ -74,56 +71,51 @@
 
                                 <%lin=@atividade_avaliacao_alunos.count%>
                                 <%col=@atividade.count%>
-                                <%@avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?  and atividade_avaliacaos.disciplina_id=?',  session[:professor], session[:classe] , session[:disciplina]])%>
-                                <%cont_aval=0%>
+                                <%@avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id=?', session[:atividade]])%>
                                 <%cont_ativ=0%>
-
-
-                                
-                                    <%cont_aval=0%>
-                                    <% @atividade_avaliacao_alunos.each do |atividade|%>
-                                        
-                                            <tr bgcolor="#F5F5F5">
-                                                <td width ="4%" align="center"><%= atividade.matricula.classe_num  %>  </td>
-                                                <td width ="10%" ><%= atividade.matricula.aluno.aluno_ra  %></td>
-                                                <td width ="40%" align="left"><%= atividade.aluno.aluno_nome %>
-                                                  <%if atividade.matricula.status!="MATRICULADO"%>
-                                                        <%if atividade.matricula.status=='TRANSFERIDO'%>
-                                                            <font color ="red"> (Transferido)</font>
-                                                        <%else if atividade.matricula.status=='REMANEJADO' %>
-                                                                    <font color ="green"> (Remanejado)</font>
-                                                             <%else if atividade.matricula.status=='*REMANEJADO' %>
-                                                                    <font color ="green"> (*Remanejado)</font>
-                                                                  <%else if atividade.matricula.status == 'TRANSFERENCIA' %>
-                                                                            <font color ="blue"> (Transferência)</font>
-                                                                       <%else%>
-                                                                            <font color ="cyan"> (Outros)</font>
-                                                                       <%end%>
-                                                                  <%end%>
-                                                             <%end%>
-                                                        <%end%>
+                                <%cont_aval=0%>
+                                <%@atividade_avaliacao_alunos.each do |atividade|%>
+                                        <tr bgcolor="#F5F5F5">
+                                            <td width ="4%" align="center"><%= atividade.matricula.classe_num  %>  </td>
+                                            <td width ="10%" ><%= atividade.matricula.aluno.aluno_ra  %></td>
+                                            <td width ="40%" align="left"><%= atividade.aluno.aluno_nome %>
+                                              <%if atividade.matricula.status!="MATRICULADO"%>
+                                                    <%if atividade.matricula.status=='TRANSFERIDO'%>
+                                                        <font color ="red"> (Transferido)</font>
+                                                    <%else if atividade.matricula.status=='REMANEJADO' %>
+                                                                <font color ="green"> (Remanejado)</font>
+                                                         <%else if atividade.matricula.status=='*REMANEJADO' %>
+                                                                <font color ="green"> (*Remanejado)</font>
+                                                              <%else if atividade.matricula.status == 'TRANSFERENCIA' %>
+                                                                        <font color ="blue"> (Transferência)</font>
+                                                                   <%else%>
+                                                                        <font color ="cyan"> (Outros)</font>
+                                                                   <%end%>
+                                                              <%end%>
+                                                         <%end%>
                                                     <%end%>
-                                                </td>
-                                                <%cont_ativ=0%>
-                                                <%@atividade.each do |atividade|%>
-                                                <td align="center">
-                                                    <table >
-                                                        <tr>
-                                                            <%t0=0%>
-                                                            <td align="center"> <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
-                                                                                    
-                                                                                <%else%>
-                                                                                    <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%> 
-                                                                               <%end%>
-                                                            </td>
-                                                        </tr>
-                                                       </table>
-                                                    </td>
-                                                    <%cont_ativ=cont_ativ+1%>
                                                 <%end%>
-                                                <%cont_aval=cont_aval+1%>
-                                            </tr>
-                                      <%end%>
+                                            </td>
+                                            <%cont_ativ=0%>
+                                            <%@atividade.each do |atividade|%>
+                                            <td align="center">
+                                                <table >
+                                                    <tr>
+                                                        <%t0=0%>
+                                                        <td align="center"> <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
+
+                                                                            <%else%>
+                                                                                <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%>
+                                                                           <%end%>
+                                                        </td>
+                                                    </tr>
+                                                   </table>
+                                                </td>
+                                                <%cont_ativ=cont_ativ+1%>
+                                            <%end%>
+                                            <%cont_aval=cont_aval+1%>
+                                        </tr>
+                                <%end%>
 
                             </div></td>
                     </tr>

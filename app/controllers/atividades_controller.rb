@@ -107,6 +107,7 @@ class AtividadesController < ApplicationController
         @atividade = Atividade.find(params[:id])
 
         respond_to do |format|
+            @atividade.fim=@atividade.inicio
             if @atividade.update_attributes(params[:atividade])
                 flash[:notice] = 'Atividade was successfully updated.'
                 format.html { redirect_to(@atividade) }
@@ -309,14 +310,14 @@ class AtividadesController < ApplicationController
     def show_avaliacao
 
         @atividade= Atividade.find(:all, :conditions=>[ 'id =?', params[:id]])
-        w=@atividade[0].professor.nome
-        @atividade_avaliacao_alunos= AtividadeAvaliacao.find(:all, :conditions =>  ['atividade_id =? ',  params[:id]])
+        session[:atividade]=@atividade[0].id
+        @atividade_avaliacao_alunos= AtividadeAvaliacao.find(:all, :conditions =>  ['atividade_id=? ',  params[:id]])
         #@atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id], Time.now.year])
         
     end
 
     def avaliacao_consulta
-    
+
     end
 
     def consultar_avaliacoes

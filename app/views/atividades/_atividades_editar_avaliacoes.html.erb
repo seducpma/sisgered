@@ -19,7 +19,7 @@
                 <font size="1" color="gray">(<%= truncate(atividade.unidade.nome, :lenght =>50, :omission =>"...") %>)</font>
             </td>
             <td align="left" >&nbsp <%= atividade.atividade%> </td>
-            <td align="left"> De <%= atividade.inicio.strftime("%d/%m/%Y") %> à  <%= atividade.fim.strftime("%d/%m/%Y")%></td>
+            <td align="left"><%= atividade.inicio.strftime("%d/%m/%Y") %></td>
             
             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('professor_fundamental'))%>
                      <td align="center"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), { :controller=> 'atividades', :action => "editar_avaliacoes2", :id =>atividade}, :method => "get", :title => "AvaliarEditar"%></td>

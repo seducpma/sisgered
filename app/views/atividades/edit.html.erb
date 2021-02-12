@@ -19,8 +19,8 @@
                   </tr>
 
         <tr bgcolor="#F5F5F5">
-             <td colspan="4"><b>Período referente  &nbsp&nbsp&nbsp De: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
-               &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
+             <td colspan="4"><b>Data: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
+<!--               &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%#= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>-->
              </td>
 
         </tr>
@@ -66,15 +66,18 @@
                     <td> <%= f.text_field :atividade, :size=>"40" %></td>
                 </tr>
                 <tr bgcolor="#F5F5F5">
-                    <td colspan="2"><b> Componente Curricular:</b> &nbsp&nbsp <%= f.text_field :componente, :size=>"40" %> </td>
+                    <td colspan="2"><b> Componente Curricular:</b> &nbsp&nbsp <%= f.text_field :componente, :size=>"72" %> </td>
                  </tr>
                  <tr bgcolor="#F5F5F5">
-                     <td colspan="2"><b>Descrição Atividade: </b>&nbsp&nbsp <%= f.text_field :descricao, :size=>"66" %></td>
+                     <td colspan="2"><b>Descrição Atividade: </b>&nbsp&nbsp <%= f.text_field :descricao, :size=>"75" %></td>
+                 </tr>
+                 <tr bgcolor="#F5F5F5">
+                     <td colspan="2"><b>Observações: </b>&nbsp&nbsp <%= f.text_field :obs, :size=>"80" %></td>
                  </tr>
 
                 <tr bgcolor="#F5F5F5">
-                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formação.<br/>
-                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este lançamento <b>NÃO</b> poderá ser mais editado ou alterado.<br/>
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO</u>:  1) Para digitar SOMENTE texto sem qualquer tipo formação.<br/>
+<!--                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este lançamento <b>NÃO</b> poderá ser mais editado ou alterado.<br/>-->
 
                         </td>
                 </tr>
