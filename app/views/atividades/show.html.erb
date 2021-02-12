@@ -15,8 +15,8 @@
                        <td width=10% align="CENTER" > <%=h @atividade.atribuicao.classe.classe_classe %> <%if !@atividade.disciplina_id.nil?%> - <%=h @atividade.atribuicao.classe.classe_ano_letivo %><%end%></td>
                        <td width=10%" align="center"><b>Unidade:</b></td>
                        <td width=45%> <%=h @atividade.unidade.nome %></td>
-                       <td width=8%" align="center"><b>Período:</b></td>
-                       <td colspan="3"> De <%=h @atividade.inicio.strftime("%d/%m/%Y") %> à <%=h @atividade.fim.strftime("%d/%m/%Y") %>
+                       <td width=8%" align="center"><b>Data:</b></td>
+                       <td colspan="3" align="center"> <%=h @atividade.inicio.strftime("%d/%m/%Y") %>
                        </td>
 
                    <%else%>
@@ -90,12 +90,14 @@
                 </tr>
 -->
                <tr  >
-                  <td colspan="6"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Este lançamento NÃO pode ser editado pelo professor.<br/>
-                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                              2) Somente Pedagogo ou a Direção da Unidade podem alterar lançamentos já realizados,
+<!--
+                   <td colspan="6"><font color="red" size=""><b><u> ATENÇÃO</u>:  1) Este lançamento NÃO pode ser editado pelo professor.<br/>
+                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                              2) Somente Pedagogo ou a Direção da Unidade podem alterar lançamentos já realizados.
 
                         
                         </td>
+-->
                 </tr>
                 <%cont = cont + 1%>
             <%end%>

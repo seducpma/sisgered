@@ -273,8 +273,8 @@ display: none;
                                         <li><%= link_to "Cadastrar",new_atividade_path %></li>
                                     <%end%>
 
-                           <!--     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental'))%>
-                                        <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental'))%>
+                           <!--     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
+                                        <%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental'))%>
                                             <li><%= link_to "Editar",consultas_atividades_path %></li>
                                         <%end%>
                                     <%end%>
@@ -283,20 +283,23 @@ display: none;
                                          <li><a class="item-primary" href="#;">Consultar</a>
                                             <ul>
                                                 <li><%= link_to "Atividades",consultas_atividades_path %></li>
-                                                <li><%= link_to "Devolutiva",consulta_avaliacaos_path %></li>
+                                                <li><%= link_to "Devolutivas",consulta_avaliacaos_path %></li>
                                             </ul>
                                          </li>
                                     <%end%>
-
-                                     <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') %>
+<!--
+                                     <%# if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') %>
                                          <li><a class="item-primary" href="#;">Devolutiva</a>
                                             <ul>
-                                               <li><%= link_to "Registrar",avaliacao_atividades_path %></li>
-                                               <li><%= link_to "Editar",editar_avaliacao_path %></li>
+                                               <%#*<li><%= link_to "Registrar",avaliacao_atividades_path %></li>%>
+                                               <%#*<li><%= link_to "Editar",editar_avaliacao_path %></li>%>
                                             </ul>
                                         </li>
+                                    <%#end%>
+-->
+                                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental'))%>
+                                        <li><%= link_to "Devolutivas",avaliacao_atividades_path %></li>
                                     <%end%>
-
                              </ul>
                          </li>
       <%end%>

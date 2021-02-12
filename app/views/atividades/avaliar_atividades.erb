@@ -94,14 +94,14 @@
                                                         <%end%>
                                                     <%end%>
                                                 </td>
-                                                
-                        
-                                                        <%if !atividade.avaliacao.present? %>
-                                                            <td align="center"><%= f.select :avaliacao , options_for_select(@Avaliacao) %></td>
-                                                        <%else%>
-                                                            <td align="center"><%= atividade.avaliacao%> </td>
-                                                        <%end%>
-                        
+<!--
+###Alex 11/02/21 Comentei pois é uma proposta                   <%#if !atividade.avaliacao.present? %>
+nova de permitir a Edição e Registro ao mesmo tempo                 <%#*<td align="center"><%= f.select :avaliacao , options_for_select(@Avaliacao) %></td>%>
+usando o múltiplas escolhas da mesma forma                      <%#else%>
+caso não seja aprovado é só descomentar essas                       <%#*<td align="center"><%= atividade.avaliacao%> </td>%>
+linhas e comentar a linha na sequencia deste bloco              <%#end%>
+-->                                                                 
+                                                                <td align="center"><%= f.select :avaliacao , options_for_select(@Avaliacao,atividade.avaliacao) %></td>
                                             </tr>
 
                                             <% cont1=cont1+1 %>

@@ -14,10 +14,6 @@
        <%end%>
 <%end%>
 
-
-
-
-
 <div id="interno7">
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
@@ -32,14 +28,31 @@
           <table width="100%" align="center" bgcolor="#DCDCDC"  >
           <tr>
             <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Professor:</b></font>
-               &nbsp&nbsp&nbsp<%= collection_select :professor, :id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                &nbsp&nbsp&nbsp
+                <%if @professors.count==1%>
+                   <%= collection_select :professor, :id, @professors, :id, :nome %>
+                <%else%>
+                   <%= collection_select :professor, :id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+                <%end%>
+                </td>
         </tr>
           <tr>
             <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Classe:</b></font>
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= collection_select :classe, :id, @classe_ano, :id, :classe_unidade, :include_blank => ' -- Selecione -- ' %> 
-              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b class="label_busca3">Disciplina:</b></font>
-               &nbsp&nbsp<%= select_tag :disciplina, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %></td>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <%if @classe_ano.count==1%>
+                   <%= collection_select :classe, :id, @classe_ano, :id, :classe_unidade %>
+                <%else%>
+                   <%= collection_select :classe, :id, @classe_ano, :id, :classe_unidade, :include_blank => ' -- Selecione -- ' %>
+                <%end%>
 
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b class="label_busca3">Disciplina:</b></font>
+               &nbsp&nbsp
+                <%if @disciplinas.count==1%>
+                   <%= select_tag :disciplina, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }) %>
+                <%else%>
+                   <%= select_tag :disciplina, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %>
+                <%end%>
+                </td>
           </tr>
           <tr>
               
@@ -72,7 +85,7 @@
        <br/>
    <table>
     <tr>
-       <td width =" 10%"><%= button_to "Avaliar",avaliacao_atividades_path%></td>
+       <td width =" 10%"><!--<#%= button_to "Avaliar",avaliacao_atividades_path%></td>-->
        <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
     </tr>
   </table>

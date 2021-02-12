@@ -19,8 +19,8 @@
                   </tr>
 
         <tr bgcolor="#F5F5F5">
-             <td colspan="4"><b>Período referente  &nbsp&nbsp&nbsp De: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
-               &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
+             <td colspan="4"><b>Data da atividade:  &nbsp&nbsp&nbsp </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
+               <!--&nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>-->
              </td>
 
         </tr>
@@ -39,7 +39,7 @@
                   <td colspan="4"><div id="disciplina"> </div></td>
                 </tr
                 <tr bgcolor="#F5F5F5">
-                  <td colspan="4"><div id="dados_classe"><font color="red"><font size="4"id="pisca1" > <b><u> ATENÇÃO</u> após selecionar nome do professor nome aguarde para selecionar a disciplina e classe.</font><br/></div></td>
+                  <td colspan="4"><div id="dados_classe"><font color="red"><font size="4"id="pisca1" > <b><u> ATENÇÃO</u> após selecionar nome do professor aguarde para selecionar a disciplina e a classe.</font><br/></div></td>
                 </tr >
                 <tr >
                   <td colspan="4"><div id="dados_classe1"></div></td>
@@ -73,13 +73,14 @@
                  <tr bgcolor="#F5F5F5">
                      <td colspan="2"><b>Observações:  </b>&nbsp&nbsp <%= f.text_field :obs, :size=>"80" %></td>
                  </tr>
-
+<!--
                 <tr bgcolor="#F5F5F5">
-                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formação.<br/>
-                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este registro somente poderá ser editado ou alterado pelo pegadodo ou gestor da unidade.<br/>
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formatação.<br/>
+                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este registro somente poderá ser editado ou alterado pelo pedagogo ou gestor da unidade.<br/>
 
                         </td>
                 </tr>
+-->
               </table>
             </fieldset>
            <br/>
