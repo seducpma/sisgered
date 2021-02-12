@@ -18,6 +18,7 @@ end
     end
     link_to_function(name, h("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))
   end
+  
   def datepicker_tag(model, attribute, options ={}, datepicker_options ={})
     field_id = "#{model}_#{attribute}"
     field_name = "#{model}[#{attribute}]"
