@@ -42,7 +42,7 @@
                     <tr bgcolor="#F5F5F5">
                         <td width ="78%" colspan="2"><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
                         <%@atividades.each do |atividade| %>
-                                 <td align="center" ><div class="textovertical"><b> <%= link_to  truncate(atividade.atividade ,:length => 14,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b></div></td>
+                                 <td align="center" ><div class="textovertical"><b><%= link_to  truncate(atividade.atividade ,:length => 14,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b></div></td>
 
                          <%end%>
 
@@ -100,7 +100,8 @@
                                                             <td align="center"> <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
 
                                                                                 <%else%>
-                                                                                    <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%>
+                                                                                    <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%>  
+
                                                                                <%end%>
                                                             </td>
                                                         </tr>
