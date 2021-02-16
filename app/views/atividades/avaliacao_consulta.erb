@@ -18,11 +18,11 @@
 
 
 
-<div id="interno7">
+<div id="interno111">
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>CONSULTA DE DEVOLUTIVAS DE ATIVIDADES PEDAGOGICAS</strong></font><br/>
+     <font size="3"><strong>CONSULTA DE DEVOLUTIVAS DE ATIVIDADES PEDAGOGICAS (por devolutiva)</strong></font><br/>
      <%session[:flag_edit_atribuicao]=0%>
  </div>
     <div class="tabs">
@@ -75,9 +75,11 @@
             <td>
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Atividade
               <a href="#" class="filtro_classe"><%= radio_button_tag(:type_of, "2") %></a>Classe
-              <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "3") %></a>Professor
-              <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "4") %></a>Unidade
-              <a href="#" class="filtro_disciplina"><%= radio_button_tag(:type_of, "5") %></a>Disciplina
+               <%  if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
+                      <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "3") %></a>Professor
+                      <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "4") %></a>Unidade
+                      <a href="#" class="filtro_disciplina"><%= radio_button_tag(:type_of, "5") %></a>Disciplina
+               <%end%>
               <a href="#" class="filtro_data"><%= radio_button_tag(:type_of, "6") %></a>Data
             </td>
          </tr>

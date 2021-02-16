@@ -1,0 +1,20 @@
+<table width="100%" >
+           <tr>
+             <td width ="40%" align="right"><b>Discipĺina: </b>
+              <%= select_tag :disciplina_id, options_for_select(@disciplina_classe.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Todas--')) %> </td>
+
+       <td width="60%"align= "left"><font size="2"><b class="label_busca3">&nbsp Período:  Inicio:</b></font>
+                <%= datepicker_tag(:atividade, :inicio_cla,{:size => 8},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+
+               &nbsp
+               <font size="2"><b class="label_busca3">Fim:</b></font>
+                <%= datepicker_tag(:atividade, :fim_cla,{:size => 8},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+
+       </td>
+          </tr>
+
+</table>
+
+
+
+

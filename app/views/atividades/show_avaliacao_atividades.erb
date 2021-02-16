@@ -57,6 +57,11 @@
                             <td align="left"><b>Horário:</b></td>
                             <td align="left">  <%=h   @atividade_avaliacao_alunos[0].classe.horario %></td>
                         </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td align="left"><b>Relatórios:</b></td>
+                            <td align="left" colspan="3"> <b>de </b>&nbsp <%=h  session[:dataIshow]%>  &nbsp&nbsp <b>à</b>  &nbsp<%=h  session[:dataFshow]%></td>
+                                    
+                        </tr>
                     </table>
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">

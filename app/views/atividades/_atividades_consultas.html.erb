@@ -20,7 +20,7 @@
             </td>
             <td align="left" >&nbsp <%= atividade.atividade%> </td>
             <td align="left"> <%= atividade.inicio.strftime("%d/%m/%Y") %></td>
-            <td align="center"> <%= link_to  image_tag('/stylesheets/images/valida.png', :title => 'Avaliaçãoxxx'), { :controller=> 'atividades', :action => "show_avaliacao", :id=>atividade}, :method => "get", :title => "AvaliarEditar"%></td>
+            <td align="center"> <%= link_to  image_tag('/stylesheets/images/devolutiva.png', :title => 'Devolutiva'), { :controller=> 'atividades', :action => "show_avaliacao", :id=>atividade}, :method => "get", :title => "AvaliarEditar"%></td>
 
          </tr>
          <%end%>

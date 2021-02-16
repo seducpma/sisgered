@@ -126,18 +126,13 @@ def avaliacao_atividades
 
 def valiadar_atividades
 t=0
-    w11=    w=session[:Ix]=params[:atividade_avaliacao_inicio]
-
-          #session[:dataF]=params[:conteudo][:fim][6,4]+'-'+params[:conteudo][:fim][3,2]+'-'+params[:conteudo][:fim][0,2]
-    w10=    session[:Fx]= params[:fim]
-t=0
-
-   w1=     session[:dataI]=params[:atividade][:inicio][6,4]+'-'+params[:atividade][:inicio][3,2]+'-'+params[:atividade][:inicio][0,2]
-    w2=    session[:dataF]=params[:atividade][:fim][6,4]+'-'+params[:atividadeo][:fim][3,2]+'-'+params[:atividade][:fim][0,2]
-    w3=    session[:mes]=params[:atividade][:fim][3,2]
-    w4=    session[:anoI]=params[:atividade][:inicio][6,4]
-    w5=    session[:anoF]=params[:atividade][:fim][6,4]
-    t=0
+    session[:Ix]=params[:atividade_avaliacao_inicio]
+   session[:Fx]= params[:fim]
+     session[:dataI]=params[:atividade][:inicio][6,4]+'-'+params[:atividade][:inicio][3,2]+'-'+params[:atividade][:inicio][0,2]
+     session[:dataF]=params[:atividade][:fim][6,4]+'-'+params[:atividadeo][:fim][3,2]+'-'+params[:atividade][:fim][0,2]
+     session[:mes]=params[:atividade][:fim][3,2]
+     session[:anoI]=params[:atividade][:inicio][6,4]
+     session[:anoF]=params[:atividade][:fim][6,4]
  #@atividade = Atividade.find(params[:id])
  #@atividade_avaliacao= AtividadeAvaliacao.find(:all, :select => ' matriculas.aluno_id, matriculas.classe_num, atividades.*',:joins=> 'INNER JOIN atividades ON atividades.id = atividade_avaliacaos.atividade_id INNER JOIN classes ON classes.id = atividades.classe_id INNER JOIN matriculas ON classes.id = matriculas.classe_id', :conditions =>  ['atividades.professor_id=? and	atividades.classe_id =?  and	atividades.disciplina_id=?',  session[:professor], session[:classe] , session[:disciplina]])
  @atividades= Atividade.find(:all, :conditions =>  ['professor_id=? and classe_id =?  and	disciplina_id=?',  session[:professor], session[:classe] , session[:disciplina]])
