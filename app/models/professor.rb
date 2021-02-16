@@ -8,6 +8,7 @@ class Professor < ActiveRecord::Base
   has_many :conteudos
   has_many :atividades
   
+  
   #has_one :tempo_servico, :dependent => :delete
   #has_one :titulo_professor, :dependent => :delete
 

@@ -17,27 +17,9 @@
                 <table width="100%" style="font-size: small">
                          <tr bgcolor="#F5F5F5">
                             <td valign="top"> <b> Professor:</b> </td>
-                            <% cont=1 %>
-                            <% cont1=1 %>
-                            <td colspan="4">  <% for atrib in @atribuicao_classe %>
-                                    <table width="100%" >
-                                        <tr bgcolor="#F5F5F5" >
-                                            <td align="left" width="45%"> <%=h atrib.professor.nome%></td>
-                                            <td align="left"width="10%"><b> Disciplina:</b></td>
-                                            <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
-                                            <% session[:disciplina] = atrib.disciplina.disciplina %>
-                                            <% session[:professor] = atrib.professor.nome %>
-                                            <% session[:professor_id] = atrib.professor.id %>
-                                            <% session[:classe] = atrib.classe.classe_classe %>
-                                            <% session[:ano] = atrib.ano_letivo %>
-                                            <% session[:periodo] = atrib.classe.horario %>
-                                            <% session[:id] = atrib.id %>
-                                        </tr>
-
-                                    </table>
-                                    <% cont= cont+1 %>
-                                <%end%>
-                            </td>
+                            <td><%=   @atividade_avaliacao[0].professor.nome %></td>
+                            <td valign="top"> <b> Disciplina:</b> </td>
+                            <td><%=   @atividade_avaliacao[0].disciplina.disciplina %></td>
                         </tr>
 
                         <tr bgcolor="#F5F5F5" >
@@ -52,19 +34,24 @@
                             <td align="left"><b>Horário:</b></td>
                             <td align="left">  <%=h  @atividade_avaliacao[0].classe.horario %></td>
                         </tr>
+                        <tr bgcolor="#F5F5F5">
+                            <td align="left"><b>Atividade:</b></td>
+                            <td align="left" colspan="3"> <font color="blue"><u> <%= link_to  (@atividade.atividade ),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %></u></font></td>
+
+                        </tr>
                     </table>
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small" >
                     <tr bgcolor="#F5F5F5">
-                        <td width ="70%" colspan="3"><b> Alunos: </b> </td>
-                        <td align="center" ><b> <%= link_to  truncate(@atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %></td>
-                        <td colspan="2"></td>
+                        <td width ="70%" colspan="3"><b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Alunos </b> </td>
+                        <td align="center" ><b> Nota <%#= link_to  truncate(@atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %></td>
+                        
                     </tr>
                     <tr bgcolor="#F5F5F5">
                         <td width ="5%"align="center"><b>Nº</b></td>
                         <td width ="10%">&nbsp&nbsp<b>RA</b></td>
                         <td width ="60%">&nbsp&nbsp<b>NOME</b></td>
-                        <td align="center" colspan="2"></td>
+                        <td align="center"></td>
                         
 
                     </tr>
@@ -104,7 +91,7 @@ linhas e comentar a linha na sequencia deste bloco              <%#end%>
                                                                 <td align="center"><%= f.select :avaliacao , options_for_select(@Avaliacao,atividade.avaliacao) %></td>
                                             </tr>
 
-                                            <% cont1=cont1+1 %>
+                                            
                                       <%end%>
                                     <%end%>
                                     <tr>
