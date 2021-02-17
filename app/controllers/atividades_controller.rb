@@ -109,7 +109,7 @@ class AtividadesController < ApplicationController
         respond_to do |format|
             @atividade.fim=@atividade.inicio
             if @atividade.update_attributes(params[:atividade])
-                flash[:notice] = 'Atividade was successfully updated.'
+                flash[:notice] = 'Atividade salva com sucesso.'
                 format.html { redirect_to(@atividade) }
                 format.xml  { head :ok }
             else
