@@ -8,9 +8,10 @@ class AtividadeAvaliacaosController < ApplicationController
         if current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental')
                @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
            else if current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')
-                  @Avaliacao = [nil,"XX","YY","ZZ","KK"]
+                  @Avaliacao = [nil,"NE","EB","EF","EN"]
+
                 else
-                   @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","XX","YY","ZZ","KK"]
+                   @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","NE","EB","EF","EN"]
                 end
         end
   end
