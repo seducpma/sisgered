@@ -119,6 +119,17 @@
 
                             </div></td>
                     </tr>
+                    <tr>
+                                        <td colspan="3" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                             <%#if current_user.has_role?('professor_infantil') %>
+                                                    <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
+                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data </b>
+                                             <%#else%>
+
+                                             <%#end%>
+                                        </td>
+                    </tr>
+                </table>
                 </table>
 
             <%else%>

@@ -22,7 +22,7 @@
             </td>
             <td align="left" >&nbsp <%= atividade.atividade%> </td>
             <td align="left"> <%= atividade.inicio.strftime("%d/%m/%Y") %> </td>
-            <td align="center"> <%= link_to  image_tag('/stylesheets/images/valida.png', :title => 'Avaliar'), { :controller=> 'atividades', :action => "avaliar_atividades", :id =>atividade}, :method => "get", :title => "AvaliarEditar"%></td>
+            <td align="center"> <%= link_to  image_tag('/stylesheets/images/devolutiva.png', :title => 'Devolutiva'), { :controller=> 'atividades', :action => "avaliar_atividades", :id =>atividade}, :method => "get", :title => "AvaliarEditar"%></td>
          </tr>
          <%end%>
     </table>
@@ -33,6 +33,7 @@
        <%#*<td align="left"><%= button_to 'Validar', validar_atividades2_path, :title => "Nova Consulta" %></td>%>-->
 
     </tr>
+    
   </table>
 
 <%else%>

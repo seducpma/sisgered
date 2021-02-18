@@ -7,7 +7,7 @@ class AtividadesController < ApplicationController
     def load_dados_iniciais
 
         if current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental')
-               @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
+               @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0", "NE","EB","EF","EN"]
            else if current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')
                   @Avaliacao = [nil,"NE","EB","EF","EN"]
 
@@ -152,13 +152,11 @@ class AtividadesController < ApplicationController
         else
             if @atribuicao.count > 1
                 render :partial => 'disciplina'
-
-                t=0
             else
-                w=session[:cont_atribuicao_id]=@atribuicao[0].id
-                w1=session[:cont_classe_id]= @atribuicao[0].classe_id
-                w1=session[:cont_disciplina_id]= @atribuicao[0].disciplina_id
-                t=0
+                session[:cont_atribuicao_id]=@atribuicao[0].id
+                session[:cont_classe_id]= @atribuicao[0].classe_id
+                session[:cont_disciplina_id]= @atribuicao[0].disciplina_id
+
                 render :partial => 'dados_classe'
             end
         end
@@ -305,7 +303,7 @@ class AtividadesController < ApplicationController
         session[:professor]=params[:professor][:id]
         session[:classe]=params[:classe][:id]
         session[:disciplina]=params[:disciplina]
-        @atividades= Atividade.find(:all, :conditions=>[ 'professor_id=? and	classe_id =?  and	disciplina_id=? and inicio>=?  and fim<=?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF]])
+        @atividades= Atividade.find(:all, :conditions=>[ 'professor_id=? and	classe_id =?  and	disciplina_id=? and inicio>=?  and fim<=?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF]], :order => 'inicio DESC')
         t=0
         render :update do |page|
             page.replace_html 'atividades', :partial => "atividades_avaliacao"
@@ -324,11 +322,13 @@ class AtividadesController < ApplicationController
     end
 
     def avaliar_atividades
+        t=0
         @atividade = Atividade.find(params[:id])
         session[:atividade_show]=params[:id]
         #@atividades= Atividade.find(:all, :conditions=>[ 'professor_id=? and	classe_id =?  and	disciplina_id=? and inicio>=?  and fim<=?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF]])
         @atividade_avaliacao= AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?  and	atividade_avaliacaos.disciplina_id=?and atividades.inicio>=?  and atividades.fim<=? and atividades.id =?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF],session[:atividade_show]])
-
+#,  :order => 'atividade_id ASC' )
+t=0
         w=session[:classe_id]
         w1= session[:professor_id]
         w2=session[:disc_id]
