@@ -5,7 +5,16 @@ class AtividadesController < ApplicationController
     before_filter :load_dados_iniciais
 
     def load_dados_iniciais
-        @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
+
+        if current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental')
+               @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
+           else if current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')
+                  @Avaliacao = [nil,"XX","YY","ZZ","KK"]
+                else
+                   @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","XX","YY","ZZ","KK"]
+                end
+        end
+        
         if current_user.has_role?('admin') or current_user.has_role?('SEDUC')
             @pedagogos = Professor.find(:all, :select => 'distinct(professors.nome) as nome, professors.id as id ',:joins=> 'INNER JOIN atribuicaos ON atribuicaos.professor_id = professors.id INNER JOIN classes ON atribuicaos.classe_id = classes.id',:conditions => ['desligado = 0 AND (classes.classe_classe="PEDAGOGO" OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="SUPERVISÃO"  OR classes.classe_classe="COORDENAÇÃO" OR classes.classe_classe="DIREÇÃO FUNDAMENTAL" OR classes.classe_classe="DIREÇÃO INFANTIL")'],:order => 'nome ASC')
             @professor_unidade = Professor.find(:all, :conditions => ['desligado = 0'],:order => 'nome ASC')
@@ -62,8 +71,11 @@ class AtividadesController < ApplicationController
         @atividade=Atividade.new(params[:atividade])
 
         @atividade.classe_id= session[:ativ_classe_id]
-        @atividade.atribuicao_id= session[:ativ_atribuicao_id]
-        @atividade.disciplina_id =session[:ativ_disciplina_id]
+        #@atividade.atribuicao_id= session[:ativ_atribuicao_id]
+        #@atividade.disciplina_id =session[:ativ_disciplina_id]
+         @atividade.atribuicao_id =session[:cont_atribuicao_id]
+         @atividade.classe_id = session[:cont_classe_id]
+         @atividade.disciplina_id=session[:cont_disciplina_id]
         @atividade.ano_letivo =  Time.now.year
         @atividade.unidade_id =  current_user.unidade_id
         @atividade.user_id =  current_user.id
@@ -139,9 +151,13 @@ class AtividadesController < ApplicationController
         else
             if @atribuicao.count > 1
                 render :partial => 'disciplina'
+
+                t=0
             else
-                session[:cont_atribuicao_id]=@atribuicao[0].id
-                session[:cont_classe_id]= @atribuicao[0].classe_id
+                w=session[:cont_atribuicao_id]=@atribuicao[0].id
+                w1=session[:cont_classe_id]= @atribuicao[0].classe_id
+                w1=session[:cont_disciplina_id]= @atribuicao[0].disciplina_id
+                t=0
                 render :partial => 'dados_classe'
             end
         end
@@ -151,9 +167,12 @@ class AtividadesController < ApplicationController
 
         session[:ativ_disciplina_id] =  params[:disciplina_id]  # <<<<<< ATENÇÂO esta escrito disciplina_id mas é atribuicao_id <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
-        session[:ativ_classe_id]= @atribuicao[0].classe_id
-        session[:ativ_atribuicao_id]=@atribuicao[0].id
-        session[:ativ_disciplina_id]=@atribuicao[0].disciplina_id
+        #session[:ativ_classe_id]= @atribuicao[0].classe_id
+        #session[:ativ_atribuicao_id]=@atribuicao[0].id
+        #session[:ativ_disciplina_id]=@atribuicao[0].disciplina_id
+        w=session[:cont_atribuicao_id]=@atribuicao[0].id
+        w1=session[:cont_classe_id]= @atribuicao[0].classe_id
+        w1=session[:cont_disciplina_id]= @atribuicao[0].disciplina_id
         render :partial => 'dados_classe'
     end
 
