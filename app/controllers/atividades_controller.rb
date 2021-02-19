@@ -631,6 +631,10 @@ t=0
                         @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and professor_id =? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.professor_id, session[:dataI], session[:dataF]],:order => 'inicio, id')
                         @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
                         @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id = ?',  session[:professor], session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
+                        #@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id],params[:disciplina_id], session[:dataI], session[:dataF]],:order => 'inicio, id')
+                        #@atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
+                        #@avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id = ?',   session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
+
                         t=0
                     end
                 end
