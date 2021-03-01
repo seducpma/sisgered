@@ -10,23 +10,29 @@ class PasswordsController < ApplicationController
     w1=session[:mais_email]
     session[:email_dig]=params[:email]
     if session[:mais_email]==1
+t0=0
        session[:email]= params[:user_id]
         @user_email= User.find(:all, :conditions=> ['id =? AND activated_at is not null', session[:email]])
         id=session[:email]
         w=params[:email]= @user_email[0].email
     else
+t0=0
         @user_email=User.find(:all, :conditions=> ['email=? AND activated_at is not null', params[:email]])
         if @user_email.count > 0
+t0=0
             w=session[:email]=@user_email[0].id
         end
     end
     if @user_email.count > 1
+t0=0
         render  :partial => 'email', :layout => "layouts/login"
     else
+t0=0
         return unless request.post?
         #if (@user=User.find_for_forget(params[:email]) and @user.size>0 )
         #if (@user=User.find(:all, :conditions=> ['id =? AND activated_at is not null', session[:email]]))
         if @user_email.count==1
+t0=0
             msg="Um link foi enviado para o email cadastrado para efetuar a troca da senha."
             #msg+=" Foi encontrado o usuários "+cont_user.to_s+".  será alterada a senha do usuário ("+lista_user+")"
             flash[:notice]=msg
@@ -37,10 +43,12 @@ class PasswordsController < ApplicationController
     #     flash[:notice] = "Um link para efetuar a troca da senha foi enviado para o e-mail cadastrado."
           redirect_to login_path
         else
+t0=0
           flash[:notice] = "Nenhum usuário cadastrado com o e-mail informado."
           render :action => 'new'
         end
     end
+t0=0
   end
 
   def edit

@@ -55,6 +55,7 @@ class AtividadesController < ApplicationController
     # GET /atividades/new.xml
     def new
         @atividade = Atividade.new
+t0=0
         respond_to do |format|
             format.html # new.html.erb
             format.xml  { render :xml => @atividade }
@@ -81,7 +82,7 @@ class AtividadesController < ApplicationController
         @atividade.unidade_id =  current_user.unidade_id
         @atividade.user_id =  current_user.id
         @atividade.fim  =  @atividade.inicio
-
+t0=0
         respond_to do |format|
             if @atividade.save
 
@@ -89,7 +90,7 @@ class AtividadesController < ApplicationController
 
                 @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? and (status="MATRICULADO" or status="TRANSFERENCIA" or status="*REMANEJADO")', @atividade.classe_id], :order => 'classe_num ASC')
                 quantidade = @matriculas.count
-                t=0
+t=0
                 for mat in @matriculas
                     @atividade_avaliacao = AtividadeAvaliacao.new(params[:atividade_avaliacao])
                     @atividade_avaliacao.aluno_id= mat.aluno_id
@@ -104,10 +105,12 @@ class AtividadesController < ApplicationController
                     @atividade_avaliacao.user_id =    @atividade.user_id
                     @atividade_avaliacao.save
                 end
+t0=0
                 flash[:notice] = 'Atividade salva com sucesso.'
                 format.html { redirect_to(@atividade) }
                 format.xml  { render :xml => @atividade, :status => :created, :location => @atividade }
             else
+t0=0
                 format.html { render :action => "new" }
                 format.xml  { render :xml => @atividade.errors, :status => :unprocessable_entity }
             end
@@ -313,11 +316,13 @@ class AtividadesController < ApplicationController
     def classe_disciplina
         session[:classe_id]=params[:classe_id]
         @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=?', params[:classe_id], session[:classe_id]])
+t0=0
         render :partial => 'disciplina_classe'
     end
    def classe_disciplina_periodo
         session[:classe_id]=params[:classe_id]
         @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=?', params[:classe_id], session[:classe_id]])
+t0=0
         render :partial => 'disciplina_classe_periodo'
     end
 
@@ -330,13 +335,13 @@ class AtividadesController < ApplicationController
 #,  :order => 'atividade_id ASC' )
 t=0
         w=session[:classe_id]
-        w1= session[:professor_id]
+        w1=session[:professor_id]
         w2=session[:disc_id]
 
 
 
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id], Time.now.year])
-        t=0
+t=0
     end
 
     def update_multiplas_atividades
@@ -718,7 +723,6 @@ t=0
                             end
                         end
                     end
-
                 end
             end
         end
@@ -730,7 +734,6 @@ t=0
     end
 
     def editar_avaliacoes
-
         session[:dataI]=params[:atividade][:inicio][6,4]+'-'+params[:atividade][:inicio][3,2]+'-'+params[:atividade][:inicio][0,2]
         session[:dataF]=params[:atividade][:fim][6,4]+'-'+params[:atividade][:fim][3,2]+'-'+params[:atividade][:fim][0,2]
         session[:professor]=params[:professor][:id]
@@ -742,7 +745,6 @@ t=0
         render :update do |page|
             page.replace_html 'atividades', :partial => "atividades_editar_avaliacoes"
         end
-    
     end
 
     def editar_avaliacoes2
@@ -751,8 +753,5 @@ t=0
         #@atividades= Atividade.find(:all, :conditions=>[ 'professor_id=? and	classe_id =?  and	disciplina_id=? and inicio>=?  and fim<=?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF]])
         @atividade_avaliacao= AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?  and	atividade_avaliacaos.disciplina_id=?and atividades.inicio>=?  and atividades.fim<=? and atividades.id =?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF],session[:atividade_show]])
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id], Time.now.year])
-
-
     end
-
 end
