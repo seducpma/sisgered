@@ -265,37 +265,36 @@ display: none;
 
 
 
-<!--
-    <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao')or current_user.has_role?('professor_fundamental')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
+    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao')or current_user.has_role?('professor_fundamental')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
           <li><a class="item-primary" href="#;">ATIVIDADES</a>
                              <ul>
 
-                                    <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
-                                        <%#*<li><%= link_to "Cadastrar",new_atividade_path %></li>%>
-                                    <%#end%>
+                                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
+                                        <li><%= link_to "Cadastrar",new_atividade_path %></li>
+                                    <%end%>
 
-                                    <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
-                                        <%#if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
-                                            <%#*<li><%= link_to "Editar",consultas_atividades_path %></li>%>
-                                        <%#end%>
-                                    <%#end%>
+                                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
+                                        <%if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
+                                            <li><%= link_to "Editar",consultas_atividades_path %></li>
+                                        <%end%>
+                                    <%end%>
 
-                                    <%# if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil') %>
+                                    <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil') %>
                                           <li><a class="item-primary" href="#;">Consultar</a>
                                             <ul>
-                                                <%#*<li><%= link_to "Atividades",consultas_atividades_path %></li>%>
+                                                <li><%= link_to "Atividades",consultas_atividades_path %></li>
                                                 <li><a class="item-primary" href="#;">Devolutivas</a>
                                                     <ul>
-                                                        <%#*<li><%= link_to "Por Periodo",consulta_avaliacaos_periodo_path %></li>%>
-                                                        <%#*<li><%= link_to "Por Devolutiva",consulta_avaliacaos_path %></li>%>
+                                                        <li><%= link_to "Por Periodo",consulta_avaliacaos_periodo_path %></li>
+                                                        <li><%= link_to "Por Devolutiva",consulta_avaliacaos_path %></li>
                                                     </ul>
                                          </li>
 
 
                                             </ul>
                                          </li>
-                                    <%#end%>
-<!-
+                                    <%end%>
+<!--
                                      <%# if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') %>
                                          <li><a class="item-primary" href="#;">Devolutiva</a>
                                             <ul>
@@ -304,14 +303,13 @@ display: none;
                                             </ul>
                                         </li>
                                     <%#end%>
-->
-                                    <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental')or current_user.has_role?('professor_infantil'))%>
-                                        <%#*<li><%= link_to "Devolutivas",avaliacao_atividades_path %></li>%>
-                                    <%#end%>
+-->
+                                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental')or current_user.has_role?('professor_infantil'))%>
+                                        <li><%= link_to "Devolutivas",avaliacao_atividades_path %></li>
+                                    <%end%>
                              </ul>
                          </li>
-      <%#end%>
--->
+      <%end%>
 
 
 

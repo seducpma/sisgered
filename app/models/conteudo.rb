@@ -7,7 +7,7 @@ class Conteudo < ActiveRecord::Base
 
 
 
- #validates_presence_of :classe_id
+ validates_presence_of :classe_id
  validates_presence_of :professor_id
  validates_presence_of :unidade_id
  #validates_presence_of :atribuicao_id

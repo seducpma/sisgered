@@ -12,17 +12,16 @@
         <font size="3"><strong>DEVOLUTIVA DE ATIVIDADES PEDAGOGICAS </strong></font><br/>
     </div>
     <div class="tabs1">
-            <%t0=0%>
-            <%if  @atividade_avaliacao.present?%>
-                <fieldset>
-                    <table width="100%" style="font-size: small">
+        <%if  @atividade_avaliacao.present?%>
+            <fieldset>
+                <table width="100%" style="font-size: small">
                          <tr bgcolor="#F5F5F5">
                             <td valign="top"> <b> Professor:</b> </td>
                             <td><%=   @atividade_avaliacao[0].professor.nome %></td>
                             <td valign="top"> <b> Disciplina:</b> </td>
                             <td><%=   @atividade_avaliacao[0].disciplina.disciplina %></td>
                         </tr>
-                        <%t0=0%>
+
                         <tr bgcolor="#F5F5F5" >
                             <td align="left" width="10%"><b>Unidade:</b></td>
                             <td align="left">  <%=h  @atividade_avaliacao[0].unidade.nome%>    <%  session[:unidade]=  @atividade_avaliacao[0].unidade.nome %></td>
@@ -119,9 +118,6 @@ linhas e comentar a linha na sequencia deste bloco              <%#end%>
                 <table  width="100%" style="font-size: small">
                     <tr>
                         <td align="center"><font size="3" color="red"><b> NÃO SELECIONADO ou NÃO ENCONTRADO</b> </td>
-                    </tr>
-                    <tr>
-                        <td align="center"><font size="3" color="red"><b> PODE SER QUE NÃO EXISTA MATRICULAS NESTA CLASSE</b> </td>
                     </tr>
                 </table>
             <%end%>
