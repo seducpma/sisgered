@@ -2,11 +2,24 @@
 <% title "FAPEA", :id =>"FAPEA" %>
  <div class="tabs">
    <div id="caixa_titulo">
-    <font size="3"><strong>CONSULTA RELATÓRIOS DE ATIVIDADES PROFESSORES</strong></font><br/>
+    <font size="3"><strong>CONSULTA RELATÓRIOS DE ATIVIDADES PROFESSORES<%if  current_user.has_role?('professor_fundamental')  %>
+                                                                                  <b>- Professor Fundamental</b>
+                                                                                 <%else if  current_user.has_role?('professor_infantil')%>
+                                                                                         <b> - Professor Infantil</b>
+                                                                                          <%else if current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infatil') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') %>
+                                                                                             <b> - Pedagogo/Direção </b>
+                                                                                              <%end%>
+                                                                                         <%end%>
+                                                                                  <%end%></strong></font><br/>
+
+  
    </div>
   <div class="tabs">
     <% form_remote_tag :url => consulta_conteudo_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <table width="100%" align="center" bgcolor="#DCDCDC" >
+       <tr bgcolor="#F5F5F5">
+             <td colspan="4"><font color="red" size="3"><b><u> ATENÇÃO:</u> Este sistema de controle das atividades desenvolvidas pelos profissionais da educação.</td>
+        </tr>
           <tr>
             <td>
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Data

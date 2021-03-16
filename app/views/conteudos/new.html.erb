@@ -2,7 +2,7 @@
 <% title "ALUNOS".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>LANÇAMENTOS DE CONTEÚDOS MINISTRADOS</strong></font><br/>
+     <font size="3"><strong>LANÇAMENTOS DE CONTEÚDOS E ATIVIDADES</strong></font><br/>
  </div>
       <div class="tabs">
 
@@ -15,9 +15,20 @@
              <legend><font size=4></font></legend>
              <table width="100%">
                   <tr bgcolor="#F5F5F5">
-                    <td colspan="4"><b>LANÇAMENTO DE ATIVIDADES / VIVÊNCIA </b></td>
+                    <td colspan="4"><b></b><%if  current_user.has_role?('professor_fundamental')  %>
+                      <b> CONTEÚDO PROGRAMATICO    - Professor Fundamental</b>
+                                                <%else if  current_user.has_role?('professor_infantil')%>
+                                                     <b> ATIVIDADES / VIVÊNCIA  - Professor Infantil</b>
+                                                     <%else if current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infatil') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') %>
+                                                               <b>   ATIVIDADES PEDAGÓGICAS E ADMNISTRATIVAS   - Pedagogo/Direção </b>
+                                                            <%end%>
+                                                 <%end%>
+                                         <%end%>
+                    </td>
                   </tr>
-
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><font color="red" size="3"><b><u> ATENÇÃO:</u> Este sistema de controle das atividades desenvolvidas pelos profissionais da educação.</td>
+        </tr>
         <tr bgcolor="#F5F5F5">
              <td colspan="4"><b>Período referente  &nbsp&nbsp&nbsp De: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
                &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>
@@ -27,8 +38,10 @@
                 <tr bgcolor="#F5F5F5">
                   <td width =" 5%" valign="top"><b>Professor(a):</b></td>
                    <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <br/>
-                <font color="red"> <b><u> Se professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.<br/>
-                  <u> Professor de Ciclo Básico: </u> Lançar relatório disciplina a disciplina, NÃO lançar todas as disciplinas num relatório só.</b>
+                <font color="red"> <b><u> Professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.
+                    <%if  current_user.has_role?('professor_fundamental')  %>
+                      <br/>  <u> Professor de Ciclo Básico: </u> Lançar relatório de todas as atividades nadisciplina Lingua Portuguesa.</b>
+                     <%end%>
                 </td>
                       <%= observe_field 'conteudo_professor_id',
                          :update => "dados_classe",
@@ -46,7 +59,7 @@
                     <table width=" 100%" border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                       <tr bgcolor="#F5F5F5">
                         <td>
-                          <font color="green"><b><u>ATENÇÃO:</u> Faça o registro das atividades desenvolvidas de forma sucinta que contemple os seguintes elementos:
+                          <font color="green"><b><u>ATENÇÃO:</u> Faça o registro das atividades desenvolvidas de forma sucinta que contemple os seguintes elementos:<br/>
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. Descrição resumida da atividade. <br/>
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. Componente curricular/campo de experiêncipa a que se refere a atividade em questão. <br/>
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Objetivo e habilidades do conhecimento. <br/>

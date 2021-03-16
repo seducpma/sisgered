@@ -1,0 +1,46 @@
+<h1>Listing faltasalunos</h1>
+
+<table>
+  <tr>
+    <th>Aluno</th>
+    <th>Matricula</th>
+    <th>Atribuicao</th>
+    <th>Professor</th>
+    <th>Unidade</th>
+    <th>Disciplina</th>
+    <th>User</th>
+    <th>Classe</th>
+    <th>Ano letivo</th>
+    <th>Dia</th>
+    <th>Falta</th>
+    <th>Conteudo</th>
+    <th>Obs</th>
+    <th>Ativo</th>
+  </tr>
+
+<% @faltasalunos.each do |faltasaluno| %>
+  <tr>
+    <td><%=h faltasaluno.aluno_id %></td>
+    <td><%=h faltasaluno.matricula_id %></td>
+    <td><%=h faltasaluno.atribuicao_id %></td>
+    <td><%=h faltasaluno.professor_id %></td>
+    <td><%=h faltasaluno.unidade_id %></td>
+    <td><%=h faltasaluno.disciplina_id %></td>
+    <td><%=h faltasaluno.user_id %></td>
+    <td><%=h faltasaluno.classe %></td>
+    <td><%=h faltasaluno.ano_letivo %></td>
+    <td><%=h faltasaluno.dia %></td>
+    <td><%=h faltasaluno.falta %></td>
+    <td><%=h faltasaluno.conteudo %></td>
+    <td><%=h faltasaluno.obs %></td>
+    <td><%=h faltasaluno.ativo %></td>
+    <td><%= link_to 'Show', faltasaluno %></td>
+    <td><%= link_to 'Edit', edit_faltasaluno_path(faltasaluno) %></td>
+    <td><%= link_to 'Destroy', faltasaluno, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New faltasaluno', new_faltasaluno_path %>

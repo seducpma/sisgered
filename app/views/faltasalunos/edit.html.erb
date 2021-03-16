@@ -1,0 +1,68 @@
+<h1>Editing faltasaluno</h1>
+
+<% form_for(@faltasaluno) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :aluno_id %><br />
+    <%= f.text_field :aluno_id %>
+  </p>
+  <p>
+    <%= f.label :matricula_id %><br />
+    <%= f.text_field :matricula_id %>
+  </p>
+  <p>
+    <%= f.label :atribuicao_id %><br />
+    <%= f.text_field :atribuicao_id %>
+  </p>
+  <p>
+    <%= f.label :professor_id %><br />
+    <%= f.text_field :professor_id %>
+  </p>
+  <p>
+    <%= f.label :unidade_id %><br />
+    <%= f.text_field :unidade_id %>
+  </p>
+  <p>
+    <%= f.label :disciplina_id %><br />
+    <%= f.text_field :disciplina_id %>
+  </p>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :classe %><br />
+    <%= f.text_field :classe %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.label :dia %><br />
+    <%= f.date_select :dia %>
+  </p>
+  <p>
+    <%= f.label :falta %><br />
+    <%= f.text_field :falta %>
+  </p>
+  <p>
+    <%= f.label :conteudo %><br />
+    <%= f.text_field :conteudo %>
+  </p>
+  <p>
+    <%= f.label :obs %><br />
+    <%= f.text_field :obs %>
+  </p>
+  <p>
+    <%= f.label :ativo %><br />
+    <%= f.text_field :ativo %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @faltasaluno %> |
+<%= link_to 'Back', faltasalunos_path %>

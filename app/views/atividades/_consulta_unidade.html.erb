@@ -1,50 +1,18 @@
-<!--<%#if  current_user.has_role?('admin') or   current_user.has_role?('SEDUC')    or   current_user.has_role?('supervisao')%>
-    <%#@unidades = Unidade.find(:all,   :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7)' ],:order => 'nome ASC')%>
-<%#else if current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
-          <%#@unidades = Unidade.find(:all,  :select=> 'distinct(unidades.nome), unidades.id', :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id INNER JOIN  atividades  ON  unidades.id = atividades.unidade_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7) and atividades.unidade_id=? ', current_user.unidade_id ],:order => 'unidades.nome ASC')%>
-       <%#else%>
-          <%#@unidades = Unidade.find(:all,  :select=> 'distinct(unidades.nome), . unidades.id',   :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id INNER JOIN  atividades  ON  unidades.id = atividades.unidade_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7) and atividades.professor_id=? ', current_user.professor_id ],:order => 'unidades.nome ASC')%>
-       <%#end%>
-<%#end%>
+<%if  current_user.has_role?('admin') or   current_user.has_role?('SEDUC')    or   current_user.has_role?('supervisao')%>
+    <%@unidades = Unidade.find(:all,   :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7)' ],:order => 'nome ASC')%>
+<%else if current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+          <%@unidades = Unidade.find(:all,  :select=> 'distinct(unidades.nome), unidades.id', :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id INNER JOIN  atividades  ON  unidades.id = atividades.unidade_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7) and atividades.unidade_id=? ', current_user.unidade_id ],:order => 'unidades.nome ASC')%>
+       <%else%>
+          <%@unidades = Unidade.find(:all,  :select=> 'distinct(unidades.nome), . unidades.id',   :joins => "INNER JOIN  tipos  ON  tipos.id = unidades.tipo_id INNER JOIN  atividades  ON  unidades.id = atividades.unidade_id ", :conditions =>['(tipos.id = 1 or tipos.id = 4  or tipos.id = 7) and atividades.professor_id=? ', current_user.professor_id ],:order => 'unidades.nome ASC')%>
+       <%end%>
+<%end%>
 
 <table width="100%" align="center" >
    <tr>
      <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Unidade:
-        <%#= collection_select :unidade,:id, @unidades, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %></b></font>
-         <%#= submit_tag "Visualizar", :class => "btn_filtrar" %>
+        <%= collection_select :unidade,:id, @unidades, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %></b></font>
+         <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
      </td>
    </tr>
   </table>
 
--->
-
-<%if  current_user.has_role?('admin') or   current_user.has_role?('SEDUC')  or   current_user.has_role?('supervisao') %>
-    <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC')%>
-<%else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
-        <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.unidade_id =?' , Time.now.year, current_user.unidade_id ], :order => 'classes.classe_classe ASC, atividades.inicio DESC')%>
-
-       <%else%>
-          <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.professor_id =?' , Time.now.year, current_user.professor_id ], :order => 'classes.classe_classe ASC,  atividades.inicio DESC')%>
-       <%end%>
-<%end%>
-
-
-<table width="100%"  >
-   <tr>
-     <td  width="60%" align="right"><font size="2"><b>Classe:</b></font>
-          <%= select_tag :classe_id3, options_for_select(@classe_ano.collect { |ff| [ff.classe_unidade, ff.id] }.insert(0, '--Selecionar--')) %>
-                            <%= observe_field 'classe_id3',
-                          :with => :classe_id3,
-                          :url => { :action => 'classe_disciplina3' },
-                          :update => "classe_disciplina3" %>
-    </td>
-     <td  width="30%" align="right"><div id="classe_disciplina3"> <b>Disciplina:</b><font color="red">&nbsp&nbsp<b></u>&nbsp Selecionar  primeiro a classe </b></font> </div></td>
-
-          <td width="8%"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
-
-     </td>
-
-
-
-   </tr>
-  </table>

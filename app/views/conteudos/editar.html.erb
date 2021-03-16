@@ -7,13 +7,18 @@
   <div class="tabs">
     <% form_remote_tag :url => editar_conteudo_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <table width="100%" align="center" bgcolor="#DCDCDC" >
+       <tr bgcolor="#F5F5F5">
+             <td colspan="4"><font color="red" size="3"><b><u> ATENÇÃO:</u> Este sistema de controle das atividades desenvolvidas pelos profissionais da educação.</td>
+        </tr>
+
         <%if current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental') %>
-         <tr>
-           <td colspan="2"> <hr/><font color="red"><b><u>ATENÇÃO:</u> Professores só podem editar e alterar relatórios até as 23:59 do dia que foi feito, apartir do dia seguinte somente gestor ou pedagogo podem alterar relatório gravado. <br/> Nesta tela aparecem somente os relatórios que podem ser editados para visualizar todos os relatórios existentes utilize a opção CONSULTAR.
+         <tr bgcolor="#F5F5F5">
+           <td colspan="2"><font color="red"size="3"><b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Professores só podem editar e alterar relatórios até as 23:59 do dia que foi feito, apartir do dia seguinte somente gestor ou pedagogo podem alterar relatório gravado. <br/> Nesta tela aparecem somente os relatórios que podem ser editados para visualizar todos os relatórios existentes utilize a opção CONSULTAR.
 
                </b></font><hr/><br/>
            </td>
          </tr>
+
          <%end%>
           <tr>
             <td>
@@ -49,7 +54,7 @@
   <table>
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-     <td align="left"><%= button_to 'Nova Consulta', consultas_relatorios_path, :title => "Nova Consulta" %></td>
+     <td align="left"><%= button_to 'Nova Consulta', editar_conteudos_path, :title => "Nova Consulta" %></td>
     </tr>
   </table>
  </div>

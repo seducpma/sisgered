@@ -18,18 +18,25 @@
                                         MQA
                                     <%end%>
               </td>
-            <td align="left">&nbsp <%if !conteudo.atribuicao_id.nil? %>
-                                       <%if !conteudo.disciplina_id.nil?%>
-                                          <%= conteudo.atribuicao.disciplina.disciplina%>
-                                       <%end%>
-                                    <%else%>
-                                        <%= conteudo.professor.obs_interno %>
-                                    <%end%>
+            <td align="left">&nbsp<!-- <%#if !conteudo.atribuicao_id.nil?  %>
+                                       <%#if !conteudo.disciplina_id.nil? %>
+                                         <%#if !conteudo.atribuicao.disciplina_id.present?%>
+                                            erro
+                                         <%#else%>
+                                          <%#= conteudo.atribuicao.disciplina.disciplina%>
+                                         <%#end%>
+                                       <%#end%>
+                                    <%#else%>
+                                        <%#= conteudo.professor.obs_interno %> <%= conteudo.professor.funcao %>
+                                    <%#end%>-->
             </td>
-            <td align="left">&nbsp <%= conteudo.professor.nome%> </td>
+            <td align="left">&nbsp <%= conteudo.professor.nome%>  <%= conteudo.id%></td>
             <td align="left"> De <%= conteudo.inicio.strftime("%d/%m/%Y") %>  à <%= conteudo.fim.strftime("%d/%m/%Y")%></td>
             <!--<td align="center">&nbsp <%#if conteudo.validacao == 1%> <font color="blue"> VALIDADO </font> <%#else%> <font color="red"> AGUARDANDO </font><%#end%> --></td>
-           <td align="center"> <%= button_to('Visualizar', {:action => "show", :id =>conteudo},:method => "get", :title => "Visualizar") %>
+            <td align="center"> <% if (current_user.unidade_id ==  conteudo.unidade_id ) or ( current_user.has_role?('admin')) %>
+                                  <%= button_to('Visualizar', {:action => "show", :id =>conteudo},:method => "get", :title => "Visualizar") %>
+
+                                <%end%>
 <%#= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "show", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
 
 

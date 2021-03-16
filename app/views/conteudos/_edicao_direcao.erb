@@ -16,7 +16,7 @@
             <td align="left">&nbsp <%= edicao.professor.nome%> </td>
             <td align="left"> De <%= edicao.inicio.strftime("%d/%m/%Y") %>  à <%= edicao.fim.strftime("%d/%m/%Y")%></td>
             <!--<td align="center">&nbsp <%#if edicao.validacao == 1%> <font color="blue"> VALIDADO </font> <%#else%> <font color="red"> AGUARDANDO </font><%#end%> </td>-->
-           <td align="center"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "edit_direcao", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
+           <td align="center"> <% if (current_user.unidade_id ==  edicao.unidade_id ) or ( current_user.has_role?('admin')) %><%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "edit_direcao", :id => edicao}, :method => "get", :title => "Selecionar"%><%end%></td>
            
 
          </tr>

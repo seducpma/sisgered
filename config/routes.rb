@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :faltasalunos
+
+  map.resources :diario_classes, :collection => { :faltas=>:get}
+
   map.resources :atividade_avaliacaos
 
   map.resources :atividades, :collection => { :aviso=>:get, :consultas=> :get,  :avaliacao=>:get}
@@ -66,6 +70,7 @@ ActionController::Routing::Routes.draw do |map|
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
   map.new_disciplinanota '/new_disciplinanota', :controller => 'disciplinas', :action => 'new_disciplinanota'
   map.create_discipina_nota '/create_discipina_nota', :controller => 'disciplinas', :action => 'create_discipina_nota'
+
 
   map.editar_avaliacoes'/editar_avaliacoes', :controller => 'atividades', :action => 'editar_avaliacoes'
   map.editar_avaliacao'/editar_avaliacao', :controller => 'atividades', :action => 'editar_avaliacao'
@@ -207,6 +212,10 @@ ActionController::Routing::Routes.draw do |map|
   map.mapa_de_classe'/mapa_de_classe', :controller => 'atribuicaos', :action => 'mapa_de_classe'
   map.mapa_de_classe_anterior'/mapa_de_classe_anterior', :controller => 'atribuicaos', :action => 'mapa_de_classe_anterior'
   map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'
+  map.lancar_faltas_diario '/lancar_faltas_diario', :controller => 'faltasalunos', :action => 'lancar_fatas_alunos'
+  map.alunos_faltas_falta '/alunos_faltas_falta', :controller => 'faltasalunos', :action => 'alunos_faltas_falta'
+
+  map.lancar_faltas_alunos '/lancar_faltas_alunos', :controller => 'diario_classes', :action => 'lancar_fatas_alunos'
   map.lancar_faltas_inf '/lancar_faltas_inf', :controller => 'faltas', :action => 'lancar_faltas_inf'
   map.lancar_faltas_infantil '/lancar_faltas_infantil', :controller => 'faltas', :action => 'lancar_faltas_infantil'
   map.lancar_faltas_editar_infantil '/lancar_editar_faltas_infantil', :controller => 'faltas', :action => 'lancar_faltas_editar_infantil'

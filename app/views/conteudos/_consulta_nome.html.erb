@@ -2,11 +2,8 @@
      <%#@nome = Conteudo.find(:all, :joins => [:professor],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=?', Time.now.year  ],:order => 'professors.nome')%>
      <%@nome = Conteudo.find(:all, :joins => [:professor, :classe],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? and   (classes.classe_classe="PEDAGOGO" or classes.classe_classe="SUPERVISÃO" or classes.classe_classe="DIRECAO FUNDAMENTAL" or classes.classe_classe="DIRECAO INFANTIL" or classes.classe_classe="COORDENADOR")', Time.now.year  ],:order => 'professors.nome')%>
     
-<%  else if (current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') ) %>
-        <%@nome = Conteudo.find(:all, :joins => [:professor],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=? ', Time.now.year, current_user.unidade_id  ],:order => 'professors.nome')%>
-     <%else%>
-         <%@nome = Conteudo.find(:all, :joins => [:professor, :classe],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=? and   (classes.classe_classe="PEDAGOGO" or classes.classe_classe="SUPERVISÃO" or classes.classe_classe="DIRECAO FUNDAMENTAL" or classes.classe_classe="DIRECAO INFANTIL"or classes.classe_classe="COORDENADOR")', Time.now.year, current_user.unidade_id  ],:order => 'professors.nome')%>
-     <%end%>
+<%else%>
+      <%@nome = Conteudo.find(:all, :joins => [:professor, :classe],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=? and   (classes.classe_classe="PEDAGOGO" or classes.classe_classe="SUPERVISÃO" or classes.classe_classe="DIRECAO FUNDAMENTAL" or classes.classe_classe="DIRECAO INFANTIL"or classes.classe_classe="COORDENADOR")', Time.now.year, current_user.unidade_id  ],:order => 'professors.nome')%>
 
 <%end%>
 <table width="100%" align="center">

@@ -71,11 +71,16 @@
 -->
    <% form_remote_tag :url => consultar_avaliacoes_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
          <table width="100%" align="center" bgcolor="#DCDCDC"  >
-          <tr>
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><font color="blue" size="3"><b><u> ATENÇÃO:</u> Este sistema é para acompanhamento das atividades remotas postadas pelo professor aos alunos
+             </td>
+
+        </tr>
+
+           <tr>
             <td>
-              <!--<a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Atividade-->
-              <a href="#" class="filtro_classe"><%= radio_button_tag(:type_of, "2") %></a> Classe (atividades do professor)
-               <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "4") %></a> Classe (atividades vários professores)
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Atividade
+              <a href="#" class="filtro_classe"><%= radio_button_tag(:type_of, "2") %></a>Classe
                <%  if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
                       <a href="#" class="filtro_professor"><%= radio_button_tag(:type_of, "3") %></a>Professor
                       <a href="#" class="filtro_unidade"><%= radio_button_tag(:type_of, "4") %></a>Unidade

@@ -161,7 +161,7 @@ end
 def alunos_matricula
     ###Alex 21/01/20 17:12 acrescentei na linha de baixo no :select o aluno_nome e o :order, pois não estava ordenando na hora de montar a lista para matricular e ficava fora da ordem alfabética
     @alunos=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
-    session[:alunosM] = Aluno.find(params[:aluno_ids], :select => 'id', :order => 'aluno_nome ASC')
+    w=session[:alunosM] = Aluno.find(params[:aluno_ids], :select => 'id', :order => 'aluno_nome ASC')
     @classe = Classe.find(:all, :conditions =>['id =?', session[:classe_matr]])
     @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe_matr],0], :order =>'disciplinas.ordem ASC ' )
 end

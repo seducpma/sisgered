@@ -1,0 +1,12 @@
+
+
+
+   <%= select_tag :classe_id,  options_for_select(@classes.collect { |ff| [ff.classe, ff.classe_id] }.insert(0, '--Selecionar--')) %>
+
+                             <%= observe_field :classe_id,
+                              :with => :classe_id,
+                              :update => "alunos" ,
+                              :url => { :action => 'alunos'}%>
+
+<br/>
+

@@ -10,7 +10,11 @@
 <%if @conteudo.present?%>
       <!--<%session[:imprimir_todos]=1%>-->
 
-        <fieldset><legend><font  size=3><b> RELATÓRIO ATIVIDADES
+        <fieldset><legend><font  size=3><b> <% if current_user.has_role?('professor_fundamental')%>
+                                               ATIVIDADES PEDAGOGICAS 
+                                            <%else%>
+                                               RELATÓRIO ATIVIDADES
+                                           <%end%>
               </b></font></legend>
               <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                 <tr bgcolor="#F5F5F5" style="border-color: white">
@@ -18,7 +22,11 @@
                   <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                       <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
                       <%if !@conteudo.atribuicao_id.nil?%><center><font size="2"> Unidade Escolar: <%=h @conteudo.unidade.nome %> </i></b><br/></center><%end%>
-                      <center><font size="2"><b><u>LANÇAMENTOS DE CONTEÚDO PROGRAMÁTICOS</u></b></font></center>
+                      <center><font size="2"><b><u><% if current_user.has_role?('professor_fundamental')%>
+                                               ATIVIDADES PEDAGOGICAS
+                                            <%else%>
+                                               RELATÓRIO ATIVIDADES
+                                           <%end%></u></b></font></center>
                   </td>
                 </tr>
                </table>

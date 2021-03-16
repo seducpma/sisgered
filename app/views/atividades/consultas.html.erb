@@ -7,6 +7,12 @@
   <div class="tabs">
     <% form_remote_tag :url => consultaatividade_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
          <table width="100%" align="center" bgcolor="#DCDCDC"  >
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><font color="blue" size="3"><b><u> ATENÇÃO:</u> Este sistema é para acompanhamento das atividades remotas postadas pelo professor aos alunos
+             </td>
+
+        </tr>
+
           <tr>
             <td>
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Atividade
