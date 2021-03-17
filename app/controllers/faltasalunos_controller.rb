@@ -24,51 +24,48 @@ class FaltasalunosController < ApplicationController
  def alunos
     session[:classe_id]= params[:classe_id]
      @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = ?", session[:classe_id], Time.now.year , current_user.unidade_id ],:order => 'classe_num ASC' )
-
         render :partial => 'alunos'
 end
 
  def data
-    w=session[:data]= params[:faltasalunos_data]
-    t=0
+   session[:dia]= params[:faltasalunos_data]
+
  end
   def disciplina
-    w=session[:disciplina_id]= params[:disciplina_id]
-    t=0
+   session[:disciplina_id]= params[:disciplina_id]
+   
  end
 
  def faltas
-    w=session[:falta]= params[:falta]
-    t=0
+   session[:falta]= params[:falta]
+   
  end
 
+ def obser
+    wwww=session[:obser]=params[:aluno_nome]
+    t=0
 
+ end
 def alunos_faltas_falta
-     t=0
-
-
-    @alunos_faltaram=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
-    #@atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id=?", session[:professor_id], Time.now.year , session[:classe_id]])
-  
-t=0
+ 
+     @alunos_faltaram=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
+     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id=? and disciplina_id =?", session[:professor_id], Time.now.year , session[:classe_id], session[:disciplina_id]])
      for aluno in @alunos_faltaram
           @faltasaluno = Faltasaluno.new
-           
-
+           @matricula= Matricula.find(:all, :conditions=> ['aluno_id=? and classe_id=?', aluno.id, session[:classe_id]])   # precisa também verificar o estado da matricula
            @faltasaluno.aluno_id = aluno.id
-           w2=@faltasaluno.matricula_id=1
-           w3=@faltasaluno.atribuicao_id=1
-           w4=@faltasaluno.professor_id=session[:professor_id]
-           w5=@faltasaluno.unidade_id=1
-           w6=@faltasaluno.disciplina_id=session[:disciplina_id]
-           w7=@faltasaluno.user_id=current_user.id
-           w8=@faltasaluno.classe_id=session[:classe_id]
-           w9=@faltasaluno.ano_letivo = Time.now.year
-           w10=@faltasaluno.data=session[:data]
-           w11=@faltasaluno.faltas=session[:falta]
-
-t=0
-@faltasaluno.save
+           @faltasaluno.matricula_id=@matricula[0].id
+           @faltasaluno.atribuicao_id=@atribuicao[0].id
+           @faltasaluno.professor_id=session[:professor_id]
+           @faltasaluno.unidade_id=@matricula[0].unidade_id
+           @faltasaluno.disciplina_id=session[:disciplina_id]
+           @faltasaluno.user_id=current_user.id
+           @faltasaluno.classe_id=session[:classe_id]
+           @faltasaluno.ano_letivo = Time.now.year
+           @faltasaluno.data=session[:dia]
+           @faltasaluno.faltas=session[:falta]
+           @faltasaluno.obs=session[:obser]
+           @faltasaluno.save
 
      end
  
@@ -76,9 +73,12 @@ end
 
 def classe
    session[:professor_id]=params[:professor_id]
-   w=session[:data]= params[:data]
-   t=0
+
+   session[:data]= params[:data]
+   
+  
    @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
+ 
     if @atribuicao.empty? or @atribuicao.nil?
       render :partial => 'aviso'
     else

@@ -57,6 +57,14 @@
                     
 
                 </tr>
+                <tr>
+                    <td align="left"><font size="2"> <b>Observações:</b></font></td>
+                    <td> <%= text_field_tag(:aluno_nome) %> </td>
+                        <%= observe_field 'aluno_nome',
+                         :url    => { :action => 'obser' },
+                         :with   => 'aluno_nome' %>
+
+                </tr>
     
        </table>
        </fieldset>

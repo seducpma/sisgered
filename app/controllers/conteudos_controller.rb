@@ -170,7 +170,7 @@ end
     @conteudo = Conteudo.new(params[:conteudo])
     if ( current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental') ) 
          @conteudo.disciplina_id= session[:cont_disciplina_id]
-         if ( current_user.has_role?('professor_infantil'))
+         if ( current_user.has_role?('professor_infantil') and current_user.unidade_id != 60)
            @conteudo.disciplina_id=115
          end
     end
