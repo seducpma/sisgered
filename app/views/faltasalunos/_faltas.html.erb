@@ -1,0 +1,100 @@
+<style type="text/css">
+    .textovertical {
+        -webkit-transform:rotate(270deg);
+        -moz-transform:rotate(270deg);
+        -o-transform: rotate(270deg);
+    }
+</style>
+
+
+        <%t=0%>
+        <%if   @faltasalunos.present?%>
+            <fieldset>
+                <table width="100%" style="font-size: small">
+                         <tr bgcolor="#F5F5F5">
+                            <td valign="top"> <b> Professor:</b> </td>
+                            <%@professor=Professor.find(@faltasalunos[0].professor_id)%>
+                            <%@disciplina=Disciplina.find(@faltasalunos[0].disciplina_id)%>
+                            <%t0=0%>
+                            <td align="left" width="45%"> <%=h @professor.nome%></td>
+                             <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                            <td align="left"> <%=h@faltasalunos[0].ano_letivo %>     <%  session[:classe]= @faltasalunos[0].classe_id%></td>                            <% cont=1 %>
+                            <% cont1=1 %>
+
+                        </tr>
+
+                        <tr bgcolor="#F5F5F5" >
+                            <td align="left" width="10%"><b>Unidade:</b></td>
+                            <td align="left">  <%=h@faltasalunos[0].unidade.nome%>    <%  session[:unidade]= @faltasalunos[0].unidade.nome %></td>
+                            <td align="left"><b>Classe:</b></td>
+                            <td align="left">  <%=h @faltasalunos[0].classe.classe_classe%>
+                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Horário:</b> <%=h@faltasalunos[0].classe.horario %></td>
+                        </tr>
+
+                        <tr bgcolor="#F5F5F5">
+                            <td align="left"><b>Relatórios:</b></td>
+                            <td align="left" colspan="3"> <b>de </b>&nbsp <%=h  session[:dataINI]%>   &nbsp&nbsp <b>à</b>  &nbsp<%=h  session[:dataFIM]%></td>
+
+                        </tr>
+                    </table>
+                </fieldset>
+                  <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="78%" colspan="2"><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
+                        <%@faltasalunosdias.each do |data| %>
+                                 <td align="center" ><div class="textovertical"><b><%=  data.data.strftime("%d/%m/%Y") %></b></div></td>
+                         <%end%>
+                    </tr>
+                    <% for aluno in @alunos_matriculados %>
+                       <tr bgcolor="#F5F5F5">
+                            <td width ="5%" align="center"><%= aluno.numero %></td>
+                            <td><%=h aluno.aluno_nome_dtn %></td>
+                            <td align="center">   xxxx  </td>
+                       </tr>
+                 <%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+              </table>
+                    
+     <%end%>
+
+
+
+<br/>
+<br/>
+<br/>
+
+<%cont=0%>
+ <table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td width =" 5%"> <b>&nbsp&nbsp&nbsp Dia</b></td>
+            <td width =" 5%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
+            <td width =" 15%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
+            <td width =" 30%"><b>&nbsp&nbsp&nbsp Professor</b></td>
+            <td width =" 54%"><b>&nbsp&nbsp&nbsp Aluno</b></td>
+
+        </tr>
+         <% for faltas in  @faltasalunos%>
+         <tr bgcolor="#F5F5F5" >
+            <td align="center"> <%= faltas.data.strftime("%d/%m/%Y") %> </td>
+            <td align="center"> <%= faltas.classe.classe_classe%></td>
+            <td align="center"> <%= faltas.disciplina.disciplina%></td>
+            <td align="left"> <%= truncate(faltas.professor.nome,:length => 50,:omission => "...")%> </td>
+            <td align="left"> <%= faltas.aluno.aluno_nome%> </td>
+         </tr>
+         <%cont=cont+1%>
+         <%end%>
+         <tr>
+           <td colspan="5" align="right"> <b>Total de faltas: <%= cont %>   </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+         </tr>
+    </table>

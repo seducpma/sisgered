@@ -4,6 +4,7 @@ class Faltasaluno < ActiveRecord::Base
   belongs_to :atribuicao
   belongs_to :professor
   belongs_to :unidade
+  belongs_to :classe
   belongs_to :disciplina
   belongs_to :user
 end

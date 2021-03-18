@@ -2,7 +2,7 @@
 <%if current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental')%>
    <%@disciplinas = Disciplina.find(:all, :select => 'DISTINCT (disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id ", :conditions => ['classes.unidade_id =? and atribuicaos.ano_letivo=?', current_user.unidade_id, Time.now.year]) %>
 <%end%>
-<div id="interno1">
+<div id="interno6">
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
@@ -13,11 +13,7 @@
     
       <fieldset>
         <table width="100%" align="center" bgcolor="#DCDCDC" >
-          <tr>
-            <td colspan="3"><font size="3" color="red"> Selecione TODOS os itens referentes ao lançamento de faltas</font>
-            </td>
 
-          </tr>
           <tr>
               <td><b>Data:</b> </td>
               <td><%= datepicker_tag(:faltasalunos, :data,{:size => 10},{:dateFormat => "'yy-mm-dd'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
@@ -25,23 +21,30 @@
                      <%= observe_field 'faltasalunos_data',
                          :url    => { :action => 'data' },
                          :with   => 'faltasalunos_data' %>
-                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Quantidade:</b> <%= select_tag :falta, options_for_select(["selecionar", "1","2","3","4","5","6"])%> &nbsp<font size="2"color=" red"><b> Quantidade de aulas (faltas) no dia</font></td>
-                    <%= observe_field 'falta',
-                         :url    => { :action => 'faltas' },
-                         :with   => 'falta' %>
-          </tr>
-      
-                <tr>
-                  <td width =" 5%" valign="top"><b>Professor(a):</b></td>
-                  <td ><%= collection_select :professor, :id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
-                  
-                      <%= observe_field 'professor_id',
+              </td>
+         <tr>
+           <td> <b></b>Professor(a): </td>
+           <td> <%= collection_select :professor, :id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+                   <%= observe_field 'professor_id',
                          :update => "classe_diario",
                          :url    => { :action => 'classe' },
                          :with   => 'professor_id' %>
+             </td>
+          </tr>
+      
+                <tr>
+                  <td width =" 5%" valign="top"><b><b>Quantidade:</b> </b></td>
+                  <td> <%= select_tag :falta, options_for_select(["selecionar", "1","2","3","4","5","6"])%> &nbsp<font size="2"color=" red"><font size="1"><b> Quantidade de aulas (faltas) no dia</b></font></td>
+                    <%= observe_field 'falta',
+                         :url    => { :action => 'faltas' },
+                         :with   => 'falta' %>
 
+                  
+                      
 
                 </tr>
+
+                
                 <tr>
                     <td align="left"><font size="2"> <b>Disciplina:</b></font></td>
                     <td><%= select_tag :disciplina_id, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %>
@@ -59,7 +62,7 @@
                 </tr>
                 <tr>
                     <td align="left"><font size="2"> <b>Observações:</b></font></td>
-                    <td> <%= text_field_tag(:aluno_nome) %> </td>
+                    <td> <%= text_field_tag(:aluno_nome ) %> </td>
                         <%= observe_field 'aluno_nome',
                          :url    => { :action => 'obser' },
                          :with   => 'aluno_nome' %>

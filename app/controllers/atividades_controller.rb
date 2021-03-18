@@ -657,7 +657,7 @@ t=0
                             @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and professor_id=? and unidade_id =?',Time.now.year,  params[:professor][:id], current_user.unidade_id],:order => 'inicio DESC')
 
                         else
-                            @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and professor_id=? and professor_id =?',Time.now.year,  params[:professor][:id], current_user.professor_id],:order => 'inicio DESC')
+                            @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and professor_id=? ',Time.now.year,  params[:professor][:id]],:order => 'inicio DESC')
                         end
                     end
                     session[:professor]= @atividades[0].professor_id

@@ -305,9 +305,9 @@ display: none;
                                         </li>
                                     <%end%>
 
-                                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental')or current_user.has_role?('professor_infantil'))%>
-                                        <li><%= link_to "Devolutivas",avaliacao_atividades_path %></li>
-                                    <%end%>
+                                    <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental')or current_user.has_role?('professor_infantil'))%>
+                                       <!-- <li><%#= link_to "Devolutivas",avaliacao_atividades_path %></li>-->
+                                    <%#end%>
                              </ul>
                          </li>
       <%end%>
@@ -411,7 +411,7 @@ display: none;
                      <%end%>
 
 
-                                                  <li><a class="item-primary" href="#;">Lançamentos</a>
+                        <li><a class="item-primary" href="#;">Lançamentos</a>
                            <ul>
                               <% if (current_user.unidade_id != 60)  %>
                                  <li><%= link_to "Professor",consultas_conteudos_path %></li>
@@ -685,7 +685,7 @@ display: none;
               <!--=========================================== Diario Classe==============-->
 
               <%# if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)%>
-               <% if  ( current_user.id == 2 )%>
+               <% if  ( current_user.id == 2 ) or  ( current_user.id == 3 )%>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">DIÁRIO DE CLASSE</a>
                  <ul style="width:108px;">
@@ -704,11 +704,11 @@ display: none;
                                             <%end%>
                                      </ul>
                                   </li>
-                                 <li><a>Faltas</a>
+                                 <li><a>Frequência</a>
                                      <ul>
                                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
-                                               <li><%= link_to "Lançamentos",new_faltasaluno_path %></li>  <!-- Professores fundamental-->
-                                               <li><%= link_to "Consultas ",consultas_conteudos_path %></li><!-- Professores fundamental-->
+                                               <li><%= link_to "Lançamento Faltas",new_faltasaluno_path %></li>  <!-- Professores fundamental-->
+                                               <li><%= link_to "Consultas ",consultas_faltasalunos_path %></li><!-- Professores fundamental-->
                                             <%end%>
                                      </ul>
                                   </li>

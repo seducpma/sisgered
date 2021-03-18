@@ -1,10 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :faltasalunos
-
+  map.resources :faltasalunos, :collection => { :consultas =>:get}
   map.resources :diario_classes, :collection => { :faltas=>:get}
-
   map.resources :atividade_avaliacaos
-
   map.resources :atividades, :collection => { :aviso=>:get, :consultas=> :get,  :avaliacao=>:get}
   map.resources :atas ,:collection => { :consultas=>:get}
   map.resources :conteudos, :collection => { :consultas=>:get,  :consultas_direcao =>:get,:consultas_mqa =>:get, :editar_mqa=>:get, :editar_direcao=>:get, :editar=>:get, :new_direcao => :get,  :new_mqa => :get, :validacao => :get}
@@ -197,6 +194,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.consulta_relatorios '/consulta_relatorios', :controller => 'relatorios', :action => 'consulta_relatorios'
   map.consulta_fapea '/consulta_fapea', :controller => 'relatorios', :action => 'consulta_fapea'
   map.consulta_conteudo '/consulta_conteudo', :controller => 'conteudos', :action => 'consulta_conteudo'
+  map.consulta_faltas '/consulta_faltas', :controller => 'faltasalunos', :action => 'consulta_faltas'
   map.consulta_direcao_conteudo '/consulta_direcao_conteudo', :controller => 'conteudos', :action => 'consulta_direcao_conteudo'
   map.consulta_mqa_conteudo '/consulta_mqa_conteudo', :controller => 'conteudos', :action => 'consulta_mqa_conteudo'
 
