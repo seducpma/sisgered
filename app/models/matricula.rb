@@ -7,7 +7,7 @@ class Matricula < ActiveRecord::Base
   has_many :notas, :dependent => :destroy
   has_many :faltas, :dependent => :destroy
   has_many :atividade_avaliacaos, :dependent => :destroy
-  
+   has_many :faltasalunos
   validates_presence_of :aluno_id, :classe_id
   
 

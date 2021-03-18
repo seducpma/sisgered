@@ -5,7 +5,7 @@
         -o-transform: rotate(270deg);
     }
 </style>
-
+ 
 
         <%t=0%>
         <%if   @faltasalunos.present?%>
@@ -45,38 +45,11 @@
                                  <td align="center" ><div class="textovertical"><b><%=  data.data.strftime("%d/%m/%Y") %></b></div></td>
                          <%end%>
                     </tr>
+             <tr bgcolor="#F5F5F5">
+                        <td colspan="13"> <div id="atividades_aluno">
 
-                 <%lin=@atividades_avaliacao_alunos.count%>
-                 <%col=@atividades.count%>
-
-
-
-
-                    <% for aluno in @alunos_matriculados %>
-                       <tr bgcolor="#F5F5F5">
-                            <td width ="5%" align="center"><%= aluno.numero %></td>
-                            <td><%=h aluno.aluno_nome_dtn %></td>
-                            <td align="center">   
-                              
-                                              <% for alunofalta1 in @alunos_matriculados %>
-                                                     <%@faltasalunos = Faltasaluno.find(:all, :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id],  current_user.professor_id] , :order => 'classe_id ASC')%>
-                                                          <%@faltasalunos.each do |datafalta| %>
-                                                                  <% if alunofalta1.id == datafalta.aluno_id  %>
-                                                                       <b> F </b>
-                                                                  <%end%>
-                                                           <%end%>
-                              
-                                                 <%end%>                            
-                            
-                            
-                            
-                            </td>
-
-
-                        <td colspan="13">
-
-                                <%lin=@atividades_avaliacao_alunos.count%>
-                                <%col=@atividades.count%>
+                                <%lin=@alunos_matriculados.count%>
+                                <%col=@alunos_matriculados.count%>
 
                                 <%cont_aval=0%>
                                 <%cont_ativ=0%>
@@ -84,41 +57,41 @@
 
 
                                     <%cont_aval=0%>
-                                    <% @atividades_avaliacao_alunos.each do |atividade|%>
+                                    <% @alunos_matriculados.each do |alunos_mat|%>
 
                                             <tr bgcolor="#F5F5F5">
-                                                <td width ="4%" align="center"><%= atividade.matricula.classe_num  %>  </td>
+                                                <td width ="4%" align="center"><%= alunos_mat.classe_num %>  </td>
 <!--                                                <%#*<td width ="10%" ><%= atividade.matricula.aluno.aluno_ra  %></td>%>-->
-                                                <td width ="40%" align="left"><%= atividade.aluno.aluno_nome %>
-                                                  <%if atividade.matricula.status!="MATRICULADO"%>
-                                                        <%if atividade.matricula.status=='TRANSFERIDO'%>
-                                                            <font color ="red"> (Transferido)</font>
-                                                        <%else if atividade.matricula.status=='REMANEJADO' %>
-                                                                    <font color ="green"> (Remanejado)</font>
-                                                             <%else if atividade.matricula.status=='*REMANEJADO' %>
-                                                                    <font color ="green"> (*Remanejado)</font>
-                                                                  <%else if atividade.matricula.status == 'TRANSFERENCIA' %>
-                                                                            <font color ="blue"> (Transferência)</font>
-                                                                       <%else%>
-                                                                            <font color ="cyan"> (Outros)</font>
-                                                                       <%end%>
-                                                                  <%end%>
-                                                             <%end%>
-                                                        <%end%>
-                                                    <%end%>
+                                                <td width ="40%" align="left"><%= alunos_mat.aluno_nome %>
                                                 </td>
                                                 <%cont_ativ=0%>
-                                                <%@atividades.each do |atividade|%>
+                                                <%@faltasalunosdias.each do |falatasdias|%>
                                                 <td align="center">
                                                     <table >
                                                         <tr>
                                                             <%t0=0%>
-                                                            <td align="center"> <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
+                                                            <td align="center">
 
-                                                                                <%else%>
-                                                                                    <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%>
 
+
+
+
+
+
+                                                             <%@faltasalunosdiasT.each do |falatasdiasT|%>
+                                                                                   <% if falatasdiasT.aluno_id == alunos_mat.id %>
+                                                                                      F
+                                                                                  <%else%>
+                                                                                      P
+                                                                                 <%end%>
                                                                                <%end%>
+                                                          
+
+
+
+
+
+
                                                             </td>
                                                         </tr>
                                                        </table>
@@ -129,12 +102,17 @@
                                             </tr>
                                       <%end%>
 
-                            </td>
+                            </div></td>
+                    </tr>
 
 
 
-                       </tr>
-                 <%end%>
+
+
+
+
+
+
 
 
 
