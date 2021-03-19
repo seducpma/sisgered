@@ -47,18 +47,7 @@
                     </tr>
              <tr bgcolor="#F5F5F5">
                         <td colspan="13"> <div id="atividades_aluno">
-
-                                <%lin=@alunos_matriculados.count%>
-                                <%col=@alunos_matriculados.count%>
-
-                                <%cont_aval=0%>
-                                <%cont_ativ=0%>
-
-
-
-                                    <%cont_aval=0%>
                                     <% @alunos_matriculados.each do |alunos_mat|%>
-
                                             <tr bgcolor="#F5F5F5">
                                                 <td width ="4%" align="center"><%= alunos_mat.classe_num %>  </td>
 <!--                                                <%#*<td width ="10%" ><%= atividade.matricula.aluno.aluno_ra  %></td>%>-->
@@ -70,64 +59,33 @@
                                                 <td align="center">
                                                     <table >
                                                         <tr>
-                                                            <%t0=0%>
                                                             <td align="center">
+                                                            
                                                              <%@faltasalunosdiasT.each do |falatasdiasT|%>
+                                                                
                                                                                    <% if falatasdiasT.aluno_id == alunos_mat.id  %>
                                                                                       F
-                                                                                  
                                                                                  <%end%>
                                                                                <%end%>
-                                                          
-
-
-
-
-
-
                                                             </td>
                                                         </tr>
                                                        </table>
                                                     </td>
-                                                    <%cont_ativ=cont_ativ+1%>
                                                 <%end%>
-                                                <%cont_aval=cont_aval+1%>
+
                                             </tr>
                                       <%end%>
 
                             </div></td>
                     </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              </table>
                     
+              </table>
+
      <%end%>
-
-
-
 <br/>
 <br/>
 <br/>
-
+<font size="3"> <b> RESUMO DAS FALTAS</b></font>
 <%cont=0%>
  <table border="1" cellspacing="0" cellpadding="1" width="100%" >
         <tr bgcolor="#DCDCDC" >
@@ -138,7 +96,9 @@
             <td width =" 54%"><b>&nbsp&nbsp&nbsp Aluno</b></td>
 
         </tr>
+          <%contI=0%>
          <% for faltas in  @faltasalunos%>
+          <%contI=contI +1%>
          <tr bgcolor="#F5F5F5" >
             <td align="center"> <%= faltas.data.strftime("%d/%m/%Y") %> </td>
             <td align="center"> <%= faltas.classe.classe_classe%></td>
@@ -147,6 +107,8 @@
             <td align="left"> <%= faltas.aluno.aluno_nome%> </td>
          </tr>
          <%cont=cont+1%>
+
+
          <%end%>
          <tr>
            <td colspan="5" align="right"> <b>Total de faltas: <%= cont %>   </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
