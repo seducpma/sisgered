@@ -31,13 +31,20 @@
                          :with   => 'professor_id' %>
              </td>
           </tr>
+      
                 <tr>
                   <td width =" 5%" valign="top"><b><b>Quantidade:</b> </b></td>
                   <td> <%= select_tag :falta, options_for_select(["selecionar", "1","2","3","4","5","6"])%> &nbsp<font size="2"color=" red"><font size="1"><b> Quantidade de aulas (faltas) no dia</b></font></td>
                     <%= observe_field 'falta',
                          :url    => { :action => 'faltas' },
                          :with   => 'falta' %>
+
+                  
+                      
+
                 </tr>
+
+                
                 <tr>
                     <td align="left"><font size="2"> <b>Disciplina:</b></font></td>
                     <td><%= select_tag :disciplina_id, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %>
@@ -46,9 +53,16 @@
                          :with   => 'disciplina_id' %>
 
                 </tr>
+
                 <tr>
                     <td align="left"><font size="2"> <b>Classe:</b></font></td>
                     <td> <div id="classe_diario"><%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </div></td>
+                    <%= observe_field :classe_id,    # foi acrescentado pq comentario do professor
+                              :with => :classe_id,
+                              :update => "alunos" ,
+                              :url => { :action => 'alunos'}%>
+
+
                 </tr>
                 <tr>
                     <td align="left"><font size="2"> <b>Observações:</b></font></td>

@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :faltasalunos, :collection => { :consultas =>:get}
+  map.resources :faltasalunos, :collection => { :consultas =>:get,  :aviso=>:get}
   map.resources :diario_classes, :collection => { :faltas=>:get}
   map.resources :atividade_avaliacaos
   map.resources :atividades, :collection => { :aviso=>:get, :consultas=> :get,  :avaliacao=>:get}

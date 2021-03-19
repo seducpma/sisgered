@@ -19,6 +19,14 @@
 <table width="100%" align="center">
    
    <tr>
+              <td align= "right"><font size="2"><b class="label_busca3">Datas:  Inicial:</b></font>&nbsp
+                <%= datepicker_tag(:faltasaluno, :inicioA,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+
+               &nbsp&nbsp
+               <font size="2"><b class="label_busca3">Final:</b></font>&nbsp
+                <%= datepicker_tag(:faltasaluno, :fimA,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+           </td>
+
      <td  align="right"><font size="2"><b>Aluno(a):</b></font>
           &nbsp&nbsp&nbsp<%= select_tag :aluno, options_for_select(@alunosRel.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
           &nbsp&nbsp&nbsp <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
