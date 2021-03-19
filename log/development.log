@@ -1,0 +1,856 @@
+# Logfile created on Fri Mar 19 09:24:48 -0300 2021  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2021-03-19 09:24:52) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (1.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 12:24:52' AND ends_at >= '2021-03-19 12:24:52') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 12:24:52' AND ends_at >= '2021-03-19 12:24:52') [0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (9.4ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 428ms (View: 309, DB: 16) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#consultas (for 127.0.0.1 at 2021-03-19 09:38:20) [GET]
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.3ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;35;1mRole Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering faltasalunos/consultas
+Rendered faltasalunos/_consulta_data (2.3ms)
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered faltasalunos/_consulta_classe (15.8ms)
+  [4;36;1mFaltasaluno Load (0.3ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `faltasalunos` INNER JOIN `alunos` ON `alunos`.id = `faltasalunos`.aluno_id WHERE (alunos.aluno_status is null AND alunos.unidade_id =50 AND faltasalunos.ano_letivo=2021 ) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mFaltasaluno Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `faltasalunos`[0m
+Rendered faltasalunos/_consulta_aluno (117.7ms)
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 12:38:20' AND ends_at >= '2021-03-19 12:38:20') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 12:38:20' AND ends_at >= '2021-03-19 12:38:20') [0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 377ms (View: 207, DB: 10) | 200 OK [http://localhost/faltasalunos/consultas]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#classe_disciplina (for 127.0.0.1 at 2021-03-19 09:38:33) [POST]
+  Parameters: {"authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ=", "classe_id"=>"3186"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT `disciplinas`.* FROM `disciplinas` INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id WHERE (atribuicaos.classe_id ='3186') [0m
+  [4;35;1mDisciplina Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+Rendered faltasalunos/_disciplina_classe (5.4ms)
+Completed in 174ms (View: 9, DB: 5) | 200 OK [http://localhost/faltasalunos/classe_disciplina]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#consulta_faltas (for 127.0.0.1 at 2021-03-19 09:38:36) [GET]
+  Parameters: {"authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ=", "disciplina_id"=>"1", "aluno"=>"--Selecionar--", "type_of"=>"4", "classe_id"=>"3186", "faltasaluno"=>{"inicioC"=>"15-03-2021", "inicio"=>"", "fimC"=>"19-03-2021", "fim"=>""}, "_"=>"1616157516196"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;36;1mFaltasaluno Load (0.3ms)[0m   [0;1mSELECT `faltasalunos`.* FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98) ORDER BY classe_id ASC[0m
+  [4;35;1mFaltasaluno Load (0.2ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98) ORDER BY classe_id ASC[0m
+  [4;36;1mFaltasaluno Load (0.1ms)[0m   [0;1mSELECT distinct(data) FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98) ORDER BY classe_id ASC[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT alunos.id , matriculas.classe_num , alunos.aluno_nome	 ,CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn , matriculas.classe_num as numero FROM `alunos` INNER JOIN matriculas on alunos.id = matriculas.aluno_id WHERE (matriculas.classe_id = '3186' AND matriculas.ano_letivo =2021 and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = 50) ORDER BY classe_num ASC[0m
+  [4;36;1mFaltasaluno Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `faltasalunos`[0m
+  [4;35;1mProfessor Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mProfessor Load (0.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mDisciplina Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mDisciplina Load (0.3ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mUnidade Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+  [4;35;1mClasse Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mAluno Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mFaltasaluno Load (1.5ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mFaltasaluno Load (1.2ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10437) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 17486) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 22141) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mAluno Load (0.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 22141) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+Rendered faltasalunos/_faltas (366.8ms)
+Completed in 569ms (View: 371, DB: 18) | 200 OK [http://localhost/consulta_faltas?authenticity_token=XYF403xoxBjPXV0Sl2Fe6J8OwT7%2BhX0rSogcf71myiQ%3D&type_of=4&faltasaluno%5Binicio%5D=&faltasaluno%5Bfim%5D=&faltasaluno%5BinicioC%5D=15-03-2021&faltasaluno%5BfimC%5D=19-03-2021&classe_id=3186&disciplina_id=1&aluno=--Selecionar--&authenticity_token=XYF403xoxBjPXV0Sl2Fe6J8OwT7%2BhX0rSogcf71myiQ%3D&_=1616157516196]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2021-03-19 10:09:28) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:09:29' AND ends_at >= '2021-03-19 13:09:29') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:09:29' AND ends_at >= '2021-03-19 13:09:29') [0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (6.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 371ms (View: 261, DB: 11) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#new (for 127.0.0.1 at 2021-03-19 10:09:34) [GET]
+  [4;35;1mUser Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;35;1mRole Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.3ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;35;1mFaltasaluno Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `faltasalunos`[0m
+Rendering template within layouts/application
+Rendering faltasalunos/new
+  [4;36;1mClasse Load (0.3ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2021 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.4ms)[0m   [0mSELECT DISTINCT (disciplinas.disciplina), disciplinas.id FROM `disciplinas` INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id WHERE (classes.unidade_id =50 and atribuicaos.ano_letivo=2021) [0m
+  [4;36;1mProfessor Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mDisciplina Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mClasse Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:09:34' AND ends_at >= '2021-03-19 13:09:34') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:09:34' AND ends_at >= '2021-03-19 13:09:34') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 339ms (View: 146, DB: 11) | 200 OK [http://localhost/faltasalunos/new]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#disciplina (for 127.0.0.1 at 2021-03-19 10:09:45) [POST]
+  Parameters: {"authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ=", "disciplina_id"=>"1"}
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;35;1mRole Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+
+ActionView::MissingTemplate (Missing template faltasalunos/disciplina.erb in view path app/views):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#new (for 127.0.0.1 at 2021-03-19 10:09:55) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.4ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;35;1mRole Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.3ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;35;1mFaltasaluno Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `faltasalunos`[0m
+Rendering template within layouts/application
+Rendering faltasalunos/new
+  [4;36;1mClasse Load (0.3ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2021 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.3ms)[0m   [0mSELECT DISTINCT (disciplinas.disciplina), disciplinas.id FROM `disciplinas` INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id WHERE (classes.unidade_id =50 and atribuicaos.ano_letivo=2021) [0m
+  [4;36;1mProfessor Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mDisciplina Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mClasse Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mInformativo Load (1.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:09:55' AND ends_at >= '2021-03-19 13:09:55') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:09:55' AND ends_at >= '2021-03-19 13:09:55') [0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;36;1mUnidade Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 296ms (View: 98, DB: 15) | 200 OK [http://localhost/faltasalunos/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#data (for 127.0.0.1 at 2021-03-19 10:10:01) [POST]
+  Parameters: {"authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ=", "faltasalunos_data"=>"2021-03-16"}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+
+ActionView::MissingTemplate (Missing template faltasalunos/data.erb in view path app/views):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#classe (for 127.0.0.1 at 2021-03-19 10:10:03) [POST]
+  Parameters: {"professor_id"=>"98", "authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ="}
+  [4;35;1mUser Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;35;1mRole Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;35;1mAtribuicao Load (19.4ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (professor_id ='98' and ano_letivo=2021) [0m
+  [4;36;1mClasse Load (4.7ms)[0m   [0;1mSELECT disciplinas.id as disc_id, classes.unidade_id, atribuicaos.disciplina_id as disciplina, classes.id as classe_id, CONCAT(classes.classe_classe, ' - ',disciplinas.disciplina,' - ',unidades.nome) AS classe FROM `classes` INNER JOIN atribuicaos on classes.id = atribuicaos.classe_id INNER JOIN disciplinas on disciplinas.id = atribuicaos.disciplina_id INNER JOIN unidades ON unidades.id = classes.unidade_id WHERE (disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = '98' AND atribuicaos.ano_letivo =2021) ORDER BY disciplina ASC[0m
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered faltasalunos/_classe (15.9ms)
+Completed in 227ms (View: 21, DB: 29) | 200 OK [http://localhost/faltasalunos/classe]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#faltas (for 127.0.0.1 at 2021-03-19 10:10:14) [POST]
+  Parameters: {"authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ=", "falta"=>"3"}
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+
+ActionView::MissingTemplate (Missing template faltasalunos/faltas.erb in view path app/views):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#disciplina (for 127.0.0.1 at 2021-03-19 10:10:17) [POST]
+  Parameters: {"authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ=", "disciplina_id"=>"1"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.4ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+
+ActionView::MissingTemplate (Missing template faltasalunos/disciplina.erb in view path app/views):
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+  /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+  /usr/bin/rdebug-ide:19:in `load'
+  /usr/bin/rdebug-ide:19
+
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#alunos (for 127.0.0.1 at 2021-03-19 10:10:20) [POST]
+  Parameters: {"classe_id"=>"3186", "authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ="}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (44.8ms)[0m   [0;1mSELECT alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn , matriculas.classe_num as numero FROM `alunos` INNER JOIN matriculas on alunos.id = matriculas.aluno_id WHERE (matriculas.classe_id = '3186' AND matriculas.ano_letivo =2021 and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = 50) ORDER BY classe_num ASC[0m
+  [4;35;1mAluno Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+Rendered faltasalunos/_alunos (46.5ms)
+Completed in 275ms (View: 54, DB: 49) | 200 OK [http://localhost/faltasalunos/alunos]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#alunos_faltas_falta (for 127.0.0.1 at 2021-03-19 10:10:37) [GET]
+  Parameters: {"aluno_ids"=>["21955", "27126"], "commit"=>"Confirmar"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;36;1mAluno Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.7ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` IN (21955,27126)) ORDER BY aluno_nome ASC[0m
+  [4;36;1mAtribuicao Load (9.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (professor_id ='98' and ano_letivo=2021 and classe_id='3186' and disciplina_id ='1') [0m
+  [4;35;1mFaltasaluno Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `faltasalunos`[0m
+  [4;36;1mMatricula Load (52.7ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (aluno_id=21955 and classe_id='3186') [0m
+  [4;35;1mMatricula Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+  [4;36;1mAtribuicao Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mFaltasaluno Create (0.5ms)[0m   [0;1mINSERT INTO `faltasalunos` (`faltas`, `classe_id`, `professor_id`, `conteudo`, `disciplina_id`, `updated_at`, `ano_letivo`, `user_id`, `data`, `atribuicao_id`, `aluno_id`, `matricula_id`, `unidade_id`, `obs`, `ativo`, `created_at`) VALUES(3, 3186, 98, NULL, 1, '2021-03-19 13:10:37', 2021, 3, '2021-03-16', 14204, 21955, 73916, 50, NULL, 0, '2021-03-19 13:10:37')[0m
+  [4;35;1mSQL (36.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mFaltasaluno Load (0.5ms)[0m   [0;1mSELECT * FROM `faltasalunos` ORDER BY faltasalunos.id DESC LIMIT 1[0m
+  [4;35;1mMatricula Load (57.3ms)[0m   [0mSELECT * FROM `matriculas` WHERE (aluno_id=27126 and classe_id='3186') [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mFaltasaluno Create (0.4ms)[0m   [0mINSERT INTO `faltasalunos` (`faltas`, `classe_id`, `professor_id`, `conteudo`, `disciplina_id`, `updated_at`, `ano_letivo`, `user_id`, `data`, `atribuicao_id`, `aluno_id`, `matricula_id`, `unidade_id`, `obs`, `ativo`, `created_at`) VALUES(3, 3186, 98, NULL, 1, '2021-03-19 13:10:37', 2021, 3, '2021-03-16', 14204, 27126, 73984, 50, NULL, 0, '2021-03-19 13:10:37')[0m
+  [4;36;1mSQL (33.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mFaltasaluno Load (0.6ms)[0m   [0mSELECT * FROM `faltasalunos` ORDER BY faltasalunos.id DESC LIMIT 1[0m
+Rendering template within layouts/application
+Rendering faltasalunos/alunos_faltas_falta
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2021 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT DISTINCT (disciplinas.disciplina), disciplinas.id FROM `disciplinas` INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id WHERE (classes.unidade_id =50 and atribuicaos.ano_letivo=2021) [0m
+  [4;36;1mProfessor Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;36;1mDisciplina Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mClasse Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:10:37' AND ends_at >= '2021-03-19 13:10:37') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:10:37' AND ends_at >= '2021-03-19 13:10:37') [0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+Completed in 670ms (View: 207, DB: 203) | 200 OK [http://localhost/alunos_faltas_falta?aluno_ids%5B%5D=21955&aluno_ids%5B%5D=27126&commit=Confirmar]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#consultas (for 127.0.0.1 at 2021-03-19 10:10:46) [GET]
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;35;1mRole Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.3ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering faltasalunos/consultas
+Rendered faltasalunos/_consulta_data (2.4ms)
+  [4;35;1mClasse Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered faltasalunos/_consulta_classe (20.3ms)
+  [4;36;1mFaltasaluno Load (1.8ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `faltasalunos` INNER JOIN `alunos` ON `alunos`.id = `faltasalunos`.aluno_id WHERE (alunos.aluno_status is null AND alunos.unidade_id =50 AND faltasalunos.ano_letivo=2021 ) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mFaltasaluno Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `faltasalunos`[0m
+Rendered faltasalunos/_consulta_aluno (132.7ms)
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:10:46' AND ends_at >= '2021-03-19 13:10:46') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:10:46' AND ends_at >= '2021-03-19 13:10:46') [0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 422ms (View: 218, DB: 11) | 200 OK [http://localhost/faltasalunos/consultas]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#classe_disciplina (for 127.0.0.1 at 2021-03-19 10:10:55) [POST]
+  Parameters: {"classe_id"=>"3186", "authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ="}
+  [4;36;1mUser Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT `disciplinas`.* FROM `disciplinas` INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id WHERE (atribuicaos.classe_id ='3186') [0m
+  [4;35;1mDisciplina Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+Rendered faltasalunos/_disciplina_classe (6.1ms)
+Completed in 191ms (View: 11, DB: 6) | 200 OK [http://localhost/faltasalunos/classe_disciplina]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#consulta_faltas (for 127.0.0.1 at 2021-03-19 10:10:57) [GET]
+  Parameters: {"authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ=", "classe_id"=>"3186", "disciplina_id"=>"--Todas--", "type_of"=>"4", "aluno"=>"--Selecionar--", "faltasaluno"=>{"inicio"=>"", "fim"=>"", "fimC"=>"19-03-2021", "inicioC"=>"15-03-2021"}, "_"=>"1616159456931"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #103 of app/views/faltasalunos/_faltas.html.erb:
+100: 
+101:         </tr>
+102:           <%contI=0%>
+103:          <% for faltas in  @faltasalunos%>
+104:           <%contI=contI +1%>
+105:          <tr bgcolor="#F5F5F5" >
+106:             <td align="center"> <%= faltas.data.strftime("%d/%m/%Y") %> </td>
+
+    app/views/faltasalunos/_faltas.html.erb:103
+    app/controllers/faltasalunos_controller.rb:350:in `consulta_faltas'
+    app/controllers/faltasalunos_controller.rb:349:in `consulta_faltas'
+    /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_load'
+    /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/lib/ruby-debug-ide.rb:86:in `debug_program'
+    /usr/lib/ruby/gems/1.8/gems/ruby-debug-ide-0.4.33/bin/rdebug-ide:121
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+
+Rendered rescues/_trace (82.3ms)
+Rendered rescues/_request_and_response (2.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#consulta_faltas (for 127.0.0.1 at 2021-03-19 10:10:59) [GET]
+  Parameters: {"authenticity_token"=>"XYF403xoxBjPXV0Sl2Fe6J8OwT7+hX0rSogcf71myiQ=", "classe_id"=>"3186", "disciplina_id"=>"1", "type_of"=>"4", "aluno"=>"--Selecionar--", "faltasaluno"=>{"inicio"=>"", "fim"=>"", "fimC"=>"19-03-2021", "inicioC"=>"15-03-2021"}, "_"=>"1616159459188"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;36;1mFaltasaluno Load (0.6ms)[0m   [0;1mSELECT `faltasalunos`.* FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98) ORDER BY classe_id ASC[0m
+  [4;35;1mFaltasaluno Load (0.6ms)[0m   [0mSELECT distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id, 	professor_id, 	disciplina_id , 	ano_letivo FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98) ORDER BY classe_id ASC[0m
+  [4;36;1mFaltasaluno Load (1.0ms)[0m   [0;1mSELECT distinct(data) FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98) ORDER BY classe_id ASC[0m
+  [4;35;1mAluno Load (0.6ms)[0m   [0mSELECT alunos.id , matriculas.classe_num , alunos.aluno_nome	 ,CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn , matriculas.classe_num as numero FROM `alunos` INNER JOIN matriculas on alunos.id = matriculas.aluno_id WHERE (matriculas.classe_id = '3186' AND matriculas.ano_letivo =2021 and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = 50) ORDER BY classe_num ASC[0m
+  [4;36;1mFaltasaluno Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `faltasalunos`[0m
+  [4;35;1mProfessor Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mDisciplina Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;35;1mUnidade Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 50) [0m
+  [4;35;1mClasse Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mAluno Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mFaltasaluno Load (1.5ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mFaltasaluno Load (0.9ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mFaltasaluno Load (0.6ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-17') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-18') ORDER BY classe_id ASC[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT distinct(data), aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id, ano_letivo, faltas FROM `faltasalunos` INNER JOIN `classes` ON `classes`.id = `faltasalunos`.classe_id WHERE (data >='2021-03-15' AND data <='2021-03-19' AND classe_id = '3186' AND disciplina_id='1' AND professor_id=98 AND data='2021-03-16') ORDER BY classe_id ASC[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10437) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 17486) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mAluno Load (0.4ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13786) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 22141) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 10487) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 22141) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21235) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mAluno Load (1.0ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 21955) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3186) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 98) [0m
+  [4;35;1mAluno Load (0.9ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 27126) [0m
+Rendered faltasalunos/_faltas (440.2ms)
+Completed in 674ms (View: 448, DB: 22) | 200 OK [http://localhost/consulta_faltas?authenticity_token=XYF403xoxBjPXV0Sl2Fe6J8OwT7%2BhX0rSogcf71myiQ%3D&type_of=4&faltasaluno%5Binicio%5D=&faltasaluno%5Bfim%5D=&faltasaluno%5BinicioC%5D=15-03-2021&faltasaluno%5BfimC%5D=19-03-2021&classe_id=3186&disciplina_id=1&aluno=--Selecionar--&authenticity_token=XYF403xoxBjPXV0Sl2Fe6J8OwT7%2BhX0rSogcf71myiQ%3D&_=1616159459188]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing FaltasalunosController#new (for 127.0.0.1 at 2021-03-19 10:11:49) [GET]
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 3) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 3 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 98 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2021 AND atribuicaos.professor_id = 98 and classes.unidade_id = 50) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=50) ORDER BY nome ASC[0m
+  [4;36;1mFaltasaluno Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `faltasalunos`[0m
+Rendering template within layouts/application
+Rendering faltasalunos/new
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 50 and classe_ano_letivo = 2021 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT DISTINCT (disciplinas.disciplina), disciplinas.id FROM `disciplinas` INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id WHERE (classes.unidade_id =50 and atribuicaos.ano_letivo=2021) [0m
+  [4;35;1mProfessor Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mDisciplina Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mClasse Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mInformativo Load (0.4ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:11:49' AND ends_at >= '2021-03-19 13:11:49') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2021-03-19 11:05:51') AND (starts_at <= '2021-03-19 13:11:49' AND ends_at >= '2021-03-19 13:11:49') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=50) [0m
+  [4;35;1mUnidade Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 271ms (View: 86, DB: 7) | 200 OK [http://localhost/faltasalunos/new]
