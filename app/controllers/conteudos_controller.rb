@@ -44,11 +44,14 @@ class ConteudosController < ApplicationController
 
 def classe
     session[:professor_id]=params[:conteudo_professor_id]
-    @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
+
+    @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year-1 ])
+    t=0
     if @atribuicao.empty? or @atribuicao.nil?
       render :partial => 'aviso'
     else
        if @atribuicao.count > 1
+          session[:atribuicao]=@atribuicao[0].classe_id
            render :partial => 'disciplina'
        else
            session[:cont_atribuicao_id]=@atribuicao[0].id
