@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  classe: 
+  professor: 
+  atribuicao: 
+  disciplina: 
+  unidade: 
+  user: 
+  conteudo: MyString
+  ano_letivo: 1
+  inicio: 2021-03-24
+  fim: 2021-03-24
+  obs: MyString
+
+two:
+  classe: 
+  professor: 
+  atribuicao: 
+  disciplina: 
+  unidade: 
+  user: 
+  conteudo: MyString
+  ano_letivo: 1
+  inicio: 2021-03-24
+  fim: 2021-03-24
+  obs: MyString

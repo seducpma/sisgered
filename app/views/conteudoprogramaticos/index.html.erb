@@ -1,0 +1,40 @@
+<h1>Listing conteudoprogramaticos</h1>
+
+<table>
+  <tr>
+    <th>Classe</th>
+    <th>Professor</th>
+    <th>Atribuicao</th>
+    <th>Disciplina</th>
+    <th>Unidade</th>
+    <th>User</th>
+    <th>Conteudo</th>
+    <th>Ano letivo</th>
+    <th>Inicio</th>
+    <th>Fim</th>
+    <th>Obs</th>
+  </tr>
+
+<% @conteudoprogramaticos.each do |conteudoprogramatico| %>
+  <tr>
+    <td><%=h conteudoprogramatico.classe %></td>
+    <td><%=h conteudoprogramatico.professor %></td>
+    <td><%=h conteudoprogramatico.atribuicao %></td>
+    <td><%=h conteudoprogramatico.disciplina %></td>
+    <td><%=h conteudoprogramatico.unidade %></td>
+    <td><%=h conteudoprogramatico.user %></td>
+    <td><%=h conteudoprogramatico.conteudo %></td>
+    <td><%=h conteudoprogramatico.ano_letivo %></td>
+    <td><%=h conteudoprogramatico.inicio %></td>
+    <td><%=h conteudoprogramatico.fim %></td>
+    <td><%=h conteudoprogramatico.obs %></td>
+    <td><%= link_to 'Show', conteudoprogramatico %></td>
+    <td><%= link_to 'Edit', edit_conteudoprogramatico_path(conteudoprogramatico) %></td>
+    <td><%= link_to 'Destroy', conteudoprogramatico, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New conteudoprogramatico', new_conteudoprogramatico_path %>

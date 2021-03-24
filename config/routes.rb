@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :conteudoprogramaticos, :collection => { :consultas =>:get,  :aviso=>:get}
+
   map.resources :faltasalunos, :collection => { :consultas =>:get,  :aviso=>:get}
   map.resources :diario_classes, :collection => { :faltas=>:get}
   map.resources :atividade_avaliacaos
@@ -194,6 +196,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.consulta_relatorios '/consulta_relatorios', :controller => 'relatorios', :action => 'consulta_relatorios'
   map.consulta_fapea '/consulta_fapea', :controller => 'relatorios', :action => 'consulta_fapea'
   map.consulta_conteudo '/consulta_conteudo', :controller => 'conteudos', :action => 'consulta_conteudo'
+  map.consulta_conteudoprogramatico '/consulta_conteudoprogramatico', :controller => 'conteudoprogramaticos', :action => 'consulta_conteudoprogramatico'
   map.consulta_faltas '/consulta_faltas', :controller => 'faltasalunos', :action => 'consulta_faltas'
   map.consulta_direcao_conteudo '/consulta_direcao_conteudo', :controller => 'conteudos', :action => 'consulta_direcao_conteudo'
   map.consulta_mqa_conteudo '/consulta_mqa_conteudo', :controller => 'conteudos', :action => 'consulta_mqa_conteudo'

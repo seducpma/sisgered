@@ -44,7 +44,7 @@ class ConteudosController < ApplicationController
   end
 
 def classe
-    session[:professor_id]=params[:conteudo_professor_id]
+    session[:professor_id]=params[:conteudoprogramatico_professor_id]
 
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
     
