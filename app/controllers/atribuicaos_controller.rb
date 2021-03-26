@@ -211,15 +211,35 @@ class AtribuicaosController < ApplicationController
 
 
     def destroy
-
-        @atribuicao = Atribuicao.find(params[:id])
-        @atribuicao.destroy
-
-        respond_to do |format|
-            format.html { redirect_to(home_path) }
-            format.xml  { head :ok }
+         w=session[:atri_id]=params[:id]
+         t=0
+         #@notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?",params[:id],Time.now.year ])
+         @conteudoR = Conteudo.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?",params[:id],Time.now.year ])
+         @conteudosP = Conteudoprogramatico.find(:all, :conditions => ["atribuicao_id = ? AND ano_letivo=?",params[:id],Time.now.year ])
+         @conteudos=@conteudosP+@conteudoR
+t=0
+        if        @conteudos.empty? 
+          t=0
+            @atribuicao = Atribuicao.find(params[:id])
+            @atribuicao.destroy
+t=0
+            respond_to do |format|
+                format.html { redirect_to(home_path) }
+                format.xml  { head :ok }
+              end
+        else
+          t=0
+           respond_to do |format|
+                format.html { redirect_to(aviso_exclusao_path) }
+                format.xml  { head :ok }
+              end
         end
     end
+
+def aviso_exclusao
+  
+end
+
 
 
     def consulta_classe_nota

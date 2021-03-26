@@ -240,6 +240,7 @@ ActionController::Routing::Routes.draw do |map|
   map.manual_mqa'/manual_mqa', :controller => 'sessions', :action => 'manual_mqa'
 
 
+  map.aviso_exclusao '/aviso_exclusao', :controller => 'atribuicaos', :action => 'aviso_exclusao'
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
   map.matriculas_saidas '/matriculas_saidas', :controller => 'matriculas', :action => 'matriculas_saidas'
   map.matriculas_saidas_seduc '/matriculas_saidas_seduc', :controller => 'matriculas', :action => 'matriculas_saidas_seduc'
