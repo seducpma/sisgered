@@ -292,3 +292,14 @@ SEMESTRE = {'1º Semestre'=> '1',
             '2º Semestre'=> '2',
             'Anual'=> '3',
         }
+
+AVALIACAO= {''=> nil,
+            'Entregou na data' => 'END'  ,
+            'Entregou fora da data' => 'EFD',
+            'Entregou em Branco' => 'EMB',
+            'Não entregou' => 'NE',
+           }
+
+ATIVIDADETIPO= {'NÃO AVALIATIVA'=> 'NÃO AVALIATIVA',
+            'AVALIATIVA' => 'AVALIATIVA'  ,
+           }

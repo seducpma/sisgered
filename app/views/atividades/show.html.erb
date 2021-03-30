@@ -60,6 +60,16 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td></td>
+                   <td align="left" valign="top"><b>Tipo:</b></td>
+                   <td colspan="4"> <%if @atividade.tipo=='NÃO AVALIATIVA'%>
+                                        <font color ="red" <%=   @atividade.tipo%>
+                                   <%else%>
+                                       <font color ="Blue" <%=   @atividade.tipo%>
+                                   <%end%>
+                   </td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
                    <td align="left" valign="top"><b>Obs:</b></td>
                    <td colspan="4"> <%=   @atividade.obs%></td>
                 </tr>

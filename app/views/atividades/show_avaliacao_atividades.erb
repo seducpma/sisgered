@@ -65,6 +65,16 @@
                     </table>
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
+                  <tr>
+                    <td colspan="30" align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                           <%#if current_user.has_role?('professor_infantil') %>
+                                 <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
+                                   &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data </b>
+                           <%#else%>
+                           <%#end%>
+                                        </td>
+                    </tr>
+
                     <tr bgcolor="#F5F5F5">
                         <td width ="78%" colspan="2"><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
                         <%@atividades.each do |atividade| %>
@@ -78,7 +88,7 @@
                         <%#*<td width ="10%">&nbsp&nbsp<b>RA</b></td>%>
                         <td width ="40%">&nbsp&nbsp<b>NOME</b></td>
                         <%@atividades.each do |atividade| %>
-                                 <td ></td>
+                        <td align="center"><font color="blue">DEVOL.</font>  -  <font color="green">NOTA</font> </td>
                          <%end%>
 
                     </tr>
@@ -120,16 +130,21 @@
                                                 <%cont_ativ=0%>
                                                 <%@atividades.each do |atividade|%>
                                                 <td align="center">
-                                                    <table >
+                                                    <table  >
                                                         <tr>
                                                             <%t0=0%>
-                                                            <td align="center"> <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
-                                                                                    
+                                                                <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
+                                                                                   <td align="center"></td>
+                                                                                   <td align="center"></td>
                                                                                 <%else%>
-                                                                                    <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%> 
-                                                                               <%end%>
-                                                            </td>
-                                                        </tr>
+                                                                                   <td align="center"> <font color="blue"> <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%></font> </td>
+                                                                                   <td align="center"><font color="green">  &nbsp<%if @avaliacoes[cont_ativ*lin+cont_aval].nota.present? %>
+                                                                                                                                      - &nbsp <%=@avaliacoes[cont_ativ*lin+cont_aval].nota%></font>
+                                                                                                                                   <%else%>  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%end%>
+                                                                                   </td>
+                                                                                  
+                                                                                <%end%>
+                                                         </tr>
                                                        </table>
                                                     </td>
                                                     <%cont_ativ=cont_ativ+1%>
@@ -141,7 +156,7 @@
                             </div></td>
                     </tr>
                     <tr>
-                                        <td colspan="3" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                        <td colspan="30" align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
                                              <%#if current_user.has_role?('professor_infantil') %>
                                                     <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
                                                        &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data </b>
@@ -151,7 +166,7 @@
                                         </td>
                     </tr>
                 </table>
-                </table>
+
 
             <%else%>
                 <br/>

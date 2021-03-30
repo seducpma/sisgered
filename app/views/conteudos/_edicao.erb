@@ -16,7 +16,7 @@
                                         MQA
                                     <%end%>
               </td>
-            <td align="left">&nbsp <%if !edicao.atribuicao_id.nil? or !edicao.disciplina_id.nil? %>
+            <td align="left">&nbsp <%if !edicao.atribuicao_id.nil? and !edicao.disciplina_id.nil? %>
                                         <%= edicao.atribuicao.disciplina.disciplina%>
                                                 <%else%>
                                         <%= edicao.professor.obs_interno %>

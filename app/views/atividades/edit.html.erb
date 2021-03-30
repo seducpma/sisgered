@@ -21,6 +21,7 @@
         <tr bgcolor="#F5F5F5">
              <td colspan="4"><b>Data: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
 <!--               &nbsp&nbsp&nbsp <b> à </b> &nbsp&nbsp&nbsp <%#= f.date_select(:fim, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)-100)%>-->
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Tipo:<%= f.select :tipo , options_for_select(ATIVIDADETIPO) %></b>
              </td>
 
         </tr>

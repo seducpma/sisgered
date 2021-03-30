@@ -64,7 +64,7 @@
                         <td colspan="10"></td>
                     </tr>
                     <tr bgcolor="#F5F5F5">
-                        <td width ="4%"align="center"><b>Nº</b></td>
+                        <td width ="4%"align="center"><b>Nºxx</b></td>
                         <td width ="10%">&nbsp&nbsp<b>RA</b></td>
                         <td width ="40%">&nbsp&nbsp<b>NOME</b></td>
                         <%@atividades.each do |atividade| %>
@@ -100,9 +100,11 @@
                                                 </td>
                                                  <%@atividades.each do |ativ| %>
                                                         <%if !atividade.avaliacao.present?%>
-                                                            <td align="center"><%= f.select :avaliacao , options_for_select(@Avaliacao) %></td>
+                                                            <td align="center"><%= f.select :avaliacao , options_for_select(Avaliacao) %></td>
+                                                            <td align="center"><%= f.select :nota , options_for_select(@Avaliacao) %></td>
                                                         <%else%>
                                                             <td align="center"><%= atividade.avaliacao%> </td>
+                                                                   <td align="center"><%= atividade.avaliacao%> </td>
                                                         <%end%>
                                                <%end%>
                                             </tr>

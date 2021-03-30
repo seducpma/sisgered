@@ -39,11 +39,24 @@
                     </table>
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
+                                        <tr>
+                                          <td colspan="30" align="RIGHT">  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                             <%#if current_user.has_role?('professor_infantil') %>
+                                                    <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
+                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data &nbsp&nbsp  &nbsp&nbsp</b>
+                                             <%#else%>
+
+                                             <%#end%>
+                                        </td>
+                    </tr>
                     <tr bgcolor="#F5F5F5">
-                        <td width ="78%" colspan="2"><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
+                        <td width ="78%" colspan="2"><br/><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
                         <%@atividades.each do |atividade| %>
-                                 <td align="center" ><div class="textovertical"><b><%= link_to  truncate(atividade.atividade ,:length => 14,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b><br/>
-                                     <font color ="gray" size="1"> (<%=atividade.inicio.strftime("%d/%m/%Y")%>)</font></div>
+                                 <td align="center" >
+                                   <div class="textovertical"><b><%= link_to  truncate(atividade.atividade ,:length => 14,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b><br/>
+                                      <font color ="blue" size="1"> (<%=atividade.disciplina.disciplina%>)</font><br/>
+                                      <font color ="gray" size="1"> (<%=atividade.inicio.strftime("%d/%m/%Y")%>)</font><br/>
+                                   </div>
                                  </td>
 
                          <%end%>
@@ -59,7 +72,7 @@
 
                     </tr>
                     <tr bgcolor="#F5F5F5">
-                        <td colspan="13"> <div id="atividades_aluno">
+                        <td colspan="2"> <div id="atividades_aluno">
 
                                 <%lin=@atividades_avaliacao_alunos.count%>
                                 <%col=@atividades.count%>
@@ -118,10 +131,10 @@
                             </div></td>
                     </tr>
                     <tr>
-                                        <td colspan="3" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                        <td colspan="30" align="RIGHT" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
                                              <%#if current_user.has_role?('professor_infantil') %>
                                                     <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
-                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data </b>
+                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data &nbsp&nbsp  &nbsp&nbsp</b>
                                              <%#else%>
 
                                              <%#end%>
