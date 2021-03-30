@@ -1,4 +1,5 @@
 <br/><br/>
+<%  @professors = Professor.find(:all, :conditions => 'desligado = 0' , :order => 'nome ASC') %>
 <center>
 <div id="interno_novo_usuario">
 <% title "USUARIOS".singularize %>
@@ -40,6 +41,10 @@
                    <tr>
                        <td align="left"><b>Unidade:</b></td>
                        <td colspan="2" align="left"><%= f.collection_select :unidade_id,Unidade.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %></td>
+                   </tr>
+                   <tr>
+                       <td align="left"><b>professor:</b></td>
+                        <td colspan="2" align="left"><%= f.collection_select  :professor_id, @professors, :id, :nome, :include_blank =>true   %></td>
                    </tr>
                 <%end%>
          </table>
