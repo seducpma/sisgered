@@ -96,16 +96,42 @@ class RolesUsersController < ApplicationController
   # PUT /role_users/1.xml
   def update
     @role_user = RolesUser.find(params[:id])
-    @role_user.role_id = $new_role_id
-    respond_to do |format|
-      if @role_user.update_attributes(params[:role_user])
-        flash[:notice] = 'CADASTRADO COM SUCESSO.'
-        format.html { redirect_to(@role_user) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
-      end
+    @role_user.role_id = session[:new_role_id]
+    if (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)
+        respond_to do |format|
+              if @role_user.update_attributes(params[:role_user])
+                user=@role_user.user_id
+                @user= User.find(:all, :conditions=> ['id=?',user])
+                #professor_id=@user[0].professor_id
+                @professor=  Professor.find(:all, :conditions => ['id = ?' ,params[:professor_id]])
+                w2= session[:professor]=@professor[0].nome
+               #w2= session[:professor]=params[:professor_id]
+                @user[0].professor_id =params[:professor_id]
+                @user[0].save
+                flash[:notice] = 'CADASTRADO COM SUCESSO.'
+                format.html { redirect_to(@role_user) }
+                format.xml  { head :ok }
+              else
+                format.html { render :action => "edit" }
+                format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
+              end
+            end
+
+
+
+
+
+    else
+        respond_to do |format|
+          if @role_user.update_attributes(params[:role_user])
+            flash[:notice] = 'CADASTRADO COM SUCESSO.'
+            format.html { redirect_to(@role_user) }
+            format.xml  { head :ok }
+          else
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
+          end
+        end
     end
   end
 
@@ -120,7 +146,7 @@ class RolesUsersController < ApplicationController
   end
   def role_id
     t=0
-    $new_role_id = params[:roles_user_role_id]
+    session[:new_role_id] = params[:roles_user_role_id]
     render :text => ''
   end
 end

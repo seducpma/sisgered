@@ -1,3 +1,4 @@
+ <%@professors = Professor.find(:all, :conditions => 'desligado = 0' , :order => 'nome ASC')%>
 <div id="interno2">
 <% title "USUÁRIOS" %>
 <div class="tabs">
@@ -21,6 +22,14 @@
              :with => :roles_user_role_id,
              :url => { :action => 'role_id' } %>
              <div id="aviso"></div>
+       </tr>
+<% if (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)%>
+       <tr>
+            <td align="left"><b>professor:</b></td>
+            <td colspan="2" align="left">    <%= select_tag :professor_id,  options_for_select(@professors.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar (sempre)--')) %>
+</td>
+<%end%>
+
        </tr>
   </table>
   </div>

@@ -8,11 +8,13 @@
      <table width="100%" bgcolor="#DCDCDC" align="center">
         <tr bgcolor="#DCDCDC" >
           <th width ="100">Login:</th>
-          <th  width="300">Tipo Usuário:</th>
-          <th  width="300">Nível de acesso:</th>
+          <th width ="300">Nome Usuário:</th>
+          <th  width="100">Tipo Usuário:</th>
+          <th  width="400">Nível de acesso:</th>
        </tr>
        <tr bgcolor="	#F5F5F5">
          <td><%= User.find(@roles_user.user_id).login %></td>
+         <td><%=session[:professor]%> - <%= User.find(@roles_user.user_id).professor_id %> </td>
          <td><%= Role.find(@roles_user.role_id).name %></td>
              <%if  Role.find(@roles_user.role_id).name == 'admin' then%>
                  <td width="25%">Administrador</td>
