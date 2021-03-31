@@ -25,9 +25,19 @@
             <td align="left">&nbsp <%= edicao.professor.nome%> </td>
             <td align="left"> De <%= edicao.inicio.strftime("%d/%m/%Y") %> à  <%= edicao.fim.strftime("%d/%m/%Y")%></td>
             <!--<td align="center"> &nbsp <%#if edicao.validacao == 1%> <font color="blue"> VALIDADO </font> <%#else%> <font color="red"> AGUARDANDO </font><%#end%> </td>-->
-           <td align="center"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "edit", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
-           <td  align="left" ><%= button_to'Excluir', { :action => "destroy", :id =>edicao}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
+            <%if current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
+               <%if edicao.professor_id == session[:cont_professor_user_id]%>
+                  <td align="center"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "edit", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
+                  <td  align="left" ><%= button_to'Excluir', { :action => "destroy", :id =>edicao}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
+               <%else%>
+                  <td></td>
+                  <td></td>
+               <%end%>
+            <%else%>
 
+               <td align="center"> <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "edit", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
+               <td  align="left" ><%= button_to'Excluir', { :action => "destroy", :id =>edicao}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
+            <%end%>
 
          </tr>
          <%end%>

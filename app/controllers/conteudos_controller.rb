@@ -3,6 +3,7 @@ class ConteudosController < ApplicationController
   # GET /conteudos.xml
      before_filter :load_dados_iniciais
    def load_dados_iniciais
+
      session[:cont_usuario_user_id]= current_user.unidade_id
      session[:cont_professor_user_id]= current_user.professor_id
        if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')
