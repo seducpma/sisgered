@@ -831,9 +831,14 @@ border-right: double;
     border-top: double;
     border-right: double;
 }
+
+
+
+
+
 #principal3{
     float:right;
-    width:950px;
+    width:1450px;
     background-image:url(Imagens/principal_body.jpg);
     font-size:10px;
     border-color:black;

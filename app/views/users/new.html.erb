@@ -26,6 +26,12 @@
                            <font  color="red" size="2" ><b>Utilize o padrão unidade.nome - Ex: anaja.jose </b></font>
                         </td>
                       </tr>
+                     <!-- <tr>
+                           <td align="left" valign="top"><b>Nome:</b></td>
+                           <td colspan="2" align="left"><%#= f.collection_select :professor_id, Professor.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %>
+                                 </br><b><i><font  color="red" size="2" >Se seu nome não consta na lista favor entrar em contato com o diretor(a) de sua unidade escolar ou com o setor de informática SEDUC.</font></i></b></td>
+
+                      </tr> -->
                       <tr>
                         <td align="left"><b>e-mail:</b></td>
                         <td align="left" colspan="2" align="left"><%= f.text_field :email, :size => "50" %>
@@ -49,13 +55,27 @@
 
                         &nbsp&nbsp<b><i><font  color="red" size="2" >Selecionar Unidade</font></i></b></td>
                       </tr>
+
                       <tr>
-                           <td align="left" valign="top"><b>Nome:</b></td>
-                           <td colspan="2" align="left"><%= f.collection_select :professor_id, Professor.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %>
-                                 </br><b><i><font  color="red" size="2" >Se seu nome não consta na lista favor entrar em contato com o diretor(a) de sua unidade escolar ou com o setor de informática SEDUC.</font></i></b></td>
-
+                        <td></td>
+                        <td colspan="3"><font color ="red" size="4"><b><u><br/> ATENÇÃO:  PROFESSORES </font></u></b><br/></td>
                       </tr>
+                      <tr>
+                        <td colspan="3">
+                          <fieldset><legend><b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp SOMENTE PARA PROFESSORES </b></legend>
+                            <table>
+                              <tr>
+                                <td colspan="3" align="center"><font  color="blue" size="2" ><b>Professores  necessitam ser previamente cadastrados no sistema, favor selecionar seu nome. </b></font></td>
+                              </tr>
+                              <td align="left" valign="top"><b>Professor <br/>
+                                    Responsável:</b></td>
+                                <td colspan="2" align="left"><%= f.collection_select :professor_id, Professor.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %>
+                                 </br><b><i><font  color="red" size="2" >Se seu nome não consta na lista favor entrar em contato com o diretor(a) de sua unidade escolar.</font></i></b></td>
 
+                            </table>
+                          </fieldset>
+                        </td>
+                      </tr>
 
                </table>
              </font>
