@@ -28,7 +28,7 @@ class RolesUsersController < ApplicationController
   end
 
   def load_role
-    if current_user.has_role?('admin') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)
+    if current_user.has_role?('admin') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517 or current_user.id ==  2072)
         @roles = Role.find(:all)
     else if current_user.has_role?('direcao_infantil')
           @roles = Role.find(:all, :conditions => ['id = 10 or id = 12 or id = 6 or id =8'])
@@ -97,7 +97,7 @@ class RolesUsersController < ApplicationController
   def update
     @role_user = RolesUser.find(params[:id])
     @role_user.role_id = session[:new_role_id]
-    if (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)
+    if (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517 or current_user.id ==  2072)
         respond_to do |format|
               if @role_user.update_attributes(params[:role_user])
                 user=@role_user.user_id

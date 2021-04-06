@@ -23,7 +23,7 @@
              :url => { :action => 'role_id' } %>
              <div id="aviso"></div>
        </tr>
-<% if (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)%>
+<% if (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517 or current_user.id ==  2072)%>
        <tr>
             <td align="left"><b>professor:</b></td>
             <td colspan="2" align="left">    <%= select_tag :professor_id,  options_for_select(@professors.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar (sempre)--')) %>

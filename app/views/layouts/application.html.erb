@@ -270,7 +270,8 @@ display: none;
         <% if (current_user.id == 3 or current_user.id == 2 )%>
           <li><a class="item-primary" href="#;"> ATIVIDADES</a>
                              <ul>
-
+                                <li><a class="item-primary" href="#;">Atividades</a>
+                                  <ul>
                                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil'))%>
                                         <li><%= link_to "Cadastrar",new_atividade_path %></li>
                                     <%end%>
@@ -280,28 +281,34 @@ display: none;
                                             <li><%= link_to "Editar",consultas_atividades_path %></li>
                                         <%end%>
                                     <%end%>
-
-                                    <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil') %>
-                                          <li><a class="item-primary" href="#;">Consultar</a>
-                                            <ul>
-                                                <li><%= link_to "Atividades",consultas_atividades_path %></li>
-                                                <li><a class="item-primary" href="#;">Devolutivas</a>
-                                                    <ul>
-                                                        <li><%= link_to "Por Periodo",consulta_avaliacaos_periodo_path %></li>
-                                                        <li><%= link_to "Por Devolutiva",consulta_avaliacaos_path %></li>
-                                                    </ul>
-                                         </li>
-
-
-                                            </ul>
-                                         </li>
+                                     <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil') %>
+                                        <li><%= link_to "Consultar",consultas_atividades_path %></li>
                                     <%end%>
+                                  </ul>
+                                </li>
+                               
 
                                      <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') %>
                                          <li><a class="item-primary" href="#;">Devolutiva</a>
                                             <ul>
                                                <li><%= link_to "Registrar",avaliacao_atividades_path %></li>
                                                <li><%= link_to "Editar",editar_avaliacao_path %></li>
+                                               <li><a class="item-primary" href="#;">Consultar</a>
+                                                    <ul>
+                                                        <li><%= link_to "Por Periodo",consulta_avaliacaos_periodo_path %></li>
+                                                        <li><%= link_to "Por Devolutiva",consulta_avaliacaos_path %></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    <%end%>
+                                     <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') %>
+                                         <li><a class="item-primary" href="#;">Mapa</a>
+                                            <ul>
+                                               <li><%= link_to "Classe",mapa_classe_path %></li>
+                                               <li><%= link_to "Professor",mapa_professor_path %></li>
+                                               
+
                                             </ul>
                                         </li>
                                     <%end%>
@@ -659,7 +666,7 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
 <!--=========================================== NOVO MENU==============-->
 
-              <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)%>
+              <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047  or current_user.id == 517 or current_user.id ==  2072)%>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">GERENCIAR</a>
                  <ul style="width:108px;">
@@ -685,7 +692,7 @@ display: none;
 
               <!--=========================================== Diario Classe==============-->
 
-              <%# if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)%>
+              <%# if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517 or current_user.id ==  2072)%>
                <% if  ( current_user.id == 2 ) or  ( current_user.id == 3 )%>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">DIÁRIO DE CLASSE</a>

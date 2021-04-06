@@ -300,6 +300,6 @@ AVALIACAO= {''=> nil,
             'Não entregou' => 'NE',
            }
 
-ATIVIDADETIPO= {'NÃO AVALIATIVA'=> 'NÃO AVALIATIVA',
-            'AVALIATIVA' => 'AVALIATIVA'  ,
+ATIVIDADETIPO= {'NÃO AVALIATIVA'=> 1,
+            'AVALIATIVA' => 0  ,
            }

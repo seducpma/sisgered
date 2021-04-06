@@ -70,7 +70,7 @@
 
             </td>
   <!--          <td align="center"><%= button_to 'Visualizar',{:action => "show", :id =>role_user}, :method => "get", :title => "Visualizar"%></td>-->
-            <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or  current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)%>
+            <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or  current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517 or current_user.id ==  2072)%>
                 <td align="center" ><%= button_to 'Editar',{:action => "edit", :id =>role_user}, :method => "get", :title => "Editar"%></td>
             <%else%>
                 <td align="center" > -- </td>
@@ -78,7 +78,7 @@
 
 
 
-           <% if current_user.has_role?('admin') or  current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517)%>
+           <% if current_user.has_role?('admin') or  current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517 or current_user.id ==  2072)%>
                 <td align="center" colspan="1"><%= button_to 'Excluir', role_user, :confirm => 'Confirma Exclusao?', :method => :delete, :title => "Excluir" %></td>
             <%else%>
                 <td align="center" > -- </td>
