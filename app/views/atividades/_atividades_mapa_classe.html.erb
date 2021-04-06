@@ -1,0 +1,157 @@
+<style type="text/css">
+    .textovertical {
+        -webkit-transform:rotate(270deg);
+        -moz-transform:rotate(270deg);
+        -o-transform: rotate(270deg);
+    }
+</style>
+
+
+        <%t=0%>
+        <%if   @atividades_avaliacao_alunos.present?%>
+            <fieldset>
+                <table width="100%" style="font-size: small">
+                         <tr bgcolor="#F5F5F5">
+                            <td valign="top"> <b> Professor:</b> </td>
+                            <%@professor=Professor.find(@atividades_avaliacao_alunos[0].professor_id)%>
+                            <%@disciplina=Disciplina.find(@atividades_avaliacao_alunos[0].disciplina_id)%>
+                            <%t0=0%>
+                            <td align="left" width="45%"> <%=h @professor.nome%></td>
+                             <td align="left" width="10%"><b> Ano Letivo:</b></td>
+                            <td align="left"> <%=h   @atividades_avaliacao_alunos[0].ano_letivo %>     <%  session[:classe]=    @atividades_avaliacao_alunos[0].classe_id%></td>                            <% cont=1 %>
+                            <% cont1=1 %>
+
+                        </tr>
+
+                        <tr bgcolor="#F5F5F5" >
+                            <td align="left" width="10%"><b>Unidade:</b></td>
+                            <td align="left">  <%=h   @atividades_avaliacao_alunos[0].unidade.nome%>    <%  session[:unidade]=   @atividades_avaliacao_alunos[0].unidade.nome %></td>
+                            <td align="left"><b>Classe:</b></td>
+                            <td align="left">  <%=h   @atividades_avaliacao_alunos[0].classe.classe_classe%>
+                                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Horário:</b> <%=h   @atividades_avaliacao_alunos[0].classe.horario %></td>
+                        </tr>
+
+                        <tr bgcolor="#F5F5F5">
+                            <td align="left"><b>Relatórios:</b></td>
+                            <td align="left" colspan="3"> <b>de </b>&nbsp <%=h  session[:dataINI]%>   &nbsp&nbsp <b>à</b>  &nbsp<%=h  session[:dataFIM]%></td>
+
+                        </tr>
+                    </table>
+                </fieldset>
+                  <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
+                                        <tr>
+                                          <td colspan="30" align="RIGHT">  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                             <%#if current_user.has_role?('professor_infantil') %>
+                                                    <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
+                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data &nbsp&nbsp  &nbsp&nbsp</b>
+                                             <%#else%>
+
+                                             <%#end%>
+                                        </td>
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="78%" colspan="2"><br/><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
+                        <%@atividades.each do |atividade| %>
+                                 <td align="center" >
+                                   <div class="textovertical"><b><%= link_to  truncate(atividade.atividade ,:length => 14,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b><br/>
+                                      <font color ="blue" size="1"> (<%=atividade.disciplina.disciplina%>)</font><br/>
+                                      <font color ="gray" size="1"> (<%=atividade.inicio.strftime("%d/%m/%Y")%>)</font><br/>
+                                   </div>
+                                 </td>
+
+                         <%end%>
+
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td width ="4%"align="center"><b>Nº</b></td>
+                        <%#*<td width ="10%">&nbsp&nbsp<b>RA</b></td>%>
+                        <td width ="40%">&nbsp&nbsp<b>NOME</b></td>
+                        <%@atividades.each do |atividade| %>
+                                 <td ></td>
+                         <%end%>
+
+                    </tr>
+                    <tr bgcolor="#F5F5F5">
+                        <td colspan="2"> <div id="atividades_aluno">
+
+                                <%lin=@atividades_avaliacao_alunos.count%>
+                                <%col=@atividades.count%>
+                               
+                                <%cont_aval=0%>
+                                <%cont_ativ=0%>
+
+
+
+                                    <%cont_aval=0%>
+                                    <% @atividades_avaliacao_alunos.each do |atividade|%>
+
+                                            <tr bgcolor="#F5F5F5">
+                                                <td width ="4%" align="center"><%= atividade.matricula.classe_num  %>  </td>
+<!--                                                <%#*<td width ="10%" ><%= atividade.matricula.aluno.aluno_ra  %></td>%>-->
+                                                <td width ="40%" align="left"><%= atividade.aluno.aluno_nome %>
+                                                  <%if atividade.matricula.status!="MATRICULADO"%>
+                                                        <%if atividade.matricula.status=='TRANSFERIDO'%>
+                                                            <font color ="red"> (Transferido)</font>
+                                                        <%else if atividade.matricula.status=='REMANEJADO' %>
+                                                                    <font color ="green"> (Remanejado)</font>
+                                                             <%else if atividade.matricula.status=='*REMANEJADO' %>
+                                                                    <font color ="green"> (*Remanejado)</font>
+                                                                  <%else if atividade.matricula.status == 'TRANSFERENCIA' %>
+                                                                            <font color ="blue"> (Transferência)</font>
+                                                                       <%else%>
+                                                                            <font color ="cyan"> (Outros)</font>
+                                                                       <%end%>
+                                                                  <%end%>
+                                                             <%end%>
+                                                        <%end%>
+                                                    <%end%>
+                                                </td>
+                                                <%cont_ativ=0%>
+                                                <%@atividades.each do |atividade|%>
+                                                 <%@avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? ', session[:classe] ,session[:dataI], session[:dataF]],:order => 'inicio, id')%>
+                                                <td align="center">
+                                                    <table >
+                                                        <tr>
+                                                            <%t0=0%>
+                                                            <td align="center"> <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
+
+                                                                                <%else%>
+                                                                                    <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%>  
+                                                                                    
+                                                                               <%end%>
+                                                            </td>
+                                                        </tr>
+                                                       </table>
+                                                    </td>
+                                                    <%cont_ativ=cont_ativ+1%>
+                                                <%end%>
+                                                <%cont_aval=cont_aval+1%>
+                                            </tr>
+                                      <%end%>
+
+                            </div></td>
+                    </tr>
+                    <tr>
+                                        <td colspan="30" align="RIGHT" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                             <%#if current_user.has_role?('professor_infantil') %>
+                                                    <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
+                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data &nbsp&nbsp  &nbsp&nbsp</b>
+                                             <%#else%>
+
+                                             <%#end%>
+                                        </td>
+                    </tr>
+
+                </table>
+
+            <%else%>
+                <br/>
+                <table  width="100%" style="font-size: small">
+                    <tr>
+                        <td align="center"><font size="3" color="red"><b> NÃO SELECIONADO ou NÃO ENCONTRADO</b> </td>
+                    </tr>
+                </table>
+            <%end%>
+
+   
+

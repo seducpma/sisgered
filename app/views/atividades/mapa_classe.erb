@@ -1,0 +1,84 @@
+
+
+<%if  current_user.has_role?('admin') or   current_user.has_role?('SEDUC')  or   current_user.has_role?('supervisao') %>
+    <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC')%>
+<%else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+        <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.unidade_id =?' , Time.now.year, current_user.unidade_id ], :order => 'classes.classe_classe ASC, atividades.inicio DESC')%>
+
+       <%else%>
+          <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.professor_id =?' , Time.now.year, current_user.professor_id ], :order => 'classes.classe_classe ASC,  atividades.inicio DESC')%>
+       <%end%>
+<%end%>
+
+
+<div id="interno211">
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>MAPA DEVOLUTIVAS DE ATIVIDADES PEDAGOGICAS (por classe)</strong></font><br/>
+     <%session[:flag_edit_atribuicao]=0%>
+ </div>
+    <div class="tabs">
+   <% form_remote_tag :url => mapa_classe_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+         <table width="100%" align="center" bgcolor="#DCDCDC"  >
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><font color="blue" size="3"><b><u> ATENÇÃO:</u>Sistema de acompanhamento das atividades remotas postadas pelo professor aos alunos  no CONEDU.
+             </td>
+
+        </tr>
+
+
+<table width="100%"   >
+   <tr>
+     <td  widht="20%" align="right"><font size="2"><b>Classe:</b></font>
+          <%= select_tag :classe_id_mapa_classe, options_for_select(@classe_ano.collect { |ff| [ff.classe_unidade, ff.id] }.insert(0, '--Selecionar--')) %>
+                            <%= observe_field 'classe_id_mapa_classe',
+                          :with => :classe_id,
+                          :url => { :action => 'mapa_classe_observe' },
+                          :update => "classe_disciplina" %>
+    </td>
+     <td  widht="60%" align="right"><div id="classe_disciplina"> <b>Disciplina:</b><font color="red">&nbsp&nbsp&nbsp&nbsp<b></u>&nbsp Selecionar  primeiro a classe </b></font> </div></td>
+
+          <td> <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+
+     </td>
+
+
+
+   </tr>
+  </table>
+
+
+
+
+
+        </table>
+    <% end %>
+    <br/>
+    <hr/>
+    <div id="atividades_mapa"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+
+    <br/>
+   <table>
+    <tr>
+
+
+                     <td width =" 10%"><%= button_to "Nova Consulta",consulta_avaliacaos_periodo_path %></td>
+
+
+
+
+
+     <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
