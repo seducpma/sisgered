@@ -239,7 +239,7 @@ t0=0
                             render :update do |page|
                                 page.replace_html 'atividades', :partial => "atividades"
                             end
-                        else if params[:type_of].to_i == 6
+                        else if params[:type_of].to_i == 6 or  params[:type_of].to_i == 10 or  params[:type_of].to_i == 11 or   params[:type_of].to_i == 12
 
                                 session[:dia_final]=params[:diaF]
                                 session[:mesF]=params[:mesF]
@@ -251,12 +251,28 @@ t0=0
 
                                 if  current_user.has_role?('admin')  or   current_user.has_role?('SEDUC')
                                     @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ? ", session[:dataI], session[:dataF], Time.now.year],  :order => 'professors.nome ASC' )
-                                else if  current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')
-                                        @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'professors.nome ASC' )
-                                  
-                                    else
+                                
+                               else if  current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')   or   current_user.has_role?('direcao_infantill') or   current_user.has_role?('supervisao')
+                                      if  params[:type_of].to_i == 10
+                                             @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =?  and ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'atividades.inicio ASC' )
+                                         else if  params[:type_of].to_i == 11
+                                                 @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'professors.nome ASC' )
+                                              else if  params[:type_of].to_i == 12
+                                                   @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'atividades.disciplina_id ASC' )
+                                                   else
+                                                     @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'professors.nome ASC' )
+                                                   end
+
+                                              end
+                                      end
+
+
+
+                                      
+
+                                     else
                                         @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.professor_id =? ", session[:dataI], session[:dataF], Time.now.year, current_user.professor_id ],  :order => 'professors.nome ASC' )
-                                    end
+                                     end
                                 end
                                 #                                   @professors = Professor.find( :all,:conditions => ["funcao like ? AND desligado = 0", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
                                 render :update do |page|

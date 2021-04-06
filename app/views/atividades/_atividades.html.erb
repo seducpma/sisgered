@@ -2,6 +2,9 @@
 
 <% if !@atividades.empty?%>
  <table border="1" cellspacing="0" cellpadding="1" width="100%" >
+   <tr bgcolor="#DCDCDC" >
+     <td colspan="8" align="center" ><font color="RED" size="3"> <b> ATIVIDADES AVALIATIVAS </b></font></td>
+   </tr>
         <tr bgcolor="#DCDCDC" >
             <td align="CENTER"width =" 5%"> <b> Classe</b></td>
             <td width =" 10%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
@@ -11,7 +14,9 @@
             <!-- <td align="center"width =" 5%"> <b>Validação</b></td>-->
             <td  colspan="2"width =" 5%"> </td>
         </tr>
+        <%cont=0%>
          <% for atividade in @atividades %>
+        <%cont= cont+1%>
          <tr bgcolor="#F5F5F5" >
             <td align="CENTER"> <%= atividade.classe.classe_classe%></td>
             <td align="left"> <%= atividade.disciplina.disciplina%></td>
@@ -25,8 +30,13 @@
                      <td align="center"> <%= button_to 'Editar', {:controller =>"atividades", :action => "edit", :id =>atividade}, :method => "get", :title => "Editar"%></td>
             <%end%>
                      <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>atividade},:method => "get", :title => "Visualizar") %></td>
+
          </tr>
+
          <%end%>
+   <tr bgcolor="#DCDCDC" >
+     <td colspan="8"  ><b> Total de ATIVIDADES AVALIATIVAS no periodo = <%=  cont%> Atividades</b></font></td>
+   </tr>
     </table>
 <%else%>
 <table border="1" cellspacing="0" cellpadding="1" width="100%" >

@@ -180,7 +180,11 @@ end
            @conteudo.disciplina_id=115
          end
     end
-    @conteudo.classe_id= session[:cont_classe_id]
+    if ( current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo')) and  current_user.unidade_id==60
+      @conteudo.classe_id= nil
+    else
+       @conteudo.classe_id= session[:cont_classe_id]
+    end
     @conteudo.atribuicao_id= session[:cont_atribuicao_id]
     @conteudo.ano_letivo =  Time.now.year
     @conteudo.unidade_id =  current_user.unidade_id

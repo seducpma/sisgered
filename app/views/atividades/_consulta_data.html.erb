@@ -10,6 +10,13 @@
                <font size="2"><b class="label_busca3">Fim:</b></font>&nbsp
                 <%= datepicker_tag(:conteudo, :fim,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
          </td>
+         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('pedagogo') or   current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))%>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <b> Ordenar por:  <%= radio_button_tag(:type_of, "10") %>Data
+                                <%= radio_button_tag(:type_of, "11") %>Professor
+                               <%= radio_button_tag(:type_of, "12") %>Disciplina  </b>
+            </td>
+         <%end%>
           <td width ="8%" align="right">
             <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
           </td>
