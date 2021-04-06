@@ -1,10 +1,11 @@
 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
      <%@nome = Conteudo.find(:all, :joins => [:professor],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? and conteudos.unidade_id = 60', Time.now.year  ],:order => 'professors.nome')%>
      <%else%>
-       <% if current_user.has_role?('professor_infantil') %>
+       <% if current_user.has_role?('professor_fundamental') %>
          <%@nome = Conteudo.find(:all, :joins => [:professor],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=? and professors.id=?', Time.now.year, current_user.unidade_id, current_user.professor_id],:order => 'professors.nome')%>
        <%else%>
-          <%@nome = Conteudo.find(:all, :joins => [:professor],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=?', Time.now.year, current_user.unidade_id],:order => 'professors.nome')%>
+          <%#@nome = Conteudo.find(:all, :joins => [:professor],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=?', Time.now.year, current_user.unidade_id],:order => 'professors.nome')%>
+           <%@nome = Conteudo.find(:all, :joins => [:professor],:select => 'distinct(professors.nome) as nome_nome, professors.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=? and professors.id=?', Time.now.year, current_user.unidade_id, current_user.professor_id],:order => 'professors.nome')%>
        <%end%>
 
 <%t=0%>
