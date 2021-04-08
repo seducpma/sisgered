@@ -1,9 +1,13 @@
-<%if  current_user.has_role?('admin') or   current_user.has_role?('SEDUC')  or   current_user.has_role?('supervisao') %>
+<%if  current_user.has_role?('admin') or   current_user.has_role?('SEDUC')   %>
     <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC')%>
 <%else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
-        <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.unidade_id =?' , Time.now.year, current_user.unidade_id ], :order => 'classes.classe_classe ASC, atividades.inicio DESC')%>
-        
+          <%if current_user.unidade_id == 52%>
+              <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? ' , Time.now.year], :order => 'classes.classe_classe ASC, atividades.inicio DESC')%>
+           <%else%>
+              <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? and atividades.unidade_id = ?' , Time.now.year,  current_user.unidade_id ], :order => 'classes.classe_classe ASC, atividades.inicio DESC')%>
+            <%end%>
        <%else%>
+          <%#@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.professor_id =?' , Time.now.year, current_user.professor_id ], :order => 'classes.classe_classe ASC,  atividades.inicio DESC')%>
           <%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id INNER JOIN  atividades ON classes.id = atividades.classe_id",:select => "distinct(classes.id), CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? AND  atividades.professor_id =?' , Time.now.year, current_user.professor_id ], :order => 'classes.classe_classe ASC,  atividades.inicio DESC')%>
        <%end%>
 <%end%>

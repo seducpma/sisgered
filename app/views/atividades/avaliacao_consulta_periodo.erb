@@ -22,49 +22,7 @@
      <%session[:flag_edit_atribuicao]=0%>
  </div>
     <div class="tabs">
-<!--
-    <%# form_remote_tag :url => consultar_avaliacoes_periodo_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
-    <fieldset>
-          <table width="100%" align="center" bgcolor="#DCDCDC"  >
-          <tr>
-            <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Professor:</b></font>
-               &nbsp&nbsp&nbsp<%#= collection_select :professor, :id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
-        </tr>
-          <tr>
-            <td colspan="3"align="left"><font size="2"> <b class="label_busca3">Classe:</b></font>
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%#= collection_select :classe, :id, @classe_ano, :id, :classe_unidade, :include_blank => ' -- Selecione -- ' %>
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b class="label_busca3">Disciplina:</b></font>
-               &nbsp&nbsp<%#= select_tag :disciplina, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %></td>
 
-          </tr>
-          <tr>
-              
-            <td colspan="3"align="right"><font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                 <b class="label_busca3">Período das atividades: &nbsp&nbsp&nbsp Inicio:</b></font>&nbsp
-                <%#= datepicker_tag(:atividade, :inicio,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
-
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <font size="2"><b class="label_busca3">Fim:</b></font>&nbsp
-                <%#= datepicker_tag(:atividade, :fim,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <%#= submit_tag "Visualizar", :class => "btn_filtrar" %>
-         </td>
-       </tr>
-
-       </table>
-       </fieldset>
-      <fieldset>
-        <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5">
-          <tr>
-            <td>
-                <div id="atividades"><div id='status' style='display:none;' align="center" ><%#= image_tag("/stylesheets/images/loading.gif") %></div></div>
-              <br/>
-            </td>
-          </tr>
-       </table>
-          <%# end %>
-
-      </fieldset>
--->
    <% form_remote_tag :url => consultar_avaliacoes_periodo_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
          <table width="100%" align="center" bgcolor="#DCDCDC"  >
         <tr bgcolor="#F5F5F5">

@@ -147,6 +147,22 @@ t0=0
         end
     end
 
+
+    def observe_professor_mapa
+      w=params[:professor_id]
+      @disciplinas = Disciplina.find(:all, :select => 'distinct(disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN  atividades   ON  disciplinas.id = atividades.disciplina_id ", :conditions =>['atividades.ano_letivo= ? and atividades.professor_id=? ', Time.now.year, params[:professor_id]],:order => 'disciplinas.disciplina ASC')
+      
+      render :partial => 'disciplina_classe_mapa'
+    end
+
+
+
+
+
+
+
+
+
 def mapa_professor
 
  if params[:classe_id].present?
@@ -160,6 +176,7 @@ def mapa_professor
         @atividade_avaliacao_alunos= AtividadeAvaliacao.find(:all, :conditions =>  ['atividade_id =? ',  session[:atividade_show]])
         @atividades= Atividade.find(:all, :conditions=>[ 'professor_id=? and	classe_id =?  and	disciplina_id=? and inicio>=?  and fim<=?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF]])
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id], Time.now.year])
+        t=0
       else
         #@atividade_avaliacao_alunos= AtividadeAvaliacao.find(:all, :conditions =>  ['atividade_id =? ',  session[:atividade_show]])
         @atividades= Atividade.find(:all, :conditions=>[ 'professor_id=? and	classe_id =?  and	disciplina_id=? and inicio>=?  and fim<=?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF]])
@@ -167,24 +184,20 @@ def mapa_professor
         @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disciplina], Time.now.year])
         @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id = ?',  session[:professor], session[:classe] ,session[:dataI], session[:dataF], params[:disciplina]],:order => 'inicio, id')
 
-
-
-                             t=0
-
       end
-
                render :update do |page|
                     page.replace_html 'atividades_mapa', :partial => "atividades_mapa_classe"
                 end
-
   end
 end
+
 
     def mapa_classe
 
       if params[:classe_id_mapa_classe].present?
+       ww =session[:classe_id]=params[:classe_id_mapa_classe]
          w=params[:disciplina_id]
-
+t=0
                         ano=Time.now.year.to_s
                         mes=format("%02d", Time.now.month)
                         dia_f=Date.new(Time.now.year,Time.now.month,-1).day.to_s
@@ -214,27 +227,22 @@ end
                              @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
                              @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? ', session[:classe_id] ,session[:dataI], session[:dataF]],:order => 'inicio, id')
                              w=@avaliacoes[0].id
-
-
                         else
                           if current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_fundamental')or current_user.has_role?('direcao_infantail')
-                             @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id],params[:disciplina_id], session[:dataI], session[:dataF]],:order => 'inicio, id')
+                             @atividades = Atividade.find(:all,   :conditions =>['ano_letivoxx=? and classe_id=? and disciplina_id=? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id],params[:disciplina_id], session[:dataI], session[:dataF]],:order => 'inicio, id')
                              @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
                              @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id = ?',  session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
-t=0
+
                           else
+
                              @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and professor_id =? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.professor_id, session[:dataI], session[:dataF]],:order => 'inicio, id')
+                             @atividades= Atividade.find(:all, :conditions=>[ 'professor_id=? and	classe_id =?  and	disciplina_id=? and inicio>=?  and fim<=?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF]])
                              @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
+                             @atividade_avaliacao_alunos= AtividadeAvaliacao.find(:all, :conditions =>  ['atividade_id =? ',  session[:atividade_show]])
                              @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id = ?',  session[:professor], session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
-                             t=0
+
                           end
                         end
-
-
-
-
-
-
 
                 session[:professor]= @atividades[0].professor_id
                 session[:classe=]= @atividades[0].classe_id
@@ -244,18 +252,17 @@ t=0
                 render :update do |page|
                     page.replace_html 'atividades_mapa', :partial => "atividades_mapa_classe"
                 end
-
-
       end
-
-
-
-
     end
 
     def mapa_classe_observe
-         w=session[:classe_id]=params[:classe_id]
-        @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=?', params[:classe_id], session[:classe_id]])
+       session[:classe_id]=params[:classe_id]
+       session[:classe_id]=params[:classe_id]
+          if current_user.has_role?('professor_fundamental')or  current_user.has_role?('professor_infantil')
+             @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=? and atribuicaos.professor_id =?', params[:classe_id], session[:classe_id], current_user.professor_id])
+        else
+            @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=?', params[:classe_id], session[:classe_id]])
+        end
         render :partial => 'disciplina_mapa_classe'
 
     end
@@ -297,10 +304,11 @@ t=0
 
         if params[:type_of].to_i == 1
             if  current_user.has_role?('admin')  or   current_user.has_role?('SEDUC')
-                @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ?',Time.now.year, "%" + params[:search].to_s + "%"],:order => 'inicio DESC')
-            else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')
-                    @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ? and unidade_id =? and avaliativa =0',Time.now.year, "%" + params[:search].to_s + "%", current_user.unidade_id],:order => 'inicio DESC')
-                    @atividades_nao =Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ? and unidade_id =? and avaliativa =1',Time.now.year, "%" + params[:search].to_s + "%", current_user.unidade_id],:order => 'inicio DESC')
+                @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ? and avaliativa =0',Time.now.year, "%" + params[:search].to_s + "%"],:order => 'inicio DESC')
+                @atividades_nao =Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ?  and avaliativa =1',Time.now.year, "%" + params[:search].to_s + "%"],:order => 'inicio DESC')
+            else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental') or   current_user.has_role?('direcao_infantil') or   current_user.has_role?('supervisao')
+                    @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ?  and avaliativa =0',Time.now.year, "%" + params[:search].to_s + "%"],:order => 'inicio DESC')
+                    @atividades_nao =Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ?  and avaliativa =1',Time.now.year, "%" + params[:search].to_s + "%"],:order => 'inicio DESC')
                 else
                     @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ? and professor_id =? and avaliativa =0',Time.now.year, "%" + params[:search].to_s + "%", current_user.professor_id],:order => 'inicio DESC')
                     @atividades_nao = Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ? and professor_id =? and avaliativa =1',Time.now.year, "%" + params[:search].to_s + "%", current_user.professor_id],:order => 'inicio DESC')
@@ -312,16 +320,34 @@ t=0
                 page.replace_html 'atividades', :partial => "atividades"
             end
         else if params[:type_of].to_i == 2
+          w=params[:disciplina_id]
+          
                 if  current_user.has_role?('admin')  or   current_user.has_role?('SEDUC')
-                    @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=?',Time.now.year, session[:classe_id],params[:disciplina_id]],:order => 'inicio DESC')
-                else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')
-                        @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and unidade_id =? and avaliativa =0' ,Time.now.year, session[:classe_id],params[:disciplina_id], current_user.unidade_id],:order => 'inicio DESC')
-                        @atividades_nao =Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and unidade_id =? and avaliativa =1' ,Time.now.year, session[:classe_id],params[:disciplina_id], current_user.unidade_id],:order => 'inicio DESC')
-                        t=0
+                  if params[:disciplina_id]== '--Todas--'
+                    @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and avaliativa =0',Time.now.year, session[:classe_id]],:order => 'inicio DESC')
+                    @atividades_nao = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and avaliativa =1',Time.now.year, session[:classe_id]],:order => 'inicio DESC')
+                  else
+                    @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and avaliativa =0',Time.now.year, session[:classe_id],params[:disciplina_id]],:order => 'inicio DESC')
+                    @atividades_nao = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and avaliativa =1',Time.now.year, session[:classe_id],params[:disciplina_id]],:order => 'inicio DESC')
+
+                  end
+                else if     current_user.has_role?('pedagogo')or   current_user.has_role?('direcao_fundamental') or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')
+                      if params[:disciplina_id]== '--Todas--'
+                        @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and avaliativa =0' ,Time.now.year, session[:classe_id]],:order => 'inicio DESC')
+                        @atividades_nao =Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and avaliativa =1' ,Time.now.year, session[:classe_id]],:order => 'inicio DESC')
+                     else
+                        @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and avaliativa =0' ,Time.now.year, session[:classe_id],params[:disciplina_id]],:order => 'inicio DESC')
+                        @atividades_nao =Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=?  and avaliativa =1' ,Time.now.year, session[:classe_id],params[:disciplina_id]],:order => 'inicio DESC')
+                     end
                     else
+                      if params[:disciplina_id]== '--Todas--'
+                        @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and professor_id =?  and avaliativa =0',Time.now.year, session[:classe_id], current_user.professor_id],:order => 'inicio DESC')
+                        @atividades_nao = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and professor_id =?  and avaliativa = 1',Time.now.year, session[:classe_id], current_user.professor_id],:order => 'inicio DESC')
+
+                      else
                         @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and professor_id =?  and avaliativa =0',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.professor_id],:order => 'inicio DESC')
                         @atividades_nao = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and professor_id =?  and avaliativa = 1',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.professor_id],:order => 'inicio DESC')
-                        t=0
+                      end
             end
                 end
                 render :update do |page|
@@ -375,20 +401,24 @@ t=0
                                 if  current_user.has_role?('admin')  or   current_user.has_role?('SEDUC')
                                     @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ? and avaliativa =0", session[:dataI], session[:dataF], Time.now.year],  :order => 'professors.nome ASC' )
                                     @atividades_ano = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ? and avaliativa =1", session[:dataI], session[:dataF], Time.now.year],  :order => 'professors.nome ASC' )
-                                
+ 
                                else if  current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')   or   current_user.has_role?('direcao_infantill') or   current_user.has_role?('supervisao')
                                       if  params[:type_of].to_i == 10
                                              @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =?  and avaliativa =0 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'atividades.inicio ASC' )
                                              @atividades_nao = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =?  and avaliativa =1 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'atividades.inicio ASC' )
+ t=0
                                          else if  params[:type_of].to_i == 11
                                                  @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? and avaliativa =0 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'professors.nome ASC' )
-                                                 @atividades_ano = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? and avaliativa =1 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'professors.nome ASC' )
+                                                  @atividades_nao = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? and avaliativa =1 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'professors.nome ASC' )
+t=0
                                               else if  params[:type_of].to_i == 12
                                                    @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? and avaliativa =0 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'atividades.disciplina_id ASC' )
                                                    @atividades_nao = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? and avaliativa =1 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'atividades.disciplina_id ASC' )
+ t=0
                                                    else
                                                      @atividades = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? and avaliativa =0 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'professors.nome ASC' )
                                                      @atividades_nao = Atividade.find(:all,  :joins => "INNER JOIN  professors   ON  professors.id = atividades.professor_id ", :conditions =>  ["atividades.inicio >=? AND atividades.fim <=?   AND atividades.ano_letivo = ?  and atividades.unidade_id =? and avaliativa =1 ", session[:dataI], session[:dataF], Time.now.year, current_user.unidade_id ],  :order => 'professors.nome ASC' )
+t=0
                                                    end
 
                                               end
@@ -455,14 +485,25 @@ t=0
 
     def classe_disciplina
         session[:classe_id]=params[:classe_id]
-        @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=?', params[:classe_id], session[:classe_id]])
+          if current_user.has_role?('professor_fundamental')or  current_user.has_role?('professor_infantil')
+             @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=? and atribuicaos.professor_id =?', params[:classe_id], session[:classe_id], current_user.professor_id])
+        else  
+            @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=?', params[:classe_id], session[:classe_id]])
+        end
         render :partial => 'disciplina_classe'
     end
 
 
     def classe_disciplina_periodo
-        w=session[:classe_id]=params[:classe_id]
-        @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=?', params[:classe_id], session[:classe_id]])
+        session[:classe_id]=params[:classe_id]
+        if current_user.has_role?('professor_fundamental')or  current_user.has_role?('professor_infantil')
+             @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=? and atribuicaos.professor_id =?', params[:classe_id], session[:classe_id], current_user.professor_id])
+        else  
+            @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=?', params[:classe_id], session[:classe_id]])
+        end
+
+
+
         render :partial => 'disciplina_classe_periodo'
     end
 
@@ -632,21 +673,6 @@ t=0
         end
 
 
-        #===========================
-        #este é o anterior
-
-        #session[:dataI]=params[:atividade][:inicio][6,4]+'-'+params[:atividade][:inicio][3,2]+'-'+params[:atividade][:inicio][0,2]
-        #session[:dataF]=params[:atividade][:fim][6,4]+'-'+params[:atividade][:fim][3,2]+'-'+params[:atividade][:fim][0,2]
-        #session[:professor]=params[:professor][:id]
-        #session[:classe]=params[:classe][:id]
-        #session[:disciplina]=params[:disciplina]
-        # @atividade_avaliacao_alunos= AtividadeAvaliacao.find(:all, :conditions =>  ['atividade_id =? ',  session[:atividade_show]])
-        #@atividades= Atividade.find(:all, :conditions=>[ 'professor_id=? and	classe_id =?  and	disciplina_id=? and inicio>=?  and fim<=?',  session[:professor], session[:classe] , session[:disciplina],session[:dataI], session[:dataF]])
-        #@atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', session[:classe_id] , session[:professor_id], session[:disc_id], Time.now.year])
-        #t=0
-        #render :update do |page|
-        #   page.replace_html 'atividades', :partial => "show_avaliacao_atividades"
-        #end
     end
     
     def consultar_avaliacoes_periodo
@@ -680,9 +706,8 @@ t=0
                         session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]
                         #@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ? and professor_id =?  and atividades.inicio>=? and atividades.fim<=?',Time.now.year, "%" + params[:search].to_s + "%", current_user.professor_id,session[:dataI], session[:dataF]],:order => 'inicio DESC')
                         @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and atividade like ? and unidade_id =? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, "%" + params[:search].to_s + "%", current_user.unidade_id,session[:dataI], session[:dataF]],:order => 'inicio, id')
-                        @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id],:order => 'inicio, id')
+                        @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id],:order => 'id')
                         @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.atividade like ?',  session[:professor], session[:classe] ,session[:dataI], session[:dataF], "%" + params[:search].to_s + "%"])
-
                 else
                     ano=Time.now.year.to_s
                     mes=format("%02d", Time.now.month)
@@ -718,16 +743,14 @@ t=0
                 page.replace_html 'atividades_periodo', :partial => "atividades_consultas_periodo"
             end
         else if params[:type_of].to_i == 2
-         w=params[:disciplina_id]
-          t=0
-
+            session[:classe_id]=params[:classe_id]
                 if  current_user.has_role?('admin')  or   current_user.has_role?('SEDUC')
                   if params[:disciplina_id]== '--Todas--'
                     @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? ',Time.now.year, session[:classe_id]],:order => 'inicio DESC')
                   else
                     @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=?',Time.now.year, session[:classe_id],params[:disciplina_id]],:order => 'inicio DESC')
                   end
-                else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')
+                else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental') or   current_user.has_role?('direcao_infantil') or   current_user.has_role?('supervisao')
 
                         ano=Time.now.year.to_s
                         mes=format("%02d", Time.now.month)
@@ -754,19 +777,25 @@ t=0
                         w=session[:dataI]
                         w1= session[:dataF]
                         if params[:disciplina_id]== '--Todas--'
-                              @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and unidade_id =? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.unidade_id, session[:dataI], session[:dataF]],:order => 'inicio, id')
+                               w1=session[:classe_id]
+                               w2=params[:disciplina_id]
+                               w3= current_user.unidade_id
+                               @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=?  and unidade_id =? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id], current_user.unidade_id, session[:dataI], session[:dataF]],:order => 'inicio, id')
                                @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
-                               @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? ',  session[:professor], session[:classe] ,session[:dataI], session[:dataF]],:order => 'inicio, id')
+                               @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? ', session[:classe] ,session[:dataI], session[:dataF]],:order => 'inicio, id')
+                       else
+                            @atividades = Atividade.find(:all,   :conditions =>['disciplina_id=? and ano_letivo=? and classe_id=? and unidade_id =? and atividades.inicio>=? and atividades.fim<=?',params[:disciplina_id],Time.now.year, session[:classe_id], current_user.unidade_id, session[:dataI], session[:dataF]],:order => 'inicio, id')
+                            if @atividades.empty?
 
-                         else
-                             @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and unidade_id =? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id], current_user.unidade_id, session[:dataI], session[:dataF]],:order => 'inicio, id')
-                            @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
-                            @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id=?',  session[:professor], session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
-
-                         end
+                                  render :partial => 'aviso'
+                            else
+                               @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
+                               @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  [' atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id=?', session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
+                            end
+                          end
                         
-                        @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
-                        @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id=?',  session[:professor], session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
+                        #@atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
+                        #@avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id=?',  session[:professor], session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
                     else
                         ano=Time.now.year.to_s
                         mes=format("%02d", Time.now.month)
@@ -793,17 +822,23 @@ t=0
                         w=session[:dataI]
                         w1= session[:dataF]
                         if params[:disciplina_id]== '--Todas--'
+                               w1=session[:classe_id]
+                               w2=params[:disciplina_id]
+                               w3= current_user.unidade_id
                              @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id], session[:dataI], session[:dataF]],:order => 'inicio, id')
+                             w11=@atividades[0].id
                              @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
+                             @atividades_avaliacao_alunos
                              @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? ', session[:classe] ,session[:dataI], session[:dataF]],:order => 'inicio, id')
-                             w=@avaliacoes[0].id
-t=0
 
                         else
+                          w=session[:classe_id]
+                          w1=params[:disciplina_id]
+                          w2=current_user.professor_id
                              @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and professor_id =? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.professor_id, session[:dataI], session[:dataF]],:order => 'inicio, id')
                              @atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
                              @avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.professor_id=? and atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? and atividades.disciplina_id = ?',  session[:professor], session[:classe] ,session[:dataI], session[:dataF], params[:disciplina_id]],:order => 'inicio, id')
-                             t=0
+
                         end
                         #@atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and atividades.inicio>=? and atividades.fim<=?',Time.now.year, session[:classe_id],params[:disciplina_id], session[:dataI], session[:dataF]],:order => 'inicio, id')
                         #@atividades_avaliacao_alunos= AtividadeAvaliacao.find(:all,:conditions =>['atividade_id=?',@atividades[0].id])
@@ -812,12 +847,14 @@ t=0
                         t=0
                     end
                 end
-                session[:professor]= @atividades[0].professor_id
-                session[:classe=]= @atividades[0].classe_id
-                session[:disciplina]= @atividades[0].disciplina_id
-
-                render :update do |page|
-                    page.replace_html 'atividades_periodo', :partial => "atividades_consultas_periodo"
+                if !@atividades.empty?
+                    session[:professor]= @atividades[0].professor_id
+                    session[:classe=]= @atividades[0].classe_id
+                    session[:disciplina]= @atividades[0].disciplina_id
+    t=0
+                    render :update do |page|
+                        page.replace_html 'atividades_periodo', :partial => "atividades_consultas_periodo"
+                    end
                 end
             else if params[:type_of].to_i == 3  #NÃO PROGRAMADO
                     if  current_user.has_role?('admin')  or   current_user.has_role?('SEDUC')

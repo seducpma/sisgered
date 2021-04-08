@@ -18,7 +18,7 @@
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>MAPA DEVOLUTIVAS DE ATIVIDADES PEDAGOGICAS (por classe)</strong></font><br/>
+     <font size="3"><strong>MAPA DEVOLUTIVAS DE ATIVIDADES PEDAGOGICAS (por Professor)</strong></font><br/>
      <%session[:flag_edit_atribuicao]=0%>
  </div>
     <div class="tabs">
@@ -31,24 +31,31 @@
         </tr>
 
 
-        <table width="100%" align="center" bgcolor="#DCDCDC"   >
+        <table width="100%" align="center" bgcolor="#DCDCDC" >
+
+
+
 
 
                   <tr>
-                    <td align="left"><font size="2"  <b class="label_busca3">Professor:</b></font>
-                       &nbsp&nbsp&nbsp<%#= select_tag :professor_id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+                    <td align="left">  <b > Professor:</b></font></td>
+                       <td align="left"><%#= select_tag :professor_id, @professors, :id, :nome, :include_blank => ' -- Selecione -- ' %>
                                     <%= select_tag :professor_id, options_for_select(@professors.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar--'))%>
+                                 <%= observe_field 'professor_id',
+                                    :with => :professor_id,
+                                    :url => { :action => 'observe_professor_mapa' },
+                                    :update => "mapa_disciplina" %>
                     </td>
 
                     <td align="left" width="70%"><font size="2"> &nbsp&nbsp&nbsp <b class="label_busca3">Classe:</b></font>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%#= select_tag :classe_id, @classe_ano, :id, :classe_unidade, :include_blank => ' -- Selecione -- ' %>
-                                                     <%= select_tag :classe_id, options_for_select(@classe_ano.collect { |ff| [ff.classe_unidade, ff.id] }.insert(0, '--Selecionar--'))%></td>
+                       <%= select_tag :classe_id, options_for_select(@classe_ano.collect { |ff| [ff.classe_unidade, ff.id] }.insert(0, '--Selecionar--'))%></td>
                   </tr>
                   <tr>
 
-                    <td  colspan="2" align="left">  <b class="label_busca3">Disciplina:</b></font>
-                       &nbsp&nbsp<%= select_tag :disciplina, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %>
-                       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <td  align="left">  <b> Disciplina:</b></td>
+                    <td align="left" valign="top">   &nbsp&nbsp  <div id="mapa_disciplina"><%= select_tag :disciplina, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %></div></td>
+                    <td align="left"> &nbsp&nbsp
                            <b class="label_busca3">Período das atividades: &nbsp&nbsp&nbsp Inicio:</b></font>&nbsp
                            <%= datepicker_tag(:atividade, :inicio_mapa_prof,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
 
@@ -75,7 +82,7 @@
     <tr>
 
 
-                     <td width =" 10%"><%= button_to "Nova Consulta",consulta_avaliacaos_periodo_path %></td>
+                     <td width =" 10%"><%= button_to "Nova Consulta",mapa_professor_path %></td>
 
 
 

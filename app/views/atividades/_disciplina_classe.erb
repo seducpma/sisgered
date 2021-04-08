@@ -1,7 +1,8 @@
+<%@disciplinas1 = Disciplina.find(:all, :select => "atribuicaos.id as atri_id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe,' - ',unidades.nome) AS disciplina_classe", :joins => "INNER JOIN atribuicaos on disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes on classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )    %>
 <table width="100%">
            <tr>
              <td width ="15%" align="right"><b>Discipĺina: </b>&nbsp
-              <%= select_tag :disciplina_id, options_for_select(@disciplina_classe.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %> &nbsp&nbsp</td>
+              <%= select_tag :disciplina_id, options_for_select(@disciplina_classe.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Todas--')) %> &nbsp&nbsp</td>
 
           </tr>
 

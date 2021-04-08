@@ -40,22 +40,24 @@
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
                                         <tr>
-                                          <td colspan="30" align="RIGHT">  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                          <td colspan="30" align="RIGHT">  <font size="2" > <b><u>Legenda:&nbsp</u>  </b>
                                              <%#if current_user.has_role?('professor_infantil') %>
-                                                    <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
-                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data &nbsp&nbsp  &nbsp&nbsp</b>
+                                                <b><font color="blue"> END = Entregou na data </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> EFD = Entregou fora da data</font> &nbsp&nbsp&nbsp  &nbsp&nbsp
+                                                    <font color="orange">  EMB = Entregou em Branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> NE = Não entregou</font>
+                                                </b>
+                                                    
                                              <%#else%>
 
                                              <%#end%>
                                         </td>
                     </tr>
                     <tr bgcolor="#F5F5F5">
-                        <td width ="78%" colspan="2"><br/><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
+                        <td width ="78%" colspan="2"><br/><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/><br/></td>
                         <%@atividades.each do |atividade| %>
                                  <td align="center" >
-                                   <div class="textovertical"><b><%= link_to  truncate(atividade.atividade ,:length => 14,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b><br/>
-                                      <font color ="blue" size="1"> (<%=atividade.disciplina.disciplina%>)</font><br/>
-                                      <font color ="gray" size="1"> (<%=atividade.inicio.strftime("%d/%m/%Y")%>)</font><br/>
+                                   <div class="textovertical"><b><font size="1"><%= link_to  truncate(atividade.atividade ,:length => 16,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>atividade}, :target=>'blank',  :title => "Atividade" %></b><font size="1"><br/>
+                                      <font color ="blue" size="1"> (<%=   truncate(atividade.disciplina.disciplina,:length => 14,:omission => "...")%>)</font><br/>
+                                      <font color ="gray" size="1"> (<%=atividade.inicio.strftime("%d/%m/%y")%>)</font><br/>
                                    </div>
                                  </td>
 
@@ -65,7 +67,7 @@
                     <tr bgcolor="#F5F5F5">
                         <td width ="4%"align="center"><b>Nº</b></td>
                         <%#*<td width ="10%">&nbsp&nbsp<b>RA</b></td>%>
-                        <td width ="40%">&nbsp&nbsp<b>NOME</b></td>
+                        <td width ="15%">&nbsp&nbsp<b>NOME</b></td>
                         <%@atividades.each do |atividade| %>
                                  <td ></td>
                          <%end%>
@@ -86,20 +88,20 @@
                                     <% @atividades_avaliacao_alunos.each do |atividade|%>
 
                                             <tr bgcolor="#F5F5F5">
-                                                <td width ="4%" align="center"><%= atividade.matricula.classe_num  %>  </td>
+                                                <td width ="1%" align="center"><font size="1"><%= atividade.matricula.classe_num  %> </font> </td>
 <!--                                                <%#*<td width ="10%" ><%= atividade.matricula.aluno.aluno_ra  %></td>%>-->
-                                                <td width ="40%" align="left"><%= atividade.aluno.aluno_nome %>
+                                                <td width ="10%" align="left"><font size="1"><%= atividade.aluno.aluno_nome %> </font>
                                                   <%if atividade.matricula.status!="MATRICULADO"%>
                                                         <%if atividade.matricula.status=='TRANSFERIDO'%>
-                                                            <font color ="red"> (Transferido)</font>
+                                                            <font color ="red" size="1"> (Transferido)</font>
                                                         <%else if atividade.matricula.status=='REMANEJADO' %>
-                                                                    <font color ="green"> (Remanejado)</font>
+                                                                    <font color ="green"size="1"> (Remanejado)</font>
                                                              <%else if atividade.matricula.status=='*REMANEJADO' %>
-                                                                    <font color ="green"> (*Remanejado)</font>
+                                                                    <font color ="green"size="1"> (*Remanejado)</font>
                                                                   <%else if atividade.matricula.status == 'TRANSFERENCIA' %>
-                                                                            <font color ="blue"> (Transferência)</font>
+                                                                            <font color ="blue"size="1"> (Transferência)</font>
                                                                        <%else%>
-                                                                            <font color ="cyan"> (Outros)</font>
+                                                                            <font color ="cyan"size="1"> (Outros)</font>
                                                                        <%end%>
                                                                   <%end%>
                                                              <%end%>
@@ -116,9 +118,20 @@
                                                             <td align="center"> <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
 
                                                                                 <%else%>
-                                                                                    <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%>  
-                                                                                    
-                                                                               <%end%>
+                                                                                   <%if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'NE'%>
+                                                                                        <font color="red">
+                                                                                      <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'EMB'%>
+                                                                                          <font color="orange">
+                                                                                            <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'EFD'%>
+                                                                                              <font color="purple">
+                                                                                                <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'END'%>
+                                                                                                   <font color="blue">
+                                                                                                 <%end%>
+                                                                                            <%end%>
+                                                                                      <%end%>
+                                                                                   <%end%>
+                                                                                           <b><%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%></b>  </font>
+                                                                                <%end%>
                                                             </td>
                                                         </tr>
                                                        </table>
@@ -134,8 +147,9 @@
                     <tr>
                                         <td colspan="30" align="RIGHT" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
                                              <%#if current_user.has_role?('professor_infantil') %>
-                                                    <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
-                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data &nbsp&nbsp  &nbsp&nbsp</b>
+                                                <b><font color="blue"> END = Entregou na data </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> EFD = Entregou fora da data</font> &nbsp&nbsp&nbsp  &nbsp&nbsp
+                                                    <font color="orange">  EMB = Entregou em Branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> NE = Não entregou</font>
+                                                </b>
                                              <%#else%>
 
                                              <%#end%>

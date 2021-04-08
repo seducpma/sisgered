@@ -45,7 +45,7 @@
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small" >
                     <tr bgcolor="#F5F5F5">
                         <td width ="70%" colspan="3"><b> <pre><font size="3"><%="Alunos".center(25,' ')%><!--|<%="".center(50,' ')%>Alex--></font></pre></b></td>
-                        <td align="center" ><b> Nota <%#= link_to  truncate(@atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %></td>
+                        <!--<td align="center" ><b> Nota <%#= link_to  truncate(@atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %></td>-->
                         <td align="center" ><b>Devolutiva</b></td>
                     </tr>
                     <tr bgcolor="#F5F5F5">
@@ -90,7 +90,7 @@ usando o múltiplas escolhas da mesma forma                      <%#else%>
 caso não seja aprovado é só descomentar essas                       <%#*<td align="center"><%= atividade.avaliacao%> </td>%>
 linhas e comentar a linha na sequencia deste bloco              <%#end%>
 -->                                                                 
-                                                                <td align="center"><%= f.select :nota , options_for_select(@Avaliacao,atividade.avaliacao) %></td>
+                                                                <!--<td align="center"><%#= f.select :nota , options_for_select(@Avaliacao,atividade.avaliacao) %></td>-->
                                                                 <td align="center"><%= f.select :avaliacao , options_for_select(AVALIACAO) %></td>
                                             </tr>
 
