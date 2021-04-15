@@ -58,15 +58,17 @@
                    <td align="left" valign="top"><b>Descrição Atividade:</b></td>
                    <td colspan="4"> <%=   @atividade.descricao%></td>
                 </tr>
+                <!--
                  <tr bgcolor="#F5F5F5">
                    <td></td>
                    <td align="left" valign="top"><b>Tipo:</b></td>
-                   <td colspan="4"> <%if @atividade.avaliativa == 1%>
+                   <td colspan="4"> <%#if @atividade.avaliativa == 1%>
                      <font color ="red" > Não avaliativa</font>
-                                   <%else%>
-                                       <font color ="Blue"> Avalaitiva </font>
-                                   <%end%>
+                                   <%#else%>
+                                       <font color ="Blue"> Avaliativa </font>
+                                   <%#end%>
                    </td>
+                -->
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td></td>

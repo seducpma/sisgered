@@ -56,9 +56,10 @@
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small" >
                     <tr bgcolor="#F5F5F5">
-                        <td width ="80%" colspan="3"><b> Alunos: </b> </td>
+                        <td width ="80%" colspan="3"><b><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/><br/></b> </td>
                         
-                                 <td align="center" ><b> <%= link_to  truncate(@atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %>\</dt>
+                                 <td align="center" ><div class="textovertical"><b> <%= link_to  truncate(@atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %></div>
+                                 </td>
                                                          
                                  
                         
@@ -68,9 +69,8 @@
                         <td width ="5%"align="center"><b>Nº</b></td>
                         <td width ="10%">&nbsp&nbsp<b>RA</b></td>
                         <td width ="65%">&nbsp&nbsp<b>NOME</b></td>
-                        <td align="center" colspan="3"></td>
-                        
-
+                        <td align="center" colspan="2" > Devol. -  Nota</td>
+                        <td></td>
                     </tr>
                     <tr bgcolor="#F5F5F5">
                         <td colspan="13"> <div id="atividades_aluno">
@@ -98,14 +98,51 @@
                                                         <%end%>
                                                     <%end%>
                                                 </td>
-                                                   <%if !atividade.avaliacao.present? %>
-                                                            <td align="center"><font color="red"> Não Avaliado </font></td>
-                                                   <%else%>
-                                                            <td align="center"><%= atividade.avaliacao%> </td>
-                                                   <%end%>
-                                            <td>
+                                                <td colspan="2" align="center">
+                                                  <table>
+                                                    <tr>
+                                                      <td align="center">
+                                                            <%t0=0%>
+                                                                <%if (atividade.avaliacao.nil?) or (!atividade.avaliacao.present?)%>
 
-                                            </td>
+                                                                 <%else%>
+                                                                                   <%if atividade.avaliacao == 'N-Re'%>
+                                                                                        <font color="red">
+                                                                                      <%else if atividade.avaliacao == 'Dev-B'%>
+                                                                                          <font color="orange">
+                                                                                            <%else if atividade.avaliacao == 'R-Im'%>
+                                                                                              <font color="purple">
+                                                                                                <%else if atividade.avaliacao == 'R-Ol'%>
+                                                                                                   <font color="blue">
+                                                                                                        <%else if atividade.avaliacao == 'Dev'%>
+                                                                                                      <font color="green">
+                                                                                                        <%end%>
+                                                                                                 <%end%>
+                                                                                            <%end%>
+                                                                                      <%end%>
+                                                                                   <%end%>
+                                                                            <b>  <%=atividade.avaliacao%></b>
+                                                                <%end%>
+                                                            </td>
+                                                    <td align="center">
+                                                           <% if atividade.nota.to_i < 5.0 %>
+                                                                    - <font color="red"><%=atividade.nota%> <font>
+                                                                  <%else%>
+                                                                    - <%=atividade.nota%>
+                                                                   <%end%>
+                                         <!--                <%#if !atividade.avaliacao.present? %>
+                                                                  <td align="center"><font color="red"> Não Avaliado </font></td>
+                                                         <%#else%>
+                                                                  <td align="center"><%#= atividade.avaliacao%> </td>
+                                                         <%#end%>
+                                          -->
+                                                     </td>
+
+                                                    </tr>
+                                                  </table>
+
+
+
                                             <td>
                                                  <%= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:controller => 'atividade_avaliacaos', :action => "edit", :id => atividade}, :method => "get", :title => "Selecionar"%></td>
                                             </td>

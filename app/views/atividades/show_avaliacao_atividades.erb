@@ -65,15 +65,12 @@
                     </table>
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
-                  <tr>
-                    <td colspan="30" align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
-                           <%#if current_user.has_role?('professor_infantil') %>
-                                                <b><font color="blue"> END = Entregou na data </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> EFD = Entregou fora da data</font> &nbsp&nbsp&nbsp  &nbsp&nbsp
-                                                    <font color="orange">  EMB = Entregou em Branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> NE = Não entregou</font>
+                    <tr>
+                       <td colspan="30" align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                                                          <b><font color="blue"> R-Ol = Recebeu on_line </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> R-Im = Recebeu impresso</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="green"> Dev ='Devolveu'
+                                                    &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="orange">  Dev-B = Devolveu em branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> N-Re = Não recebeu</font>
                                                 </b>
-                           <%#else%>
-                           <%#end%>
-                                        </td>
+                       </td>
                     </tr>
 
                     <tr bgcolor="#F5F5F5">
@@ -93,7 +90,14 @@
                         <%#*<td width ="10%">&nbsp&nbsp<b>RA</b></td>%>
                         <td width ="15%">&nbsp&nbsp<b>NOME</b></td>
                         <%@atividades.each do |atividade| %>
-                        <td align="center"> Devolutiva  </td>
+                        <td align="center">
+                          <table>
+                            <tr>
+                              <td> Devol.</td> - <td> Nota</td>
+                            </tr>
+
+                          </table>
+                         </td>
                          <%end%>
 
                     </tr>
@@ -133,29 +137,49 @@
                                                     <%end%>
                                                 </td>
                                                 <%cont_ativ=0%>
+
                                                 <%@atividades.each do |atividade|%>
                                                 <td align="center">
-                                                    <table  >
+                                                  <table  >
                                                         <tr>
-                                                          <td align="center">
+                                                          <td align="left">
                                                             <%t0=0%>
                                                                 <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
 
                                                                  <%else%>
-                                                                                   <%if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'NE'%>
+                                                                                   <%if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'N-Re'%>
                                                                                         <font color="red">
-                                                                                      <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'EMB'%>
+
+                                                                                      <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'Dev-B'%>
                                                                                           <font color="orange">
-                                                                                            <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'EFD'%>
+
+                                                                                            <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'R-Im'%>
                                                                                               <font color="purple">
-                                                                                                <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'END'%>
+
+                                                                                                <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'R-Ol'%>
                                                                                                    <font color="blue">
+
+                                                                                                        <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'Dev'%>
+                                                                                                      <font color="green">
+
+                                                                                                        <%end%>
                                                                                                  <%end%>
                                                                                             <%end%>
                                                                                       <%end%>
                                                                                    <%end%>
-                                                                           <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%>
+                                                                            <b>  <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%></b>
                                                                 <%end%>
+                                                            </td>
+                                                            <td>
+                                                              <%if !@avaliacoes[cont_ativ*lin+cont_aval].nota.present? %>
+                                                                  &nbsp&nbsp&nbsp&nbsp&nbsp
+                                                              <%else%>
+                                                                  <% if @avaliacoes[cont_ativ*lin+cont_aval].nota.to_i < 5.0 %>
+                                                                    - <font color="red"><%=@avaliacoes[cont_ativ*lin+cont_aval].nota%> <font>
+                                                                  <%else%>
+                                                                    - <%=@avaliacoes[cont_ativ*lin+cont_aval].nota%>
+                                                                   <%end%>
+                                                              <%end%>
                                                             </td>
                                                          </tr>
                                                        </table>
@@ -171,13 +195,16 @@
                     <tr>
                                         <td colspan="30" align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
                                              <%#if current_user.has_role?('professor_infantil') %>
-                                                <b><font color="blue"> END = Entregou na data </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> EFD = Entregou fora da data</font> &nbsp&nbsp&nbsp  &nbsp&nbsp
-                                                    <font color="orange">  EMB = Entregou em Branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> NE = Não entregou</font>
+                                                <b><font color="blue"> R-Ol = Recebeu on_line </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> R-Im = Recebeu impresso</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="green"> Dev = Devolveu
+                                                    &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="orange">  Dev-B = Devolveu em branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> N-Re = Não recebeu </font>
                                                 </b>
                                              <%#else%>
 
                                              <%#end%>
                                         </td>
+                    </tr>
+                    <tr>
+                      <td></td>
                     </tr>
                 </table>
 

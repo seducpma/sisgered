@@ -62,7 +62,8 @@
                         <td width ="5%"align="center"><b>Nº</b></td>
                         <td width ="10%">&nbsp&nbsp<b>RA</b></td>
                         <td width ="65%">&nbsp&nbsp<b>NOME</b></td>
-                        <td align="center" colspan="2"></td>
+                        <td align="center" colspan="2" > Devol. -  Nota</td>
+                        <td></td>
 
 
                     </tr>
@@ -91,16 +92,12 @@
                                                         <%end%>
                                                     <%end%>
                                                 </td>
+                                                  <td align="center"><%= f.select :avaliacao , options_for_select([[' Recebeu on_line', 'R-Ol'], ['Recebeu impresso', 'R-Im'], ['Não recebeu', 'N-Re'], ['Devolveu', 'Dev'], ['Devolveu em branco', 'Dev-B']].sort)%></td>
 
+                                                      <td align="center"><%= f.select :nota , options_for_select(@AvaliacaoEdit).insert(0, @atividade_avaliacao.nota) %> </td>
+                                                 
 
-                                                        
-                                                            <td align="center"><%#= f.collection_select  :avaliacao, @Avaliacao, :include_blank => ' xxx ' %>
-
-                                                                                <%= f.select :avaliacao , options_for_select(@Avaliacao), :include_blank => @atividade_avaliacao.avaliacao %>
-
-                                                                                <%#= f.select :avaliacao , options_for_select(@Avaliacao).insert(0, @atividade_avaliacao.avaliacao),0 %></td>
-                                                        
-                                                                             <%#= f.select :nota1 , options_for_select(@NOTASB1.insert(0, @nota.nota1),0) %>
+                                               </td>
                                             </tr>
 
                                             <% cont1=cont1+1 %>

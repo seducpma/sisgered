@@ -48,11 +48,19 @@
                         </tr>
                     </table>
                 </fieldset>
+
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small" >
+                                                <tr>
+                       <td colspan="30" align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                                                          <b><font color="blue"> R-Ol = Recebeu on_line </font> &nbsp&nbsp&nbsp <font color="purple"> R-Im = Recebeu impresso</font> &nbsp&nbsp&nbsp   <font color="green"> Dev ='Devolveu'
+                                                    &nbsp&nbsp&nbsp <font color="orange">  Dev-B = Devolveu em branco</font> &nbsp&nbsp&nbsp <font color="red"> N-Re = Não recebeu</font>
+                                                </b>
+                       </td>
+                    </tr>
                     <tr bgcolor="#F5F5F5">
                         <td width ="80%" colspan="3"><b> Alunos: </b> </td>
 
-                                 <td align="center" ><b> <%= link_to  truncate(@atividade_avaliacao.atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %>\</dt>
+                                 <td align="center" ><b> <%= link_to  truncate(@atividade_avaliacao.atividade.atividade ,:length => 25,:omission => "..."),  { :controller=> 'atividades', :action => "show", :id =>@atividade}, :target=>'blank',  :title => "Atividade" %></dt>
 
 
 
@@ -91,14 +99,50 @@
                                                         <%end%>
                                                     <%end%>
                                                 </td>
+                                                 <td align="center">
+                                   <table  >
+                                                        <tr>
+                                                          <td align="left">
+
+                                                                                   <%if @atividade_avaliacao.avaliacao == 'N-Re'%>
+                                                                                        <font color="red">
+
+                                                                                      <%else if @atividade_avaliacao.avaliacao == 'Dev-B'%>
+                                                                                          <font color="orange">
+
+                                                                                            <%else if @atividade_avaliacao == 'R-Im'%>
+                                                                                              <font color="purple">
+
+                                                                                                <%else if @atividade_avaliacao.avaliacao == 'R-Ol'%>
+                                                                                                   <font color="blue">
+
+                                                                                                        <%else if @atividade_avaliacao.avaliacao == 'Dev'%>
+                                                                                                      <font color="green">
+
+                                                                                                        <%end%>
+                                                                                                 <%end%>
+                                                                                            <%end%>
+                                                                                      <%end%>
+                                                                                   <%end%>
+                                                                            <b>  <%=@atividade_avaliacao.avaliacao%></b>
+
+                                                            </td>
+                                                            <td>
+                                                              <%if !@atividade_avaliacao.nota.present? %>
+                                                                  &nbsp&nbsp&nbsp&nbsp&nbsp
+                                                              <%else%>
+                                                                  <% if @atividade_avaliacao.nota.to_i < 5.0 %>
+                                                                    - <font color="red"><%=@atividade_avaliacao.nota%> <font>
+                                                                  <%else%>
+                                                                    - <%=@atividade_avaliacao.nota%>
+                                                                   <%end%>
+                                                              <%end%>
+                                                            </td>
+                                                         </tr>
+                                                       </table>
 
 
-
-                                                            <td align="center">
-
-                                                                                <%=  @atividade_avaliacao.avaliacao %>
-
-
+                                                 </td>
                                             </tr>
 
                                             <% cont1=cont1+1 %>

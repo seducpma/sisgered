@@ -39,17 +39,12 @@
                     </table>
                 </fieldset>
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
-                                        <tr>
-                                          <td colspan="30" align="RIGHT">  <font size="2" > <b><u>Legenda:&nbsp</u>  </b>
-                                             <%#if current_user.has_role?('professor_infantil') %>
-                                                <b><font color="blue"> END = Entregou na data </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> EFD = Entregou fora da data</font> &nbsp&nbsp&nbsp  &nbsp&nbsp
-                                                    <font color="orange">  EMB = Entregou em Branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> NE = Não entregou</font>
+                     <tr>
+                       <td colspan="30" align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
+                                                                          <b><font color="blue"> R-Ol = Recebeu on_line </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> R-Im = Recebeu impresso</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="green"> Dev ='Devolveu'
+                                                    &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="orange">  Dev-B = Devolveu em branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> N-Re = Não recebeu</font>
                                                 </b>
-                                                    
-                                             <%#else%>
-
-                                             <%#end%>
-                                        </td>
+                       </td>
                     </tr>
                     <tr bgcolor="#F5F5F5">
                         <td width ="78%" colspan="2"><br/><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/><br/></td>
@@ -109,52 +104,108 @@
                                                     <%end%>
                                                 </td>
                                                 <%cont_ativ=0%>
+                                                <%cont1=0%>
                                                 <%@atividades.each do |atividade|%>
-                                                 <%@avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? ', session[:classe] ,session[:dataI], session[:dataF]],:order => 'inicio, id')%>
+                                                 <%#@avaliacoes=AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.classe_id =?   and atividades.inicio>=? and atividades.fim<=? ', session[:classe] ,session[:dataI], session[:dataF]],:order => 'inicio, id')%>
                                                 <td align="center">
-                                                    <table >
+                                                    <table  >
                                                         <tr>
+                                                          <td align="left">
                                                             <%t0=0%>
-                                                            <td align="center"> <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
+                                                                <%if (@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.nil?) or (!@avaliacoes[cont_ativ*lin+cont_aval].avaliacao.present?)%>
 
-                                                                                <%else%>
-                                                                                   <%if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'NE'%>
+                                                                 <%else%>
+                                                                                   <%if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'N-Re'%>
                                                                                         <font color="red">
-                                                                                      <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'EMB'%>
+                                                                                          
+                                                                                      <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'Dev-B'%>
                                                                                           <font color="orange">
-                                                                                            <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'EFD'%>
+
+                                                                                            <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'R-Im'%>
                                                                                               <font color="purple">
-                                                                                                <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'END'%>
+
+                                                                                                <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'R-Ol'%>
                                                                                                    <font color="blue">
+                                                                                                       <%cont1 = cont1+1%>
+                                                                                                        <%else if @avaliacoes[cont_ativ*lin+cont_aval].avaliacao == 'Dev'%>
+                                                                                                      <font color="green">
+
+                                                                                                        <%end%>
                                                                                                  <%end%>
                                                                                             <%end%>
                                                                                       <%end%>
                                                                                    <%end%>
-                                                                                           <b><%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%></b>  </font>
-                                                                                <%end%>
+                                                                            <b> <font size ="1"> <%=@avaliacoes[cont_ativ*lin+cont_aval].avaliacao%></font></b>
+                                                                <%end%>
                                                             </td>
-                                                        </tr>
+                                                            <td>
+                                                              <%if !@avaliacoes[cont_ativ*lin+cont_aval].nota.present? %>
+                                                                  &nbsp&nbsp&nbsp&nbsp&nbsp
+                                                              <%else%>
+                                                                  <% if @avaliacoes[cont_ativ*lin+cont_aval].nota.to_i < 5.0 %>
+                                                                    - <font size ="1" color="red"><%=@avaliacoes[cont_ativ*lin+cont_aval].nota%> <font>
+                                                                  <%else%>
+                                                                    - <font size ="1"><%=@avaliacoes[cont_ativ*lin+cont_aval].nota%></font>
+                                                                   <%end%>
+                                                              <%end%>
+                                                            </td>
+                                                         </tr>
                                                        </table>
                                                     </td>
                                                     <%cont_ativ=cont_ativ+1%>
                                                 <%end%>
                                                 <%cont_aval=cont_aval+1%>
                                             </tr>
+
                                       <%end%>
+ 
 
                             </div></td>
                     </tr>
-                    <tr>
-                                        <td colspan="30" align="RIGHT" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
-                                             <%#if current_user.has_role?('professor_infantil') %>
-                                                <b><font color="blue"> END = Entregou na data </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> EFD = Entregou fora da data</font> &nbsp&nbsp&nbsp  &nbsp&nbsp
-                                                    <font color="orange">  EMB = Entregou em Branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> NE = Não entregou</font>
+                     <tr>
+                       <td  colspan="2"align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp&nbsp&nbsp  </u>  </b></td>
+                        <td colspan="30" align="left" > &nbsp&nbsp&nbsp                   <b><font color="blue"> R-Ol = Recebeu on_line </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> R-Im = Recebeu impresso</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="green"> Dev ='Devolveu'
+                                                    &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="orange">  Dev-B = Devolveu em branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> N-Re = Não recebeu</font>
                                                 </b>
-                                             <%#else%>
-
-                                             <%#end%>
-                                        </td>
+                       </td>
                     </tr>
+                     
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"><b><u>ESTATÍSTICA</u>  </b></td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="blue" size="1"> <b> R-Ol = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="R-Ol"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"> </td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="purple" size="1">  <b> R-Im = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="R-Im"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"> </td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="green" size="1">  <b> Dev = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="Dev"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"> </td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="orange" size="1">  <b> Dev-B = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="Dev-B"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"> </td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="Red" size="1">  <b> N-Re = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="N-Re"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+
 
                 </table>
 

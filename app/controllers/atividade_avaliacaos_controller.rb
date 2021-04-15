@@ -5,15 +5,13 @@ class AtividadeAvaliacaosController < ApplicationController
 
   def load_iniciais
 
-        if current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental')
+        #if current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental')
                @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
-           else if current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')
-                  @Avaliacao = [nil,"NE","EB","EF","EN"]
-
-                else
-                   @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0","NE","EB","EF","EN"]
-                end
-        end
+                @AvaliacaoEdit = ["10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
+         #       else
+         #          @Avaliacao = [nil,"10.0","9.0","8.0","7.0","6.0","5.0","4.0","3.0","2.0","1.0","0.0"]
+         #       end
+        #end
   end
   def index
     @atividade_avaliacaos = AtividadeAvaliacao.all

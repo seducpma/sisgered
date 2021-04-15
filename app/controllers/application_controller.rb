@@ -293,12 +293,13 @@ SEMESTRE = {'1º Semestre'=> '1',
             'Anual'=> '3',
         }
 
-AVALIACAO= {''=> nil,
-            'Entregou na data' => 'END'  ,
-            'Entregou fora da data' => 'EFD',
-            'Entregou em Branco' => 'EMB',
-            'Não entregou' => 'NE',
-           }
+AVALIACAO= {' Recebeu on_line'=> 'R-Ol',
+            ' Recebeu impresso'=> 'R-Im',
+            'Não recebeu'=> 'N-Re' ,
+            'Devolveu' => 'Dev',
+            'Devolveu em branco'=> 'Dev-B'
+
+             }
 
 ATIVIDADETIPO= {'NÃO AVALIATIVA'=> 1,
             'AVALIATIVA' => 0  ,
