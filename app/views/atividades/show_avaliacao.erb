@@ -119,17 +119,49 @@
 
                             </div></td>
                     </tr>
-                    <tr>
-                                        <td colspan="3" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp</u>  </b>
-                                             <%#if current_user.has_role?('professor_infantil') %>
-                                                    <b>  EB = Entregou em Branco  &nbsp&nbsp&nbsp  &nbsp&nbsp NE = Não entregou  &nbsp&nbsp&nbsp  &nbsp&nbsp
-                                                       &nbsp  EF =   Entregou fora da data &nbsp&nbsp  &nbsp&nbsp EN = Entreguou na data </b>
-                                             <%#else%>
-
-                                             <%#end%>
-                                        </td>
+                     <tr>
+                       <td  colspan="2"align="right" >  <font size="2" color="blue"> <b><u>Legenda:&nbsp&nbsp&nbsp  </u>  </b></td>
+                        <td colspan="30" align="left" > &nbsp&nbsp&nbsp                   <b><font color="blue"> R-Ol = Recebeu on_line </font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="purple"> R-Im = Recebeu impresso</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="green"> Dev ='Devolveu'
+                                                    &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="orange">  Dev-B = Devolveu em branco</font> &nbsp&nbsp&nbsp  &nbsp&nbsp <font color="red"> N-Re = Não recebeu</font>
+                                                </b>
+                       </td>
                     </tr>
-                </table>
+
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"><b><u>ESTATÍSTICA</u>  </b></td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="blue" size="1"> <b> R-Ol = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="R-Ol"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"> </td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="purple" size="1">  <b> R-Im = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="R-Im"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"> </td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="green" size="1">  <b> Dev = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="Dev"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"> </td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="orange" size="1">  <b> Dev-B = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="Dev-B"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
+                    <tr bgcolor="#F5F5F5">
+                      <td colspan="2" align="center"> </td>
+                          <%con=0%>
+                            <%@atividades.each do |atividade| %>
+                              <td align="center"> <font color="Red" size="1">  <b> N-Re = <%= (AtividadeAvaliacao.find(:all, :joins => 'inner join atividades on atividades.id = atividade_avaliacaos.atividade_id', :conditions =>  ['atividade_avaliacaos.atividade_id =?   and atividades.inicio>=? and atividades.fim<=?  and atividade_avaliacaos.avaliacao ="N-Re"', atividade.id ,session[:dataI], session[:dataF]])).count %> </b> </td>
+                           <%end%>
+                      </tr>
                 </table>
 
             <%else%>
