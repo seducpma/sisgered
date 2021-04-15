@@ -592,7 +592,8 @@ t=0
                 else if     current_user.has_role?('pedagogo') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')
                         @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and unidade_id =?',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.unidade_id],:order => 'inicio DESC')
                     else
-                        @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and professor_id =?',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.professor_id],:order => 'inicio DESC')                     end
+                        @atividades = Atividade.find(:all,   :conditions =>['ano_letivo=? and classe_id=? and disciplina_id=? and professor_id =?',Time.now.year, session[:classe_id],params[:disciplina_id], current_user.professor_id],:order => 'inicio DESC')
+                      end
                 end
                 session[:professor]= @atividades[0].professor_id
                 session[:classe=]= @atividades[0].classe_id
