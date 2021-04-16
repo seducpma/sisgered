@@ -1,6 +1,9 @@
 <% if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
     <%@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND relatorios.ano_letivo =?', Time.now.year],:order => 'alunos.aluno_nome ASC')%>
-<%else%>
+    <% @professor_unidade = Professor.find(:all, :select=> 'distinct(professors.id), professors.*',  :joins => 'INNER JOIN atribuicaos ON professors.id= atribuicaos.professor_id INNER JOIN classes ON classes.id= atribuicaos.classe_id', :conditions => ['professors.desligado = 0  and classes.unidade_id = ? and atribuicaos.ano_letivo = ? ',current_user.unidade_id , Time.now.year],:order => 'professors.nome ASC')%>
+
+
+
     <% if  current_user.has_role?('professor_infantil')%>
       <%@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=? AND relatorios.professor_id=?', current_user.unidade_id, Time.now.year, current_user.professor_id  ],:order => 'alunos.aluno_nome')%>
     <%end%>

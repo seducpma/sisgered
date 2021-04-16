@@ -1,6 +1,6 @@
-
-
-
+<%  if   current_user.has_role?('pedagogo')  or   current_user.has_role?('direcao_infantil') or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('secretaria_fundamental')%>
+    <%  @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ? and (classes.unidade_id = 52 or classes.unidade_id=?)' , Time.now.year , current_user.unidade_id], :order => 'classes.classe_classe ASC')%>
+<%end%>
 
 <table width="100%"   >
    <tr>

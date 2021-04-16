@@ -1,6 +1,9 @@
 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
-     <%#@unidades = Conteudo.find(:all, :joins => [:unidade, :professor],:select => 'distinct(unidades.nome), unidades.id',  :conditions =>['conteudos.ano_letivo=?', Time.now.year],:order => 'professors.nome')%>
-     <%@unidades = Unidade.find(:all, :select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0'],:order => 'unidades.nome')%>
+   <% if (current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')) %>
+     <%@unidades = Conteudo.find(:all, :joins => [:unidade, :professor],:select => 'distinct(unidades.nome), unidades.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=?', Time.now.year, current_user.unidade_id],:order => 'professors.nome')%>
+     <%else%>
+        <%@unidades = Unidade.find(:all, :select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0'],:order => 'unidades.nome')%>
+     <%end%>
 <%else%>
      <%@unidades = Conteudo.find(:all, :joins => [:unidade, :professor],:select => 'distinct(unidades.nome), unidades.id',  :conditions =>['conteudos.ano_letivo=? AND conteudos.unidade_id=?', Time.now.year, current_user.unidade_id],:order => 'professors.nome')%>
 <%end%>
