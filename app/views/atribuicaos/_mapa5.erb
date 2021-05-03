@@ -134,7 +134,7 @@
                         <%else%>
                             <%if (cont_dis+1)<=@notas_alu.size%>
                                 <% if @notas_alu[cont_dis].disciplina.curriculo=='D'%>
-                                         <%if @notas_alu[cont_dis].atribuicao.disciplina.disciplina=="INGLÊS"%>
+                                         <%if (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="INGLÊS") or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="FILOSOFIA")%>
                                               <%session[:nota_disciplina]=@notas_alu[cont_dis].nota5 %>
                                          <%else%>
                                               <%session[:nota_disciplina]=''%>
@@ -170,7 +170,7 @@
                                         <%end%> <!-- 157 -->
                                     <%end%> <!-- 154 -->
                                 <%else%>
-                                    <td align="center"><font color="green">[4]</font></td>
+                                    <td align="center"><font color="green"><!--[4]--></font></td>
                                 <%end%> <!-- 138 -->
                             <%end%>
                         <%end%> <!-- 119 -->
