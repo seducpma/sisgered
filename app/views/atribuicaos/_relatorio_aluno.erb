@@ -376,7 +376,7 @@
                     <%end%>
                     <td width=" 20%"><%= nota.atribuicao.disciplina.disciplina %></td>
                     <%if nota.aulas1!=0 %>
-                        <%if (nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if (nota.disciplina_id==65 or nota.disciplina_id==8 or nota.disciplina_id=33)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center"><%=nota.nota1%></td>
                         <%else%>
                             <td align="center"></td>
@@ -414,7 +414,7 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas2!=0 %>
-                        <%if (nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if (nota.disciplina_id==65 or nota.disciplina_id==8 or nota.disciplina_id=33)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center" bgcolor="#E7E7E7"><%=nota.nota2%></td>
                         <%else%>
                             <td align="center" bgcolor="#E7E7E7">---</td>
@@ -490,7 +490,7 @@
                         <td align="center">---</td>
                     <%end%>
                     <%if nota.aulas4!=0 %>
-                        <%if (nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if (nota.disciplina_id==65 or nota.disciplina_id==8 or nota.disciplina_id=33)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center" bgcolor="#E7E7E7"><%=nota.nota4%></td>
                         <%else%>
                             <td align="center" bgcolor="#E7E7E7">---</td>
@@ -531,7 +531,7 @@
 
 
                     <%if nota.aulas5 !=0 %>
-                        <%if (nota.disciplina_id==65 or nota.disciplina_id==8)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
+                        <%if (nota.disciplina_id==65 or nota.disciplina_id==8 or nota.disciplina_id=33)  and nota.atribuicao.classe.classe_classe.slice(0..0).to_i >= 6%>
                             <td align="center"><%=nota.nota5%></td>
                         <%else%>
                             <td align="center">---</td>
