@@ -12,14 +12,14 @@ class Professor < ActiveRecord::Base
   #has_one :tempo_servico, :dependent => :delete
   #has_one :titulo_professor, :dependent => :delete
 
-#validates_presence_of :matricula, :message => ' -  MATRÍCULA - PREENCHIMENTO OBRIGATÓRIO'
-#validates_presence_of :nome, :message => ' -  NOME - PREENCHIMENTO OBRIGATÓRIO'
-#validates_presence_of :funcao, :message => ' -  FUNÇÃO - PREENCHIMENTO OBRIGATÓRIO'
-#validates_presence_of :unidade_id, :message => ' -  SEDE - PREENCHIMENTO OBRIGATÓRIO'
+validates_presence_of :matricula, :message => ' -  MATRÍCULA - PREENCHIMENTO OBRIGATÓRIO'
+validates_presence_of :nome, :message => ' -  NOME - PREENCHIMENTO OBRIGATÓRIO'
+validates_presence_of :funcao, :message => ' -  FUNÇÃO - PREENCHIMENTO OBRIGATÓRIO'
+validates_presence_of :unidade_id, :message => ' -  SEDE - PREENCHIMENTO OBRIGATÓRIO'
 
-#validates_numericality_of :INEP, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
-#validates_numericality_of :RD, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
-#validates_uniqueness_of :matricula, :message => ' - PROFESSOR JA CADASTRADO'
+validates_numericality_of :INEP, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
+validates_numericality_of :RD, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
+validates_uniqueness_of :matricula, :message => ' - PROFESSOR JA CADASTRADO'
 Curso = ['SEM MAGISTÉRIO / PEDAGOGIA','MAGISTÉRIO - NÍVER MÉDIO','PEDAGOGIA / NORMAL SUPERIOR','LICENCIATURA EM ARTES','LICENCIATURA EM EDUCAÇÃO FÍSICA','LICENCIATURA Em LETRAS - PORTUGUÊS','LICENCIATURA EM LETRAS - INGLÊS','LICENCIATURA EM MATEMÁTICA','LICENCIATRUA EM HISTÓRIA','LICENCIATURA EM GEOGRAFIA','LICENCIATURA EM CIÊNCIAS / BIOLOGIA']
 
   #after_create :log_cadastro
