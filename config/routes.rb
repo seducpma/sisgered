@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :notas_alunos
   map.resources :notas, :collection => {:lancar_notas => :get, :lancamentos_notas =>:get, :lancamentos_observacaos =>:get, :lancamentos_compensacao =>:get, :relatorio_classe => :get ,  :new1 => :get, :lancamento_aulas_compensadas => :get }
   map.resources :classes_alunos
-  map.resources :classes,:collection => { :editar_classe=>:get, :gerar_notas=>:get, :nucleo_basico =>:get, :consulta_classe_fone =>:get}
+  map.resources :classes,:collection => { :editar_classe=>:get, :gerar_notas=>:get, :nucleo_basico =>:get, :consulta_classe_fone =>:get,  :lista_responsavel =>:get}
   map.resources :professors,:collection => { :consulta_classe=>:get,  :consulta_classe_anterior=>:get }
   map.resources :tipos
   map.resources :unidades,  :collection => {:consultas => :get}
@@ -104,6 +104,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_ficha_completa '/impressao_ficha_completa', :controller => 'socioeconomicos', :action => 'impressao_ficha_completa'
   map.impressao_ficha '/impressao_ficha', :controller => 'alunos', :action => 'impressao_ficha'
   map.impressao_classe '/impressao_classe', :controller => 'classes', :action => 'impressao_classe'
+  map.impressao_lista_responsavel '/impressao_lista_responsavel', :controller => 'classes', :action => 'impressao_lista_responsavel'
   map.impressao_classe_fone '/impressao_classe_fone', :controller => 'classes', :action => 'impressao_classe_fone'
   map.impressao_piloto '/impressao_piloto', :controller => 'classes', :action => 'impressao_piloto'
   map.impressao_lista '/impressao_lista', :controller => 'classes', :action => 'impressao_lista'
@@ -181,6 +182,8 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_classe_anteriores '/consulta_classe_anteriores', :controller => 'classes', :action => 'consulta_classe_anteriores'
   map.consulta_lista_classe '/consulta_lista_classe', :controller => 'classes', :action => 'consulta_lista_classe'
   map.consulta_lista '/consulta_lista', :controller => 'classes', :action => 'consulta_lista'
+  map.lista_responsavel '/lista_responsavel', :controller => 'classes', :action => 'lista_responsavel'
+  map.lista_responsavel_aluno '/lista_responsavel_aluno', :controller => 'classes', :action => 'lista_responsavel_aluno'
   map.consultacrianca '/consultacrianca', :controller => 'criancas', :action => 'consultacrianca'
   map.consulta_responsaveis '/consulta_responsaveis', :controller => 'alunos', :action => 'consulta_responsaveis'
   map.consulta_reponsavel '/consulta_reponsavel', :controller => 'alunos', :action => 'consulta_reponsavel'

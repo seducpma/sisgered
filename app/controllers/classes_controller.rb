@@ -396,6 +396,14 @@ def impressao_lista
       render :layout => "impressao"
 end
 
+def impressao_lista_responsavel
+       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+       @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', session[:classe_id],0], :order =>'disciplinas.ordem ASC ' )
+       t1=session[:classe_id]
+
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?',  session[:classe_id]], :order => 'classe_num ASC')
+      render :layout => "impressao"
+end
 def consulta_lista_classe
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
@@ -437,6 +445,20 @@ end
     end
  end
 
+def lista_responsavel
+ 
+end
+
+
+def lista_responsavel_aluno
+       session[:classe_id]=params[:classe][:id]
+       @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+       @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
+
+        render :update do |page|
+          page.replace_html 'classe_alunos', :partial => 'alunos_lista_responsavel'
+       end
+end
 
 #  def load_alunos
 #   if current_user.unidade_id == 53 or current_user.unidade_id == 52
