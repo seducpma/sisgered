@@ -130,6 +130,11 @@
                        <td align="right"><b>Sexo:</b></td>
                        <td colspan="2" align="left"><%=h aluno.aluno_sexo %></td>
                     </tr>
+                    <tr>
+                      <td><b>Filiação: Pai:</b></td>
+                      <td colspan="4">   <%=h aluno.aluno_pai %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                         <b>Mãe:</b>    <%=h aluno.aluno_mae %></td>
+                   </tr>
                     <tr >
                       <td width =" 12%"><b>Nº RM:</b></td>
                       <td>   <%=h aluno.aluno_rm %></td>
@@ -160,6 +165,7 @@
 
                         </td>
                    </tr>
+
                    <tr>
                      <td></td> <td></td><td></td>
                      <td ><b>RNE:&nbsp&nbsp</b><%=h aluno.aluno_RNE %></td>
@@ -270,7 +276,7 @@
                            <td align="left" colspan="4"><b>E-mailmãe):</b><%=h aluno.aluno_email_mae%></td>
                         </tr>
                         <tr >
-                          <td align="left" width="4%"><b>Professor:</b></td>
+                          <td align="left" width="4%"><b>Responsável:</b></td>
                           <td colspan="4 align="left"><%=h aluno.aluno_responsavel %></td>
                           <td align="left"colspan="4"><b>Parentesco:</b> <%=h aluno.aluno_parente %></td>
                        </tr>
@@ -353,7 +359,7 @@
                  <%end%>
                </table>
           </fieldset>
-               <fieldset><legend><font  size=3><b> Professor</b></font></legend>
+               <fieldset><legend><font  size=3><b> Responsável</b></font></legend>
                  <table width="100%">
                    <tr bgcolor="#F5F5F5">
                        <td width ="12%" ><b>Profissão:</b></td>
