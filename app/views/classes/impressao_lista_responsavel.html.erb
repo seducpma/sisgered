@@ -42,10 +42,10 @@
           <table frame="box" rules="all" width="100%" style="border-color: white">
                <tr style="line-height:50%">
                  <td align="center"width ="2%" style="font-size: 9px"><b>Nº</b></td>
-                 <td width ="20%" style="font-size: 9px"><b>NOME</b></td>
-                  <td width ="8%" style="font-size: 9px"><b>DATA </b></td>
-                 <td width ="35%" style="font-size: 9px"><b>RESPONSÁVEL / GRAU PARENTESCO</b></td>
-                 <td width ="10%" style="font-size: 9px"><b>DOCUMENTO</b></td>
+                 <td align="center"width ="20%" style="font-size: 9px"><b>NOME</b></td>
+                  <td align="center"width ="8%" style="font-size: 9px"><b>DATA </b></td>
+                 <td align="center"width ="35%" style="font-size: 9px"><b>RESPONSÁVEL / GRAU PARENTESCO</b></td>
+                 <td align="center"width ="10%" style="font-size: 9px"><b>DOCUMENTO</b></td>
                  <td align="center"width ="40%" style="font-size: 9px"><b>ASSINATURA</b></td>
                </tr>
              <% for matricula in @matriculas %>
@@ -53,15 +53,15 @@
                   <td align="center" style="font-size: 9px"> <%="#{ matricula.classe_num}"%> </td>
                   <td align="left" style="font-size: 10px"><%= truncate(matricula.aluno.aluno_nome,:length => 27,:omission => "...") %>
                                                             <%  if  matricula.status =="TRANSFERIDO"%>
-                                                                <font color ="red" style="font-size: 8px">&nbsp&nbsp(Transferido) </font>
+                                                                <font  style="font-size: 8px">&nbsp&nbsp(Transferido) </font>
                                                             <%else if  matricula.status =="TRANSFERENCIA"%>
-                                                                   <font style="font-size: 8px" color ="blue"> (Transferência) </font>
+                                                                   <font style="font-size: 8px" > (Transferência) </font>
                                                                    <%else if  matricula.status =="REMANEJADO"%>
                                                                             <font  style="font-size: 8px"color ="green"> &nbsp&nbsp(Remanejado) </font>
                                                                          <%else if  matricula.status =="*REMANEJADO"%>
-                                                                                  <font  style="font-size: 8px"color ="green"> (*Remanejado) </font>
+                                                                                  <font  style="font-size: 8px> (*Remanejado) </font>
                                                                                <%else if  matricula.status =="ABANDONO"%>
-                                                                                        <font style="font-size: 8px" color ="red"> &nbsp&nbsp(Abandono)</font>
+                                                                                        <font style="font-size: 8px" > &nbsp&nbsp(Abandono)</font>
                                                                                     <%end%>
                                                                              <%end%>
                                                                          <%end%>
