@@ -30,8 +30,8 @@
 
       </tr>
       <tr style="line-height:30%">
-          <td align="left" style="font-size: 9px"><b>Descrição:</b></td>
-          <td colspan="3" align="left" style="font-size: 9px">  <%=h classe.classe_descricao %></td>
+          <td colspan=""align="left" style="font-size: 9px"><b>Data Inicio entrega:</b></td>
+          <td colspan="3" align="left" style="font-size: 9px">  </td>
       </tr>
          <% cont=1 %>
          <% cont1=1 %>
@@ -40,15 +40,16 @@
           <table frame="box" rules="all" width="100%" style="border-color: white">
                <tr style="line-height:30%">
                  <td align="center"width ="2%" style="font-size: 9px"><b>Nº</b></td>
-                 <td width ="40%" style="font-size: 9px"><b>NOME</b></td>
-                 <td width ="25%" style="font-size: 9px"><b>RESPONSÁVEL</b></td>
+                 <td width ="20%" style="font-size: 9px"><b>NOME</b></td>
+                  <td width ="8%" style="font-size: 9px"><b>DATA </b></td>
+                 <td width ="35%" style="font-size: 9px"><b>RESPONSÁVEL</b></td>
                  <td width ="10%" style="font-size: 9px"><b>DOCUMENTO</b></td>
                  <td align="center"width ="40%" style="font-size: 9px"><b>ASSINATURA</b></td>
                </tr>
              <% for matricula in @matriculas %>
                 <tr bgcolor="#F5F5F5" style="line-height:30%">
                   <td align="center" style="font-size: 9px"> <%="#{ matricula.classe_num}"%> </td>
-                  <td align="left" style="font-size: 8px"><%= truncate(matricula.aluno.aluno_nome,:length => 36,:omission => "...") %>
+                  <td align="left" style="font-size: 8px"><%= truncate(matricula.aluno.aluno_nome,:length => 30,:omission => "...") %>
                                                             <%  if  matricula.status =="TRANSFERIDO"%>
                                                                 <font color ="red">&nbsp&nbsp(Transferido) </font>
                                                             <%else if  matricula.status =="TRANSFERENCIA"%>
@@ -65,8 +66,10 @@
                                                                    <%end%>
                                                             <%end%>
                   </td>
-                  <td align="left" style="font-size: 8px"> <td align="left">  </td>
                   <td align="left">  </td>
+                  <td align="left">  </td>
+                  <td align="left">  </td>
+                   <td align="left">  </td>
 
               </tr>
             <%end%>
