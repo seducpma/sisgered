@@ -8,13 +8,15 @@
     </td>
   </tr>
 </table>
-
+<br/>
 <table frame="box" rules="all" width="100%" style="border-color: white">
 
    <tr  class ="invisible_to_print " style="border-color: white">
-     <td style="border-color: white" colspan="4"align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+     <td style="border-color: white" colspan="4"align="left" class ="invisible_to_print " width="5%"><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td><td style="font-size: 9px">  &nbsp&nbsp&nbsp <b>  (Para imprimir em modo paisagem é necessário configurar na impressão)</b> </td>
   </tr>
-
+</table>
+<br/>
+<table frame="box" rules="all" width="100%" style="border-color: white">
         <tr  style="line-height:50%" >
            <td align="left" width="15%" style="font-size: 9px"><b>Unidade:</b></td>
            <td align="left" style="font-size: 9px"><%=h classe.unidade.nome%></td>
