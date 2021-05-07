@@ -364,7 +364,9 @@ display: none;
                            <li><%= link_to "FAPEA / Memorial", new_relatorio_path %></li>
                      <%end%>
 
-                    <% if (current_user.has_role?('admin'))%> <!-- or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>-->
+                    <% if (current_user.has_role?('admin')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('direcao_fundamental')  )%>
+                           <!-- ACERTAR or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('direcao_infantil') or  current_user.has_role?('secretaria_fundamental'))%>-->
+
                           <li><%= link_to "Professor",new_professor_path %></li>
 
                       <%end%>
