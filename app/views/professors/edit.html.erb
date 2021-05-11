@@ -44,7 +44,7 @@
                   <tr>
 
 
-                    <td colspan="2"><b>Data Ingresso:  </b> <%=h @professor.dt_ingresso.strftime("%d/%m/%Y")%>
+                    <td colspan="2"><b>Data Ingresso:  </b> <%=h @professor.dt_ingresso%>
                         <%= datepicker_tag(:professor, :dt_ingresso,{:size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-60:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %> 
                        &nbsp&nbsp&nbsp <b>Função/Cargo: </b><%=h @professor.funcao%> </td>
                      

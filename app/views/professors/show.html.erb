@@ -22,7 +22,7 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Nascimento:</b></td>
-                   <td align="left"> <%=h @professor.dt_nasc%></td>
+                   <td align="left"> <%=h @professor.dt_nasc.strftime("%d de %B de %Y")%></td>
                    <td align="left"width="5%"><b>Nº Filhos:</b></td>
                    <td colspan="5"align="left">  <%=h @professor.n_filhos %></td>
                  <tr/>
@@ -62,7 +62,7 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Ingresso:</b></td>
-                   <td align="left">  <%=h @professor.dt_ingresso.strftime("%d de %B de %Y")%></td>
+                   <td align="left"> <%if !@professor.dt_ingresso.nil?%><%=h @professor.dt_ingresso.strftime("%d de %B de %Y")%><%end%></td>
                    <td align="left"><b>Formação:</b></td>
                    <td align="left"colspan="5">  <%=h @professor.entrada_concurso%></td>
                  </tr>
