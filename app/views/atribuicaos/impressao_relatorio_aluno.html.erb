@@ -614,7 +614,7 @@
              </th>
         </tr>
 
-     <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
+     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo'))%>
          <tr>
            <th style="font-size: 8px"colspan="23" align="left"><b>Observações:</b></th>
          </tr>
@@ -645,7 +645,7 @@
                  </th>
               </tr>
             <%end%>
-   <%#end%>
+   <%end%>
 
      <%# if (current_user.has_role?('secretaria_fundamental'))%>
    <!--      <tr>
