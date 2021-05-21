@@ -89,10 +89,9 @@
                                                             <td align="center">
                                                              <%@faltasalunosdiasT.each do |falatasdiasT|%>
                                                                  <% if falatasdiasT.aluno_id == alunos_mat.id  %>
-                                                                    F
-                                                                    
-                                                                        (<%= falatasdiasT.faltas%>)
-                                                                    
+                                                              <font color="red"> <b>F </b>  (<%= falatasdiasT.faltas%>)
+                                                                 <%else%>
+                                                                    P
                                                                     <%break%>
                                                                  <%end%>
                                                              <%end%>
