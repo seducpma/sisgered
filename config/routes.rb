@@ -96,6 +96,11 @@ ActionController::Routing::Routes.draw do |map|
   map.relatorio_unidade_falta '/relatorio_unidade_falta', :controller => 'faltas', :action => 'relatorio_unidade_falta'
 
 
+  map.diario_classe '/diario_classe', :controller => 'classesdiarios', :action => 'diario_classe'
+  map.classe_diario '/classe_diario', :controller => 'classesdiarios', :action => 'classe_diario'
+  map.impressao_diario '/impressao_diario', :controller => 'classesdiarios', :action => 'impressao_diario'
+
+
 
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
   map.impressao_alunos '/impressao_alunos', :controller => 'alunos', :action => 'impressao_alunos'
