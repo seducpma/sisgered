@@ -17,7 +17,7 @@
         <tr  style="line-height:25%">
            <td align="left" width="15%" style="font-size: 7px"><b>Unidade:</b></td>
            <td align="left" style="font-size: 7px"><%=h classe.unidade.nome%></td>
-          <td align="left"width="15%" style="font-size: 7px"><b> Ano Letivo:</b> &nbsp&nbsp  <%=h classe.classe_ano_letivo %>
+          <td align="left"width="15%" style="font-size: 7px"><b> Ano Letivo:</b> &nbsp&nbsp  <%=h classe.classe_ano_letivo %></td>
           <td colspan="7" align="left" style="font-size: 7px"> <b>Mês: </b>              </td>
       </tr>
 
@@ -27,10 +27,17 @@
            <td  colspan="2 "align="left" style="font-size: 7px"><b>Horário:</b>&nbsp&nbsp  <%=h classe.horario%></td>
 
       </tr>
+        <tr  style="line-height:25%">
+           <td align="left" width="15%" style="font-size: 7px"><b>Professor:</b></td>
+           <td align="left" style="font-size: 7px"></td>
+           <td colspan="2" align="left"width="15%" style="font-size: 7px"><b> Disciplina:</b> </td>
+
+      </tr>
       <tr style="line-height:25%">
           <td align="left" style="font-size: 7px"><b>Descrição:</b></td>
           <td colspan="3" align="left" style="font-size: 7px">  <%=h classe.classe_descricao %></td>
       </tr>
+
 
       <tr style="line-height:25%">
          <% cont=1 %>
