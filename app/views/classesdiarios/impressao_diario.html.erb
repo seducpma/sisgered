@@ -38,7 +38,7 @@
         <td style="font-size: 7px" colspan="4">
           <b> Alunos: </b><br/>
           <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
-                           <tr style="line-height:40%">
+                           <tr style="line-height:38%">
                                <td align="center"width ="1%" style="font-size: 7px"><b>Nº</b></td>
 
                                <td width ="35%" style="font-size: 7px"><br/> <b>NOME</b><br/></td>
@@ -70,7 +70,7 @@
 
                              <% for matricula in  @matriculas %>
                                 <tr style="line-height:25%">
-                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.classe_num}"%> </td>
+                                  <td align="center" style="font-size: 9px"> <%="#{ matricula.classe_num}"%> </td>
                                   <td align="center" style="font-size: 7px"> <%="#{truncate(matricula.aluno.aluno_nome,:length => 20,:omission => "...")}"%>
                                                                               <%  if  matricula.status =="TRANSFERIDO"%>
                                                                                  <font color ="red"> (Transf.) </font>
