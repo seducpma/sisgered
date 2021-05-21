@@ -52,6 +52,7 @@ end
 
 
  def alunos_faltas_falta
+
  
      @alunos_faltaram=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
       w1=session[:professor_id]
@@ -86,6 +87,15 @@ end
            @faltasaluno = Faltasaluno.find(:last)
     end
   end
+
+
+
+
+
+
+
+
+
 end
 
 def classe
