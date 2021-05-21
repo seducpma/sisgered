@@ -33,10 +33,7 @@
            <td colspan="2" align="left"width="15%" style="font-size: 7px"><b> Disciplina:</b> </td>
 
       </tr>
-      <tr style="line-height:25%">
-          <td align="left" style="font-size: 7px"><b>Descrição:</b></td>
-          <td colspan="3" align="left" style="font-size: 7px">  <%=h classe.classe_descricao %></td>
-      </tr>
+
 
 
       <tr style="line-height:25%">
@@ -77,8 +74,8 @@
 
                              <% for matricula in  @matriculas %>
                                 <tr style="line-height:25%">
-                                  <td align="center" style="font-size: 9px"> <%="#{ matricula.classe_num}"%> </td>
-                                  <td align="center" style="font-size: 7px"> <%="#{truncate(matricula.aluno.aluno_nome,:length => 20,:omission => "...")}"%>
+                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.classe_num}"%> </td>
+                                  <td align="center" style="font-size: 9px"> <%="#{truncate(matricula.aluno.aluno_nome,:length => 20,:omission => "...")}"%>
                                                                               <%  if  matricula.status =="TRANSFERIDO"%>
                                                                                  <font color ="red"> (Transf.) </font>
                                                                               <%else if  matricula.status =="TRANSFERENCIA"%>
