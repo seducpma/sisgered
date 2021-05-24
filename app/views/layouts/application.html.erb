@@ -13,13 +13,13 @@
     </script>
     <!-- End Google Tag Manager -->
 
-    <!-- Google Tag Manager --> <!-- Adicionado por Alex em 08/11/2017 - Objetivo medir tamanhos de telas e outros dos usuários -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N4WLCT6');</script>
-    <!-- End Google Tag Manager -->
+    <%#*<!-- Google Tag Manager --> <!-- Adicionado por Alex em 08/11/2017 - Objetivo medir tamanhos de telas e outros dos usuários -->%>
+    <%#*<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':%>
+    <%#*new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],%>
+    <%#*j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=%>
+    <%#*'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);%>
+    <%#*})(window,document,'script','dataLayer','GTM-N4WLCT6');</script>%>
+    <%#*<!-- End Google Tag Manager -->%>
 
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
@@ -555,15 +555,14 @@ display: none;
                         <li><%= link_to "Ficha Cadastral",consulta_ficha_alunos_path %></li>
                       <%end%>
                       <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_fundamental')%>
-                      <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('professor_fundamental')%>
-                        <li><a class="item-primary" href="#;">Boletim Escolar</a>
-                           <ul>
-                              <li><%= link_to "Ano Letivo Atual",relatorios_classe_atribuicaos_path %></li>
-                              <li><%= link_to "Anos Anteriores",relatorios_anterior_classe_atribuicaos_path %></li>
-                          </ul>
-                       </li>
-
-                      <%end%>
+                          <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('professor_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('professor_fundamental')%>
+                            <li><a class="item-primary" href="#;">Boletim Escolar</a>
+                               <ul>
+                                  <li><%= link_to "Ano Letivo Atual",relatorios_classe_atribuicaos_path %></li>
+                                  <li><%= link_to "Anos Anteriores",relatorios_anterior_classe_atribuicaos_path %></li>
+                              </ul>
+                           </li>
+                          <%end%>
                            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or  current_user.has_role?('professor_fundamental')%>
                                 <li><a class="item-primary" href="#;">Lençol Notas</a>
                                    <ul>
@@ -571,6 +570,9 @@ display: none;
                                       <li><%= link_to "Anos Anteriores",mapa_classe_anterior_atribuicaos_path %></li>
                                   </ul>
                                </li>
+                           <%end%>
+                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
+                                <li><%= link_to "Contr. Frequência",diario_classe_path %></li><!-- Professores fundamental-->
                            <%end%>
                            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                               <li><%= link_to "Lista Presença",consulta_lista_path %></li>
