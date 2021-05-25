@@ -1,0 +1,26 @@
+<table width="90%">
+          <tr>
+               <td valign="top"><b>Alunos: </b></td>
+               <td>
+                       <%form_tag alunos_faltas_falta_path, :method => :get do %>
+
+                               <% for aluno in @alunos_matriculados %>
+                                  <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
+                                    <tr>
+                                             <td width ="1px" align="center"><%= check_box_tag "aluno_ids[]",aluno.id %></td>
+                                                <td width ="5%" align="center"><%= aluno.numero %></td>
+                                             <td><%=h aluno.aluno_nome_dtn %></td>
+
+                                   </tr>
+                                 </table>
+                              <%end %>
+                            <table >
+                                <tr>
+                                   <td colspan="2" ><%= submit_tag "Confirmar", :class => "btn_filtrar" %>
+                                   </td>
+                               </tr>
+                           </table>
+                        <%end%>
+                </td>
+           </tr>
+  </table>

@@ -1,0 +1,19 @@
+
+       <table width="100%" align="center" bgcolor="#DCDCDC">
+          <tr>
+            <td align= "right"><font size="2"><b class="label_busca3">Datas:  Inicial:</b></font>&nbsp
+                <%= datepicker_tag(:faltasaluno, :inicio,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               <font size="2"><b class="label_busca3">Final:</b></font>&nbsp
+                <%= datepicker_tag(:faltasaluno, :fim,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+         </td>
+          <td width ="14%" align="right">
+            <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+          </td>
+        </tr>
+
+
+       </table>
+
+

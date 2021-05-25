@@ -13,7 +13,7 @@
 
    <%#end%>
 <%#end%>
-<%if  current_user.has_role?('professor_fundamental') or   current_user.has_role?('direcao_fundamental')%>
+<%if  current_user.has_role?('professor_fundamental')%>
       <%@alunosRel = Faltasaluno.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND faltasalunos.ano_letivo=? ', current_user.unidade_id, Time.now.year ],:order => 'alunos.aluno_nome')%>
 <%end%>
 <table width="100%" align="center">

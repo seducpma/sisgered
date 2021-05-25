@@ -6,7 +6,7 @@
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>LANÇAMENTOS DE FALTAS</strong></font><br/>
+     <font size="3"><strong>FREQUÊNCIA - LANÇAMENTOS PRESENÇAS</strong></font><br/>
     
  </div>
     <div class="tabs">
@@ -23,7 +23,7 @@
                          :with   => 'faltasalunos_data' %>
               </td>
          <tr>
-           <td> <b></b>Professor(a): </td>
+           <td> <b>Professor(a):</b> </td>
            <td> <%= collection_select :professor, :id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %>
                    <%= observe_field 'professor_id',
                          :update => "classe_diario",
@@ -31,15 +31,15 @@
                          :with   => 'professor_id' %>
              </td>
           </tr>
-      
+<!--
                 <tr>
                   <td width =" 5%" valign="top"><b><b>Quantidade:</b> </b></td>
-                  <td> <%= select_tag :falta, options_for_select(["selecionar", "1","2","3","4","5","6"])%> &nbsp<font size="2"color=" red"><font size="1"><b> Quantidade de aulas (faltas) no dia</b></font></td>
-                    <%= observe_field 'falta',
+                  <td> <%#= select_tag :falta, options_for_select(["selecionar", "1","2","3","4","5","6"])%> &nbsp<font size="2"color=" red"><font size="1"><b> Quantidade de aulas (faltas) no dia</b></font></td>
+                    <%#= observe_field 'falta',
                          :url    => { :action => 'faltas' },
                          :with   => 'falta' %>
 
-                  
+-->
                       
 
                 </tr>
@@ -92,7 +92,7 @@
    <table>
     <tr>
       
-                    <td width =" 10%"><%= button_to 'Lançamento Faltas', new_faltasaluno_path%></td>
+                    <td width =" 10%"><%= button_to 'Lançamentos', new_faltasaluno_path%></td>
                      
 
     

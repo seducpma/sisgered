@@ -1,0 +1,33 @@
+<div id="interno3">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTO DE FALTAS</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+
+        <fieldset><legend><font size=4></font></legend>
+        <table>
+            <tr>
+              <td ><font color ="red" size ="4"><b><u>ATENÇÃO:</u> PRROFESSOR NÃO ATRIBUIDO PARA ESTA CLASSE E OU DISCIPLICIPLINA    .</b>        <font>
+                    
+                    </td>
+            </tr>
+
+         </table>
+         </fieldset>
+        <table width="100%">
+           <tr>
+              
+             
+             <td width =" 10%"><%= button_to 'Diário de Classe / Frequêcia)', new_faltasaluno_path %> </td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+          
+        </table>
+
+    </div>
+</div>
+<br/>
+</div>

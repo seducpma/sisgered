@@ -52,9 +52,11 @@
                     <tr bgcolor="#F5F5F5">
                        <% if  session[:tela_faltas_aluno]==1%>
                           <td width ="78%" colspan="2"><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
+                          <%cont_dias = 0%>
                           <%@faltasalunosdiasAluno.each do |disciplina| %>
                                  <td align="center" ><div class="textovertical"><b><%=  truncate(disciplina.disciplina.disciplina,:length => 14,:omission => "...") %></b><br/>
                                                      (<%=  disciplina.data.strftime("%d/%m/%Y") %>
+                                                     <%cont_dias = cont_dias + 1%>
 
 
                                    </div></td>
@@ -63,7 +65,9 @@
 
                       <%else%>
                          <td width ="78%" colspan="2"><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
+                         <%cont_dias = 0%>
                           <%@faltasalunosdias.each do |data| %>
+                         <%cont_dias = cont_dias + 1%>
                                  <td align="center" ><div class="textovertical"><b><%=  data.data.strftime("%d/%m/%Y") %></b></div></td>
                           <%end%>
                      <%end%>
@@ -89,13 +93,11 @@
                                                             <td align="center">
                                                              <%@faltasalunosdiasT.each do |falatasdiasT|%>
                                                                  <% if falatasdiasT.aluno_id == alunos_mat.id  %>
-                                                                       <font color =" red"><b> F </b>(<%= falatasdiasT.faltas%>)
+                                                                       <font color ="darkblue"><b>  P </b> <!--(<%#= falatasdiasT.faltas%>)--></font>
                                                                  <%else%>
-                                                                    P
+                                                                       <font color ="red">  F <!--(<%= falatasdiasT.faltas%>)-->
                                                                  <%end%>
-                                                                    
-                                                                <%break%>
-     
+                                                                    <%break%>
                                                                  
                                                              <%end%>
                                                             </td>
@@ -116,38 +118,84 @@
 <br/>
 <br/>
 <br/>
-<font size="3"> <b> RESUMO DAS FALTAS</b></font>
-<%cont=0%>
- <table border="1" cellspacing="0" cellpadding="1" width="100%" >
-        <tr bgcolor="#DCDCDC" >
-            <td width =" 5%"> <b>&nbsp&nbsp&nbsp Dia</b></td>
-            <td width =" 5%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
-            <td width =" 15%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
-            <td width =" 30%"><b>&nbsp&nbsp&nbsp Professor</b></td>
-            <td width =" 54%"><b>&nbsp&nbsp&nbsp Aluno</b></td>
+ <%if session[:view_classe] == 1%>
+   <%session[:view_classe] = 0%>
+          <font size="3"> <b> ALUNOS PRESENTES</b></font>
+          <%cont=0%>
+           <table border="1" cellspacing="0" cellpadding="1" width="100%" >
 
-        </tr>
-          <%contI=0%>
-         <% for faltas in  @faltasalunos%>
-          <%contI=contI +1%>
-         <tr bgcolor="#F5F5F5" >
-            <td align="center"> <%= faltas.data.strftime("%d/%m/%Y") %> </td>
-            <td align="center"> <%= faltas.classe.classe_classe%></td>
-            <td align="center"> <%= faltas.disciplina.disciplina%></td>
-            <td align="left"> <%= truncate(faltas.professor.nome,:length => 50,:omission => "...")%> </td>
-            <td align="left"> <%= faltas.aluno.aluno_nome%> </td>
-         </tr>
-        
+                  <tr bgcolor="#DCDCDC" >
+                      <td width =" 5%"> <b>&nbsp&nbsp&nbsp Dia</b></td>
+                      <td width =" 5%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
+                      <td width =" 15%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
+                      <td width =" 30%"><b>&nbsp&nbsp&nbsp Professor</b></td>
+                      <td width =" 54%"><b>&nbsp&nbsp&nbsp Aluno</b></td>
 
-         <%end%>
-         <tr>
-           <td colspan="5" align="right"> <b>Total de alunos com faltas: <%= contI %>  </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-             <%contF=0%>
-               <% for faltas in  @faltasalunos%>
-                 <%contF=contF + faltas.faltas%>
-               <%end%>
-                <b>Total de faltas: <%= contF %> </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           </td>
-         </tr>
-  <%session[:tela_faltas_aluno]=0%>
-    </table>
+                  </tr>
+                    <%contI=0%>
+                   <% for faltas in  @faltasalunos%>
+                    <%contI=contI +1%>
+                   <tr bgcolor="#F5F5F5" >
+                      <td align="center"> <%= faltas.data.strftime("%d/%m/%Y") %> </td>
+                      <td align="center"> <%= faltas.classe.classe_classe%></td>
+                      <td align="center"> <%= faltas.disciplina.disciplina%></td>
+                      <td align="left"> <%= truncate(faltas.professor.nome,:length => 50,:omission => "...")%> </td>
+                      <td align="left"> <%= faltas.aluno.aluno_nome%> </td>
+                   </tr>
+
+
+                   <%end%>
+                   <tr>
+                     <td colspan="5" align="right"> <b>Total de alunos presentes: <%= contI %>  </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       <%contF=0%>
+                         <% for faltas in  @faltasalunos%>
+                           <%contF=contF + faltas.faltas%>
+                         <%end%>
+                          <b> Quantidade de dias = <%=cont_dias%> </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                          <b>Total presença: <%= contF %> </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                     </td>
+                   </tr>
+            <%session[:tela_faltas_aluno]=0%>
+           </table>
+<%#else%><!--
+             <%session[:view_classe] = 0%>
+          <font size="3"> <b> ALUNOS PRESENTES</b></font>
+          <%cont=0%>
+           <table border="1" cellspacing="0" cellpadding="1" width="100%" >
+
+                  <tr bgcolor="#DCDCDC" >
+                      <td width =" 5%"> <b>&nbsp&nbsp&nbsp Data</b></td>
+                      <td width =" 5%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
+                      <td width =" 15%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
+                      
+                      <td width =" 54%"><b>&nbsp&nbsp&nbsp Aluno</b></td>
+
+                  </tr>
+                    <%contI=0%>
+                    <%@faltasalunos_resumo = Faltasaluno.find(:all, :select =>  'distinct(disciplina_id), data, classe_id, professor_id,aluno_id ', :joins =>:aluno, :conditions =>  ["data >=? AND  data <=? AND aluno_id = ? AND professor_id=?", session[:dataI], session[:dataF],session[:aluno],  current_user.professor_id] , :order => 'data ASC')%>
+                   <% for faltas in  @faltasalunos_resumo%>
+                    <%contI=contI +1%>
+                   <tr bgcolor="#F5F5F5" >
+                      <td align="center"> <%= faltas.data.strftime("%d/%m/%Y") %> </td>
+                      <td align="center"> <%= faltas.classe.classe_classe%></td>
+                      <td align="center"> <%= faltas.disciplina.disciplina%></td>
+                      
+                      <td align="left"> <%= faltas.aluno.aluno_nome%><%=session[:aluno]%> </td>
+                   </tr>
+
+
+                   <%end%>
+                   <tr>
+                     <td colspan="5" align="right"> <b>Total de alunos presentes: <%= contI %>  </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                       <%contF=0%>
+                         <% for faltas in  @faltasalunos%>
+                           <%contF=contF + faltas.faltas%>
+                         <%end%>
+                          <b> Quantidade de dias = <%=cont_dias%> </b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                          <b>Total presença: <%= contF %> </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                     </td>
+                   </tr>
+            <%session[:tela_faltas_aluno]=0%>
+           </table>
+         -->
+<%end%>

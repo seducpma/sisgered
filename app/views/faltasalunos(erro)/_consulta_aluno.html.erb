@@ -1,0 +1,40 @@
+<%#if  current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	 or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao')%>
+   
+   <%#@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND ano_letivo=?',Time.now.year],:order => 'alunos.aluno_nome ASC')%>
+   
+<%#else%>
+    <%#if  current_user.has_role?('secretaria_infantil') or   current_user.has_role?('direcao_infantil')%>
+      <%#@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=?', current_user.unidade_id, Time.now.year  ],:order => 'alunos.aluno_nome')%>
+
+    <%#else%>
+       <%#if  current_user.has_role?('professor_infantil')%>
+         <%#@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=? AND relatorios.professor_id=?', current_user.unidade_id, Time.now.year, current_user.professor_id  ],:order => 'alunos.aluno_nome')%>
+       <%#end%>
+
+   <%#end%>
+<%#end%>
+<%if  current_user.has_role?('professor_fundamental') or   current_user.has_role?('direcao_fundamental')%>
+      <%@alunosRel = Faltasaluno.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND faltasalunos.ano_letivo=? ', current_user.unidade_id, Time.now.year ],:order => 'alunos.aluno_nome')%>
+<%end%>
+<table width="100%" align="center">
+   
+   <tr>
+              <td align= "right"><font size="2"><b class="label_busca3">Datas:  Inicial:</b></font>&nbsp
+                <%= datepicker_tag(:faltasaluno, :inicioA,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+
+               &nbsp&nbsp
+               <font size="2"><b class="label_busca3">Final:</b></font>&nbsp
+                <%= datepicker_tag(:faltasaluno, :fimA,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+           </td>
+
+     <td  align="right"><font size="2"><b>Aluno(a):</b></font>
+          &nbsp&nbsp&nbsp<%= select_tag :aluno, options_for_select(@alunosRel.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
+          &nbsp&nbsp&nbsp <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
+     </td>
+     <td>
+       
+     </td>
+
+   </tr>
+  </table>
+

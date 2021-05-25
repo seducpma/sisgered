@@ -1,0 +1,114 @@
+<%@classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')%>
+<%if current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental')%>
+   <%@disciplinas = Disciplina.find(:all, :select => 'DISTINCT (disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id ", :conditions => ['classes.unidade_id =? and atribuicaos.ano_letivo=?', current_user.unidade_id, Time.now.year]) %>
+<%end%>
+<div id="interno6">
+<% title "CONSULTA_CLASSE".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTOS DE FALTAS</strong></font><br/>
+    
+ </div>
+    <div class="tabs">
+    
+      <fieldset>
+        <table width="100%" align="center" bgcolor="#DCDCDC" >
+
+          <tr>
+              <td><b>Data:</b> </td>
+              <td><%= datepicker_tag(:faltasalunos, :data,{:size => 10},{:dateFormat => "'yy-mm-dd'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+
+                     <%= observe_field 'faltasalunos_data',
+                         :url    => { :action => 'data' },
+                         :with   => 'faltasalunos_data' %>
+              </td>
+         <tr>
+           <td> <b></b>Professor(a): </td>
+           <td> <%= collection_select :professor, :id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+                   <%= observe_field 'professor_id',
+                         :update => "classe_diario",
+                         :url    => { :action => 'classe' },
+                         :with   => 'professor_id' %>
+             </td>
+          </tr>
+      
+                <tr>
+                  <td width =" 5%" valign="top"><b><b>Quantidade:</b> </b></td>
+                  <td> <%= select_tag :falta, options_for_select(["selecionar", "1","2","3","4","5","6"])%> &nbsp<font size="2"color=" red"><font size="1"><b> Quantidade de aulas (faltas) no dia</b></font></td>
+                    <%= observe_field 'falta',
+                         :url    => { :action => 'faltas' },
+                         :with   => 'falta' %>
+
+                  
+                      
+
+                </tr>
+
+                
+                <tr>
+                    <td align="left"><font size="2"> <b>Disciplina:</b></font></td>
+                    <td><%= select_tag :disciplina_id, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %>
+                       <%= observe_field 'disciplina_id',
+                          :url    => { :action => 'disciplina' },
+                         :with   => 'disciplina_id' %>
+
+                </tr>
+
+                <tr>
+                    <td align="left"><font size="2"> <b>Classe:</b></font></td>
+                    <td> <div id="classe_diario"><%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> </div></td>
+                    <%= observe_field :classe_id,    # foi acrescentado pq comentario do professor
+                              :with => :classe_id,
+                              :update => "alunos" ,
+                              :url => { :action => 'alunos'}%>
+
+
+                </tr>
+                <tr>
+                    <td align="left"><font size="2"> <b>Observações:</b></font></td>
+                    <td> <%= text_field_tag(:aluno_nome ) %> </td>
+                        <%= observe_field 'aluno_nome',
+                         :url    => { :action => 'obser' },
+                         :with   => 'aluno_nome' %>
+
+                </tr>
+    
+       </table>
+       </fieldset>
+      <fieldset>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5" >
+          <tr>
+            <td>
+                <div id="alunos""><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+              <br/>
+            </td>
+          </tr>
+       </table>
+
+
+      </fieldset>
+
+       <br/>
+   <table>
+    <tr>
+      
+                    <td width =" 10%"><%= button_to 'Lançamento Faltas', new_faltasaluno_path%></td>
+                     
+
+    
+
+
+
+     <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+
+    </tr>
+  </table>
+ </div>
+
+
+
+</div>
+
+<br/>
+</div>
