@@ -239,7 +239,7 @@ class AlunosController < ApplicationController
 
         @aluno = Aluno.find(:all,:conditions =>['id = ?', session[:aluno]])
         @saude = Saude.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
-        @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
+         @socioeconomico = Socioeconomico.find(:all,:conditions =>['aluno_id = ?', session[:aluno]])
         render :update do |page|
             page.replace_html 'ficha', :partial => 'dados_ficha_cadastral_editar'
         end
