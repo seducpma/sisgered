@@ -9,7 +9,7 @@
 <%if @conteudoprogramatico.present?%>
       <!--<%session[:imprimir_todos]=1%>-->
 
-        <fieldset><legend><font  size=3><b> CONTEÚDO PROGRAMÁTICO
+        <fieldset><legend><font  size=3><b> CONTEÚDO MINISTRADO
               </b></font></legend>
               <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                 <tr bgcolor="#F5F5F5" style="border-color: white">
@@ -17,7 +17,7 @@
                   <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
                       <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
                       <%if !@conteudoprogramatico.atribuicao_id.nil?%><center><font size="2"> Unidade Escolar: <%=h @conteudoprogramatico.unidade.nome %> </i></b><br/></center><%end%>
-                      <center><font size="2"><b><u>CONTEÚDO PROGRAMÁTICO</u></b></font></center>
+                      <center><font size="2"><b><u>CONTEÚDO MINISTRADO</u></b></font></center>
                   </td>
                 </tr>
                </table>
@@ -59,7 +59,7 @@
                    <td></td>
                    <td align="left" valign="top"><b>Professor:</b></td>
                    <td colspan="4"> <%=   @conteudoprogramatico.professor.nome%> &nbsp - &nbsp <%if !@conteudoprogramatico.disciplina_id.nil?%>
-                                                                                         <%=  @conteudoprogramatico.atribuicao.disciplina.disciplina %>
+                                                                                         <%=  @conteudoprogramatico.disciplina.disciplina %>
                                                                                    <%else%>
                                                                                             <%= @conteudoprogramatico.professor.funcao2 %>
                                                                                    <%end%>
