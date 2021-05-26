@@ -51,6 +51,7 @@
                   <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
                     <tr bgcolor="#F5F5F5">
                        <% if  session[:tela_faltas_aluno]==1%>
+                       <%session[:tela_faltas_aluno]=0%>
                           <td width ="78%" colspan="2"><br/><br/><br/>&nbsp&nbsp<b> Alunos: </b> <br/><br/><br/></td>
                           <%cont_dias = 0%>
                           <%@faltasalunosdiasAluno.each do |disciplina| %>

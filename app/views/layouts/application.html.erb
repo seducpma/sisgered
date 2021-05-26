@@ -716,10 +716,10 @@ display: none;
                          <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('SEDUC') or current_user.has_role?('professor_fundamental') %>
                                 <li><%= link_to "Compens.Ausência", lancamento_aulas_compensadas_notas_path%></li>
                          <%end%>
-                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
+                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
                                  <li><a>Conteúdos Minist.</a>
                                      <ul>
-                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
+                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
                                                <li><%= link_to "Lançamentos",new_conteudoprogramatico_path %></li>  <!-- Professores fundamental-->
                                                <li><%= link_to "Consultas ",consultas_conteudoprogramaticos_path %></li><!-- Professores fundamental-->
                                             <%end%>
@@ -729,7 +729,7 @@ display: none;
 
                                  <li><a>Frequência</a>
                                      <ul>
-                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
+                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
                                                <li><%= link_to "Lançamentos",new_faltasaluno_path %></li>  <!-- Professores fundamental-->
                                                <li><%= link_to "Consultas ",consultas_faltasalunos_path %></li><!-- Professores fundamental-->
                                             <%end%>
