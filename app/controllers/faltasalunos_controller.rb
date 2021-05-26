@@ -81,7 +81,8 @@ end
            @faltasaluno.classe_id=session[:classe_id]
            @faltasaluno.ano_letivo = Time.now.year
            @faltasaluno.data=session[:dia]
-           @faltasaluno.faltas=session[:falta]
+           #@faltasaluno.faltas=session[:falta]
+           @faltasaluno.faltas=1
            @faltasaluno.obs=session[:obser]
            @faltasaluno.save
            @faltasaluno = Faltasaluno.find(:last)
@@ -158,7 +159,7 @@ def classe
   # POST /faltasalunos.xml
   def create
     @faltasaluno = Faltasaluno.new(params[:faltasaluno])
-    @faltasaluno.faltas=1
+    @faltasaluno.faltas = 1
     respond_to do |format|
       if @faltasaluno.save
         flash[:notice] = 'Faltasaluno was successfully created.'
