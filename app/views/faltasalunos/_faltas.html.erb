@@ -89,17 +89,31 @@
                                                     <%@faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'distinct(data) ,aluno_id, matricula_id, 	atribuicao_id, 	classe_id, 	professor_id,  	disciplina_id , ano_letivo, faltas  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=? AND data=?", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id],  current_user.professor_id, faltasdias.data] , :order => 'classe_id ASC')%>
                                                 <%end%>
                                                 <td align="center">
+                                                  <!--  <table >
+                                                        <tr>
+                                                            <td align="center">
+                                                             <#%@faltasalunosdiasT.each do |falatasdiasT|%>
+                                                                 <#% if falatasdiasT.aluno_id == alunos_mat.id  %>
+                                                                       <font color ="darkblue"><b>  P </b> <!--(<%#= falatasdiasT.faltas%>)--></font>
+                                                                 <%#else%>
+                                                                       <!--<font color ="red">  F <!--(<#%= falatasdiasT.faltas%>)-->               <!--
+                                                                 <%#end%>
+                                                                    <%#break%>
+                                                                 
+                                                             <%#end%>
+                                                            </td>
+                                                        </tr>
+                                                       </table>
+                                                     -->
                                                     <table >
                                                         <tr>
                                                             <td align="center">
                                                              <%@faltasalunosdiasT.each do |falatasdiasT|%>
                                                                  <% if falatasdiasT.aluno_id == alunos_mat.id  %>
-                                                                       <font color ="darkblue"><b>  P </b> <!--(<%#= falatasdiasT.faltas%>)--></font>
-                                                                 <%else%>
-                                                                       <font color ="red">  F <!--(<%= falatasdiasT.faltas%>)-->
-                                                                 <%end%>
+                                                                   <font color ="darkblue"><b>  P </b> <!--(<%#= falatasdiasT.faltas%>)--></font>
+
                                                                     <%break%>
-                                                                 
+                                                                 <%end%>
                                                              <%end%>
                                                             </td>
                                                         </tr>
