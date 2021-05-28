@@ -706,7 +706,7 @@ display: none;
               <!--=========================================== Diario Classe==============-->
 
               <%# if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil') or current_user.has_role?('SEDUC') or (current_user.id == 1 or current_user.id == 2 or current_user.id == 3 or current_user.id == 1047 or current_user.id == 517 or current_user.id ==  2072)%>
-               <% if  ( current_user.id == 2 ) or  ( current_user.id == 3 )%>
+               <% if  ( current_user.id == 2 ) or  ( current_user.id == 3 ) or  ( current_user.id == 2072 ) or ( current_user.id == 2165 )%>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">DIÁRIO DE CLASSE</a>
                  <ul style="width:108px;">
