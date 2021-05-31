@@ -81,8 +81,8 @@ end
            @faltasaluno.classe_id=session[:classe_id]
            @faltasaluno.ano_letivo = Time.now.year
            @faltasaluno.data=session[:dia]
-           #@faltasaluno.faltas=session[:falta]
-           @faltasaluno.faltas=1
+           @faltasaluno.faltas=session[:falta]
+           #@faltasaluno.faltas=1
            @faltasaluno.obs=session[:obser]
            @faltasaluno.save
            @faltasaluno = Faltasaluno.find(:last)
