@@ -705,7 +705,7 @@ display: none;
 
               <!--=========================================== Diario Classe==============-->
 
-              <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil') or current_user.has_role?('SEDUC') %>
+              <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil')or current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil') or current_user.has_role?('pedagogo')  or current_user.has_role?('supervisao') %>
                <%# if  ( current_user.id == 2 ) or  ( current_user.id == 3 ) or  ( current_user.id == 2072 ) or ( current_user.id == 2165 )%>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">DIÁRIO DE CLASSE</a>
@@ -720,7 +720,7 @@ display: none;
                                  <li><a>Conteúdos Minist.</a>
                                      <ul>
                                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
-                                             <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or  current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
+                                             <% if current_user.has_role?('admin') or  current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
                                               <li><%= link_to "Lançamentos",new_conteudoprogramatico_path %></li>
                                             <%end%>
                                                <li><%= link_to "Consultas ",consultas_conteudoprogramaticos_path %></li><!-- Professores fundamental-->
@@ -732,7 +732,7 @@ display: none;
                                  <li><a>Frequência</a>
                                      <ul>
                                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
-                                            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or  current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
+                                            <% if current_user.has_role?('admin') or  current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
                                                  <li><%= link_to "Lançamentos",new_faltasaluno_path %></li> 
                                             <%end%>
                                                <li><%= link_to "Consultas ",consultas_faltasalunos_path %></li><!-- Professores fundamental-->
