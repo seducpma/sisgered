@@ -1,0 +1,34 @@
+<h1>Listing atendimento_aees</h1>
+
+<table>
+  <tr>
+    <th>Classe</th>
+    <th>Aluno</th>
+    <th>Classe num</th>
+    <th>Ano letivo</th>
+    <th>Status</th>
+    <th>Unidade</th>
+    <th>Atendimento</th>
+    <th>Classe mat</th>
+  </tr>
+
+<% @atendimento_aees.each do |atendimento_aee| %>
+  <tr>
+    <td><%=h atendimento_aee.classe %></td>
+    <td><%=h atendimento_aee.aluno %></td>
+    <td><%=h atendimento_aee.classe_num %></td>
+    <td><%=h atendimento_aee.ano_letivo %></td>
+    <td><%=h atendimento_aee.status %></td>
+    <td><%=h atendimento_aee.unidade %></td>
+    <td><%=h atendimento_aee.atendimento %></td>
+    <td><%=h atendimento_aee.classe_mat %></td>
+    <td><%= link_to 'Show', atendimento_aee %></td>
+    <td><%= link_to 'Edit', edit_atendimento_aee_path(atendimento_aee) %></td>
+    <td><%= link_to 'Destroy', atendimento_aee, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New atendimento_aee', new_atendimento_aee_path %>

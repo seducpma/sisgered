@@ -1,0 +1,44 @@
+<h1>Editing atendimento_aee</h1>
+
+<% form_for(@atendimento_aee) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :classe %><br />
+    <%= f.text_field :classe %>
+  </p>
+  <p>
+    <%= f.label :aluno %><br />
+    <%= f.text_field :aluno %>
+  </p>
+  <p>
+    <%= f.label :classe_num %><br />
+    <%= f.text_field :classe_num %>
+  </p>
+  <p>
+    <%= f.label :ano_letivo %><br />
+    <%= f.text_field :ano_letivo %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= f.label :unidade %><br />
+    <%= f.text_field :unidade %>
+  </p>
+  <p>
+    <%= f.label :atendimento %><br />
+    <%= f.text_field :atendimento %>
+  </p>
+  <p>
+    <%= f.label :classe_mat %><br />
+    <%= f.text_field :classe_mat %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @atendimento_aee %> |
+<%= link_to 'Back', atendimento_aees_path %>

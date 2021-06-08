@@ -9,12 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20200609134827) do
-
-  create_table "#cursos_inscricaos", :id => false, :force => true do |t|
-    t.integer "curso_id",     :null => false
-    t.integer "inscricao_id", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20210608131326) do
 
   create_table "acompanhamento_despachos", :force => true do |t|
     t.integer  "acompanhamento_id"
@@ -193,23 +188,79 @@ ActiveRecord::Schema.define(:version => 20200609134827) do
   create_table "atas", :force => true do |t|
     t.string   "titulo"
     t.integer  "unidade_id"
+    t.string   "moderador",  :limit => 100
+    t.string   "secretario", :limit => 100
     t.text     "ata"
+    t.integer  "quant"
     t.date     "data"
-    t.string   "obs"
+    t.text     "obs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "atendimento_aees", :force => true do |t|
+    t.integer  "classe_id"
+    t.integer  "aluno_id"
+    t.integer  "classe_num"
+    t.integer  "ano_letivo"
+    t.string   "status"
+    t.string   "atendimento"
+    t.string   "classe_mat"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "atividade_avaliacaos", :force => true do |t|
+    t.integer  "atividade_id"
+    t.integer  "classe_id"
+    t.integer  "professor_id"
+    t.integer  "atribuicao_id"
+    t.integer  "disciplina_id"
+    t.integer  "aluno_id"
+    t.integer  "matricula_id"
+    t.integer  "unidade_id"
+    t.integer  "ano_letivo"
+    t.integer  "user_id"
+    t.string   "avaliacao",     :limit => 50
+    t.string   "devolutiva",    :limit => 20
+    t.string   "nota",          :limit => 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "atividades", :force => true do |t|
+    t.integer  "classe_id"
+    t.integer  "professor_id"
+    t.integer  "atribuicao_id"
+    t.integer  "disciplina_id"
+    t.integer  "unidade_id"
+    t.integer  "user_id"
+    t.string   "atividade",     :limit => 50
+    t.string   "componente",    :limit => 50
+    t.integer  "ano_letivo"
+    t.string   "descricao",     :limit => 100
+    t.date     "inicio"
+    t.date     "fim"
+    t.string   "obs",           :limit => 100
+    t.string   "tipo",          :limit => 10
+    t.integer  "avaliativa",                   :default => 0, :null => false
+    t.string   "validado_por",  :limit => 100
+    t.datetime "validado_em"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "atribuicaos", :force => true do |t|
-    t.integer  "classe_id",                    :null => false
-    t.integer  "professor_id",                 :null => false
+    t.integer  "classe_id",                                  :null => false
+    t.integer  "professor_id",                               :null => false
     t.integer  "disciplina_id"
-    t.integer  "ano_letivo",    :default => 0
-    t.integer  "ativo",         :default => 0, :null => false
-    t.integer  "aulas1",        :default => 0, :null => false
-    t.integer  "aulas2",        :default => 0, :null => false
-    t.integer  "aulas3",        :default => 0, :null => false
-    t.integer  "aulas4",        :default => 0, :null => false
+    t.integer  "ano_letivo",                  :default => 0
+    t.integer  "ativo",                       :default => 0, :null => false
+    t.integer  "aulas1",                      :default => 0, :null => false
+    t.integer  "aulas2",                      :default => 0, :null => false
+    t.integer  "aulas3",                      :default => 0, :null => false
+    t.integer  "aulas4",                      :default => 0, :null => false
+    t.string   "email",         :limit => 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -239,7 +290,7 @@ ActiveRecord::Schema.define(:version => 20200609134827) do
     t.datetime "updated_at"
   end
 
-  create_table "conteudos", :force => true do |t|
+  create_table "conteudoprogramaticos", :force => true do |t|
     t.integer  "classe_id"
     t.integer  "professor_id"
     t.integer  "atribuicao_id"
@@ -251,8 +302,44 @@ ActiveRecord::Schema.define(:version => 20200609134827) do
     t.date     "inicio"
     t.date     "fim",                          :null => false
     t.string   "obs",           :limit => 100
-    t.date     "validacao"
-    t.integer  "validado_por"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conteudos", :force => true do |t|
+    t.integer  "classe_id"
+    t.integer  "professor_id"
+    t.integer  "atribuicao_id"
+    t.integer  "disciplina_id"
+    t.integer  "unidade_id"
+    t.integer  "user_id"
+    t.text     "conteudo"
+    t.integer  "ano_letivo"
+    t.date     "inicio"
+    t.date     "fim",                                         :null => false
+    t.string   "obs",           :limit => 100
+    t.integer  "validacao",                    :default => 0, :null => false
+    t.string   "validado_por",  :limit => 100
+    t.datetime "validado_em"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conteudos2020", :force => true do |t|
+    t.integer  "classe_id"
+    t.integer  "professor_id"
+    t.integer  "atribuicao_id"
+    t.integer  "disciplina_id"
+    t.integer  "unidade_id"
+    t.integer  "user_id"
+    t.text     "conteudo"
+    t.integer  "ano_letivo"
+    t.date     "inicio"
+    t.date     "fim",                                         :null => false
+    t.string   "obs",           :limit => 100
+    t.integer  "validacao",                    :default => 0, :null => false
+    t.string   "validado_por",  :limit => 100
+    t.datetime "validado_em"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -308,6 +395,25 @@ ActiveRecord::Schema.define(:version => 20200609134827) do
     t.integer  "freq5"
     t.string   "obs"
     t.integer  "ativo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "faltasalunos", :force => true do |t|
+    t.integer  "aluno_id"
+    t.integer  "matricula_id"
+    t.integer  "atribuicao_id"
+    t.integer  "classe_id"
+    t.integer  "professor_id"
+    t.integer  "unidade_id"
+    t.integer  "disciplina_id"
+    t.integer  "user_id"
+    t.integer  "ano_letivo"
+    t.date     "data"
+    t.integer  "faltas",        :default => 1
+    t.string   "conteudo"
+    t.string   "obs"
+    t.integer  "ativo",         :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -398,7 +504,7 @@ ActiveRecord::Schema.define(:version => 20200609134827) do
   create_table "observacao_notas", :force => true do |t|
     t.integer  "nota_id"
     t.integer  "aluno_id"
-    t.string   "observacao", :limit => 800, :null => false
+    t.string   "observacao", :limit => 1400, :null => false
     t.date     "data"
     t.string   "quem",       :limit => 15
     t.integer  "ano_letivo"
@@ -407,6 +513,49 @@ ActiveRecord::Schema.define(:version => 20200609134827) do
   end
 
   create_table "professors", :force => true do |t|
+    t.integer  "matricula",                                                                          :null => false
+    t.string   "nome",                                                                               :null => false
+    t.integer  "dt_atual"
+    t.datetime "dt_ingresso"
+    t.datetime "dt_nasc"
+    t.string   "RG",                :limit => 20,                                 :default => "0"
+    t.string   "CPF",               :limit => 20,                                 :default => "0"
+    t.string   "INEP",              :limit => 20,                                 :default => "0"
+    t.integer  "RD",                                                              :default => 0
+    t.integer  "n_filhos",                                                        :default => 0
+    t.integer  "unidade_id",                                                                         :null => false
+    t.integer  "jornada_sem",                                                     :default => 0
+    t.string   "funcao",                                                                             :null => false
+    t.string   "funcao2"
+    t.string   "endres"
+    t.string   "complemento"
+    t.string   "bairro"
+    t.integer  "num"
+    t.integer  "telefone"
+    t.string   "cel",               :limit => 13,                                                    :null => false
+    t.string   "cidade"
+    t.string   "cep",               :limit => 11,                                                    :null => false
+    t.string   "email",             :limit => 150,                                                   :null => false
+    t.string   "obs"
+    t.integer  "total_trabalhado",  :limit => 10,  :precision => 10, :scale => 0, :default => 0
+    t.integer  "total_titulacao",   :limit => 10,  :precision => 10, :scale => 0, :default => 0
+    t.integer  "pontuacao_final",   :limit => 10,  :precision => 10, :scale => 0, :default => 0
+    t.integer  "flag",                                                            :default => 0,     :null => false
+    t.integer  "sede_id_ant"
+    t.string   "log_user",          :limit => 30
+    t.integer  "prioridade",                                                      :default => 0,     :null => false
+    t.boolean  "temporario",                                                      :default => false
+    t.string   "entrada_concurso"
+    t.integer  "desligado",         :limit => 1,                                  :default => 0,     :null => false
+    t.date     "data_desligado"
+    t.string   "motivo",            :limit => 200
+    t.integer  "diversas_unidades"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "obs_interno",       :limit => 200
+  end
+
+  create_table "professors2", :force => true do |t|
     t.integer  "matricula",                                                                          :null => false
     t.string   "nome",                                                                               :null => false
     t.integer  "dt_atual"

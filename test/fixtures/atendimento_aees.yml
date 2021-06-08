@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  classe: 
+  aluno: 
+  classe_num: 1
+  ano_letivo: 1
+  status: MyString
+  unidade: 
+  atendimento: MyString
+  classe_mat: MyString
+
+two:
+  classe: 
+  aluno: 
+  classe_num: 1
+  ano_letivo: 1
+  status: MyString
+  unidade: 
+  atendimento: MyString
+  classe_mat: MyString

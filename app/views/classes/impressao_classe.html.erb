@@ -50,48 +50,73 @@
          <% cont1=1 %>
         <td style="font-size: 7px" colspan="4">
           <b> Alunos: </b><br/>
-          <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
-                           <tr style="line-height:30%">
-                               <td align="center"width ="2%" style="font-size: 7px"><b>Nº</b></td>
-                               <td width ="20%" style="font-size: 7px"><b>RM</b></td>
-                               <td width ="20%" style="font-size: 7px"><b>RA</b></td>
-                               <td width ="60%" style="font-size: 7px"><b>NOME</b></td>
-                               <td align="center"width ="10%" style="font-size: 7px"><b>SITUAÇÃOc.</b></td>
-                               <td align="center"width ="10%" style="font-size: 7px"><b>NASC</b></td>
-                                <td align="center"width ="10%" style="font-size: 7px"><b>TRANSF</b></td>
-                             </tr>
+          <%if session[:AEE]==0%>
+                <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                                 <tr style="line-height:30%">
+                                     <td align="center"width ="2%" style="font-size: 7px"><b>Nº</b></td>
+                                     <td width ="20%" style="font-size: 7px"><b>RM</b></td>
+                                     <td width ="20%" style="font-size: 7px"><b>RA</b></td>
+                                     <td width ="60%" style="font-size: 7px"><b>NOME</b></td>
+                                     <td align="center"width ="10%" style="font-size: 7px"><b>SITUAÇÃO</b></td>
+                                     <td align="center"width ="10%" style="font-size: 7px"><b>NASC</b></td>
+                                      <td align="center"width ="10%" style="font-size: 7px"><b>TRANSF</b></td>
+                                   </tr>
 
-                             <% for matricula in  @matriculas %>
-                                <tr style="line-height:25%">
-                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.classe_num}"%> </td>
-                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
-                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
-                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
-                                  <td align="center" style="font-size: 7px"> <%  if  matricula.status =="TRANSFERIDO"%>
-                                                                                <font color ="red"> Transferido </font>
-                                                                              <%else if  matricula.status =="TRANSFERENCIA"%>
-                                                                                     <font color ="blue"> Transferência </font>
-                                                                                     <%else if  matricula.status =="REMANEJADO"%>
-                                                                                              <font color ="green"> Remanejado </font>
-                                                                                           <%else if  matricula.status =="*REMANEJADO"%>
-                                                                                                    <font color ="green"> *Remanejado </font>
-                                                                                                 <%else if  matricula.status =="ABANDONO"%>
-                                                                                                          <font color ="red"> Abandono</font>
-                                                                                                      <%end%>
-                                                                                               <%end%>
+                                   <% for matricula in  @matriculas %>
+                                      <tr style="line-height:25%">
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.classe_num}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%  if  matricula.status =="TRANSFERIDO"%>
+                                                                                      <font color ="red"> Transferido </font>
+                                                                                    <%else if  matricula.status =="TRANSFERENCIA"%>
+                                                                                           <font color ="blue"> Transferência </font>
+                                                                                           <%else if  matricula.status =="REMANEJADO"%>
+                                                                                                    <font color ="green"> Remanejado </font>
+                                                                                                 <%else if  matricula.status =="*REMANEJADO"%>
+                                                                                                          <font color ="green"> *Remanejado </font>
+                                                                                                       <%else if  matricula.status =="ABANDONO"%>
+                                                                                                                <font color ="red"> Abandono</font>
+                                                                                                            <%end%>
+                                                                                                     <%end%>
+                                                                                                 <%end%>
                                                                                            <%end%>
-                                                                                     <%end%>
-                                                                              <%end%>
-                                  </td>
-                                  <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
-                                  <td align="center" style="font-size: 7px"><%  if  matricula.data_transferencia.nil?%>
-                                                   <%else%>
-                                                         <%="#{ matricula.data_transferencia.strftime("%d/%m/%Y")}"%> </td>
-                                                   <%end%>
+                                                                                    <%end%>
+                                        </td>
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%  if  matricula.data_transferencia.nil?%>
+                                                         <%else%>
+                                                               <%="#{ matricula.data_transferencia.strftime("%d/%m/%Y")}"%> </td>
+                                                         <%end%>
 
-                               </tr>
-                            <%end%>
-                </table>
+                                     </tr>
+                                  <%end%>
+                      </table>
+          <%else%>
+                          <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                                 <tr style="line-height:30%"style="border-color: white">
+                                     <td width ="20%" style="font-size: 7px"><b>RM</b></td>
+                                     <td width ="20%" style="font-size: 7px"><b>RA</b></td>
+                                     <td width ="60%" style="font-size: 7px"><b>NOME</b></td>
+                                     <td align="center"width ="10%" style="font-size: 7px"><b>NASC</b></td>
+                                     <td align="center"width ="10%" style="font-size: 7px"><b>ATENDIMENTO</b></td>
+
+                                   </tr>
+
+                                   <% for matricula in  @matriculas %>
+                                      <tr style="line-height:25%">
+
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nascimento.strftime("%d/%m/%Y")}"%> </td>
+                                        <td align="center" style="font-size: 7px"> <%="#{ matricula.atendimento}"%> </td>
+
+                                     </tr>
+                                  <%end%>
+                      </table>
+          <%end%>
         </td>
       </tr>
 
