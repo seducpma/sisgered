@@ -12,13 +12,13 @@
             <% @classes_aee = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=? and sala != 52 AND classe_classe like ? ' ,  current_user.unidade_id, Time.now.year , "AEE"+ "%"], :order => 'classe_classe') %>
         <table>
             <tr>
-              <td colspan="2"><font color ="red" size ="3"><b><u>ATENÇÃO:</u> &nbsp&nbsp&nbsp 1) Antes de atenidmento dos alunos para atendimento especializado (AEE), deve estar<br/>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp devidammente matriculuado em uma classe regurar.<br/>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2)Certifique-se que os TODOS os professores já foram atribuidos às classes. Caso o professor <br/>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp for atribuido após as matriculas avisar o Setor de  Informática.<br/>
+              <td colspan="2"><font color ="red" size ="3"><b><u>ATENÇÃO:</u>  1) Os alunos de atendimento especializado (AEE), devem estar devidamente matriculados em uma<br/>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   classe regurar.<br/>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Certifique-se que os TODOS os professores já foram atribuidos às classes. Caso o professor <br/>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp for atribuido após as matriculas avisar o Setor de  Informática.<br/>
                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3) Selecionar a classe para listagem de seleção dos alunos.<br/>
                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  4) Se o  nome do aluno não constar na lista é necessário utilizar a opção  <br/>
-                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp CONSULTAR / ALUNO / SEDUC  e SALVAR a ficha do aluno, antes de matricula-lo.</b>
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp CONSULTAR / ALUNO / SEDUC  e SALVAR a ficha do aluno, antes de matricula-lo.</b>
 
                   <font></td>
             </tr>
