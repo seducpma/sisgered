@@ -34,19 +34,19 @@
 
     <table>
          <tr>
-
+            
             <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('supervisao')or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
 
-                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@matricula}, :method => "get", :title => "Editar"%></td>
+                <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@atendimento_aee}, :method => "get", :title => "Editar"%></td>
                  <% if (current_user.has_role?('admin'))%>
-                     <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@matricula}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+                     <td width="6%"align="left" ><%= button_to 'Excluir' , {:action => "destroy", :id =>@atendimento_aee}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
                  <%end%>
             <%else%>
                 <td align="center"></td>
              <%end%>
-
-             <td width="6%"><%= button_to 'Visualizar Classe', {:action => "show_classe" }  %></td>
-             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+ <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+             
+            
           </tr>
     </table>
 

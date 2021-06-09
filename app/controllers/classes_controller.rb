@@ -211,7 +211,16 @@ def editar_classe_aluno
        session[:classe_id]=params[:classe][:id]
        @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
        @atribuicao_classe = Atribuicao.find(:all, :joins => :disciplina,:conditions =>['classe_id = ? AND ativo=?', params[:classe][:id],0], :order =>'disciplinas.ordem ASC ' )
+       classeAEE = @classe[0].classe_classe[0,3]
+       if classeAEE == 'AEE'
+         @matriculas = AtendimentoAee.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
+         session[:AEE]=1
+       else
        @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]], :order => 'classe_num ASC')
+        session[:AEE]=0
+       end
+
+
        render :update do |page|
           page.replace_html 'classe_alunos', :partial => 'alunos_classe_editar'
        end

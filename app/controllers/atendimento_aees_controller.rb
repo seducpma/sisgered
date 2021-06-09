@@ -46,7 +46,7 @@ class AtendimentoAeesController < ApplicationController
       if @atendimento_aee.save
           @atendimento_aee.classe_mat= session[:cclasse_id]
           @atendimento_aee.aluno_id  = session[:aaluno_id]
-          @atendimento_aee.unidade  = session[:uunidade]
+         # @atendimento_aee.unidade  = session[:uunidade]
           @atendimento_aee.ano_letivo = Time.now.year
           @atendimento_aee.save
         flash[:notice] = 'Atendimento AEE Cadastrado.'
@@ -83,18 +83,19 @@ class AtendimentoAeesController < ApplicationController
     @atendimento_aee.destroy
 
     respond_to do |format|
-      format.html { redirect_to(atendimento_aees_url) }
+      format.html { redirect_to(home_path) }
       format.xml  { head :ok }
     end
   end
 
   def aluno_classe
-        w= params[:aluno_id]
+        w3= params[:aluno_id]
           
          @matricula= Matricula.find(:all, :conditions=> ['aluno_id = ? AND (status =? OR status =?) AND ano_letivo =?' , params[:aluno_id],"MATRICULADO","TRANSFERENCIA", Time.now.year	])
-         session[:aaluno_id] = params[:aluno_id]
-         session[:cclasse_id]= @matricula[0].classe.classe_classe
-         session[:uunidade] = @matricula[0].unidade.nome
+         w1=session[:aaluno_id] = params[:aluno_id]
+         w2=session[:cclasse_id]= @matricula[0].classe.classe_classe
+         w=session[:uunidade] = @matricula[0].unidade.nome
+         t=0
       render :partial => 'aluno_classe'
   end
 

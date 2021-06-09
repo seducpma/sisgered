@@ -1,44 +1,67 @@
-<h1>Editing atendimento_aee</h1>
+<div id="interno2">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>ATENDIMENTO ESPECIALIZADO (AEE)</strong></font><br/>
+ </div>
+      <div class="tabs">
+        <% form_for @atendimento_aee do |f| %>
+         <%= f.error_messages %>
+        <fieldset><legend><font size=4>Aluno</font></legend>
+             <%@alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")%>
+            <% @classes_aee = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=? and sala != 52 AND classe_classe like ? ' ,  current_user.unidade_id, Time.now.year , "AEE"+ "%"], :order => 'classe_classe') %>
+        <table>
+            <tr>
+              <td colspan="2"><font color ="red" size ="3"><b><u>ATENÇÃO:</u>  1) Os alunos de atendimento especializado (AEE), devem estar devidamente matriculados em uma<br/>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   classe regurar.<br/>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Certifique-se que os TODOS os professores já foram atribuidos às classes. Caso o professor <br/>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp for atribuido após as matriculas avisar o Setor de  Informática.<br/>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3) Selecionar a classe para listagem de seleção dos alunos.<br/>
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  4) Se o  nome do aluno não constar na lista é necessário utilizar a opção  <br/>
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp CONSULTAR / ALUNO / SEDUC  e SALVAR a ficha do aluno, antes de matricula-lo.</b>
 
-<% form_for(@atendimento_aee) do |f| %>
-  <%= f.error_messages %>
+                  <font></td>
+            </tr>
+            <tr>
+            <td width ="5%"><b>Classe: </b></td>
+             <td><%= f.collection_select :classe_id, @classes_aee, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
+           </tr>
+           <tr>
+              <td><b>Aluno: </b></td>
+              <td>
+                   <%= f.collection_select :aluno_id , @alunos_matricula, :id, :aluno_nome_dtn, :include_blank => ' -- Selecione -- ' %>
+                          <%= observe_field :atendimento_aee_aluno_id,
+                              :with => :aluno_id,
+                              :update => "aluno__classe" ,
+                              :url => { :action => 'aluno_classe' }%>
+                <br/>
+                  <div id="aluno__classe"></div>
+              </td>
+           </tr>
+            <tr>
+            <td><b>Atendimento: </b></td>
+             <td><%= f.text_field :atendimento, :size=>"80" %></td>
+           </tr>
+            <tr>
+            <td><b>Observações: </b></td>
+             <td><%= f.text_field :obs, :size=>"80" %></td>
+           </tr>
+         </table>
+         </fieldset>
+         <table>
+           <tr>
 
-  <p>
-    <%= f.label :classe %><br />
-    <%= f.text_field :classe %>
-  </p>
-  <p>
-    <%= f.label :aluno %><br />
-    <%= f.text_field :aluno %>
-  </p>
-  <p>
-    <%= f.label :classe_num %><br />
-    <%= f.text_field :classe_num %>
-  </p>
-  <p>
-    <%= f.label :ano_letivo %><br />
-    <%= f.text_field :ano_letivo %>
-  </p>
-  <p>
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </p>
-  <p>
-    <%= f.label :unidade %><br />
-    <%= f.text_field :unidade %>
-  </p>
-  <p>
-    <%= f.label :atendimento %><br />
-    <%= f.text_field :atendimento %>
-  </p>
-  <p>
-    <%= f.label :classe_mat %><br />
-    <%= f.text_field :classe_mat %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+              <td width="4%"><div id='jacadastrado2'> <%= f.submit "Salvar" %></div></td>
+      <% end %>
+             <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+        </table>
 
-<%= link_to 'Show', @atendimento_aee %> |
-<%= link_to 'Back', atendimento_aees_path %>
+    </div>
+</div>
+<br/>
+</div>
+
+
+
+
