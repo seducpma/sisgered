@@ -29,7 +29,16 @@ class FaltasalunosController < ApplicationController
 
   # a2=session[:data]= params[:data]
     t=0
-     @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = ?", session[:classe_id], Time.now.year , current_user.unidade_id ],:order => 'classe_num ASC' )
+       @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
+      classeAEE = @classe[0].classe_classe[0,3]
+       if classeAEE == 'AEE'
+         @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  "  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = ? ", session[:classe_id], Time.now.year , current_user.unidade_id ] )
+           AtendimentoAee.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
+         session[:AEE]=1
+       else
+           @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = ?", session[:classe_id], Time.now.year , current_user.unidade_id ],:order => 'classe_num ASC' )
+        session[:AEE]=0
+       end
         render :partial => 'alunos'
 end
 
@@ -73,10 +82,13 @@ end
           @faltasaluno = Faltasaluno.new
            @matricula= Matricula.find(:all, :conditions=> ['aluno_id=? and classe_id=?', aluno.id, session[:classe_id]])   # precisa também verificar o estado da matricula
            @faltasaluno.aluno_id = aluno.id
-           @faltasaluno.matricula_id=@matricula[0].id
+           if session[:AEE]==0
+              @faltasaluno.matricula_id=@matricula[0].id
+              @faltasaluno.unidade_id=@matricula[0].unidade_id
+           end
+
            @faltasaluno.atribuicao_id=@atribuicao[0].id
            @faltasaluno.professor_id=session[:professor_id]
-           @faltasaluno.unidade_id=@matricula[0].unidade_id
            @faltasaluno.disciplina_id=session[:disciplina_id]
            @faltasaluno.user_id=current_user.id
            @faltasaluno.classe_id=session[:classe_id]

@@ -24,8 +24,10 @@
                         </tr>
 
                         <tr bgcolor="#F5F5F5" >
-                            <td align="left" width="10%"><b>Unidade:</b></td>
-                            <td align="left">  <%=h@faltasalunos[0].unidade.nome%>    <%  session[:unidade]= @faltasalunos[0].unidade.nome %></td>
+                            <% if session[:AEE]== 0%>
+                                <td align="left" width="10%"><b>Unidade:</b></td>
+                                <td align="left">  <%=h@faltasalunos[0].unidade.nome%>     <%  session[:unidade]= @faltasalunos[0].unidade.nome %></td>
+                            <%end%>
                             <td align="left"><b>Classe:</b></td>
                             <td align="left">  <%=h @faltasalunos[0].classe.classe_classe%>
                                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Horário:</b> <%=h@faltasalunos[0].classe.horario %></td>

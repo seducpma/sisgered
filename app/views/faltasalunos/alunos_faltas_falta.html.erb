@@ -34,7 +34,7 @@
 
                 <tr>
                     <td align="left"><font size="2"> <b>Classe:</b></font></td>
-                    <td> <%=  @faltasaluno.classe.classe_classe %> - <%=  @faltasaluno.unidade.nome %></td>
+                    <td> <%=  @faltasaluno.classe.classe_classe %> <% if session[:AEE]==0%> - <%=  @faltasaluno.unidade.nome %> <%end%></td>
 
 
                 </tr>
