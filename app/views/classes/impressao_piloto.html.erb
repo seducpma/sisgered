@@ -10,7 +10,7 @@
   </tr>
 </table>
 
-<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+<table frame="box" rules="all" width="99%" style="border-color: white">
 
    <tr  class ="invisible_to_print ">
      <td colspan="4"align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
@@ -19,7 +19,7 @@
         <tr  style="line-height:25%">
            <td align="left" width="15%" style="font-size: 9px"><b>Unidade:</b></td>
            <td align="left" style="font-size: 9px"><%=h classe.unidade.nome%></td>
-          <td align="left"width="15%" style="font-size: 9px"><b> Ano Letivo:</b></td>
+           <td align="left"width="15%" style="font-size: 9px"><b> Ano Letivo:</b></td>
           <td colspan="7" align="left" style="font-size: 9px"> <%=h classe.classe_ano_letivo %></td>
       </tr>
 
@@ -27,20 +27,21 @@
            <td align="left" style="font-size: 9px"><b>Classe:</b></td>
            <td align="left" style="font-size: 9px">  <%=h classe.classe_classe%></td>
            <td align="left" style="font-size: 9px"><b>Horário:</b></td>
-           <td align="left" style="font-size: 9px">  <%=h classe.horario%></td>
+           <td colspan="7" align="left" style="font-size: 9px">  <%=h classe.horario%></td>
 
       </tr>
       <tr style="line-height:25%">
           <td align="left" style="font-size: 9px"><b>Descrição:</b></td>
-          <td colspan="3" align="left" style="font-size: 9px">  <%=h classe.classe_descricao %></td>
+          <td colspan="9" align="left" style="font-size: 9px">  <%=h classe.classe_descricao %></td>
       </tr>
 
       <tr style="line-height:25%">
          <% cont=1 %>
          <% cont1=1 %>
-        <td style="font-size: 9px" colspan="4">
+        <td style="font-size: 9px" colspan="10">
           <b> Alunos: </b><br/>
-          <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                   <table frame="box" rules="all" width="100%" style="border-color: white">
+
                            <tr style="line-height:30%">
                                <td align="center"width ="2%" style="font-size: 9px"><b>Nº</b></td>
                                <td width ="5%" style="font-size: 9px"><b>RM</b></td>
@@ -56,7 +57,7 @@
                                   <td align="center" style="font-size: 9px"> <%="#{ matricula.classe_num}"%> </td>
                                   <td align="center" style="font-size: 9px"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
                                   <td align="center" style="font-size: 9px"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
-                                  <td align="center" style="font-size: 9px"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
+                                  <td align="center" style="font-size: 9px"><%= truncate(matricula.aluno.aluno_nome,:length => 38,:omission => "...") %></td>
                                   <td align="center" style="font-size: 9px"> <%  if  matricula.status =="TRANSFERIDO"%>
                                                                                   <font color ="red"> Transferido </font>
                                                                               <%else if  matricula.status =="TRANSFERENCIA"%>
