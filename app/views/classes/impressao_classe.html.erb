@@ -96,6 +96,7 @@
           <%else%>
                           <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                                  <tr style="line-height:30%"style="border-color: white">
+                                   <td align="center"width ="2%" style="font-size: 7px"><b>Nº</b></td>
                                      <td width ="20%" style="font-size: 7px"><b>RM</b></td>
                                      <td width ="20%" style="font-size: 7px"><b>RA</b></td>
                                      <td width ="60%" style="font-size: 7px"><b>NOME</b></td>
@@ -106,7 +107,7 @@
 
                                    <% for matricula in  @matriculas %>
                                       <tr style="line-height:25%">
-
+                                         <td align="center" style="font-size: 7px"> <%="#{ matricula.classe_num}"%> </td>
                                         <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
                                         <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
                                         <td align="center" style="font-size: 7px"> <%="#{ matricula.aluno.aluno_nome}"%> </td>

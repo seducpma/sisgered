@@ -41,7 +41,7 @@ class AtendimentoAeesController < ApplicationController
   # POST /atendimento_aees.xml
   def create
     @atendimento_aee = AtendimentoAee.new(params[:atendimento_aee])
-
+    classe_num = 0
     respond_to do |format|
       if @atendimento_aee.save
           @atendimento_aee.classe_mat= session[:cclasse_id]
@@ -50,6 +50,16 @@ class AtendimentoAeesController < ApplicationController
           @atendimento_aee.ano_letivo = Time.now.year
           @atendimento_aee.save
         flash[:notice] = 'Atendimento AEE Cadastrado.'
+           classe_num = (AtendimentoAee.find(:all, :conditions => ['classe_id =? AND ano_letivo=? ',   @atendimento_aee.classe_id, Time.now.year ]).count)
+           if  classe_num == 1
+             @atendimento_aee.classe_num = classe_num = 1
+
+           else
+              @atendimento_aee.classe_num = classe_num 
+
+         end
+           @atendimento_aee.save
+
         format.html { redirect_to(@atendimento_aee) }
         format.xml  { render :xml => @atendimento_aee, :status => :created, :location => @atendimento_aee }
       else

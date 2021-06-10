@@ -46,7 +46,7 @@
          </tr>
        <% for matricula in @matriculas %>
           <tr bgcolor="#F5F5F5">
-            <td align="center">  </td>
+            <td align="center"> <%="#{ matricula.classe_num}"%> </td>
             <td align="center"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
             <td align="center"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
             <td align="left"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
