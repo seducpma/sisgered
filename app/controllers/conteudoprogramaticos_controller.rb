@@ -53,6 +53,14 @@ def classe
     else
        if @atribuicao.count > 1
           session[:atribuicao]=@atribuicao[0].classe_id
+          w=@atribuicao[0].id
+           teste= @atribuicao[0].classe.classe_classe[0,3]
+
+          t=0
+          if teste == 'AEE'
+            w=session[:atribuicao]= 'AEE'
+            t=0
+          end
            render :partial => 'disciplina'
        else
            session[:cont_atribuicao_id]=@atribuicao[0].id
@@ -63,15 +71,25 @@ def classe
   end
 
 
+
 def disciplina
  w=session[:cont_disciplina_id] =  params[:disciplina_id]
- @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and disciplina_id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
- t=0
- session[:cont_classe_id]= @atribuicao[0].classe_id
- session[:cont_atribuicao_id]=@atribuicao[0].id
- session[:cont_disciplina_id]=@atribuicao[0].disciplina_id
- t=0
-    render :partial => 'dados_classe'
+ if session[:consultas]==0 # new
+    if session[:atribuicao] == 'AEE'
+      @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
+        t=0
+     else
+       @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and disciplina_id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
+       t=0
+     end
+       session[:cont_classe_id]= @atribuicao[0].classe_id
+       session[:cont_atribuicao_id]=@atribuicao[0].id
+       session[:cont_disciplina_id]=@atribuicao[0].disciplina_id
+
+        render :partial => 'dados_classe'
+ else
+      @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and disciplina_id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
+ end
 end
 
 
@@ -225,29 +243,14 @@ def consulta_conteudoprogramatico
         else if (current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental'))
                 w=current_user.unidade_id
                w1= current_user.professor_id
-                #@dataF = Conteudoprogramaticos.find(:last, :joins =>:classe, :conditions =>  ["inicio >=? AND  (fim >=?  or fim <?) AND professor_id = ?  AND ano_letivo = ?", session[:dataI], session[:dataF],session[:dataF],current_user.professor_id, Time.now.year] , :order => 'classe_id ASC')
-                #session[:dataF]=params[:conteudo][:fim][6,4]+'-'+params[:conteudo][:fim][3,2]+'-'+params[:conteudo][:fim][0,2]
-                #session[:dataFF]=@dataF.fim
-                 #if session[:dataFF] < session[:dataF].to_date
-                  #   @conteudos = Conteudoprogramaticos.find(:all, :joins =>:classe, :conditions =>  ["inicio >=? AND  (fim >=?  or fim <?) AND professor_id = ?  AND ano_letivo = ?", session[:dataI], session[:dataF],session[:dataF],current_user.professor_id, Time.now.year] , :order => 'classe_id ASC')
-                 #else
-                    #@conteudos = Conteudoprogramaticos.find(:all, :joins =>:classe, :conditions =>  ["inicio >=? AND  fim <=? AND professor_id = ?  AND ano_letivo = ?", session[:dataI], session[:dataF],current_user.professor_id, Time.now.year] , :order => 'inicio DESC, classe_id ASC')
                     @conteudos = Conteudoprogramatico.find(:all, :joins =>[:professor, :classe], :conditions =>  ["inicio >=? AND  fim <=? AND professor_id = ? AND disciplina_id IS NOT NULL ", session[:dataI], session[:dataF],current_user.professor_id] ,  :order => 'professors.nome ASC, inicio DESC, classe_id ASC' )
-                 #end
+
                 @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["inicio >=? AND fim <=? AND professor_id = ?  AND ano_letivo = ? ", session[:dataI], session[:dataF],current_user.professor_id, Time.now.year], :group => 'professor_id', :order => 'professors.nome ASC' )
                 @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["inicio >=? AND fim <=? AND professor_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],current_user.professor_id, Time.now.year], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
 t=0
              else
                   @dataF = Conteudoprogramatico.find(:last, :joins =>:classe, :conditions =>  ["inicio >=? AND (fim >=?  or fim <?) AND classes.unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],session[:dataF], current_user.unidade_id, Time.now.year] , :order => 'classe_id ASC')
                   session[:dataF]=params[:conteudo][:fim][6,4]+'-'+params[:conteudo][:fim][3,2]+'-'+params[:conteudo][:fim][0,2]
-       #           session[:dataFF]=@dataF.fim
-       #            if session[:dataFF] < session[:dataF].to_date
-       #                @conteudos = Conteudoprogramaticos.find(:all, :joins =>:classe, :conditions =>  ["inicio >=? AND (fim >=?  or fim <?) AND classes.unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],session[:dataF], current_user.unidade_id, Time.now.year] , :order => 'classe_id ASC')
-       #            else
-                    #@conteudos = Conteudoprogramaticos.find(:all, :joins =>:classe, :conditions =>  ["inicio >=? AND fim <? AND classes.unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF], current_user.unidade_id, Time.now.year] , :order => 'inicio DESC, classe_id ASC')
-                    @conteudos = Conteudoprogramatico.find(:all, :joins =>[:professor, :classe], :conditions =>  ["inicio >=? AND fim <? AND classes.unidade_id = ?   ", session[:dataI], session[:dataF], current_user.unidade_id] ,  :order => 'professors.nome ASC, inicio DESC, classe_id ASC' )
-
-        #           end
                 @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["inicio >=? AND fim <=? AND conteudoprogramaticos.unidade_id = ?  AND ano_letivo = ? ", session[:dataI], session[:dataF],current_user.unidade_id, Time.now.year], :group => 'professor_id', :order => 'professors.nome ASC' )
                 @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["inicio >=? AND fim <=? AND conteudoprogramaticos.unidade_id = ?   AND ano_letivo = ?", session[:dataI], session[:dataF],current_user.unidade_id, Time.now.year], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
              end
@@ -256,68 +259,31 @@ t=0
             page.replace_html 'relatorio', :partial => 'conteudo'
         end
         else  if params[:type_of].to_i == 2
-                        session[:cons_data]=0
-                        w=session[:cont_unidade_id]=params[:unidade_cont]
-t=0
-                        t=0
-                        #session[:mostra_faltas_funcionario] = 1
-                        #session[:mostra_faltas_professor] = 1
-                        #session[:aulas_falta_unidade_id] = params[:aulas_falta][:unidade_id]
-                        #if (session[:verifica_unidade_id]=='52')
-                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo'))
-                            @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe,  :conditions =>  ["classes.unidade_id = ? and classes.classe_ano_letivo =?", session[:cont_unidade_id], Time.now.year], :order => 'inicio DESC, classe_id ASC')
-                            @conteudos_professor = Conteudoprogramatico.find(:all, :joins =>[:professor, :classe], :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta", :conditions =>  ["classes.unidade_id = ? and  classes.classe_ano_letivo=?", session[:cont_unidade_id], Time.now.year], :group => 'professor_id', :order => 'professors.nome ASC' )
-                            @conteudos_classe = Conteudoprogramatico.find(:all, :joins =>[:professor, :classe], :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta", :conditions =>  ["classes.unidade_id = ?", session[:cont_unidade_id]], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
-
-                        else if (current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental'))
-                               w1=current_user.unidade_id
-                                w2=current_user.professor_id
-                                @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ?", session[:cont_classe_id]] , :order => 'inicio DESC, classe_id ASC')
-                                @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :group => 'professor_id', :order => 'professors.nome ASC' )
-                                @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
-                             else
-                                @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ?", session[:cont_classe_id]] , :order => 'inicio DESC, classe_id ASC')
-                                @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :group => 'professor_id', :order => 'professors.nome ASC' )
-                                @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
-                             end
-                        end
-                        render :update do |page|
-                            page.replace_html 'relatorio', :partial => 'conteudo'
-                        end
+            
               else if params[:type_of].to_i == 4    #classe
-                       session[:disciplina_id]=params[:disciplina_id]
-                        session[:cons_data]=0
-                        session[:cont_classe_id]=params[:classe_id]
+                  
+                       if current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental')
+                        @disciplinas1 = Disciplina.find(:all, :select => "disciplinas.id as disc_id, atribuicaos.id as atri_id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe,' - ',unidades.nome) AS disciplina_classe", :joins => "INNER JOIN atribuicaos on disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes on classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', current_user.professor_id, Time.now.year ],:order => 'disciplina ASC' )
+                       end
 
-                        #session[:mostra_faltas_funcionario] = 1
-                        #session[:mostra_faltas_professor] = 1
-                        #session[:aulas_falta_unidade_id] = params[:aulas_falta][:unidade_id]
-                        #if (session[:verifica_unidade_id]=='52')
+                       w=session[:disciplina_id]=params[:disciplina_id]
+                       w2= session[:cons_data]=0
+
+                        w1=session[:cont_classe_id]=params[:classe_id]
                         t=session[:disciplina_id]
-                        w=0
+
                         if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo'))
-                            if session[:disciplina_id]=='--Todas--'
-                              @conteudos = Conteudoprogramatico.find(:all, :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :order => 'inicio DESC, classe_id ASC')
-                              @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id ", :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :group => 'professor_id', :order => 'professors.nome ASC' )
-                              @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["classe_id = ?", session[:cont_classe_id]], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
-                            else
                               @conteudos = Conteudoprogramatico.find(:all, :conditions =>  ["classe_id = ? AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id], current_user.professor_id], :order => 'inicio DESC, classe_id ASC')
                               @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta, disciplina_id ",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id ", :conditions =>  ["classe_id = ?  AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id], current_user.professor_id], :group => 'professor_id', :order => 'professors.nome ASC' )
                               @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["classe_id = ?  AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id],  current_user.professor_id], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
-                            end
+
                         else if (current_user.has_role?('professor_infantil')  or current_user.has_role?('direcao_infantil'))
                                 w1=current_user.unidade_id
                                 w2=current_user.professor_id
-
-                                if session[:disciplina_id]=='--Todas--'
-                                  @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND professor_id=?", session[:cont_classe_id], current_user.professor_id] , :order => 'inicio DESC, classe_id ASC')
-                                  @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["classe_id = ?AND professor_id=?", session[:cont_classe_id], current_user.professor_id], :group => 'professor_id', :order => 'professors.nome ASC' )
-
-                                else
-                                       w1=session[:cont_classe_id]
-                                       w2= session[:disciplina_id]
-                                       w3= current_user.professor_id
-                                   if current_user.has_role?('professor_infantil')
+                                w3=session[:cont_classe_id]
+                                w4= session[:disciplina_id]
+                                t=0
+                                 if current_user.has_role?('professor_infantil')
                                         @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND professor_id=?", session[:cont_classe_id],  current_user.professor_id] , :order => 'inicio DESC, classe_id ASC')
                                         @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["classe_id = ? AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id], current_user.professor_id], :group => 'professor_id', :order => 'professors.nome ASC' )
                                         @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["classe_id = ? AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id], current_user.professor_id], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
@@ -325,21 +291,12 @@ t=0
                                         @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? ", session[:cont_classe_id]] , :order => 'inicio DESC, classe_id ASC')
                                         @conteudos_professor = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? ", session[:cont_classe_id]] , :order => 'inicio DESC, classe_id ASC')
                                         @conteudos_classe = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? ", session[:cont_classe_id]] , :order => 'inicio DESC, classe_id ASC')
-
-
                                    end
 
-t=0
-                                end
-
-                            else if ( current_user.has_role?('professor_fundamental') or current_user.has_role?('direcao_fundamental')  )
+                           else if ( current_user.has_role?('professor_fundamental') or current_user.has_role?('direcao_fundamental')  )
                                 w1=current_user.unidade_id
                                 w2=current_user.professor_id
-                                if session[:disciplina_id]=='--Todas--'
-                                      @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND disciplina_id=?  AND professor_id=?", session[:cont_classe_id], session[:disciplina_id],current_user.professor_id] , :order => 'inicio DESC, classe_id ASC')
-                                      @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["classe_id = ?AND professor_id=?", session[:cont_classe_id], current_user.professor_id], :group => 'professor_id', :order => 'professors.nome ASC' )
-                                      t=0
-                                 else if current_user.has_role?('professor_fundamental')
+                                    if current_user.has_role?('professor_fundamental')
                                         if current_user.unidade_id == 1   # professor da tempo de viver
                                            w1= session[:cont_classe_id]
                                            w3= current_user.professor_id
@@ -351,18 +308,18 @@ t=0
                                            w1= session[:cont_classe_id]
                                            w2=session[:disciplina_id]
                                            w3= current_user.professor_id
-                                          @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND disciplina_id=? AND professor_id=?", session[:cont_classe_id],session[:disciplina_id],  current_user.professor_id] , :order => 'classe_id ASC')
+                                          @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classex_id = ? AND disciplina_id=? AND professor_id=?", session[:cont_classe_id],session[:disciplina_id],  current_user.professor_id] , :order => 'classe_id ASC')
                                           @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["classe_id = ? AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id], current_user.professor_id], :group => 'professor_id', :order => 'professors.nome ASC' )
                                           @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["classe_id = ? AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id], current_user.professor_id], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
                                           t=0
                                       end
-                                       else
+                                    else
                                         @conteudos = Conteudoprogramatico.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND disciplina_id=?", session[:cont_classe_id],session[:disciplina_id]] , :order => 'inicio DESC, classe_id ASC')
                                         @conteudos_professor = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.professor_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN professors ON conteudoprogramaticos.professor_id = professors.id", :conditions =>  ["classe_id = ? AND disciplina_id= ?", session[:cont_classe_id], session[:disciplina_id]], :group => 'professor_id', :order => 'professors.nome ASC' )
                                         @conteudos_classe = Conteudoprogramatico.find(:all, :select => "conteudoprogramaticos.classe_id, count( conteudoprogramaticos.id ) as conta",:joins => "INNER JOIN classes ON conteudoprogramaticos.classe_id = classes.id ", :conditions =>  ["classe_id = ? AND disciplina_id= ?", session[:cont_classe_id], session[:disciplina_id]], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
 t=0
-                                      end
-                                end
+                                    end
+                                
 
                              end
 
@@ -382,6 +339,7 @@ end
 
     def classe_disciplina
         w=session[:classe_id]=params[:classe_id]
+
           if current_user.has_role?('professor_fundamental')or  current_user.has_role?('professor_infantil')
              @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN atividades ON disciplinas.id = atividades.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and atividades.classe_id=? and atribuicaos.professor_id =?', params[:classe_id], session[:classe_id], current_user.professor_id])
         else
