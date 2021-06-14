@@ -65,10 +65,12 @@ def classe
 
 def disciplina
  w=session[:cont_disciplina_id] =  params[:disciplina_id]
- @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
+ @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and disciplina_id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
+ t=0
  session[:cont_classe_id]= @atribuicao[0].classe_id
  session[:cont_atribuicao_id]=@atribuicao[0].id
  session[:cont_disciplina_id]=@atribuicao[0].disciplina_id
+ t=0
     render :partial => 'dados_classe'
 end
 
