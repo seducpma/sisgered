@@ -393,13 +393,13 @@
         <%for i in 0..session[:ult_coluna]%>
                 <%cargah_t=0%>
                 <%if !session[:cargah_b][i].nil?%>
-                    <%cargah_t=session[:cargah_b][i]%>xxx
+                    <%cargah_t=session[:cargah_b][i]%>
                 <%end%>
                 <%if !session[:cargah_d][i].nil?%>
-                    <%cargah_t=session[:cargah_d][i]+cargah_t%>yyy
+                    <%cargah_t=session[:cargah_d][i]+cargah_t%>
                 <%end%>
                 <%if cargah_t==0%>
-                    <td style="font-size: 8px" align="center">---</td>zzz
+                    <td style="font-size: 8px" align="center">---</td>
                 <%else%>
                     <% if  current_user.unidade.tipo_id == 4%>
                         <%if i== 0 %>
