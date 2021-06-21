@@ -378,12 +378,12 @@
     <%end%>
    
     <tr style="line-height: 9px; border-color: white" >
-        <td style="font-size: 8px" colspan="2"><b> Carga Horária</b></td>
+        <td style="font-size: 8px" colspan="2"><b> <!--Carga Horária--></b></td>
         <%for i in 0..session[:ult_coluna]%>
                 <%if session[:cargah_d][i]==0%>
-                    <td style="font-size: 8px" align="center">---</td>
+                    <td style="font-size: 8px" align="center"></td>
                 <%else%>
-                    <td style="font-size: 8px" align="center"> <%= session[:cargah_d][i] %>  </td>
+                    <td style="font-size: 8px" align="center"> <%#= session[:cargah_d][i] %>  </td>
 
                 <%end%>
         <%end%>
@@ -393,15 +393,27 @@
         <%for i in 0..session[:ult_coluna]%>
                 <%cargah_t=0%>
                 <%if !session[:cargah_b][i].nil?%>
-                    <%cargah_t=session[:cargah_b][i]%>
+                    <%cargah_t=session[:cargah_b][i]%>xxx
                 <%end%>
                 <%if !session[:cargah_d][i].nil?%>
-                    <%cargah_t=session[:cargah_d][i]+cargah_t%>
+                    <%cargah_t=session[:cargah_d][i]+cargah_t%>yyy
                 <%end%>
                 <%if cargah_t==0%>
-                    <td style="font-size: 8px" align="center">---</td>
+                    <td style="font-size: 8px" align="center">---</td>zzz
                 <%else%>
-                    <td style="font-size: 8px" align="center"> <%= cargah_t %>  </td>
+                    <% if  current_user.unidade.tipo_id == 4%>
+                        <%if i== 0 %>
+                           <% if session[:ano_letivoh]== [2017, 2018, 2019, 2020, "", "", "", "", ""] %>
+                                  <td style="font-size: 8px" align="center"> <%= 1400 %> </td>
+                            <%else%>
+                                 <td style="font-size: 8px" align="center"> <%= 1410 %> </td>
+                            <%end%>
+                         <%else%>
+                             <td style="font-size: 8px" align="center"> <%= 1410 %> </td>
+                         <%end%>
+                    <%else%>
+                        <td style="font-size: 8px" align="center"> <%= cargah_t %> </td>
+                    <%end%>
                 <%end%>
         <%end%>
     </tr>

@@ -469,10 +469,33 @@
                     <td align="center">---</td>
                 <%else%>
                     <td align="center">  <% if i>3 %>
-                                           <%= session[:cargah_b][i] +120 %>
+<!--  ALteração da carga horário por autorização da Alessanda em 17/6/21
+       "Os históricos saem com uma carga de 1080 horas, a mesma das EMEFs. A carga horária total de CIEP é de 1400 horas, a partir de 2018. Até 2017 era de 1480 horas."-->
+                                             <% if  current_user.unidade.tipo_id == 4%>
+                                                  <%= session[:cargah_b][i] +410 %>
+                                            <%else%>
+                                                  <%= session[:cargah_b][i]+120 %>
+                                            <%end%>
+                                          <%#= session[:cargah_b][i] +120 %>
                                          <%else%>
-                                            <%= session[:cargah_b][i]+80 %>
+<!--  ALteração da carga horário por autorização da Alessanda em 17/6/21
+       "Os históricos saem com uma carga de 1080 horas, a mesma das EMEFs. A carga horária total de CIEP é de 1400 horas, a partir de 2018. Até 2017 era de 1480 horas."-->
+                                             <% if  current_user.unidade.tipo_id == 4%>
+                                                  <%if i== 0 %>
+                                                     <% if session[:ano_letivoh]== [2017, 2018, 2019, 2020, "", "", "", "", ""] %>
+                                                           <%= session[:cargah_b][i] +400 %>
+                                                      <%else%>
+                                                          <%= session[:cargah_b][i] +410 %> 
+                                                       <%end%>
+                                                 <%else%>
+                                                     <%= session[:cargah_b][i] +410 %>
+                                                 <%end%>
+                                            <%else%>
+                                                  <%= session[:cargah_b][i]+80 %>
+                                            <%end%>
+                                            <%#= session[:cargah_b][i]+80 %>
                                          <%end%>
+ <%#= current_user.unidade.tipo_id %>
                     </td>
                 <%end%>
             <%end%>
