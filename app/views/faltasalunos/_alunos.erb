@@ -23,11 +23,31 @@
                                              <td><%=h aluno.aluno_nome_dtn %></td>
 
                                    </tr>
+                                    <tr>
+                                             <td width ="1px" align="center"><%= check_box_tag :sem_aluno %></td>
+
+                                             <td> Sem alunos presentes </td>
+
+                                   </tr>
                                  </table>
                               <%end%>
+                                  <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
+                                    <tr>
+                                             <td width ="1px" align="center"><%= check_box_tag :sem_aluno %></td>
+
+                                             <td>Sem alunos presentes</td>
+
+                                   </tr>
+                                 </table>
                             <%end%>
-                            <table >
-                                <tr>
+                   <table>
+                                 <tr>
+                                     <td></td>
+                                     <td width ="1px" align="center" valign="top"><%= check_box_tag :sem_aluno %></td>
+                                        <td>Sem alunos presentes&nbsp&nbsp&nbsp&nbsp <br/><b><font size="1"> (Só marque esta opção se <u>NÃO</b> houve aluno presente em sala de aula)</b></font> </td>
+
+                                   </tr>
+                                <tr><br/>
                                    <td colspan="2" ><%= submit_tag "Confirmar", :class => "btn_filtrar" %>
                                    </td>
                                </tr>
