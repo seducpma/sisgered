@@ -48,11 +48,12 @@
                                    <td with ="5%"><b>Classe</b></td>
                                    <td with ="40%"><b>Status</b></td>
                                 </tr>
+
                                   <% for matricula in @matriculas %>
                                    <tr bgcolor="#F5F5F5" >
                                      <td align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <%=h matricula.unidade.nome%></td>
-                                     <td align="left"> <%=h matricula.ano_letivo %><%  session[:classe]=  matricula.classe.id%></td>
-                                     <td align="left">  <%=h matricula.classe.classe_classe%> - <%=h matricula.classe.horario %></td>
+                                     <td align="left"> <%if !matricula.classe.nil?%><%=h matricula.ano_letivo %><%  session[:classe]=  matricula.classe.id%><%end%></td>
+                                     <td align="left">  <%if !matricula.classe.nil?%>  <%=h matricula.classe.classe_classe%> - <%=h matricula.classe.horario %><%end%></td>
                                        <% if  matricula.status =="MATRICULADO" %>
                                            <td align="left" colspan="3"> Matriculado</td>
                                        <%else%>
@@ -74,6 +75,7 @@
                                       <%end%>
                                     </tr>
                                   <%end%>
+
                                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                                              <tr>
                                                <td align="LEFT" ><%= button_to '', {:controller =>"alunos", :action => "edit", :id =>aluno}, :method => "get"%></td>

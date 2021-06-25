@@ -17,7 +17,7 @@
                       <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
                       <center><font size="2"> Unidade Escolar: <%=h relatorio.atribuicao.classe.unidade.nome %> <%if relatorio.atribuicao.classe.unidade.id != current_user.unidade_id%> (Transferido para <%=current_user.unidade.nome %>) <%end%> </i></b><br/></center>
                       <%if relatorio.ano_letivo  == Time.now.year  %>
-                          <center><font size="2"><b><u> MEMORIAL AS EXPERIÊNCIAS EDUCATIVAS</u></b></font></center>
+                          <center><font size="2"><b><u> MEMORIAL DE EXPERIÊNCIAS EDUCATIVAS</u></b></font></center>
                       <%else%>
                           <center><font size="2"><b><u>FICHA DE ACOMPANHAMENTO DO PROCESSO EDUCACIONAL DO ALUNO</u></b></font></center>
                       <%end%>
