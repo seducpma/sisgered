@@ -1,0 +1,9 @@
+  <%= collection_select :relatorio, :aluno_id, @alunos_matricula, :id, :aluno_nome_dtn, :include_blank => ' -- Selecione -- ' %>
+
+             <%= observe_field 'relatorio_aluno_id',
+               :update => "aluno_classe",
+               :url    => { :action => 'aluno_classe' },
+               :with   => 'relatorio_aluno_id' %>
+
+
+  

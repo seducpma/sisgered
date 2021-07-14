@@ -1,3 +1,12 @@
+ <%if current_user.has_role?('professor_fundamental') or current_user.has_role?('secretaria_fundamental') %>
+      <% @unidades= Unidade.find(:all, :select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0 and (tipo_id = 1 or tipo_id = 3 or tipo_id = 4 or tipo_id = 7)'],:order => 'unidades.nome')%>
+ <%else if current_user.has_role?('professor_infantil')  or current_user.has_role?('secretaria_infantil')%>
+             <% @unidades= Unidade.find(:all, :select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0 and (tipo_id = 2 or tipo_id = 3 or tipo_id = 5 or tipo_id = 8)'],:order => 'unidades.nome')%>
+        <%else%>
+                <% @unidades= Unidade.find(:all, :select => 'distinct(unidades.nome), unidades.id',  :conditions =>['desativada = 0'],:order => 'unidades.nome')%>
+        <%end%>
+ <%end%>
+
 <div id="interno2">
 <% title "MATRICULAS".singularize %>
 <div class="tabs">
@@ -8,7 +17,7 @@
         <% form_for @atendimento_aee do |f| %>
          <%= f.error_messages %>
         <fieldset><legend><font size=4>Aluno</font></legend>
-             <%@alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(current_user.unidade_id).to_s+" AND ( id IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")%>
+             
             <% @classes_aee = Classe.find(:all,:select => 'id, classe_classe', :conditions =>['unidade_id =? and  classe_ano_letivo=? and sala != 52 AND classe_classe like ? ' ,  current_user.unidade_id, Time.now.year , "AEE"+ "%"], :order => 'classe_classe') %>
         <table>
             <tr>
@@ -23,17 +32,25 @@
                   <font></td>
             </tr>
             <tr>
-            <td width ="5%"><b>Classe: </b></td>
-             <td><%= f.collection_select :classe_id, @classes_aee, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
+            <td width ="18%"><b>Classe Atendimento Especializado: </b></td>
+             <td ><%= f.collection_select :classe_id, @classes_aee, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %></td>
+            </tr>
+             <tr>
+              <td><b> <b> Unidade matriculado regularmente: </b></td>
+              <td>   <%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+                          <%= observe_field :atendimento_aee_unidade_id,
+                              :with => :unidade_id,
+                              :update => "aluno__unidade" ,
+                              :url => { :action => 'aluno_unidade' }%>
+
+
+
+              </td>
            </tr>
            <tr>
               <td><b>Aluno: </b></td>
               <td> 
-                   <%= f.collection_select :aluno_id , @alunos_matricula, :id, :aluno_nome_dtn, :include_blank => ' -- Selecione -- ' %>
-                          <%= observe_field :atendimento_aee_aluno_id,
-                              :with => :aluno_id,
-                              :update => "aluno__classe" ,
-                              :url => { :action => 'aluno_classe' }%>
+                   <div id="aluno__unidade">Selecionar unidade onde o aluno está  matriculado</div>
                 <br/>
                   <div id="aluno__classe"></div>
               </td>

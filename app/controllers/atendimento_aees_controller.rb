@@ -45,7 +45,8 @@ class AtendimentoAeesController < ApplicationController
     respond_to do |format|
       if @atendimento_aee.save
           @atendimento_aee.classe_mat= session[:cclasse_id]
-          @atendimento_aee.aluno_id  = session[:aaluno_id]
+         wq= @atendimento_aee.aluno_id  = session[:aaluno_id]
+         t=0
          # @atendimento_aee.unidade  = session[:uunidade]
           @atendimento_aee.ano_letivo = Time.now.year
           @atendimento_aee.save
@@ -99,14 +100,35 @@ class AtendimentoAeesController < ApplicationController
   end
 
   def aluno_classe
-        w3= params[:aluno_id]
-          
-         @matricula= Matricula.find(:all, :conditions=> ['aluno_id = ? AND (status =? OR status =?) AND ano_letivo =?' , params[:aluno_id],"MATRICULADO","TRANSFERENCIA", Time.now.year	])
-         w1=session[:aaluno_id] = params[:aluno_id]
+        w5 = session[:aaluno_id]=params[:relatorio_aluno_id]
+      
+
+
+      t=0
+         @matricula= Matricula.find(:all, :conditions=> ['aluno_id = ? AND (status =? OR status =?) AND ano_letivo =?' , session[:aaluno_id],"MATRICULADO","TRANSFERENCIA", Time.now.year	])
+        
          w2=session[:cclasse_id]= @matricula[0].classe.classe_classe
          w=session[:uunidade] = @matricula[0].unidade.nome
-         t=0
+t=0
       render :partial => 'aluno_classe'
   end
+
+
+  def aluno_unidade
+           w3= params[:unidade_id]
+
+          @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(params[:unidade_id]).to_s+" AND ( id IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
+            w=@alunos_matricula[0].id
+            w1=@alunos_matricula[0].aluno_nome_dtn
+            w2=@alunos_matricula[1].id
+            w3=@alunos_matricula[1].aluno_nome_dtn
+            t=0
+
+      render :partial => 'aluno_unidade'
+  end
+
+
+
+
 
 end
