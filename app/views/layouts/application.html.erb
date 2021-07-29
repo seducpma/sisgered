@@ -525,7 +525,7 @@ display: none;
                        <li><%= link_to "FAPEA / Memorial",editar_relatorios_path %></li>
 
                    <%end%>
-                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil'))%>
+                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                        <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
                        <li><%= link_to "Professor",consulta_professor_nome_path %></li>
                        <li><%= link_to "Unidade",consultas_unidades_path %></li>
