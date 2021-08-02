@@ -1,5 +1,8 @@
 
+<%if current_user.has_role?('supervisao') or current_user.has_role?('SEDUC') or current_user.has_role?('admin')%>
+<%@classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_unidade", :conditions => ['classes.classe_ano_letivo = ?' , Time.now.year ], :order => 'classes.classe_classe ASC')%>
 
+<%end%>
 
 
 <table width="100%"  >
