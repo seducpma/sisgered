@@ -326,9 +326,11 @@ t=0
                                if classeAEE == 'AEE'
                                      @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome, atendimento_aees.classe_num "  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = ? ", session[:cont_classe_id], Time.now.year , current_user.unidade_id ] )
                                      session[:AEE]=1
+                                     t=0
                                else
-                                  @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , matriculas.classe_num , alunos.aluno_nome	 ,CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = ?", session[:cont_classe_id], Time.now.year , current_user.unidade_id ],:order => 'classe_num ASC' )
+                                  @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , matriculas.classe_num , alunos.aluno_nome	 ,CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') ", session[:cont_classe_id], Time.now.year  ],:order => 'classe_num ASC' )
                                   session[:AEE]=0
+                                  t=0
                                end
 
                         else if (current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental'))
@@ -389,11 +391,11 @@ t=0
                         session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]
                          @classe = Classe.find(:all,:conditions =>['id = ?', session[:cont_classe_id]])
                         classeAEE = @classe[0].classe_classe[0,3]
-                        
+
 
                         if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo'))
                                      @faltasalunos = Faltasaluno.find(:all, :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? ", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id]] , :order => 'classe_id ASC')
-                                     @faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id,  	disciplina_id , 	ano_letivo  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? ", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id]] , :order => 'classe_id ASC')
+                                     @faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id,  	disciplina_id , faltas ,	ano_letivo  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? ", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id]] , :order => 'classe_id ASC')
                                      @faltasalunosdias = Faltasaluno.find(:all, :select=>  'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=?", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id]] , :order => 'classe_id ASC')
                                      t=0
                                    if classeAEE == 'AEE'
