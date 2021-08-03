@@ -50,7 +50,13 @@
                         </tr>
                     </table>
                 </fieldset>
-                  <table  border="1" frame="box" rules="all" width="100%" style="font-size: small">
+
+
+
+
+<div id="caixa_tabela">
+
+                  <table class="tab_dados" border="1" frame="box" rules="all" width="100%" style="font-size: small">
                     <tr bgcolor="#F5F5F5">
                        <% if  session[:tela_faltas_aluno]==1%>
                        <%session[:tela_faltas_aluno]=0%>
@@ -75,6 +81,7 @@
                           <%end%>
                      <%end%>
                     </tr>
+
              <tr bgcolor="#F5F5F5">
                         <td colspan="13"> <div id="atividades_aluno">
                                     <% @alunos_matriculados.each do |alunos_mat|%>
@@ -155,9 +162,11 @@
                     </tr>
                     
               </table>
-
+</div>
      <%end%>
 <br/>
+
+<!--
 <br/>
 <br/>
  <%if session[:view_classe] == 1%>

@@ -313,16 +313,24 @@ t=0
                         session[:anoF]=params[:faltasaluno][:fimA][6,4]
                         session[:dataINI]=session[:dataI][8,2]+'-'+session[:dataI][5,2]+'-'+session[:dataI][0,4]
                         session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]
+
+                       @matricula= Matricula.find(:all, :conditions=>["aluno_id=? and (status ='MATRICULADO' or status ='TRANSFERENCIA' or status ='*REMANEJADO')AND ano_letivo=?" , params[:aluno],Time.now.year])
+                       a= session[:cont_classe_id] = @matricula[0].classe_id
+t=0
+
                         #session[:discipli_id] = params[disciplina_id]
                          @classe = Classe.find(:all,:conditions =>['id = ?', session[:cont_classe_id]])
                         classeAEE = @classe[0].classe_classe[0,3]
-
+ww=session[:cont_classe_id]
+t=0
                         if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao'))
-                               session[:aluno]= params[:aluno]
+                              w= session[:aluno]= params[:aluno]
+
                               @faltasalunos = Faltasaluno.find(:all, :joins =>:aluno, :conditions =>  ["data >=? AND  data <=? AND aluno_id = ? ", session[:dataI], session[:dataF],session[:aluno]] , :order => 'data ASC')
-                              @faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'data ,aluno_id, 	matricula_id, 	atribuicao_id, 	aluno_id, 	professor_id,  	disciplina_id , 	ano_letivo  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND aluno_id = ? AND disciplina_id=? ", session[:dataI], session[:dataF],session[:aluno], session[:disciplina_id]] , :order => 'data ASC')
+                              @faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'data ,aluno_id, 	matricula_id, 	atribuicao_id, 	aluno_id, faltas,	professor_id,  	disciplina_id , 	ano_letivo  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND aluno_id = ? AND disciplina_id=? ", session[:dataI], session[:dataF],session[:aluno], session[:disciplina_id]] , :order => 'data ASC')
                               @faltasalunosdias = Faltasaluno.find(:all, :select=>  'distinct(disciplina_id), data', :joins =>:aluno, :conditions =>  ["data >=? AND  data <=? AND aluno_id = ?", session[:dataI], session[:dataF],session[:aluno]] , :order => 'data ASC')
                               @faltasalunosdiasAluno = Faltasaluno.find(:all, :select =>  'distinct(disciplina_id), data', :joins =>:aluno, :conditions =>  ["data >=? AND  data <=? AND aluno_id = ? ", session[:dataI], session[:dataF],session[:aluno]] , :order => 'data ASC')
+                              t=0
                                if classeAEE == 'AEE'
                                      @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome, atendimento_aees.classe_num "  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND alunos.unidade_id = ? ", session[:cont_classe_id], Time.now.year , current_user.unidade_id ] )
                                      session[:AEE]=1

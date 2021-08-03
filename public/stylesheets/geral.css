@@ -1188,3 +1188,42 @@ border-color:#AAAAAA;
    left:210px;
    top: 350px;
 }
+
+#caixa_tabela{
+        width: auto; /* aqui pode ser auto ou 100%*/
+        overflow-x: auto;
+    }
+    .tab_dados {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    .tab_dados a {
+        color: #484848;
+        text-decoration: none;
+    }
+    .tab_dados th {
+        background: #0091FF;
+        color:#FFFFFF;
+        font-style: italic;
+    }
+    .tab_dados tr {
+        height:auto;
+        border-bottom: 1px solid #D5D5D5;
+    }
+    .tab_dados tr:nth-child(odd) {
+        background: #F7F7F7;
+    }
+    .tab_dados tr:nth-child(even) {
+        background: #FFFFFF;
+    }
+    .tab_dados tr:hover {
+        background: #F1F1F1;
+    }
+    tfoot tr td{
+        border:0;
+        height: 40px;
+    }
+    .tfoot{
+        width: 100%;
+    }
