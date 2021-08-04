@@ -118,10 +118,6 @@ t=0
            w3= params[:unidade_id]
 
           @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(params[:unidade_id]).to_s+" AND ( id IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
-            w=@alunos_matricula[0].id
-            w1=@alunos_matricula[0].aluno_nome_dtn
-            w2=@alunos_matricula[1].id
-            w3=@alunos_matricula[1].aluno_nome_dtn
             t=0
 
       render :partial => 'aluno_unidade'
