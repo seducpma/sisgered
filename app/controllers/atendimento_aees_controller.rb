@@ -115,16 +115,14 @@ t=0
 
 
   def aluno_unidade
-           w3= params[:unidade_id]
+           
 
-          @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(params[:unidade_id]).to_s+" AND ( id IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
+#          @alunos_matricula = Aluno.find_by_sql("SELECT a.id, CONCAT(a.aluno_nome, ' | ',date_format(a.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM alunos a WHERE ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') AND a.unidade_id = "+(params[:unidade_id]).to_s+" AND ( id IN (SELECT m.aluno_id FROM matriculas m WHERE m.ano_letivo = "+(Time.now.year).to_s+" AND m.status != 'ABANDONO')) ORDER BY a.aluno_nome")
+          @alunos_matricula = Matricula.find(:all,:select => "alunos.id, CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn ", :joins => "inner join alunos on alunos.id = matriculas.aluno_id ", :conditions=> [" ( (alunos.aluno_status != 'EGRESSO' or alunos.aluno_status is null OR alunos.aluno_status = 'ABANDONO') AND alunos.unidade_id = ? AND (matriculas.ano_letivo = ? AND matriculas.status != 'ABANDONO'))  ", params[:unidade_id], Time.now.year ], :order => "alunos.aluno_nome")
+
             t=0
 
       render :partial => 'aluno_unidade'
   end
-
-
-
-
 
 end
