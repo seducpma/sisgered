@@ -4,7 +4,7 @@
                 
                 
                     <% bimestre = relatorio.created_at.strftime("%m").to_i %>
-                   <% if  ( bimestre < 8 ) %>
+                   <% if  ( bimestre < 9 ) %>
                      1º Semestre
                    <% else %>
                      2º Semestre
@@ -51,7 +51,7 @@
                                    <b>Ano Letivo:</b>
                                    <%=h relatorio.ano_letivo %>
                                     <% bimestre = relatorio.created_at.strftime("%m").to_i %>
-                                   <% if  ( bimestre < 8 ) %>
+                                   <% if  ( bimestre < 9 ) %>
                                      - 1º Semestre
                                    <% else %>
                                      - 2º Semestre

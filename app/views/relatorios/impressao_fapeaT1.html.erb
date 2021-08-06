@@ -9,7 +9,7 @@
             <% for relatorio in @relatorios %>
               <table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
                <% bimestre = relatorio.created_at.strftime("%m").to_i %>
-               <% if  ( bimestre < 8 ) %>
+               <% if  ( bimestre < 9 ) %>
                 <tr  style="border-color: white">
                   <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
                   <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
