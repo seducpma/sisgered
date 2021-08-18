@@ -89,6 +89,23 @@
                                                 <td width ="4%" align="center"><%= alunos_mat.classe_num %>  </td>
 <!--                                                <%#*<td width ="10%" ><%= atividade.matricula.aluno.aluno_ra  %></td>%>-->
                                                 <td width ="40%" align="left"><%= alunos_mat.aluno_nome %>
+                                                      <%  if  alunos_mat.situacao.present?%>
+                                                         <%  if  alunos_mat.situacao =="TRANSFERIDO"%>
+                                                              <font color ="red" size="1"> (Transferido) </font>
+                                                          <%else if  alunos_mat.situacao =="TRANSFERENCIA"%>
+                                                                 <font color ="blue" size="1"> (Transferência) </font>
+                                                                 <%else if alunos_mat.situacao =="REMANEJADO"%>
+                                                                          <font color ="green" size="1"> (Remanejado) </font>
+                                                                       <%else if  alunos_mat.situacao =="*REMANEJADO"%>
+                                                                                <font color ="green"size="1" size="1"> (*Remanejado) </font>
+                                                                             <%else if alunos_mat.situacao =="ABANDONO"%>
+                                                                                      <font color ="red" size="1"> (Abandono)</font>
+                                                                                  <%end%>
+                                                                           <%end%>
+                                                                       <%end%>
+                                                                 <%end%>
+                                                          <%end%>
+                                                      <%end%>
                                                 </td>
                                                 <%cont_ativ=0%>
                                                 <%@faltasalunosdias.each do |faltasdias|%>
