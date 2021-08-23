@@ -702,12 +702,13 @@ t=0
 
         session[:classe_id] = params[:classe_mapa][:id]
         session[:ano] =  params[:ano_letivo_mapa]
+        w=session[:classe_id]
         @classe = Classe.find(:all,:conditions =>['id = ?',session[:classe_id]])
         @classe.each do |classe|
            session[:num_classe]= classe.classe_classe[0,1].to_i
         end
         #@atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.ids = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND classes.unidade_id =?', session[:classe_id], current_user.unidade_id],:order =>'disciplinas.ordem ASC')
-        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id =  AND disciplinas.nao_disciplina != 1 AND atribuicaos.ativo=0?', session[:classe_id]],:order =>'disciplinas.ordem ASC')
+        @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id =?  AND disciplinas.nao_disciplina != 1 AND atribuicaos.ativo=0', session[:classe_id]],:order =>'disciplinas.ordem ASC')
 
         @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
 
