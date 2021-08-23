@@ -113,11 +113,13 @@
                             <td align="center"> --- </td>
                         <%end%> <!-- 108 -->
                     <%else%>
+
                         <%if (cont_dis+1)<=@notas_alu.size%>
-                            <%if @notas_alu[cont_dis].atribuicao.disciplina.disciplina=="PORTUGUÊS"%>
+                            <%if @notas_alu[cont_dis].atribuicao.disciplina.id==1%>
                                 <%nota_port=@notas_alu[cont_dis].nota1%>
                             <%end%> <!-- 116 -->
                         <%end%>
+
                         <%if matriculas_classe.status!="MATRICULADO" and matriculas_classe.status!="TRANSFERENCIA" and matriculas_classe.status!="*REMANEJADO"%>
                             <%if cont_dis!=0 and ((cont_dis+1)!=@atribuicao_classe.count)%>
                                 <td align="center"><font color="red">---</font></td>
@@ -140,7 +142,7 @@
                                               <%session[:nota_disciplina]=''%>
                                          <%end%>
                                 <%else%>
-                                    <%session[:nota_disciplina]=@notas_alu[cont_dis].nota1 %>
+                                       <%session[:nota_disciplina]=@notas_alu[cont_dis].nota1 %>
                                 <%end%> <!-- 133 -->
                             <%end%>
                             <%if (cont_dis+1)<=@notas_alu.size%>
