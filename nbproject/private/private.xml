@@ -5,8 +5,8 @@
             <line>205</line>
         </file>
         <file>
-            <url>app/controllers/passwords_controller.rb</url>
-            <line>33</line>
+            <url>app/views/alunos/consulta_cadastro.html.erb</url>
+            <line>16</line>
         </file>
         <file>
             <url>app/views/historicos/_notas_historico.erb</url>
@@ -24,8 +24,8 @@
             <line>537</line>
         </file>
         <file>
-            <url>app/views/alunos/consulta_cadastro.html.erb</url>
-            <line>16</line>
+            <url>app/controllers/passwords_controller.rb</url>
+            <line>33</line>
         </file>
         <file>
             <url>app/controllers/atribuicaos_controller.rb</url>
@@ -45,12 +45,12 @@
             <line>348</line>
         </file>
         <file>
-            <url>app/views/atribuicaos/_mapa.erb</url>
-            <line>117</line>
-        </file>
-        <file>
             <url>app/controllers/notas_controller.rb</url>
             <line>41</line>
+        </file>
+        <file>
+            <url>app/views/atribuicaos/_mapa.erb</url>
+            <line>117</line>
         </file>
         <file>
             <url>app/controllers/atividades_controller.rb</url>
