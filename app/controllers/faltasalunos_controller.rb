@@ -63,6 +63,8 @@ end
 
  def alunos_faltas_falta
 
+
+
       if params[:aluno_ids].present?
           @alunos_faltaram=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
       end
@@ -98,7 +100,9 @@ end
                @faltasaluno.ano_letivo = Time.now.year
                @faltasaluno.data=session[:dia]
                @faltasaluno.faltas=session[:falta]
-               #@faltasaluno.faltas=1
+               if @faltasaluno.faltas.nil?
+                   @faltasaluno.faltas = 1
+               end
                @faltasaluno.obs=session[:obser]
                @faltasaluno.save
                @faltasaluno = Faltasaluno.find(:last)
@@ -115,6 +119,9 @@ end
                @faltasaluno.ano_letivo = Time.now.year
                @faltasaluno.data=session[:dia]
                @faltasaluno.faltas=session[:falta]
+               if @faltasaluno.faltas.nil?
+                    @faltasaluno.faltas = 1
+               end
                #@faltasaluno.faltas=1
                @faltasaluno.obs=session[:obser]
                @faltasaluno.save
@@ -194,9 +201,14 @@ def classe
   def create
     @faltasaluno = Faltasaluno.new(params[:faltasaluno])
     @faltasaluno.faltas = 1
+    t=0
     respond_to do |format|
       if @faltasaluno.save
-        flash[:notice] = 'Faltasaluno was successfully created.'
+        if @faltasaluno.faltas == 'selecionar'
+          @faltasaluno.faltas = 1
+          @faltasaluno.save
+        end
+        flash[:notice] = 'PRESENÇA LANÇADA COM SUCESSO.'
         format.html { redirect_to(@faltasaluno) }
         format.xml  { render :xml => @faltasaluno, :status => :created, :location => @faltasaluno }
       else
