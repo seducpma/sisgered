@@ -119,7 +119,7 @@
                                                    <%if current_user.has_role?('pedagogo') %>
                                                        <%@faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'data ,aluno_id, matricula_id, atribuicao_id, classe_id, professor_id, disciplina_id , ano_letivo,faltas  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=?  AND data=?", session[:dataI], session[:dataF],session[:cont_classe_id], faltasdias.disciplina_id, faltasdias.data] , :order => 'classe_id ASC')%>
                                                    <%end%>
-
+<%t=0%>
                                                 <%else%>
                                                     <%if current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental')%>
                                                       <%@faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'distinct(data) ,aluno_id, matricula_id, 	atribuicao_id, 	classe_id, 	professor_id,  	disciplina_id , ano_letivo, faltas  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=? AND data=?", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id],  current_user.professor_id, faltasdias.data] , :order => 'classe_id ASC')%>
@@ -127,10 +127,11 @@
                                                    <%if current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil')%>
                                                       <%@faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'distinct(data) ,aluno_id, matricula_id, 	atribuicao_id, 	classe_id, 	professor_id,  	disciplina_id , ano_letivo, faltas  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND data=?", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id], faltasdias.data] , :order => 'classe_id ASC')%>
                                                    <%end%>
-                                                   <%if current_user.has_role?('pedagogo')%>
+                                                   <%if current_user.has_role?('pedagogo')or current_user.has_role?('supervisao')%>
                                                       <%@faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'distinct(data) ,aluno_id, matricula_id, 	atribuicao_id, 	classe_id, 	professor_id,  	disciplina_id , ano_letivo, faltas  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND data=?", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id], faltasdias.data] , :order => 'classe_id ASC')%>
+                                                     <%t=0%>
                                                    <%end%>
-
+<%t=0%>
                                                 <%end%>
                                                 <td align="center">
 <!--                                              <table >
