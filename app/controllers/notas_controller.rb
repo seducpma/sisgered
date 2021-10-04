@@ -397,7 +397,9 @@ w5=@nota.faltas5
         end
         @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=? and notas.ativo is null" , session[:classe_id], session[:professor_id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
         @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=? and notas.ativo is null",session[:classe_id], session[:professor_id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-        if current_user.has_role?('professor_fundamental')
+        teste = current_user.id
+        t=0
+        if current_user.has_role?('professor_fundamental') or (teste == 1452 or teste == 2)     # excessão para usuário 1452 PEGAGOG fazer multiplos lançamentos
             #render :partial => 'notas_lancamentos', :layout => "layouts/aalunos"
             session[:conta]=0
             render "notas_lancamentos_multiplos", :layout => "layouts/application"
