@@ -36,7 +36,7 @@ class FaltasalunosController < ApplicationController
            AtendimentoAee.find(:all,:conditions =>['classe_id = ?', session[:classe_id]])
          session[:AEE]=1
        else
-           @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') ", session[:classe_id], Time.now.year ],:order => 'classe_num ASC' )
+           @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero , matriculas.status as status"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') ", session[:classe_id], Time.now.year ],:order => 'classe_num ASC' )
         session[:AEE]=0
        end
         render :partial => 'alunos'

@@ -9,7 +9,27 @@
                                     <tr>
                                              <td width ="1px" align="center"><%= check_box_tag "aluno_ids[]",aluno.id %></td>
                                                 <td width ="5%" align="center"><%= aluno.numero %></td>
-                                             <td><%=h aluno.aluno_nome_dtn %></td>
+                                             <td><%=h aluno.aluno_nome_dtn %><%if session[:AEE]== 0
+    %>                                                                               <%  if  aluno.status =="TRANSFERIDO"%>
+                                                                                      (<font color ="red"> Transferido </font>)
+                                                                                  <%else if  aluno.status =="TRANSFERENCIA"%>
+
+                                                                                         <%else if  aluno.status =="REMANEJADO"%>
+
+                                                                                               <%else if  aluno.status =="*REMANEJADO"%>
+
+                                                                                                     <%else if  aluno.status =="ABANDONO"%>
+                                                                                                              (<font color ="red"> Abandono</font>)
+                                                                                                          <%end%>
+                                                                                                   <%end%>
+                                                                                               <%end%>
+                                                                                         <%end%>
+                                                                                  <%end%>
+
+                                                                              <%end%>
+
+
+                                             </td>
 
                                    </tr>
                                  </table>
