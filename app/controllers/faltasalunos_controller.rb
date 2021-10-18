@@ -144,16 +144,16 @@ def classe
    session[:professor_id]=params[:professor_id]
 
    session[:data]= params[:data]
-   
+ t=0
   
-#   @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
+   @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
  
-#    if @atribuicao.empty? or @atribuicao.nil?
-#      render :partial => 'aviso'
-#    else
-#        @classes = Classe.find(:all, :select => "disciplinas.id as disc_id, classes.unidade_id,  atribuicaos.disciplina_id as disciplina,  classes.id as classe_id, CONCAT(classes.classe_classe, ' - ',disciplinas.disciplina,' - ',unidades.nome) AS classe", :joins => "INNER JOIN atribuicaos on classes.id = atribuicaos.classe_id INNER JOIN disciplinas on disciplinas.id = atribuicaos.disciplina_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )
-#        render :partial => 'classe'
-#    end
+    if @atribuicao.empty? or @atribuicao.nil?
+      render :partial => 'aviso'
+    else
+        @classes = Classe.find(:all, :select => "disciplinas.id as disc_id, classes.unidade_id,  atribuicaos.disciplina_id as disciplina,  classes.id as classe_id, CONCAT(classes.classe_classe, ' - ',disciplinas.disciplina,' - ',unidades.nome) AS classe", :joins => "INNER JOIN atribuicaos on classes.id = atribuicaos.classe_id INNER JOIN disciplinas on disciplinas.id = atribuicaos.disciplina_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )
+        render :partial => 'classe'
+    end
   end
 
     def lancar_faltas_diario
