@@ -1,4 +1,4 @@
-<div id="interno2">
+<div id="interno211">
 <% title "FAPEA", :id =>"FAPEA" %>
  <div class="tabs">
    <div id="caixa_titulo">
@@ -17,9 +17,7 @@
   <div class="tabs">
     <% form_remote_tag :url => consulta_conteudo_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <table width="100%" align="center" bgcolor="#DCDCDC" >
-       <tr bgcolor="#F5F5F5">
-             <td colspan="4"><font color="red" size="3"><b><u> ATENÇÃO:</u> Este sistema de controle das atividades desenvolvidas pelos profissionais da educação.</td>
-        </tr>
+
           <tr>
             <td>
               <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Data

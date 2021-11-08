@@ -1,0 +1,62 @@
+
+
+<% if !@conteudos.empty?%>
+ <table border="1" cellspacing="0" cellpadding="1" width="100%" >
+  <% for conteudo in @conteudos %>
+        <tr bgcolor="#DCDCDC" >
+            <td width =" 22%"> <b>&nbsp&nbsp&nbsp Período </b></td>
+            <td width =" 8%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
+            <td width =" 10%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
+            <td><b>&nbsp&nbsp&nbsp Professor</b></td>
+            
+            <!-- <td align="center"width =" 5%"> <b>Validação</b></td>-->
+           <td width =" 5%"> </td>
+        </tr>
+       
+         <tr bgcolor="#C0C0C0" >
+           <td align="left"> De <%= conteudo.inicio.strftime("%d/%m/%Y") %> à  <%= conteudo.fim.strftime("%d/%m/%Y")%></td>
+            <td align="left">&nbsp <%if !conteudo.classe_id.nil? %>
+                                     <%= conteudo.classe.classe_classe%>
+                                    <%else%>
+                                      <%if conteudo.unidade_id == 52%>
+                                         SEDUC
+                                      <%else%>
+                                         MQA
+                                      <%end%>
+                                    <%end%>
+              </td>
+            <td align="left">&nbsp <%if !conteudo.disciplina_id.nil? %>
+                                     <%= conteudo.disciplina.disciplina%>
+                                     <%else%>
+                                      <%= conteudo.professor.obs_interno %>
+                                    <%end%>
+            </td>
+            <td align="left" colspan="2">&nbsp <%= conteudo.professor.nome%> </td>
+            
+         </tr>
+         <tr bgcolor="#F5F5F5">
+           <td align="left" colspan="4">&nbsp <%= conteudo.conteudo%> </td>
+
+
+            <!--<td align="center">&nbsp <%#if conteudo.validacao == 1%> <font color="blue"> VALIDADO </font> <%#else%> <font color="red"> AGUARDANDO </font><%#end%> </td>-->
+           <td valign="top"align="center"> <%#= button_to('Excluir', {:action => "show", :id =>conteudo}, :target => '_blank',:method => "get", :title => "Visualizar") %>
+              <%= link_to image_tag("/stylesheets/images/visualizar1.png"), {:action => "show", :id =>conteudo.id}, :target => '_blank', :title => "Visualizar" %>
+                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao')or current_user.has_role?('direcao_infantil')or current_user.has_role?('direcao_fundamental'))%>
+                     <%= link_to image_tag("/stylesheets/images/editar.png"), {:action => "edit", :id =>conteudo.id}, :target => '_blank', :title => "Visualizar" %>
+                     <%= link_to  image_tag('/stylesheets/images/excluir1.png', :title => 'Excluir'),  { :action => "destroy", :id =>conteudo.id}, :target => '_blank',:confirm => 'Confirma exclusão?', :method => "delete", :title => "Excluir"%>
+                  <%end%>
+           </td>
+         </tr>
+         <tr><td colspan="5"></td>
+         </tr>
+         <%end%>
+    </table>
+<%else%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td ><br/><font size="4" color="red"> NÃO EXISTE LANÇAMENTOS PARA ESTA CLASSE <br/></td>
+
+        </tr>
+    </table>
+
+<%end%>

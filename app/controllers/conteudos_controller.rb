@@ -220,13 +220,13 @@ end
 t=0
     respond_to do |format|
       if @conteudo.update_attributes(params[:conteudo])
-        if @conteudo.validacao == 1
-          @conteudo.validado_por = current_user.login
-          @conteudo.validado_em = Time.now
-          @conteudo.save
-        end
+        #if @conteudo.validacao == 1
+        #  @conteudo.validado_por = current_user.login
+        #  @conteudo.validado_em = Time.now
+        #  @conteudo.save
+        #end
 
-        flash[:notice] = 'Relatório de COnteúdo lançado com sucesso.'
+        flash[:notice] = 'Operação realizada com sucesso.'
         format.html { redirect_to(@conteudo) }
         format.xml  { head :ok }
       else
@@ -241,13 +241,15 @@ t=0
   def destroy
     @conteudo = Conteudo.find(params[:id])
     @conteudo.destroy
-
+t=0
     respond_to do |format|
-      format.html { redirect_to(home_path) }
+      format.html { redirect_to(exclusao_path) }
       format.xml  { head :ok }
     end
   end
+def exclusao
 
+end
 
     def classe_disciplina
        params[:classe_id]
@@ -292,7 +294,7 @@ t=0
                      end
             end
             render :update do |page|
-                page.replace_html 'relatorio', :partial => 'conteudo'
+                page.replace_html 'relatorio', :partial => 'conteudo_completo'
             end
 
     else if params[:type_of].to_i == 1   #data
@@ -384,7 +386,7 @@ t=0
              end
         end
         render :update do |page|
-            page.replace_html 'relatorio', :partial => 'conteudo'
+            page.replace_html 'relatorio', :partial => 'conteudo_completo'
         end
         else  if params[:type_of].to_i == 2
                         session[:cons_data]=0
@@ -449,7 +451,7 @@ t=0
                              end
                         end
                         render :update do |page|
-                            page.replace_html 'relatorio', :partial => 'conteudo'
+                            page.replace_html 'relatorio', :partial => 'conteudo_completo'
                         end
               else if params[:type_of].to_i == 4    #classe
                        session[:disciplina_id]=params[:disciplina_id]
@@ -554,7 +556,7 @@ t=0
                                            w1= session[:cont_classe_id]
                                            w2=session[:disciplina_id]
                                            w3= current_user.professor_id
-                                          @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND disciplina_id=? AND professor_id=?", session[:cont_classe_id],session[:disciplina_id],  current_user.professor_id] , :order => 'classe_id ASC')
+                                          @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND disciplina_id=? AND professor_id=?", session[:cont_classe_id],session[:disciplina_id],  current_user.professor_id] , :order => 'inicio DESC, classe_id ASC')
                                           @conteudos_professor = Conteudo.find(:all, :select => "conteudos.professor_id, count( conteudos.id ) as conta",:joins => "INNER JOIN professors ON conteudos.professor_id = professors.id", :conditions =>  ["classe_id = ? AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id], current_user.professor_id], :group => 'professor_id', :order => 'professors.nome ASC' )
                                           @conteudos_classe = Conteudo.find(:all, :select => "conteudos.classe_id, count( conteudos.id ) as conta",:joins => "INNER JOIN classes ON conteudos.classe_id = classes.id ", :conditions =>  ["classe_id = ? AND disciplina_id= ? AND professor_id=?", session[:cont_classe_id], session[:disciplina_id], current_user.professor_id], :group => 'professor_id', :order => 'classes.classe_classe ASC' )
                                           t=0
@@ -572,7 +574,7 @@ t=0
                          end
                         end
                         render :update do |page|
-                            page.replace_html 'relatorio', :partial => 'conteudo'
+                            page.replace_html 'relatorio', :partial => 'conteudo_completo'
                         end
 
 
@@ -797,7 +799,7 @@ end
             end
             t=0
             render :update do |page|
-                page.replace_html 'relatorio', :partial => 'conteudo_direcao'
+                page.replace_html 'relatorio',:partial => 'conteudo_completo' #:partial => 'conteudo_direcao'
             end
 
     else if params[:type_of].to_i == 1
@@ -885,7 +887,7 @@ t=0
              end
         end
         render :update do |page|
-            page.replace_html 'relatorio', :partial => 'conteudo_direcao'
+            page.replace_html 'relatorio', :partial => 'conteudo_completo'  #:partial => 'conteudo_direcao'
         end
         else  if params[:type_of].to_i == 2
                         session[:cons_data]=0
@@ -950,7 +952,7 @@ t=0
  #                            end
  #                       end
                         render :update do |page|
-                            page.replace_html 'relatorio', :partial => 'conteudo_direcao'
+                            page.replace_html 'relatorio', :partial => 'conteudo_completo'  # :partial => 'conteudo_direcao'
                         end
               else if params[:type_of].to_i == 4
                         w=session[:atuacao]
@@ -966,7 +968,7 @@ t=0
                        end
 
                             render :update do |page|
-                                page.replace_html 'relatorio', :partial => 'conteudo_direcao'
+                                page.replace_html 'relatorio',  :partial => 'conteudo_completo'  #:partial => 'conteudo_direcao'
                             end
 
 

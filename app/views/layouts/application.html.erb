@@ -720,6 +720,11 @@ display: none;
                          <% if current_user.has_role?('admin') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('SEDUC') or current_user.has_role?('professor_fundamental') %>
                                 <li><%= link_to "Compens.Ausência", lancamento_aulas_compensadas_notas_path%></li>
                          <%end%>
+
+                         <li><%= link_to "Conteúdos ",consultas_conteudos_path %></li>
+
+
+
                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
                                  <!--<li><a>Conteúdos Minist.</a>
                                      <ul>
@@ -803,7 +808,7 @@ display: none;
                        <%end%>
                    <%end%>
 
-                         <li><a class="item-primary" href="#;">Editar</a>
+   <!--                      <li><a class="item-primary" href="#;">Editar</a>
                            <ul>
                               <% if (current_user.unidade_id != 60)  %>
                                 <li><%= link_to "Professor",editar_conteudos_path %></li>
@@ -814,12 +819,12 @@ display: none;
                                   <% if (current_user.unidade_id == 52 or current_user.unidade_id == 60 or current_user.unidade_id  == 53  )%>
                                             <li><%= link_to "Mãos Que Acolhem",editar_mqa_conteudos_path %>  </li>
                                   <%end%>
-                              <!--   <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
+                               <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
                                    <li><%#= link_to "Validação",validacao_conteudos_path %></li>
-                                 <%#end%> -->
+                                 <%#end%> 
 
                            </ul>
-                         </li>
+                       </li> -->
 
 <!--
                  <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>

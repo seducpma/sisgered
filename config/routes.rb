@@ -100,6 +100,8 @@ ActionController::Routing::Routes.draw do |map|
   map.classe_diario '/classe_diario', :controller => 'classesdiarios', :action => 'classe_diario'
   map.impressao_diario '/impressao_diario', :controller => 'classesdiarios', :action => 'impressao_diario'
 
+  map.exclusao '/exclusao', :controller => 'conteudos', :action => 'exclusao'
+
 
 
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
