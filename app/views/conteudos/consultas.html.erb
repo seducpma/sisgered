@@ -20,7 +20,7 @@
 
           <tr>
             <td>
-              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Data
+              <!--<a href="#" class="filtro"><%#= radio_button_tag(:type_of, "1") %></a>Data-->
               <a href="#" class="filtro_fapeac"><%= radio_button_tag(:type_of, "4") %></a>Classe <b><font color =" blue">*</font></b>
  
               <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('secretaria_fundamental')%>
@@ -34,7 +34,7 @@
           </tr>
 
          <tr>
-             <td colspan="2"><div class="consulta" style="display:none"> <%= render "consulta_data" %> </div>
+             <td colspan="2"><div class="consulta" style="display:none"> <%#= render "consulta_data" %> </div>
              <div class="consulta_classe_fapea" style="display:none"> <%= render "consulta_classe" %> </div>
              <div class="consulta_fapea" style="display:none"> <%= render "consulta_unidade" %> </div>
              <div class="consulta_nome_fapea" style="display:none"> <%= render "consulta_professor" %> </div>

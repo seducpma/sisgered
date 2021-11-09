@@ -4,6 +4,7 @@
 
 <table width="100%"   >
    <tr>
+
      <td  widht="10%" align="right"><font size="2"><b>Classe:</b></font>
           <%= select_tag :classe_id, options_for_select(@classe_ano.collect { |ff| [ff.classe_unidade, ff.id] }.insert(0, '--Selecionar--')) %>
                             <%= observe_field 'classe_id',
@@ -12,7 +13,13 @@
                           :update => "classe_disciplina" %>
     </td>
      <td  widht="60%" align="right"><div id="classe_disciplina"> <b>Disciplina:</b><font color="red">&nbsp&nbsp&nbsp&nbsp<b></u>&nbsp Selecionar  primeiro a classe </b></font> </div></td>
+     <td align= "right"><font size="2"><b class="label_busca3">Datas:  Inicial:</b></font>&nbsp
+                <%= datepicker_tag(:conteudo, :inicio,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
 
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               <font size="2"><b class="label_busca3">Final:</b></font>&nbsp
+                <%= datepicker_tag(:conteudo, :fim,{:size => 10},{ :dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+     </td>
           <td> <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
 
      </td>
