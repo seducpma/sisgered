@@ -46,17 +46,21 @@
                      <%= link_to  image_tag('/stylesheets/images/excluir1.png', :title => 'Excluir'),  { :action => "destroy", :id =>conteudo.id}, :target => '_blank',:confirm => 'Confirma exclusão?', :method => "delete", :title => "Excluir"%>
                   <%end%>
            </td>
-         </tr>
-         <tr><td colspan="5"></td>
-         </tr>
          <%end%>
     </table>
 <%else%>
 <table border="1" cellspacing="0" cellpadding="1" width="100%" >
         <tr bgcolor="#DCDCDC" >
-            <td ><br/><font size="4" color="red"> NÃO EXISTE LANÇAMENTOS PARA ESTA CLASSE <br/></td>
+            <td ><br/><font size="4" color="red"> NÃO EXISTE LANÇAMENTOS PARA ESTA CLASSE NO PERIODO DEFINIDO<br/></td>
 
         </tr>
     </table>
 
 <%end%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td colspan="5"align="left" ><%=  button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_diario_conteudo_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b>  </td>
+             
+
+        </tr>
+    </table>

@@ -1,0 +1,69 @@
+        <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+            <tr  style="font-size: 6px">
+                <th colspan="2" align="CENTER"><font size ="2"><center><b>CONTUEÚDO PROGRAMATICO</b></center></font> </th>
+            </tr>
+        </table>
+<% if !@conteudos.empty?%>
+ <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+  <% for conteudo in @conteudos %>
+        <tr style="border-color: white" style="height: 6px" >
+            <th width =" 22%"><font size =1"> <b> Período </b></font></th>
+            <th width =" 8%"><font size =1"> <b> Classe</b></font></th>
+            <th width =" 10%"><font size =1"><b>Disciplina</b></font></th>
+            <th><font size =1"><b>Professor</b></font></th>
+
+        </tr>
+
+         <tr style="font-size: 6px">
+           <th align="left"> De <%= conteudo.inicio.strftime("%d/%m/%Y") %> à  <%= conteudo.fim.strftime("%d/%m/%Y")%></th>
+            <th align="left">&nbsp <%if !conteudo.classe_id.nil? %>
+                                     <%= conteudo.classe.classe_classe%>
+                                    <%else%>
+                                      <%if conteudo.unidade_id == 52%>
+                                         SEDUC
+                                      <%else%>
+                                         MQA
+                                      <%end%>
+                                    <%end%>
+              </th>
+            <th align="left">&nbsp <%if !conteudo.disciplina_id.nil? %>
+                                     <%= conteudo.disciplina.disciplina%>
+                                     <%else%>
+                                      <%= conteudo.professor.obs_interno %>
+                                    <%end%>
+            </th>
+            <th align="left" colspan="2">&nbsp <%= conteudo.professor.nome%> </th>
+
+         </tr>
+       <tr style="font-size: 6px">
+           <td align="left" colspan="4">&nbsp <%= conteudo.conteudo%> </td>
+         </tr>
+
+         <%end%>
+    </table>
+<%else%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr style="border-color: white" style="height: 6px" >
+             <th <br/><font size="4" color="red"> NÃO EXISTE LANÇAMENTOS PARA ESTA CLASSE NO PERIODO DEFINIDO<br/></th>
+
+        </tr>
+    </table>
+
+<%end%>
+
+    <table  width="100%"style="border-color: white" >
+        <tr style="font-size: 6px"style="border-color: white">
+           <th align="left"   style="border-color: white">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Carimbo da U.E <br/>
+           </th>
+
+            <th align="RIGHT"   style="border-color: white"> <b>Americana</b>, <%= Time.now.strftime("%d de %B de %Y") %><br/></th>
+        </tr>
+        <tr style="font-size: 6px"style="border-color: white">
+            <th align="right"   style="border-color: white"> <br/><br/><br/>
+                ________________________________ <br/>
+                Professor &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+        </tr>
+
+    </table>
+

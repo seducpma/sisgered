@@ -124,6 +124,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_relatorio_mapa3 '/impressao_relatorio_mapa3', :controller => 'atribuicaos', :action => 'impressao_lencol3'
   map.impressao_relatorio_mapa4 '/impressao_relatorio_mapa4', :controller => 'atribuicaos', :action => 'impressao_lencol4'
   map.impressao_relatorio_mapa5 '/impressao_relatorio_mapa5', :controller => 'atribuicaos', :action => 'impressao_lencol5'
+  
   map.impressao_nota_final '/impressao_nota_final', :controller => 'historicos', :action => 'impressao_nota_final'
   map.impressao_lancamentos '/impressao_lancamentos', :controller => 'atribuicaos', :action => 'impressao_lancamentos'
   map.impressao_alteracao_lancamentos '/impressao_alteracao_lancamentos', :controller => 'notas', :action => 'impressao_alteracao_lancamentos'
@@ -165,6 +166,7 @@ ActionController::Routing::Routes.draw do |map|
   map.editar_classe_aluno '/editar_classe_aluno', :controller => 'classes', :action => 'editar_classe_aluno'
   map.editar_atribuicao_classe '/editar_atribuicao_classe', :controller => 'atribuicaos', :action => 'editar_atribuicao_classe'
   map.editar_conteudo '/editar_conteudo', :controller => 'conteudos', :action => 'editar_conteudo'
+  map.impressao_diario_conteudo '/impressao_diario_conteudo', :controller => 'conteudos', :action => 'impressao_diario_conteudo'
   map.editar_direcao_conteudo '/editar_direcao_conteudo', :controller => 'conteudos', :action => 'editar_direcao_conteudo'
   map.editar_mqa_conteudo '/editar_mqa_conteudo', :controller => 'conteudos', :action => 'editar_mqa_conteudo'
   map.validacao_conteudo '/validacao_conteudo', :controller => 'conteudos', :action => 'validacao_conteudo'
