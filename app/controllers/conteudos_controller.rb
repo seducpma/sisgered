@@ -1127,9 +1127,20 @@ t=0
                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo'))
                             if session[:disciplina_id]=='--Todas--'
                               @conteudos = Conteudo.find(:all, :conditions =>  ["classe_id = ? AND (inicio >=? AND (fim <=?)) ", session[:cont_classe_id],session[:dataI], session[:dataF]], :order => 'inicio DESC, classe_id ASC')
+                              @unidade =Unidade.find(:all, :conditions =>  ["id = ?", @conteudos[0].unidade_id])
+                                  a=session[:nome_unidade] = @unidade[0].nome
+                                  session[:ano_letivo]= @conteudos[0].ano_letivo
+                                  session[:dataIx]=session[:dataI][6,2]+session[:dataI][3,2]+session[:dataI][0,4]
+                                  session[:dataFx]=session[:dataF][6,2]+session[:dataI][3,2]+session[:dataF][0,4]
                             else
 
                               @conteudos = Conteudo.find(:all, :conditions =>  ["classe_id = ? AND disciplina_id= ?  AND (inicio >=? AND (fim <=?))", session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF]], :order => 'inicio DESC, classe_id ASC')
+                              @unidade =Unidade.find(:all, :conditions =>  ["id = ?", @conteudos[0].unidade_id])
+                                  a=session[:nome_unidade] = @unidade[0].nome
+                                  session[:ano_letivo]= @conteudos[0].ano_letivo
+                                  session[:dataIx]=session[:dataI][6,2]+session[:dataI][3,2]+session[:dataI][0,4]
+                                  session[:dataFx]=session[:dataF][6,2]+session[:dataI][3,2]+session[:dataF][0,4]
+                                  
                             end
                         else if (current_user.has_role?('professor_infantil')  or current_user.has_role?('direcao_infantil'))
                                 w1=current_user.unidade_id
@@ -1145,8 +1156,18 @@ t=0
                                        w3= current_user.professor_id
                                    if current_user.has_role?('professor_infantil')
                                         @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND professor_id=? AND (inicio >=? AND (fim <=?))", session[:cont_classe_id],  current_user.professor_id, session[:dataI], session[:dataF]] , :order => 'inicio DESC, classe_id ASC')
+                                        @unidade =Unidade.find(:all, :conditions =>  ["id = ?", @conteudos[0].unidade_id])
+                                            a=session[:nome_unidade] = @unidade[0].nome
+                                            session[:ano_letivo]= @conteudos[0].ano_letivo
+                                            session[:dataIx]=session[:dataI][6,2]+session[:dataI][3,2]+session[:dataI][0,4]
+                                            session[:dataFx]=session[:dataF][6,2]+session[:dataI][3,2]+session[:dataF][0,4]
                                    else
                                         @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND (inicio >=? AND (fim <=?))", session[:cont_classe_id], session[:dataI], session[:dataF]] , :order => 'inicio DESC, classe_id ASC')
+                                        @unidade =Unidade.find(:all, :conditions =>  ["id = ?", @conteudos[0].unidade_id])
+                                            a=session[:nome_unidade] = @unidade[0].nome
+                                            session[:ano_letivo]= @conteudos[0].ano_letivo
+                                            session[:dataIx]=session[:dataI][6,2]+session[:dataI][3,2]+session[:dataI][0,4]
+                                            session[:dataFx]=session[:dataF][6,2]+session[:dataI][3,2]+session[:dataF][0,4]
 
 
                                    end
@@ -1157,22 +1178,41 @@ t=0
                                 w2=current_user.professor_id
                                 if session[:disciplina_id]=='--Todas--'
                                       @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND disciplina_id=?  AND professor_id=? AND (inicio >=? AND (fim <=?))", session[:cont_classe_id], session[:disciplina_id],current_user.professor_id, session[:dataI], session[:dataF]] , :order => 'inicio DESC, classe_id ASC')
-                                      t=0
+                                    @unidade =Unidade.find(:all, :conditions =>  ["id = ?", @conteudos[0].unidade_id])
+                                        a=session[:nome_unidade] = @unidade[0].nome
+                                        session[:ano_letivo]= @conteudos[0].ano_letivo
+                                        session[:dataIx]=session[:dataI][6,2]+session[:dataI][3,2]+session[:dataI][0,4]
+                                        session[:dataFx]=session[:dataF][6,2]+session[:dataI][3,2]+session[:dataF][0,4]
                                  else if current_user.has_role?('professor_fundamental')
                                         if current_user.unidade_id == 1   # professor da tempo de viver
                                            w1= session[:cont_classe_id]
                                            w3= current_user.professor_id
                                           @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ?  AND professor_id=? AND (inicio >=? AND (fim <=?))", session[:cont_classe_id],  current_user.professor_id, session[:dataI], session[:dataF]] , :order => 'classe_id ASC')
+                                          @unidade =Unidade.find(:all, :conditions =>  ["id = ?", @conteudos[0].unidade_id])
+                                              a=session[:nome_unidade] = @unidade[0].nome
+                                              session[:ano_letivo]= @conteudos[0].ano_letivo
+                                              session[:dataIx]=session[:dataI][6,2]+session[:dataI][3,2]+session[:dataI][0,4]
+                                              session[:dataFx]=session[:dataF][6,2]+session[:dataI][3,2]+session[:dataF][0,4]
 
                                         else
                                            w1= session[:cont_classe_id]
                                            w2=session[:disciplina_id]
                                            w3= current_user.professor_id
                                           @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND disciplina_id=? AND professor_id=? AND (inicio >=? AND (fim <=?))", session[:cont_classe_id],session[:disciplina_id],  current_user.professor_id, session[:dataI], session[:dataF]] , :order => 'inicio DESC, classe_id ASC')
-                                          t=0
+                                            @unidade =Unidade.find(:all, :conditions =>  ["id = ?", @conteudos[0].unidade_id])
+                                                a=session[:nome_unidade] = @unidade[0].nome
+                                                session[:ano_letivo]= @conteudos[0].ano_letivo
+                                                session[:dataIx]=session[:dataI][6,2]+session[:dataI][3,2]+session[:dataI][0,4]
+                                                session[:dataFx]=session[:dataF][6,2]+session[:dataI][3,2]+session[:dataF][0,4]
                                       end
                                        else
                                         @conteudos = Conteudo.find(:all, :joins =>:classe, :conditions =>  ["classe_id = ? AND disciplina_id=? AND (inicio >=? AND (fim <=?))", session[:cont_classe_id],session[:disciplina_id], session[:dataI], session[:dataF]] , :order => 'inicio DESC, classe_id ASC')
+                                        @unidade =Unidade.find(:all, :conditions =>  ["id = ?", @conteudos[0].unidade_id])
+                                            a=session[:nome_unidade] = @unidade[0].nome
+                                            session[:ano_letivo]= @conteudos[0].ano_letivo
+                                            session[:dataIx]=session[:dataI][6,2]+session[:dataI][3,2]+session[:dataI][0,4]
+                                            session[:dataFx]=session[:dataF][6,2]+session[:dataI][3,2]+session[:dataF][0,4]
+                                            
                                       end
                                 end
 
