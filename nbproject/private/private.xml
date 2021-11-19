@@ -41,7 +41,7 @@
         </file>
         <file>
             <url>app/controllers/historicos_controller.rb</url>
-            <line>205</line>
+            <line>206</line>
         </file>
         <file>
             <url>app/views/atividades/avaliacao_consulta.erb</url>

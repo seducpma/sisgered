@@ -441,6 +441,7 @@ end
                 session[:un_end_fone]=matricula.unidade.fone
             end
             @classe= Classe.find(:all,:conditions =>['id = ?', session[:classe]])
+            t=0
             @classe.each do |classe|
                 session[:unidade]=classe.unidade_id
                 session[:classe_id] = classe.id
@@ -524,6 +525,8 @@ t=0
 
                 @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status = "MATRICULADO" or status = "TRANSFERENCIA" or status = "*REMANEJADO")', params[:classe][:id]], :order =>'classe_num')
                 @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
+                a=session[:num_classe]= @classe[0].classe_classe[0,1].to_i
+                t=0
                 @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?', params[:classe][:id]])
                 @total_mediasN= Nota.find(:all, :select => " atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=? AND disciplinas.curriculo = 'B'",  params[:classe][:id]])
                 @total_mediasF= Nota.find(:all, :select => " atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5",:joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id", :conditions => ["notas.ativo is NULL AND atribuicaos.classe_id=?",  params[:classe][:id]])
@@ -562,6 +565,7 @@ t=0
                 session[:total_faltas4]=(session[:total_faltas4]/@total_mediasF.count.to_f).round(1)
                 session[:total_notas5]=(session[:total_notas5]/@total_mediasN.count.to_f).round(1)
                 session[:total_faltas5]=(session[:total_faltas5]/@total_mediasF.count.to_f).round(1)
+
                 render :update do |page|
                     page.replace_html 'relatorio', :partial => 'relatorio_classe'
                 end
@@ -966,8 +970,12 @@ t=0
     def classes_ano
         if  (current_user.unidade_id == 52) 
             @classe_ano = Classe.find(:all, :joins => "INNER JOIN  unidades  ON  unidades.id = classes.unidade_id",:select => "classes.id, CONCAT(classes.classe_classe, ' - ',unidades.nome) AS classe_classe", :conditions => ['classes.classe_ano_letivo = ?' , params[:ano_letivo] ], :order => 'classes.classe_classe ASC')
+           # a=session[:num_classe]= @classe_ano[0].classe_classe[0,1].to_i
+           # t=0
         else
            @classe_ano = Classe.find(:all, :conditions=> ['classe_ano_letivo =? and unidade_id=?' , params[:ano_letivo], current_user.unidade_id],  :order => 'classe_classe ASC'    )
+           #a=session[:num_classe]= @classe_ano[0].classe_classe[0,1].to_i
+           #            t=0
         end
         # @ano_boletim =   Classe.find(:all,:select => 'distinct(classe_ano_letivo) as ano',  :conditions =>["classe_ano_letivo !=?", Time.now.year],:order => 'classe_ano_letivo DESC')
         render :partial => 'selecao_classe'
