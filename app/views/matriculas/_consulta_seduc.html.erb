@@ -14,7 +14,7 @@
        
         <tr>
           <td><b>Procedência: </b></td>
-          <td><%= f.collection_select :procedencia, @unidade_procedencia1, :nome, :nome, :include_blank => ' -- Selecione -- ' %>
+          <td><%= f.collection_select :procedencia, @unidade_procedencia1, :id, :nome, :include_blank => ' -- Selecione -- ' %>
                      <%= observe_field 'matricula_procedencia',
                           :with => :matricula_procedencia,
                           :url => { :action => 'unidade_transferencia' },

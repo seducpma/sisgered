@@ -629,11 +629,13 @@ t=0
 
 
     def unidade_transferencia
-        session[:unidade_ant_id] = Unidade.find_by_nome(params[:matricula_procedencia])
+        #a=session[:unidade_ant_id] = Unidade.find_by_nome(params[:matricula_procedencia])
+        a=session[:unidade_ant_id]= params[:matricula_procedencia]
         #@alunos = Aluno.find(:all, :joins =>"inner join matriculas on alunos.id = matriculas.aluno_id and matriculas.status != 'TRANSFERIDO'" , :conditions =>['alunos.unidade_id =? AND alunos.aluno_status is null AND matriculas.ano_letivo =?',  session[:unidade_ant_id], Time.now.year], :order => 'aluno_nome' )
         @alunos = Aluno.find(:all, :select => "alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y'), ' | ', cl.classe_classe) AS aluno_nome_dtn", :joins =>"inner join matriculas mat on alunos.id=mat.aluno_id LEFT JOIN classes cl on mat.classe_id=cl.id" , :conditions =>['alunos.unidade_id =? AND mat.ano_letivo =?',  session[:unidade_ant_id], Time.now.year], :order => 'alunos.aluno_nome')
         @unidade_para = Unidade.find(:all, :conditions => ['id =?', current_user.unidade_id], :order => 'nome ASC')
         @classes = Classe.find(:all, :conditions =>['unidade_id =?',  current_user.unidade_id], :order => 'classe_classe')
+        t=0
         render :partial => 'selecao_alunos'
     end
 
