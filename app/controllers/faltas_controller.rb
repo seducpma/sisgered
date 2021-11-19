@@ -266,10 +266,11 @@ end
 
 def relatorio_classe_falta
         w=session[:classe_id] = params[:classe][:id]
-            session[:classe_id] = params[:classe][:id]
+            a=session[:classe_id] = params[:classe][:id]
             @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe][:id]])
             @classe.each do |classe|
-                session[:num_classe]= classe.classe_classe[0,1].to_i
+                a=session[:num_classe]= classe.classe_classe[0,1].to_i
+                t=0
              end
            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?  and ano_letivo=?', session[:classe_id],  Time.now.year])
            @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')
@@ -285,6 +286,7 @@ def impressao_relatorio_faltas_classe
         @classe = Classe.find(:all,:conditions =>['id = ?', session[:classe_id]])
             @classe.each do |classe|
                 session[:num_classe]= classe.classe_classe[0,1].to_i
+                t=0
              end
            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ?  and ano_letivo=?', session[:classe_id],  Time.now.year])
            @matriculas_classe = Matricula.find(:all,:conditions =>['classe_id = ?',session[:classe_id]], :order => 'classe_num ASC')

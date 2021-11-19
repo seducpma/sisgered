@@ -43,7 +43,8 @@ class HistoricosController < ApplicationController
 
         @classe = Classe.find(:all,:conditions =>['id = ?', params[:classe_resultado_final][:id]])
         @classe.each do |classe|
-            session[:num_classe]= classe.classe_classe[0,1].to_i
+            a= session[:num_classe]= classe.classe_classe[0,1].to_i
+            t=0
         end
         @atribuicao_classe = Atribuicao.find(:all,:joins => "INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id",:conditions =>['classe_id = ? AND ativo=?', params[:classe_resultado_final][:id],0],:order =>'disciplinas.ordem ASC' )
         @matriculas = Matricula.find(:all,:conditions =>['classe_id = ?', params[:classe_resultado_final][:id]], :order => 'classe_num ASC')
