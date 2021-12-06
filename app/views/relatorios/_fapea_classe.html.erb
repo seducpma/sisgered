@@ -1,7 +1,9 @@
 <table>
     <tr>
-        <td align="right"><font color ="red"><b> Imprimir todas as FAPEAs da classe ===> </b> </font></td>
-        <td width ="5%" align="right" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_fapeaT_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>        
+        <td align="right"></td>
+        <td width ="5%" align="right" ><%= button_to 'Imprimir (Todas)', onclick="javascript:MM_openBrWindow('#{impressao_fapeaT_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
+        <td width ="5%" align="right" ><%= button_to 'Imprimir (1º Semestre)', onclick="javascript:MM_openBrWindow('#{impressao_fapeaT1_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
+        <td width ="5%" align="right" ><%= button_to 'Imprimir (2º Semestre)', onclick="javascript:MM_openBrWindow('#{impressao_fapeaT2_path}', 'impressao', 'scrollbars=yes');", :title => "Imprimir" %> </td>
     </tr>
 </table>
   <% for matricula in @matriculas %>

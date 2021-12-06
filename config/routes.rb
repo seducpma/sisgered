@@ -139,6 +139,7 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_fapeaT '/impressao_fapeaT', :controller => 'relatorios', :action => 'impressao_fapeaT'
   map.impressao_fapeaT1 '/impressao_fapeaT1', :controller => 'relatorios', :action => 'impressao_fapeaT1'
   map.impressao_fapeaT2 '/impressao_fapeaT2', :controller => 'relatorios', :action => 'impressao_fapeaT2'
+
   map.impressao_faltas '/impressao_faltas', :controller => 'aulas_faltas', :action => 'impressao_faltas'
   map.impressao_faltas_professor '/impressao_faltas_professor', :controller => 'aulas_faltas', :action => 'impressao_faltas_professor'
   map.impressao_faltas_funcionario '/impressao_faltas_funcionario', :controller => 'aulas_faltas', :action => 'impressao_faltas_funcionario'
