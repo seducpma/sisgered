@@ -74,7 +74,8 @@
                 </tr>
 
                 <tr><td colspan="5"> <hr/></td></tr>
-                <%if session[:impressao]==1%>
+                <%#if session[:impressao]==1%>
+
                 <tr>
 
                   <% if current_user.has_role?('admin')  or current_user.has_role?('direcao_infantil')%>
@@ -85,7 +86,7 @@
                   <td  align="left" ><%= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>relatorio}, :title => "Imprimir esta FAPEA"%></td> </td>
                </tr>
                
-               <%end %>
+               <%#end %>
              </table>
            </fieldset>
           <%end%>
