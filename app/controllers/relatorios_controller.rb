@@ -270,7 +270,10 @@ def consulta_fapea
                          w= session[:classe_id]=params[:classe_id]
                          #w1= session[:semestre]= params[:semestre]
                          session[:tipo]=0
-                           @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? AND (status != "REMANEJADO")', params[:classe_id]], :order => 'classe_num ASC')
+                         w=params[:classe_id]
+                         t=0
+                           @matriculas = Matricula.find(:all,:conditions =>['classe_id = ? ', params[:classe_id]], :order => 'classe_num ASC')
+
                            #@classe = Atribuicao.find(:all, :joins => [:classe, :disciplina], :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['classe_id=?', @matriculas[0].classe_id])
                            @classe = Atribuicao.find(:all, :joins => "INNER JOIN `classes` ON `classes`.id = `atribuicaos`.classe_id INNER JOIN `disciplinas` ON `disciplinas`.id = `atribuicaos`.disciplina_id INNER JOIN matriculas ON classes.id = matriculas.classe_id", :select=> 'atribuicaos.classe_id, classes.classe_classe, disciplinas.disciplina AS disc', :conditions => ['atribuicaos.classe_id=?', session[:classe_id]])
                            @professors = Professor.find(:all, :select => 'nome', :joins => "INNER JOIN atribuicaos ON professors.id = atribuicaos.professor_id INNER JOIN classes ON classes.id = atribuicaos.classe_id", :conditions => ['atribuicaos.classe_id=?', @classe[0].classe_id])
