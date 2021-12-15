@@ -5,11 +5,11 @@
 </table>
 
   <% for matricula in @matriculas %>
-      <%  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =? AND created_at >  '2021-07-30 00:00:00' ", matricula.aluno_id, Time.now.year])%>
+      <%  @relatorios = Relatorio.find(:all, :conditions => ["aluno_id =? and ano_letivo =? AND created_at >  '2021-07-30 00:00:00' and created_at.strftime('%m').to_i > 8", matricula.aluno_id, Time.now.year])%>
             <% for relatorio in @relatorios %>
               <table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
                <% bimestre = relatorio.created_at.strftime("%m").to_i %>
-               <% if  ( bimestre > 8 ) %>
+               <%# if  ( bimestre > 8 ) %>
                 <tr  style="border-color: white">
                   <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
                   <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
@@ -86,7 +86,7 @@
                   </td>
                 </tr>
               </table>
-          <%end%>
+          <%#end%>
       <div style="page-break-after: always"></div>
 
     <%end%>
