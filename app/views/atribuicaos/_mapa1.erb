@@ -136,7 +136,7 @@
                         <%else%>
                             <%if (cont_dis+1)<=@notas_alu.size%>
                                 <% if @notas_alu[cont_dis].disciplina.curriculo=='D'%>
-                                         <%if (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="INGLÊS") or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="FILOSOFIA")%>
+                                          <%if (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="INGLÊS") or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="FILOSOFIA") or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="HISTÓRIA/FILOSOFIA")  or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="ED.PARA FILOSOF.")%>
                                               <%session[:nota_disciplina]=@notas_alu[cont_dis].nota1 %>
                                          <%else%>
                                               <%session[:nota_disciplina]=''%>

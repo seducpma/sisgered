@@ -114,7 +114,8 @@
                         <%end%> <!-- 108 -->
                     <%else%>
                         <%if (cont_dis+1)<=@notas_alu.size%>
-                            <%if @notas_alu[cont_dis].atribuicao.disciplina.disciplina=="PORTUGUÊS"%>
+                            <%#if @notas_alu[cont_dis].atribuicao.disciplina.disciplina=="LINGUA PORTUGUESA"%>
+                         <%if @notas_alu[cont_dis].atribuicao.disciplina.id==1%>
                                 <%nota_port=@notas_alu[cont_dis].nota5%>
                             <%end%> <!-- 116 -->
                         <%end%>
@@ -134,7 +135,7 @@
                         <%else%>
                             <%if (cont_dis+1)<=@notas_alu.size%>
                                 <% if @notas_alu[cont_dis].disciplina.curriculo=='D'%>
-                                         <%if (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="INGLÊS") or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="FILOSOFIA")%>
+                                         <%if (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="INGLÊS") or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="FILOSOFIA") or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="HISTÓRIA/FILOSOFIA")  or (@notas_alu[cont_dis].atribuicao.disciplina.disciplina=="ED.PARA FILOSOF.")%>
                                               <%session[:nota_disciplina]=@notas_alu[cont_dis].nota5 %>
                                          <%else%>
                                               <%session[:nota_disciplina]=''%>
