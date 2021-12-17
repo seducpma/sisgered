@@ -53,9 +53,9 @@
                 </tr>
                  <tr  style="border-color: white">
                    <td align="left" valign="top" style="border-color: white"><b>Professor(a):</b> </td>
-                   <td colspan="3" style="border-color: white"><% for professor in @professors %>
-                                      <%= professor.nome %> <br/>
-                                   <%end%>
+                   <td colspan="3" style="border-color: white"><%# for professor in @professors %><%=h relatorio.professor.nome%>
+                                      <%#= professor.nome %> 
+                                   <%#end%>
                    </td>
                 </tr>
                  <tr  style="border-color: white">
