@@ -400,7 +400,7 @@ t=0
                         end
               else if params[:type_of].to_i == 4    #classe
                        session[:view_classe] = 1
-                       session[:disciplina_id]=params[:disciplina_id]
+                       a= session[:disciplina_id]=params[:disciplina_id]
                         session[:cons_data]=0
                         session[:cont_classe_id]=params[:classe_id]
                         session[:dataI]=params[:faltasaluno][:inicioC][6,4]+'-'+params[:faltasaluno][:inicioC][3,2]+'-'+params[:faltasaluno][:inicioC][0,2]
@@ -408,12 +408,15 @@ t=0
                         session[:mes]=params[:faltasaluno][:fimC][3,2]
                         session[:anoI]=params[:faltasaluno][:inicioC][6,4]
                         session[:anoF]=params[:faltasaluno][:fimC][6,4]
-                        session[:dataINI]=session[:dataI][8,2]+'-'+session[:dataI][5,2]+'-'+session[:dataI][0,4]
-                        session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]
-                         @classe = Classe.find(:all,:conditions =>['id = ?', session[:cont_classe_id]])
+                       a1= session[:dataINI]=session[:dataI][8,2]+'-'+session[:dataI][5,2]+'-'+session[:dataI][0,4]
+                       a2=  session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]
+
+          t=0
+                       b=  @classe = Classe.find(:all,:conditions =>['id = ?', session[:cont_classe_id]])
                         classeAEE = @classe[0].classe_classe[0,3]
-
-
+c=session[:cont_classe_id]
+d=session[:disciplina_id]
+t=
                         if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo'))
                                      @faltasalunos = Faltasaluno.find(:all, :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? ", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id]] , :order => 'classe_id ASC')
                                      @faltasalunosdiasT = Faltasaluno.find(:all, :select=>  'distinct(data) ,aluno_id, 	matricula_id, 	atribuicao_id, 	classe_id,  	disciplina_id , faltas ,	ano_letivo  ', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? ", session[:dataI], session[:dataF],session[:cont_classe_id], session[:disciplina_id]] , :order => 'classe_id ASC')

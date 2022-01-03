@@ -180,6 +180,51 @@
                     </tr>
                     
               </table>
+       <hr/>
+       <font size='4'> <center>            <b>TOTALIZAÇÃO</b>     </center>
+       <hr/>
+
+            <table class="tab_dados" border="1" frame="box" rules="all" width="30%" style="font-size: small">
+                <tr bgcolor="#F5F5F5">
+                    <td width ="78%" colspan="2">&nbsp&nbsp<b> Alunos: </b> </td>
+                    <td> <b> Período: </b> <%=  cont_dias%> &nbsp&nbsp  dias de aulas  dos dias &nbsp&nbsp  <%=  session[:dataINI]=session[:dataI][8,2]+'-'+session[:dataI][5,2]+'-'+session[:dataI][0,4] %> à <%= session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]%>     </td>
+               </tr>
+             <tr bgcolor="#F5F5F5">
+              <td colspan="13"> <div id="atividades_aluno">
+                    <% @alunos_matriculados.each do |alunos_mat|%>
+                        <tr bgcolor="#F5F5F5">
+                           <td width ="4%" align="center"><%= alunos_mat.classe_num %>  </td>
+                           <td width ="40%" align="left"><%= alunos_mat.aluno_nome %>
+                                                      <%  if  alunos_mat.situacao.present?%>
+                                                         <%  if  alunos_mat.situacao =="TRANSFERIDO"%>
+                                                              <font color ="red" size="1"> (Transferido) </font>
+                                                          <%else if  alunos_mat.situacao =="TRANSFERENCIA"%>
+                                                                 <font color ="blue" size="1"> (Transferência) </font>
+                                                                 <%else if alunos_mat.situacao =="REMANEJADO"%>
+                                                                          <font color ="green" size="1"> (Remanejado) </font>
+                                                                       <%else if  alunos_mat.situacao =="*REMANEJADO"%>
+                                                                                <font color ="green"size="1" size="1"> (*Remanejado) </font>
+                                                                             <%else if alunos_mat.situacao =="ABANDONO"%>
+                                                                                      <font color ="red" size="1"> (Abandono)</font>
+                                                                                  <%end%>
+                                                                           <%end%>
+                                                                       <%end%>
+                                                                 <%end%>
+                                                          <%end%>
+                                                      <%end%>
+                            </td>
+                            <td><%= numero= Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF]]).count %> &nbsp&nbsp dias faltados no período</td>
+                        </tr>
+                    <%end%>
+              </table>
+
+
+       ======
+
+
+
+
+
 </div>
      <%else%>
         <fieldset>

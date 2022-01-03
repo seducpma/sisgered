@@ -255,6 +255,8 @@ ActionController::Routing::Routes.draw do |map|
   map.manual_direcao'/manual_direcao', :controller => 'sessions', :action => 'manual_direcao'
   map.manual_mqa'/manual_mqa', :controller => 'sessions', :action => 'manual_mqa'
 
+   map.totalizacao '/totalizacao', :controller => 'faltasalunos', :action => 'totalizacao'
+
 
   map.aviso_exclusao '/aviso_exclusao', :controller => 'atribuicaos', :action => 'aviso_exclusao'
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
