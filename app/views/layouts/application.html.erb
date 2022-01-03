@@ -721,22 +721,22 @@ display: none;
                                 <li><%= link_to "Compens.Ausência", lancamento_aulas_compensadas_notas_path%></li>
                          <%end%>
 
-                         <li><%= link_to "Conteúdos ",consultas_conteudos_path %></li>
+                        <!-- <li><%= link_to "Conteúdos ",consultas_conteudos_path %></li>-->
 
 
 
                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
-                                 <!--<li><a>Conteúdos Minist.</a>
+                                 <li><a>Conteúdos Minist.</a>
                                      <ul>
-                                         <#% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
-                                             <#% if current_user.has_role?('admin') or  current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
+                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
+                                             <% if current_user.has_role?('admin') or  current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
                                               <li><%= link_to "Lançamentos",new_conteudoprogramatico_path %></li>
-                                            <%#end%>
+                                            <%end%>
                                                <li><%= link_to "Consultas ",consultas_conteudoprogramaticos_path %></li><!-- Professores fundamental-->
-                                            <%#end%>
-                                <!--     </ul>
+                                            <%end%>
+                                     </ul>
                                   </li>
-                                  -->
+                                  
 
                                  <li><a>Frequência</a>
                                      <ul>
@@ -782,79 +782,80 @@ display: none;
 
 
 <!--================== RELATÓRIOS++++++==-->
- <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao')or current_user.has_role?('professor_fundamental')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_fundamental'))%>
-          <li><a class="item-primary" href="#;"> RELATÓRIOS</a>
-            <ul>
-<!--                <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
-                             <li><%= link_to "Faltas Inf.",lancar_faltas_inf_faltas_path %></li>
-                         <%# if (current_user.unidade_id == 60) and  ( current_user.has_role?('professor_infantil'))%>
 
-                         <%#else%>
-                            <li><%= link_to "Conteúdo Inf.",new_conteudo_path %></li>
+    <!--       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao')or current_user.has_role?('professor_fundamental')or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_fundamental'))%>
+                    <li><a class="item-primary" href="#;"> RELATÓRIOS</a>
+    -->                  <ul>
+          <!--                <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
+                                       <li><%= link_to "Faltas Inf.",lancar_faltas_inf_faltas_path %></li>
+                                   <%# if (current_user.unidade_id == 60) and  ( current_user.has_role?('professor_infantil'))%>
 
-                        <%#end%>
+                                   <%#else%>
+                                      <li><%= link_to "Conteúdo Inf.",new_conteudo_path %></li>
 
-                    <%#end%>
--->
-                    
-                    
-                    <%if current_user.unidade_id==60 %>
-                         <li><%= link_to "Cadastrar",new_mqa_conteudos_path %></li>
-                    <%else%>
-                        <%if current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infatil') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') %>
-                            <li><%= link_to "Cadastrar",new_direcao_conteudos_path %></li>
-                       <%else%>
-                            <li><%= link_to "Cadastrar",new_conteudo_path %></li>
-                       <%end%>
-                   <%end%>
+                                  <%#end%>
 
-   <!--                      <li><a class="item-primary" href="#;">Editar</a>
-                           <ul>
-                              <% if (current_user.unidade_id != 60)  %>
-                                <li><%= link_to "Professor",editar_conteudos_path %></li>
-                               <%end%>
-                                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
-                                   <li><%= link_to "Pedagogo/Direção",editar_direcao_conteudo_path %></li>
-                                  <%end%>
-                                  <% if (current_user.unidade_id == 52 or current_user.unidade_id == 60 or current_user.unidade_id  == 53  )%>
-                                            <li><%= link_to "Mãos Que Acolhem",editar_mqa_conteudos_path %>  </li>
-                                  <%end%>
-                               <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
-                                   <li><%#= link_to "Validação",validacao_conteudos_path %></li>
-                                 <%#end%> 
+                              <%#end%>
+          -->
+     <!--
 
-                           </ul>
-                       </li> -->
-
-<!--
-                 <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
-                   <li><%= link_to "Editar",editar_direcao_conteudo_path %></li>
-                 <%# else %>
-                      <li><%= link_to "Editar",editar_conteudos_path %></li>
-                  <%#end%>
--->
-                  <li><a class="item-primary" href="#;">Consultar</a>
-                      <ul>
-                         <% if (current_user.unidade_id != 60)  %>
-                              <li><%= link_to "Professor",consultas_conteudos_path %></li>
-                         <%end%>
-                          
-                               <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
-                                  <li><%= link_to "Pedagogo/Direçao.",consultas_direcao_conteudos_path %></li>
-                                <%end%>
-
-                             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')  or current_user.unidade_id == 60  )%>
-                                   <li><%= link_to "Mãos Que Acolhem",consultas_mqa_conteudos_path %></li>
+                              <%if current_user.unidade_id==60 %>
+                                   <li><%= link_to "Cadastrar",new_mqa_conteudos_path %></li>
+                              <%else%>
+                                  <%if current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infatil') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') %>
+                                      <li><%= link_to "Cadastrar",new_direcao_conteudos_path %></li>
+                                 <%else%>
+                                      <li><%= link_to "Cadastrar",new_conteudo_path %></li>
+                                 <%end%>
                              <%end%>
-                           </ul>
-                     </li>
+     -->
+             <!--                      <li><a class="item-primary" href="#;">Editar</a>
+                                     <ul>
+                                        <% if (current_user.unidade_id != 60)  %>
+                                          <li><%= link_to "Professor",editar_conteudos_path %></li>
+                                         <%end%>
+                                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
+                                             <li><%= link_to "Pedagogo/Direção",editar_direcao_conteudo_path %></li>
+                                            <%end%>
+                                            <% if (current_user.unidade_id == 52 or current_user.unidade_id == 60 or current_user.unidade_id  == 53  )%>
+                                                      <li><%= link_to "Mãos Que Acolhem",editar_mqa_conteudos_path %>  </li>
+                                            <%end%>
+                                         <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
+                                             <li><%#= link_to "Validação",validacao_conteudos_path %></li>
+                                           <%#end%>
 
-                </ul>
-         </li>
+                                     </ul>
+                                 </li> -->
+
+          <!--
+                           <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
+                             <li><%= link_to "Editar",editar_direcao_conteudo_path %></li>
+                           <%# else %>
+                                <li><%= link_to "Editar",editar_conteudos_path %></li>
+                            <%#end%>
+          -->
+        <!--                    <li><a class="item-primary" href="#;">Consultar</a>
+                                <ul>
+                                   <% if (current_user.unidade_id != 60)  %>
+                                        <li><%= link_to "Professor",consultas_conteudos_path %></li>
+                                   <%end%>
+
+                                         <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
+                                            <li><%= link_to "Pedagogo/Direçao.",consultas_direcao_conteudos_path %></li>
+                                          <%end%>
+
+                                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')  or current_user.unidade_id == 60  )%>
+                                             <li><%= link_to "Mãos Que Acolhem",consultas_mqa_conteudos_path %></li>
+                                       <%end%>
+                                     </ul>
+                               </li>
+
+                          </ul>
+                   </li>
 
 
-      <%end%>
-
+                <%end%>
+        -->
 
 <!--                     <li><a class="item-primary" href="#;">MANUAIS</a>
                          <ul>
