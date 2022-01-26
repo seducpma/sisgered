@@ -24,7 +24,7 @@
               </td> 
          <tr>
            <td> <b>Professor(a):</b> </td>
-           <td> <%= collection_select :professor, :id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+           <td> <%= collection_select :professor, :id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %><font color ="red" size ="3" id="pisca1"><b> <=  * PREENCHIMENTO OBRIGADOTÓRIO *</b></font>
                    <%= observe_field 'professor_id',
                          :update => "classe_diario",
                          :url    => { :action => 'classe' },

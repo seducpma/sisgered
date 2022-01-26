@@ -155,13 +155,13 @@
                                                              <%f=1%>
                                                              <%@faltasalunosdiasT.each do |falatasdiasT|%>
                                                                  <% if falatasdiasT.aluno_id == alunos_mat.id  %>
-                                                                   <font color ="darkblue"><b>  P </b> (<%= falatasdiasT.faltas%>)</font>
+                                                                   <font color ="red"><b>  F </b> (<%= falatasdiasT.faltas%>)</font>
                                                                    <%f=0%>
                                                                    <%break%>
                                                                  <%end%>
                                                              <%end%>
                                                              <%  if f==1 %>
-                                                                <font color ="red">  F 
+                                                                <font color ="darkblue"> P
                                                              <%  end %>
 
 
@@ -187,7 +187,7 @@
             <table class="tab_dados" border="1" frame="box" rules="all" width="30%" style="font-size: small">
                 <tr bgcolor="#F5F5F5">
                     <td width ="78%" colspan="2">&nbsp&nbsp<b> Alunos: </b> </td>
-                    <td> <b> Período: </b> <%=  cont_dias%> &nbsp&nbsp  dias de aulas  dos dias &nbsp&nbsp  <%=  session[:dataINI]=session[:dataI][8,2]+'-'+session[:dataI][5,2]+'-'+session[:dataI][0,4] %> à <%= session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]%>     </td>
+                    <td colspan="2"> <b> Período:  <%=  cont_dias%> &nbsp&nbsp  dias de aulas  de &nbsp&nbsp  <%=  session[:dataINI]=session[:dataI][8,2]+'-'+session[:dataI][5,2]+'-'+session[:dataI][0,4] %> à <%= session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]%> </b>    </td>
                </tr>
              <tr bgcolor="#F5F5F5">
               <td colspan="13"> <div id="atividades_aluno">
@@ -213,13 +213,23 @@
                                                           <%end%>
                                                       <%end%>
                             </td>
-                            <td><%= numero= Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF]]).count %> &nbsp&nbsp dias faltados no período</td>
+                            <td><b><%= numero = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF]]).count %></b> &nbsp&nbsp dias faltados
+                            </td>
+                            <td>
+                            <% faltas = 0 %>
+                            <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF]]) %>
+                            <% @totalFaltas.each do |totalfaltas|%>
+                              <% faltas= totalfaltas.faltas + faltas%>
+                            <%end%>
+
+                              &nbsp&nbsp <b><%= faltas %> </b>faltas
+                            </td>
                         </tr>
                     <%end%>
               </table>
 
 
-       ======
+
 
 
 

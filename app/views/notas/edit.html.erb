@@ -12,14 +12,11 @@
                         <tr bgcolor="#F5F5F5">
                             <td colspan="4"><font  size="3"color="red"><u> <b>ATENÇÃO:</b></u></font></td>
                         </tr>
-                        <tr bgcolor="#F5F5F5">
-                            <td colspan="6"><font size ="2" color="red"><b>1) O LANÇAMENTO DE NOTAS E FALTAS  PODERÁ SER EXECUTA SOMENTE UMA ÚNICA <br/> &nbsp&nbsp&nbsp&nbsp VEZ PELO PROFESSOR.</b></font></td>
+                           <tr bgcolor="#F5F5F5">
+                            <td colspan="6"><font size ="2" color="red"><b>1) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR  LANÇAMENTO JÁ  EXECUTADO PELO PROFESSOR.</b></font></b></td>
                         </tr>
                         <tr bgcolor="#F5F5F5">
-                            <td colspan="6"><font size ="2" color="red"><b>2) SOMENTE A DIREÇÃO DA UNIDADE ESCOLAR PODE ALTERAR  LANÇAMENTO JÁ <br/> &nbsp&nbsp&nbsp&nbsp EXECUTADO PELO PROFESSOR.</b></font></b></td>
-                        </tr>
-                        <tr bgcolor="#F5F5F5">
-                            <td colspan="6"><font size ="2" color="red"><b>3) OBSERVAÇÕES PODEM SER LANÇADAS DIVERSAS  VEZES, PARA LANÇAR CLIQUE NO <br/> &nbsp&nbsp&nbsp&nbsp LINK  <%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></td>
+                            <td colspan="6"><font size ="2" color="red"><b>2) OBSERVAÇÕES PODEM SER LANÇADAS DIVERSAS  VEZES, PARA LANÇAR CLIQUE NO  LINK  <%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %></td>
                                             </tr>
                                             <tr bgcolor="#F5F5F5">
                                                 <td colspan="4"><%session[:new2_aluno_nome]= @nota.aluno.aluno_nome%>
@@ -254,11 +251,13 @@
                                             </tr>
 
                                             <tr>
-                                                <td width="2%" valign="top">
-                                                    <font size ="1"color ="red"><b>Para lançar observações <br/> clique no botão Observações</b></font><br/>
+                                                <td width="2%" valign="top" colspan="4">
+                                                    <font size ="1"color ="red"><b>Para lançar observações clique no botão Observações</b></font><br/>
                                                     <%= link_to image_tag("/stylesheets/images/observa.png", :size => "100x26"), "#inline_form_observacao", :class =>"inline" %>
 
                                                 </td>
+                                            </tr>
+                                            <tr>
                                                 <td colspan="4" valign="top"> <%if !@nota.obs1.nil?%>
                                                         <b>1. </b><%=h @nota.obs1%> - <b>Data:</b> <%= @nota.created_at.strftime("%d/%m/%Y") %>
                                                     <%end%><br/>
