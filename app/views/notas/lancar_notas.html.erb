@@ -18,8 +18,18 @@
                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= collection_select :classe, :id, @classes, :id, :classe_classe, :include_blank => ' -- Selecione -- ' %> <br/>
               <b class="label_busca3">Disciplina:</b></font>
                &nbsp&nbsp<%= select_tag :disciplina, options_for_select(@disciplinas1.collect { |ff| [ff.disciplina, ff.disciplina] }.insert(0, '--Selecionar--')) %></td>
-            <td align="right"> <%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
-          </tr>
+           </tr>
+
+           <tr>
+             <td >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                 &nbsp&nbsp  <%= radio_button_tag(:type_of, "1") %>1º Bimestre <b></b>
+                 &nbsp&nbsp  <%= radio_button_tag(:type_of, "2") %>2º Bimestre <b></b>
+                 &nbsp&nbsp  <%= radio_button_tag(:type_of, "3") %>3º Bimestre <b></b>
+                 &nbsp&nbsp  <%= radio_button_tag(:type_of, "4") %>4º Bimestre <b></b>
+             </td>
+           <td >     &nbsp&nbsp     &nbsp&nbsp    &nbsp&nbsp<%= submit_tag "Visualizar", :class => "btn_filtrar" %></td>
+           </tr>
+
        </table>
        </fieldset>
       <fieldset>

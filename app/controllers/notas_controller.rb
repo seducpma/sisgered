@@ -46,6 +46,9 @@ class NotasController < ApplicationController
     end
 
     def new
+
+
+
         cont=1
         @ano_letivo=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
         @serie=[1,2,3,4,5,6,7,8,9]
@@ -118,6 +121,10 @@ class NotasController < ApplicationController
    end
 
 
+
+
+
+
     def observacao
         @atribuicao = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', session[:classe_id], session[:professor_id], session[:disc_id]])
         @nota = Nota.find(params[:id])
@@ -140,6 +147,8 @@ class NotasController < ApplicationController
     end
   
     def create
+
+
         @nota = Nota.new(params[:nota])
         if session[:flagx]!=1
             if  @nota.classe>0
@@ -536,37 +545,69 @@ w5=@nota.faltas5
 
 
     def lancar_notas_alunos
-        if ( params[:disciplina].present?)
-            params[:disciplina]
-            @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
-            for dis in @disci
-                session[:disc_id] = dis.id
-                session[:disc] = dis.nucleo_comum
-            end
-            session[:classe_id] = params[:classe][:id]
-            session[:professor_id]= params[:professor][:id]
-            session[:current_user_unidade_id]= current_user.unidade_id
-            @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =? AND ano_letivo=?', params[:classe][:id], params[:professor][:id], session[:disc_id],Time.now.year])
-            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year])
-            for atrib in @atribuicao_classe
-                session[:atrib_id] = atrib.id
-            end
-            @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?" ,  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
-            @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",  params[:classe][:id], params[:professor][:id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
-            for classe in @classe
-                session[:num_classe]= classe.classe_classe[0,1].to_i
-            end
-            if @notas[0].nil?
-                render :update do |page|
-                    page.replace_html 'notas', :partial => 'aviso'
-                end
-            else
-                session[:aluno_id]= @notas[0].aluno_id
-                render :update do |page|
-                    page.replace_html 'notas', :partial => 'aulas'
-                end
-            end
-        end
+     if params[:type_of].to_i == 1
+             if ( params[:disciplina].present?)
+                  params[:disciplina]
+                  @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+                  for dis in @disci
+                      session[:disc_id] = dis.id
+                      session[:disc] = dis.nucleo_comum
+                  end
+                  session[:classe_id] = params[:classe][:id]
+                  session[:professor_id]= params[:professor][:id]
+                  session[:current_user_unidade_id]= current_user.unidade_id
+                  @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =? AND ano_letivo=?', params[:classe][:id], params[:professor][:id], session[:disc_id],Time.now.year])
+                  @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=? AND ano_letivo=?', params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year])
+                  for atrib in @atribuicao_classe
+                      session[:atrib_id] = atrib.id
+                  end
+                  @notas1 = Nota.find(:all, :joins => [:atribuicao,:aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?" ,  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year ],:order => 'alunos.aluno_nome ASC')
+                  @notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo=?",  params[:classe][:id], params[:professor][:id], session[:disc_id],Time.now.year ],:order => 'matriculas.classe_num ASC')
+                  for classe in @classe
+                      session[:num_classe]= classe.classe_classe[0,1].to_i
+                  end
+                 ww1=session[:dataI]= BIM1INI  #params[:aulas][:inicioIA][6,4]+'-'+params[:aulas][:inicioIA][3,2]+'-'+params[:aulas][:inicioIA][0,2]
+                 ww2=session[:dataF]= BIM1FIM #params[:aulas][:fimIA][6,4]+'-'+params[:aulas][:fimIA][3,2]+'-'+params[:aulas][:fimIA][0,2]
+                 ww3=session[:dataII]=BIM1INIP #params[:aulas][:inicioIA][0,2]+'/'+params[:aulas][:inicioIA][3,2]+'/'+params[:aulas][:inicioIA][6,4]
+                 ww4=session[:dataFF]= BIM1FIMP #params[:aulas][:fimIA][0,2]+'/'+params[:aulas][:fimIA][3,2]+'/'+params[:aulas][:fimIA][6,4]
+
+               if  current_user.has_role?('professor_fundamental')
+               w1 = session[:cont_classe_id]
+               w2= session[:disciplina_id]
+               w3=  session[:professor_id]
+               @faltasalunos = Faltasaluno.find(:all, :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
+               @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
+               session[:total_aulas]= @faltasalunosdias.count
+      t=0
+              # @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND professor_id=?",   session[:dataI], session[:dataF], session[:cont_classe_id], current_user.professor_id] , :order => 'data DESC, classe_id ASC')
+              #      if classeAEE == 'AEE'
+              #       @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "atendimento_aees.classe_num , alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome,  atendimento_aees.status as situacao"  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO')", session[:cont_classe_id], Time.now.year  ] )
+              #         session[:AEE]=1
+              #      else
+              #         @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , matriculas.classe_num , alunos.aluno_nome	 ,CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero, matriculas.status as situacao"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO') ", session[:cont_classe_id], Time.now.year  ],:order => 'classe_num ASC' )
+              #         session[:AEE]=0
+              #      end
+              #       t=0
+              end
+
+
+
+                  if @notas[0].nil?
+                      render :update do |page|
+                          page.replace_html 'notas', :partial => 'aviso'
+                      end
+                  else
+                      session[:aluno_id]= @notas[0].aluno_id
+                      render :update do |page|
+                          page.replace_html 'notas', :partial => 'aulas'
+                      end
+                  end
+           end
+        end    #end  1º bim
+
+
+
+
     end
 
 

@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  
+
+
+
+
+
    before_filter :set_current_user
 
    ## LEMBRETE <++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -304,3 +308,22 @@ AVALIACAO= {' Recebeu on_line'=> 'R-Ol',
 ATIVIDADETIPO= {'NÃO AVALIATIVA'=> 1,
             'AVALIATIVA' => 0  ,
            }
+
+
+BIM1INI ='2022-02-07'
+BIM1FIM ='2022-04-29'
+BIM2INI ='2022-05-02'
+BIM2FIM ='2022-07-08'
+BIM3INI ='2022-08-01'
+BIM3FIM ='2022-09-30'
+BIM4INI ='2022-10-03'
+BIM4FIM ='2022-12-21'
+
+BIM1INIP ='07/02/2022'
+BIM1FIMP ='29/04/2022'
+BIM2INIP ='02/05/2022'
+BIM2FIMP ='08/07/2022'
+BIM3INIP ='01/08/2022'
+BIM3FIMP ='30/09/2022'
+BIM4INIP ='03/102022'
+BIM4FIMP ='21/12/2022'

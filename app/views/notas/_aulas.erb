@@ -1,8 +1,9 @@
 <table width="100%">
   <tr>
-  <b><font size="3"> <center>LANÇAMENTO DE AULAS MINISTRADAS PARA CÁLCULO DA FREQÜÊNCIA DO ALUNOS </center><br/></font></b>
+  <br/><b><font size="3"> <center>LANÇAMENTO DE AULAS MINISTRADAS PARA CÁLCULOS DE DIAS LETIVOS E FREQÜÊNCIA DO ALUNOS </center><br/></font></b>
   </tr>
 </table>
+
 <%if @classe.present?%>
 <fieldset>
     <table width="100%">
@@ -28,9 +29,9 @@
           <% cont=1 %>
           <% cont1=1 %>
           <td colspan="4">  <% for atrib in @atribuicao_classe %>
-              <table width="100%">
+            <table width="100%">
                 <tr bgcolor="#F5F5F5" >
-                  <td align="left" width="50%"> <%=h atrib.professor.nome%></td>
+                  <td align="left" width="32%"> <%=h atrib.professor.nome%></td>
                   <td align="left"width="10%"><b> Disciplina:</b></td>
                   <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
                   <% session[:disciplina] = atrib.disciplina.disciplina %>
@@ -48,8 +49,15 @@
             <%end%>
           </td>
         </tr>
+        <tr>
+          <td colspan="2"> <b> Bimestre: de &nbsp&nbsp </b> <%=session[:dataII]%>  <b>&nbsp&nbsp  à</b>&nbsp&nbsp  <%=session[:dataFF]%> </td>
+          <td colspan="2"> <b>Total de dias letivos do bimestre:   <%=  session[:total_aulas] %></b>  </td>
+        </tr>
       </table>
   </fieldset>
+
+
+
 <table   width="100%">
                 <tr>
                     <td colspan="5" align="right"><br/>
@@ -57,7 +65,7 @@
                                 <%if   (session[:disc]== 1)%>
                                     <%= link_to image_tag("/stylesheets/images/lancar1.png"), voltar_lancamento_notas_path %>&nbsp&nbsp&nbsp
                                 <% else %>
-                                    <%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :controller => :atribuicaos, :id => session[:atrib]}, :method => "get", :title => "Editarxxxx" %>&nbsp&nbsp&nbsp
+                                    <%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :controller => :atribuicaos, :id => session[:atrib]}, :method => "get", :title => "Lançar" %>&nbsp&nbsp&nbsp
                                 <%end%>
                            <% else %>
                                <%= link_to image_tag("/stylesheets/images/lancar1.png"),{:action => "edit", :controller => :atribuicaos, :id => session[:atrib]}, :method => "get", :title => "Editarzzzz" %>&nbsp&nbsp&nbsp

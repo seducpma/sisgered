@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :atendimento_aees
   map.resources :conteudoprogramaticos, :collection => { :consultas =>:get,  :aviso=>:get}
-  map.resources :faltasalunos, :collection => { :consultas =>:get,  :aviso=>:get}
+  map.resources :faltasalunos, :collection => { :consultas =>:get,  :aviso=>:get,  :aviso2=>:get}
   map.resources :diario_classes, :collection => { :faltas=>:get}
   map.resources :atividade_avaliacaos
   map.resources :atividades, :collection => { :aviso=>:get, :consultas=> :get,  :avaliacao=>:get}
@@ -90,6 +90,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :impressao_geral => :get, :status => :get, :update => :put}
 
 
+  #map.importa1bimaulsas'/ importa1bimaulsas', :controller => 'atribuicaos', :action => 'importa1bimaulsas'
+  map.importar_aula_1bim '/importar_aula_1bim', :controller => 'atribuicaos', :action => 'importar_aula_1bim'
+
+
+
   map.relatorio_falta_classe '/relatorio_falta_classe', :controller => 'faltas', :action => 'relatorio_falta_classe'
   map.relatorio_classe_falta '/relatorio_classe_falta', :controller => 'faltas', :action => 'relatorio_classe_falta'
   map.relatorio_falta_unidade '/relatorio_falta_unidade', :controller => 'faltas', :action => 'relatorio_falta_unidade'
@@ -176,6 +181,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.mapa_classe '/mapa_classe', :controller => 'atividades', :action => 'mapa_classe'
   map.mapa_professor '/mapa_professor', :controller => 'atividades', :action => 'mapa_professor'
+
+
+
+
 
   map.consulta_professor_eventual '/consulta_professor_eventual', :controller => 'eventuals', :action => 'consultas'
   map.consulta_unidade '/consulta_unidade', :controller => 'unidades', :action => 'consulta_unidade'

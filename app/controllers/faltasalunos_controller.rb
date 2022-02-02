@@ -53,6 +53,7 @@ end
 
  def faltas
    session[:falta]= params[:falta]
+
    
  end
 
@@ -63,74 +64,82 @@ end
 
  def alunos_faltas_falta
 
-
-
-      if params[:aluno_ids].present?
-          @alunos_faltaram=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
-      end
-      w1=session[:professor_id]
-      w2=session[:classe_id]
-      w3=session[:disciplina_id]
-     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id=? and disciplina_id =?", session[:professor_id], Time.now.year , session[:classe_id], session[:disciplina_id]])
+     @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data =?  AND classe_id = ? AND professor_id=?",   session[:dia], session[:cont_classe_id], current_user.professor_id] , :order => 'data DESC, classe_id ASC')
      t=0
-     if @atribuicao.empty?
-        respond_to do |format|
-                    #flash[:notice] = 'CADASTRADO COM SUCESSO.'
-                    format.html { redirect_to(aviso_faltasalunos_path) }
-                    format.xml  { head :ok }
-                end
-     else
-
-
-     if  !@alunos_faltaram.nil?
-         for aluno in @alunos_faltaram
-              @faltasaluno = Faltasaluno.new
-               @matricula= Matricula.find(:all, :conditions=> ['aluno_id=? and classe_id=?', aluno.id, session[:classe_id]])   # precisa também verificar o estado da matricula
-               @faltasaluno.aluno_id = aluno.id
-               if session[:AEE]==0
-                  @faltasaluno.matricula_id=@matricula[0].id
-                  @faltasaluno.unidade_id=@matricula[0].unidade_id
-               end
-
-               @faltasaluno.atribuicao_id=@atribuicao[0].id
-               @faltasaluno.professor_id=session[:professor_id]
-               @faltasaluno.disciplina_id=session[:disciplina_id]
-               @faltasaluno.user_id=current_user.id
-               @faltasaluno.classe_id=session[:classe_id]
-               @faltasaluno.ano_letivo = Time.now.year
-               @faltasaluno.data=session[:dia]
-               @faltasaluno.faltas=session[:falta]
-               if @faltasaluno.faltas.nil?
-                   @faltasaluno.faltas = 1
-               end
-               @faltasaluno.obs=session[:obser]
-               @faltasaluno.save
-               @faltasaluno = Faltasaluno.find(:last)
-         end
-     else
-         @faltasaluno = Faltasaluno.new
-
-               @faltasaluno.atribuicao_id=@atribuicao[0].id
-               @faltasaluno.professor_id=session[:professor_id]
-               @faltasaluno.disciplina_id=session[:disciplina_id]
-               @faltasaluno.user_id=current_user.id
-               @faltasaluno.unidade_id=current_user.unidade_id
-               @faltasaluno.classe_id=session[:classe_id]
-               @faltasaluno.ano_letivo = Time.now.year
-               @faltasaluno.data=session[:dia]
-               @faltasaluno.faltas=session[:falta]
-               if @faltasaluno.faltas.nil?
-                    @faltasaluno.faltas = 1
-               end
-               #@faltasaluno.faltas=1
-               @faltasaluno.obs=session[:obser]
-               @faltasaluno.save
-               @faltasaluno = Faltasaluno.find(:last)
-
+    if !@faltasalunosdias.empty?
+     respond_to do |format|
+                          #flash[:notice] = 'CADASTRADO COM SUCESSO.'
+                          format.html { redirect_to(aviso2_faltasalunos_path) }
+                          format.xml  { head :ok }
      end
-  end
 
 
+    else
+          if params[:aluno_ids].present?
+              @alunos_faltaram=  Aluno.find(params[:aluno_ids], :order => 'aluno_nome ASC')
+          end
+          w1=session[:professor_id]
+          w2=session[:classe_id]
+          w3=session[:disciplina_id]
+          @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id=? and disciplina_id =?", session[:professor_id], Time.now.year , session[:classe_id], session[:disciplina_id]])
+          t=0
+           if @atribuicao.empty?
+              respond_to do |format|
+                          #flash[:notice] = 'CADASTRADO COM SUCESSO.'
+                          format.html { redirect_to(aviso_faltasalunos_path) }
+                          format.xml  { head :ok }
+                      end
+           else
+
+           if  !@alunos_faltaram.nil?
+               for aluno in @alunos_faltaram
+                    @faltasaluno = Faltasaluno.new
+                     @matricula= Matricula.find(:all, :conditions=> ['aluno_id=? and classe_id=?', aluno.id, session[:classe_id]])   # precisa também verificar o estado da matricula
+                     @faltasaluno.aluno_id = aluno.id
+                     if session[:AEE]==0
+                        @faltasaluno.matricula_id=@matricula[0].id
+                        @faltasaluno.unidade_id=@matricula[0].unidade_id
+                     end
+
+                     @faltasaluno.atribuicao_id=@atribuicao[0].id
+                     @faltasaluno.professor_id=session[:professor_id]
+                     @faltasaluno.disciplina_id=session[:disciplina_id]
+                     @faltasaluno.user_id=current_user.id
+                     @faltasaluno.classe_id=session[:classe_id]
+                     @faltasaluno.ano_letivo = Time.now.year
+                     @faltasaluno.data=session[:dia]
+                     @faltasaluno.faltas=session[:falta]
+                     if @faltasaluno.faltas.nil?
+                         @faltasaluno.faltas = 1
+                     end
+                     @faltasaluno.obs=session[:obser]
+                     @faltasaluno.save
+                     @faltasaluno = Faltasaluno.find(:last)
+               end
+           else
+               @faltasaluno = Faltasaluno.new
+
+                     @faltasaluno.atribuicao_id=@atribuicao[0].id
+                     @faltasaluno.professor_id=session[:professor_id]
+                     @faltasaluno.disciplina_id=session[:disciplina_id]
+                     @faltasaluno.user_id=current_user.id
+                     @faltasaluno.unidade_id=current_user.unidade_id
+                     @faltasaluno.classe_id=session[:classe_id]
+                     @faltasaluno.ano_letivo = Time.now.year
+                     @faltasaluno.data=session[:dia]
+                     @faltasaluno.faltas=session[:falta]
+                     if @faltasaluno.faltas.nil?
+                          @faltasaluno.faltas = 1
+                     end
+                     #@faltasaluno.faltas=1
+                     @faltasaluno.obs=session[:obser]
+                     @faltasaluno.save
+                     @faltasaluno = Faltasaluno.find(:last)
+
+           end
+        end
+
+    end
 
 
 

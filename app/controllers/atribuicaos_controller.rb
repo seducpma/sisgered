@@ -13,10 +13,19 @@ class AtribuicaosController < ApplicationController
         end
     end
 
-    def show
-        @atribuicao = Atribuicao.find(params[:id])
 
-        respond_to do |format|
+
+ def  importar_aula_1bim
+    t=0
+end
+
+
+
+
+    def show
+      t=0
+        @atribuicao = Atribuicao.find(params[:id])
+         respond_to do |format|
             format.html # show.html.erb
             format.xml  { render :xml => @atribuicao }
         end
@@ -66,6 +75,7 @@ class AtribuicaosController < ApplicationController
             #@notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
 
     end
+
 
 
 
@@ -261,11 +271,13 @@ end
     def lancar_notas_alunos_atribuicaos
         if ( params[:disciplina].present?)
             @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+            session[aulas_disciplina]=params[:disciplina]
             for dis in @disci
                 session[:disc_id] = dis.id
             end
             session[:classe_id] = params[:classe][:id]
             @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+
             @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
             @notas = Nota.find(:all, :joins => [:atribuicao, :aluno], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND disciplina_id=? AND notas.ativo=1",  params[:classe][:id], params[:professor][:id], session[:disc_id]],:order => 'alunos.aluno_nome ASC')
             @alunos3 = Aluno.find(:all, :joins => "INNER JOIN  matriculas  ON  alunos.id=matriculas.aluno_id  INNER JOIN classes ON classes.id=matriculas.classe_id", :conditions =>['classes.id = ?', params[:classe][:id]], :order => 'aluno_nome')
