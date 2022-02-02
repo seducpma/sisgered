@@ -4,7 +4,7 @@
    <%#@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND relatorios.ano_letivo =?', Time.now.year],:order => 'alunos.aluno_nome ASC')%>
 <%else%>
     <%if  current_user.has_role?('secretaria_infantil') or   current_user.has_role?('direcao_infantil') or  current_user.has_role?('pedagogo')%>
-      <%#@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=?', current_user.unidade_id, Time.now.year  ],:order => 'alunos.aluno_nome')%>
+      <%@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=?', current_user.unidade_id, Time.now.year  ],:order => 'alunos.aluno_nome')%>
         <%@atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", current_user.professor_id, Time.now.year ])%>
           <%  cont_cl=0%>
             <%for atribuicao in @atribuicao%>
@@ -35,7 +35,7 @@
 
 
 
-         <%#@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=? AND relatorios.professor_id=?', current_user.unidade_id, Time.now.year, current_user.professor_id  ],:order => 'alunos.aluno_nome')%>
+         <%@alunosRel = Relatorio.find(:all, :select => 'distinct(alunos.aluno_nome), alunos.id', :joins => :aluno,  :conditions =>['alunos.aluno_status is null AND alunos.unidade_id =? AND relatorios.ano_letivo=? AND relatorios.professor_id=?', current_user.unidade_id, Time.now.year, current_user.professor_id  ],:order => 'alunos.aluno_nome')%>
        <%end%>
 
    <%end%>

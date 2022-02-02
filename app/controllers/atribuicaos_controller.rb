@@ -49,17 +49,18 @@ end
 
 
     def edit
+
         if session[:flag_edit_atribuicao] == 1
             @atribuicao_anterior = Atribuicao.find(:all, :conditions=>['id =?', (params[:id])])
+
             session[:disciplina_id]=  @atribuicao_anterior[0].disciplina_id
             session[:disciplina_nome]=  @atribuicao_anterior[0].disciplina.disciplina
             session[:professora_id]=  @atribuicao_anterior[0].professor_id
             session[:professor_nome]=  @atribuicao_anterior[0].professor.nome
             @atribuicao = Atribuicao.find(params[:id])
-            t=0
+
 
         else
-
             @atribuicao = Atribuicao.find(params[:id])
             @notas = Nota.find(:all, :conditions => ["atribuicao_id = ? AND aluno_id = ? AND notas.ano_letivo=?", session[:atrib_id],  session[:aluno_id],Time.now.year ])
             if current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_infantil')
