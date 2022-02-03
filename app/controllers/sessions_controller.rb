@@ -66,7 +66,9 @@ class SessionsController < ApplicationController
     send_file("#{RAILS_ROOT}/public/documentos/mqa.pdf" , :type=>"pdf")
   end
 
-
+   def inicio_2022
+    send_file("#{RAILS_ROOT}/public/documentos/SISGERED-2022.pdf" , :type=>"pdf")
+  end
 
 
 protected

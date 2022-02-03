@@ -263,6 +263,7 @@ ActionController::Routing::Routes.draw do |map|
   map.manual_professor'/manual_professor', :controller => 'sessions', :action => 'manual_professor'
   map.manual_direcao'/manual_direcao', :controller => 'sessions', :action => 'manual_direcao'
   map.manual_mqa'/manual_mqa', :controller => 'sessions', :action => 'manual_mqa'
+  map.inicio_2022'/inicio_2022', :controller => 'sessions', :action => 'inicio_2022'
 
    map.totalizacao '/totalizacao', :controller => 'faltasalunos', :action => 'totalizacao'
 
