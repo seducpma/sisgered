@@ -20,7 +20,8 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
 
-
+         self.current_user.ultimo_acesso= Time.now
+         self.current_user.save
         redirect_back_or_default(home_path)
         flash[:notice] = "BEM VINDO AO SISGERED."
     else
