@@ -55,21 +55,37 @@
                     <td  colspan="2"><b>Observações:</b><%= f.text_field :obs, :size => 60 %>
                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Jornada Semanal: </b><%= f.text_field :jornada_sem, :size =>5 %></td>
                    </tr>
-                   <tr>
+                    <tr>
                      <td colspan="2"  >
                        <fieldset><legend><font  size=2><b> Desligamento </b></font></legend>
                           <table>
                                <tr>
-                                 <td colspan="2"><b>Desligado:&nbsp&nbsp </b>SIM <%= :desligado %> &nbsp&nbsp em <%= f.date_select(:data_desligado, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 10)) %>
-                                  &nbsp&nbsp Motivo:  <%= f.text_field :motivo, :size =>45%>
+                                 <td colspan="2"><b>Desligado:&nbsp&nbsp <%if @professor.desligado == 1 %> SIM <%= f.check_box :desligado,  :checked => true %>
+                                                                              &nbsp&nbsp em <%= f.date_select(:data_desligado, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 10)) %>
+                                                                              &nbsp&nbsp Motivo:  <%= f.text_field :motivo, :size =>40%><br/>
+                                                                               
+
+                                                                          <%else%>  NÃO <%= f.check_box :desligado,  :checked => true %><br/>
+                                                                                   &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp SIM <%=  f.check_box :desligado%>
+                                                                                   &nbsp&nbsp em <%= f.date_select(:data_desligado, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 10)) %>
+                                                                                   &nbsp&nbsp Motivo:  <%= f.text_field :motivo, :size =>40%><br/>
+
+
+
+                                                                          <%end%>
+
+
 
                                  </td>
                                </tr>
                            </table>
-                          </fieldset>  
+                          </fieldset>
 
                      </td>
                    </tr>
+
+                   
+
                 </table>
 
 
