@@ -603,84 +603,16 @@ display: none;
               </li>
            <%end%>
 
-            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
-            <li><span class="divider divider-vert" ></span></li>
+            
 
-
- <!-- LNAÇAMENTO novo==============-->
-                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_fundamental') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')or current_user.has_role?('professor_fudamental'))%>
-                <li><a class="item-primary" href="#;">LANÇAMENTOS</a>
-                       <ul style="width:108px;">
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil'))%>
-                     <li><%= link_to "Atas",new_ata_path %></li>
-                  <%end%>
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('professor_fundamental'))%>
-                     <li><%= link_to "Alterações",lancamentos_notas_notas_path %></li>
-                  <%end%>
-
-                 <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil'))%>
-                     <li><%= link_to "Faltas Inf.",lancar_faltas_inf_faltas_path %></li>
-                     <% if (current_user.unidade_id == 60) and  ( current_user.has_role?('professor_infantil'))%>
-
-                     <%else%>
-                        <li><%= link_to "Conteúdo Inf.",new_conteudo_path %></li>
-
-                     <%end%>
-                 <%end%>
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
-                     <li><%= link_to "Conteúdo Fund.",new_conteudo_path %></li>
-                  <%end%>
-                     <li><%= link_to "Compens.Ausência", lancamento_aulas_compensadas_notas_path%></li>
-
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental'))%>
-                     <li><%= link_to "Notas/Faltas",lancar_notas_notas_path %></li>
-                  <%end%>
-  <!--                <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('secretaria_fundamental') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
-                     <li><%= link_to "Histórico",new_nota_path %></li>
-                  <%end%> -->
-                   <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo') )%>
-                     <li><%= link_to "Observação/Bolet.",new_observacao_nota_path %></li>
-                  <%end%>
-                   <% if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo') %>
-                     <li><%= link_to "Observação/Nota",lancamentos_observacaos_notas_path %></li>
-                  <%end%>
-                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')  or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('direcao_infantil'))%>
-                     <li><%= link_to "Pedagogo/Direção.",new_direcao_conteudos_path %></li>
-                  <%end%>
-
-<!--
-                   <% if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('professor_fundamental') %>
-                     <li><%= link_to "Compensação",lancamentos_compensacao_notas_path %></li>
-                  <%end%>
--->
-                 <% if (current_user.unidade_id == 60) or current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo') %>
-                    <li><%= link_to "Relatórios MQA",new_mqa_conteudos_path %></li>
-                 <%end%>
-
-
-                 <% if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_fundamental') %>
-                     <li><a class="item-primary" href="#;">Reprovação</a>
-                              <ul>
-                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_fundamental') )%>
-                                     <li><%= link_to "Reprovação",reprovacao_path %></li>
-                                  <%end%>
-                                <li><%= link_to "Reprovados/Classe",consulta_reprovados_path%></li>
-                              </ul>
-                         </li>
-
-
-                     <!--<li><%#= link_to "teste",relatorio_classe_notas_path %></li>-->
-
-                  <%end%>
-                 </ul>
-              </li>
-              <%end%>
+ <!-- LNAÇAMENTO novo==============     alterado em fev/2022-->
+            
 
 <!---   fim LANÇAMENTOS --->
 
 
 
-            <%end%>
+            
 
 
               <li><span class="divider divider-vert" ></span></li>
