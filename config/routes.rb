@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :registros
+
   map.resources :atendimento_aees
   map.resources :conteudoprogramaticos, :collection => { :consultas =>:get,  :aviso=>:get}
   map.resources :faltasalunos, :collection => { :consultas =>:get,  :aviso=>:get,  :aviso2=>:get}

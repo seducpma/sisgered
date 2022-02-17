@@ -1,65 +1,94 @@
 <table width="90%">
           <tr>
+            <td></td>
+            <td ><font color="red"> <b>Selecionar somente alunos ausentes</b></font></td>
+          </tr>
+          <tr>
                <td valign="top"><b>Alunos: </b></td>
                <td>
                        <%form_tag alunos_faltas_falta_path, :method => :get do %>
                            <%if session[:AEE]==0 %>
-                               <% for aluno in @alunos_matriculados %>
-                                  <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
-                                    <tr>
-                                             <td width ="1px" align="center"><%= check_box_tag "aluno_ids[]",aluno.id %></td>
-                                                <td width ="5%" align="center"><%= aluno.numero %></td>
-                                             <td><%=h aluno.aluno_nome_dtn %><%if session[:AEE]== 0
-    %>                                                                               <%  if  aluno.status =="TRANSFERIDO"%>
-                                                                                      (<font color ="red"> Transferido </font>)
-                                                                                  <%else if  aluno.status =="TRANSFERENCIA"%>
-
-                                                                                         <%else if  aluno.status =="REMANEJADO"%>
-
-                                                                                               <%else if  aluno.status =="*REMANEJADO"%>
-
-                                                                                                     <%else if  aluno.status =="ABANDONO"%>
-                                                                                                              (<font color ="red"> Abandono</font>)
-                                                                                                          <%end%>
-                                                                                                   <%end%>
-                                                                                               <%end%>
-                                                                                         <%end%>
-                                                                                  <%end%>
-
-                                                                              <%end%>
-
-
-                                             </td>
-
-                                   </tr>
+                              <%if @alunos_matriculados.nil? or @alunos_matriculados.empty? %>
+                                <table>
+                                   <tr>
+                                      <td></td>
+                                     <td ><font color="red" size="3"> <b>NÃO HÁ ALUNOS MATRICULADOS NESTA CLASSE</b></font></td>
+                                  </tr>
                                  </table>
-                               <%end %>
-                            <%else%>
-                              <% for aluno in @alunos_matriculados %>
-                                  <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
-                                    <tr>
-                                             <td width ="1px" align="center"><%= check_box_tag "aluno_ids[]",aluno.id %></td>
-                                                
-                                             <td><%=h aluno.aluno_nome_dtn %></td>
+                              <%else%>
 
-                                   </tr>
+                                       <% for aluno in @alunos_matriculados %>
+                                          <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
+                                            <tr>
+                                                     <td width ="1px" align="center"><%= check_box_tag "aluno_ids[]",aluno.id %></td>
+                                                        <td width ="5%" align="center"><%= aluno.numero %></td>
+                                                     <td><%=h aluno.aluno_nome_dtn %><%if session[:AEE]== 0  %>                                                                               <%  if  aluno.status =="TRANSFERIDO"%>
+                                                                                              (<font color ="red"> Transferido </font>)
+                                                                                          <%else if  aluno.status =="TRANSFERENCIA"%>
 
+                                                                                                 <%else if  aluno.status =="REMANEJADO"%>
+
+                                                                                                       <%else if  aluno.status =="*REMANEJADO"%>
+
+                                                                                                             <%else if  aluno.status =="ABANDONO"%>
+                                                                                                                      (<font color ="red"> Abandono</font>)
+                                                                                                                  <%end%>
+                                                                                                           <%end%>
+                                                                                                       <%end%>
+                                                                                                 <%end%>
+                                                                                          <%end%>
+
+                                                                                      <%end%>
+
+
+                                                     </td>
+
+                                           </tr>
+                                         </table>
+                                       <%end %>
+                                <%end %>
+                           <%else%>
+                              <%if @alunos_matriculados.nil? or @alunos_matriculados.empty? %>
+                                <table>
+                                   <tr>
+                                      <td></td>
+                                     <td ><font color="red" size="3"> <b>NÃO HÁ ALUNOS MATRICULADOS NESTA CLASSE</b></font></td>
+                                  </tr>
                                  </table>
-                              <%end%>
+                              <%else%>
 
+                                     <table>
+                                      <tr>
+                                        <td></td>
+                                        <td><font color="red"> <b>Selecionar somente alunos ausentes</b></font></b></td>
+                                      </tr>
+                                      </table>
+                                    <% for aluno in @alunos_matriculados %>
+                                        <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
+                                          <tr>
+                                                   <td width ="1px" align="center"><%= check_box_tag "aluno_ids[]",aluno.id %></td>
+
+                                                   <td><%=h aluno.aluno_nome_dtn %></td>
+
+                                         </tr>
+
+                                       </table>
+                                     <%end%>
                             <%end%>
+                         <%end%>
                    <table>
-                                 <tr>
+                             <!--    <tr>
                                      
-                                     <td width ="1px" align="center" valign="top"><%= check_box_tag :sem_aluno %></td>
+                                     <td width ="1px" align="center" valign="top"><%#= check_box_tag :sem_aluno %></td>
                                      <td><b>TODOS os estudantes ausentes</b>&nbsp ==> <font size="2"> (Só marque esta opção se <b><u>TODOS</u> </b> estudantes estiverem presentes em sala de aula)</font> </td>
 
                                    </tr>
+                             -->
                                 <tr><br/>
                                    <td colspan="2" ><%= submit_tag "Confirmar", :class => "btn_filtrar" %>
                                    </td>
                                </tr>
-                           </table>
+                   </table>
                         <%end%>
                 </td>
            </tr>

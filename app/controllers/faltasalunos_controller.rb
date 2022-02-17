@@ -58,7 +58,7 @@ end
  end
 
  def obser
-   session[:obser]=params[:aluno_nome]
+   session[:obser]=params[:aluno_obs]
  end
 
 
@@ -192,6 +192,7 @@ def classe
   # GET /faltasalunos/new
   # GET /faltasalunos/new.xml
   def new
+    session[:obser]=""
     @faltasaluno = Faltasaluno.new
 
     respond_to do |format|

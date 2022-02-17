@@ -1,0 +1,8 @@
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <b>Classe:</b> <%=h @atribuicao[0].classe.classe_classe%>
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Período:</b> <%=h @atribuicao[0].classe.horario%>
+   
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Aluno:</b> <%= select_tag :aluno_id, options_for_select(@alunos.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar--')) %></td>
+
+
+<%= collection_select :disciplina, :id, @disciplinas, :id, :disciplina, :include_blank => ' -- Selecionar -- ' %>

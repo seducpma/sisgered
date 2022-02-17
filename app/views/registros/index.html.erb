@@ -1,0 +1,40 @@
+<h1>Listing registros</h1>
+
+<table>
+  <tr>
+    <th>Classe</th>
+    <th>Professor</th>
+    <th>Atribuicao</th>
+    <th>Disciplina</th>
+    <th>Unidade</th>
+    <th>User</th>
+    <th>Conteudo</th>
+    <th>Ano letivo</th>
+    <th>Inicio</th>
+    <th>Fim</th>
+    <th>Obs</th>
+  </tr>
+
+<% @registros.each do |registro| %>
+  <tr>
+    <td><%=h registro.classe %></td>
+    <td><%=h registro.professor %></td>
+    <td><%=h registro.atribuicao %></td>
+    <td><%=h registro.disciplina %></td>
+    <td><%=h registro.unidade %></td>
+    <td><%=h registro.user %></td>
+    <td><%=h registro.conteudo %></td>
+    <td><%=h registro.ano_letivo %></td>
+    <td><%=h registro.inicio %></td>
+    <td><%=h registro.fim %></td>
+    <td><%=h registro.obs %></td>
+    <td><%= link_to 'Show', registro %></td>
+    <td><%= link_to 'Edit', edit_registro_path(registro) %></td>
+    <td><%= link_to 'Destroy', registro, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New registro', new_registro_path %>

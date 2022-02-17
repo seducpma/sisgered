@@ -10,7 +10,7 @@
     
  </div>
     <div class="tabs">
-    
+  
       <fieldset>
         <table width="100%" align="center" bgcolor="#DCDCDC" >
 
@@ -66,12 +66,13 @@
                 </tr>
                 <tr>
                     <td align="left"><font size="2"> <b>Observações:</b></font></td>
-                    <td> <%= text_field_tag(:aluno_nome ) %> </td>
-                        <%= observe_field 'aluno_nome',
+                    <td> <%= text_field_tag(:aluno_obs ) %> </td>
+                        <%= observe_field 'aluno_obs',
                          :url    => { :action => 'obser' },
-                         :with   => 'aluno_nome' %>
+                         :with   => 'aluno_obs' %>
 
                 </tr>
+             
     
        </table>
        </fieldset>
