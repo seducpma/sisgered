@@ -1,8 +1,11 @@
 <table width="90%">
-          <tr>
-            <td></td>
-            <td ><font color="red"> <b>Selecionar somente alunos ausentes</b></font></td>
-          </tr>
+          <%if @alunos_matriculados.nil? or @alunos_matriculados.empty? %>
+          <%else%>
+                  <tr>
+                    <td></td>
+                    <td ><font color="red"> <b>Selecionar somente alunos ausentes</b></font></td>
+                  </tr>
+          <%end%>
           <tr>
                <td valign="top"><b>Alunos: </b></td>
                <td>
@@ -76,6 +79,8 @@
                                      <%end%>
                             <%end%>
                          <%end%>
+                   <%if @alunos_matriculados.nil? or @alunos_matriculados.empty? %>
+                   <%else%>
                    <table>
                              <!--    <tr>
                                      
@@ -89,6 +94,7 @@
                                    </td>
                                </tr>
                    </table>
+                 <%end%>
                         <%end%>
                 </td>
            </tr>
