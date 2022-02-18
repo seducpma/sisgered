@@ -1,58 +1,99 @@
-<p>
-  <b>Classe:</b>
-  <%=h @registro.classe %>
-</p>
+<div id="interno2">
+<% title "RELATORIO" %>
+<div class ="tabs">
+<%if @registro.present?%>
+      <!--<%session[:imprimir_todos]=1%>-->
 
-<p>
-  <b>Professor:</b>
-  <%=h @registro.professor %>
-</p>
-
-<p>
-  <b>Atribuicao:</b>
-  <%=h @registro.atribuicao %>
-</p>
-
-<p>
-  <b>Disciplina:</b>
-  <%=h @registro.disciplina %>
-</p>
-
-<p>
-  <b>Unidade:</b>
-  <%=h @registro.unidade %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%=h @registro.user %>
-</p>
-
-<p>
-  <b>Conteudo:</b>
-  <%=h @registro.conteudo %>
-</p>
-
-<p>
-  <b>Ano letivo:</b>
-  <%=h @registro.ano_letivo %>
-</p>
-
-<p>
-  <b>Inicio:</b>
-  <%=h @registro.inicio %>
-</p>
-
-<p>
-  <b>Fim:</b>
-  <%=h @registro.fim %>
-</p>
-
-<p>
-  <b>Obs:</b>
-  <%=h @registro.obs %>
-</p>
+        <fieldset><legend><font  size=3><b>  REGISTRO INDIVICUAL DE ALUNO
+              </b></font></legend>
+              <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                <tr bgcolor="#F5F5F5" style="border-color: white">
+                  <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+                  <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                      <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                      <%if !@registro.atribuicao_id.nil?%><center><font size="2"> Unidade Escolar: <%=h @registro.unidade.nome %> </i></b><br/></center><%end%>
+                      <center><font size="2"><b><u>CONTEÚDO MINISTRADO</u></b></font></center>
+                  </td>
+                </tr>
+               </table>
+            <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+              <%cont = 0%>
 
 
-<%= link_to 'Edit', edit_registro_path(@registro) %> |
-<%= link_to 'Back', registros_path %>
+                 <tr bgcolor="#F5F5F5">
+                   <%#if !@registro.atribuicao_id.nil?%>
+                       <td width=5%" align="center"><b>Classe:</b></td>
+                       <td width=10% > <%=h @registro.classe.classe_classe %> <%if !@registro.disciplina_id.nil?%> - <%=h @registro.atribuicao.classe.classe_ano_letivo %><%end%></td>
+                       <td width=10%" align="center"><b>Unidade:</b></td>
+                       <td width=20%> <%=h @registro.unidade.nome %></td>
+                       <td width=8%" align="center"><b>Data:</b></td>
+                       <td colspan="3"> Datae <%=h @registro.inicio.strftime("%d/%m/%Y") %></td>
+
+                   <%#else%>
+                       <!--
+                       <td width=5%" align="center"><b>Classe:</b></td>
+                       <td width=10%  align="center"> ----- </td>
+                       <td width=10%" align="center"><b>Unidade:</b></td>
+                       <td width=20%> <%=h @registro.professor.nome %></td>
+                       <td width=8%" align="center"><b>Data:</b></td>
+                       <td colspan="3"> Data <%=h @registro.inicio.strftime("%d/%m/%Y") %> </td>
+                      -->
+                  <%#end%>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>aluno:</b></td>
+                   <td colspan="4"> <%=   @registro.aluno.aluno_nome%></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Registro:</b></td>
+                   <td colspan="4"> <%=   @registro.conteudo.gsub("\n","<br/>\n") %></td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td align="left" valign="top"><b>Obs:</b></td>
+                   <td colspan="4"> <%=   @registro.obs%></td>
+                </tr>
+
+                <tr bgcolor="#DCDCDC">
+                   <td></td>
+                   <td align="left" valign="top"><b>Professor:</b></td>
+                   <td colspan="4"> <%=   @registro.professor.nome%> &nbsp - &nbsp <%if !@registro.disciplina_id.nil?%>
+                                                                                         <%=  @registro.disciplina.disciplina %>
+                                                                                   <%else%>
+                                                                                            <%= @registro.professor.funcao2 %>
+                                                                                   <%end%>
+                   </td>
+                </tr>
+               <tr bgcolor="#C1C1C1" >
+                  <td colspan="6"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Este lançamento só pode ser editado e alterado até às 23:59 do dia que foi feito.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após este data e hora somente o gestor ou pedagogo da unidade poderão fazer alterações.
+                        </td>
+                </tr>
+                <%cont = cont + 1%>
+            <%end%>
+         </table>
+           </fieldset>
+
+
+
+              <br/>
+              <%t=0%>
+              <table  width="100%">
+                    <tr>
+                      <td align="center"><font size="3" color="red"><b> LANÇAMENTO DE CONTEÚDO NÃO ENCONTRADO </b> </td>
+                    </tr>
+              </table>
+
+
+  <table width="100%" >
+         <tr>
+            <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+
+             <td colspan="10"align="left" ><%#= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>@relatorio}, :title => "Imprimir esta FAPEA"%></b></td>
+               </tr>
+
+
+         <br/>
+  </table>

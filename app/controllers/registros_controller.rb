@@ -44,9 +44,14 @@ before_filter :load_dados_iniciais
        end
   end
 
+   def aluno
+     w=session[:cont_aluno_id]=params[:aluno_id]
+     t=0
+   end
+
+
  def classe
  w=session[:professor_id]=params[:registro_professor_id]
-t=0
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
     if @atribuicao.empty? or @atribuicao.nil?
       render :partial => 'aviso'
@@ -55,14 +60,14 @@ t=0
           session[:atribuicao]=@atribuicao[0].classe_id
           w=@atribuicao[0].id
            teste= @atribuicao[0].classe.classe_classe[0,3]
-          t=0
           if teste == 'AEE'
             w=session[:atribuicao]= 'AEE'
-                 t=0
           end
            render :partial => 'disciplina'
        else
            session[:cont_atribuicao_id]=@atribuicao[0].id
+   
+           session[:cont_unidade_id]=@atribuicao[0].classe.unidade_id
            session[:cont_classe_id]= @atribuicao[0].classe_id
            @alunos= Aluno.find(:all, :joins => "INNER JOIN matriculas ON matriculas.aluno_id = alunos.id", :conditions => ["matriculas.classe_id =?  and ano_letivo=?", session[:cont_classe_id], Time.now.year ])
            render :partial => 'dados_classe'
@@ -70,6 +75,61 @@ t=0
     end
  end
 
+
+def lancamentos_registros
+
+        if ( params[:disciplina].present?)
+            @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+            for dis in @disci
+                session[:disc_id] = dis.id
+            end
+            session[:classe_id] = params[:classe][:id]
+            session[:professor_id]= params[:professor][:id]
+            @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+            @matriculas = Matricula.find(:all, :conditions=>['classe_id = ?', session[:classe_id]],:order => 'classe_num ASC' )
+            @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
+            for atrib in @atribuicao_classe
+                session[:atrib_id] = atrib.id
+            end
+            session[:classe_id]
+            session[:disc_id]
+            session[:atrib_id]
+            #@notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo = ? AND notas.ativo is NULL",  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year],:order => 'matriculas.classe_num ASC')
+        end
+        respond_to do |format|
+            format.html # index.html.erb
+            format.xml  { render :xml => @classes }
+        end
+
+end
+
+def consulta_registros
+   t=0
+    if params[:type_of].to_i == 3  # Não existe esta opção
+    else if params[:type_of].to_i == 1   # Não existe esta opção
+        else  if params[:type_of].to_i == 2 # Aluno
+              w= params[:aluno]
+              if (current_user.has_role?('professor_infantil')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_fundamental')  or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo')or current_user.has_role?('admin'))
+                 @registros=Registro.find(:all, :conditions=>  ["ano_letivo =? AND professor_id=? AND aluno_id=? ", Time.now.year, current_user.professor_id, params[:aluno]])
+              end
+             render :update do |page|
+                 page.replace_html 'relatorio', :partial => 'conteudo'
+             end
+
+              else if params[:type_of].to_i == 4    #classe
+                       w= params[:classe_id]
+                        @registros=Registro.find(:all, :conditions=>  ["ano_letivo =? AND professor_id=? AND classe_id=? ", Time.now.year, current_user.professor_id, params[:classe_id]])
+                        render :update do |page|
+                            page.replace_html 'relatorio', :partial => 'conteudo'
+                        end
+
+
+                      end
+             end
+        end
+    end
+
+end
 
   def index
     @registros = Registro.all
@@ -94,6 +154,19 @@ t=0
   # GET /registros/new
   # GET /registros/new.xml
   def new
+     session[:aluno_id]=params[:aluno_id]
+     w1=session[:disciplina]
+     w2=session[:professor]
+     w3=session[:professor_id]
+     w4=session[:classe]
+     w5=session[:classe_id]
+     w6=session[:ano]
+     w7=session[:periodo]
+     w8=session[:id]
+     
+     @aluno= Aluno.find(:all, :conditions =>['id=?', session[:aluno_id]])
+
+    w9=session[:aluno]= @aluno[0]. aluno_nome
     @registro = Registro.new
 
     respond_to do |format|
@@ -111,6 +184,22 @@ t=0
   # POST /registros.xml
   def create
     @registro = Registro.new(params[:registro])
+    @registro.inicio =Time.now
+    @registro.fim =@registro.inicio
+    #@registro.classe_id= session[:cont_classe_id]
+    #@registro.atribuicao_id= session[:cont_atribuicao_id]
+    #@registro.unidade_id= session[:cont_unidade_id]
+    #@registro.ano_letivo = Time.now.year
+    #@registro.aluno_id= session[:cont_aluno_id]
+    t=0
+
+     @registro.aluno_id = session[:aluno_id]
+     @registro.ano_letivo = Time.now.year
+     @registro.unidade_id= session[:unidade_id]
+     @registro.disciplina_id=session[:disciplina_id]
+     @registro.professor_id=session[:professor_id]
+     @registro.classe_id=session[:classe_id]
+    @registro.atribuicao_id= session[:atribuicao_id]
 
     respond_to do |format|
       if @registro.save

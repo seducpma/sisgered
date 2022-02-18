@@ -187,7 +187,7 @@
             <table class="tab_dados" border="1" frame="box" rules="all" width="30%" style="font-size: small">
                 <tr bgcolor="#F5F5F5">
                     <td width ="78%" colspan="2">&nbsp&nbsp<b> Alunos: </b> </td>
-                    <td colspan="2"> <b> Período:  <%=  cont_dias%> &nbsp&nbsp  dias de aulas  de &nbsp&nbsp  <%=  session[:dataINI]=session[:dataI][8,2]+'-'+session[:dataI][5,2]+'-'+session[:dataI][0,4] %> à <%= session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]%> </b>    </td>
+                    <td colspan="2"><font color="blue"> <b> Total: <font size="3"> &nbsp <%=  cont_dias%> &nbsp </font>dias de aulas no periodo de  &nbsp&nbsp  <%=  session[:dataINI]=session[:dataI][8,2]+'-'+session[:dataI][5,2]+'-'+session[:dataI][0,4] %> à <%= session[:dataFIM]=session[:dataF][8,2]+'-'+session[:dataF][5,2]+'-'+session[:dataF][0,4]%> </b></font>    </td>
                </tr>
              <tr bgcolor="#F5F5F5">
               <td colspan="13"> <div id="atividades_aluno">
@@ -228,11 +228,54 @@
                     <%end%>
               </table>
 
+       <hr/>
+       <font size='4'> <center>            <b>REGISTROS INDIVIDUAIS DE ALUNO</b>     </center>
+       <hr/>
 
 
+                  <table class="tab_dados" border="1" frame="box" rules="all" width="30%" style="font-size: small">
+                <tr bgcolor="#F5F5F5">
+                  <td width ="78%" colspan="2">&nbsp&nbsp<b> Alunos: </b> </td>
+                    <td colspan="2"> <b> Registros </b>    </td>
+               </tr>
+             <tr bgcolor="#F5F5F5">
+              <td colspan="13"> <div id="atividades_aluno">
+                    <% @alunos_matriculados.each do |alunos_mat|%>
+                        <tr bgcolor="#F5F5F5">
+                           <td width ="4%"  valign="top"align="center"><%= alunos_mat.classe_num %>  </td>
+                           <td width ="40%"  valign="top"align="left"><%= alunos_mat.aluno_nome %>
+                                                      <%  if  alunos_mat.situacao.present?%>
+                                                         <%  if  alunos_mat.situacao =="TRANSFERIDO"%>
+                                                              <font color ="red" size="1"> (Transferido) </font>
+                                                          <%else if  alunos_mat.situacao =="TRANSFERENCIA"%>
+                                                                 <font color ="blue" size="1"> (Transferência) </font>
+                                                                 <%else if alunos_mat.situacao =="REMANEJADO"%>
+                                                                          <font color ="green" size="1"> (Remanejado) </font>
+                                                                       <%else if  alunos_mat.situacao =="*REMANEJADO"%>
+                                                                                <font color ="green"size="1" size="1"> (*Remanejado) </font>
+                                                                             <%else if alunos_mat.situacao =="ABANDONO"%>
+                                                                                      <font color ="red" size="1"> (Abandono)</font>
+                                                                                  <%end%>
+                                                                           <%end%>
+                                                                       <%end%>
+                                                                 <%end%>
+                                                          <%end%>
+                                                      <%end%>
+                            </td>
+                            <td  valign="top" colspan="2" align="left">
+                              <%num=1%>
+                              <%@registros= Registro.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND inicio >=? AND inicio <=?", alunos_mat.id, session[:cont_classe_id], session[:dataI], session[:dataF]]) %>
+                                 <% @registros.each do |registro|%>
+                                     <b> <%=num%>) </b><%=  registro.conteudo%>   &nbsp&nbsp -  (<%=  registro.inicio.strftime("%d/%m/%Y")%>)  <br/>
+                                     <%num= num+1%>
+                                 <%end%>
+                            </td>
 
+                        </tr>
+                    <%end%>
+              </table>
 
-
+ 
 
 
 </div>

@@ -702,7 +702,17 @@ display: none;
 
                                   <%end%>
 
+                                <%# if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_fundamental') %>
+                                     <li><a class="item-primary" href="#;">Registros Alunos</a>
+                                              <ul>
+                                                  <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_fundamental') )%>
+                                                     <li><%= link_to "Lançamentos",lancamentos_registros_registros_path %></li>
+                                                  <%#end%>
+                                                <li><%= link_to "Consultas",consultas_registros_path%></li>
+                                              </ul>
+                                         </li>
 
+                                  <%#end%>
 
                       <%end%>
 

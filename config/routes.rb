@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :registros
-
+  map.resources :registros, :collection => { :consultas =>:get,  :aviso=>:get, :lancamentos_registros =>:get}
   map.resources :atendimento_aees
   map.resources :conteudoprogramaticos, :collection => { :consultas =>:get,  :aviso=>:get}
   map.resources :faltasalunos, :collection => { :consultas =>:get,  :aviso=>:get,  :aviso2=>:get}
@@ -187,7 +186,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
 
-
+  map.consulta_registros '/consulta_registros', :controller => 'registros', :action => 'consulta_registros'
   map.consulta_professor_eventual '/consulta_professor_eventual', :controller => 'eventuals', :action => 'consultas'
   map.consulta_unidade '/consulta_unidade', :controller => 'unidades', :action => 'consulta_unidade'
   map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
@@ -243,6 +242,9 @@ ActionController::Routing::Routes.draw do |map|
   map.lancar_faltas_diario '/lancar_faltas_diario', :controller => 'faltasalunos', :action => 'lancar_fatas_alunos'
   map.alunos_faltas_falta '/alunos_faltas_falta', :controller => 'faltasalunos', :action => 'alunos_faltas_falta'
 
+
+  #map.lancamentoregistros '/lancamentosregistro', :controller => 'registros', :action => 'lancamentosregistro'
+  #map.lancamentos '/lancamentos', :controller => 'registros', :action => 'lancamentos'
   map.lancar_faltas_alunos '/lancar_faltas_alunos', :controller => 'diario_classes', :action => 'lancar_fatas_alunos'
   map.lancar_faltas_inf '/lancar_faltas_inf', :controller => 'faltas', :action => 'lancar_faltas_inf'
   map.lancar_faltas_infantil '/lancar_faltas_infantil', :controller => 'faltas', :action => 'lancar_faltas_infantil'

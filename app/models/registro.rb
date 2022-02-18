@@ -4,5 +4,5 @@ class Registro < ActiveRecord::Base
   belongs_to :atribuicao
   belongs_to :disciplina
   belongs_to :unidade
-  belongs_to :user
+  belongs_to :aluno
 end

@@ -1,8 +1,10 @@
    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <b>Classe:</b> <%=h @atribuicao[0].classe.classe_classe%>
+      <b>Classe:</b> <%=h @atribuicao[0].classe.classe_classe%>  
    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Período:</b> <%=h @atribuicao[0].classe.horario%>
    
-   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Aluno:</b> <%= select_tag :aluno_id, options_for_select(@alunos.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar--')) %></td>
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Aluno:</b> <%#= collection_select :aluno, :id, @alunos, :id, :aluno_nome, :include_blank => '--Selecionar--' %>
+                                                       <%= select_tag :aluno_id, options_for_select(@alunos.collect { |ff| [ff.aluno_nome, ff.id] }.insert(0, '--Selecionar--')) %>
+            <%= observe_field 'aluno_id',
+                             :url    => { :action => 'aluno' },
+                             :with   => 'aluno_id' %>
 
-
-<%= collection_select :disciplina, :id, @disciplinas, :id, :disciplina, :include_blank => ' -- Selecionar -- ' %>

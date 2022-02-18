@@ -14,23 +14,12 @@
             <fieldset>
              <legend><font size=4></font></legend>
              <table width="100%" >
-                 <tr bgcolor="#F5F5F5">
-                       <td colspan="4"><b>Data: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
-                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Professor(a):</b> &nbsp&nbsp <%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <br/>
-                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <font color="red"size="3"> <b><u> Professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.
-
-                                    <%= observe_field 'registro_professor_id',
-                                       :update => "dados_classe",
-                                       :url    => { :action => 'classe' },
-                                       :with   => 'registro_professor_id' %>
+               <tr bgcolor="#F5F5F5">
+                       <td colspan="4"><b>Aluno: </b> &nbsp <%= session[:aluno]%>
+                                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Classe:</b> &nbsp <%=  session[:classe]%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Período:</b> &nbsp <%=  session[:periodo]%><br/>
+                                      <b> Professor:</b>  &nbsp <%=  session[:professor]%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Disciplina:</b> &nbsp <%=  session[:disciplina]%><br/>
                       </td>
                 </tr>
-                <tr bgcolor="#F5F5F5">
-                  <td colspan="4"><div id="disciplina"> </div></td>
-                </tr
-                <tr bgcolor="#F5F5F5">
-                  <td colspan="4"><div id="dados_classe"></div></td>
-                </tr >
                <tr bgcolor="#F5F5F5">
                   <td colspan="4"align="center">
                       <font color="green" size="3"><b><u>ATENÇÃO:</u> Faça o registro de forma sucinta.  </b>

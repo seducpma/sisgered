@@ -8,6 +8,7 @@ class Classe < ActiveRecord::Base
   has_many :conteudos
   has_many :faltasalunos
   has_many :atividade_validacaos
+  has_many :registros
 
   before_save :caps_look
   before_save :atribui_unidade

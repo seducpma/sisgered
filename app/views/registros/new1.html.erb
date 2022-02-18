@@ -1,0 +1,83 @@
+<div id="interno11">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>REGISTRO INDIVIDUAL DE ALUNO</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+          <% form_for (@registro) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%" >
+                 <tr bgcolor="#F5F5F5">
+                       <td colspan="4"><b>Data: </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%>
+                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Professor(a):</b> &nbsp&nbsp <%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <br/>
+                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <font color="red"size="3"> <b><u> Professor</u> após selecionar seu nome aguarde para selecionar a classe e  nome do aluno.
+
+                                    <%= observe_field 'registro_professor_id',
+                                       :update => "dados_classe",
+                                       :url    => { :action => 'classe' },
+                                       :with   => 'registro_professor_id' %>
+                      </td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="disciplina"> </div></td>
+                </tr
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="dados_classe"></div></td>
+                </tr >
+               <tr bgcolor="#F5F5F5">
+                  <td colspan="4"align="center">
+                      <font color="green" size="3"><b><u>ATENÇÃO:</u> Faça o registro de forma sucinta.  </b>
+                 </td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td width="10% "valign="top"><b>Registro: </b></td>
+                   <td colspan="3">
+
+
+
+  <%= f.text_area(:conteudo, :cols=> "96", :rows=>"10", :id=>"contador") %><br/>
+<script>
+        $(document).on("keydown", "#contador", function () {
+            var caracteresRestantes = 1000  ;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+            $(".caracteres").text(caracteresRestantes);
+
+        });
+
+</script>
+  <b><span class="caracteres">1000</span> Caracteres Restantes </b>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formação.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este lançamento, só poderá ser editado e alterado até às 23:59 da data que foi feito.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3) Após ás 23:59 somente o gestor ou pedagogo da unidade poderão fazer alterações.
+                        </td>
+                </tr>
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
+<%session[:consultas]= 0%>
+</div>
+

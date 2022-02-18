@@ -1,0 +1,39 @@
+
+
+
+<% if !@registros.empty?%>
+ <table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td width =" 5%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
+            <td width =" 7%"><b> &nbsp&nbsp&nbsp Disciplina</b></td>
+            <td width =" 20%"><b>&nbsp&nbsp&nbsp Aluno</b></td>
+            <td width =" 7%"> <b>&nbsp&nbsp&nbsp Data </b></td>
+             <td align="left"width ="45%"> &nbsp&nbsp&nbsp <b>Registro</b></td>-->
+             <td width =" 25%"><b>&nbsp&nbsp&nbsp Professor</b></td>
+           <td width =" 5%"> </td>
+        </tr>
+         <% for registro in @registros %>
+         <tr bgcolor="#F5F5F5" >
+            <td align="left">&nbsp <%= registro.classe.classe_classe%> </td>
+            <td align="left">&nbsp <%if !registro.disciplina_id.nil?%> <%= registro.disciplina.disciplina%><%end%></td>
+            <td align="left">&nbsp <%= registro.aluno.aluno_nome%> </td>
+            <td align="center"> <%= registro.inicio.strftime("%d/%m/%Y") %> </td>
+            <td align="left"> <%= registro.conteudo %> </td>
+            <td align="left">&nbsp <%= registro.professor.nome%> </td>
+
+           <td align="center"> <%= button_to('Visualizar', {:action => "show", :id =>registro},:method => "get", :title => "Visualizar") %>
+
+
+
+         </tr>
+         <%end%>
+    </table>
+<%else%>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" >
+        <tr bgcolor="#DCDCDC" >
+            <td ><br/><font size="4" color="red"> NÃO EXISTE LANÇAMENTOS PARA ESTA CLASSE <br/></td>
+
+        </tr>
+    </table>
+
+<%end%>
