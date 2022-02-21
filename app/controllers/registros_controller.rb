@@ -77,23 +77,31 @@ before_filter :load_dados_iniciais
 
 
 def lancamentos_registros
-
+        session[:disciplina] = params[:disciplina]
         if ( params[:disciplina].present?)
             @disci = Disciplina.find(:all, :conditions => ["disciplina =?", params[:disciplina]])
+
             for dis in @disci
                 session[:disc_id] = dis.id
             end
-            session[:classe_id] = params[:classe][:id]
-            session[:professor_id]= params[:professor][:id]
+            a= session[:classe_id] = params[:classe][:id]
+            b= session[:professor_id]= params[:professor][:id]
             @classe = Classe.find(:all, :joins => "inner join atribuicaos on classes.id = atribuicaos.classe_id", :conditions =>['atribuicaos.classe_id = ? and atribuicaos.professor_id = ? and atribuicaos.disciplina_id =?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
-            @matriculas = Matricula.find(:all, :conditions=>['classe_id = ?', session[:classe_id]],:order => 'classe_num ASC' )
+                w=session[:classe_id]
+              if session[:disciplina] == 'AEE'
+                 @matriculas = AtendimentoAee.find(:all, :conditions=>['classe_id = ?', session[:classe_id]],:order => 'classe_num ASC' )
+                 t=0
+              else
+                @matriculas = Matricula.find(:all, :conditions=>['classe_id = ?', session[:classe_id]],:order => 'classe_num ASC' )
+              end
             @atribuicao_classe = Atribuicao.find(:all,:conditions =>['classe_id = ? and professor_id =? and disciplina_id=?', params[:classe][:id], params[:professor][:id], session[:disc_id]])
             for atrib in @atribuicao_classe
-                session[:atrib_id] = atrib.id
+               c= session[:atrib_id] = atrib.id
             end
-            session[:classe_id]
-            session[:disc_id]
-            session[:atrib_id]
+            d=session[:classe_id]
+            e=session[:disc_id]
+            f=session[:atrib_id]
+            t=0
             #@notas = Nota.find(:all, :joins => [:atribuicao,:matricula], :conditions => ["atribuicaos.classe_id =? AND atribuicaos.professor_id =? AND atribuicaos.disciplina_id=? AND notas.ano_letivo = ? AND notas.ativo is NULL",  params[:classe][:id], params[:professor][:id], session[:disc_id], Time.now.year],:order => 'matriculas.classe_num ASC')
         end
         respond_to do |format|
@@ -154,6 +162,10 @@ end
   # GET /registros/new
   # GET /registros/new.xml
   def new
+
+
+
+
      session[:aluno_id]=params[:aluno_id]
      w1=session[:disciplina]
      w2=session[:professor]
@@ -165,14 +177,19 @@ end
      w8=session[:id]
      
      @aluno= Aluno.find(:all, :conditions =>['id=?', session[:aluno_id]])
+#     @registro= Registro.find(:all, :conditions =>['aluno_id=? and ano_letivo=?', session[:aluno_id], Time.new.year])
+#      w=session[:registro_id]= @registro[0].id
+#     if @registro.nil?
+          w9=session[:aluno]= @aluno[0]. aluno_nome
+          @registro = Registro.new
 
-    w9=session[:aluno]= @aluno[0]. aluno_nome
-    @registro = Registro.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @registro }
-    end
+          respond_to do |format|
+            format.html # new.html.erb
+            format.xml  { render :xml => @registro }
+          end
+#    else
+#          @registro = Registro.find(session[:registro_id])
+#     end
   end
 
   # GET /registros/1/edit
@@ -203,7 +220,7 @@ end
 
     respond_to do |format|
       if @registro.save
-        flash[:notice] = 'Registro was successfully created.'
+        flash[:notice] = 'REGISTRO INDIVIDUAL DE ALUNO CADASTRADO.'
         format.html { redirect_to(@registro) }
         format.xml  { render :xml => @registro, :status => :created, :location => @registro }
       else
@@ -220,7 +237,7 @@ end
 
     respond_to do |format|
       if @registro.update_attributes(params[:registro])
-        flash[:notice] = 'Registro was successfully updated.'
+        flash[:notice] = 'REGISTRO INDIVIDUAL DE ALUNO CADASTRADO.'
         format.html { redirect_to(@registro) }
         format.xml  { head :ok }
       else
