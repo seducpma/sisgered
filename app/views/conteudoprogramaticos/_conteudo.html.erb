@@ -3,10 +3,11 @@
 <% if !@conteudos.empty?%>
  <table border="1" cellspacing="0" cellpadding="1" width="100%" >
         <tr bgcolor="#DCDCDC" >
-            <td width =" 8%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
+            <td width =" 3%"> <b>&nbsp&nbsp&nbsp Classe</b></td>
             <td width =" 10%"><b>&nbsp&nbsp&nbsp Disciplina</b></td>
             <td><b>&nbsp&nbsp&nbsp Professor</b></td>
-            <td width =" 22%"> <b>&nbsp&nbsp&nbsp Período </b></td>
+            <td width ="50%"><b>&nbsp&nbsp&nbsp Conteúdo</b></td>
+            <td width =" 8%"> <b>&nbsp&nbsp&nbsp Data </b></td>
             <!-- <td align="center"width =" 5%"> <b>Validação</b></td>-->
            <td width =" 5%"> </td>
         </tr>
@@ -29,7 +30,8 @@
                                     <%end%>
             </td>
             <td align="left">&nbsp <%= conteudo.professor.nome%> </td>
-            <td align="left"> De <%= conteudo.inicio.strftime("%d/%m/%Y") %> à  <%= conteudo.fim.strftime("%d/%m/%Y")%></td>
+            <td align="left">&nbsp <%= conteudo.conteudo%> </td>
+            <td align="center"> <%= conteudo.inicio.strftime("%d/%m/%Y") %> </td>
             <!--<td align="center">&nbsp <%#if conteudo.validacao == 1%> <font color="blue"> VALIDADO </font> <%#else%> <font color="red"> AGUARDANDO </font><%#end%> </td>-->
            <td align="center"> <%= button_to('Visualizar', {:action => "show", :id =>conteudo},:method => "get", :title => "Visualizar") %>
 <%#= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "show", :id => edicao}, :method => "get", :title => "Selecionar"%></td>

@@ -325,7 +325,7 @@
                       <td align="center"> <%= faltas.classe.classe_classe%></td>
                       <td align="center"> <%= faltas.disciplina.disciplina%></td>
                       <td align="left"> <%= truncate(faltas.professor.nome,:length => 50,:omission => "...")%> </td>
-                      <td align="left"> <%if !faltas.aluno_id.nil? %> <%= faltas.aluno.aluno_nome%> <%else%> &nbsp&nbsp&nbsp&nbsp TODOS ALUNOS AUSENTES<%end%></td>
+                      <td align="left"> <%#if !faltas.aluno_id.nil? %> <%#= faltas.aluno.aluno_nome%> <%#else%> &nbsp&nbsp&nbsp&nbsp TODOS ALUNOS AUSENTES<%#end%></td>
                    </tr>
 
 
