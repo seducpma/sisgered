@@ -64,9 +64,14 @@ def classe
           end
            render :partial => 'disciplina'
        else
+         if current_user.unidade.tipo_id==1 or current_user.unidade.tipo_id==4 or current_user.unidade.tipo_id==7
+             render :partial => 'disciplina'
+         else
+            t=0
            session[:cont_atribuicao_id]=@atribuicao[0].id
            session[:cont_classe_id]= @atribuicao[0].classe_id
            render :partial => 'dados_classe'
+         end
        end
     end
   end
