@@ -66,7 +66,7 @@
                 </tr>
                 <tr>
                     <td align="left"><font size="2"> <b>Observações:</b></font></td>
-                    <td> <%= text_field_tag(:aluno_obs ) %> </td>
+                    <td> <%= text_field_tag(:aluno_obs, nil, :size=> 80 ) %> </td>
                         <%= observe_field 'aluno_obs',
                          :url    => { :action => 'obser' },
                          :with   => 'aluno_obs' %>
