@@ -35,12 +35,12 @@
     <tr>
      <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
      
-     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('professor_infantil'))%>
+     <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('direcao_infantil')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('professor_infantil'))%>
          <td width="6%"align="left"><%= button_to 'Nova Consulta', consulta_classe_path, :title => "Nova Consulta" %></td>
          <td align="left" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_lista_responsavel_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %>  </td> <td>  &nbsp&nbsp&nbsp <b><font color="red"  id="pisca1">  (Para imprimir em modo paisagem é necessário configurar na impressão)</font></b> </td>
-    <%else%>
+    <%#else%>
           <td align="left"><%= button_to 'Nova Consulta', consulta_classe_path, :title => "Nova Consulta" %></td>
-    <%end%>
+    <%#end%>
 
     </tr>
   </table>
