@@ -345,7 +345,7 @@ t=0
                         classeAEE = @classe[0].classe_classe[0,3]
                             
 
-                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao'))
+                        if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('supervisao'))
                               w= session[:aluno]= params[:aluno]
 
                               @faltasalunos = Faltasaluno.find(:all, :joins =>:aluno, :conditions =>  ["data >=? AND  data <=? AND aluno_id = ? ", session[:dataI], session[:dataF],session[:aluno]] , :order => 'data ASC')
@@ -384,7 +384,7 @@ t=0
                                    end
 
 
-                             else if (current_user.has_role?('direcao_fundamental')or current_user.has_role?('direcao_infantil'))
+                             else if (current_user.has_role?('direcao_fundamental')or current_user.has_role?('direcao_infantil')or current_user.has_role?('pedagogo'))
                                      w1= session[:aluno]= params[:aluno]
                                      w4=session[:cont_classe_id]
                                      @faltasalunos = Faltasaluno.find(:all, :joins =>:aluno, :conditions =>  ["data >=? AND  data <=? AND aluno_id = ? ", session[:dataI], session[:dataF],session[:aluno]] , :order => 'data ASC')
@@ -396,7 +396,8 @@ t=0
                                              @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome, atendimento_aees.classe_num "  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id, atendimento_aees.status as situacao", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO')  ", session[:cont_classe_id], Time.now.year  ] )
                                              session[:AEE]=1
                                        else
-                                            @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , matriculas.classe_num , alunos.aluno_nome	 ,CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero, matriculas.status as situacao"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.classe_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO')", session[:cont_classe_id], Time.now.year  ],:order => 'classe_num ASC' )
+
+                                            @alunos_matriculados = Aluno.find(:all, :select => "alunos.id , matriculas.classe_num , alunos.aluno_nome	 ,CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn  , matriculas.classe_num as numero, matriculas.status as situacao"  , :joins => "INNER JOIN matriculas on alunos.id = matriculas.aluno_id", :conditions => ["matriculas.aluno_id = ? AND matriculas.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO')", session[:aluno], Time.now.year  ],:order => 'classe_num ASC' )
                                             session[:AEE]=0
                                        end
                                   else

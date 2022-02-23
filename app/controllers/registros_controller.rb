@@ -118,7 +118,11 @@ def consulta_registros
         else  if params[:type_of].to_i == 2 # Aluno
               w= params[:aluno]
               if (current_user.has_role?('professor_infantil')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_fundamental')  or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo')or current_user.has_role?('admin'))
+                if (current_user.has_role?('professor_infantil')  or current_user.has_role?('professor_fundamental')  )
                  @registros=Registro.find(:all, :conditions=>  ["ano_letivo =? AND professor_id=? AND aluno_id=? ", Time.now.year, current_user.professor_id, params[:aluno]])
+                else
+                 @registros=Registro.find(:all, :conditions=>  ["ano_letivo =? AND unidade_id=? AND aluno_id=? ", Time.now.year, current_user.unidade, params[:aluno]])
+                end
               end
              render :update do |page|
                  page.replace_html 'relatorio', :partial => 'conteudo'
@@ -126,7 +130,11 @@ def consulta_registros
 
               else if params[:type_of].to_i == 4    #classe
                        w= params[:classe_id]
-                        @registros=Registro.find(:all, :conditions=>  ["ano_letivo =? AND professor_id=? AND classe_id=? ", Time.now.year, current_user.professor_id, params[:classe_id]])
+                       if (current_user.has_role?('professor_infantil')  or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_fundamental')  or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo')or current_user.has_role?('admin'))
+                           @registros=Registro.find(:all, :conditions=>  ["ano_letivo =? AND unidade_id=?  ", Time.now.year, current_user.unidade_id])
+                       else
+                          @registros=Registro.find(:all, :conditions=>  ["ano_letivo =? AND professor_id=? AND classe_id=? ", Time.now.year, current_user.professor_id, params[:classe_id]])
+                       end
                         render :update do |page|
                             page.replace_html 'relatorio', :partial => 'conteudo'
                         end
