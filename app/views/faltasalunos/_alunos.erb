@@ -3,7 +3,7 @@
           <%else%>
                   <tr>
                     <td></td>
-                    <td ><font color="red"> <b>Selecionar somente alunos ausentes</b></font></td>
+                    <td ><font color="red" size="3"> <b>Selecionar somente alunos <u>AUSENTES </u></b></font></td>
                   </tr>
           <%end%>
           <tr>
@@ -23,7 +23,12 @@
                                        <% for aluno in @alunos_matriculados %>
                                           <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: black "bgcolor="#F5F5F5">
                                             <tr>
-                                                     <td width ="1px" align="center"><%= check_box_tag "aluno_ids[]",aluno.id %></td>
+                                                     <td width ="1px" align="center"><%if aluno.status =="REMANEJADO" or aluno.status =="TRANSFERIDO"  %>
+                                                                                          ------
+                                                                                     <%else%>
+                                                                                          <%= check_box_tag "aluno_ids[]",aluno.id %>
+                                                                                     <%end%>
+                                                      </td>
                                                         <td width ="5%" align="center"><%= aluno.numero %></td>
                                                      <td><%=h aluno.aluno_nome_dtn %><%if session[:AEE]== 0  %>                                                                               <%  if  aluno.status =="TRANSFERIDO"%>
                                                                                               (<font color ="red"> Transferido </font>)

@@ -156,12 +156,17 @@
                                                              <%@faltasalunosdiasT.each do |falatasdiasT|%>
                                                                  <% if falatasdiasT.aluno_id == alunos_mat.id  %>
                                                                    <font color ="red"><b>  F </b> (<%= falatasdiasT.faltas%>)</font>
-                                                                   <%f=0%>
-                                                                   <%break%>
+                                                                    <%f=0%>
+                                                                    <%break%>
                                                                  <%end%>
                                                              <%end%>
                                                              <%  if f==1 %>
-                                                                <font color ="darkblue"> P
+                                                                     <% if (alunos_mat.situacao=='TRANSFERIDO' or alunos_mat.situacao=='REMANEJADO')  %>
+                                                                              -----
+                                                                      <%else%>
+                                                                        <font color ="darkblue"> P 
+                                                                     <%end%>
+
                                                              <%  end %>
 
 
