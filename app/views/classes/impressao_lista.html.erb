@@ -28,30 +28,23 @@
            <td align="left" style="font-size: 8px">  <%=h classe.horario%></td>
 
       </tr>
-      <tr style="line-height:30%">
-          <td align="left" style="font-size: 8px"><b>Descrição:</b></td>
-          <td colspan="3" align="left" style="font-size: 8px">  <%=h classe.classe_descricao %></td>
-      </tr>
+</table>
+
          <% cont=1 %>
          <% cont1=1 %>
-      <tr>
-        <td colspan="4">
+
           <table  border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
                <tr style="line-height:30%">
                  <td align="center"width ="2%" style="font-size: 8px"><b>Nº</b></td>
-                 <td width ="5%" style="font-size: 8px"><b>RM</b></td>
-                 <td width ="5%" style="font-size: 8px"><b>RA</b></td>
-                 <td width ="55%" style="font-size: 8px"><b>NOME</b></td>
-                 <td width ="5%" style="font-size: 8px"><b>SITUAÇÃO</b></td>
-                 <td align="center"width ="40%" style="font-size: 8px"><b>ASSINATURA</b></td>
+                 <td width ="35%" style="font-size: 8px"><b>NOME (aluno)</b></td>
+                 <td width ="35%" style="font-size: 8px"><b>NOME (Responsável)</b></td>
+                 <td align="center"width ="30%" style="font-size: 8px"><b>ASSINATURA</b></td>
                </tr>
              <% for matricula in @matriculas %>
                 <tr bgcolor="#F5F5F5" style="line-height:30%">
                   <td align="center" style="font-size: 8px"> <%="#{ matricula.classe_num}"%> </td>
-                  <td align="center" style="font-size: 8px"> <%="#{ matricula.aluno.aluno_rm}"%> </td>
-                  <td align="center" style="font-size: 8px"> <%="#{ matricula.aluno.aluno_ra}"%> </td>
-                  <td align="left" style="font-size: 8px"> <%="#{ matricula.aluno.aluno_nome}"%> </td>
-                  <td align="left" style="font-size: 8px"> <%  if  matricula.status =="TRANSFERIDO"%>
+                  <td align="left" style="font-size: 8px"> <%="#{ matricula.aluno.aluno_nome}"%>
+                                                             <%  if  matricula.status =="TRANSFERIDO"%>
                                                                 <font color ="red"> Transferido </font>
                                                             <%else if  matricula.status =="TRANSFERENCIA"%>
                                                                    <font color ="blue"> Transferência </font>
@@ -68,6 +61,7 @@
                                                             <%end%>
                   </td>
                   <td align="left">  </td>
+                      <td align="left">  </td>
 
               </tr>
             <%end%>
@@ -77,8 +71,7 @@
 
 
 
-        </td>
-      </tr>
 
-</table>
+
+
 <%end%>
