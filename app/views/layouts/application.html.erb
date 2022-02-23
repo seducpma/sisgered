@@ -582,10 +582,11 @@ display: none;
                                 <li><%= link_to "Contr. Frequência",diario_classe_path %></li><!-- Professores fundamental-->
                            <%end%>
                                  <li><%= link_to "Lista Presença",consulta_lista_path %></li>
-                           <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+
                              
                                <li><%= link_to "Lista Responsável",lista_responsavel_path %></li>
-                            <%end%>
+
+
                                <% if current_user.has_role?('admin') or  current_user.has_role?('direcao_fundamental')or current_user.has_role?('supervisao') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil') or current_user.has_role?('direcao_infantil')%>
                                       <li><%= link_to "Lista Piloto",consulta_classe_piloto_path %></li>
                               <%end%>

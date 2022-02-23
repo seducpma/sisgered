@@ -23,9 +23,9 @@
        <td align="center"width ="5%"><b>Nº</b></td>
        
        
-       <td width ="40%"><b>NOME</b></td>
-       <td width ="40%"><b>MÃE / RESPONSÁVEL</b></td>
-       <td align="center"width ="10%"><b>DOCUMENTO.</b></td>
+       <td width ="40%"><b>NOME ALUNO</b></td>
+       <td width ="40%"><b>NOME RESPONSÁVEL</b></td>
+       <td align="center"width ="10%"><b>ASSINATURA</b></td>
         
      </tr>
    <% for matricula in @matriculas %>
@@ -47,7 +47,7 @@
                                        <%end%>
                                  <%end%>
                           <%end%></td>
-        <td align="left"> <%="#{ matricula.aluno.aluno_mae} "%> </td>
+        <td align="left"> <%#="#{ matricula.aluno.aluno_mae} "%> </td>
         <td align="left">   </td>
 
 
