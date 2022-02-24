@@ -1,3 +1,20 @@
    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <b>Classe:</b> <%=h @atribuicao[0].classe.classe_classe%>
    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <b>Período:</b> <%=h @atribuicao[0].classe.horario%>
+
+   <br/>
+
+   <table>
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><b>Nº Dias Letivos: </b><%= text_field_tag:dias_letivos, params[:faltas], :size => 5, :value=> BIM1I + BIM2I  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <% faltas1=0%>
+                     @atribuicao[0].disciplina.disciplina
+                    <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=? AND professor_id =? ", session[:alun_id], @atribuicao[0].classe.id, @atribuicao[0].disciplina.id, BIM1INI, BIM1FIM, session[:professor_id]]) %>
+                    <% @totalFaltas.each do |totalfaltas|%>
+                        <% faltas1= totalfaltas.faltas + faltas1%>
+                    <%end%>
+             <b>Nº Faltas: </b><%= text_field_tag :faltas,params[:faltas],  :size => 5, :value => faltas1 %>
+             </td>
+
+        </tr>
+</table>
