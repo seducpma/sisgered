@@ -119,7 +119,8 @@
                                                 <%end%>
                                                 <%if !nota.faltas1.present? or nota.faltas1==0%>
                                                     <td align="center"> <% faltas1=0%>
-                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", nota.aluno_id, session[:cont_classe_id], session[:disciplina_id], BIM1INI, BIM1FIM]) %>
+                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=? AND professor_id =? ", nota.aluno_id, session[:cont_classe_id], session[:disciplina_id], BIM1INI, BIM1FIM,current_user.professor_id]) %>
+                                                      
                                                           <% @totalFaltas.each do |totalfaltas|%>
                                                           <% faltas1= totalfaltas.faltas + faltas1%>
                                                       <%end%>

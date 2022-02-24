@@ -31,7 +31,7 @@
           <td colspan="4">  <% for atrib in @atribuicao_classe %>
             <table width="100%">
                 <tr bgcolor="#F5F5F5" >
-                  <td align="left" width="32%"> <%=h atrib.professor.nome%></td>
+                  <td align="left" width="25%"> <%=h atrib.professor.nome%></td>
                   <td align="left"width="10%"><b> Disciplina:</b></td>
                   <td align="left" width="30%"> <%=h atrib.disciplina.disciplina %></td>
                   <% session[:disciplina] = atrib.disciplina.disciplina %>
@@ -51,10 +51,11 @@
         </tr>
         <tr>
           <td colspan="2"> <b> Bimestre: de &nbsp&nbsp </b> <%=session[:dataII]%>  <b>&nbsp&nbsp  à</b>&nbsp&nbsp  <%=session[:dataFF]%> </td>
-          <td colspan="2"> <b>Total de dias letivos do bimestre:</b><%if params[:type_of].to_i == 1 %> <%=  session[:total_aulas1] %> <%end%>
-                                                                    <%if params[:type_of].to_i == 2 %> <%=  session[:total_aulas2] %> <%end%>
-                                                                    <%if params[:type_of].to_i == 3 %> <%=  session[:total_aulas3] %> <%end%>
-                                                                    <%if params[:type_of].to_i == 4 %> <%=  session[:total_aulas4] %> <%end%>
+          <td colspan="2"> <b>Total de dias letivos do bimestre:</b> 
+                <%if params[:type_of].to_i == 1 %>  <%=BIM1F%>  <b> Aulas ministradas:</b> <%=  session[:total_aulas1] %><%end%>
+                <%if params[:type_of].to_i == 2 %> <%=BIM2F%>   <b>Aulas ministradas: </b><%=  session[:total_aulas2] %> <%end%>
+                <%if params[:type_of].to_i == 3 %> <%=BIM3F%>   <b>Aulas ministradas: </b><%=  session[:total_aulas3] %> <%end%>
+                <%if params[:type_of].to_i == 4 %> <%=BIM4F%>   <b>Aulas ministradas: </b><%=  session[:total_aulas4] %> <%end%>
           </td>
         </tr>
       </table>
