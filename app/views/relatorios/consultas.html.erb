@@ -14,7 +14,7 @@
       <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
             <td>
-              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Por Ano
+              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Por Ano / Aluno
               <%  if current_user.has_role?('admin') or   current_user.has_role?('pedagogo')	  or   current_user.has_role?('direcao_infantil')  or   current_user.has_role?('SEDUC')  or   current_user.has_role?('direcao_fundamental')  or   current_user.has_role?('supervisao') or current_user.has_role?('secretaria_infantil') %>
                   <a href="#" class="filtro_fapeac"><%= radio_button_tag(:type_of, "4") %></a>Por Classe <b><font color =" blue">*</font></b>
               <%end%>
@@ -24,7 +24,7 @@
                   <#a href="#" class="filtro_unidade"><%#= radio_button_tag(:type_of, "3") %></a>Por Aluno <b><font color =" blue">*</font></b>
               <%#end%>
               -->
-              &nbsp&nbsp&nbsp&nbsp(<font color =" blue"><b>* Ano Letivo atual</b></font>)
+              &nbsp&nbsp(<font color =" blue"><b>* Ano Letivo atual</b></font>)
             </td>
           </tr>
 
