@@ -18,8 +18,7 @@ class Aluno < ActiveRecord::Base
   before_save  :maiusculo
 
  
-  validates_presence_of :aluno_nome
-
+  validates_presence_of :aluno_nome,:aluno_mae, :aluno_ra
 
 
  def maiusculo
