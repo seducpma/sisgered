@@ -49,13 +49,16 @@ def classe
     w=session[:professor_id]=params[:conteudoprogramatico_professor_id]
      
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
+   t=0
     if @atribuicao.empty? or @atribuicao.nil?
       render :partial => 'aviso'
+
     else
+
        if @atribuicao.count > 1
-          session[:atribuicao]=@atribuicao[0].classe_id
-          w=@atribuicao[0].id
-           teste= @atribuicao[0].classe.classe_classe[0,3]
+          w1= session[:atribuicao]=@atribuicao[0].classe_id
+          w = @atribuicao[0].id
+            teste= @atribuicao[0].classe.classe_classe[0,3]
 
           t=0
           if teste == 'AEE'
@@ -80,13 +83,14 @@ def classe
 
 def disciplina
  w=session[:cont_disciplina_id] =  params[:disciplina_id]
+ w3=session[:cont_classe_id] =  params[:classe_id]
  w2=session[:professor_id]
  if session[:consultas]==0 # new
     if session[:atribuicao] == 'AEE'
-      @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and disciplina_id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
+      @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
         t=0
      else
-       @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and disciplina_id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
+       @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
        t=0
      end
        session[:cont_classe_id]= @atribuicao[0].classe_id
