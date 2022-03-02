@@ -6,7 +6,7 @@
 <% title "CONSULTA_CLASSE".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">
-     <font size="3"><strong>FREQUÊNCIA - LANÇAMENTOS AUSÊNÇAS</strong></font><br/>
+     <font size="3"><strong>FREQUÊNCIA - LANÇAMENTOS AUSÊNCIAS</strong></font><br/>
     
  </div>
     <div class="tabs">
@@ -34,7 +34,7 @@
 
                 <tr>
                   <td width =" 5%" valign="top"><b><b>Quantidade Aulas:</b> </b></td>
-                  <td> <%= select_tag :falta, options_for_select(["0", "1","2","3","4","5","6"])%> &nbsp<font size="2" color=" red"><font size="3"><b> <= Quantidade de aulas  no dia *</font> <font color ="red" size ="3" id="pisca1"> OBRIGATORIO SELECIONAR OPÇÂO</b></font> </td>
+                  <td> <%= select_tag :falta, options_for_select(["0", "1","2","3","4","5","6","7"])%> &nbsp<font size="2" color=" red"><font size="3"><b> <= Quantidade de aulas  no dia *</font> <font color ="red" size ="3" id="pisca1"> OBRIGATORIO SELECIONAR OPÇÂO</b></font> </td>
                     <%= observe_field 'falta',
                          :url    => { :action => 'faltas' },
                          :with   => 'falta' %>
