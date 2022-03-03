@@ -3,9 +3,12 @@
   <font  size="2">
     <fieldset><legend><font  size=3>Dados Professor</font></legend>
       <table width="100%" align="center"  bgcolor="#F5F5F5" >
+        <tr bgcolor="#F5F5F5">
+               <td colspan="2"><font color ="red" size ="3"><b><u>ATENÇÃO:</u></b> &nbsp&nbsp&nbsp Os campos <b>Matricula , Nome do Professor, Função  e Sede</b> são preenchimento obrigatório.
+       </tr>
         <tr>
-          <td><b>Matricula: </b><%= f.text_field :matricula, :size => 24 %></td>
-          <td><b>Nome: </b><%= f.text_field :nome, :size => 59 %></td>
+          <td><font color ="red" size ="3"><b>*</b></font><b><b>Matricula: </b><%= f.text_field :matricula, :size => 24 %></td>
+          <td><font color ="red" size ="3"><b>*</b></font><b><b>Nome: </b><%= f.text_field :nome, :size => 59 %></td>
         </tr>
         <tr>
           <td><b>Data de Nascimento: </b><%= datepicker_tag(:professor, :dt_nasc,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %></td>
@@ -32,7 +35,7 @@
         </tr>
         <tr>
           <td colspan="3"><b>E-mail(s): </b><%= f.text_field :email, :size =>35%>
-            &nbsp&nbsp&nbsp&nbsp<b>Sede: </b><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+            &nbsp&nbsp<font color ="red" size ="3"><b>*</b></font><b>Sede: </b><%= f.collection_select :unidade_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
         </tr>
         <tr>
           
@@ -42,7 +45,7 @@
               <b>Formação: </b><%= f.select :entrada_concurso, options_for_select(Professor::Curso), :include_blank => true%></td>
         </tr>
         <tr>
-           <td><b>Função/Cargo: </b><%= f.select :funcao, (CARGO).sort, :include_blank => '-- Selecionar --' %></td>
+           <td><font color ="red" size ="3"><b>*</b></font><b>Função/Cargo: </b><%= f.select :funcao, (CARGO).sort, :include_blank => '-- Selecionar --' %></td>
            <td><b>Observações:</b><%= f.text_field :obs, :size => 53 %></td>
          </tr>
 
