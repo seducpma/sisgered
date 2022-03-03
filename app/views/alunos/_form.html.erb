@@ -6,14 +6,17 @@
 <!--<font color ="red"  size="4"align="left"><b> Quando a resposta for diferente de NÃO, favor especificar </b></font>-->
   <fieldset><legend><font size=4>Dados alunos</font></legend>
     <table width="100%">
+             <tr bgcolor="#F5F5F5">
+               <td colspan="4"><font color ="red" size ="3"><b><u>ATENÇÃO:</u></b> &nbsp&nbsp&nbsp Os campos <b>Nº RA , Nome do Aluno e Nome da Mãe</b> são preenchimento obrigatório.
+       </tr>
        <tr bgcolor="#F5F5F5">
-         <td colspan="4"><b>Nº RA: &nbsp&nbsp</b> <%= f.text_field :aluno_ra, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                         <b>Nº RM: &nbsp&nbsp</b> <%= f.text_field :aluno_rm, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                         <b>Nº INEP:</b>&nbsp&nbsp <%= f.text_field :aluno_inep, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         <td colspan="4"><font color ="red" size ="3"><b>*</b></font><b>Nº RA: &nbsp&nbsp</b> <%= f.text_field :aluno_ra, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Nº RM: &nbsp&nbsp</b> <%= f.text_field :aluno_rm, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Nº INEP:</b>&nbsp&nbsp <%= f.text_field :aluno_inep, :size=>"10" %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                          <b>Nº NIS: &nbsp&nbsp</b> <%= f.text_field :aluno_nis, :size=>"10" %></td>
        </tr>
        <tr bgcolor="#F5F5F5">
-         <td width =" 12%" valign="top"><b>Nome:</b></td>
+         <td width =" 12%" valign="top"><font color ="red" size ="3"><b>*</b></font><b>Nome:</b></td>
          <td colspan="3"><%= f.text_field :aluno_nome, :size=>"64" %>
              <%= observe_field :aluno_aluno_nome,
                :with => :aluno_aluno_nome,
@@ -116,7 +119,7 @@
             </div></td>
        </tr>
        <tr bgcolor="#F5F5F5">
-         <td><b></font>Mãe: </b></td>
+         <td><font color ="red" size ="3"><b>*</b></font><b></font>Mãe: </b></td>
          <td colspan="3"><%= f.text_field :aluno_mae, :size=>"60"%></td>
       </tr>
       <tr>
