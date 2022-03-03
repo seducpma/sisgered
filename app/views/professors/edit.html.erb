@@ -15,7 +15,7 @@
                     <td><b>Nome: </b><%= f.text_field :nome, :size => 59 %></td>
                   </tr>
                   <tr>
-                    <td colspan="2"><b>Data Nascimento:</b> <%= f.date_select(:dt_nasc, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 40))%>
+                    <td colspan="2"><b>Data Nascimento:</b> <%= f.date_select(:dt_nasc, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 100))%>
 
                         <!--<%= datepicker_tag(:professor, :dt_nasc,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'" }) %>-->&nbsp&nbsp
                         <b>RG: </b><%= f.text_field :RG, :size => 9 %>&nbsp&nbsp
