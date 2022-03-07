@@ -4,9 +4,20 @@
 
 <%else if session[:atribuicao]== 'AEE'%>
           <%@disciplinas1 = Disciplina.find(:all, :select => "atribuicaos.id as disc_id, atribuicaos.id as atri_id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe,' - ',unidades.nome) AS disciplina_classe", :joins => "INNER JOIN atribuicaos on disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes on classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )    %>
-      <%else%>
+      <%else if current_user.has_role?('direcao_fundamental')or  current_user.has_role?('direcao_infantil')%>
+
+
+         <%#@disciplinas1 = Disciplina.find(:all, :select => "disciplinas.id as disc_id, atribuicaos.id as atri_id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe,' - ',unidades.nome) AS disciplina_classe", :joins => "INNER JOIN atribuicaos on disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes on classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )    %>
+         <%#@disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN conteudoprogramaticos ON disciplinas.id = conteudoprogramaticos.disciplina_id", :conditions=> ['conteudoprogramaticos.classe_id =? ',  session[:classe_id]])%>
+
+          <%@disciplinas1 = Disciplina.find(:all, :select => "distinct(disciplinas.id ) as disc_id, atribuicaos.id as atri_id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe,' - ',unidades.nome) AS disciplina_classe", :joins => "INNER JOIN atribuicaos on disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes on classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id INNER JOIN conteudoprogramaticos ON disciplinas.id = conteudoprogramaticos.disciplina_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND conteudoprogramaticos.classe_id =? AND atribuicaos.ano_letivo =? AND classes.unidade_id =? and  classes.id = ? ', session[:classe_id], Time.now.year,  current_user.unidade_id, session[:classe_id] ],:order => 'disciplina ASC' )    %>
+
+
+     <%else%>
+
          <%@disciplinas1 = Disciplina.find(:all, :select => "disciplinas.id as disc_id, atribuicaos.id as atri_id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe,' - ',unidades.nome) AS disciplina_classe", :joins => "INNER JOIN atribuicaos on disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes on classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )    %>
       <%end%>
+<%end%>
     <%#@disciplinas1 = Atribuicaos.find(:all, :select => "atribuicaos.id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe) AS disciplina_classe", :joins => "inner join disciplinas on disciplinas.id = atribuicaos.disciplina_id inner join classes on classes.id = atribuicaos.classe_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )    %>
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <b>Disciplina:</b> <%= select_tag :disciplina_id, options_for_select(@disciplinas1.collect { |ff| [ff.disciplina_classe, ff.disc_id] }.insert(0, '--Selecionar--')) %></td>

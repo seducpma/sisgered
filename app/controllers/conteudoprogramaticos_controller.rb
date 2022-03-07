@@ -363,6 +363,7 @@ end
 
     def classe_disciplina
         w=session[:classe_id]=params[:classe_id]
+        t=0
         if current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental')
           session[:professor_id]= current_user.professor_id
           session[:classe_id]=params[:classe_id]
