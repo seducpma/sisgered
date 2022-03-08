@@ -108,6 +108,9 @@
                                                   <%if nota.matricula.status == 'REMANEJADO' %>
                                                       <font color ="green"> (Remanejado)</font>
                                                   <%end%>
+                                                  <%if nota.matricula.status == 'NCOMP' %>
+                                                      <font color ="green"> (NCOMP)</font>
+                                                  <%end%>
                                       </td>
                                       <td align="center"><%= nota.comp1 %></td>
                                       <td align="center"><%= nota.comp2 %></td>

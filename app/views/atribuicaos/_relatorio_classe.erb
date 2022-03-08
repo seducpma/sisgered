@@ -76,6 +76,9 @@
                                 <font color ="blue"> (Transferência)</font>
                             <%else  if  matricula.status =="*REMANEJADO"%>
                                     <font color ="blue"> (*Remanejado)</font>
+                                    <%else if  matricula.status =="NCOMP"%>
+                                        <font color ="green"> NCOMP</font>
+                                    <%end%>
                                 <%end%>
                             <%end%>
                         <%end%>

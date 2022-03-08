@@ -41,6 +41,12 @@
                                                 <td><b>Aluno: </b></td>
                                                <td> <%=h @matricula.aluno.aluno_nome%> &nbsp&nbsp (REMANEJADO <font color="blue"><b> de </b></font> outra classe)</td>
                                             </tr>
+                                          <%else if (@matricula.status == 'NCOMP')%>
+                                             <tr>
+                                                <td><b>Aluno: </b></td>
+                                               <td> <%=h @matricula.aluno.aluno_nome%> &nbsp&nbsp (NCOMP - NÂO COMPARECEU ) </td>
+                                            </tr>
+                                          <%end%>
                                        <%end%>
                                  <%end%>
                             <%end%>
