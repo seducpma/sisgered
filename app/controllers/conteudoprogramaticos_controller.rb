@@ -88,15 +88,15 @@ def disciplina_classe
 
  if session[:atribuicao] == 'AEE'
       @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
-        t=0
+
      else
        @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
-       t=0
+
      end
        a=session[:cont_classe_id]= @atribuicao[0].classe_id
        a1=session[:cont_atribuicao_id]=@atribuicao[0].id
-       a2=session[:cont_disciplina_id]=@atribuicao[0].disciplina_id
-       t=0
+       a2=session[:disciplina_id]=@atribuicao[0].disciplina_id
+
       render :partial => 'dados_classe'
 
 

@@ -15,14 +15,14 @@
 
      <%else%>
 
-         <%@disciplinas1 = Disciplina.find(:all, :select => "atribuicaos.classe_id, disciplinas.id as disc_id, atribuicaos.id as atri_id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe,' - ',unidades.nome) AS disciplina_classe", :joins => "INNER JOIN atribuicaos on disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes on classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )    %>
+         <%@disciplinas1 = Disciplina.find(:all, :select => "atribuicaos.classe_id, disciplinas.id as disc_id, atribuicaos.id as atri_id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe,' - ',unidades.nome) AS disciplina_classe", :joins => "INNER JOIN atribuicaos on disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes on classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'classes.classe_classe ASC' )    %>
       <%end%>
 
 <%end%>
     <%#@disciplinas1 = Atribuicaos.find(:all, :select => "atribuicaos.id, CONCAT(disciplinas.disciplina, ' - ',classes.classe_classe) AS disciplina_classe", :joins => "inner join disciplinas on disciplinas.id = atribuicaos.disciplina_id inner join classes on classes.id = atribuicaos.classe_id" ,:conditions => ['disciplinas.nao_disciplina = 0 AND atribuicaos.professor_id = ? AND atribuicaos.ano_letivo =?', session[:professor_id], Time.now.year ],:order => 'disciplina ASC' )    %>
 
 
-    <%if current_user.has_role?('professor_fundamental')or  current_user.has_role?('professor_infantil')%>
+    <%if session[:tela_new]== 1%>
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
               <b>Disciplina/Classex:</b> <%= select_tag :classe_id, options_for_select(@disciplinas1.collect { |ff| [ff.disciplina_classe, ff.classe_id] }.insert(0, '--Selecionar--')) %></td>
 
@@ -40,6 +40,7 @@
                                  :with   => 'disciplina_id' %>
    
     <%end%>
+ <% session[:tela_new]= 0%>
 <%end%>
 
 
