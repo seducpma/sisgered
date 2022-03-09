@@ -503,8 +503,10 @@ display: none;
                         <li><%= link_to "Classe",editar_classe_classes_path %></li>
 
                    <%end%>
+
+              
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil') or current_user.has_role?('professor_infantil')or current_user.has_role?('professor_fudamental'))%>
-                         <li><a class="item-primary" href="#;">Lançamentos</a>
+                         <!--<li><a class="item-primary" href="#;">Lançamentos</a>
                            <ul>
                               <% if (current_user.unidade_id != 60)  %>
                                 <li><%= link_to "Professor",editar_conteudos_path %></li>
@@ -515,15 +517,18 @@ display: none;
                                   <% if (current_user.unidade_id == 52 or current_user.unidade_id == 60 or current_user.unidade_id  == 53  )%>
                                             <li><%= link_to "Mãos Que Acolhem",editar_mqa_conteudos_path %>  </li>
                                   <%end%>
-                              <!--   <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
+                                 <%# if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_infantil') )%>
                                    <li><%#= link_to "Validação",validacao_conteudos_path %></li>
-                                 <%#end%> -->
+                                 <%#end%> 
 
                            </ul>
                          </li>
+                        -->
 
 
                   <%end%>
+
+              
                       <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao')or current_user.has_role?('pedagogo') or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
                         <li><%= link_to "Editar Faltas Inf.",lancar_faltas_editar_faltas_path %></li>
                         <%end%>
