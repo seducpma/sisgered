@@ -3,6 +3,10 @@ class HomeController < ApplicationController
 
   def index
   end
+  
+  def fora_do_ar
+
+  end
 
   def sobresis
     render :update do |page|

@@ -672,9 +672,17 @@ display: none;
                                      <ul>
                                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
                                              <% if current_user.has_role?('admin') or  current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
-                                              <li><%= link_to "Lançamentos",new_conteudoprogramatico_path %></li>
+                                              <li><%#= link_to "Lançamentos",new_conteudoprogramatico_path %>
+
+                                                   <%= link_to "Lançamentos",fora_do_ar_path %>
+
+
+                                              </li>
                                             <%end%>
-                                               <li><%= link_to "Consultas ",consultas_conteudoprogramaticos_path %></li><!-- Professores fundamental-->
+                                               <li><%#= link_to "Consultas ",consultas_conteudoprogramaticos_path %>
+                                                   <%= link_to "Consultas",fora_do_ar_path %>
+
+                                               </li><!-- Professores fundamental-->
                                             <%end%>
                                      </ul>
                                   </li>

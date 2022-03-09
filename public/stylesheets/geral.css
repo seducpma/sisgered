@@ -557,6 +557,26 @@ margin:25px;
 
  }
 
+
+  #fora_do_ar{
+   background-image:url(Imagens/fora_do_ar.png);
+   background-repeat: no-repeat;
+   background-position:center;
+   text-align: center;
+   color:white;
+   width:95%;
+   height:450px;
+   margin:0;
+   font-weight:bold;
+   border-color:black;
+   border-left: double;
+   border-bottom: double;
+   border-top: double;
+   border-right: double;
+}
+
+
+
  #img{
    background-image:url(Imagens/sisgered.jpg);
    background-repeat: no-repeat;

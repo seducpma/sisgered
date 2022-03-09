@@ -60,6 +60,8 @@ ActionController::Routing::Routes.draw do |map|
   map.estatisticaclasse'/estatisticaclasse', :controller => 'estatisticas', :action => 'estatisticaclasse'
   map.classeestatistica '/classeestatistica', :controller => 'estatisticas', :action => 'classeestatistica'
 
+  map.fora_do_ar'/fora_do_ar', :controller => 'home', :action => 'fora_do_ar'
+
   map.protocolo_covid'/protocolo_covid', :controller => 'home', :action => 'protocolo_covid'
   map.new_continua  '/new_continua', :controller => 'saudes', :action => 'new_continua'
   map.new_continua_econ  '/new_continua_econ', :controller => 'socioeconomicos', :action => 'new_continua'

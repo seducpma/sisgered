@@ -11,6 +11,11 @@ class SessionsController < ApplicationController
     
   end
 
+
+  def fora_do_ar
+
+  end
+
   
    def create
     self.current_user = User.authenticate(params[:login], params[:password])
