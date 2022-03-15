@@ -82,29 +82,54 @@ def classe
 
 
 def disciplina_classe
-   w3=session[:cont_classe_id] =  params[:classe_id]
+   w3=session[:disciplina_id] =  params[:disciplina_id]
 
- w2=session[:professor_id]
-
- if session[:atribuicao] == 'AEE'
-      @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
-
-     else
-       @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
-
-     end
-       a=session[:cont_classe_id]= @atribuicao[0].classe_id
-       a1=session[:cont_atribuicao_id]=@atribuicao[0].id
-       a2=session[:disciplina_id]=@atribuicao[0].disciplina_id
-
-      render :partial => 'dados_classe'
+    w2=session[:professor_id]
+    x=current_user.professor_id
 
 
 
-  t=0
+  
+    t=0
+ @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =? AND disciplina_id =?", current_user.professor_id, Time.now.year, session[:classe_id],session[:disciplina_id]  ])
+              a1=session[:cont_atribuicao_id]=@atribuicao[0].id
+              t=0
+ #if session[:atribuicao] == 'AEE'
+ #     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
+
+#     else
+#       @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
+
+#     end
+       #a=session[:cont_classe_id]= @atribuicao[0].classe_id
+       #a1=session[:cont_atribuicao_id]=@atribuicao[0].id
+       #a2=session[:disciplina_id]=@atribuicao[0].disciplina_id
+
+ #     render :partial => 'dados_classe'
+
+
+
+
 end
 
+def classe_disciplina2
+   w3=session[:classe_id] =  params[:classe_id]
+   t=0
+      if current_user.has_role?('professor_fundamental')
+            
+           @disciplinas=Disciplina.find(:all,  :joins=> 'INNER JOIN atribuicaos on atribuicaos.disciplina_id = disciplinas.id ', :conditions=>['(curriculo =? or curriculo =?)  AND nao_disciplina = 0 and atribuicaos.classe_id =? AND atribuicaos.professor_id=?' , 'B', 'D', session[:classe_id], current_user.professor_id],:order => 'disciplinas.disciplina ASC')
+                                                           
+         else if current_user.has_role?('professor_fundamental')
+              else
+                  @disciplinas=Disciplina.find(:all, :select=> 'distinc(disciplinas.disciplina', :conditions=>['curriculo =?  AND nao_disciplina = 0 ', 'I'],:order => 'Disciplina ASC')
+              end
+           @disciplinas=Disciplina.find(:all, :conditions=>['nao_disciplina = 0 '],:order => 'Disciplina ASC')
 
+         end
+t=0
+            
+       render :partial => 'dados_disciplina'
+end
 
 def disciplina
  w= session[:disciplina_id]= params[:disciplina_id]
@@ -129,6 +154,14 @@ t=0
         render :partial => 'dados_classe'
  else
       @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and disciplina_id =?", session[:professor_id], Time.now.year, params[:disciplina_id] ])
+
+        a=session[:classe_id]= @atribuicao[0].classe_id
+        a1=session[:atribuicao_id]=@atribuicao[0].id
+        a2=session[:disciplina_id]=@atribuicao[0].disciplina_id
+
+
+
+      t=0
  end
 end
 
@@ -183,8 +216,10 @@ end
 
     w1= session[:cont_classe_id]
     w2= session[:classe_id]
+    w2= session[:disciplina_id]
 
-    @conteudoprogramatico.classe_id= session[:cont_classe_id]
+    @conteudoprogramatico.classe_id= session[:classe_id]
+    @conteudoprogramatico.disciplina_id= session[:disciplina_id]
 
 
 
@@ -429,7 +464,7 @@ end
           if current_user.has_role?('professor_fundamental')or  current_user.has_role?('professor_infantil')
              #@disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplinas), disciplinas.id' ,:joins=> "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN conteudoprogramaticos ON disciplinas.id = conteudoprogramaticos.disciplina_id", :conditions=> ['atribuicaos.classe_id =? and conteudoprogramaticos.classe_id=? and atribuicaos.professor_id =?', params[:classe_id], session[:classe_id], current_user.professor_id])
              @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN conteudoprogramaticos ON disciplinas.id = conteudoprogramaticos.disciplina_id", :conditions=> ['conteudoprogramaticos.classe_id=? and conteudoprogramaticos.professor_id =?', session[:classe_id], current_user.professor_id])
-
+t=0
         else
             @disciplina_classe = Disciplina.find(:all,:select => 'distinct(disciplinas.disciplina), disciplinas.id' ,:joins=> "INNER JOIN conteudoprogramaticos ON disciplinas.id = conteudoprogramaticos.disciplina_id", :conditions=> ['conteudoprogramaticos.classe_id =? ',  session[:classe_id]])
             t=0
