@@ -1,14 +1,13 @@
 <table frame="box" rules="all" width="100%" style="border-color: white">
   <tr style="border-color: white">
     <td rowspan="4" style="border-color: white"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-    <td style="border-color: white"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
-        <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+    <td style="border-color: white"><center><font size="3"><i><b>LISTA DE PRESENÇA</b></i></center>
+        <center><font size="1"><b><i> Secretaria da Educação - Prefeitura Municipal de  Americana</i></b><br/></center>
         <center><font size="1">Unidade Escolar:     <% for classe in @classe %> <%=h classe.unidade.nome %>   </font></center>
-
     </td>
   </tr>
 </table>
-<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+<table frame="box" rules="all" width="100%" style="border-color: white">
 
    <tr  class ="invisible_to_print " style="border-color: white">
      <td style="border-color: white" colspan="4"align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
@@ -25,7 +24,14 @@
            <td align="left" style="font-size: 8px"><b>Classe:</b></td>
            <td align="left" style="font-size: 8px">  <%=h classe.classe_classe%></td>
            <td align="left" style="font-size: 8px"><b>Horário:</b></td>
-           <td align="left" style="font-size: 8px">  <%=h classe.horario%></td>
+           <td colspan="7"align="left" style="font-size: 8px">  <%=h classe.horario%></td>
+
+      </tr>
+            <tr style="line-height:30%">
+           <td align="left" style="font-size: 8px"><b>Pauta Reunião:</b></td>
+           <td align="left" style="font-size: 8px">  </td>
+           <td align="left" style="font-size: 8px"><b>Data:</b></td>
+           <td colspan="7" align="left" style="font-size: 8px"> </td>
 
       </tr>
 </table>
@@ -33,7 +39,7 @@
          <% cont=1 %>
          <% cont1=1 %>
 
-          <table  border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+          <table frame="box" rules="all" width="100%" style="border-color: white">
                <tr style="line-height:30%">
                  <td align="center"width ="2%" style="font-size: 8px"><b>Nº</b></td>
                  <td width ="35%" style="font-size: 8px"><b>NOME (aluno)</b></td>

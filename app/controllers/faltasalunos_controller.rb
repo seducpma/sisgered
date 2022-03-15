@@ -13,11 +13,12 @@ class FaltasalunosController < ApplicationController
                 @professor_unidade = Professor.find(:all,:select => "distinct(professors.nome), professors.id", :joins => "INNER JOIN  atribuicaos   ON  professors.id = atribuicaos.professor_id INNER JOIN  classes   ON  classes.id = atribuicaos.classe_id ", :conditions => ['classes.unidade_id = ?  AND professors.desligado = 0 and atribuicaos.ano_letivo =?', current_user.unidade_id, Time.now.year],:order => 'nome ASC')
                 @classe_ano = Classe.find(:all, :select  ,:select => "distinct(classes.id), (classe_classe)  as classe_unidade", :joins => "INNER JOIN  atribuicaos  ON  classes.id = atribuicaos.classe_id", :conditions => ['classes.classe_ano_letivo = ? AND classes.unidade_id = ?' , Time.now.year, current_user.unidade_id ], :order => 'classes.classe_classe ASC')
              else
+               t=0
                 @professor_unidade = Professor.find(:all, :conditions => ['id = ?  AND desligado = 0', (current_user.professor_id)],:order => 'nome ASC')
                 @classe_ano = Classe.find(:all, :select => "distinct(classes.id), (classe_classe)  as classe_unidade", :joins => "INNER JOIN  atribuicaos  ON  classes.id = atribuicaos.classe_id", :conditions => ['classes.classe_ano_letivo = ? AND atribuicaos.professor_id = ? and classes.unidade_id = ?' , Time.now.year,current_user.professor_id, current_user.unidade_id ], :order => 'classes.classe_classe ASC')
                 #@unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 1 or  tipo_id = 4 or tipo_id = 7 or tipo_id = 8)'  ], :order => 'nome ASC')
                 @unidades = Unidade.find(:all, :joins => "INNER JOIN  users  ON  unidades.id = users.unidade_id", :select => 'distinct(unidades.id), nome' , :conditions => ['desativada = 0 and (tipo_id = 1 or  tipo_id = 4  or tipo_id = 7) and users.unidade_id=?', current_user.unidade_id  ], :order => 'nome ASC')
-
+t=0
              end
         end
     end

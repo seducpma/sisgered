@@ -8,44 +8,45 @@
   </tr>
 </table>
 
-<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+<table frame="box" rules="all" width="100%" style="border-color: white">
+
 
    <tr  class ="invisible_to_print " style="border-color: white">
      <td colspan="4"align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
   </tr>
 
-        <tr  style="line-height:25%">
-           <td align="left" width="15%" style="font-size: 7px"><b>Unidade:</b></td>
-           <td align="left" style="font-size: 7px"><%=h classe.unidade.nome%></td>
-          <td align="left"width="15%" style="font-size: 7px"><b> Ano Letivo:</b> &nbsp&nbsp  <%=h classe.classe_ano_letivo %></td>
-          <td colspan="7" align="left" style="font-size: 7px"> <b>Mês: </b>              </td>
+        <tr  style="line-height:25%"style="border-color: white">
+           <td align="left" width="15%" style="font-size: 7px"style="border-color: white"><b>Unidade:</b></td>
+           <td align="left" style="font-size: 7px"style="border-color: white"><%=h classe.unidade.nome%></td>
+          <td align="left"width="15%" style="font-size: 7px"style="border-color: white"><b> Ano Letivo:</b> &nbsp&nbsp  <%=h classe.classe_ano_letivo %></td>
+          <td colspan="7" align="left" style="font-size: 7px"style="border-color: white"> <b>Mês: </b>              </td>
       </tr>
 
-      <tr style="line-height:25%">
+      <tr style="line-height:25%"style="border-color: white">
            <td align="left" style="font-size: 7px"><b>Classe:</b></td>
            <td align="left" style="font-size: 7px">  <%=h classe.classe_classe%></td>
-           <td  colspan="2 "align="left" style="font-size: 7px"><b>Horário:</b>&nbsp&nbsp  <%=h classe.horario%></td>
+           <td  colspan="8 "align="left" style="font-size: 7px"><b>Horário:</b>&nbsp&nbsp  <%=h classe.horario%></td>
 
       </tr>
-        <tr  style="line-height:25%">
+        <tr  style="line-height:25%"style="border-color: white">
            <td align="left" width="15%" style="font-size: 7px"><b>Professor(a):</b></td>
            <td align="left" style="font-size: 7px"></td>
-           <td colspan="2" align="left"width="15%" style="font-size: 7px"><b> Disciplina:</b> </td>
+           <td colspan="8" align="left"width="15%" style="font-size: 7px"><b> Disciplina:</b> </td>
 
       </tr>
-
-
-
-      <tr style="line-height:25%">
-         <% cont=1 %>
-         <% cont1=1 %>
-        <td style="font-size: 7px" colspan="4">
-          <b> Alunos: </b><br/>
-          <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+      <tr style="line-height:25%"style="border-color: white">
+           <td align="left" width="15%" style="font-size: 7px"><b>Professor(a):</b></td>
+           <td colspan="9" align="left" style="font-size: 7px"></td>
+         <table frame="box" rules="all" width="100%" style="border-color: white">
                            <tr style="line-height:38%">
                                <td align="center"width ="1%" style="font-size: 7px"><b>Nº</b></td>
 
-                               <td width ="30%" style="font-size: 7px"><br/> <b>NOME</b><br/></td>
+                               <td width ="40%" style="font-size: 7px"><br/> <b>NOME</b>         
+                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                                 <b>Data</b> <br/><br/><br/> </td>
                                <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
                                <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
                                <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
@@ -66,16 +67,14 @@
                                <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
                                <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
                                <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
-                               <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
-                               <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
-                               <td width ="1%"style="font-size: 9px"><b>&nbsp&nbsp </b></td>
+                               
 
                              </tr >
 
                              <% for matricula in  @matriculas %>
                                 <tr style="line-height:25%">
                                   <td align="center" style="font-size: 7px"> <%="#{ matricula.classe_num}"%> </td>
-                                  <td align="center" style="font-size: 9px"> <%="#{truncate(matricula.aluno.aluno_nome,:length => 20,:omission => "...")}"%>
+                                  <td align="center" style="font-size: 7px"> <%="#{truncate(matricula.aluno.aluno_nome,:length => 20,:omission => "...")}"%>
                                                                               <%  if  matricula.status =="TRANSFERIDO"%>
                                                                                  <font color ="red"> (Transf.) </font>
                                                                               <%else if  matricula.status =="TRANSFERENCIA"%>
@@ -94,9 +93,6 @@
                                                                                            <%end%>
                                                                                      <%end%>
                                                                               <%end%></td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
@@ -144,41 +140,8 @@
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
                                </tr>
                                 <tr style="line-height:25%">
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                               </tr>
-                                <tr style="line-height:25%">
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
@@ -225,14 +188,32 @@
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
-                                  <td align="center" style="font-size: 9px">  </td>
                                </tr>
                                 <tr style="line-height:25%">
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                                  <td align="center" style="font-size: 9px">  </td>
+                               </tr>
+                                <tr style="line-height:25%">
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
                                   <td align="center" style="font-size: 9px">  </td>
