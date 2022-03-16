@@ -53,23 +53,23 @@
 
             </td>
         </tr>
-        <tr style="line-height: 2px; border-color: white" >
-            <td style="font-size: 8px; border-color: white" width =" 20%"><b>Unidade de Ensino:</b></td>
-            <td style="font-size: 8px; border-color: white"><b><%=h aluno.unidade.nome %></b></td>
+        <tr style="line-height:20%; border-color: white" >
+            <td style="font-size: 7px; border-color: white" width =" 20%"><b>Unidade de Ensino:</b></td>
+            <td style="font-size: 7px; border-color: white"><b><%=h aluno.unidade.nome %></b></td>
         </tr>
-        <tr style="line-height: 2px; border-color: white">
-            <td style="font-size: 8px; border-color: white"><b>Endereço:</b></td>
-            <td style="font-size: 8px; border-color: white"><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
+        <tr style="line-height:20%; border-color: white">
+            <td style="font-size: 7px; border-color: white"><b>Endereço:</b></td>
+            <td style="font-size: 7px; border-color: white"><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
         </tr>
-        <tr style="line-height: 2px; border-color: white">
-            <td style="font-size: 8px; border-color: white"><b>Autorização:</b></td>
-            <td style="font-size: 8px; border-color: white"><%=h aluno.unidade.autorizacao%></td>
+        <tr style="line-height:20%; border-color: white">
+            <td style="font-size: 7px; border-color: white"><b>Autorização:</b></td>
+            <td style="font-size: 7px; border-color: white"><%=h aluno.unidade.autorizacao%></td>
         </tr>
         <tr style="line-height: 3px; border-color: white">
-            <td style="font-size: 8px; border-color: white" colspan="2" align="center"><br/><b><u>DADOS DO ALUNO</u></b></td>
+            <td style="font-size: 7px; border-color: white" colspan="2" align="center"><br/><b><u>DADOS DO ALUNO</u></b></td>
         </tr>
-        <tr style="line-height: 2px; border-color: white">
-            <td style="font-size: 8px; border-color: white" colspan="3"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
+        <tr style="line-height:20%; border-color: white">
+            <td style="font-size: 7px; border-color: white" colspan="3"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> &nbsp&nbsp - &nbsp&nbsp <b>RM:</b>&nbsp&nbsp <%=h aluno.aluno_rm %> <% session[:aluno] = aluno.id %>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %>
 
@@ -79,32 +79,32 @@
             </td>
         </tr>
         <% if (aluno.aluno_certidao_nascimento.present?)  %>
-            <tr style="line-height: 2px; border-color: white">
-                <td style="font-size: 8px; border-color: white" colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <tr style="line-height:20%; border-color: white">
+                <td style="font-size: 7px; border-color: white" colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
                 </td>
             </tr>
         <%end%>
-        <tr style="line-height: 2px; border-color: white">
-            <td style="font-size: 8px; border-color: white" colspan="3"><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %>
+        <tr style="line-height:20%; border-color: white">
+            <td style="font-size: 7px; border-color: white" colspan="3"><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
             <% if !(aluno.aluno_nacionalidade == 'BRASILEIRO')   %>
-                <td style="font-size: 8px; border-color: white"><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
+                <td style="font-size: 7px; border-color: white"><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
             <%else%>
-                <td  style="font-size: 8px; border-color: white" colspan="2"></td>
+                <td  style="font-size: 7px; border-color: white" colspan="2"></td>
             <%end%>
         </tr>
         <%# if (aluno.aluno_RG.present?)  %>
-            <tr style="line-height: 2px; border-color: white">
-                <td style="font-size: 8px; border-color: white"><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
-                <td style="font-size: 8px; border-color: white" colspan="2"><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %>
+            <tr style="line-height:20%; border-color: white">
+                <td style="font-size: 7px; border-color: white"><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
+                <td style="font-size: 7px; border-color: white" colspan="2"><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %>
                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
             </tr>
         <%#end%>
 
         <tr style="line-height: 11px; border-color: white">
-            <td style="font-size: 8px; border-color: white" colspan="4"><br/><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b><br/>
+            <td style="font-size: 7px; border-color: white" colspan="4"><br/><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b><br/>
                 <b> Lei Federal 9294/96 Art. 26, 32, 33, 34 - Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
             </td>
         </tr>
@@ -116,13 +116,13 @@
 
                             <%if !@notasB.empty?%>
 
-                                <table border="1" cellspacing="0" cellpadding="1"  width="100%" align="center" bgcolor="#F5F5F5">
-                                    <tr style="line-height: 2px; border-color: white">
-                                       <td style="font-size: 8px; border-color: white" colspan="2"></td>
+                                <table frame="box" rules="all" width="99%" >
+                                    <tr style="line-height:20%">
+                                       <td style="font-size: 7px" colspan="6"></td>
                                     </tr>
-                                    <tr style="line-height: 2px; border-color: white">
-                                        <td style="font-size: 8px; border-color: white" align="CENTER" valign="top"><b>Observação:</b></td>
-                                        <td style="font-size: 8px; border-color: white" colspan="4" valign="top">
+                                    <tr style="line-height:20%">
+                                        <td style="font-size: 7px" valign="top"colspan="4" ><b>Observação:</b>
+                                        
                                                <% c=0 %>
                                                 <% @historico_aluno.each do |obs|%>
                                                        <%  if  (!obs.observacao.nil?) %>
@@ -140,13 +140,13 @@
 
 
 
-<!--<div style="page-break-after: always"></div>-->
+<div style="page-break-after: always"></div>
 <br/>
              <hr/>
 <br/>
 
 <% @aluno.each do |aluno| %>
-    <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+    <table frame="box" rules="all" width="99%" style="border-color: white">
         <tr style="border-color: white">
             <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
             <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
@@ -240,7 +240,7 @@
 
     </font>
     <table  width="100% " class ="invisible_to_print ">
-        <tr style="line-height: 8px">
+        <tr style="line-height: 7px">
             <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
 
             <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>

@@ -313,7 +313,12 @@
                     <%if session[:cargah_b][i]==0%>
                         <td align="center">---</td>
                     <%else%>
-                        <td align="center"> <%= session[:cargah_b][i] %>  </td>
+                        <td align="center"> <%= session[:cargah_b][i] %><br/>
+                          <%#= text_field_tag (session[:search][i], session[:cargah_b][i] ,:size => 3) %>
+
+
+
+                        </td>
                     <%end%>
                 <%end%>
             </tr>

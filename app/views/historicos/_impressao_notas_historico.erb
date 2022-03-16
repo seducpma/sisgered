@@ -9,24 +9,24 @@
  <%if !@notasB.empty?%>
 
 
-<table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
-   <tr style="line-height: 9px; border-color: white">
-       <td style="font-size: 8px" width ="10%" colspan="3"rowspan="4" align="center"><b><b>Componentes  Curriculares</b> </b></td>
+<table frame="box" rules="all" width="99%" style="border-color: white">
+   <tr style="line-height:25%; border-color: white">
+       <td style="font-size: 7px" width ="10%" colspan="3"rowspan="4" align="center"><b><b>Componentes  Curriculares</b> </b></td>
    </tr>
-   <tr style="line-height: 9px; border-color: white">
-       <td style="font-size: 8px" colspan="10" align="center"><b>Notas / Ano </b></td>
+   <tr style="line-height:25%; border-color: white">
+       <td style="font-size: 7px" colspan="10" align="center"><b>Notas / Ano </b></td>
    </tr>
-   <tr style="line-height: 9px; border-color: white">
-        <td style="font-size: 8px" width ="5px" align="center"><b>1ºAno</b></td>
-        <td style="font-size: 8px" width ="5px" align="center"><b>2ºAno</b></td>
-        <td style="font-size: 8px" width ="5px" align="center"><b>3ºAno</b></td>
-        <td style="font-size: 8px" width ="5px" align="center"><b>4ºAno</b></td>
-        <td style="font-size: 8px" width ="5px" align="center"><b>5ºAno</b></td>
+   <tr style="line-height:25%; border-color: white">
+        <td style="font-size: 7px" width ="5px" align="center"><b>1ºAno</b></td>
+        <td style="font-size: 7px" width ="5px" align="center"><b>2ºAno</b></td>
+        <td style="font-size: 7px" width ="5px" align="center"><b>3ºAno</b></td>
+        <td style="font-size: 7px" width ="5px" align="center"><b>4ºAno</b></td>
+        <td style="font-size: 7px" width ="5px" align="center"><b>5ºAno</b></td>
         <%if session[:ult_cl_rede]>5%>
-                <td style="font-size: 8px" width ="5px" align="center"><b>6ºAno</b></td>
-                <td style="font-size: 8px" width ="5px" align="center"><b>7ºAno</b></td>
-                <td style="font-size: 8px" width ="5px" align="center"><b>8ºAno</b></td>
-                <td style="font-size: 8px" width ="5px" align="center"><b>9ºAno </b></td>
+                <td style="font-size: 7px" width ="5px" align="center"><b>6ºAno</b></td>
+                <td style="font-size: 7px" width ="5px" align="center"><b>7ºAno</b></td>
+                <td style="font-size: 7px" width ="5px" align="center"><b>8ºAno</b></td>
+                <td style="font-size: 7px" width ="5px" align="center"><b>9ºAno </b></td>
         <%end%>
     </tr>
     <%session[:contnota]=0%>
@@ -74,23 +74,23 @@
             <!-- <%#session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%> Mudei o comando para 2 linhas acima ###Alex 16/01/2019 -->
         <%end%>
     <%end%>
-    <tr style="line-height: 9px; border-color: white">
+    <tr style="line-height:25%; border-color: white">
         <%for i in 0..session[:ult_coluna] %>
-            <td style="font-size: 8px" width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%></b></td>
+            <td style="font-size: 7px" width ="5%" align="center" ><b><%=session[:ano_letivoh][i]%></b></td>
         <%end%>
     </tr>
-    <tr style="line-height: 9px; border-color: white">
+    <tr style="line-height:25%; border-color: white">
         <% session[:quant1_linhas] = @disciplinasB.count + 3%>
-        <th style="font-size: 8px" rowspan=<%= session[:quant1_linhas]%> ><div class="textovertical"><b>Base Nacional Comum</b></div></th>
+        <th style="font-size: 6px" rowspan=<%= session[:quant1_linhas]%> ><div class="textovertical"><b>Base Nacional <br/> Comum</b></div></th>
 
 
                 <!--  DISCIPLINAS DE NOTAS DE LINGUAGEM -->
        <%t0=0%>
        <% session[:quant2_linhas] = @disciplinasB1.count + 1%>
-        <td style="font-size: 8px" width="20px" rowspan=<%= session[:quant2_linhas]%>>Linguagem</font> </td>
+        <td style="font-size: 7px" width="20px" rowspan=<%= session[:quant2_linhas]%>>Linguagem</font> </td>
         <%while session[:contnota1] < session[:contnotaBTot1] %>
-        <tr style="line-height: 9px; border-color: white">
-            <td style="font-size: 8px" align="left"><%=@notasB1[session[:contnota1]].disciplina.disciplina %> </td>
+        <tr style="line-height:25%; border-color: white">
+            <td style="font-size: 7px" align="left"><%=@notasB1[session[:contnota1]].disciplina.disciplina %> </td>
              <%disciplina_atual=@notasB1[session[:contnota1]].disciplina.id%>
             <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota1]>(session[:contnotaBTot1]-1)%>
@@ -99,7 +99,7 @@
                     <%acertoHTML=session[:contnota1]%>
                 <%end%>
                 <%if (((@notasB1[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota1]==acertoHTML) and (disciplina_atual==@notasB1[acertoHTML].disciplina.id))%>
-                    <td style="font-size: 8px" align="center">
+                    <td style="font-size: 7px" align="center">
                         <%if (@notasB1[acertoHTML].nota5.nil? or @notasB1[acertoHTML].nota5.empty?) and (@notasB1[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
                         <%else%>
@@ -126,16 +126,16 @@
                     </td>
                     <%session[:contnota1]=session[:contnota1]+1%>
                 <%else%>
-                    <td style="font-size: 8px" align="center">---</td>
+                    <td style="font-size: 7px" align="center">---</td>
                 <%end%>
             <%end%>
         </tr>
         <%end%>
 
         <!--  DISCIPLINAS DE NOTAS DE MATEMATICA -->
-        <td style="font-size: 8px" width="20px" >Matemática</font> </td>
+        <td style="font-size: 7px" width="20px" >Matemática</font> </td>
         <%while session[:contnota2] < session[:contnotaBTot2] %>
-         <td style="font-size: 8px" align="left"><%=@notasB2[session[:contnota2]].disciplina.disciplina %> </td>
+         <td style="font-size: 7px" align="left"><%=@notasB2[session[:contnota2]].disciplina.disciplina %> </td>
              <%disciplina_atual=@notasB2[session[:contnota2]].disciplina.id%>
             <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota2]>(session[:contnotaBTot2]-1)%>
@@ -144,7 +144,7 @@
                     <%acertoHTML=session[:contnota2]%>
                 <%end%>
                 <%if (((@notasB2[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota2]==acertoHTML) and (disciplina_atual==@notasB2[acertoHTML].disciplina.id))%>
-                    <td style="font-size: 8px" align="center">
+                    <td style="font-size: 7px" align="center">
                         <%if (@notasB2[acertoHTML].nota5.nil? or @notasB2[acertoHTML].nota5.empty?) and (@notasB2[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
                         <%else%>
@@ -172,11 +172,11 @@
                     </td>
                     <%session[:contnota2]=session[:contnota2]+1%>
                 <%else%>
-                    <td style="font-size: 8px" align="center">---</td>
+                    <td style="font-size: 7px" align="center">---</td>
                 <%end%>
             <%end%>
           <%end%>
-         <tr style="line-height: 9px; border-color: white">
+         <tr style="line-height:25%; border-color: white">
     
         <!--  DISCIPLINAS DE NOTAS CIÊNCIAS HUMANAS -->
         <%#notas=@notasB3.count%>
@@ -192,11 +192,11 @@
         <%#t=session[:quant3_linhas]%>
         <%session[:quant3_linhas]=@disciplinasB3.count + 1%>
 
-       <td style="font-size: 8px" width="20px" rowspan=<%= session[:quant3_linhas]%>> Ciências Humanas  </td>
+       <td style="font-size: 7px" width="20px" rowspan=<%= session[:quant3_linhas]%>> Ciências Humanas  </td>
         <%while session[:contnota3] < session[:contnotaBTot3] %>
 
-        <tr style="line-height: 9px; border-color: white">
-            <td style="font-size: 8px" align="left"><%=@notasB3[session[:contnota3]].disciplina.disciplina %>  </td>
+        <tr style="line-height:25%; border-color: white">
+            <td style="font-size: 7px" align="left"><%=@notasB3[session[:contnota3]].disciplina.disciplina %>  </td>
             <%disciplina_atual=@notasB3[session[:contnota3]].disciplina.id%>
             <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota3]>(session[:contnotaBTot3]-1)%>
@@ -205,7 +205,7 @@
                     <%acertoHTML=session[:contnota3]%>
                 <%end%>
                 <%if (((@notasB3[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota3]==acertoHTML) and (disciplina_atual==@notasB3[acertoHTML].disciplina.id))%>
-                    <td style="font-size: 8px" align="center">
+                    <td style="font-size: 7px" align="center">
                         <%if (@notasB3[acertoHTML].nota5.nil? or @notasB3[acertoHTML].nota5.empty?) and (@notasB3[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
                         <%else%>
@@ -231,7 +231,7 @@
                     </td>
                     <%session[:contnota3]=session[:contnota3]+1%>
                 <%else%>
-                    <td style="font-size: 8px" align="center">---</td>
+                    <td style="font-size: 7px" align="center">---</td>
                 <%end%>
             <%end%>
 
@@ -239,9 +239,9 @@
         <%end%>
 
         <!--  DISCIPLINAS DE NOTAS DE CIẼNCIAS N -->
-        <td style="font-size: 8px" width="20px"> Ciências da Natureza</td>
+        <td style="font-size: 7px" width="20px"> Ciências da Natureza</td>
         <%while session[:contnota4] < session[:contnotaBTot4] %>
-         <td style="font-size: 8px"align="left"><%=@notasB4[session[:contnota4]].disciplina.disciplina %> </td>
+         <td style="font-size: 7px"align="left"><%=@notasB4[session[:contnota4]].disciplina.disciplina %> </td>
              <%disciplina_atual=@notasB4[session[:contnota4]].disciplina.id%>
             <%for i in 0..session[:ult_coluna]%>
                 <%if session[:contnota4]>(session[:contnotaBTot4]-1)%>
@@ -250,7 +250,7 @@
                     <%acertoHTML=session[:contnota4]%>
                 <%end%>
                 <%if (((@notasB4[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota4]==acertoHTML) and (disciplina_atual==@notasB4[acertoHTML].disciplina.id))%>
-                    <td style="font-size: 8px"align="center">
+                    <td style="font-size: 7px"align="center">
                         <%if (@notasB4[acertoHTML].nota5.nil? or @notasB4[acertoHTML].nota5.empty?) and (@notasB4[acertoHTML].ano_letivo==Time.now.year)%>
                             ---
                         <%else%>
@@ -276,39 +276,39 @@
                     </td>
                     <%session[:contnota4]=session[:contnota4]+1%>
                 <%else%>
-                    <td style="font-size: 8px" align="center">---</td>
+                    <td style="font-size: 7px" align="center">---</td>
                 <%end%>
             <%end%>
           <%end%>
     </tr>
-    <tr style="line-height: 9px; border-color: white" >
+    <tr style="line-height:25%; border-color: white" >
 
-         <td style="font-size: 8px" colspan="2"><b> Carga Horária</b></td>
+         <td style="font-size: 7px" colspan="2"><b> Carga Horária</b></td>
         <%for i in 0..session[:ult_coluna]%>
             <%if session[:cargah_b][i]==0%>
-                <td style="font-size: 8px" align="center">---</td>
+                <td style="font-size: 7px" align="center">---</td>
             <%else%>
-                <td style="font-size: 8px" align="center"> <%= session[:cargah_b][i] %>  </td>
+                <td style="font-size: 7px" align="center"> <%= session[:cargah_b][i] %>  </td>
             <%end%>
         <%end%>
     </tr>
 
-    <tr style="line-height: 9px; border-color: white" >
-        <td style="font-size: 8px" colspan="12"></td>
+    <tr style="line-height:25%; border-color: white" >
+        <td style="font-size: 7px" colspan="12"></td>
     </tr>
 
     <%if @disciplinasD.count != 0%>
-    <tr style="line-height: 9px; border-color: white" >
+    <tr style="line-height:25%; border-color: white" >
        <% session[:quant4_linhas] = @disciplinasD.count %>
        <%t0=0%>
-        <td style="font-size: 8px"  align="center" rowspan=<%=session[:quant4_linhas]+1%>><b>Parte Diverficada</b></td>
+        <td style="font-size: 7px"  align="center" rowspan=<%=session[:quant4_linhas]+1%>><b>Parte Diverficada</b></td>
         <!--  DISCIPLINAS DE NOTAS DE LINGUAGEM -->
 
        <!--  DISCIPLINAS DE NOTAS DE OFICINAS -->
         <%if session[:quant4_linhas]==1 %>
-            <td style="font-size: 8px" width="20px">Oficinas</td>
+            <td style="font-size: 7px" width="20px">Oficinas</td>
         <%else%>
-            <td style="font-size: 8px" width="20px" rowspan="<%=session[:quant4_linhas]%>">Oficinas</td>
+            <td style="font-size: 7px" width="20px" rowspan="<%=session[:quant4_linhas]%>">Oficinas</td>
         <%end%>
         <%  acerto = 0 %>
         <%while session[:contnota]<session[:contnotaDTot]%>
@@ -316,7 +316,7 @@
          <%if acerto>1%>
             <tr>
          <%end%>
-            <td style="font-size: 8px" align="left"><%=@notasD[session[:contnota]].disciplina.disciplina %></td>
+            <td style="font-size: 7px" align="left"><%=@notasD[session[:contnota]].disciplina.disciplina %></td>
                  <%disciplina_atual=@notasD[session[:contnota]].disciplina.id%>
                  <%for i in 0..session[:ult_coluna]%>
                     <%if session[:contnota]>(session[:contnotaDTot]-1)%>
@@ -325,7 +325,7 @@
                         <%acertoHTML=session[:contnota]%>
                     <%end%>
                     <%if (((@notasD[acertoHTML].ano_letivo)==session[:ano_letivoh][i].to_i) and (session[:contnota]==acertoHTML) and (disciplina_atual==@notasD[acertoHTML].disciplina.id))%>
-                        <td style="font-size: 8px" align="center">
+                        <td style="font-size: 7px" align="center">
                             <%if ((@notasD[acertoHTML].nota5.nil? or @notasD[acertoHTML].nota5.empty?) and (@notasD[acertoHTML].ano_letivo==Time.now.year))%>
                                 ---
                             <%else%>
@@ -355,7 +355,7 @@
                         </td>
                         <%session[:contnota]=session[:contnota]+1%>
                     <%else%>
-                        <td style="font-size: 8px" align="center">---</td>
+                        <td style="font-size: 7px" align="center">---</td>
                     <%end%>
                 <%end%>
          <%if acerto>1%>
@@ -377,19 +377,19 @@
         <%end%>
     <%end%>
    
-    <tr style="line-height: 9px; border-color: white" >
-        <td style="font-size: 8px" colspan="2"><b> <!--Carga Horária--></b></td>
+    <tr style="line-height:25%; border-color: white" >
+        <td style="font-size: 7px" colspan="2"><b> <!--Carga Horária--></b></td>
         <%for i in 0..session[:ult_coluna]%>
                 <%if session[:cargah_d][i]==0%>
-                    <td style="font-size: 8px" align="center"></td>
+                    <td style="font-size: 7px" align="center"></td>
                 <%else%>
-                    <td style="font-size: 8px" align="center"> <%#= session[:cargah_d][i] %>  </td>
+                    <td style="font-size: 7px" align="center"> <%#= session[:cargah_d][i] %>  </td>
 
                 <%end%>
         <%end%>
     </tr>
-    <tr style="line-height: 9px; border-color: white" >
-        <td style="font-size: 8px" colspan="3"><b> Carga Horária Total</b></td>
+    <tr style="line-height:25%; border-color: white" >
+        <td style="font-size: 7px" colspan="3"><b> Carga Horária Total</b></td>
         <%for i in 0..session[:ult_coluna]%>
                 <%cargah_t=0%>
                 <%if !session[:cargah_b][i].nil?%>
@@ -399,27 +399,27 @@
                     <%cargah_t=session[:cargah_d][i]+cargah_t%>
                 <%end%>
                 <%if cargah_t==0%>
-                    <td style="font-size: 8px" align="center">---</td>
+                    <td style="font-size: 7px" align="center">---</td>
                 <%else%>
                     <% if  current_user.unidade.tipo_id == 4%>
                         <%if i== 0 %>
                            <% if session[:ano_letivoh]== [2017, 2018, 2019, 2020, "", "", "", "", ""] %>
-                                  <td style="font-size: 8px" align="center"> <%= 1400 %> </td>
+                                  <td style="font-size: 7px" align="center"> <%= 1400 %> </td>
                             <%else%>
-                                 <td style="font-size: 8px" align="center"> <%= 1410 %> </td>
+                                 <td style="font-size: 7px" align="center"> <%= 1410 %> </td>
                             <%end%>
                          <%else%>
-                             <td style="font-size: 8px" align="center"> <%= 1410 %> </td>
+                             <td style="font-size: 7px" align="center"> <%= 1410 %> </td>
                          <%end%>
                     <%else%>
-                        <td style="font-size: 8px" align="center"> <%= cargah_t %> </td>
+                        <td style="font-size: 7px" align="center"> <%= cargah_t %> </td>
                     <%end%>
                 <%end%>
         <%end%>
     </tr>
     <% if acerto == 1 %>
-    <tr style="line-height: 9px; border-color: white" >
-      <td style="font-size: 8px; border-color: white" colspan="12">&nbsp&nbsp&nbsp&nbsp</td>
+    <tr style="line-height:25%; border-color: white" >
+      <td style="font-size: 7px; border-color: white" colspan="12">&nbsp&nbsp&nbsp&nbsp</td>
     </tr>
           <%end%>
 
@@ -430,38 +430,38 @@
 
 <%else%>
     <table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
-        <tr style="line-height: 9px; border-color: white" >
-            <td style="font-size: 8px; border-color: white" align="center"><br/>  <b>ALUNO NÃO POSSUI HISTÓRICO OU NOTAS  LANÇADAS OU ALUNO TRANSFERIDO<br/><br/></td>
+        <tr style="line-height:25%; border-color: white" >
+            <td style="font-size: 7px; border-color: white" align="center"><br/>  <b>ALUNO NÃO POSSUI HISTÓRICO OU NOTAS  LANÇADAS OU ALUNO TRANSFERIDO<br/><br/></td>
         </tr>
     </table>
 <%end%>
 
 
-<div style="page-break-after: always"></div>
+<!--<div style="page-break-after: always"></div>-->
 
 
-<table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
-     <tr style="line-height: 8px; border-color: white" >
-        <td style="font-size: 8px"colspan="4"><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<table frame="box" rules="all" width="99%" style="border-color: white">
+     <tr style="line-height: 7px; border-color: white" >
+        <td style="font-size: 7px"colspan="4"><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <b>ESTUDOS REALIZADOS</b><br/><br/></td>
     </tr>
-     <tr style="line-height: 8px"  cellspacing="2" cellpadding="2">
-        <td style="font-size: 8px" width=" 8%" align="center"><b>Período </b></td>
-        <td style="font-size: 8px" width=" 15%" align="center"><b>Ano Letivo </b></td>
-        <td style="font-size: 8px" width=" 60%" align="center"><b>Unidade de Ensino</b></td>
-        <td style="font-size: 8px" width=" 22%" align="center"><b>Municipio/Estado</b></td>
+     <tr style="line-height: 7px"  cellspacing="2" cellpadding="2">
+        <td style="font-size: 7px" width=" 8%" align="center"><b>Período </b></td>
+        <td style="font-size: 7px" width=" 15%" align="center"><b>Ano Letivo </b></td>
+        <td style="font-size: 7px" width=" 60%" align="center"><b>Unidade de Ensino</b></td>
+        <td style="font-size: 7px" width=" 22%" align="center"><b>Municipio/Estado</b></td>
     </tr>
     <%for i in 0..session[:ult_coluna] %>
-         <tr style="line-height: 8px; border-color: white" >
+         <tr style="line-height: 7px; border-color: white" >
             <%if session[:classe_anos][i]!=0%>
-                <td style="font-size: 8px" align="center"><%=session[:classe_anos][i]%>ºAno </td>
-                <td style="font-size: 8px" width ="5%" align="center" >
+                <td style="font-size: 7px" align="center"><%=session[:classe_anos][i]%>ºAno </td>
+                <td style="font-size: 7px" width ="5%" align="center" >
                     <%=session[:ano_letivoh][i] %>
 
                     <%t0=0%>
                 </td>
-                <td style="font-size: 8px" align="center"> <%= session[:escola][i] %> </td>
-                <td style="font-size: 8px" align="center"> <%= session[:cidade][i] %> </td>
+                <td style="font-size: 7px" align="center"> <%= session[:escola][i] %> </td>
+                <td style="font-size: 7px" align="center"> <%= session[:cidade][i] %> </td>
             <%end%>
         </tr>
     <%end%>
