@@ -1,3 +1,8 @@
+
+
+
+
+
 <%@classes = Classe.find(:all, :conditions => ['unidade_id = ? and classe_ano_letivo = ? ', current_user.unidade_id, Time.now.year  ], :order => 'classe_classe ASC')%>
 <%if current_user.has_role?('direcao_fundamental') or current_user.has_role?('professor_fundamental')%>
    <%@disciplinas = Disciplina.find(:all, :select => 'DISTINCT (disciplinas.disciplina), disciplinas.id', :joins => "INNER JOIN atribuicaos ON disciplinas.id = atribuicaos.disciplina_id INNER JOIN classes ON classes.id = atribuicaos.classe_id INNER JOIN unidades ON unidades.id = classes.unidade_id ", :conditions => ['classes.unidade_id =? and atribuicaos.ano_letivo=?', current_user.unidade_id, Time.now.year]) %>
@@ -87,8 +92,11 @@
 
     <%end%>
 
+
        <br/>
 
+
+       
    <table>
     <tr>
      <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
@@ -100,3 +108,5 @@
 </div>
 <br/>
 </div>
+
+
