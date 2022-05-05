@@ -47,7 +47,7 @@ class RolesUsersController < ApplicationController
    if current_user.unidade_id == 53 or current_user.unidade_id == 52
         @role_users = RolesUser.find(:all, :joins => :user, :conditions=> ['users.activated_at is not null'],:order => 'login ASC')
     else
-         @role_users = RolesUser.find(:all, :joins => :user,:conditions => ['users.unidade_ids = ? AND users.activated_at is not null', current_user.unidade_id], :order => 'login ASC')
+         @role_users = RolesUser.find(:all, :joins => :user,:conditions => ['users.unidade_id = ? AND users.activated_at is not null', current_user.unidade_id], :order => 'login ASC')
     end
    respond_to do |format|
       format.html # index.html.erb

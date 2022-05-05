@@ -5,11 +5,6 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-
-
-
-
-
    before_filter :set_current_user
 
    ## LEMBRETE <++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -325,15 +320,15 @@ BIM2INIP ='02/05/2022'
 BIM2FIMP ='08/07/2022'
 BIM3INIP ='01/08/2022'
 BIM3FIMP ='30/09/2022'
-BIM4INIP ='03/102022'
+BIM4INIP ='03/10/2022'
 BIM4FIMP ='21/12/2022'
 
 BIM1F= 54
 BIM2F= 47
 BIM3F= 48
-BIM3F= 54
+BIM4F= 54
 
 BIM1I= 54
 BIM2I= 47
 BIM3I= 48
-BIM3I= 54
+BIM4I= 54

@@ -1,0 +1,228 @@
+<%    ## LEMBRETE <++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   %>
+
+<%   #  para liberar notas bimestre è necessàrio:   %>
+<%   #    1) ALTERAR  atribuicaos - edit  %>
+<%   #    2) ALTERAR  notas - edit   %>
+<%   #    3) ALTERAR  notas - lacamentos miltiplos  %>
+
+<%    #verofocar tabém a questão de FALTAS NULL pois ocorre erro se totaluzação das faltas qdo houver faltas NULL   %>
+
+
+
+
+
+
+
+<%  if session[:flag_edit_atribuicao] == 1 %>
+
+      <div id="interno2">
+      <% title "ATRIBUICAOS".singularize %>
+      <div class="tabs">
+       <div id="caixa_titulo">
+           <font size="3"><strong>EDITAR ATRIBUIÇÃO AULAS </strong></font><br/>
+       </div>
+            <div class="tabs">
+                <% if (current_user.has_role?('admin') )%>
+                      <%= render :partial => 'form' %>
+                <% else if (current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')  or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
+                            <% form_for (@atribuicao) do |f| %>
+                             <%= f.error_messages %>
+                                 <% if current_user.professor_id.nil?  %>
+                                     <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
+                                       <%   @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"]) %>
+                                     <% else %>
+                                       <%   @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I'AND id !=2"],:order => 'ordem ASC') %>
+                                     <% end %>
+
+                                 <% else %>
+                                     <% if (current_user.unidade_id < 42 or current_user.unidade_id > 53) and current_user.unidade_id != 62 %>
+                                        <%  @disciplinas = Disciplina.find(:all, :conditions => ["curriculo = 'I'"]) %>
+                                     <%  else %>
+                                         <%  @disciplinas = Disciplina.find(:all, :conditions =>  ["curriculo != 'I' AND id !=2"],:order => 'ordem ASC') %>
+                                     <%  end %>
+                                 <%  end %>
+
+                              <fieldset><legend><font size=4>Atribuição</font></legend>
+                                       <% if current_user.unidade_id == 53 or current_user.unidade_id == 52 %>
+                                           <% @professor_unidade = Professor.find(:all, :conditions => 'desligado = 0',:order => 'nome ASC') %>
+                                      <%  else %>
+                                           <%  @professor_unidade = Professor.find(:all, :conditions => ['(unidade_id = ? or unidade_id = 52 or unidade_id = 54 or diversas_unidades = 1) AND desligado = 0   ', (current_user.unidade_id)],:order => 'nome ASC')%>
+                                     <%  end %>
+
+
+                                <table width="100%">
+                                   <tr bgcolor="#F5F5F5">
+                                     <td width =" 12%"><b>Disciplina:</b></td>
+                                     <td><%=h @atribuicao.disciplina.disciplina %>
+                                     &nbsp&nbsp&nbsp<b>Classe:</b>&nbsp <%= @atribuicao.classe.classe_classe %>
+                                     &nbsp&nbsp&nbsp<b>Ano Letivo:</b>&nbsp <%=h @atribuicao.ano_letivo %></td>
+                                   </tr>
+                                   <tr bgcolor="#F5F5F5">
+                                       <td colspan="2"><b>Professor(substituido):</b>&nbsp <%= @atribuicao.professor.nome %> <br/>
+                                     <b>pelo Professor(novo):</b>&nbsp&nbsp <%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
+                                  </tr>
+<!--                                                     <tr bgcolor="#F5F5F5">
+                     <td width =" 8%"><b>email Professor:</b></td>
+                     <td colspan="3"><%= f.text_field :email, :size=>"64" %></td>
+
+                  </tr>-->
+                                  <% if session[:flag_edit_atribuicao] != 1 %>
+                                    <tr>
+                                      <td colspan="4">
+                                         <font color="gray"> <u><b>Obs:</u> Se o nome do professor NÃO constar na lista, favor entrar em contato com a Informática/SEDUC
+
+                                         </font> </b>
+                                       </td>
+                                    </tr>
+                                  <%end%>
+                               </table>
+                              </fieldset>
+                             <br/>
+
+                                   <table width="100%" >
+                                     <tr bgcolor="#F5F5F5">
+                                       <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+                            <%end%>
+                                     <td align="left"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                         </tr>
+                       </table>
+                  </font>
+          <%end%>
+        <%end%>
+
+
+
+
+
+
+
+          </div>
+      </div>
+      <br/>
+      </div>
+
+  <br/>
+<% else %>
+<%t=0%>
+        <div id="interno4">
+        <% title "ATRIBUICAOS".singularize %>
+        <div class="tabs">
+         <div id="caixa_titulo">
+             <font size="3"><strong>LANÇAMENTO DE AULAS </strong></font><br/>
+         </div>
+              <div class="tabs">
+                    <% form_for (@atribuicao) do |f| %>
+                     <%= f.error_messages %>
+                      <fieldset><legend><font size=4>Atribuição</font></legend>
+                        <table width="100%">
+                           <tr bgcolor="#F5F5F5">
+                               <td colspan="5" align="center"><font color =" bule"><b> LANÇAMENTO DO NÚMERO DE AULAS MINISTRADAS NO PERÍODO</b></font></td>
+                          </tr>
+
+                           <tr bgcolor="#F5F5F5">
+                             <td width ="1%"> <b>Classe:</b></td>
+                             <td><%=h @atribuicao.classe.classe_classe%></td>
+                             <td><b>Professor:</b></td>
+                             <td colspan="2"><%=h @atribuicao.professor.nome%></td>
+                          </tr>
+                          <tr bgcolor="#F5F5F5">
+                            <td> <b>Disciplina:</b></td>
+                             <td colspan=5"><%=h @atribuicao.disciplina.disciplina%></td>
+
+                          </tr>
+                              <tr bgcolor="#F5F5F5">
+                                <td align="center"><b><font color="red"> Lançar aulas dadas </font></b></td>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                     <td width ="3%" align="center"> <b>1º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas1 , :size => '2', :value => session[:total_aulas1]%></td>
+                                  <%else%>
+                                    <td  width ="20%" align="center"> <b>1º Bimestre <br/>Nº Aulas:</b>
+
+                                                                              <%if (@atribuicao.aulas1 != 0)%>
+<!--# and (@atribuicao.disciplina.id != 32 and @atribuicao.disciplina.id != 2 and @atribuicao.disciplina.id != 3 and @atribuicao.disciplina.id != 4 and @atribuicao.disciplina.id != 21 and @atribuicao.disciplina.id != 34)-->
+                                                                              <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas1%>-->
+                                                                                 <%= f.text_field :aulas1 , :size => '3' , :value => session[:total_aulas1]%>
+                                                                             <%else%>
+       <!-- para liberar apagar o comentario desta linha-->                          <%= f.text_field :aulas1 , :size => '3' , :value => session[:total_aulas1]%>
+                                                                             <%end%>
+
+                                     
+                                   </td>
+                                   
+                                 <%end%>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                     <td width ="3%" align="center"> <b>2º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas2 , :size => '2', :value => session[:total_aulas2]%></td>
+                                  <%else%>
+                                    <td  width ="20%" align="center"><b>2º Bimestre <br/>Nº Aulas:</b> <%if (@atribuicao.aulas2 != 0)%>
+                                                                            <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas2%> -->   <%= f.text_field :aulas2 , :size => '3' , :value => session[:total_aulas2]%>
+                                                                        <%else%>
+          <!-- para liberar apagar o comentario desta linha-->                <%= f.text_field :aulas2 , :size => '3', :value => session[:total_aulas2]%>
+                                                                        <%end%>
+                                    </td>
+                                  <%end%>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                     <td width ="3%" align="center"> <b>3º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas3 , :size => '2', :value => session[:total_aulas3]%></td>
+                                     <%t=0%>
+                                  <%else%>
+                                      <td width ="20%" align="center"><b>3º Bimestre <br/>Nº Aulas:</b><%if (@atribuicao.aulas3 != 0)%>
+                                                                            <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas3%> -->   <%= f.text_field :aulas3 , :size => '3', :value => session[:total_aulas3]%>
+
+                                                                        <%else%>
+         <!-- para liberar apagar o comentario desta linha-->               <%= f.text_field :aulas3 , :size => '3', :value => session[:total_aulas3]%>
+
+                                                                        <%end%>
+                                     </td>
+
+                                 <%end%>
+                                  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('pedagogo'))%>
+                                     <td width ="3%" align="center"> <b>4º Bimestre <br/>Nº Aulas:</b><%= f.text_field :aulas4 , :size => '2', :value => session[:total_aulas4]%></td>
+                                  <%else%>
+                                      <td width ="20%" align="center"><b>4º Bimestre <br/>Nº Aulas:</b><%if (@atribuicao.aulas4 != 0)%>
+                                                                            <!--&nbsp&nbsp&nbsp<%= @atribuicao.aulas4%>--><%= f.text_field :aulas4 , :size => '3', :value => session[:total_aulas4]%>
+                                                                        <%else%>
+         <!-- para liberar apagar o comentario desta linha-->                       <%= f.text_field :aulas4 , :size => '3', :value => session[:total_aulas4]%>
+                                                                        <%end%>
+                                     </td>
+                                 <%end%>
+
+                              </tr>
+
+                       </table>
+                      </fieldset>
+                <fieldset><legend><font size=4>ATENÇÃO</font></legend>
+                  <font color ="red">      <font color ="red"><b>APÓS CLICAR NO BOTÃO "SALVAR" - AGUARDE (Este processo pode demorar um pouco).</font></b>
+
+                </fieldset>
+                     <br/>
+
+                           <table width="100%" >
+                             <tr bgcolor="#F5F5F5">
+                               <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+
+                    <%end%>
+
+
+                             <%if current_user.has_role?('professor_fundamental') or current_user.has_role?('admin') %>
+                               <%if current_user.has_role?('admin') %>
+                                 <td><%= button_to 'Lançar Notas', {:controller => "notas", :action => "voltar_lancamento_notas", :method => "get"}  %></td>
+                               <%else%>
+                                 <td width="2%"><%= button_to 'Voltar',lancar_notas_notas_path, :method => :get %></td>
+                                 <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+                                <%end%>
+
+                             <%else%>
+                                 <td><%= button_to 'Voltar',lancamentos_notas_notas_path, :method => :get %>  </td>
+                             <%end%>
+                             </tr>
+                           </table>
+                      </font>
+              </div>
+          </div>
+        <br/>
+        </div>
+<%end%>
+
+
+</font>
+              </div>
+

@@ -1,0 +1,254 @@
+<%session[:classe]=0%>
+<table class ="invisible_to_print ">
+    <tr>
+        <td width ="2%" align="left" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+    </tr>
+</table>
+
+<!-- Inicio para resolver problema de session[:ano_letivo]- O sistema entrava em looping
+     porque a variável session[:ano_letivo] voltava da parcial para o histórico com valor diferente. 2018-04-12 10:30 ###Alex -->
+
+<%for ano_letivo in @anos_letivos%>
+    <%if ano_letivo.classe.nil?%>
+        <%if (!ano_letivo.nota5.nil? and !ano_letivo.nota5.empty?)%>
+            <%if ano_letivo.matricula.nil?%>
+                <%session[:ano_letivoh][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.ano_letivo%>
+                <%session[:classe_anos][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.matricula.classe.classe_classe[0,1].to_i%>
+            <%else%>
+                <%if ano_letivo.matricula.reprovado.to_i!=1%>
+                    <%session[:ano_letivoh][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.ano_letivo%>
+                    <%session[:classe_anos][(ano_letivo.matricula.classe.classe_classe[0,1].to_i)-1]=ano_letivo.matricula.classe.classe_classe[0,1].to_i%>
+                <%end%>
+            <%end%>
+        <%end%>
+    <%else%>
+        <%if (!ano_letivo.nota5.nil? and !ano_letivo.nota5.empty?)%>
+            <%session[:ano_letivoh][(ano_letivo.classe.to_i)-1]=ano_letivo.ano_letivo.to_i%>
+            <%session[:classe_anos][(ano_letivo.classe.to_i)-1]=ano_letivo.classe.to_i%>
+        <%end%>
+    <%end%>
+    <!--<%#session[:ano_letivoh][classe.to_i-1]=@ano_inicial.ano_letivo%>-->
+<%end%>
+<%for historico_aluno in @historico_aluno%>
+    <%session[:ano_nota_lançada]=Nota.find(:all, :conditions => ["notas.aluno_id=? AND unidade_id=? AND notas.ano_letivo=? AND notas.ativo is NULL", session[:aluno_id], current_user.unidade_id, historico_aluno.ano_letivo])%>
+    <%if !session[:ano_nota_lançada].empty?%>
+        <%session[:ano_nota_lançada]=session[:ano_nota_lançada][0].classe.to_i%>
+        <%if session[:ano_letivoh][session[:ano_nota_lançada]-1].nil?%>
+            <%session[:ano_letivoh][session[:ano_nota_lançada]-1]=historico_aluno.ano_letivo%>
+            <%session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%>
+        <%end%>
+                <!-- <%#session[:classe_anos][session[:ano_nota_lançada]-1]=session[:ano_nota_lançada]%> Mudei o comando para 2 linhas acima ###Alex 16/01/2019 -->
+    <%end%>
+<%end%>
+<!-- Fim para resolver problema de session[:ano_letivo] 2018-04-12 10:30 ###Alex -->
+
+<% @aluno.each do |aluno| %>
+    <table border="1" cellspacing="0" cellpadding="4" width="100%" style="border-color: white">
+        <tr style="border-color: white">
+            <td style="border-color: white"  align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+            <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center>
+                <center><font size="2"><b><u>HISTÓRICO ESCOLAR </u> &nbsp&nbsp&nbsp&nbsp</b></font></center>
+
+            </td>
+        </tr>
+        <tr style="line-height: 2px; border-color: white" >
+            <td style="font-size: 8px; border-color: white" width =" 20%"><b>Unidade de Ensino:</b></td>
+            <td style="font-size: 8px; border-color: white"><b><%=h aluno.unidade.nome %></b></td>
+        </tr>
+        <tr style="line-height: 2px; border-color: white">
+            <td style="font-size: 8px; border-color: white"><b>Endereço:</b></td>
+            <td style="font-size: 8px; border-color: white"><%=h aluno.unidade.endereco %> - <%=h aluno.unidade.num %> - <%=h aluno.unidade.bairro %> CEP <%=h aluno.unidade.CEP%> (19)<%=h aluno.unidade.fone%></td>
+        </tr>
+        <tr style="line-height: 2px; border-color: white">
+            <td style="font-size: 8px; border-color: white"><b>Autorização:</b></td>
+            <td style="font-size: 8px; border-color: white"><%=h aluno.unidade.autorizacao%></td>
+        </tr>
+        <tr style="line-height: 3px; border-color: white">
+            <td style="font-size: 8px; border-color: white" colspan="2" align="center"><br/><b><u>DADOS DO ALUNO</u></b></td>
+        </tr>
+        <tr style="line-height: 2px; border-color: white">
+            <td style="font-size: 8px; border-color: white" colspan="3"><b>Nome:</b>&nbsp&nbsp <%=h aluno.aluno_nome %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>RA:</b>&nbsp&nbsp <%=h aluno.aluno_ra %> &nbsp&nbsp - &nbsp&nbsp <b>RM:</b>&nbsp&nbsp <%=h aluno.aluno_rm %> <% session[:aluno] = aluno.id %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_nascimento.strftime("%d/%m/%Y") %>
+
+           
+
+
+            </td>
+        </tr>
+        <% if (aluno.aluno_certidao_nascimento.present?)  %>
+            <tr style="line-height: 2px; border-color: white">
+                <td style="font-size: 8px; border-color: white" colspan="4"><b>Certidão Nascimento:</b>&nbsp&nbsp <%=h aluno.aluno_certidao_nascimento  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <b>Livro:</b>&nbsp&nbsp <%=h aluno.aluno_livro  %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <b>Folha:</b>&nbsp&nbsp <%=h aluno.aluno_folha  %>
+                </td>
+            </tr>
+        <%end%>
+        <tr style="line-height: 2px; border-color: white">
+            <td style="font-size: 8px; border-color: white" colspan="3"><b>Nacionalidade:</b>&nbsp&nbsp <%=h aluno.aluno_nacionalidade %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>Local:</b>&nbsp&nbsp <%=h aluno.aluno_naturalidade %> <% session[:aluno] = aluno.id %></td>
+            <% if !(aluno.aluno_nacionalidade == 'BRASILEIRO')   %>
+                <td style="font-size: 8px; border-color: white"><b>Data Chedado no Brasil:</b>&nbsp&nbsp <%=h aluno.aluno_chegada_brasil %></td>
+            <%else%>
+                <td  style="font-size: 8px; border-color: white" colspan="2"></td>
+            <%end%>
+        </tr>
+        <%# if (aluno.aluno_RG.present?)  %>
+            <tr style="line-height: 2px; border-color: white">
+                <td style="font-size: 8px; border-color: white"><b>RG:</b>&nbsp&nbsp <%=h aluno.aluno_RG %></td>
+                <td style="font-size: 8px; border-color: white" colspan="2"><b>Emissão:</b>&nbsp&nbsp <%=h aluno.aluno_emissaoRG %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>CPF:</b>&nbsp&nbsp <%=h aluno.aluno_CPF %></td>
+            </tr>
+        <%#end%>
+
+        <tr style="line-height: 11px; border-color: white">
+            <td style="font-size: 8px; border-color: white" colspan="4"><br/><b><u><center> RESULTADOS DOS ESTUDOS RELIZADOS NO ENSINO FUNDAMENTAL</cente></u></b><br/>
+                <b> Lei Federal 9294/96 Art. 26, 32, 33, 34 - Resolução CNE/CEB nº 02/98 - Lei Federal 11.114/2005 e Lei Federal 11.274/2006 </b><font>
+            </td>
+        </tr>
+    </table>
+
+    <%#PARCIAL PARA IMPRESSÃO DAS NOTAS DO HISTÓRICO%>
+    <div id="dados_historico">  <%= render :partial => 'impressao_notas_historico'%></div>
+<%end%>
+
+                            <%if !@notasB.empty?%>
+
+                                <table frame="box" rules="all" width="99%" >
+                                    <tr style="line-height: 2px; border-color: white">
+                                       <td style="font-size: 8px; border-color: white" colspan="2"></td>
+                                    </tr>
+                                    <tr style="line-height: 2px; border-color: white">
+                                        <td style="font-size: 8px; border-color: white" align="CENTER" valign="top"><b>Observação:</b></td>
+                                        <td style="font-size: 8px; border-color: white" colspan="4" valign="top">
+                                               <% c=0 %>
+                                                <% @historico_aluno.each do |obs|%>
+                                                       <%  if  (!obs.observacao.nil?) %>
+                                                           <b><%= c=c+1%>.</b>&nbsp <%="#{obs.observacao}" %><br/>
+                                                       <%end%>
+                                                <%end%>
+
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            <%end%>
+
+
+
+
+
+<!--<div style="page-break-after: always"></div>-->
+<br/>
+             <hr/>
+<br/>
+
+<% @aluno.each do |aluno| %>
+    <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+        <tr style="border-color: white">
+            <td style="border-color: white" rowspan="2" align="left"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+            <td style="border-color: white" ><center><font size="3"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+                <center><font size="2"><b><i> Secretaria da Educação</i></b><br/></center>
+                <center><font size="2"> Unidade de Ensino Fundamental</i></b><br/></center>
+            </td>
+        </tr>
+    </table>
+
+    <br/> <br/> <!--<br/> <br/> <br/> <br/> <br/> <br/>-->
+
+    <center><font size="3"><b>C E R T I F I C A D O</b></font><br/></center>
+
+    <table style="border-color: white">
+        <tr style="border-color: white">
+            <td   style="border-color: white; font-size: 9px" colspan="3">
+                <% var = 0 %>
+                <% var1 = 0 %>
+                <font size="2"><br/>
+                    O sr(a) diretor(a) da Unidade Educacional <b>
+                        <% if @notas_ano.nil? %>
+                           <%= current_user.unidade.tipo.nome %>"<%= current_user.unidade.nome%>"
+                        <%else%>
+                           <%= current_user.unidade.tipo.nome %> "<%= @notas_ano.matricula.unidade.nome%>"
+                        <%end%>
+
+                    </b> de acordo com o art. 24 VII da Lei Federal nº 9.394/96,
+                    certifica que o aluno(a) <b>
+                        <% if @notas_ano.nil? %>
+                            <%= session[:aluno_nome] %>
+                        <%else%>
+                            <%= @notas_ano.matricula.aluno.aluno_nome %> </b>
+                    <%end%>
+
+<% ultimo_ano = (session[:classe_anos].max) %>
+
+<!--CONCLUIU-->      concluiu o<b>
+
+
+                          <%= (session[:classe_anos].max) %>º ano</b> do Ensino Fundamental de 9 anos no ano letivo de <b>
+<!-- ANO CONCLUSÂO-->
+
+                        <% if @notas_ano.nil? %>
+                            <%=Time.now.year%>  </b>,
+                         <%else%>
+                            <%if ultimo_ano == 9 or ultimo_ano == 5 %>
+                             <%@ultima_portugues=  Nota.find(:all, :joins => "INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id ", :conditions => ["notas.aluno_id =? AND atribuicaos.disciplina_id = 1  AND notas.ativo is NULL AND (nota5 <> 'SN' AND nota5 <> 'TR' AND nota5 <> 'RM' AND nota5 <> 'F' AND nota5 <> 'NF' AND nota5 <> 'ABN')",session[:aluno_id]  ],:order =>'notas.ano_letivo DESC ')%>
+                               <%=(@ultima_portugues[0].ano_letivo)%>
+                            <%else%>
+                               <% if @notas_ano.matricula.ano_letivo == Time.now.year %>
+                                    <%=(@notas_ano.matricula.ano_letivo) - 1%>
+                               <%else%>
+                                  <%=(@notas_ano.matricula.ano_letivo)%>
+                               <%end%>
+                            <%end%>
+
+
+                               </b>,
+
+                        <%end%>
+
+                    <% if (session[:classe_anos].max+1)<10 %>
+                        estando apto(a) ao proseguimento dos estudos no
+
+                        <b><%=(session[:classe_anos].max+1)%>º ano</b>
+
+                        do ENSINO FUNDAMENTAL de 9 anos.
+                    <%else%>
+                        estando apto(a) ao proseguimento dos estudos no 1º ano do ENSINO MÉDIO.
+                    <%end%>
+
+
+            </td>
+        </tr>
+        <tr style="border-color: white">
+            <td  style="border-color: white; font-size: 9px">
+                <br/><br/><!--<br/><br/><br/><br/>-->
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b>
+                <br/><br/><br/><br/><br/><br/>
+<!--                <br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/>-->
+                &nbsp&nbsp&nbsp&nbsp&nbsp__________________________________________ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ________________________________________<br/>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Secretaria da Unidade Escolar       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Diretor da  Unidade Escolar    <br/>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       Nome:                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Nome:
+            </td>
+        </tr>
+    </table>
+
+
+
+
+    </font>
+    <table  width="100% " class ="invisible_to_print ">
+        <tr style="line-height: 8px">
+            <td width="6%"align="left" ><br/><%= button_to '', home_path, {:method => "get"}  %></td>
+
+            <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental'))%>
+                <td align="right" >
+                    <!-- <%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_transferencia_aluno_path}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> -->
+                    <%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %>
+                    </b></td>
+            <%end%>
+        </tr>
+    </table>
+<%end%>

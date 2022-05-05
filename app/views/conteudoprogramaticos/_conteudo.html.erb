@@ -33,8 +33,9 @@
             <td align="left">&nbsp <%= conteudo.conteudo%> </td>
             <td align="center"> <%= conteudo.inicio.strftime("%d/%m/%Y") %> </td>
             <!--<td align="center">&nbsp <%#if conteudo.validacao == 1%> <font color="blue"> VALIDADO </font> <%#else%> <font color="red"> AGUARDANDO </font><%#end%> </td>-->
-           <td align="center"> <%= button_to('Visualizar', {:action => "show", :id =>conteudo},:method => "get", :title => "Visualizar") %>
-<%#= link_to  image_tag('/stylesheets/images/editar1.png', :title => 'Editar'), {:action => "show", :id => edicao}, :method => "get", :title => "Selecionar"%></td>
+           <td align="center">   <%=  button_to 'Editar', {:controller => "conteudoprogramaticos", :action => "edit", :id =>conteudo}, :method => "get", :title => "Editar"%> 
+                                 <%= button_to'Excluir', { :controller => "conteudoprogramaticos", :action => "destroy", :id =>conteudo}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%>
+                                <%= button_to('Visualizar', {:action => "show", :id =>conteudo},:method => "get", :title => "Visualizar") %></td>
 
 
          </tr>

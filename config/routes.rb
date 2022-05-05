@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :registros, :collection => { :consultas =>:get,  :aviso=>:get, :lancamentos_registros =>:get}
   map.resources :atendimento_aees
   map.resources :conteudoprogramaticos, :collection => { :consultas =>:get,  :aviso=>:get}
-  map.resources :faltasalunos, :collection => { :consultas =>:get,  :aviso=>:get,  :aviso2=>:get}
+  map.resources :faltasalunos, :collection => { :consultas =>:get,  :aviso=>:get,  :aviso2=>:get, :exclusao=> :get, :aviso3=>:get}
   map.resources :diario_classes, :collection => { :faltas=>:get}
   map.resources :atividade_avaliacaos
   map.resources :atividades, :collection => { :aviso=>:get, :consultas=> :get,  :avaliacao=>:get}
@@ -42,7 +42,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :logs
   map.resources :fichas
   map.resource :session
-
   map.resources :grupos
   map.resources :regiaos
   map.resources :regiaos
@@ -55,13 +54,10 @@ ActionController::Routing::Routes.draw do |map|
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.resources :estatisticas
-
   map.editar_avaliacao_atividades'/estatisticaclasse', :controller => 'atividade_avaliacaos', :action => 'editar_avaliacao_atividades'
   map.estatisticaclasse'/estatisticaclasse', :controller => 'estatisticas', :action => 'estatisticaclasse'
   map.classeestatistica '/classeestatistica', :controller => 'estatisticas', :action => 'classeestatistica'
-
   map.fora_do_ar'/fora_do_ar', :controller => 'home', :action => 'fora_do_ar'
-
   map.protocolo_covid'/protocolo_covid', :controller => 'home', :action => 'protocolo_covid'
   map.new_continua  '/new_continua', :controller => 'saudes', :action => 'new_continua'
   map.new_continua_econ  '/new_continua_econ', :controller => 'socioeconomicos', :action => 'new_continua'
@@ -72,8 +68,6 @@ ActionController::Routing::Routes.draw do |map|
   map.montar_classe '/montar_classe', :controller => 'classes', :action => 'montar_classe'
   map.new_disciplinanota '/new_disciplinanota', :controller => 'disciplinas', :action => 'new_disciplinanota'
   map.create_discipina_nota '/create_discipina_nota', :controller => 'disciplinas', :action => 'create_discipina_nota'
-
-
   map.editar_avaliacoes'/editar_avaliacoes', :controller => 'atividades', :action => 'editar_avaliacoes'
   map.editar_avaliacao'/editar_avaliacao', :controller => 'atividades', :action => 'editar_avaliacao'
   map.consultar_avaliacoes '/consultar_avaliacoes', :controller => 'atividades', :action => 'consultar_avaliacoes'
@@ -91,27 +85,16 @@ ActionController::Routing::Routes.draw do |map|
   #map.lancamentos_aulas_compensadas '/lancamentos_aulas_compensadas', :controller => 'notas', :action => 'lancamentos_aulas_compensadas'
   #map.aulas_compensadas '/aulas_compensadas', :controller => 'notas', :action => 'aulas_compensadas'
   map.resources :criancas, :collection => {:impressao => :get, :consultas => :get, :impressao_class_unidade => :get, :impressao_class_classe => :get, :impressao_geral => :get, :status => :get, :update => :put}
-
-
   #map.importa1bimaulsas'/ importa1bimaulsas', :controller => 'atribuicaos', :action => 'importa1bimaulsas'
   map.importar_aula_1bim '/importar_aula_1bim', :controller => 'atribuicaos', :action => 'importar_aula_1bim'
-
-
-
   map.relatorio_falta_classe '/relatorio_falta_classe', :controller => 'faltas', :action => 'relatorio_falta_classe'
   map.relatorio_classe_falta '/relatorio_classe_falta', :controller => 'faltas', :action => 'relatorio_classe_falta'
   map.relatorio_falta_unidade '/relatorio_falta_unidade', :controller => 'faltas', :action => 'relatorio_falta_unidade'
   map.relatorio_unidade_falta '/relatorio_unidade_falta', :controller => 'faltas', :action => 'relatorio_unidade_falta'
-
-
   map.diario_classe '/diario_classe', :controller => 'classesdiarios', :action => 'diario_classe'
   map.classe_diario '/classe_diario', :controller => 'classesdiarios', :action => 'classe_diario'
   map.impressao_diario '/impressao_diario', :controller => 'classesdiarios', :action => 'impressao_diario'
-
   map.exclusao '/exclusao', :controller => 'conteudos', :action => 'exclusao'
-
-
-
   map.impressao_geral '/grafico/impressao_geral', :controller => 'grafico', :action => 'impressao_geral'
   map.impressao_alunos '/impressao_alunos', :controller => 'alunos', :action => 'impressao_alunos'
   map.impressao_saude '/impressao_saude', :controller => 'saudes', :action => 'impressao_saude'
@@ -132,7 +115,6 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_relatorio_mapa3 '/impressao_relatorio_mapa3', :controller => 'atribuicaos', :action => 'impressao_lencol3'
   map.impressao_relatorio_mapa4 '/impressao_relatorio_mapa4', :controller => 'atribuicaos', :action => 'impressao_lencol4'
   map.impressao_relatorio_mapa5 '/impressao_relatorio_mapa5', :controller => 'atribuicaos', :action => 'impressao_lencol5'
-  
   map.impressao_nota_final '/impressao_nota_final', :controller => 'historicos', :action => 'impressao_nota_final'
   map.impressao_lancamentos '/impressao_lancamentos', :controller => 'atribuicaos', :action => 'impressao_lancamentos'
   map.impressao_alteracao_lancamentos '/impressao_alteracao_lancamentos', :controller => 'notas', :action => 'impressao_alteracao_lancamentos'
@@ -147,7 +129,6 @@ ActionController::Routing::Routes.draw do |map|
   map.impressao_fapeaT '/impressao_fapeaT', :controller => 'relatorios', :action => 'impressao_fapeaT'
   map.impressao_fapeaT1 '/impressao_fapeaT1', :controller => 'relatorios', :action => 'impressao_fapeaT1'
   map.impressao_fapeaT2 '/impressao_fapeaT2', :controller => 'relatorios', :action => 'impressao_fapeaT2'
-
   map.impressao_faltas '/impressao_faltas', :controller => 'aulas_faltas', :action => 'impressao_faltas'
   map.impressao_faltas_professor '/impressao_faltas_professor', :controller => 'aulas_faltas', :action => 'impressao_faltas_professor'
   map.impressao_faltas_funcionario '/impressao_faltas_funcionario', :controller => 'aulas_faltas', :action => 'impressao_faltas_funcionario'
@@ -162,8 +143,6 @@ ActionController::Routing::Routes.draw do |map|
   map.final_resultado '/final_resultado', :controller => 'historicos', :action => 'final_resultado'
   map.impressao_unidade '/impressao_unidade', :controller => 'aulas_eventuals', :action => 'impressao_unidade'
   map.renumera '/renumera', :controller => 'classes', :action => 'renumera'
-
-
   map.alteracao '/altera', :controller => 'alteracaos', :action => 'altera'
   map.alteracao_matricula '/alteracao_matricula', :controller => 'matriculas', :action => 'alteracao_matricula'
   map.reprovacao '/reprovacao', :controller => 'matriculas', :action => 'reprovacao'
@@ -181,13 +160,8 @@ ActionController::Routing::Routes.draw do |map|
   map.validacao_conteudo '/validacao_conteudo', :controller => 'conteudos', :action => 'validacao_conteudo'
   map.show_editar '/show_editar', :controller => 'atribuicaos', :action => 'show_editar'
   map.new2_obs_notas '/new2_obs_notas', :controller => 'observacao_notas', :action => 'new2'
-
   map.mapa_classe '/mapa_classe', :controller => 'atividades', :action => 'mapa_classe'
   map.mapa_professor '/mapa_professor', :controller => 'atividades', :action => 'mapa_professor'
-
-
-
-
   map.consulta_registros '/consulta_registros', :controller => 'registros', :action => 'consulta_registros'
   map.consulta_professor_eventual '/consulta_professor_eventual', :controller => 'eventuals', :action => 'consultas'
   map.consulta_unidade '/consulta_unidade', :controller => 'unidades', :action => 'consulta_unidade'
@@ -228,12 +202,11 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_faltas '/consulta_faltas', :controller => 'faltasalunos', :action => 'consulta_faltas'
   map.consulta_direcao_conteudo '/consulta_direcao_conteudo', :controller => 'conteudos', :action => 'consulta_direcao_conteudo'
   map.consulta_mqa_conteudo '/consulta_mqa_conteudo', :controller => 'conteudos', :action => 'consulta_mqa_conteudo'
-
+  map.excluir_faltas '/excluir_faltas', :controller => 'faltasalunos', :action => 'excluir_faltas'
   map.editar_relatorio '/editar_relatorios', :controller => 'relatorios', :action => 'editar'
   map.consulta_observacoes '/consulta_observacoes', :controller => 'relatorios', :action => 'consulta_observacoes'
   map.consulta_atribuicao '/consulta_atribuicao', :controller => 'atribuicaos', :action => 'consulta_atribuicao'
   map.consulta_ata '/consulta_ata', :controller => 'atas', :action => 'consulta_ata'
-
   map.historico'/historico', :controller => 'historicos', :action => 'historico'
   map.historicoContinua'/historicoContinua', :controller => 'historicos', :action => 'historicoContinua'
   map.historicoatri'/historicoatri', :controller => 'atribuicaos', :action => 'historico_aluno'
@@ -243,8 +216,6 @@ ActionController::Routing::Routes.draw do |map|
   map.lancar_notas_alunos '/lancar_notas_alunos', :controller => 'notas', :action => 'lancar_notas_alunos'
   map.lancar_faltas_diario '/lancar_faltas_diario', :controller => 'faltasalunos', :action => 'lancar_fatas_alunos'
   map.alunos_faltas_falta '/alunos_faltas_falta', :controller => 'faltasalunos', :action => 'alunos_faltas_falta'
-
-
   #map.lancamentoregistros '/lancamentosregistro', :controller => 'registros', :action => 'lancamentosregistro'
   #map.lancamentos '/lancamentos', :controller => 'registros', :action => 'lancamentos'
   map.lancar_faltas_alunos '/lancar_faltas_alunos', :controller => 'diario_classes', :action => 'lancar_fatas_alunos'
@@ -261,19 +232,14 @@ ActionController::Routing::Routes.draw do |map|
   map.relatorios_faltas_funcionario'/relatorios_faltas_funcionario', :controller => 'aulas_faltas', :action => 'relatorios_faltas_funcionario'
   map.relatorios_eventual_professor'/relatorios_eventual_professor', :controller => 'aulas_eventuals', :action => 'relatorios_eventual_professor'
   map.relatorios_eventuals'/relatorios_eventuals', :controller => 'aulas_eventuals', :action => 'relatorios_eventuals'
-
   map.historico_aviso '/historico_aviso', :controller => 'notas', :action => 'aviso'
   map.show_direcao '/show_direcao', :controller => 'conteudos', :action => 'show_direcao'
   map.show_mqa '/show_mqa', :controller => 'conteudos', :action => 'show_mqa'
-
   map.manual_professor'/manual_professor', :controller => 'sessions', :action => 'manual_professor'
   map.manual_direcao'/manual_direcao', :controller => 'sessions', :action => 'manual_direcao'
   map.manual_mqa'/manual_mqa', :controller => 'sessions', :action => 'manual_mqa'
   map.inicio_2022'/inicio_2022', :controller => 'sessions', :action => 'inicio_2022'
-
-   map.totalizacao '/totalizacao', :controller => 'faltasalunos', :action => 'totalizacao'
-
-
+  map.totalizacao '/totalizacao', :controller => 'faltasalunos', :action => 'totalizacao'
   map.aviso_exclusao '/aviso_exclusao', :controller => 'atribuicaos', :action => 'aviso_exclusao'
   map.edit_status '/edit_status', :controller => 'matriculas', :action => 'edit_status'
   map.matriculas_saidas '/matriculas_saidas', :controller => 'matriculas', :action => 'matriculas_saidas'
@@ -289,10 +255,8 @@ ActionController::Routing::Routes.draw do |map|
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
-
   map.reset_password '/reset_password/:id', :controller => 'passwords', :action => 'edit'
   map.resource :password
-
   map.resources :users
   map.resource :session
   map.home '', :controller => 'home', :action => 'index'
@@ -300,5 +264,4 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   map.geo "/geos/geo/:id", :controller => "geos", :action => "geo"
-
 end

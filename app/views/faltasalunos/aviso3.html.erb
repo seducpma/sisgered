@@ -1,0 +1,40 @@
+<div id="interno3">
+<% title "MATRICULAS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>FREQUENCIA ALUNOS</strong></font><br/>
+ </div>
+      <div class="tabs">
+
+
+        <fieldset><legend><font size=4></font></legend>
+        <table>
+          <tr>
+              <td ><font color ="red" size ="4"><b><u>ATENÇÃO:</u>  TODOS OS REGISTRO DE FREQUÊNCIA FORAM  EXCLUIDOS, <br/>
+                    CLASSE:  <%@classe = Classe.find(:all, :conditions=> ['id =?', session[:classe_id] ]) %> 
+                             <%= @classe[0].classe_classe %>  &nbsp &nbsp &nbsp
+                    DISCIPLINA: &nbsp&nbsp&nbsp  <%@disciplina = Disciplina.find(:all, :conditions=> ['id =?', session[:disciplina_id] ]) %>
+                                                            <%= @disciplina[0].disciplina %> &nbsp&nbsp&nbsp DATA: <%=session[:dataXX]%><br/><br/>
+                    SE NECESSÉRIO LANÇAR NOVAMENTE.
+                  <font>
+
+                    </td>
+           </tr>
+
+
+         </table>
+         </fieldset>
+        <table width="100%">
+           <tr>
+              
+             
+             <td width =" 10%"><%= button_to 'Diário de Classe / Frequêcia)', new_faltasaluno_path %> </td>
+             <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+          </tr>
+          
+        </table>
+
+    </div>
+</div>
+<br/>
+</div>

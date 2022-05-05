@@ -27,7 +27,6 @@ class Classe < ActiveRecord::Base
 
   end
 
-
   def atribui_unidade
     self.unidade_id = User.current.unidade_id
   end

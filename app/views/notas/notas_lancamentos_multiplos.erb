@@ -41,6 +41,7 @@
                                             <% session[:ano] = atrib.ano_letivo %>
                                             <% session[:periodo] = atrib.classe.horario %>
                                             <% session[:id] = atrib.id %>
+                                            <% session[:atrib_id] = atrib.id %>
                                         </tr>
 
                                     </table>
@@ -119,8 +120,7 @@
                                                 <%end%>
                                                 <%if !nota.faltas1.present? or nota.faltas1==0%>
                                                     <td align="center"> <% faltas1=0%>
-                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=? AND professor_id =? ", nota.aluno_id, session[:cont_classe_id], session[:disciplina_id], BIM1INI, BIM1FIM,current_user.professor_id]) %>
-                                                      
+                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND atribuicao_id=? AND data >=? AND data <=?", nota.aluno_id, session[:atrib_id], BIM1INI, BIM1FIM]) %>
                                                           <% @totalFaltas.each do |totalfaltas|%>
                                                           <% faltas1= totalfaltas.faltas + faltas1%>
                                                       <%end%>
@@ -136,7 +136,7 @@
                                                 <%end%>
                                                 <%if !nota.faltas2.present? or nota.faltas2==0%>
 <!-- para liberar pagar comentarios desta linha #--> <td align="center"><% faltas2=0%>
-                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", nota.aluno_id, session[:cont_classe_id], session[:disciplina_id], BIM2INI, BIM2FIM]) %>
+                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND atribuicao_id=? AND data >=? AND data <=?", nota.aluno_id, session[:atrib_id], BIM2INI, BIM2FIM]) %>
                                                           <% @totalFaltas.each do |totalfaltas|%>
                                                           <% faltas2= totalfaltas.faltas + faltas2%>
                                                       <%end%>
@@ -151,7 +151,7 @@
                                                 <%end%>
                                                 <%if !nota.faltas3.present? or nota.faltas3==0%>
 <!-- para liberar pagar comentarios desta linha #--> <td align="center"><% faltas3=0%>
-                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", nota.aluno_id, session[:cont_classe_id], session[:disciplina_id], BIM3INI, BIM3FIM]) %>
+                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND atribuicao_id=? AND data >=? AND data <=?", nota.aluno_id, session[:atrib_id], BIM3INI, BIM3FIM]) %>
                                                           <% @totalFaltas.each do |totalfaltas|%>
                                                           <% faltas3= totalfaltas.faltas + faltas3%>
                                                       <%end%>
@@ -167,7 +167,7 @@
                                                 <%end%>
                                                 <%if !nota.faltas4.present? or nota.faltas4==0%>
 <!-- para liberar pagar comentarios desta linha #--><td align="center"><% faltas4=0%>
-                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", nota.aluno_id, session[:cont_classe_id], session[:disciplina_id], BIM4INI, BIM4FIM]) %>
+                                                     <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND atribuicao_id=? AND data >=? AND data <=?", nota.aluno_id, session[:atrib_id], BIM4INI, BIM4FIM]) %>
                                                           <% @totalFaltas.each do |totalfaltas|%>
                                                           <% faltas4= totalfaltas.faltas + faltas4%>
                                                       <%end%>
@@ -263,3 +263,4 @@
             </table>
     </div>
     </div>
+    

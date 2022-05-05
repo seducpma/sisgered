@@ -29,7 +29,7 @@
         </tr>
                 <tr bgcolor="#F5F5F5">
                   <td width =" 5%" valign="top"><b>Professor(a):</b></td>
-                   <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <br/>
+                   <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <font size="3" color="BLUE" id="pisca1"> <b> &nbsp&nbsp <<<<<< <u> ATENÇÃO SELECIONAR </u><<<<<<  </b> </font>&nbsp&nbsp <br/>
                 <font color="red"> <b><u> Professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.
                     <%if  current_user.has_role?('professor_fundamental')  %>
                       <br/>  <u> Professor de Ciclo Básico: </u> Lançar relatório de todos lançamentos na disciplina Lingua Portuguesa.</b>
@@ -87,9 +87,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formação.<br/>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este lançamento, só poderá ser editado e alterado até às 23:59 da data que foi feito.<br/>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3) Após ás 23:59 somente o gestor ou pedagogo da unidade poderão fazer alterações.
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formação.
                         </td>
                 </tr>
               </table>

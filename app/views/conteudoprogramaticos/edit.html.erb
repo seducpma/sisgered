@@ -1,56 +1,116 @@
-<h1>Editing conteudoprogramatico</h1>
+<div id="interno11">
+<% title "ALUNOS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>LANÇAMENTOS DE CONTEÚDOS MINISTRADOS - DIÁRIO DE CLASSE</strong></font><br/>
+ </div>
+      <div class="tabs">
 
-<% form_for(@conteudoprogramatico) do |f| %>
-  <%= f.error_messages %>
+          <% form_for (@conteudoprogramatico) do |f| %>
+           <%= f.error_messages %>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-  <p>
-    <%= f.label :classe %><br />
-    <%= f.text_field :classe %>
-  </p>
-  <p>
-    <%= f.label :professor %><br />
-    <%= f.text_field :professor %>
-  </p>
-  <p>
-    <%= f.label :atribuicao %><br />
-    <%= f.text_field :atribuicao %>
-  </p>
-  <p>
-    <%= f.label :disciplina %><br />
-    <%= f.text_field :disciplina %>
-  </p>
-  <p>
-    <%= f.label :unidade %><br />
-    <%= f.text_field :unidade %>
-  </p>
-  <p>
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </p>
-  <p>
-    <%= f.label :conteudo %><br />
-    <%= f.text_field :conteudo %>
-  </p>
-  <p>
-    <%= f.label :ano_letivo %><br />
-    <%= f.text_field :ano_letivo %>
-  </p>
-  <p>
-    <%= f.label :inicio %><br />
-    <%= f.date_select :inicio %>
-  </p>
-  <p>
-    <%= f.label :fim %><br />
-    <%= f.date_select :fim %>
-  </p>
-  <p>
-    <%= f.label :obs %><br />
-    <%= f.text_field :obs %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+            <fieldset>
+             <legend><font size=4></font></legend>
+             <table width="100%">
+                  <tr bgcolor="#F5F5F5">
+                    <td colspan="4"><b></b><%if  current_user.has_role?('professor_fundamental')  %>
+                      <b> CONTEÚDO MINISTRADO    - Professor Fundamental</b>
+                                                <%else if  current_user.has_role?('professor_infantil')%>
+                                                     <b> ATIVIDADES / VIVÊNCIA  - Professor Infantil</b>
+                                                    S
+                                                 <%end%>
+                                         <%end%>
+                    </td>
+                  </tr>
+        <tr bgcolor="#F5F5F5">
+             <td colspan="4"><b>Data:   </b>   <%= f.date_select(:inicio, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year))%> </td>
+        </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td width =" 5%" valign="top"><b>Professor(a):</b></td>
+                   <td><%= f.collection_select  :professor_id, @professor_unidade, :id, :nome, :include_blank => ' -- Selecione -- ' %> <font size="3" color="BLUE" id="pisca1"> <b> &nbsp&nbsp <<<<<< <u> ATENÇÃO SELECIONAR </u><<<<<<  </b> </font>&nbsp&nbsp<br/>
+                <font color="red"> <b><u> Professor</u> após selecionar seu nome aguarde para selecionar a disciplina e classe.
+                    <%if  current_user.has_role?('professor_fundamental')  %>
+                      <br/>  <u> Professor de Ciclo Básico: </u> Lançar relatório de todos lançamentos na disciplina Lingua Portuguesa.</b>
+                     <%end%>
+                </td>
+                      <%= observe_field 'conteudoprogramatico_professor_id',
+                         :update => "dados_classe",
+                         :url    => { :action => 'classe' },
+                         :with   => 'conteudoprogramatico_professor_id' %>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="disciplina"> </div></td>
+                </tr
+                <tr bgcolor="#F5F5F5">
+                  <td colspan="4"><div id="dados_classe"></div></td>
+                </tr >
+                <tr>
+                  <td colspan="4">
+                    <table width=" 100%" border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+                      <tr bgcolor="#F5F5F5">
+                        <td>
+                          <font color="green"><b><u>ATENÇÃO:</u> Faça o registro de forma sucinta que contemple os seguintes elementos:<br/>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. Descrição resumida. <br/>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. Componente curricular/campo de experiêncipa a que se refere . <br/>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Objetivo e habilidades do conhecimento. <br/>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 4. Recursos utilizados.<br/>
+
+
+                            </b>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                 <tr bgcolor="#F5F5F5">
+                   <td valign="top"><b>Conteúdo:<br/>
+                                       Programático  </b></td>
+                  <td colspan="5">
+
+
+
+  <%= f.text_area(:conteudo, :cols=> "84", :rows=>"20", :id=>"contador") %><br/>
+<script>
+        $(document).on("keydown", "#contador", function () {
+            var caracteresRestantes = 2000  ;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+            $(".caracteres").text(caracteresRestantes);
+
+        });
+
+</script>
+  <b><span class="caracteres">2000</span> Caracteres Restantes </b>
+                  </td>
+                </tr>
+ <!--               <tr>
+                  <td colspan="2"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Para digitar SOMENTE texto sem qualquer tipo formação.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após SALVAR este lançamento, só poderá ser editado e alterado até às 23:59 da data que foi feito.<br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3) Após ás 23:59 somente o gestor ou pedagogo da unidade poderão fazer alterações.
+                        </td>
+                </tr>
+ -->
+              </table>
+            </fieldset>
+           <br/>
+                 <table width="100%" >
+                   <tr>
+                     <td width="4%"align="left"><b><div id='Certeza'><%= f.submit 'Salvar' %></div></b></td>
+          <%end%>
+                       <td><%= button_to 'Fechar', home_path, {:method => "get"}  %>
+                        
+                       </td>
+                   </tr>
+                 </table>
+            </font>
+
+    </div>
+</div>
+<br/>
 <%session[:consultas]= 0%>
-<%= link_to 'Show', @conteudoprogramatico %> |
-<%= link_to 'Back', conteudoprogramaticos_path %>
+<%session[:tela_new]= 1%>
+</div>
+

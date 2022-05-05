@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -441,7 +441,7 @@ display: none;
                      <%end%>
 
 
-                        <li><a class="item-primary" href="#;">Lançamentos</a>
+<!--                        <li><a class="item-primary" href="#;">Lançamentos</a>
                            <ul>
                               <% if (current_user.unidade_id != 60)  %>
                                  <li><%= link_to "Professor",consultas_conteudos_path %></li>
@@ -454,10 +454,9 @@ display: none;
                                    <li><%= link_to "Mãos Que Acolhem",consultas_mqa_conteudos_path %></li>
                              <%end%>
 
-
-
                            </ul>
                          </li>
+-->
 
 
 
@@ -539,7 +538,22 @@ display: none;
 
                    <%end%>
                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('secretaria_fundamental')or current_user.has_role?('pedagogo')or current_user.has_role?('secretaria_infantil')or current_user.has_role?('direcao_infantil'))%>
-                       <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
+
+
+
+
+                        <li><a class="item-primary" href="#;">Matrícula</a>
+                          <ul style="width:108px;">
+                             <li><%= link_to "Matrícula", alterar_matriculas_path %></li>
+                             <li><%= link_to "Remanejamento", remanejamento_matriculas_path%></li>
+                             <li><a class="item-primary" href="#;">Transferência</a>
+                                  <ul>
+                                    <li><%= link_to "Entrada", transferencia_matriculas_path%></li>
+                                    <li><%= link_to "Saida", saidas_matriculas_path%></li>
+                                  </ul>
+                             </li>
+                          </ul>
+                       </li>
                        <li><%= link_to "Professor",consulta_professor_nome_path %></li>
                        <li><%= link_to "Unidade",consultas_unidades_path %></li>
                    <%end%>
@@ -698,6 +712,7 @@ display: none;
                                          <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao') or current_user.has_role?('professor_fundamental') or current_user.has_role?('pedagogo') or current_user.has_role?('direcao_fundamental')or current_user.has_role?('professor_infantil')or  current_user.has_role?('direcao_infantil'))%>
                                             <% if current_user.has_role?('admin') or  current_user.has_role?('professor_fundamental') or current_user.has_role?('professor_infantil')%>
                                                  <li><%= link_to "Lançamentos",new_faltasaluno_path %></li> 
+                                                 <li><%= link_to "Exclusão ",exclusao_faltasalunos_path %></li>
                                             <%end%>
                                                <li><%= link_to "Consultas ",consultas_faltasalunos_path %></li><!-- Professores fundamental-->
                                             <%end%>

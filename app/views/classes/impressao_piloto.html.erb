@@ -1,9 +1,11 @@
 <table frame="box" rules="all" width="100%" style="border-color: white">
   <tr style="border-color: white">
     <td rowspan="4" style="border-color: white"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
-    <td style="border-color: white"><center><font size="3"><i><b>LISTA PILOTO</b></i></center>
-        <center><font size="1"><b><i> Secretaria da Educação - Prefeitura Municipal de  Americana</i></b><br/></center>
+    <td style="border-color: white"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+        <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
         <center><font size="1">Unidade Escolar:     <% for classe in @classe %> <%=h classe.unidade.nome %>   </font></center>
+        <center><b>CLASSE</b></center>
+        <center><font size="1"><b><i> Lista Piloto</i></b><br/></center>
     </td>
   </tr>
 </table>
@@ -18,48 +20,26 @@
            <td align="left" width="15%" style="font-size: 9px"><b>Unidade:</b></td>
            <td align="left" style="font-size: 9px"><%=h classe.unidade.nome%></td>
            <td align="left"width="15%" style="font-size: 9px"><b> Ano Letivo:</b></td>
-          <td colspan="8" align="left" style="font-size: 9px"> <%=h classe.classe_ano_letivo %></td>
+          <td colspan="7" align="left" style="font-size: 9px"> <%=h classe.classe_ano_letivo %></td>
       </tr>
 
       <tr style="line-height:25%">
            <td align="left" style="font-size: 9px"><b>Classe:</b></td>
            <td align="left" style="font-size: 9px">  <%=h classe.classe_classe%></td>
            <td align="left" style="font-size: 9px"><b>Horário:</b></td>
-           <td colspan="8" align="left" style="font-size: 9px">  <%=h classe.horario%></td>
+           <td colspan="7" align="left" style="font-size: 9px">  <%=h classe.horario%></td>
 
       </tr>
       <tr style="line-height:25%">
           <td align="left" style="font-size: 9px"><b>Descrição:</b></td>
-          <td colspan="10" align="left" style="font-size: 9px">  <%=h classe.classe_descricao %></td>
+          <td colspan="9" align="left" style="font-size: 9px">  <%=h classe.classe_descricao %></td>
       </tr>
 
-     <tr style="line-height:25%">
-       <td align="left" style="font-size: 9px" valign="top"><b>Professor(es):</b></td>
-          <td colspan="10" align="left" style="font-size: 9px">
-           <% cont=1 %>
-              <% for atrib in @atribuicao_classe %>
-                  <table frame="box" rules="all" width="100%" style="border-color: white">
-                              <tr style="line-height:25%" >
-                                
-                                 <td align="left" style="font-size: 9px" width="50%">  &nbsp<%= cont%> - <%=h atrib.professor.nome%></td>
-                                 <td align="left" style="font-size: 9px" width="10%"><b> Disciplina:</b></td>
-                                 <td colspan="8" align="left" style="font-size: 9px"width="30%"> <%=h atrib.disciplina.disciplina %></td>
-                             </tr>
-
-                          <% cont= cont+1 %>
-                         <%end%>
-                  </table>
-          </td>
-      </tr>
-
-
-      
       <tr style="line-height:25%">
          <% cont=1 %>
          <% cont1=1 %>
-        <td align="left" valign="top" style="font-size: 9px"><b>Alunos:</b></td>
-          <td colspan="10" align="left" style="font-size: 9px">
-
+        <td style="font-size: 9px" colspan="10">
+          <b> Alunos: </b><br/>
                    <table frame="box" rules="all" width="100%" style="border-color: white">
 
                            <tr style="line-height:30%">

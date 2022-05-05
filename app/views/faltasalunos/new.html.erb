@@ -16,7 +16,7 @@
 
           <tr>
               <td><b>Data:</b> </td>
-              <td><%= datepicker_tag(:faltasalunos, :data,{:size => 10},{:dateFormat => "'yy-mm-dd'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
+              <td><%=datepicker_tag(:faltasalunos, :data,{:size => 10},{:dateFormat => "'yy-mm-dd'", :changeYear => true, :changeMonth => true, :yearRange => "'-90:+0'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn =>  "'both'" }) %>
 
                      <%= observe_field 'faltasalunos_data',
                          :url    => { :action => 'data' },

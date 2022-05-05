@@ -218,11 +218,17 @@
                                                           <%end%>
                                                       <%end%>
                             </td>
-                            <td><b><%= numero = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=? AND professor_id =? ", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF],current_user.professor_id]).count %></b> &nbsp&nbsp dias faltados
+<!--
+                            <td><b><%#= numero = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=? AND professor_id =? ", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF],current_user.professor_id]).count %></b> &nbsp&nbsp dias faltados
+-->
+                            <td><b><%= numero = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF]]).count %></b> &nbsp&nbsp dias faltados
                             </td>
                             <td>
                             <% faltas = 0 %>
+<!--
                             <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=? AND professor_id =? ", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF],current_user.professor_id]) %>
+-->
+                            <%@totalFaltas = Faltasaluno.find(:all, :conditions => ["aluno_id=? AND  classe_id=? AND disciplina_id=? AND data >=? AND data <=?", alunos_mat.id, session[:cont_classe_id], session[:disciplina_id], session[:dataI], session[:dataF]]) %>
                             <% @totalFaltas.each do |totalfaltas|%>
                               <% faltas= totalfaltas.faltas + faltas%>
                             <%end%>

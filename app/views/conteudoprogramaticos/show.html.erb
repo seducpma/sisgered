@@ -8,7 +8,7 @@
 <div class ="tabs">
 <%if @conteudoprogramatico.present?%>
       <!--<%session[:imprimir_todos]=1%>-->
-
+        <%conteudo= @conteudoprogramatico.id%>
         <fieldset><legend><font  size=3><b> CONTEÚDO MINISTRADO
               </b></font></legend>
               <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
@@ -47,7 +47,7 @@
                  <tr bgcolor="#F5F5F5">
                    <td></td>
                    <td align="left" valign="top"><b>Conteúdo:</b></td>
-                   <td colspan="4"> <%=   @conteudoprogramatico.conteudo.gsub("\n","<br/>\n") %></td>
+                   <td colspan="4"> <%=   @conteudoprogramatico.conteudo.gsub("\n","<br/>\n") %>   </td>
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td></td>
@@ -65,11 +65,12 @@
                                                                                    <%end%>
                    </td>
                 </tr>
-               <tr bgcolor="#C1C1C1" >
+<!--               <tr bgcolor="#C1C1C1" >
                   <td colspan="6"><font color="red" size=""><b><u> ATENÇÃO: </u> 1) Este lançamento só pode ser editado e alterado até às 23:59 do dia que foi feito.<br/>
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2) Após este data e hora somente o gestor ou pedagogo da unidade poderão fazer alterações.
                         </td>
                 </tr>
+-->
                 <%cont = cont + 1%>
             <%end%>
                 <%if !@conteudos_classe.nil?%>
@@ -123,8 +124,10 @@
   <table width="100%" >
          <tr>
             <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-            
-             <td colspan="10"align="left" ><%#= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>@relatorio}, :title => "Imprimir esta FAPEA"%></b></td>
+            <td width =" 10%"align="left" ><%=  button_to 'Editar', {:controller => "conteudoprogramaticos", :action => "edit", :id =>conteudo}, :method => "get", :title => "Editar"%></td>
+            <td colspan="10"align="left" ><%= button_to'Excluir', { :controller => "conteudoprogramaticos", :action => "destroy", :id =>conteudo}, :confirm => 'Confirma exclusão?', :method => "delete", :title => "Deletar"%></td>
+     
+       
                </tr>
 
 

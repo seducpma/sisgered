@@ -10,7 +10,7 @@
 
  </div>
     <div class="tabs">
-
+  <%if @faltasaluno.present?%>
       <fieldset>
         <table width="100%" align="center" bgcolor="#DCDCDC" >
 
@@ -34,29 +34,33 @@
 
                 <tr>
                     <td align="left"><font size="2"> <b>Classe:</b></font></td>
-                    <td> <%=  @faltasaluno.classe.classe_classe %> <% if session[:AEE]==0%> - <%#=  @faltasaluno.unidade.nome %> <%end%></td>
-
-
+                    <td> <%=  @faltasaluno.classe.classe_classe %> <% if session[:AEE]==0%> - <%=@faltasaluno.unidade.nome %> <%end%></td>
                 </tr>
                 <tr>
                     <td align="left"><font size="2"> <b>Observações:</b></font></td>
                     <td> <%= session[:obser]%></td>
-
+                </tr>
+                <tr>
+                    <td></td><td> <%#=@existe[0].id%>|<%#=@existe[0].id%>pr.id: <%=session[:professor_id]%> | ano let: <%=Time.now.year%> | cl.id: <%=session[:classe_id]%> | disc.id: <%=session[:disciplina_id]%> | dia: <%=session[:dia]%> | atrib.id: <%=@atribuicao[0].id%>
+                    
+                    <!-- | existe1: <%#if @existe1[0].empty?%> vazio <%#else%> <%#=@existe1[0].id%> <%#end%> | existe2: <%#if @existe2[0].empty?%> vazio <%#else%> <%#=@existe2[0].id%> <%#end%> -->
+                    </td>
                 </tr>
 
        </table>
        </fieldset>
+      
       <fieldset>
         <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5" >
           <tr>
             <td>
               <div id="alunos"><b><u> Alunos ausentes:</u></b><br/><br/>
                  <%if !@alunos_faltaram.nil? %>
-                     <% for aluno in @alunos_faltaram %>
-                         &nbsp&nbsp&nbsp&nbsp - &nbsp<%= aluno.aluno_nome %> <br/>
-                      <%end%>
+                    <% for aluno in @alunos_faltaram %>
+                      &nbsp&nbsp&nbsp&nbsp - &nbsp<%= aluno.aluno_nome %> <br/>
+                    <%end%>
                  <%else%>
-                         &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp  <b> NÃO há estudante ausente neste dia </b>
+                    &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp  <b> NÃO há aluno ausente neste dia </b>
                  <%end%>
                 </div>
               <br/>
@@ -66,8 +70,25 @@
 
 
       </fieldset>
+    <%else%>
+            <fieldset>
+        <table border="1" cellspacing="0" cellpadding="1" width="100%" bgcolor="#F5F5F5" >
+          <tr>
+            <td><br/>  <font size="3" color ="red"> <b>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp   LANÇAMENTO NÃO SALVO <br/>
+                &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp   JÀ EXISTE LANÇAMENTO REALIZADO PARA ESTE DIA </b></font>
+                <br/>
+                <br/>
+            </td>
+          </tr>
+       </table>
+
+
+      </fieldset>
+
+    <%end%>
 
        <br/>
+
    <table>
     <tr>
      <td ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
@@ -76,10 +97,6 @@
     </tr>
   </table>
  </div>
-
-
-
 </div>
-
 <br/>
 </div>

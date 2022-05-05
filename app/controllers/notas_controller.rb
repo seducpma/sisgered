@@ -576,8 +576,12 @@ w5=@nota.faltas5
                w2= session[:disciplina_id]
                w3=  session[:professor_id]
                @faltasalunos = Faltasaluno.find(:all, :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
-               @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
-               session[:total_aulas1]= @faltasalunosdias.count
+               @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data), faltas', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
+               session[:total_dias1]= @faltasalunosdias.count
+session[:total_aulas1]=0
+for faltas_alunos in @faltasalunosdias do
+	session[:total_aulas1]=session[:total_aulas1]+faltas_alunos.faltas
+end
               # @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND professor_id=?",   session[:dataI], session[:dataF], session[:cont_classe_id], current_user.professor_id] , :order => 'data DESC, classe_id ASC')
               #      if classeAEE == 'AEE'
               #       @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "atendimento_aees.classe_num , alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome,  atendimento_aees.status as situacao"  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO')", session[:cont_classe_id], Time.now.year  ] )
@@ -593,10 +597,13 @@ w5=@nota.faltas5
                           page.replace_html 'notas', :partial => 'aviso'
                       end
                   else
-                      session[:aluno_id]= @notas[0].aluno_id
-                      render :update do |page|
-                          page.replace_html 'notas', :partial => 'aulas'
-                      end
+                    @atribuicao = Atribuicao.find(@atribuicao_classe[0].id)
+                    @atribuicao.aulas1=session[:total_aulas1]
+                    @atribuicao.save
+                    session[:aluno_id]= @notas[0].aluno_id
+                    render :update do |page|
+                        page.replace_html 'notas', :partial => 'aulas'
+                    end
                   end
            end
          else if params[:type_of].to_i == 2
@@ -630,8 +637,12 @@ w5=@nota.faltas5
                w2= session[:disciplina_id]
                w3=  session[:professor_id]
                @faltasalunos = Faltasaluno.find(:all, :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
-               @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
-               session[:total_aulas2]= @faltasalunosdias.count
+               @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data), faltas', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
+               session[:total_dias2]= @faltasalunosdias.count
+session[:total_aulas2]=0
+for faltas_alunos in @faltasalunosdias do
+        session[:total_aulas2]=session[:total_aulas2]+faltas_alunos.faltas
+end
               # @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND professor_id=?",   session[:dataI], session[:dataF], session[:cont_classe_id], current_user.professor_id] , :order => 'data DESC, classe_id ASC')
               #      if classeAEE == 'AEE'
               #       @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "atendimento_aees.classe_num , alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome,  atendimento_aees.status as situacao"  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO')", session[:cont_classe_id], Time.now.year  ] )
@@ -647,10 +658,13 @@ w5=@nota.faltas5
                           page.replace_html 'notas', :partial => 'aviso'
                       end
                   else
-                      session[:aluno_id]= @notas[0].aluno_id
-                      render :update do |page|
-                          page.replace_html 'notas', :partial => 'aulas'
-                      end
+                    @atribuicao = Atribuicao.find(@atribuicao_classe[0].id)
+                    @atribuicao.aulas2=session[:total_aulas2]
+                    @atribuicao.save
+                    session[:aluno_id]= @notas[0].aluno_id
+                    render :update do |page|
+                        page.replace_html 'notas', :partial => 'aulas'
+                    end
                   end
            end
       else if params[:type_of].to_i == 3
@@ -684,10 +698,12 @@ w5=@nota.faltas5
                    w2= session[:disciplina_id]
                    w3=  session[:professor_id]
                    @faltasalunos = Faltasaluno.find(:all, :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
-                   @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
-                   a=session[:total_aulas3]= @faltasalunosdias.count
-
-
+                   @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data), faltas', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
+                   session[:total_dias3]= @faltasalunosdias.count
+session[:total_aulas3]=0
+for faltas_alunos in @faltasalunosdias do
+        session[:total_aulas3]=session[:total_aulas3]+faltas_alunos.faltas
+end
                   # @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND professor_id=?",   session[:dataI], session[:dataF], session[:cont_classe_id], current_user.professor_id] , :order => 'data DESC, classe_id ASC')
                   #      if classeAEE == 'AEE'
                   #       @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "atendimento_aees.classe_num , alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome,  atendimento_aees.status as situacao"  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO')", session[:cont_classe_id], Time.now.year  ] )
@@ -703,10 +719,13 @@ w5=@nota.faltas5
                               page.replace_html 'notas', :partial => 'aviso'
                           end
                       else
-                          session[:aluno_id]= @notas[0].aluno_id
-                          render :update do |page|
-                              page.replace_html 'notas', :partial => 'aulas'
-                          end
+                        @atribuicao = Atribuicao.find(@atribuicao_classe[0].id)
+                        @atribuicao.aulas3=session[:total_aulas3]
+                        @atribuicao.save
+                        session[:aluno_id]= @notas[0].aluno_id
+                        render :update do |page|
+                            page.replace_html 'notas', :partial => 'aulas'
+                        end
                       end
                end
          else if params[:type_of].to_i == 4
@@ -730,9 +749,9 @@ w5=@nota.faltas5
                       for classe in @classe
                           session[:num_classe]= classe.classe_classe[0,1].to_i
                       end
-                     ww1=session[:dataI]= BIM4INI  #params[:aulas][:inicioIA][6,4]+'-'+params[:aulas][:inicioIA][3,2]+'-'+params[:aulas][:inicioIA][0,2]
-                     ww2=session[:dataF]= BIM4FIM #params[:aulas][:fimIA][6,4]+'-'+params[:aulas][:fimIA][3,2]+'-'+params[:aulas][:fimIA][0,2]
-                     ww3=session[:dataII]=BIM4INIP #params[:aulas][:inicioIA][0,2]+'/'+params[:aulas][:inicioIA][3,2]+'/'+params[:aulas][:inicioIA][6,4]
+                     ww1=session[:dataI] = BIM4INI  #params[:aulas][:inicioIA][6,4]+'-'+params[:aulas][:inicioIA][3,2]+'-'+params[:aulas][:inicioIA][0,2]
+                     ww2=session[:dataF] = BIM4FIM  #params[:aulas][:fimIA][6,4]+'-'+params[:aulas][:fimIA][3,2]+'-'+params[:aulas][:fimIA][0,2]
+                     ww3=session[:dataII]= BIM4INIP #params[:aulas][:inicioIA][0,2]+'/'+params[:aulas][:inicioIA][3,2]+'/'+params[:aulas][:inicioIA][6,4]
                      ww4=session[:dataFF]= BIM4FIMP #params[:aulas][:fimIA][0,2]+'/'+params[:aulas][:fimIA][3,2]+'/'+params[:aulas][:fimIA][6,4]
 
                    if  current_user.has_role?('professor_fundamental')
@@ -740,8 +759,12 @@ w5=@nota.faltas5
                    w2= session[:disciplina_id]
                    w3=  session[:professor_id]
                    @faltasalunos = Faltasaluno.find(:all, :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
-                   @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
-                   a=session[:total_aulas4]= @faltasalunosdias.count
+                   @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data), faltas', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND disciplina_id=? AND professor_id=?" ,   session[:dataI], session[:dataF], session[:classe_id], session[:disc_id],  session[:professor_id]] , :order => 'data DESC, classe_id ASC')
+                   session[:total_dias4]= @faltasalunosdias.count
+session[:total_aulas4]=0
+for faltas_alunos in @faltasalunosdias do
+        session[:total_aulas4]=session[:total_aulas4]+faltas_alunos.faltas
+end
                   # @faltasalunosdias = Faltasaluno.find(:all, :select=> 'distinct(data)', :joins =>:classe, :conditions =>  ["data >=? AND  data <=? AND classe_id = ? AND professor_id=?",   session[:dataI], session[:dataF], session[:cont_classe_id], current_user.professor_id] , :order => 'data DESC, classe_id ASC')
                   #      if classeAEE == 'AEE'
                   #       @alunos_matriculados = Aluno.find(:all, :joins =>[:atendimento_aee], :select => "atendimento_aees.classe_num , alunos.id , CONCAT(alunos.aluno_nome, ' | ',date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome,  atendimento_aees.status as situacao"  , :joins => "INNER JOIN atendimento_aees on alunos.id = atendimento_aees.aluno_id", :conditions => ["atendimento_aees.classe_id = ? AND atendimento_aees.ano_letivo =? and ( aluno_status != 'EGRESSO' or aluno_status is null OR aluno_status = 'ABANDONO')", session[:cont_classe_id], Time.now.year  ] )
@@ -757,10 +780,13 @@ w5=@nota.faltas5
                               page.replace_html 'notas', :partial => 'aviso'
                           end
                       else
-                          session[:aluno_id]= @notas[0].aluno_id
-                          render :update do |page|
-                              page.replace_html 'notas', :partial => 'aulas'
-                          end
+                        @atribuicao = Atribuicao.find(@atribuicao_classe[0].id)
+                        @atribuicao.aulas4=session[:total_aulas4]
+                        @atribuicao.save
+                        session[:aluno_id]= @notas[0].aluno_id
+                        render :update do |page|
+                            page.replace_html 'notas', :partial => 'aulas'
+                        end
                       end
                end
           end  #end  4º bim
