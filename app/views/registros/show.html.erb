@@ -90,7 +90,9 @@
   <table width="100%" >
          <tr>
             <td width="8%"><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
-
+            <%if (@registro.professor_id == current_user.professor_id) or (current_user.has_role?('direcao_fundamental')  or current_user.has_role?('pedagogo')or current_user.has_role?('supervisao')or current_user.has_role?('direcao_infantil')) %>
+              <td width="6%"align="left" ><%= button_to 'Excluir', {:action => "destroy", :id =>@registro}, :confirm => 'Tem certeza?',:method => "delete", :title => "Deletar"%></td>
+           <%end%>
              <td colspan="10"align="left" ><%#= button_to 'Imprimir', {:controller =>"relatorios", :action => "impressao_fapea", :id =>@relatorio}, :title => "Imprimir esta FAPEA"%></b></td>
                </tr>
 

@@ -548,3 +548,1370 @@ Completed in 195ms (View: 47, DB: 6) | 200 OK [http://localhost/]
   [4;36;1mClasse Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
   [4;35;1mProfessor Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
   [4;36;1mDisciplina Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2022-05-06 08:17:01) [GET]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 412ms (DB: 1) | 302 Found [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2022-05-06 08:17:02) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 455ms (View: 440, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2022-05-06 08:17:30) [POST]
+  Parameters: {"password"=>"musnad12", "commit"=>"Entrar", "login"=>"ngarcia", "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;35;1mUser Load (18.1ms)[0m   [0mSELECT * FROM `users` WHERE (login = 'ngarcia' and activated_at IS NOT NULL) LIMIT 1[0m
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/login
+Rendering sessions/erro
+Completed in 155ms (View: 114, DB: 20) | 200 OK [http://localhost/session]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2022-05-06 08:17:31) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 128ms (View: 4, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2022-05-06 08:17:38) [POST]
+  Parameters: {"password"=>"mus@and2", "commit"=>"Entrar", "login"=>"ngarcia", "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (login = 'ngarcia' and activated_at IS NOT NULL) LIMIT 1[0m
+  [4;36;1mUser Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/login
+Rendering sessions/erro
+Completed in 26ms (View: 3, DB: 1) | 200 OK [http://localhost/session]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2022-05-06 08:17:40) [GET]
+Rendering template within layouts/login
+Rendering sessions/new
+Completed in 23ms (View: 5, DB: 0) | 200 OK [http://localhost/session/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2022-05-06 08:17:50) [POST]
+  Parameters: {"password"=>"musand12", "commit"=>"Entrar", "login"=>"ngarcia", "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (login = 'ngarcia' and activated_at IS NOT NULL) LIMIT 1[0m
+  [4;36;1mUser Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (35.4ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`login` = BINARY 'ngarcia' AND `users`.id <> 2) LIMIT 1[0m
+  [4;35;1mUser Update (4.1ms)[0m   [0mUPDATE `users` SET `ultimo_acesso` = '2022-05-06 11:17:50', `updated_at` = '2022-05-06 11:17:50' WHERE `id` = 2[0m
+  [4;36;1mSQL (77.9ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed in 174ms (DB: 119) | 302 Found [http://localhost/session]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2022-05-06 08:17:51) [GET]
+  [4;35;1mUser Columns (21.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.9ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 11:17:51' AND ends_at >= '2022-05-06 11:17:51') [0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (23.9ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (11.4ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;36;1mUnidade Columns (13.2ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 314ms (View: 218, DB: 73) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#relatorios_classe (for 127.0.0.1 at 2022-05-06 08:18:00) [GET]
+  [4;35;1mUser Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.7ms)[0m   [0mSELECT id, nome FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (278.7ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 47 and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mClasse Load (5.0ms)[0m   [0mSELECT * FROM `classes` WHERE ((unidade_id = 47 or unidade_id = 52 )and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (10.4ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE ((id != 27 and id !=26)) [0m
+Rendering template within layouts/application
+Rendering atribuicaos/relatorios_classe
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 47 and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mMatricula Load (7913.5ms)[0m   [0;1mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `matriculas` left join alunos ON alunos.id=matriculas.aluno_id WHERE (matriculas.unidade_id=47 AND matriculas.ano_letivo=2022 AND matriculas.status <> 'REMANEJADO' ) ORDER BY alunos.aluno_nome ASC[0m
+  [4;35;1mMatricula Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+Rendered atribuicaos/_consulta_nome (8150.0ms)
+  [4;36;1mClasse Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+Rendered atribuicaos/_consulta_classe (33.0ms)
+  [4;35;1mProfessor Columns (24.2ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+Rendered atribuicaos/_consulta_professor (42.5ms)
+  [4;36;1mInformativo Load (20.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 11:18:09' AND ends_at >= '2022-05-06 11:18:09') [0m
+  [4;35;1mroles_users Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;35;1mUnidade Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 9071ms (View: 572, DB: 8262) | 200 OK [http://localhost/atribuicaos/relatorios_classe]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#relatorio_aluno_nome (for 127.0.0.1 at 2022-05-06 08:19:42) [POST]
+  Parameters: {"authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA=", "aluno_aluno_id"=>"14186"}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT id, nome FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 47 and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mClasse Load (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE ((unidade_id = 47 or unidade_id = 52 )and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE ((id != 27 and id !=26)) [0m
+  [4;36;1mAluno Load (25.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = '14186') [0m
+  [4;35;1mroles_users Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mMatricula Load (64.9ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (aluno_id = '14186' and ano_letivo=2022 and unidade_id=47) [0m
+  [4;35;1mMatricula Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+  [4;36;1mUnidade Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;36;1mClasse Load (2.4ms)[0m   [0;1mSELECT * FROM `classes` WHERE (id = 3958) [0m
+  [4;35;1mClasse Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mMatricula Load (55.0ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (classe_id = 3958 AND aluno_id='14186') ORDER BY classe_num[0m
+  [4;35;1mNota Load (19669.6ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id ='14186' AND disciplinas.curriculo = 'B' AND notas.ano_letivo =2022 AND matricula_id=96648) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (840.9ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id ='14186' AND disciplinas.curriculo = 'D' AND notas.ano_letivo =2022 AND matricula_id=96648) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mObservacaoNota Load (971.8ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (aluno_id ='14186' AND ano_letivo =2022 AND nota_id is NULL) [0m
+  [4;36;1mNota Load (608.8ms)[0m   [0;1mSELECT atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5 FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.ativo is NULL AND atribuicaos.classe_id=3958 AND disciplinas.curriculo = 'B') [0m
+  [4;35;1mNota Load (535.6ms)[0m   [0mSELECT atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5 FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id WHERE (notas.ativo is NULL AND atribuicaos.classe_id=3958) [0m
+  [4;36;1mNota Columns (2.0ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mAluno Columns (2.8ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAtribuicao Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mAtribuicao Load (0.7ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 18035) [0m
+  [4;36;1mDisciplina Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (19.8ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mAtribuicao Load (0.4ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17664) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 32) [0m
+  [4;36;1mAtribuicao Load (0.3ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17746) [0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 3) [0m
+  [4;36;1mAtribuicao Load (0.4ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17732) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 21) [0m
+  [4;36;1mAtribuicao Load (0.5ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17864) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mAtribuicao Load (0.4ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17870) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17761) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 7) [0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17682) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 8) [0m
+  [4;36;1mAtribuicao Load (14.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 18033) [0m
+  [4;35;1mDisciplina Load (0.3ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 65) [0m
+  [4;36;1mClasse Load (0.8ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3958) [0m
+  [4;35;1mObservacaoNota Load (76.6ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515398) [0m
+  [4;36;1mObservacaoNota Load (108.3ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515390) [0m
+  [4;35;1mObservacaoNota Load (36.8ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515393) [0m
+  [4;36;1mObservacaoNota Load (36.9ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515392) [0m
+  [4;35;1mObservacaoNota Load (36.8ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515395) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;35;1mObservacaoNota Load (37.9ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (nota_id=515395 and ano_letivo =2022) [0m
+  [4;36;1mObservacaoNota Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `observacao_notas`[0m
+  [4;35;1mObservacaoNota Load (40.5ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515396) [0m
+  [4;36;1mObservacaoNota Load (37.4ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515394) [0m
+  [4;35;1mObservacaoNota Load (36.9ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515391) [0m
+  [4;36;1mObservacaoNota Load (36.6ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515397) [0m
+Rendered atribuicaos/_relatorio_aluno (642.3ms)
+Completed in 23822ms (View: 116, DB: 23313) | 200 OK [http://localhost/atribuicaos/relatorio_aluno_nome]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2022-05-06 08:20:06) [GET]
+
+ActionController::RoutingError (No route matches "/photos/alunos/14186.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2022-05-06 08:36:07) [GET]
+  [4;35;1mUser Columns (9.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (55.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 11:36:07' AND ends_at >= '2022-05-06 11:36:07') [0m
+  [4;36;1mroles_users Columns (30.5ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;36;1mUnidade Columns (5.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 301ms (View: 174, DB: 102) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#relatorios_classe (for 127.0.0.1 at 2022-05-06 08:36:19) [GET]
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT id, nome FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (unidade_id = 47 and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE ((unidade_id = 47 or unidade_id = 52 )and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE ((id != 27 and id !=26)) [0m
+Rendering template within layouts/application
+Rendering atribuicaos/relatorios_classe
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 47 and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mMatricula Load (0.4ms)[0m   [0;1mSELECT alunos.id, CONCAT(alunos.aluno_nome, ' | ', date_format(alunos.aluno_nascimento, '%d/%m/%Y')) AS aluno_nome_dtn FROM `matriculas` left join alunos ON alunos.id=matriculas.aluno_id WHERE (matriculas.unidade_id=47 AND matriculas.ano_letivo=2022 AND matriculas.status <> 'REMANEJADO' ) ORDER BY alunos.aluno_nome ASC[0m
+  [4;35;1mMatricula Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+Rendered atribuicaos/_consulta_nome (158.4ms)
+  [4;36;1mClasse Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+Rendered atribuicaos/_consulta_classe (5.4ms)
+  [4;35;1mProfessor Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+Rendered atribuicaos/_consulta_professor (8.1ms)
+  [4;36;1mInformativo Load (44.1ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 11:36:19' AND ends_at >= '2022-05-06 11:36:19') [0m
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 422ms (View: 329, DB: 54) | 200 OK [http://localhost/atribuicaos/relatorios_classe]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AtribuicaosController#relatorio_aluno_nome (for 127.0.0.1 at 2022-05-06 08:36:25) [POST]
+  Parameters: {"authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA=", "aluno_aluno_id"=>"14186"}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mProfessor Load (0.1ms)[0m   [0;1mSELECT id, nome FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (unidade_id = 47 and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;36;1mClasse Load (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE ((unidade_id = 47 or unidade_id = 52 )and classe_ano_letivo = 2022 ) ORDER BY classe_classe ASC[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE ((id != 27 and id !=26)) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id = '14186') [0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mMatricula Load (0.1ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (aluno_id = '14186' and ano_letivo=2022 and unidade_id=47) [0m
+  [4;35;1mMatricula Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+  [4;36;1mUnidade Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (id = 3958) [0m
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mMatricula Load (0.1ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (classe_id = 3958 AND aluno_id='14186') ORDER BY classe_num[0m
+  [4;35;1mNota Load (0.2ms)[0m   [0mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id ='14186' AND disciplinas.curriculo = 'B' AND notas.ano_letivo =2022 AND matricula_id=96648) ORDER BY disciplinas.ordem ASC [0m
+  [4;36;1mNota Load (0.1ms)[0m   [0;1mSELECT `notas`.* FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.aluno_id ='14186' AND disciplinas.curriculo = 'D' AND notas.ano_letivo =2022 AND matricula_id=96648) ORDER BY disciplinas.ordem ASC [0m
+  [4;35;1mObservacaoNota Load (0.2ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (aluno_id ='14186' AND ano_letivo =2022 AND nota_id is NULL) [0m
+  [4;36;1mNota Load (0.2ms)[0m   [0;1mSELECT atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5 FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id INNER JOIN disciplinas ON disciplinas.id = atribuicaos.disciplina_id WHERE (notas.ativo is NULL AND atribuicaos.classe_id=3958 AND disciplinas.curriculo = 'B') [0m
+  [4;35;1mNota Load (0.2ms)[0m   [0mSELECT atribuicaos.classe_id, notas.id, notas.nota1 , notas.faltas1, notas.nota2 , notas.faltas2, notas.nota3 , notas.faltas3, notas.nota4 , notas.faltas4, notas.nota5 , notas.faltas5 FROM `notas` INNER JOIN atribuicaos ON atribuicaos.id = notas.atribuicao_id WHERE (notas.ativo is NULL AND atribuicaos.classe_id=3958) [0m
+  [4;36;1mNota Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `notas`[0m
+  [4;35;1mAluno Columns (2.2ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAtribuicao Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 18035) [0m
+  [4;36;1mDisciplina Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 1) [0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17664) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 32) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17746) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 3) [0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17732) [0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 21) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17864) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17870) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 6) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17761) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 7) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17682) [0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 8) [0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 18033) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 65) [0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3958) [0m
+  [4;35;1mObservacaoNota Load (0.2ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515398) [0m
+  [4;36;1mObservacaoNota Load (0.1ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515390) [0m
+  [4;35;1mObservacaoNota Load (0.1ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515393) [0m
+  [4;36;1mObservacaoNota Load (0.1ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515392) [0m
+  [4;35;1mObservacaoNota Load (0.0ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515395) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;35;1mObservacaoNota Load (0.1ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (nota_id=515395 and ano_letivo =2022) [0m
+  [4;36;1mObservacaoNota Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `observacao_notas`[0m
+  [4;35;1mObservacaoNota Load (0.1ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515396) [0m
+  [4;36;1mObservacaoNota Load (0.1ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515394) [0m
+  [4;35;1mObservacaoNota Load (0.1ms)[0m   [0mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515391) [0m
+  [4;36;1mObservacaoNota Load (0.1ms)[0m   [0;1mSELECT * FROM `observacao_notas` WHERE (`observacao_notas`.nota_id = 515397) [0m
+Rendered atribuicaos/_relatorio_aluno (63.3ms)
+Completed in 319ms (View: 56, DB: 18) | 200 OK [http://localhost/atribuicaos/relatorio_aluno_nome]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2022-05-06 08:36:26) [GET]
+
+ActionController::RoutingError (No route matches "/photos/alunos/14186.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (88.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2022-05-06 10:03:05) [GET]
+  [4;35;1mUser Columns (243.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (25.8ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (141.4ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:03:06' AND ends_at >= '2022-05-06 13:03:06') [0m
+  [4;36;1mroles_users Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (22.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;36;1mUnidade Columns (27.0ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 998ms (View: 186, DB: 551) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#lancamentos_registros (for 127.0.0.1 at 2022-05-06 10:03:13) [GET]
+  [4;35;1mUser Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (138.6ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (312.5ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (9.5ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (21.0ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering registros/lancamentos_registros
+  [4;36;1mClasse Load (31.2ms)[0m   [0;1mSELECT `classes`.* FROM `classes` INNER JOIN atribuicaos ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;35;1mDisciplina Load (64.4ms)[0m   [0mSELECT `disciplinas`.* FROM `disciplinas` INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id INNER JOIN classes ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;36;1mProfessor Columns (5.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mClasse Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mDisciplina Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mInformativo Load (11.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:03:14' AND ends_at >= '2022-05-06 13:03:14') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 1063ms (View: 244, DB: 599) | 200 OK [http://localhost/registros/lancamentos_registros]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#lancamentos_registros (for 127.0.0.1 at 2022-05-06 10:03:22) [GET]
+  Parameters: {"disciplina"=>"MATEMÁTICA", "commit"=>"Visualizar", "classe"=>{"id"=>"3956"}, "professor"=>{"id"=>"296"}}
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.0ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mDisciplina Load (36.8ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (disciplina ='MATEMÁTICA') [0m
+  [4;36;1mDisciplina Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mClasse Load (15.1ms)[0m   [0mSELECT `classes`.* FROM `classes` inner join atribuicaos on classes.id = atribuicaos.classe_id WHERE (atribuicaos.classe_id = '3956' and atribuicaos.professor_id = '296' and atribuicaos.disciplina_id =4) [0m
+  [4;36;1mMatricula Load (1333.6ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (classe_id = '3956') ORDER BY classe_num ASC[0m
+  [4;35;1mAtribuicao Load (26.8ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (classe_id = '3956' and professor_id ='296' and disciplina_id=4) [0m
+  [4;36;1mAtribuicao Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+Rendering template within layouts/application
+Rendering registros/lancamentos_registros
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT `classes`.* FROM `classes` INNER JOIN atribuicaos ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;36;1mDisciplina Load (0.0ms)[0m   [0;1mSELECT `disciplinas`.* FROM `disciplinas` INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id INNER JOIN classes ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;35;1mProfessor Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mClasse Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;35;1mProfessor Load (0.5ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;35;1mClasse Load (5.9ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mMatricula Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mAluno Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (97.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;35;1mRegistro Load (176.0ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 29663 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (51.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26765) [0m
+  [4;35;1mRegistro Load (1.6ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 26765 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (40.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8777) [0m
+  [4;35;1mRegistro Load (1.6ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8777 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (11.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11850) [0m
+  [4;35;1mRegistro Load (35.7ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 11850 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (75.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14187) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14187 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (23.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13793) [0m
+  [4;35;1mRegistro Load (1.6ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13793 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (1.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13797) [0m
+  [4;35;1mRegistro Load (9.5ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13797 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (28.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 20879) [0m
+  [4;35;1mRegistro Load (2.1ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 20879 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (26.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26531) [0m
+  [4;35;1mRegistro Load (2.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 26531 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (27.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 27917) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 27917 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (3.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13804) [0m
+  [4;35;1mRegistro Load (31.1ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13804 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (1.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 12156) [0m
+  [4;35;1mRegistro Load (3.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 12156 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (12.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 31979) [0m
+  [4;35;1mRegistro Load (3.3ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 31979 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (22.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13906) [0m
+  [4;35;1mRegistro Load (3.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13906 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (25.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8284) [0m
+  [4;35;1mRegistro Load (3.5ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8284 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (7.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29793) [0m
+  [4;35;1mRegistro Load (3.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 29793 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (18.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26766) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 26766 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (8.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11341) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 11341 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (22.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8462) [0m
+  [4;35;1mRegistro Load (3.1ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8462 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (1.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14200) [0m
+  [4;35;1mRegistro Load (3.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14200 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.9ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23194) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 23194 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (29.4ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8628) [0m
+  [4;35;1mRegistro Load (3.3ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8628 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (1.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 28797) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 28797 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (11.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13830) [0m
+  [4;35;1mRegistro Load (2.0ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13830 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (1.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11311) [0m
+  [4;35;1mRegistro Load (3.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 11311 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14209) [0m
+  [4;35;1mRegistro Load (3.5ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14209 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (11.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 28286) [0m
+  [4;35;1mRegistro Load (2.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 28286 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (3.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23928) [0m
+  [4;35;1mRegistro Load (1.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 23928 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (30.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 18098) [0m
+  [4;35;1mRegistro Load (3.5ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 18098 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (1.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14223) [0m
+  [4;35;1mRegistro Load (25.1ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14223 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.8ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 31982) [0m
+  [4;35;1mRegistro Load (3.1ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 31982 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (1.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 16153) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 16153 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14201) [0m
+  [4;35;1mRegistro Load (2.0ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14201 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (56.0ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 4403) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 4403 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.5ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8470) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8470 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.8ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8474) [0m
+  [4;35;1mRegistro Load (2.0ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8474 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (14.7ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 12505) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 12505 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.6ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 32647) [0m
+  [4;35;1mRegistro Load (2.5ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 32647 and ano_letivo=2022) [0m
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:03:25' AND ends_at >= '2022-05-06 13:03:25') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 3219ms (View: 534, DB: 2469) | 200 OK [http://localhost/registros/lancamentos_registros?professor%5Bid%5D=296&classe%5Bid%5D=3956&disciplina=MATEM%C3%81TICA&commit=Visualizar]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#new (for 127.0.0.1 at 2022-05-06 10:03:28) [GET]
+  Parameters: {"aluno_id"=>"29663", "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;36;1mUser Columns (18.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (8.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (10.9ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (8.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (id='29663') [0m
+  [4;36;1mAluno Columns (19.0ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mRegistro Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+Rendering template within layouts/application
+Rendering registros/new
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:03:28' AND ends_at >= '2022-05-06 13:03:28') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;36;1mUnidade Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 342ms (View: 61, DB: 69) | 200 OK [http://localhost/registros/new?aluno_id=29663]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#create (for 127.0.0.1 at 2022-05-06 10:03:35) [POST]
+  Parameters: {"commit"=>"Salvar", "registro"=>{"conteudo"=>"teste testete"}, "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;35;1mUser Columns (11.5ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.2ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (3.0ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mRegistro Columns (8.1ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mRegistro Create (130.2ms)[0m   [0;1mINSERT INTO `registros` (`classe_id`, `unidade_id`, `disciplina_id`, `updated_at`, `ano_letivo`, `inicio`, `created_at`, `professor_id`, `aluno_id`, `fim`, `obs`, `atribuicao_id`, `conteudo`) VALUES(3956, 47, 4, '2022-05-06 13:03:35', 2022, '2022-05-06 13:03:35', '2022-05-06 13:03:35', 296, 29663, '2022-05-06 13:03:35', NULL, 17862, 'teste testete')[0m
+  [4;35;1mSQL (75.1ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/registros/1775
+Completed in 410ms (DB: 230) | 302 Found [http://localhost/registros]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:03:36) [GET]
+  Parameters: {"id"=>"1775"}
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mRegistro Load (0.2ms)[0m   [0;1mSELECT * FROM `registros` WHERE (`registros`.`id` = 1775) [0m
+Rendering template within layouts/application
+Rendering registros/show
+  [4;35;1mUnidade Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;35;1mAtribuicao Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.3ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17862) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mProfessor Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;36;1mAluno Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;36;1mDisciplina Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:03:36' AND ends_at >= '2022-05-06 13:03:36') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 247ms (View: 74, DB: 12) | 200 OK [http://localhost/registros/1775]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#consultas (for 127.0.0.1 at 2022-05-06 10:03:41) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.4ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering registros/consultas
+  [4;35;1mClasse Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+Rendered registros/_consulta_classe (21.1ms)
+  [4;36;1mRegistro Load (19.7ms)[0m   [0;1mSELECT distinct(alunos.aluno_nome), alunos.id FROM `registros` INNER JOIN `alunos` ON `alunos`.id = `registros`.aluno_id WHERE (registros.unidade_id =47 AND registros.ano_letivo=2022 ) ORDER BY alunos.aluno_nome[0m
+  [4;35;1mRegistro Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+Rendered registros/_consulta_aluno (176.3ms)
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:03:42' AND ends_at >= '2022-05-06 13:03:42') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;36;1mUnidade Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 447ms (View: 252, DB: 28) | 200 OK [http://localhost/registros/consultas]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#consulta_registros (for 127.0.0.1 at 2022-05-06 10:03:49) [GET]
+  Parameters: {"classe_id"=>"3956", "aluno"=>"--Selecionar--", "_"=>"1651842228851", "type_of"=>"4", "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mRegistro Load (1.5ms)[0m   [0;1mSELECT * FROM `registros` WHERE (ano_letivo =2022 AND professor_id=296 AND classe_id='3956' ) [0m
+  [4;35;1mRegistro Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mClasse Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mDisciplina Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mAluno Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;36;1mProfessor Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+Rendered registros/_conteudo (58.3ms)
+Completed in 248ms (View: 60, DB: 10) | 200 OK [http://localhost/consulta_registros?authenticity_token=5w%2Be3SiSy3t5%2FcrneCqvrbE%2FxzZlqlxlRhHbI8aqVmA%3D&type_of=4&classe_id=3956&aluno=--Selecionar--&authenticity_token=5w%2Be3SiSy3t5%2FcrneCqvrbE%2FxzZlqlxlRhHbI8aqVmA%3D&_=1651842228851]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:04:00) [GET]
+  Parameters: {"id"=>"1775"}
+  [4;36;1mUser Columns (9.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.2ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mRegistro Load (0.2ms)[0m   [0;1mSELECT * FROM `registros` WHERE (`registros`.`id` = 1775) [0m
+Rendering template within layouts/application
+Rendering registros/show
+  [4;35;1mUnidade Columns (9.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;35;1mClasse Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;35;1mAtribuicao Columns (9.7ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17862) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mProfessor Columns (7.1ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;36;1mAluno Columns (12.1ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;36;1mDisciplina Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mInformativo Load (11.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:04:00' AND ends_at >= '2022-05-06 13:04:00') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 335ms (View: 94, DB: 69) | 200 OK [http://localhost/registros/1775]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:06:11) [GET]
+  Parameters: {"id"=>"1775"}
+  [4;36;1mUser Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mRegistro Load (0.1ms)[0m   [0;1mSELECT * FROM `registros` WHERE (`registros`.`id` = 1775) [0m
+Rendering template within layouts/application
+Rendering registros/show
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;35;1mClasse Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;35;1mAtribuicao Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.0ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17862) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mProfessor Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;36;1mAluno Columns (2.9ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;36;1mDisciplina Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:06:11' AND ends_at >= '2022-05-06 13:06:11') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 362ms (View: 181, DB: 15) | 200 OK [http://localhost/registros/1775]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#destroy (for 127.0.0.1 at 2022-05-06 10:06:15) [DELETE]
+  Parameters: {"authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA=", "id"=>"1775"}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mRegistro Load (0.2ms)[0m   [0;1mSELECT * FROM `registros` WHERE (`registros`.`id` = 1775) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mRegistro Destroy (45.2ms)[0m   [0;1mDELETE FROM `registros` WHERE `id` = 1775[0m
+  [4;35;1mSQL (57.9ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/registros
+Completed in 284ms (DB: 109) | 302 Found [http://localhost/registros/1775]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#index (for 127.0.0.1 at 2022-05-06 10:06:15) [GET]
+  [4;36;1mUser Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Load (38.2ms)[0m   [0mSELECT * FROM `registros` [0m
+Rendering template within layouts/application
+Rendering registros/index
+  [4;36;1mRegistro Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+  [4;35;1mClasse Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.5ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 4065) [0m
+  [4;35;1mProfessor Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mProfessor Load (45.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 923) [0m
+  [4;35;1mAtribuicao Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (19.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17982) [0m
+  [4;35;1mDisciplina Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mDisciplina Load (0.4ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 28) [0m
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.5ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 63) [0m
+
+ActionView::TemplateError (undefined method `user' for #<Registro:0x7f6258333af8>) on line #25 of app/views/registros/index.html.erb:
+22:     <td><%=h registro.atribuicao %></td>
+23:     <td><%=h registro.disciplina %></td>
+24:     <td><%=h registro.unidade %></td>
+25:     <td><%=h registro.user %></td>
+26:     <td><%=h registro.conteudo %></td>
+27:     <td><%=h registro.ano_letivo %></td>
+28:     <td><%=h registro.inicio %></td>
+
+    app/views/registros/index.html.erb:25
+    app/views/registros/index.html.erb:18:in `each'
+    app/views/registros/index.html.erb:18
+    app/controllers/registros_controller.rb:159:in `index'
+
+Rendered rescues/_trace (130.3ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:08:10) [GET]
+  Parameters: {"id"=>"1775"}
+  [4;35;1mUser Columns (20.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.0ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mRegistro Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+  [4;35;1mRegistro Load (0.4ms)[0m   [0mSELECT * FROM `registros` WHERE (`registros`.`id` = 1775) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Registro with ID=1775):
+  app/controllers/registros_controller.rb:168:in `show'
+
+Rendered rescues/_trace (138.2ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#lancamentos_registros (for 127.0.0.1 at 2022-05-06 10:08:19) [GET]
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.0ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering registros/lancamentos_registros
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT `classes`.* FROM `classes` INNER JOIN atribuicaos ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT `disciplinas`.* FROM `disciplinas` INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id INNER JOIN classes ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;35;1mProfessor Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mClasse Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mDisciplina Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:08:19' AND ends_at >= '2022-05-06 13:08:19') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;36;1mUnidade Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 201ms (View: 144, DB: 7) | 200 OK [http://localhost/registros/lancamentos_registros]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#lancamentos_registros (for 127.0.0.1 at 2022-05-06 10:08:26) [GET]
+  Parameters: {"disciplina"=>"MATEMÁTICA", "commit"=>"Visualizar", "classe"=>{"id"=>"3956"}, "professor"=>{"id"=>"296"}}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (disciplina ='MATEMÁTICA') [0m
+  [4;35;1mDisciplina Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT `classes`.* FROM `classes` inner join atribuicaos on classes.id = atribuicaos.classe_id WHERE (atribuicaos.classe_id = '3956' and atribuicaos.professor_id = '296' and atribuicaos.disciplina_id =4) [0m
+  [4;35;1mMatricula Load (0.2ms)[0m   [0mSELECT * FROM `matriculas` WHERE (classe_id = '3956') ORDER BY classe_num ASC[0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (classe_id = '3956' and professor_id ='296' and disciplina_id=4) [0m
+  [4;35;1mAtribuicao Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+Rendering template within layouts/application
+Rendering registros/lancamentos_registros
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT `classes`.* FROM `classes` INNER JOIN atribuicaos ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;35;1mDisciplina Load (0.0ms)[0m   [0mSELECT `disciplinas`.* FROM `disciplinas` INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id INNER JOIN classes ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;36;1mProfessor Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mClasse Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;35;1mMatricula Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `matriculas`[0m
+  [4;36;1mAluno Columns (29.9ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.3ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;36;1mRegistro Load (3.4ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 29663 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26765) [0m
+  [4;36;1mRegistro Load (1.4ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 26765 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8777) [0m
+  [4;36;1mRegistro Load (1.3ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 8777 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11850) [0m
+  [4;36;1mRegistro Load (2.5ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 11850 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14187) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 14187 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13793) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 13793 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13797) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 13797 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 20879) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 20879 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26531) [0m
+  [4;36;1mRegistro Load (2.0ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 26531 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 27917) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 27917 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13804) [0m
+  [4;36;1mRegistro Load (2.1ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 13804 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 12156) [0m
+  [4;36;1mRegistro Load (7.4ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 12156 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 31979) [0m
+  [4;36;1mRegistro Load (2.5ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 31979 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13906) [0m
+  [4;36;1mRegistro Load (1.6ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 13906 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8284) [0m
+  [4;36;1mRegistro Load (1.7ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 8284 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29793) [0m
+  [4;36;1mRegistro Load (1.7ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 29793 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26766) [0m
+  [4;36;1mRegistro Load (1.8ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 26766 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11341) [0m
+  [4;36;1mRegistro Load (2.3ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 11341 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8462) [0m
+  [4;36;1mRegistro Load (2.4ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 8462 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14200) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 14200 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23194) [0m
+  [4;36;1mRegistro Load (1.8ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 23194 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8628) [0m
+  [4;36;1mRegistro Load (1.8ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 8628 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 28797) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 28797 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13830) [0m
+  [4;36;1mRegistro Load (2.2ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 13830 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11311) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 11311 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14209) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 14209 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 28286) [0m
+  [4;36;1mRegistro Load (1.6ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 28286 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23928) [0m
+  [4;36;1mRegistro Load (1.6ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 23928 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 18098) [0m
+  [4;36;1mRegistro Load (1.4ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 18098 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14223) [0m
+  [4;36;1mRegistro Load (1.4ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 14223 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 31982) [0m
+  [4;36;1mRegistro Load (1.7ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 31982 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 16153) [0m
+  [4;36;1mRegistro Load (2.0ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 16153 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14201) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 14201 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 4403) [0m
+  [4;36;1mRegistro Load (1.9ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 4403 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8470) [0m
+  [4;36;1mRegistro Load (2.0ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 8470 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8474) [0m
+  [4;36;1mRegistro Load (2.2ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 8474 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 12505) [0m
+  [4;36;1mRegistro Load (2.0ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 12505 and ano_letivo=2022) [0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 32647) [0m
+  [4;36;1mRegistro Load (2.1ms)[0m   [0;1mSELECT * FROM `registros` WHERE (aluno_id = 32647 and ano_letivo=2022) [0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:08:27' AND ends_at >= '2022-05-06 13:08:27') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 756ms (View: 444, DB: 124) | 200 OK [http://localhost/registros/lancamentos_registros?professor%5Bid%5D=296&classe%5Bid%5D=3956&disciplina=MATEM%C3%81TICA&commit=Visualizar]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#new (for 127.0.0.1 at 2022-05-06 10:08:30) [GET]
+  Parameters: {"aluno_id"=>"29663", "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.0ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (id='29663') [0m
+  [4;35;1mAluno Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mRegistro Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+Rendering template within layouts/application
+Rendering registros/new
+  [4;35;1mInformativo Load (0.8ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:08:30' AND ends_at >= '2022-05-06 13:08:30') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 207ms (View: 26, DB: 7) | 200 OK [http://localhost/registros/new?aluno_id=29663]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#create (for 127.0.0.1 at 2022-05-06 10:08:36) [POST]
+  Parameters: {"commit"=>"Salvar", "registro"=>{"conteudo"=>"teste "}, "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRegistro Create (18.5ms)[0m   [0mINSERT INTO `registros` (`classe_id`, `unidade_id`, `disciplina_id`, `updated_at`, `ano_letivo`, `inicio`, `created_at`, `professor_id`, `aluno_id`, `fim`, `obs`, `atribuicao_id`, `conteudo`) VALUES(3956, 47, 4, '2022-05-06 13:08:36', 2022, '2022-05-06 13:08:36', '2022-05-06 13:08:36', 296, 29663, '2022-05-06 13:08:36', NULL, 17862, 'teste ')[0m
+  [4;36;1mSQL (48.6ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/registros/1776
+Completed in 243ms (DB: 72) | 302 Found [http://localhost/registros]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:08:36) [GET]
+  Parameters: {"id"=>"1776"}
+  [4;35;1mUser Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mRegistro Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+  [4;35;1mRegistro Load (0.5ms)[0m   [0mSELECT * FROM `registros` WHERE (`registros`.`id` = 1776) [0m
+Rendering template within layouts/application
+Rendering registros/show
+  [4;36;1mUnidade Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;36;1mClasse Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mAtribuicao Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17862) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;35;1mProfessor Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mProfessor Load (0.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;35;1mAluno Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;35;1mDisciplina Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mDisciplina Load (0.2ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;35;1mInformativo Load (0.7ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:08:36' AND ends_at >= '2022-05-06 13:08:36') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 392ms (View: 178, DB: 17) | 200 OK [http://localhost/registros/1776]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#destroy (for 127.0.0.1 at 2022-05-06 10:08:41) [DELETE]
+  Parameters: {"authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA=", "id"=>"1776"}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.0ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mRegistro Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+  [4;35;1mRegistro Load (0.1ms)[0m   [0mSELECT * FROM `registros` WHERE (`registros`.`id` = 1776) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRegistro Destroy (9.5ms)[0m   [0mDELETE FROM `registros` WHERE `id` = 1776[0m
+  [4;36;1mSQL (67.7ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed in 252ms (DB: 81) | 302 Found [http://localhost/registros/1776]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2022-05-06 10:08:41) [GET]
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (18.1ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:08:41' AND ends_at >= '2022-05-06 13:08:41') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 200ms (View: 45, DB: 22) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#lancamentos_registros (for 127.0.0.1 at 2022-05-06 10:11:29) [GET]
+  [4;35;1mUser Columns (19.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+Rendering template within layouts/application
+Rendering registros/lancamentos_registros
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT `classes`.* FROM `classes` INNER JOIN atribuicaos ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT `disciplinas`.* FROM `disciplinas` INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id INNER JOIN classes ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;36;1mProfessor Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mClasse Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mDisciplina Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:11:29' AND ends_at >= '2022-05-06 13:11:29') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 229ms (View: 43, DB: 26) | 200 OK [http://localhost/registros/lancamentos_registros]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#lancamentos_registros (for 127.0.0.1 at 2022-05-06 10:11:36) [GET]
+  Parameters: {"disciplina"=>"MATEMÁTICA", "commit"=>"Visualizar", "classe"=>{"id"=>"3956"}, "professor"=>{"id"=>"296"}}
+  [4;36;1mUser Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.3ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.0ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mDisciplina Load (0.2ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (disciplina ='MATEMÁTICA') [0m
+  [4;36;1mDisciplina Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT `classes`.* FROM `classes` inner join atribuicaos on classes.id = atribuicaos.classe_id WHERE (atribuicaos.classe_id = '3956' and atribuicaos.professor_id = '296' and atribuicaos.disciplina_id =4) [0m
+  [4;36;1mMatricula Load (0.2ms)[0m   [0;1mSELECT * FROM `matriculas` WHERE (classe_id = '3956') ORDER BY classe_num ASC[0m
+  [4;35;1mAtribuicao Load (0.2ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (classe_id = '3956' and professor_id ='296' and disciplina_id=4) [0m
+  [4;36;1mAtribuicao Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+Rendering template within layouts/application
+Rendering registros/lancamentos_registros
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT `classes`.* FROM `classes` INNER JOIN atribuicaos ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT `disciplinas`.* FROM `disciplinas` INNER JOIN atribuicaos ON atribuicaos.disciplina_id = disciplinas.id INNER JOIN classes ON atribuicaos.classe_id = classes.id WHERE (classes.unidade_id =47 and atribuicaos.ano_letivo = 2022 and atribuicaos.professor_id=296) [0m
+  [4;35;1mProfessor Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mClasse Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mMatricula Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `matriculas`[0m
+  [4;35;1mAluno Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;35;1mRegistro Load (1.5ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 29663 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26765) [0m
+  [4;35;1mRegistro Load (1.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 26765 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8777) [0m
+  [4;35;1mRegistro Load (1.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8777 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11850) [0m
+  [4;35;1mRegistro Load (1.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 11850 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14187) [0m
+  [4;35;1mRegistro Load (1.3ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14187 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13793) [0m
+  [4;35;1mRegistro Load (1.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13793 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13797) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13797 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 20879) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 20879 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26531) [0m
+  [4;35;1mRegistro Load (1.7ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 26531 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 27917) [0m
+  [4;35;1mRegistro Load (1.7ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 27917 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13804) [0m
+  [4;35;1mRegistro Load (1.6ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13804 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 12156) [0m
+  [4;35;1mRegistro Load (1.8ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 12156 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 31979) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 31979 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13906) [0m
+  [4;35;1mRegistro Load (2.0ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13906 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8284) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8284 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29793) [0m
+  [4;35;1mRegistro Load (2.0ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 29793 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 26766) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 26766 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11341) [0m
+  [4;35;1mRegistro Load (2.0ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 11341 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8462) [0m
+  [4;35;1mRegistro Load (1.9ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8462 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14200) [0m
+  [4;35;1mRegistro Load (2.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14200 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23194) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 23194 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8628) [0m
+  [4;35;1mRegistro Load (3.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8628 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 28797) [0m
+  [4;35;1mRegistro Load (2.8ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 28797 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 13830) [0m
+  [4;35;1mRegistro Load (2.6ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 13830 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 11311) [0m
+  [4;35;1mRegistro Load (2.8ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 11311 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14209) [0m
+  [4;35;1mRegistro Load (3.3ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14209 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 28286) [0m
+  [4;35;1mRegistro Load (2.8ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 28286 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 23928) [0m
+  [4;35;1mRegistro Load (2.5ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 23928 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 18098) [0m
+  [4;35;1mRegistro Load (2.6ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 18098 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14223) [0m
+  [4;35;1mRegistro Load (2.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14223 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 31982) [0m
+  [4;35;1mRegistro Load (3.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 31982 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 16153) [0m
+  [4;35;1mRegistro Load (1.7ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 16153 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.3ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 14201) [0m
+  [4;35;1mRegistro Load (3.3ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 14201 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 4403) [0m
+  [4;35;1mRegistro Load (3.5ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 4403 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8470) [0m
+  [4;35;1mRegistro Load (3.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8470 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 8474) [0m
+  [4;35;1mRegistro Load (2.4ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 8474 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 12505) [0m
+  [4;35;1mRegistro Load (3.2ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 12505 and ano_letivo=2022) [0m
+  [4;36;1mAluno Load (0.2ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 32647) [0m
+  [4;35;1mRegistro Load (3.3ms)[0m   [0mSELECT * FROM `registros` WHERE (aluno_id = 32647 and ano_letivo=2022) [0m
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:11:37' AND ends_at >= '2022-05-06 13:11:37') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 622ms (View: 328, DB: 109) | 200 OK [http://localhost/registros/lancamentos_registros?professor%5Bid%5D=296&classe%5Bid%5D=3956&disciplina=MATEM%C3%81TICA&commit=Visualizar]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#new (for 127.0.0.1 at 2022-05-06 10:11:41) [GET]
+  Parameters: {"aluno_id"=>"29663", "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.3ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.4ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.0ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mAluno Load (0.2ms)[0m   [0mSELECT * FROM `alunos` WHERE (id='29663') [0m
+  [4;36;1mAluno Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mRegistro Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+Rendering template within layouts/application
+Rendering registros/new
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:11:41' AND ends_at >= '2022-05-06 13:11:41') [0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 224ms (View: 24, DB: 8) | 200 OK [http://localhost/registros/new?aluno_id=29663]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#create (for 127.0.0.1 at 2022-05-06 10:11:46) [POST]
+  Parameters: {"commit"=>"Salvar", "registro"=>{"conteudo"=>"aasddaasdasda  asdasda d"}, "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mRegistro Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mRegistro Create (5.8ms)[0m   [0;1mINSERT INTO `registros` (`classe_id`, `unidade_id`, `disciplina_id`, `updated_at`, `ano_letivo`, `inicio`, `created_at`, `professor_id`, `aluno_id`, `fim`, `obs`, `atribuicao_id`, `conteudo`) VALUES(3956, 47, 4, '2022-05-06 13:11:46', 2022, '2022-05-06 13:11:46', '2022-05-06 13:11:46', 296, 29663, '2022-05-06 13:11:46', NULL, 17862, 'aasddaasdasda asdasda d')[0m
+  [4;35;1mSQL (154.8ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/registros/1777
+Completed in 337ms (DB: 166) | 302 Found [http://localhost/registros]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:11:47) [GET]
+  Parameters: {"id"=>"1777"}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mRegistro Load (36.4ms)[0m   [0;1mSELECT * FROM `registros` WHERE (`registros`.`id` = 1777) [0m
+Rendering template within layouts/application
+Rendering registros/show
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;35;1mClasse Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;35;1mAtribuicao Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.2ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17862) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mProfessor Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;36;1mAluno Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `alunos`[0m
+  [4;35;1mAluno Load (0.1ms)[0m   [0mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;36;1mDisciplina Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `disciplinas`[0m
+  [4;35;1mDisciplina Load (0.1ms)[0m   [0mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:11:47' AND ends_at >= '2022-05-06 13:11:47') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 308ms (View: 81, DB: 51) | 200 OK [http://localhost/registros/1777]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:12:43) [GET]
+  Parameters: {"id"=>"1777"}
+  [4;36;1mUser Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.2ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mRegistro Load (0.3ms)[0m   [0;1mSELECT * FROM `registros` WHERE (`registros`.`id` = 1777) [0m
+Rendering template within layouts/application
+Rendering registros/show
+  [4;35;1mUnidade Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;35;1mClasse Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `classes`[0m
+  [4;36;1mClasse Load (0.4ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;35;1mAtribuicao Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;36;1mAtribuicao Load (0.1ms)[0m   [0;1mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17862) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mProfessor Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mProfessor Load (27.8ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 2960) [0m
+
+ActionView::TemplateError (undefined method `nome' for nil:NilClass) on line #37 of app/views/registros/show.html.erb:
+34:                        <td width=5%" align="center"><b>Classe:</b></td>
+35:                        <td width=10%  align="center"> ----- </td>
+36:                        <td width=10%" align="center"><b>Unidade:</b></td>
+37:                        <td width=20%> <%=h @registro.professor.nome %></td>
+38:                        <td width=8%" align="center"><b>Data:</b></td>
+39:                        <td colspan="3"> Data <%=h @registro.inicio.strftime("%d/%m/%Y") %> </td>
+40:                       -->
+
+    app/views/registros/show.html.erb:37
+    app/controllers/registros_controller.rb:170:in `show'
+
+Rendered rescues/_trace (134.3ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#create (for 127.0.0.1 at 2022-05-06 10:12:50) [POST]
+  Parameters: {"commit"=>"Salvar", "registro"=>{"conteudo"=>"aasddaasdasda  asdasda d"}, "authenticity_token"=>"5w+e3SiSy3t5/crneCqvrbE/xzZlqlxlRhHbI8aqVmA="}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.2ms)[0m   [0mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mClasse Load (0.1ms)[0m   [0;1mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;35;1mRegistro Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `registros`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRegistro Create (119.9ms)[0m   [0mINSERT INTO `registros` (`classe_id`, `unidade_id`, `disciplina_id`, `updated_at`, `ano_letivo`, `inicio`, `created_at`, `professor_id`, `aluno_id`, `fim`, `obs`, `atribuicao_id`, `conteudo`) VALUES(3956, 47, 4, '2022-05-06 13:12:50', 2022, '2022-05-06 13:12:50', '2022-05-06 13:12:50', 296, 29663, '2022-05-06 13:12:50', NULL, 17862, 'aasddaasdasda asdasda d')[0m
+  [4;36;1mSQL (312.0ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/registros/1778
+Completed in 496ms (DB: 436) | 302 Found [http://localhost/registros]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:12:51) [GET]
+  Parameters: {"id"=>"1778"}
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mRegistro Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+  [4;35;1mRegistro Load (21.2ms)[0m   [0mSELECT * FROM `registros` WHERE (`registros`.`id` = 1778) [0m
+Rendering template within layouts/application
+Rendering registros/show
+  [4;36;1mUnidade Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;36;1mClasse Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (0.1ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;36;1mAtribuicao Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `atribuicaos`[0m
+  [4;35;1mAtribuicao Load (0.1ms)[0m   [0mSELECT * FROM `atribuicaos` WHERE (`atribuicaos`.`id` = 17862) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `classes` WHERE (`classes`.`id` = 3956) [0m
+  [4;35;1mProfessor Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mProfessor Load (0.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 296) [0m
+  [4;35;1mAluno Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `alunos`[0m
+  [4;36;1mAluno Load (0.1ms)[0m   [0;1mSELECT * FROM `alunos` WHERE (`alunos`.`id` = 29663) [0m
+  [4;35;1mDisciplina Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `disciplinas`[0m
+  [4;36;1mDisciplina Load (0.1ms)[0m   [0;1mSELECT * FROM `disciplinas` WHERE (`disciplinas`.`id` = 4) [0m
+  [4;35;1mInformativo Load (7.3ms)[0m   [0mSELECT * FROM `informativos` WHERE (starts_at <= '2022-05-06 13:12:51' AND ends_at >= '2022-05-06 13:12:51') [0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=47) [0m
+Completed in 404ms (View: 186, DB: 41) | 200 OK [http://localhost/registros/1778]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RegistrosController#show (for 127.0.0.1 at 2022-05-06 10:13:42) [GET]
+  Parameters: {"id"=>"1778"}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.4ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = 296 AND desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mClasse Load (0.2ms)[0m   [0mSELECT distinct(classes.id), (classe_classe) as classe_unidade FROM `classes` INNER JOIN atribuicaos ON classes.id = atribuicaos.classe_id WHERE (classes.classe_ano_letivo = 2022 AND atribuicaos.professor_id = 296 and classes.unidade_id = 47) ORDER BY classes.classe_classe ASC[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7 or tipo_id = 8)) ORDER BY nome ASC[0m
+  [4;35;1mUnidade Load (0.0ms)[0m   [0mSELECT distinct(unidades.id), nome FROM `unidades` INNER JOIN users ON unidades.id = users.unidade_id WHERE (desativada = 0 and (tipo_id = 1 or tipo_id = 4 or tipo_id = 7) and users.unidade_id=47) ORDER BY nome ASC[0m
+  [4;36;1mRegistro Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `registros`[0m
+  [4;35;1mRegistro Load (0.2ms)[0m   [0mSELECT * FROM `registros` WHERE (`registros`.`id` = 1778) [0m
+Rendering template within layouts/application
+Rendering registros/show
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 47) [0m
+  [4;36;1mClasse Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `classes`[0m
+  [4;35;1mClasse Load (33.8ms)[0m   [0mSELECT * FROM `classes` WHERE (`classes`.`id` = 39560) [0m
+
+ActionView::TemplateError (undefined method `classe_classe' for nil:NilClass) on line #26 of app/views/registros/show.html.erb:
+23:                  <tr bgcolor="#F5F5F5">
+24:                    <%#if !@registro.atribuicao_id.nil?%>
+25:                        <td width=5%" align="center"><b>Classe:</b></td>
+26:                        <td width=10% > <%=h @registro.classe.classe_classe %> <%if !@registro.disciplina_id.nil?%> - <%=h @registro.atribuicao.classe.classe_ano_letivo %><%end%></td>
+27:                        <td width=10%" align="center"><b>Unidade:</b></td>
+28:                        <td width=20%> <%=h @registro.unidade.nome %></td>
+29:                        <td width=8%" align="center"><b>Data:</b></td>
+
+    app/views/registros/show.html.erb:26
+    app/controllers/registros_controller.rb:170:in `show'
+
+Rendered rescues/_trace (30.5ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)

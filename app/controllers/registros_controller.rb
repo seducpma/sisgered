@@ -268,7 +268,7 @@ end
     @registro.destroy
 
     respond_to do |format|
-      format.html { redirect_to(registros_url) }
+      format.html { redirect_to(home_path) }
       format.xml  { head :ok }
     end
   end
