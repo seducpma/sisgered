@@ -8,7 +8,7 @@ set :user, "atena"
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/sisgered.seducpma.com"
 set :scm, :git
-set :ssh_options, forward_agent: true
+set :ssh_options, { :forward_agent => true }
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 server application, :app, :web, :db, :primary => true
