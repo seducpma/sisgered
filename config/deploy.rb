@@ -1,15 +1,13 @@
-#Alex/Bruno 2022-05-061111
 #set :application, "192.168.0.12"
 #set :application, "192.168.0.14"
 #set :application, "177.36.136.46"
 set  :application, "200.168.214.58"
-set :repository, "git@github.com/seducpma/sisgered.git"
+set :repository, "git://github.com/seducpma/sisgered.git"
 #set :user, "servidor"
 set :user, "atena"
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/sisgered.seducpma.com"
 set :scm, :git
-ssh_options[:forward_agent] = true
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 server application, :app, :web, :db, :primary => true
