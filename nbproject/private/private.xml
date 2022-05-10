@@ -20,6 +20,10 @@
             <line>537</line>
         </file>
         <file>
+            <url>app/views/alunos/consulta_cadastro.html.erb</url>
+            <line>16</line>
+        </file>
+        <file>
             <url>app/controllers/atribuicaos_controller.rb</url>
             <line>415</line>
         </file>
@@ -32,8 +36,16 @@
             <line>41</line>
         </file>
         <file>
+            <url>app/controllers/atividades_controller.rb</url>
+            <line>467</line>
+        </file>
+        <file>
             <url>app/controllers/historicos_controller.rb</url>
             <line>206</line>
+        </file>
+        <file>
+            <url>app/views/atividades/avaliacao_consulta.erb</url>
+            <line>84</line>
         </file>
         <file>
             <url>app/views/atividades/show_avaliacao.erb</url>
@@ -44,25 +56,5 @@
             <url>app/views/historicos/_notas_historico_EMEF.erb</url>
             <line>348</line>
         </file>
-        <file>
-            <url>app/views/alunos/consulta_cadastro.html.erb</url>
-            <line>16</line>
-        </file>
-        <file>
-            <url>app/controllers/atividades_controller.rb</url>
-            <line>467</line>
-        </file>
-        <file>
-            <url>app/views/atividades/avaliacao_consulta.erb</url>
-            <line>84</line>
-        </file>
     </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/home/desenvolvimento/sisgered/app/views/registros/consultas.html.erb</file>
-        <file>file:/home/desenvolvimento/sisgered/app/controllers/registros_controller.rb</file>
-        <file>file:/home/desenvolvimento/sisgered/app/views/registros/_conteudo.html.erb</file>
-        <file>file:/home/desenvolvimento/sisgered/app/views/registros/lancamentos_registros.erb</file>
-        <file>file:/home/desenvolvimento/sisgered/app/views/faltasalunos/new.html.erb</file>
-        <file>file:/home/desenvolvimento/sisgered/app/views/alunos/_form.html.erb</file>
-    </open-files>
 </project-private>

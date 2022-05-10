@@ -124,9 +124,10 @@ def classe_disciplina2
          else if current_user.has_role?('professor_fundamental')
               else
                   @disciplinas=Disciplina.find(:all, :select=> 'distinc(disciplinas.disciplina', :conditions=>['curriculo =?  AND nao_disciplina = 0 ', 'I'],:order => 'Disciplina ASC')
+                  t=0
               end
            @disciplinas=Disciplina.find(:all, :conditions=>['nao_disciplina = 0 '],:order => 'Disciplina ASC')
-
+t=0
          end
 t=0
             

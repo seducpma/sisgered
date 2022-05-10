@@ -18,7 +18,7 @@ class ConteudoprogramaticosController < ApplicationController
 
        else if current_user.has_role?('professor_infantil')
              @professor_unidade = Professor.find(:all, :conditions => ['id = ?  AND desligado = 0', (current_user.professor_id)],:order => 'nome ASC')
-             @classe_ano = Classe.find(:all, :select  ,:select => "distinct(classes.id), (classe_classe)  as classe_unidade", :joins => "INNER JOIN  atribuicaos  ON  classes.id = atribuicaos.classe_id", :conditions => ['classes.classe_ano_letivo = ? AND atribuicaos.professor_id = ?' , Time.now.year,current_user.professor_id ], :order => 'classes.classe_classe ASC')
+             @classe_ano = Classe.find(:all, :select  ,:select => "distinct(classes.id), (classe_classe)  as classe_unidade", :joins => "INNER JOIN  atribuicaos  ON  classes.id = atribuicaos.classe_id", :conditions => ['classes.classe_ano_letivo = ? AND atribuicaos.professor_id = ? and classes.unidade_id=?' , Time.now.year,current_user.professor_id , current_user.unidade_id], :order => 'classes.classe_classe ASC')
              @unidades = Unidade.find(:all,  :conditions => ['desativada = 0 and (tipo_id = 2 or  tipo_id = 5  or tipo_id = 8)'  ], :order => 'nome ASC')
               else if  current_user.has_role?('direcao_infantil')   or    current_user.has_role?('secretaria_infantil') or    current_user.has_role?('pedagogo')
                   @pedagogos = Professor.find(:all, :select => 'distinct(professors.nome) as nome, professors.id as id ', :conditions => ['desligado = 0 AND (funcao2="PEDAGOGO" OR funcao2="PROF. COORDENADOR" or funcao2="DIRETOR ED. BÁSICA"  or funcao2="DIRETOR INFANTIL")'],:order => 'nome ASC')
@@ -49,7 +49,7 @@ def classeXXX
     w=session[:professor_id]=params[:conteudoprogramatico_professor_id]
      
     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
-   t=0
+   
     if @atribuicao.empty? or @atribuicao.nil?
       render :partial => 'aviso'
 
@@ -60,21 +60,21 @@ def classeXXX
           w = @atribuicao[0].id
             teste= @atribuicao[0].classe.classe_classe[0,3]
 
-          t=0
+          
           if teste == 'AEE'
             w=session[:atribuicao]= 'AEE'
-                 t=0
+           
           end
            render :partial => 'disciplina'
        else
          if current_user.unidade.tipo_id==1 or current_user.unidade.tipo_id==4 or current_user.unidade.tipo_id==7
              render :partial => 'disciplina'
          else
-            t=0
+           
           w3= session[:cont_atribuicao_id]=@atribuicao[0].id
           x2= session[:cont_classe_id]= @atribuicao[0].classe_id
           w= session[:disciplina_id]=@atribuicao[0].disciplina_id
-           t=0
+           
            render :partial => 'dados_classe'
          end
        end
@@ -87,8 +87,8 @@ def classeXXX
 def classe
     w=session[:professor_id]=params[:conteudoprogramatico_professor_id]
      
-    @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=?", session[:professor_id], Time.now.year ])
-   t=0
+    @atribuicao = Atribuicao.find(:all, :joins=> [:classe], :conditions => ["professor_id =? and ano_letivo=? and classes.unidade_id =?", session[:professor_id], Time.now.year , current_user.unidade_id])
+   
     if @atribuicao.empty? or @atribuicao.nil?
       render :partial => 'aviso'
 
@@ -99,21 +99,21 @@ def classe
           w = @atribuicao[0].id
             teste= @atribuicao[0].classe.classe_classe[0,3]
 
-          t=0
+        
           if teste == 'AEE'
             w=session[:atribuicao]= 'AEE'
-                 t=0
+        
           end
            render :partial => 'disciplina'
        else
          if current_user.unidade.tipo_id==1 or current_user.unidade.tipo_id==4 or current_user.unidade.tipo_id==7
              render :partial => 'disciplina'
          else
-            t=0
+           
           w3= session[:cont_atribuicao_id]=@atribuicao[0].id
           x2= session[:cont_classe_id]= @atribuicao[0].classe_id
           w= session[:disciplina_id]=@atribuicao[0].disciplina_id
-           t=0
+           
            render :partial => 'dados_classe'
          end
        end
@@ -125,6 +125,8 @@ def classe
 
 
 def disciplina_classe
+  w1=  params[:disciplina_id]
+
    w3=session[:disciplina_id] =  params[:disciplina_id]
 
     w2=session[:professor_id]
@@ -133,22 +135,24 @@ def disciplina_classe
 
 
   
-    t=0
+
  @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =? AND disciplina_id =?", current_user.professor_id, Time.now.year, session[:classe_id],session[:disciplina_id]  ])
               a1=session[:cont_atribuicao_id]=@atribuicao[0].id
+              a2= session[:atribuicao]
               t=0
- #if session[:atribuicao] == 'AEE'
- #     @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
+
+ if session[:atribuicao] == 'AEE'
+      @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
 
 #     else
 #       @atribuicao = Atribuicao.find(:all, :conditions => ["professor_id =? and ano_letivo=? and classe_id =?", session[:professor_id], Time.now.year, session[:cont_classe_id] ])
 
-#     end
+     end
        #a=session[:cont_classe_id]= @atribuicao[0].classe_id
        #a1=session[:cont_atribuicao_id]=@atribuicao[0].id
        #a2=session[:disciplina_id]=@atribuicao[0].disciplina_id
 
- #     render :partial => 'dados_classe'
+#      render :partial => 'dados_classe'
 
 
 
@@ -157,20 +161,33 @@ end
 
 def classe_disciplina2
    w3=session[:classe_id] =  params[:classe_id]
-   t=0
+   if session[:atribuicao] == 'AEE'
+      ab= session[:conteudo_programatico_disciplina_id]= 117
+
+   end
       if current_user.has_role?('professor_fundamental')
             
            @disciplinas=Disciplina.find(:all,  :joins=> 'INNER JOIN atribuicaos on atribuicaos.disciplina_id = disciplinas.id ', :conditions=>['(curriculo =? or curriculo =?)  AND nao_disciplina = 0 and atribuicaos.classe_id =? AND atribuicaos.professor_id=?' , 'B', 'D', session[:classe_id], current_user.professor_id],:order => 'disciplinas.disciplina ASC')
-                                                           
-         else if current_user.has_role?('professor_fundamental')
-              else
-                  @disciplinas=Disciplina.find(:all, :select=> 'distinc(disciplinas.disciplina', :conditions=>['curriculo =?  AND nao_disciplina = 0 ', 'I'],:order => 'Disciplina ASC')
-              end
-           @disciplinas=Disciplina.find(:all, :conditions=>['nao_disciplina = 0 '],:order => 'Disciplina ASC')
 
+      else if current_user.has_role?('professor_infantil')
+                 @disciplinas=Disciplina.find(:all, :select=> 'distinct(disciplina)', :conditions=>['curriculo =?  ', 'I'],:order => 'Disciplina ASC')
+
+          else
+            @disciplinas=Disciplina.find(:all, :conditions=>['nao_disciplina = 0 '],:order => 'Disciplina ASC')
          end
-t=0
-session[:cont_classe_id] =  params[:classe_id]            
+
+      end
+
+            if session[:atribuicao]== 'AEE'
+                @atribuicao = Atribuicao.find(:all, :conditions=>['classe_id=?', session[:classe_id]])
+                session[:cont_atribuicao_id] = @atribuicao[0].id
+
+            end
+    
+
+
+
+w1= session[:cont_classe_id] =  params[:classe_id]
        render :partial => 'dados_disciplina'
 end
 
@@ -235,6 +252,7 @@ end
   # GET /conteudoprogramaticos/new.xml
   def new
     @conteudoprogramatico = Conteudoprogramatico.new
+    session[:atribuicao]= ''
 
     respond_to do |format|
       format.html # new.html.erb
@@ -265,7 +283,7 @@ end
     @conteudoprogramatico.classe_id= session[:cont_classe_id]
     @conteudoprogramatico.disciplina_id= session[:disciplina_id]
 
-t=0
+
 
 
     @conteudoprogramatico.atribuicao_id= session[:cont_atribuicao_id]
@@ -308,7 +326,14 @@ t=0
     if ( current_user.has_role?('professor_infantil') or current_user.has_role?('professor_fundamental') )
          @conteudoprogramatico.disciplina_id= session[:disciplina_id]
          if ( current_user.has_role?('professor_infantil') and current_user.unidade_id != 60)
-           @conteudoprogramatico.disciplina_id=115
+
+            if session[:atribuicao]== 'AEE'
+                @conteudoprogramatico.disciplina_id=117
+
+            else
+                @conteudoprogramatico.disciplina_id=115
+                
+            end
          end
     end
 
@@ -316,14 +341,24 @@ t=0
     a= session[:cont_classe_id]
     w2= session[:classe_id]
     w3= session[:disciplina_id]
-t=0
+
     @conteudoprogramatico.classe_id= session[:cont_classe_id]
-    @conteudoprogramatico.disciplina_id= session[:disciplina_id]
+    
 
-t=0
+            if session[:atribuicao]== 'AEE'
+                h=@conteudoprogramatico.disciplina_id=117
+                h1=@conteudoprogramatico.atribuicao_id= session[:cont_atribuicao_id]
+
+            else
+               @conteudoprogramatico.disciplina_id= session[:disciplina_id]
+               @conteudoprogramatico.atribuicao_id= session[:cont_atribuicao_id]
+
+            end
+    
 
 
-    @conteudoprogramatico.atribuicao_id= session[:cont_atribuicao_id]
+
+    
     w3=session[:atribuicao_id]
     w4= session[:cont_atribuicao_id]
     @conteudoprogramatico.ano_letivo =  Time.now.year

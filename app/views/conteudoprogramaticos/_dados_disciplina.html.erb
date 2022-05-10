@@ -1,5 +1,15 @@
+
+
+
+ <%  if session[:atribuicao]== 'AEE'%>
+  AEE
+<%  else %>
+
+
  <%= select_tag :disciplina_id, options_for_select(@disciplinas.collect { |ff| [ff.disciplina, ff.id] }.insert(0, '--Selecionar--')) %>
                      <%= observe_field 'disciplina_id',
                                  :url    => { :action => 'disciplina_classe' },
                                  :with   => 'disciplina_id' %>
 <font size="3" color="blue" id="pisca1"> <b> &nbsp&nbsp <<<<<< <u> ATENÇÃO SELECIONAR </u><<<<<<  </b> </font>&nbsp&nbsp
+
+<%  end %>
